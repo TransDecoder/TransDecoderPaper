@@ -44,8 +44,8 @@ case $tool in
   pytd|pytd_norefine)
     ss=(); [ $stranded = 1 ] && ss=(-S)
     nr=(); [ $tool = pytd_norefine ] && nr=(--no-refine-starts)
-    PYTHONPATH=$PYTD $PYTHON -m pytransdecoder.cli longorfs -t input.fa -G "$gcode" "${ss[@]}" > longorfs.log 2>&1
-    PYTHONPATH=$PYTD $PYTHON -m pytransdecoder.cli predict -t input.fa -G "$gcode" "${nr[@]}" > predict.log 2>&1
+    PYTHONPATH=$PYTD $PYTHON -m pytransdecoder.cli longorfs -t input.fa -G "$gcode" ${ss[@]+"${ss[@]}"} > longorfs.log 2>&1
+    PYTHONPATH=$PYTD $PYTHON -m pytransdecoder.cli predict -t input.fa -G "$gcode" ${nr[@]+"${nr[@]}"} > predict.log 2>&1
     $PYTHON "$here/convert_predictions.py" transdecoder_gff3 input.fa.transdecoder.gff3 > preds.tsv
     if [ $tool = pytd ]; then
       lo=input.fa.transdecoder_dir/longest_orfs.gff3
@@ -58,7 +58,7 @@ case $tool in
     LO=$TD/TransDecoder.LongOrfs; PR=$TD/TransDecoder.Predict
     [ -x "$LO" ] || { LO=$TD/util/TransDecoder.LongOrfs; PR=$TD/util/TransDecoder.Predict; }
     ss=(); [ $stranded = 1 ] && ss=(-S)
-    "$LO" -t input.fa -G "$gcode" "${ss[@]}" > longorfs.log 2>&1
+    "$LO" -t input.fa -G "$gcode" ${ss[@]+"${ss[@]}"} > longorfs.log 2>&1
     "$PR" -t input.fa -G "$gcode" > predict.log 2>&1
     $PYTHON "$here/convert_predictions.py" transdecoder_gff3 input.fa.transdecoder.gff3 > preds.tsv
     ;;
@@ -66,7 +66,7 @@ case $tool in
     # single-genome mode trains on the input; -n forces a full motif scan (no SD trainer), as in 2018
     "$PRODIGAL" -i input.fa -f gff -o prodigal.gff -g "$table" -n -q > prodigal.log 2>&1
     sf=(); [ $stranded = 1 ] && sf=(--plus-only)
-    $PYTHON "$here/convert_predictions.py" prodigal_gff "${sf[@]}" prodigal.gff > preds.tsv
+    $PYTHON "$here/convert_predictions.py" prodigal_gff ${sf[@]+"${sf[@]}"} prodigal.gff > preds.tsv
     ;;
   codan)
     model=$CODAN_MODELS/${clade}_full; [ $partial = 1 ] && model=$CODAN_MODELS/${clade}_partial
