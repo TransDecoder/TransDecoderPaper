@@ -3,7 +3,7 @@
 #
 # usage: run_tool.sh <tool> <input.fa> <outdir> <org>
 #
-# tools: pytd pytd_norefine perl_td perl_td_v600 perl_td_v571 prodigal codan
+# tools: pytd pytd_norefine pytd_homology perl_td perl_td_v600 perl_td_v571 prodigal codan
 # Inputs named *.unstranded* are predicted on both strands; other inputs are treated
 # as strand-specific (TransDecoder -S, Prodigal + strand only, CodAn --strand plus).
 # Fragment inputs use CodAn's *_partial models, complete inputs its *_full models.
@@ -13,7 +13,7 @@
 # <outdir>/all_orfs.preds.tsv (baselines from LongOrfs).
 #
 # Environment (defaults for the Broad workspace): BENCH_ROOT, PYTHON, CODAN_ENV, CODAN_MODELS,
-# PRODIGAL, and TD_FIX/TD_V600/TD_V571/PYTD worktree paths.
+# PRODIGAL, HOMOLOGY_DIR, THREADS, and TD_FIX/TD_V600/TD_V571/PYTD worktree paths.
 set -euo pipefail
 
 tool=$1; input=$(readlink -f "$2"); outdir=$3; org=$4
@@ -23,6 +23,8 @@ PYTHON=${PYTHON:-$ROOT/env/td/bin/python}
 CODAN_ENV=${CODAN_ENV:-$ROOT/env/codan}
 CODAN_MODELS=${CODAN_MODELS:-$ROOT/tools/CodAn/models}
 PRODIGAL=${PRODIGAL:-$ROOT/env/td/bin/prodigal}
+HOMOLOGY_DIR=${HOMOLOGY_DIR:-$ROOT/data/homology}
+THREADS=${THREADS:-4}
 TD_FIX=${TD_FIX:-$ROOT/work/trees/TD_fix}
 TD_V600=${TD_V600:-$ROOT/work/trees/TD_base}
 TD_V571=${TD_V571:-$ROOT/work/trees/TD_v571}
@@ -52,6 +54,21 @@ case $tool in
       $PYTHON "$here/convert_predictions.py" transdecoder_gff3 $lo > all_orfs.preds.tsv
       $PYTHON "$here/convert_predictions.py" transdecoder_gff3 --longest-per-transcript $lo > longest_orf.preds.tsv
     fi
+    ;;
+  pytd_homology)
+    # homology-assisted: DIAMOND vs Swiss-Prot without the organism's own entries (-k 1, 1e-5, as
+    # in the TransDecoder wrapper) and hmmsearch vs Pfam-A with gathering thresholds
+    taxid=$(cut -f7 <<< "$orgrow")
+    ss=(); [ $stranded = 1 ] && ss=(-S)
+    PYTHONPATH=$PYTD $PYTHON -m pytransdecoder.cli longorfs -t input.fa -G "$gcode" ${ss[@]+"${ss[@]}"} > longorfs.log 2>&1
+    pep=input.fa.transdecoder_dir/longest_orfs.pep
+    diamond blastp --query $pep --db "$HOMOLOGY_DIR/sprot_minus_${taxid}.dmnd" --max-target-seqs 1 \
+      --evalue 1e-5 --outfmt 6 --threads "$THREADS" --out blastp.outfmt6 > diamond.log 2>&1
+    hmmsearch --cpu "$THREADS" --cut_ga --noali -o /dev/null --domtblout pfam.domtblout \
+      "$HOMOLOGY_DIR/Pfam-A.hmm" $pep > hmmsearch.log 2>&1
+    PYTHONPATH=$PYTD $PYTHON -m pytransdecoder.cli predict -t input.fa -G "$gcode" \
+      --retain-blastp-hits blastp.outfmt6 --retain-pfam-hits pfam.domtblout > predict.log 2>&1
+    $PYTHON "$here/convert_predictions.py" transdecoder_gff3 input.fa.transdecoder.gff3 > preds.tsv
     ;;
   perl_td|perl_td_v600|perl_td_v571)
     case $tool in perl_td) TD=$TD_FIX;; perl_td_v600) TD=$TD_V600;; perl_td_v571) TD=$TD_V571;; esac

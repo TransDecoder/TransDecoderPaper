@@ -18,6 +18,9 @@ Strategies
 
   --rule best   choose the highest-scoring candidate ATG at/above threshold (current)
   --rule first  choose the most upstream candidate ATG at/above threshold
+  --gate coding only move a start if the sequence between the ORF's 5' end and the candidate
+                ATG scores <= 0 under the ORF's own Markov coding model (i.e. looks like UTR,
+                not like truncated coding sequence)
 
 Output: one TSV row with the strategy, the selected window and threshold, the number
 of revised starts, and stop-level / exact-level TPs against the truth.
@@ -109,7 +112,7 @@ def train_stable(P, N, strategy, seed, k, objective):
     return lo_final, best_w, thr, aucs[best_w], int(keep.sum())
 
 
-def revise(gff_in, transcripts, lo, window, thr, rule, revcomp):
+def revise(gff_in, transcripts, lo, window, thr, rule, revcomp, gate=None):
     """Return {(seqid, orf_id): (start, end, strand)} after start revision, and #revised."""
     out, n_rev = [], 0
     for line in open(gff_in):
@@ -135,7 +138,9 @@ def revise(gff_in, transcripts, lo, window, thr, rule, revcomp):
                     feat = o[a:a + FLEN]
                     if set(feat) <= set(BASES):
                         sc = round(float(window_scores(contributions(encode([feat]), lo), *window)[0]), 3)
-                        if sc >= thr and (best is None or (rule == "best" and sc > best[1])):
+                        if sc >= thr and gate is not None and gate(o[si:pos]) > 0:
+                            pass  # upstream segment looks coding: the ORF is likely truncated
+                        elif sc >= thr and (best is None or (rule == "best" and sc > best[1])):
                             best = (pos, sc)
                             if rule == "first":
                                 break
@@ -160,6 +165,7 @@ def main():
     ap.add_argument("--genetic-code", default="universal")
     ap.add_argument("--strategy", choices=["legacy", "kfold", "fixed", "none"], required=True)
     ap.add_argument("--rule", choices=["best", "first"], default="best")
+    ap.add_argument("--gate", choices=["none", "coding"], default="none")
     ap.add_argument("--seed", type=int, default=1)
     ap.add_argument("--k", type=int, default=5)
     ap.add_argument("--thr-objective", choices=["f1_balanced", "f1_raw", "youden"], default="f1_balanced")
@@ -204,8 +210,17 @@ def main():
             n_pos = len(P)
             lo, window, thr, auc, n_kept = train_stable(P, N, args.strategy, args.seed, args.k, args.thr_objective)
 
+        gate = None
+        if args.gate == "coding":
+            hex_scores = {}
+            for line in open(os.path.join(src_wd, "hexamer.scores")):
+                if not line.startswith("#"):
+                    x = line.rstrip("\n").split("\t")
+                    if len(x) >= 4:
+                        hex_scores[x[0]] = float(x[3])
+            gate = lambda seg: p._score_cds_via_markov(seg, 5, hex_scores)
         preds, n_rev = revise(gff_in, transcripts, lo, window, thr if thr is not None else 0, args.rule,
-                              reverse_complement)
+                              reverse_complement, gate)
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
 
@@ -220,9 +235,9 @@ def main():
         if abs(p3 - t3) <= TOL:
             tp_stop += 1
             tp_exact += abs(p5 - t5) <= TOL
-    cols = ["label", "strategy", "rule", "seed", "thr_objective", "window", "threshold", "cv_auc",
+    cols = ["label", "strategy", "rule", "gate", "seed", "thr_objective", "window", "threshold", "cv_auc",
             "n_pos_features", "n_pos_kept", "n_preds", "n_revised", "tp_stop", "tp_exact", "n_truth"]
-    vals = [args.label, args.strategy, args.rule, args.seed, args.thr_objective,
+    vals = [args.label, args.strategy, args.rule, args.gate, args.seed, args.thr_objective,
             "NA" if window is None else f"{window[0]},{window[1]}",
             "NA" if thr is None else f"{thr:.3f}", "NA" if auc is None else f"{auc:.4f}",
             n_pos, n_kept, len(preds), n_rev, tp_stop, tp_exact, len(truth)]

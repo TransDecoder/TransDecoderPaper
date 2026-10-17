@@ -1,9 +1,9 @@
-org	refseq_assembly	truth_filter	td_genetic_code	ncbi_table	codan_clade	note
-human	GCF_000001405.40_GRCh38.p14	NM_ + MANE Select	Universal	1	VERT	
-mouse	GCF_000001635.27_GRCm39	NM_	Universal	1	VERT	
-dmel	GCF_000001215.4_Release_6_plus_ISO1_MT	NM_	Universal	1	INV	
-athal	GCF_000001735.4_TAIR10.1	NM_	Universal	1	PLANTS	
-spombe	GCF_000002945.2_ASM294v3	NM_	Universal	1	FUNGI	
-tthermophila	GCF_000189635.1_JCVI-TTA1-2.2	NM_,XM_	Tetrahymena	6	INV	ciliate code (TAA/TAG=Gln); no CodAn model for ciliates
-pfalciparum	GCF_000002765.6_GCA_000002765	NM_,XM_	Universal	1	INV	~20% GC; no CodAn model for apicomplexa
-creinhardtii	GCF_000002595.2_Chlamydomonas_reinhardtii_v5.5	NM_,XM_	Universal	1	PLANTS	~64% GC
+org	refseq_assembly	truth_filter	td_genetic_code	ncbi_table	codan_clade	taxid	note
+human	GCF_000001405.40_GRCh38.p14	NM_ + MANE Select	Universal	1	VERT	9606	
+mouse	GCF_000001635.27_GRCm39	NM_	Universal	1	VERT	10090	
+dmel	GCF_000001215.4_Release_6_plus_ISO1_MT	NM_	Universal	1	INV	7227	
+athal	GCF_000001735.4_TAIR10.1	NM_	Universal	1	PLANTS	3702	
+spombe	GCF_000002945.2_ASM294v3	NM_	Universal	1	FUNGI	284812	
+tthermophila	GCF_000189635.1_JCVI-TTA1-2.2	NM_,XM_	Tetrahymena	6	INV	312017	ciliate code (TAA/TAG=Gln); no CodAn model for ciliates
+pfalciparum	GCF_000002765.6_GCA_000002765	NM_,XM_	Universal	1	INV	36329	~20% GC; no CodAn model for apicomplexa
+creinhardtii	GCF_000002595.2_Chlamydomonas_reinhardtii_v5.5	NM_,XM_	Universal	1	PLANTS	3055	~64% GC
