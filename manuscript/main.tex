@@ -1,0 +1,60 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{xcolor}
+\usepackage{lineno}
+\linenumbers
+
+\newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
+\newcommand{\TD}{TransDecoder}
+\newcommand{\PyTD}{PyTransDecoder}
+
+\title{TransDecoder: identification of candidate coding regions within transcript sequences}
+\author{Brian J. Haas \and \todo{co-authors}}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\todo{Write after results are final. Points: widely used since 2012 (Trinity, PASA, genome-guided
+and long-read transcriptomes); self-training 5th-order Markov model plus GC-calibrated length rule
+and optional homology; start-codon refinement; genome projection; new Python implementation
+(\PyTD) that reproduces the Perl implementation and runs faster; benchmark on eight eukaryotes
+incl.\ a ciliate genetic code and GC extremes against Prodigal, CodAn
+\todo{GeneMarkS-T}.}
+\end{abstract}
+
+\section{Introduction}
+\todo{Context: de novo and genome-guided transcriptome assembly (Trinity \citep{Grabherr2011},
+StringTie, long-read isoforms); need to annotate coding regions in transcripts from non-model
+organisms; existing approaches: prokaryotic/metagenomic gene finders (Prodigal \citep{Hyatt2010}),
+GeneMarkS-T \citep{Tang2015}, CodAn \citep{Nachtigall2021}, ANGEL; homology-based tools.
+TransDecoder history: developed with Trinity (\citealp{Haas2013}), used in thousands of studies but
+never described in a dedicated publication.}
+
+\section{Methods}
+\input{sections/methods_algorithm}
+\input{sections/methods_benchmark}
+
+\section{Results}
+\todo{(1) Perl/Python concordance and runtime; (2) benchmark accuracy across organisms and settings;
+(3) effect of non-standard genetic code; (4) GC extremes and the long-ORF rule; (5) start-codon
+refinement; (6) homology integration; (7) application examples (Trinity assembly + BUSCO;
+long-read isoforms + genome projection).}
+
+\section{Discussion}
+\todo{}
+
+\section*{Availability}
+\TD\ (Perl): \url{https://github.com/TransDecoder/TransDecoder}.
+\PyTD: \url{https://github.com/TransDecoder/PyTransDecoder}.
+Benchmark data, scripts and analyses: \url{https://github.com/TransDecoder/TransDecoderPaper}.
+
+\bibliographystyle{unsrtnat}
+\bibliography{references}
+\end{document}

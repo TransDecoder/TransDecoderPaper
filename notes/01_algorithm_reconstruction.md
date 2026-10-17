@@ -48,8 +48,9 @@ Built by reading the code on 2026-10-17. Use this as raw material for the Method
 1. Take the 10·T longest CDS. Skip any with CDS longer than 5000 nt.
 2. Redundancy removal (`exclude_similar_proteins.pl`; CD-HIT was dropped in v4.1):
    - Proteins are processed longest first.
-   - Skip a protein if fewer than 30% of its spaced 5-mers are unique (low complexity).
-   - Proxy identity = shared spaced 5-mers ÷ the query's unique spaced 5-mers.
+   - Query words are the non-overlapping (tiled) 5-mers of the protein. Retained proteins are indexed by all overlapping 5-mers.
+   - Skip a protein if its distinct tiled 5-mers are fewer than 30% of len/5 (low complexity).
+   - Proxy identity = the maximum, over retained proteins, of shared tiled 5-mers ÷ the query's distinct tiled 5-mers.
    - Keep the protein if proxy identity ≤ 80%.
 3. Take the top T. The default is T=500.
 
