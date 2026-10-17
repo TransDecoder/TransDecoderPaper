@@ -1,0 +1,4 @@
+analyses/long_orf_threshold/sim_runs/*.err
+analyses/long_orf_threshold/sim_large/*.err
+*.pyc
+__pycache__/
