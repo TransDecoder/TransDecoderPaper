@@ -151,3 +151,18 @@ Training ORFs may be partial and from either strand.
 15. The Docker wiki uses old paths.
 16. Many unused utilities remain in `util/`.
 17. `--single_best_only` ignores the Markov score.
+
+## 6. Follow-up findings (2026-10-17)
+
+**Long-ORF threshold table origin**
+- First appears in TransDecoder commit `33247f5` (2017-08-24). The full quantile table (0.95, 0.99, 0.999, 0.9999) is pasted as a comment.
+- No script that generated it was found in the git history of TransDecoder, TransDecoder_benchmarking_data, PyTransDecoder or lrgTests.
+- It is also absent from ~/GITHUB/HAASUTIL, ~/utilities and ~/bin.
+- Plan: regenerate it with a documented, seeded simulation, and confirm the result reproduces the 2017 numbers.
+
+**PyTransDecoder start refinement**
+- Ported on 2026-03-15.
+- It reproduces both Perl bugs:
+  - Training scores are normalized by (u+d) at `predict.py:1174`.
+  - Application uses the raw sum over the window shifted by −1 at `predict.py:1354-1364`.
+- Fix both implementations together.
