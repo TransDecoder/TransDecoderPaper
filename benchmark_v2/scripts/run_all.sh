@@ -2,7 +2,7 @@
 # Run every (organism, input variant, tool) benchmark run locally, JOBS at a time.
 # usage: run_all.sh <inputs_dir> <runs_dir> [tool ...]
 # Skips runs whose preds.tsv already exists. VARIANTS (space-separated input basenames
-# without .fa, default all) restricts which inputs are run. JOBS (default 6) sets how many
+# without .fa, default all) restricts which inputs are run. JOBS (default 16) sets how many
 # runs execute concurrently; pytd_homology runs use THREADS (default 4) cores each.
 set -euo pipefail
 here=$(cd "$(dirname "$0")" && pwd)
@@ -19,7 +19,7 @@ for orgdir in "$inputs"/*/; do
       printf '%s\t%s\t%s\t%s\n' "$t" "$fa" "$runs/$org/$v/$t" "$org"
     done
   done
-done | xargs -P "${JOBS:-6}" -d '\n' -n 1 bash -c '
+done | xargs -P "${JOBS:-16}" -d '\n' -n 1 bash -c '
   IFS=$'"'"'\t'"'"' read -r t fa od org <<< "$1"
   log=$0/logs/$org.$(basename "$fa" .fa).$t.log
   if "'"$here"'/run_tool.sh" "$t" "$fa" "$od" "$org" > "$log" 2>&1; then echo "done $org $t $fa"; else echo "FAILED $org $t $fa (see $log)"; fi
