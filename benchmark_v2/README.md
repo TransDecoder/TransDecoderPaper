@@ -79,6 +79,6 @@ Metrics:
 
 ## Running
 ```
-scripts/submit_all.sh data/bench_v2/inputs work/bench_v2/runs        # UGER
+JOBS=6 scripts/run_all.sh data/bench_v2/inputs work/bench_v2/runs   # local, 6 runs at a time
 scripts/score_all.py  data/bench_v2/inputs work/bench_v2/runs > results/summary.tsv
 ```

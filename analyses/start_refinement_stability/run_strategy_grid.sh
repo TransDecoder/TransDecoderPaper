@@ -1,5 +1,5 @@
 #!/bin/bash
-# Run the start-refinement strategy grid on one benchmark dataset (one UGER job).
+# Run the start-refinement strategy grid on one benchmark dataset (single process; run several datasets with xargs -P).
 # usage: run_strategy_grid.sh <org> <variant> <out.tsv>
 # Needs the benchmark's pytd_norefine run for <org>/<variant>.
 set -euo pipefail
