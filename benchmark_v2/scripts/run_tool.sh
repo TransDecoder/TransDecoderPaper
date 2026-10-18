@@ -90,8 +90,17 @@ case $tool in
     model=$CODAN_MODELS/${clade}_full; [ $partial = 1 ] && model=$CODAN_MODELS/${clade}_partial
     strand=plus; [ $stranded = 0 ] && strand=both
     rm -rf codan_out
-    PATH=$CODAN_ENV/bin:$PATH codan.py -t input.fa -m "$model" -s $strand -c 1 -o codan_out > codan.log 2>&1
-    $PYTHON "$here/convert_predictions.py" codan_gtf codan_out/annotation.gtf > preds.tsv
+    # With -s plus, CodAn 1.1 leaves its predictions in ORFs.gtf (no annotation.gtf) and then
+    # exits non-zero removing a FASTA index Biopython never created; accept the run only if
+    # predict produced output.
+    gtf=codan_out/annotation.gtf; [ $strand = plus ] && gtf=codan_out/ORFs.gtf
+    # CodAn's predict indexes the FASTA with Bio::DB::Fasta, which rejects lines >65,535 chars
+    # (and then silently yields no plus-strand predictions), so give it a line-wrapped copy.
+    awk '/^>/ {print; next} {for (i = 1; i <= length($0); i += 80) print substr($0, i, 80)}' input.fa > codan_input.fa
+    PATH=$CODAN_ENV/bin:$PATH codan.py -t codan_input.fa -m "$model" -s $strand -c 1 -o codan_out > codan.log 2>&1 || true
+    rm -f codan_input.fa codan_input.fa.index*
+    [ -s $gtf ] || { echo "CodAn produced no predictions (see codan.log)" >&2; exit 1; }
+    $PYTHON "$here/convert_predictions.py" codan_gtf $gtf > preds.tsv
     ;;
   gmst)
     # GeneMarkS-T self-trains on the input. It supports genetic codes 1, 4 and 11 only, so
