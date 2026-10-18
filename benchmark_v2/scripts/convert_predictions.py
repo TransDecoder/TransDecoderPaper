@@ -6,6 +6,7 @@ usage: convert_predictions.py <format> [options] <file>
 formats:
   transdecoder_gff3   TransDecoder / PyTransDecoder .gff3 (CDS features; also longest_orfs.gff3)
   prodigal_gff        Prodigal -f gff (coordinates include the stop codon)
+  gmst_gff            GeneMarkS-T --format GFF (same layout as Prodigal; coordinates include the stop)
   codan_gtf           CodAn annotation.gtf (CDS excludes the stop; stop_codon rows are merged in)
 
 Output columns: transcript_id, start, end, strand, score (1-based inclusive, transcript
@@ -56,7 +57,7 @@ def codan(path):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("format", choices=["transdecoder_gff3", "prodigal_gff", "codan_gtf"])
+    ap.add_argument("format", choices=["transdecoder_gff3", "prodigal_gff", "gmst_gff", "codan_gtf"])
     ap.add_argument("file")
     ap.add_argument("--plus-only", action="store_true", help="prodigal: keep + strand predictions only")
     ap.add_argument("--longest-per-transcript", action="store_true",
@@ -65,7 +66,7 @@ def main():
 
     if args.format == "transdecoder_gff3":
         rows = transdecoder(args.file)
-    elif args.format == "prodigal_gff":
+    elif args.format in ("prodigal_gff", "gmst_gff"):
         rows = prodigal(args.file, args.plus_only)
     else:
         rows = codan(args.file)

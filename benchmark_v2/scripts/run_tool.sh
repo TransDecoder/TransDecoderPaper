@@ -3,7 +3,7 @@
 #
 # usage: run_tool.sh <tool> <input.fa> <outdir> <org>
 #
-# tools: pytd pytd_norefine pytd_homology perl_td perl_td_v600 perl_td_v571 prodigal codan
+# tools: pytd pytd_norefine pytd_homology perl_td perl_td_v600 perl_td_v571 prodigal codan gmst
 # Inputs named *.unstranded* are predicted on both strands; other inputs are treated
 # as strand-specific (TransDecoder -S, Prodigal + strand only, CodAn --strand plus).
 # Fragment inputs use CodAn's *_partial models, complete inputs its *_full models.
@@ -13,7 +13,7 @@
 # <outdir>/all_orfs.preds.tsv (baselines from LongOrfs).
 #
 # Environment (defaults for the Broad workspace): BENCH_ROOT, PYTHON, CODAN_ENV, CODAN_MODELS,
-# PRODIGAL, HOMOLOGY_DIR, THREADS, and TD_FIX/TD_V600/TD_V571/PYTD worktree paths.
+# PRODIGAL, GMST_DIR (GeneMarkS-T; key in ~/.gm_key), HOMOLOGY_DIR, THREADS, and TD_FIX/TD_V600/TD_V571/PYTD worktree paths.
 set -euo pipefail
 
 tool=$1; input=$(readlink -f "$2"); outdir=$3; org=$4
@@ -23,6 +23,7 @@ PYTHON=${PYTHON:-$ROOT/env/td/bin/python}
 CODAN_ENV=${CODAN_ENV:-$ROOT/env/codan}
 CODAN_MODELS=${CODAN_MODELS:-$ROOT/tools/CodAn/models}
 PRODIGAL=${PRODIGAL:-$ROOT/env/td/bin/prodigal}
+GMST_DIR=${GMST_DIR:-$HOME/software/genemarks_t/dist}  # licensed, not distributed here
 HOMOLOGY_DIR=${HOMOLOGY_DIR:-$ROOT/data/homology}
 THREADS=${THREADS:-4}
 TD_FIX=${TD_FIX:-$ROOT/work/trees/TD_fix}
@@ -91,6 +92,14 @@ case $tool in
     rm -rf codan_out
     PATH=$CODAN_ENV/bin:$PATH codan.py -t input.fa -m "$model" -s $strand -c 1 -o codan_out > codan.log 2>&1
     $PYTHON "$here/convert_predictions.py" codan_gtf codan_out/annotation.gtf > preds.tsv
+    ;;
+  gmst)
+    # GeneMarkS-T self-trains on the input. It supports genetic codes 1, 4 and 11 only, so
+    # organisms with another nuclear code (Tetrahymena, table 6) are run with the standard code.
+    gc=1; [ "$table" = 4 ] && gc=4
+    strand=direct; [ $stranded = 0 ] && strand=both
+    perl "$GMST_DIR/gmst.pl" --format GFF --gcode $gc --strand $strand --output gmst.gff input.fa > gmst.log 2>&1
+    $PYTHON "$here/convert_predictions.py" gmst_gff gmst.gff > preds.tsv
     ;;
   *) echo "unknown tool $tool" >&2; exit 1;;
 esac

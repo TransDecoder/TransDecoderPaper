@@ -58,6 +58,7 @@ Stranded inputs are run strand-specifically:
 | perl_td_v571 | Perl TransDecoder v5.7.1 |
 | prodigal | Prodigal 2.6.3, single mode, `-n`, `-g <table>`, as in 2018 |
 | codan | CodAn 1.1 with its pre-trained clade model (`*_full` for complete, `*_partial` for fragments) |
+| gmst | GeneMarkS-T 5.1 (self-training; licensed, installed outside the repo with the key in `~/.gm_key`). It supports genetic codes 1/4/11 only, so Tetrahymena runs with the standard code |
 | longest_orf | Baseline: the longest LongOrfs ORF per transcript |
 | all_orfs | Baseline: every LongOrfs ORF (≥100 aa) |
 
