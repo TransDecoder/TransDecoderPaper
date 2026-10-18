@@ -1,0 +1,7 @@
+transcripts_with_cds	36572
+kept_genes	26867
+kept_with_annotated_utr3	25955
+kept_with_annotated_utr5	25725
+not_longest_for_gene	9705
+utr5_added	1142
+utr3_added	912

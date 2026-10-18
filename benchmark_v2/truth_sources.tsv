@@ -1,0 +1,9 @@
+org	genome	annotation	builder_args
+human	human/GRCh38.primary_assembly.genome.fa.gz	human/MANE.GRCh38.v1.5.ensembl_genomic.gtf.gz	--require-tag MANE_Select
+mouse	mouse/GRCm39.primary_assembly.genome.fa.gz	mouse/gencode.vM39.primary_assembly.annotation.gff3.gz	--require-tag Ensembl_canonical --biotype-attr transcript_type --exclude-tags cds_start_NF,cds_end_NF,mRNA_start_NF,mRNA_end_NF
+dmel	dmel/dmel-all-chromosome-r6.69.fasta.gz	dmel/dmel-all-r6.69.gtf.gz	
+athal	athal/Athaliana_TAIR12_genomic_Chr_softmasked.fa.gz	athal/TAIR12_genome_annotation_TAIR.gff3.gz	
+spombe	spombe/Schizosaccharomyces_pombe_all_chromosomes.fa.gz	spombe/Schizosaccharomyces_pombe_all_chromosomes.gff3.gz	
+tthermophila	tthermophila/1-upd-Genome-assembly.fasta	tthermophila/Tetrahymena_thermophila_mac_genome_v6_maintranscript.gff3	--table 6
+pfalciparum	pfalciparum/GCF_000002765.6_GCA_000002765_genomic.fna.gz	pfalciparum/GCF_000002765.6_GCA_000002765_genomic.gff.gz	
+creinhardtii	creinhardtii/GCF_000002595.2_Chlamydomonas_reinhardtii_v5.5_genomic.fna.gz	creinhardtii/GCF_000002595.2_Chlamydomonas_reinhardtii_v5.5_genomic.gff.gz	

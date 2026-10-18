@@ -1,0 +1,9 @@
+transcripts_with_cds	19527
+kept_genes	17621
+kept_with_annotated_utr5	17621
+kept_with_annotated_utr3	17621
+not_longest_for_gene	1768
+non_ACGT	88
+no_terminal_stop	24
+non_ATG_start	20
+cds_len	6

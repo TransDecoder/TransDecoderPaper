@@ -1,0 +1,14 @@
+transcripts_with_cds	270228
+missing_required_tag	158743
+not_protein_coding	89844
+kept_genes	21409
+kept_with_annotated_utr3	20595
+kept_with_annotated_utr5	20575
+utr5_added	834
+utr3_added	814
+excluded_tag	102
+non_ATG_start	74
+internal_stop	25
+no_terminal_stop	14
+organelle_seqid	13
+cds_len	4

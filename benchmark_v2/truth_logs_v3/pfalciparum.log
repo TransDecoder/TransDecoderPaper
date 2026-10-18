@@ -1,0 +1,8 @@
+transcripts_with_cds	5356
+kept_genes	5281
+kept_with_annotated_utr5	4406
+kept_with_annotated_utr3	4334
+utr3_added	947
+utr5_added	875
+not_longest_for_gene	71
+internal_stop	4

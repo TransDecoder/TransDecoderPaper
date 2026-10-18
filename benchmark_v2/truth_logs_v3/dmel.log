@@ -1,0 +1,12 @@
+transcripts_with_cds	30837
+not_longest_for_gene	16234
+kept_genes	13884
+kept_with_annotated_utr3	13467
+kept_with_annotated_utr5	13367
+utr5_added	517
+internal_stop	502
+utr3_added	414
+non_ATG_start	124
+cds_len	71
+organelle_seqid	13
+no_terminal_stop	9

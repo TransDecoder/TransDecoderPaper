@@ -1,37 +1,41 @@
 # Benchmark v2: coding-region prediction accuracy on reference transcripts
 
 An update of the 2017–18 benchmark (TransDecoder/TransDecoder_benchmarking_data) with:
-- current RefSeq annotation,
+- the most current reference annotation for each organism,
 - more organisms, including a non-standard genetic code and GC extremes,
 - an unstranded setting,
 - current comparator tools,
 - seeded, scripted generation of every input.
 
-## Truth sets (`scripts/build_truth_from_gbff.py`)
-Built from RefSeq `*_rna.gbff`, one transcript per gene (the longest eligible CDS).
+## Truth sets (`scripts/build_truth_from_annotation.py`, `scripts/build_all_truth.sh`)
+Built from each organism's most current reference genome annotation (genome FASTA + GFF3/GTF; `truth_sources.tsv`, download URLs in `data/annot/sources.tsv`). One transcript per gene: the tagged canonical transcript where one exists (MANE Select, Ensembl canonical), otherwise the longest eligible CDS.
 
 Eligible CDS:
-- a single, complete, + strand span;
-- no exception, ribosomal slippage or transl_except;
-- ATG start and a terminal stop of the record's translation table;
-- no internal stop;
-- translation matches `/translation`;
-- sequence is ACGT only.
+- nuclear, protein-coding; CDS contained in the exons and contiguous in the transcript;
+- ATG start and a terminal stop of the organism's translation table;
+- length divisible by 3, no internal stop (excludes selenoproteins and read-through);
+- transcript sequence is ACGT only.
 
-UTRs are trimmed to ≤250 nt, as in 2018.
+**Missing UTRs.** Transcripts annotated without a 5′ (or 3′) UTR get one. Its length is drawn from that organism's empirical 5′ (3′) UTR lengths among kept transcripts that have one, and it is filled with the genomic sequence flanking the transcript (unspliced). `utr5_source` / `utr3_source` in the truth table record `annotated`, `added` or `none`, so results can be stratified.
 
-| org | assembly | filter | code | genes |
-|---|---|---|---|---|
-| human | GRCh38.p14 | NM_ + MANE Select | 1 | 19,222 |
-| mouse | GRCm39 | NM_ | 1 | 20,990 |
-| dmel | Release 6 | NM_ | 1 | 13,870 |
-| athal | TAIR10.1 | NM_ | 1 | 27,330 |
-| spombe | ASM294v3 | NM_ | 1 | 5,076 |
-| tthermophila | JCVI-TTA1-2.2 | XM_ (model) | 6 (ciliate) | 26,190 |
-| pfalciparum | 3D7 | XM_ | 1 | 5,281 |
-| creinhardtii | v5.5 | XM_ | 1 | 17,621 |
+UTRs are trimmed to ≤250 nt, as in 2018 (`truth/`); `truth_fullutr/` keeps them whole.
 
-Config: `organisms.tsv`. Raw downloads go in `data/refseq/<org>/` (not in git).
+| org | annotation | selection | code | genes | 5′ / 3′ UTR added |
+|---|---|---|---|---|---|
+| human | MANE v1.5 (RefSeq RS_2025_08 / Ensembl 116), GRCh38 | MANE Select (64 on alt/fix patches excluded) | 1 | 19,167 | 351 / 335 |
+| mouse | GENCODE M39 (Ensembl 116), GRCm39 | Ensembl canonical, no `*_NF` tags | 1 | 21,409 | 834 / 814 |
+| dmel | FlyBase FB2026_03 (r6.69) | longest CDS | 1 | 13,884 | 517 / 414 |
+| athal | TAIR12 (TAIR GFF3 via AraBase mirror) | longest CDS | 1 | 26,867 | 1,142 / 912 |
+| spombe | PomBase (2026-10-17) | longest CDS | 1 | 5,100 | 599 / 383 |
+| tthermophila | TGD v6 (Ye et al. 2025), main transcripts | one per gene | 6 (ciliate) | 26,456 | 279 / 316 |
+| pfalciparum | RefSeq RS_2026_09 (PlasmoDB-derived), 3D7 | longest CDS | 1 | 5,281 | 875 / 947 |
+| creinhardtii | RefSeq v5.5 (latest NCBI; v6.1 only via JGI login) | longest CDS | 1 | 17,621 | 0 / 0 |
+
+Notes:
+- TGD's "v6 assembly" download does not match its v6 GFF3; the genome-browser FASTA (`1-upd-Genome-assembly.fasta`) does and is used.
+- NCBI's copy of TAIR12 (GCA_978657495.1) lacks the CDS for 6,562 isoforms, so the TAIR-produced GFF3 is used.
+
+The superseded RefSeq-gbff truth sets (`scripts/build_truth_from_gbff.py`, `refseq_sources.tsv`) are kept for reference; 85% of the *T. thermophila* RefSeq models there had no UTRs.
 
 ## Input variants (`scripts/make_benchmark_inputs.py`, seed 1)
 Every organism gets eight variants: {`complete`, `fragments`} × {stranded, `.unstranded`} × {without, with `.wRand`}.
@@ -64,8 +68,6 @@ Stranded inputs are run strand-specifically:
 
 CodAn has no ciliate or apicomplexan model; the INV model is used for *T. thermophila* and *P. falciparum*. It also cannot use the ciliate genetic code.
 
-GeneMarkS-T needs a licence key and is not yet included.
-
 ## Scoring (`scripts/score_predictions.py`, `scripts/score_all.py`)
 Matching follows the 2018 benchmark:
 - **Stop level**: same strand, and the 3′ end is within 2 nt.
@@ -80,6 +82,8 @@ Metrics:
 
 ## Running
 ```
-JOBS=16 scripts/run_all.sh data/bench_v2/inputs work/bench_v2/runs  # local, 16 runs at a time
-scripts/score_all.py  data/bench_v2/inputs work/bench_v2/runs > results/summary.tsv
+scripts/build_all_truth.sh data/annot data/bench_v3
+scripts/make_all_inputs.sh data/bench_v3
+JOBS=16 scripts/run_all.sh data/bench_v3/inputs work/bench_v3/runs  # local, 16 runs at a time
+scripts/score_all.py  data/bench_v3/inputs work/bench_v3/runs > results/summary.tsv
 ```
