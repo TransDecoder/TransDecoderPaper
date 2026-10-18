@@ -8,3 +8,4 @@ manuscript/*.log
 manuscript/*.bbl
 manuscript/*.blg
 manuscript/*.out
+.nfs*
