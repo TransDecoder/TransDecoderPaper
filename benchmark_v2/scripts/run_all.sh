@@ -7,7 +7,7 @@
 set -euo pipefail
 here=$(cd "$(dirname "$0")" && pwd)
 inputs=$(readlink -f "$1"); runs=$(mkdir -p "$2" && readlink -f "$2"); shift 2
-tools=("$@"); [ ${#tools[@]} -gt 0 ] || tools=(pytd pytd_norefine perl_td perl_td_v600 perl_td_v571 prodigal codan)
+tools=("$@"); [ ${#tools[@]} -gt 0 ] || tools=(pytd pytd_norefine perl_td perl_td_v600 perl_td_v571 prodigal codan gmst cpat cpc2 borf angel)
 mkdir -p "$runs/logs"
 for orgdir in "$inputs"/*/; do
   org=$(basename "$orgdir")

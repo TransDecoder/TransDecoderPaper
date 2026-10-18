@@ -4,6 +4,7 @@
 # usage: run_tool.sh <tool> <input.fa> <outdir> <org>
 #
 # tools: pytd pytd_norefine pytd_homology perl_td perl_td_v600 perl_td_v571 prodigal codan gmst
+#        cpat cpc2 borf rnasamba angel
 # Inputs named *.unstranded* are predicted on both strands; other inputs are treated
 # as strand-specific (TransDecoder -S, Prodigal + strand only, CodAn --strand plus).
 # Fragment inputs use CodAn's *_partial models, complete inputs its *_full models.
@@ -24,6 +25,9 @@ CODAN_ENV=${CODAN_ENV:-$ROOT/env/codan}
 CODAN_MODELS=${CODAN_MODELS:-$ROOT/tools/CodAn/models}
 PRODIGAL=${PRODIGAL:-$ROOT/env/td/bin/prodigal}
 GMST_DIR=${GMST_DIR:-$HOME/software/genemarks_t/dist}  # licensed, not distributed here
+CPAT_ENV=${CPAT_ENV:-$ROOT/env/cpat}; CPAT_MODELS=${CPAT_MODELS:-$ROOT/tools/models/cpat}
+CPC2_ENV=${CPC2_ENV:-$ROOT/env/cpc2}; BORF_ENV=${BORF_ENV:-$ROOT/env/borf}; ANGEL_ENV=${ANGEL_ENV:-$ROOT/env/angel}
+RNASAMBA_ENV=${RNASAMBA_ENV:-$ROOT/env/rnasamba}; RNASAMBA_MODELS=${RNASAMBA_MODELS:-$ROOT/tools/models/rnasamba}
 HOMOLOGY_DIR=${HOMOLOGY_DIR:-$ROOT/data/homology}
 THREADS=${THREADS:-4}
 TD_FIX=${TD_FIX:-$ROOT/work/trees/TD_fix}
@@ -40,6 +44,10 @@ stranded=1; [[ $(basename "$input") == *unstranded* ]] && stranded=0
 partial=0; [[ $(basename "$input") == fragments* ]] && partial=1
 
 mkdir -p "$outdir"; outdir=$(readlink -f "$outdir"); cd "$outdir"
+# Several runners may share a runs directory: skip a run another runner holds or has finished.
+exec 9> .run.lock
+flock -n 9 || { echo "$outdir is being run by another runner; skipping"; exit 0; }
+[ -s preds.tsv ] && { echo "$outdir already has preds.tsv; skipping"; exit 0; }
 ln -sf "$input" input.fa
 t0=$(date +%s.%N)
 
@@ -109,6 +117,49 @@ case $tool in
     strand=direct; [ $stranded = 0 ] && strand=both
     perl "$GMST_DIR/gmst.pl" --format GFF --gcode $gc --strand $strand --output gmst.gff input.fa > gmst.log 2>&1
     $PYTHON "$here/convert_predictions.py" gmst_gff gmst.gff > preds.tsv
+    ;;
+  cpat)
+    # CPAT 3 with its nearest prebuilt model (human, mouse, fly; human for the others) and that
+    # model's published cutoff; the ciliate code is given through --stop.
+    case $org in mouse) m=Mouse; hx=Mouse; cut=0.44;; dmel) m=Fly; hx=fly; cut=0.39;; *) m=Human; hx=Human; cut=0.364;; esac
+    stops=TAG,TAA,TGA; [ "$table" = 6 ] && stops=TGA
+    as=(); [ $stranded = 0 ] && as=(--antisense)
+    PATH=$CPAT_ENV/bin:$PATH cpat -g input.fa -o cpat -d "$CPAT_MODELS/${m}_logitModel.RData" \
+      -x "$CPAT_MODELS/${hx}_Hexamer.tsv" --stop $stops ${as[@]+"${as[@]}"} --log-file cpat.run.log > cpat.log 2>&1
+    $PYTHON "$here/convert_predictions.py" cpat_tsv --cutoff $cut --fasta input.fa cpat.ORF_prob.best.tsv > preds.tsv
+    ;;
+  cpc2)
+    # CPC2 1.0.1: longest ATG ORF per transcript, kept when labelled coding (standard code only)
+    rc=(); [ $stranded = 0 ] && rc=(-r)
+    PATH=$CPC2_ENV/bin:$PATH CPC2.py -i input.fa -o cpc2 --ORF ${rc[@]+"${rc[@]}"} > cpc2.log 2>&1
+    $PYTHON "$here/convert_predictions.py" cpc2_txt --fasta input.fa cpc2.txt > preds.tsv
+    ;;
+  borf)
+    # Borf 1.2 defaults (>=100 aa; standard code only)
+    ss=(); [ $stranded = 0 ] && ss=(-s)
+    $BORF_ENV/bin/borf -f ${ss[@]+"${ss[@]}"} -o borf input.fa > borf.log 2>&1
+    $PYTHON "$here/convert_predictions.py" borf_txt borf.txt > preds.tsv
+    ;;
+  rnasamba)
+    # RNAsamba 0.2.5 with the authors' human-trained weights (full-length or partial); it scores the
+    # forward strand only, so it is run on stranded inputs only.
+    [ $stranded = 1 ] || { echo "rnasamba is forward-strand only; not run on unstranded inputs" >&2; exit 1; }
+    w=$RNASAMBA_MODELS/full_length_weights.hdf5; [ $partial = 1 ] && w=$RNASAMBA_MODELS/partial_length_weights.hdf5
+    PATH=$RNASAMBA_ENV/bin:$PATH rnasamba classify -p rnasamba.pep rnasamba.tsv input.fa "$w" > rnasamba.log 2>&1
+    $PYTHON "$here/convert_predictions.py" rnasamba --fasta input.fa rnasamba.pep > preds.tsv
+    ;;
+  angel)
+    # ANGEL 3.0 self-training workflow from its README: longest ORFs -> non-redundant training set ->
+    # classifier -> prediction (best ORF per transcript; standard code only)
+    rv=(); [ $stranded = 0 ] && rv=(--use_rev_strand)
+    export PATH=$ANGEL_ENV/bin:$PATH PYTHONWARNINGS=ignore
+    { dumb_predict.py input.fa dumb --min_aa_length 100 --cpus "$THREADS" ${rv[@]+"${rv[@]}"}
+      angel_make_training_set.py dumb.final train --random --cpus "$THREADS"
+      angel_train.py train.cds train.utr angel.pickle --cpus "$THREADS"
+      angel_predict.py input.fa angel.pickle angel --output_mode best --min_angel_aa_length 100 \
+        --min_dumb_aa_length 100 --cpus "$THREADS" ${rv[@]+"${rv[@]}"}
+    } > angel.log 2>&1
+    $PYTHON "$here/convert_predictions.py" angel_cds --fasta input.fa angel.ANGEL.cds > preds.tsv
     ;;
   *) echo "unknown tool $tool" >&2; exit 1;;
 esac

@@ -63,8 +63,16 @@ Stranded inputs are run strand-specifically:
 | prodigal | Prodigal 2.6.3, single mode, `-n`, `-g <table>`, as in 2018 |
 | codan | CodAn 1.1 with its pre-trained clade model (`*_full` for complete, `*_partial` for fragments) |
 | gmst | GeneMarkS-T 5.1 (self-training; licensed, installed outside the repo with the key in `~/.gm_key`). It supports genetic codes 1/4/11 only, so Tetrahymena runs with the standard code |
+| cpat | CPAT 3.0.5 (logistic regression on hexamer/Fickett/ORF features; the ORF step of SQANTI3). Prebuilt human/mouse/fly model and its published cutoff (human for organisms without one); `--antisense` when unstranded; ciliate stops via `--stop TGA` |
+| cpc2 | CPC2 1.0.1 (`--ORF`; longest ATG ORF of transcripts labelled coding; `-r` when unstranded; used with CPAT by IsoformSwitchAnalyzeR) |
+| borf | Borf 1.2, defaults (`-s` when unstranded) |
+| rnasamba | RNAsamba 0.2.5 with the authors' human weights (full-length / partial). Forward strand only, so stranded inputs only; proteins mapped back to transcript coordinates |
+| angel | ANGEL 3.0 (PacBio; deprecated upstream), self-training workflow from its README (`dumb_predict` → `angel_make_training_set --random` → `angel_train` → `angel_predict --output_mode best`, ≥100 aa) |
 | longest_orf | Baseline: the longest LongOrfs ORF per transcript |
 | all_orfs | Baseline: every LongOrfs ORF (≥100 aa) |
+
+Only TransDecoder, Prodigal and CPAT take the ciliate genetic code; GeneMarkS-T, CodAn, CPC2, Borf, RNAsamba and ANGEL run *T. thermophila* with the standard code.
+ORFanage (reference-guided) is not included: it needs a reference annotation of the same genome. NCBI ORFfinder and orfipy enumerate ORFs like the `all_orfs` baseline.
 
 CodAn has no ciliate or apicomplexan model; the INV model is used for *T. thermophila* and *P. falciparum*. It also cannot use the ciliate genetic code.
 

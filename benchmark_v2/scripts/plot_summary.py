@@ -21,7 +21,8 @@ ORG_LABEL = {"human": "H. sapiens", "mouse": "M. musculus", "dmel": "D. melanoga
              "athal": "A. thaliana", "spombe": "S. pombe", "creinhardtii": "C. reinhardtii",
              "pfalciparum": "P. falciparum", "tthermophila": "T. thermophila"}
 TOOL_ORDER = ["pytd", "pytd_homology", "pytd_norefine", "perl_td", "perl_td_v600", "perl_td_v571",
-              "codan", "prodigal", "longest_orf", "all_orfs"]
+              "gmst", "codan", "prodigal", "angel", "borf", "cpat", "cpc2", "rnasamba",
+              "longest_orf", "all_orfs"]
 
 
 def main():
