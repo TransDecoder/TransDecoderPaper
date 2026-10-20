@@ -126,3 +126,34 @@ Mouse is similar.
 - Translated noncanonical sORFs lack the codon-usage signal that composition models detect.
 - So sequence-only prediction can either annotate canonical short proteins precisely or capture
   the dark proteome, not both. Translation evidence (Ribo-seq, proteomics) is required for the latter.
+
+## lncRNA negatives: comparator tools (2026-10-20; final defaults)
+
+Table: `work/bench_v3/scores/lnc_by_era.human.tsv` (`analyses/lnc_holdout/lnc_calls_by_era.py`).
+
+Human complete.wLnc (33,668 lncRNAs):
+
+| tool | lncRNAs called | sensitivity (stop) |
+|---|---|---|
+| TransDecoder | 20.6% | 0.98 |
+| CPAT | 10.5% | 0.98 |
+| CPC2 | 7.9% | 0.96 |
+| RNAsamba | 9.1% | 0.99 |
+| Borf | 23.3% | 0.96 |
+| GeneMarkS-T | 24.6% | 0.98 |
+| Prodigal | 35.3% | 0.98 |
+
+**Training-leakage check:** lncRNA genes in GENCODE v28 vs genes added later.
+- RNAsamba: 6.2% vs 10.9%. Its training lncRNAs inflate its apparent precision.
+- CPAT: 10.9% vs 10.2%. CPC2: 7.9% vs 7.9%. Neither is affected.
+
+**Fragments**
+- TransDecoder has the highest sensitivity: 0.86, vs CPAT 0.79, RNAsamba 0.81, CPC2 0.42.
+- It has a much higher exact F1: 0.68, vs 0.47 or less.
+
+**Discussion point**
+- Transcript-level classifiers trained on lncRNA vs mRNA reject noncoding transcripts better than
+  TransDecoder's ORF-level Markov test.
+- But they do not locate the CDS in partial transcripts.
+- Future direction: add a transcript-level classifier, or features learned from lncRNAs, as an
+  optional filter.
