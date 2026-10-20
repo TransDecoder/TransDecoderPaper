@@ -3,14 +3,15 @@
 
 usage: score_by_length.py <inputs_dir> <runs_dir> <tool> [<tool> ...] > by_length.tsv
 
-For each <org>/<variant>/<tool>/preds.tsv (variants with random negatives, *.wRand):
+For each <org>/<variant>/<tool>/preds.tsv (variants with negatives: *.wRand, i.i.d. random
+sequences 'rand_*'; *.wLnc, GENCODE lncRNAs 'lnc_*'):
   truth rows      binned by true protein length (CDS nt / 3, less the stop when present);
                   sensitivity at the stop level and exact level (ends within 2 nt, as in
                   score_predictions.py)
   predictions     binned by predicted protein length; counted as TP (stop match on a real
-                  transcript), FP on a real transcript (any other), or FP on a random negative
+                  transcript), FP on a real transcript (any other), or a call on a negative
 Output: long format org, variant, tool, kind (truth|pred), bin, n, tp_stop, tp_exact,
-fp_real, fp_random. Bins: <50, 50-59, 60-69, ..., 90-99, 100-149, >=150 aa.
+fp_real, fp_negative. Bins: <50, 50-59, 60-69, ..., 90-99, 100-149, >=150 aa.
 """
 import os
 import sys
@@ -31,12 +32,12 @@ def ends(s, e, strand):
 
 def main():
     inputs, runs, tools = sys.argv[1], sys.argv[2], sys.argv[3:]
-    print("org\tvariant\ttool\tkind\tbin\tn\ttp_stop\ttp_exact\tfp_real\tfp_random")
+    print("org\tvariant\ttool\tkind\tbin\tn\ttp_stop\ttp_exact\tfp_real\tfp_negative")
     for org in sorted(os.listdir(runs)):
         if not os.path.isdir(os.path.join(runs, org)) or org == "logs":
             continue
         for variant in sorted(os.listdir(os.path.join(runs, org))):
-            if not variant.endswith("wRand"):
+            if not variant.endswith(("wRand", "wLnc")):
                 continue
             truth = {}
             with open(os.path.join(inputs, org, variant + ".truth.tsv")) as fh:
@@ -63,7 +64,7 @@ def main():
                         b = bin_label((e - s + 1) // 3)
                         pstat[b][0] += 1
                         t = truth.get(tid)
-                        if tid.startswith("rand_"):
+                        if tid.startswith(("rand_", "lnc_")):
                             pstat[b][3] += 1
                             continue
                         if t and t[2] == strand and tid not in credited:
