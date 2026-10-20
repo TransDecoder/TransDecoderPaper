@@ -57,13 +57,15 @@ case $tool in
     # pytd_dev*: development tree (PYTD_DEV); pytd_dev_pwm chooses trimmed starts by PWM;
     # pytd_dev_single keeps one ORF per transcript (--single-best-only); pytd_dev_kozak: dev defaults
     # (Kozak scaled by segment length); pytd_dev_kozak_add: dev defaults with the additive Kozak term;
-    # pytd_dev_m<N>: dev defaults with minimum ORF length N aa (LongOrfs -m)
+    # pytd_dev_m<N>: dev defaults with minimum ORF length N aa (LongOrfs -m); pytd_dev_m<N>_sc<C>: also
+    # Predict --short-orf-min-contrast C
     ss=(); [ $stranded = 1 ] && ss=(-S)
     nr=(); [ $tool = pytd_norefine ] && nr=(--no-refine-starts)
     [ $tool = pytd_dev_pwm ] && nr=(--start-atg-choice pwm)
     [ $tool = pytd_dev_single ] && nr=(--single-best-only)
     [[ $tool == pytd_dev* ]] && PYTD=$PYTD_DEV
-    mm=(); [[ $tool =~ ^pytd_dev_m([0-9]+)$ ]] && mm=(-m "${BASH_REMATCH[1]}")
+    mm=(); [[ $tool =~ ^pytd_dev_m([0-9]+)(_sc([0-9.]+))?$ ]] && mm=(-m "${BASH_REMATCH[1]}")
+    [[ $tool =~ _sc([0-9.]+)$ ]] && nr=(--short-orf-min-contrast "${BASH_REMATCH[1]}")
     PYTHONPATH=$PYTD $PYTHON -m pytransdecoder.cli longorfs -t input.fa -G "$gcode" ${ss[@]+"${ss[@]}"} ${mm[@]+"${mm[@]}"} > longorfs.log 2>&1
     PYTHONPATH=$PYTD $PYTHON -m pytransdecoder.cli predict -t input.fa -G "$gcode" ${nr[@]+"${nr[@]}"} > predict.log 2>&1
     $PYTHON "$here/convert_predictions.py" transdecoder_gff3 input.fa.transdecoder.gff3 > preds.tsv

@@ -72,3 +72,57 @@ Tables: `work/bench_v3/scores/by_length.tsv` (score_by_length.py) and
 | CDSs with no GENCODE CDS overlap | 11.8% -> 34.7% (about 13.4k new) | 3.6% -> 10.7% |
 
 The StringTie assembly includes many noncoding / intronic transcripts, so the increase is larger.
+
+## Ribo-seq ORF catalog comparison (2026-10-20)
+
+Catalogs: GENCODE phase 1 (Mudge et al. 2022; 7,264 ORFs, peptide-support tiers incl. HLA) and
+phase 2 (TransCODE 2026; 28,359 ORFs), in `data/riboseq_orfs/`. Matching is by stop codon
+(`analyses/riboseq/match_riboseq.py`).
+
+**Catalog reach**
+- Phase 1: median 34 aa; 29% are >= 50 aa and 5% are >= 100 aa.
+- Phase 2: median 20 aa; about half start at near-cognate codons.
+- Most translated sORFs are beyond any ATG-start, length-floored caller.
+
+**Human lncRNA benchmark calls**
+- Only 1-1.5% match a Ribo-seq ORF stop, at every length cutoff.
+- Of the 495 catalog ORFs that are findable in principle (ATG start, >= 50 aa, inside the chosen
+  transcript), TransDecoder calls 25% at -m 50 and 45% of the 83 that are >= 100 aa.
+
+**GM12878 unannotated (no GENCODE CDS) predictions**
+- Ribo-seq support: 6% (LRAA) vs 2% (StringTie).
+- At -m 50, 148 (LRAA) / 157 (StringTie) predictions match ORFs with HLA peptide support.
+
+## Short-ORF frame-contrast guard (PyTD 7e9ffa2, not pushed)
+
+The rule: ORFs shorter than 100 codons need frame contrast >= 200 x the median per-base coding
+contrast, unless they have homology support.
+- Summary table: `work/bench_v3/scores/short_orf_summary.tsv`.
+
+**Human lncRNA, -m 50 + guard 200 vs -m 100**
+
+| | short sens | lncRNA calls | precision |
+|---|---|---|---|
+| complete | 0.31 -> 0.56 | 6,608 -> 6,943 | 0.737 -> 0.729 |
+| fragments | 0.13 -> 0.52 (all-length sens 0.80 -> 0.87) | 6,508 -> 6,833 | 0.700 -> 0.706 |
+
+Mouse is similar.
+
+**Comparison with lowering the cutoff alone**
+- Guard 150 reaches the short-protein sensitivity of -m 80 with about 2,900 fewer lncRNA calls.
+- Random-negative calls stay near the -m 100 level for all 8 organisms.
+- In AT-rich P. falciparum the guard is strict: short sensitivity 0.11 vs 0.03 at -m 100.
+
+**GM12878, -m 50 + guard 200 vs -m 100**
+
+| | GENCODE-exact gained | MANE-exact gained | no-GENCODE-overlap |
+|---|---|---|---|
+| LRAA | +679 | +44 | 3.6% -> 3.7% |
+| StringTie | +1,001 | +66 | 11.8% -> 12.0% |
+
+**Key point for the Discussion:** the guard also removes most Ribo-seq-supported lncRNA ORFs.
+- Ribo-seq matches drop from 458 to 178 (LRAA) and 578 to 217 (StringTie).
+- HLA-supported matches drop from 148 to 37 (LRAA).
+- Translated noncanonical sORFs lack the codon-usage signal that composition models detect.
+- So sequence-only prediction can either annotate canonical short proteins precisely or capture
+  the dark proteome, not both. Translation evidence (Ribo-seq, proteomics) is required for the latter.
