@@ -180,3 +180,38 @@ Human complete.wLnc (33,668 lncRNAs):
   - RNAsamba's advantage is partly training leakage (era split).
   - Few TransDecoder lncRNA calls have Ribo-seq support, so they are mostly true false positives.
   - The lncRNA set is not a perfectly clean negative.
+
+### Verified citations for the lncRNA Discussion point (2026-10-20; PubMed / Europe PMC)
+Classifier tools:
+- CPAT: Wang L et al. Nucleic Acids Res 2013;41(6):e74. doi:10.1093/nar/gkt006. PMID 23335781.
+- CPC2: Kang YJ et al. Nucleic Acids Res 2017;45(W1):W12-W16. doi:10.1093/nar/gkx428. PMID 28521017.
+- PLEK: Li A et al. BMC Bioinformatics 2014;15:311. doi:10.1186/1471-2105-15-311. PMID 25239089.
+- RNAsamba: Camargo AP et al. NAR Genom Bioinform 2020;2(1):lqz024. doi:10.1093/nargab/lqz024. PMID 33575571.
+
+State of the field:
+- Ammunét T et al. "Deep learning tools are top performers in long non-coding RNA prediction." Brief Funct Genomics 2022;21(3):230-241. doi:10.1093/bfgp/elab045. PMID 35136929.
+  - Benchmarks 15 tools. Deep-learning tools (RNAsamba etc.) performed best.
+  - Performance depends on the lncRNA:mRNA ratio of the test set.
+  - TransDecoder, PLEK and CNCI were not tested.
+
+Consensus approach:
+- Jastrzebski JP et al. "lncRna: The R Package for Optimizing lncRNA Identification Processes." J Comput Biol 2023;30(12):1322-1326. doi:10.1089/cmb.2023.0091. PMID 37878344.
+  - Uses a CPC2/PLEK/CPAT consensus.
+
+Studies combining TransDecoder with classifiers (TransDecoder use confirmed in each methods section):
+- Azlan A et al. PLoS Negl Trop Dis 2021;15(1):e0008351. doi:10.1371/journal.pntd.0008351. PMID 33481791.
+  - Aedes albopictus, a non-model organism; the best example.
+  - Drops transcripts with a TransDecoder ORF of >=100 aa, then requires a noncoding call from all of CPC2, PLEK and CPAT, then filters by BLASTX against SwissProt.
+- Bakhtiarizadeh MR, Salami SA. G3 2019;9(4):1263-1276. doi:10.1534/g3.118.201014. PMID 30787031.
+  - Sheep.
+  - Uses a 3-of-5 consensus of CPC2, CNCI, CPAT, PLEK and FEELnc, plus a TransDecoder ORF filter.
+- Chen B et al. Sci Rep 2016;6:23330. doi:10.1038/srep23330. PMID 26996731.
+  - Drosophila.
+  - Applies a TransDecoder ORF >100 aa filter, then CPAT.
+- Bryzghalov O et al. "lncEvo." BMC Bioinformatics 2021;22:59. doi:10.1186/s12859-021-03991-2. PMID 33563213.
+  - An automated pipeline that uses TransDecoder (`-m 100 -S`) and CPC.
+
+Other notes:
+- FEELnc (Wucher V et al. Nucleic Acids Res 2017;45(8):e57) is a stand-alone classifier and does not use TransDecoder.
+- Not yet checked: wheat (PMC5587677), chicken (PMC8847365), CANTATAdb (PMC4722178), Anopheles (PMC12090406).
+- Do NOT cite Kashyap 2020 (beaver): it uses TransDecoder only for MAKER genome annotation, not for lncRNA filtering.
