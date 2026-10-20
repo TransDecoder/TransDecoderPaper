@@ -157,3 +157,26 @@ Human complete.wLnc (33,668 lncRNAs):
 - But they do not locate the CDS in partial transcripts.
 - Future direction: add a transcript-level classifier, or features learned from lncRNAs, as an
   optional filter.
+
+### Decision (Brian, 2026-10-20): treat this in the Discussion only; recommend combining tools
+- Present the lncRNA benchmark and the comparator results as they are; no new TransDecoder filter.
+- Recommend that users who need lncRNA vs mRNA classification pair TransDecoder (CDS location and
+  structure) with a transcript-level coding-potential classifier (CPAT, CPC2, PLEK, RNAsamba),
+  ideally by consensus of several.
+- Cite work that already combines them. Candidates found; verify each before citing:
+  - the Bioconductor `lncRna` workflow (consensus of CPC2 / PLEK / CPAT);
+  - lncRNA discovery pipelines that drop TransDecoder-ORF transcripts, then filter with
+    CPAT/PLEK/CPC2 and BLASTX against Swiss-Prot. A non-model-organism example: the
+    Roberts lab "deep-dive" lncRNA workflow, which is not a paper, so find a peer-reviewed
+    equivalent;
+  - the 2022 benchmark of 15 lncRNA predictors (deep-learning tools on top; PMC9123429) for the
+    state of the classifier field;
+  - tool papers: CPAT (Wang et al. 2013 NAR), CPC2 (Kang et al. 2017 NAR), PLEK (Li et al. 2014
+    BMC Bioinformatics), RNAsamba (Camargo et al. 2020 NAR Genom Bioinform).
+- Discussion points:
+  - Classifiers ask "is this transcript coding?"; TransDecoder asks "where and what is the CDS?".
+  - Transcript-level features (ORF coverage, discriminative lncRNA training) explain the
+    classifiers' lower lncRNA call rate.
+  - RNAsamba's advantage is partly training leakage (era split).
+  - Few TransDecoder lncRNA calls have Ribo-seq support, so they are mostly true false positives.
+  - The lncRNA set is not a perfectly clean negative.
