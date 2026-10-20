@@ -34,6 +34,7 @@ TD_FIX=${TD_FIX:-$ROOT/work/trees/TD_fix}
 TD_V600=${TD_V600:-$ROOT/work/trees/TD_base}
 TD_V571=${TD_V571:-$ROOT/work/trees/TD_v571}
 PYTD=${PYTD:-$ROOT/work/trees/PY_fix}
+PYTD_DEV=${PYTD_DEV:-$ROOT/work/trees/PY_dev}
 export PATH=$ROOT/env/td/bin:$PATH PERL_HASH_SEED=0
 
 orgrow=$(awk -F'\t' -v o="$org" '$1==o' "$here/../organisms.tsv")
@@ -52,9 +53,14 @@ ln -sf "$input" input.fa
 t0=$(date +%s.%N)
 
 case $tool in
-  pytd|pytd_norefine)
+  pytd|pytd_norefine|pytd_dev|pytd_dev_pwm|pytd_dev_single|pytd_dev_kozak)
+    # pytd_dev*: development tree (PYTD_DEV); pytd_dev_pwm chooses trimmed starts by PWM;
+    # pytd_dev_single keeps one ORF per transcript (--single-best-only); pytd_dev_kozak: dev defaults
     ss=(); [ $stranded = 1 ] && ss=(-S)
     nr=(); [ $tool = pytd_norefine ] && nr=(--no-refine-starts)
+    [ $tool = pytd_dev_pwm ] && nr=(--start-atg-choice pwm)
+    [ $tool = pytd_dev_single ] && nr=(--single-best-only)
+    [[ $tool == pytd_dev* ]] && PYTD=$PYTD_DEV
     PYTHONPATH=$PYTD $PYTHON -m pytransdecoder.cli longorfs -t input.fa -G "$gcode" ${ss[@]+"${ss[@]}"} > longorfs.log 2>&1
     PYTHONPATH=$PYTD $PYTHON -m pytransdecoder.cli predict -t input.fa -G "$gcode" ${nr[@]+"${nr[@]}"} > predict.log 2>&1
     $PYTHON "$here/convert_predictions.py" transdecoder_gff3 input.fa.transdecoder.gff3 > preds.tsv
@@ -79,8 +85,9 @@ case $tool in
       --retain-blastp-hits blastp.outfmt6 --retain-pfam-hits pfam.domtblout > predict.log 2>&1
     $PYTHON "$here/convert_predictions.py" transdecoder_gff3 input.fa.transdecoder.gff3 > preds.tsv
     ;;
-  perl_td|perl_td_v600|perl_td_v571)
-    case $tool in perl_td) TD=$TD_FIX;; perl_td_v600) TD=$TD_V600;; perl_td_v571) TD=$TD_V571;; esac
+  perl_td|perl_td_dev|perl_td_v600|perl_td_v571)
+    # perl_td_dev: the TD_FIX tree with its current (development) defaults
+    case $tool in perl_td|perl_td_dev) TD=$TD_FIX;; perl_td_v600) TD=$TD_V600;; perl_td_v571) TD=$TD_V571;; esac
     LO=$TD/TransDecoder.LongOrfs; PR=$TD/TransDecoder.Predict
     [ -x "$LO" ] || { LO=$TD/util/TransDecoder.LongOrfs; PR=$TD/util/TransDecoder.Predict; }
     ss=(); [ $stranded = 1 ] && ss=(-S)
