@@ -41,3 +41,8 @@ Rules:
 | E09 | Start-codon refinement and Kozak | Methods/Results | to write (analyses/start_*, figures/kozak) |
 | E10 | Long-ORF retention rule and GC | Methods/Results | to write (analyses/long_orf_threshold) |
 | E11 | Trinity genome-guided assembly of GM12878 | Methods: application data | to write |
+
+## Large files (decision, Brian 2026-10-21)
+- Until the paper's analyses are final, large outputs stay in the project work area (`$P/work`, `$P/data`). Each record lists their paths.
+- Once the analyses are final, the important large files go into this repo via Git LFS: benchmark inputs and truth sets, the GM12878 assemblies and genome-projected predictions, and the per-ORF tables.
+- A subset chosen as the paper's supplementary material is also deposited separately on Zenodo, for a DOI.
