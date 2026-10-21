@@ -43,7 +43,14 @@ Method:
 - Exact substring matching (Aho–Corasick) against the predicted proteins and the two reference sets.
 - Non-reference peptide = absent from both reference sets.
 
-**Not scripted yet:** the pseudogene/duplication breakdown (where the ORF lies relative to the parent gene of its best-matching reference protein). It was a one-off check during the analysis. **TODO: add it to the script or a notebook before the paper uses the per-category counts.**
+Locus classes of novel ORFs with peptides, relative to the parent gene of their best reference protein, plus overlap with GENCODE pseudogenes:
+```bash
+python3 -I $T/analyses/proteomics/novel_peptide_loci.py $W/proteomics/ms_peptide_support.novel_with_peptides.tsv \
+  $P/data/gm12878/ref/gencode.v50.primary_assembly.annotation.gtf \
+  lraa=$W/lraa/final_abinitio/transcripts.fa.transdecoder.genome.gff3 \
+  stringtie=$W/stringtie/final_abinitio/transcripts.fa.transdecoder.genome.gff3 \
+  trinity=$W/trinity/final_abinitio/transcripts.fa.transdecoder.genome.gff3 -o $W/proteomics/novel_peptide_loci
+```
 
 ## Outputs
 - Committed: `$T/genome_annotation/results/gm12878_ms_peptide_support.tsv`, `gm12878_ms_peptide_counts.tsv`, `gm12878_ms_novel_with_peptides.tsv`.
@@ -80,6 +87,19 @@ Novel ORFs sharing peptides with known proteins:
 | Novel ORFs with peptides | 208 | 849 | 1,018 |
 | ...≥2 peptides from one reference protein | 169 | 691 | 732 |
 | ...contained in a reference protein | 29 | 144 | 108 |
+| ...overlapping a GENCODE pseudogene | 172 (83%) | 759 (89%) | 777 (76%) |
+
+Location relative to the parent gene (`novel_peptide_loci.py`; `gm12878_ms_novel_peptide_loci.summary.tsv`):
+
+| Class | LRAA | StringTie | Trinity |
+|---|---|---|---|
+| Overlaps the parent gene span (nested copy; all also overlap a pseudogene) | 43 | 102 | 104 |
+| Same chromosome, ≤2 Mb (tandem/segmental duplication) | 39 | 131 | 176 |
+| Same chromosome, >2 Mb | 53 | 151 | 264 |
+| Other chromosome (e.g. processed pseudogenes) | 73 | 462 | 473 |
+| Parent gene name not in GENCODE | 0 | 3 | 1 |
+
+These agree with the one-off check made during the analysis to within ±2 per class; the differences come from the choice of nearest parent locus.
 
 Novel-specific peptides: 37 novel-class models (3 / 12 / 22) at 11 loci. Nearly all are variant-allele peptides of a parent gene on a duplicated copy. Examples:
 - **PWP2 D25N** on a chr21:5.13 Mb copy. GNLNFTCNGNSVLSPVGNR, 5 PSMs, PEP 2.7e-37.
