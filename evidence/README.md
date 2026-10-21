@@ -35,7 +35,7 @@ Rules:
 | E03 | GM12878 three-assembly annotation vs MANE/GENCODE (final defaults) | Results: application | to write (notes/06) |
 | E04 | Minimum ORF length sweep (benchmark lncRNA/random negatives; GM12878 post-hoc) | Results: short ORFs | to write (notes/05, notes/06) |
 | E05 | Expressed-gene sensitivity (GM12878) | Results: application | to write (notes/06) |
-| E06 | Homology restriction series (clade-excluded Swiss-Prot) | Results: homology | running |
+| [E06](E06_gm12878_homology_series.md) | Homology restriction series (clade-excluded Swiss-Prot); Alu-in-UTY_PANTR retention artifact | Results: homology | complete |
 | E07 | Cross-species benchmark (bench_v3): data, truth sets, tools, scoring | Methods/Results: benchmark | to write |
 | E08 | Perl/Python concordance and runtime | Results | to write (regression/) |
 | E09 | Start-codon refinement and Kozak | Methods/Results | to write (analyses/start_*, figures/kozak) |

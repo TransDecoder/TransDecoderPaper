@@ -1,0 +1,10 @@
+== trinity
+in A only: 4981 {'other': 219, 'novel': 4692, 'exact': 12, 'compatible': 58} short(<100aa): 4752
+novel, best-hit species: [('PANTR', 4468), ('NYCCO', 185), ('PONAB', 15), ('nohit', 9), ('MACFA', 5), ('PONPY', 3), ('GORGO', 3), ('HYLPI', 2), ('MOUSE', 1), ('TRACR', 1)]
+novel, best-hit proteins: [('UTY_PANTR', 4465), ('LIN1_NYCCO', 185), ('ARK2N_PONAB', 4), ('ALG1_PONAB', 4), ('SDHA_PONAB', 3), ('NR3L1_PONAB', 3), ('SYCY1_HYLPI', 2), ('SYCY1_PANTR', 1), ('LORF2_MOUSE', 1), ('CU119_PANTR', 1), ('ZN271_PONAB', 1), ('ZN283_MACFA', 1), ('SYCY1_PONPY', 1), ('DHSO_MACFA', 1), ('COX6C_TRACR', 1)]
+hit regions on UTY_PANTR: [('1037-1079', 365), ('995-1040', 314), ('995-1044', 305), ('1037-1078', 194), ('1044-1079', 134)]
+== stringtie
+in A only: 1401 {'novel': 1305, 'other': 54, 'compatible': 34, 'exact': 8} short(<100aa): 1235
+novel, best-hit species: [('PANTR', 1235), ('NYCCO', 41), ('PONAB', 11), ('nohit', 6), ('MACFA', 5), ('MOUSE', 2), ('PONPY', 2), ('BOVIN', 1), ('GORGO', 1), ('HYLPI', 1)]
+novel, best-hit proteins: [('UTY_PANTR', 1232), ('LIN1_NYCCO', 41), ('ARK2N_PONAB', 3), ('LORF2_MOUSE', 2), ('ALG1_PONAB', 2), ('SYCY1_PONPY', 2), ('ULK4_PONAB', 2), ('NR3L1_PONAB', 2), ('GTF2I_BOVIN', 1), ('SYCY1_PANTR', 1), ('ANTRL_MACFA', 1), ('WASC2_PONAB', 1), ('SYCY2_GORGO', 1), ('TPTE2_MACFA', 1), ('DHSO_MACFA', 1)]
+hit regions on UTY_PANTR: [('1037-1079', 99), ('995-1040', 87), ('995-1044', 76), ('1044-1079', 64), ('1037-1078', 57)]
