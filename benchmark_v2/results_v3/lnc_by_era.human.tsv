@@ -1,0 +1,32 @@
+== complete.wLnc
+tool	era	n_lnc	n_called	frac_called
+pytd_dev_v2	pre_v28	12987	2862	0.2204
+pytd_dev_v2	post_v28	20681	4081	0.1973
+cpat	pre_v28	12987	1412	0.1087
+cpat	post_v28	20681	2108	0.1019
+cpc2	pre_v28	12987	1029	0.0792
+cpc2	post_v28	20681	1631	0.0789
+rnasamba	pre_v28	12987	810	0.0624
+rnasamba	post_v28	20681	2247	0.1087
+borf	pre_v28	12987	3362	0.2589
+borf	post_v28	20681	4471	0.2162
+gmst	pre_v28	12987	3449	0.2656
+gmst	post_v28	20681	4826	0.2334
+prodigal	pre_v28	12987	4429	0.3410
+prodigal	post_v28	20681	7459	0.3607
+== fragments.wLnc
+tool	era	n_lnc	n_called	frac_called
+pytd_dev_v2	pre_v28	12987	2824	0.2174
+pytd_dev_v2	post_v28	20681	4009	0.1938
+cpat	pre_v28	12987	1412	0.1087
+cpat	post_v28	20681	2108	0.1019
+cpc2	pre_v28	12987	1029	0.0792
+cpc2	post_v28	20681	1631	0.0789
+rnasamba	pre_v28	12987	601	0.0463
+rnasamba	post_v28	20681	1980	0.0957
+borf	pre_v28	12987	3362	0.2589
+borf	post_v28	20681	4471	0.2162
+gmst	pre_v28	12987	3928	0.3025
+gmst	post_v28	20681	5470	0.2645
+prodigal	pre_v28	12987	7086	0.5456
+prodigal	post_v28	20681	11439	0.5531
