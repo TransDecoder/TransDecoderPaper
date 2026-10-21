@@ -110,3 +110,20 @@ Before fixes (`baseline_v6.0.0.summary.tsv`):
 - **Different modes.** The regression runs Perl via `util/TransDecoder.LongOrfs`/`Predict`, not the v6 wrapper. The benchmark runs either `TD/TransDecoder.LongOrfs` or `TD/util/...`, as `run_tool.sh` resolves them.
 - **Code location.** 48c870c is on PyTransDecoder origin/main and de3f57e on TransDecoder origin/devel (verified 2026-10-21 with git rev-list against the fetched remotes).
 - **Manuscript out of date.** `methods_algorithm.tex` §Implementations still says the two implementations "differ only in start codons chosen by the randomised PWM training". At the final defaults they do not differ at all on the benchmark.
+
+## Rerun at the final commits (2026-10-21)
+```bash
+cd $P; PYTHON=$P/env/td/bin/python bash $T/regression/run_regression.sh $P/work/trees/TD_fix $P/work/trees/PY_dev \
+  $P/work/regression/final_48c870c_de3f57e    # TD_fix = de3f57e, PY_dev = 48c870c
+```
+Output: `$T/regression/results/final_48c870c_de3f57e.summary.tsv`. Predictions are identical on all five sample sets (exact match = all ORFs; no start differences; no implementation-only ORFs):
+
+| Set | ORFs | Perl (s) | Python (s) | Speedup |
+|---|---|---|---|---|
+| Trinity | 692 | 19 | 10 | 1.83× |
+| PASA | 777 | 18 | 9 | 2.11× |
+| StringTie | 2,681 | 84 | 37 | 2.25× |
+| SuperTranscripts | 69 | 7 | 4 | 1.92× |
+| Cufflinks | 58 | 3 | 2 | 1.62× |
+
+This replaces the 2026-10-17 regression (`dev_paper_r6`), which predates the final start rule and had 4–53 start differences per set. Speedups are wall clock on a shared host and are lower on these small sets than on the benchmark (median 2.3×), because fixed start-up costs dominate.

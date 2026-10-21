@@ -84,8 +84,12 @@ case $tool in
     pep=input.fa.transdecoder_dir/longest_orfs.pep
     diamond blastp --query $pep --db "$HOMOLOGY_DIR/sprot_minus_${taxid}.dmnd" --max-target-seqs 1 \
       --evalue 1e-5 --outfmt 6 --threads "$THREADS" --out blastp.outfmt6 > diamond.log 2>&1
-    hmmsearch --cpu "$THREADS" --cut_ga --noali -o /dev/null --domtblout pfam.domtblout \
-      "$HOMOLOGY_DIR/Pfam-A.hmm" $pep > hmmsearch.log 2>&1
+    # hmmsearch threads scale poorly: split the ORFs into $THREADS chunks, one single-threaded search each
+    mkdir -p pfam_chunks
+    awk -v d=pfam_chunks -v n="$THREADS" '/^>/{f=sprintf("%s/c%03d.pep",d,(i++)%n)} {print > f}' $pep
+    ls pfam_chunks/*.pep | xargs -P "$THREADS" -I{} hmmsearch --cpu 1 --cut_ga --noali -o /dev/null \
+      --domtblout {}.domtblout "$HOMOLOGY_DIR/Pfam-A.hmm" {} > hmmsearch.log 2>&1
+    cat pfam_chunks/*.domtblout > pfam.domtblout
     PYTHONPATH=$PYTD $PYTHON -m pytransdecoder.cli predict -t input.fa -G "$gcode" \
       --retain-blastp-hits blastp.outfmt6 --retain-pfam-hits pfam.domtblout > predict.log 2>&1
     $PYTHON "$here/convert_predictions.py" transdecoder_gff3 input.fa.transdecoder.gff3 > preds.tsv
