@@ -174,7 +174,7 @@ What can be said without over-reading:
 
 ## Caveats
 - **Run code predates its commits.** The final-default runs ended at 15:13 (PyTD) and 15:32 (Perl) on 2026-10-20, a few minutes before 48c870c (15:38:00) and de3f57e (15:37:58) were committed. The 2-input rerun above matches the commits, but the other 82 inputs per tool were not rerun.
-- **Unpushed commits:** 48c870c and de3f57e exist only in the local clones. Neither is on a remote (PyTD origin/main = 27bfb5e).
+- **Commits on remotes:** 48c870c is on PyTransDecoder origin/main and de3f57e on TransDecoder origin/devel (verified 2026-10-21 with git rev-list against the fetched remotes).
 - **Labels track trees, not commits.** `perl_td` ran from `TD_fix` on 10-18 (351634a). Rerunning that label today would use de3f57e.
 - **`fp` column bug:** `score_predictions.py` counts each non-duplicate FP twice in `fp` (`c[call] += 1` with `call == "FP"`, then `c["FP"] += 1`). For example, tthermophila CodAn has n_pred 3,665, tp_stop 229 and fp 6,872 = 2 × 3,436. `fp_random`, `fp_dup`, sensitivity, precision and F1 are unaffected (precision uses `n_pred`). **Fixed 2026-10-21** in `score_predictions.py`; a toy case (2 TP, 1 dup, 1 random FP, 2 other FPs) gives fp = 4 = n_pred − tp_stop. `summary.tsv` will be regenerated with the fixed scorer when CodAn finishes; until then do not quote `fp` from the committed table.
 - **GeneMarkS-T on *T. thermophila*:** it supports only codes 1/4/11, so it was run with code 1; TAA/TAG (Gln in ciliates) are read as stops. The same applies to CPC2, Borf, RNAsamba and CodAn. Their *T. thermophila* scores reflect the code, not the method.

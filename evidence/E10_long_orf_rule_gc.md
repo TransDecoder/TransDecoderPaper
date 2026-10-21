@@ -125,7 +125,7 @@ In the final runs:
 - **The low-GC chunks ran on UGER** (`thr*.o<jobid>` logs). `run_low_gc_chunks.sh` now runs them locally, with the same arguments.
 - **No analysis supports the stated motivation.** The claim is that the rule "recovers genes with atypical composition, e.g. horizontally transferred genes or mixed-organism transcriptomes". No analysis in the repo shows this, and none counts how many benchmark or GM12878 predictions are retained by length alone.
 - **The final-default benchmark runs predate their commits.** `launch16`, 2026-10-20 12:38–15:32, ran before `de3f57e` (15:37:58) and `48c870c` (15:38:00) were committed. The trees were uncommitted at run time, so equivalence to the commits is inferred, not recorded. Partial check (2026-10-21, E07): rerunning `pytd_dev_v2` and `perl_td_dev_v2` at the committed trees (PY_dev 48c870c, TD_fix de3f57e) on spombe/complete and creinhardtii/complete gave byte-identical `preds.tsv`. The other 82 inputs per tool were not rerun.
-- `48c870c` and `de3f57e` exist only in the local clones. They are not on any remote.
+- 48c870c is on PyTransDecoder origin/main and de3f57e on TransDecoder origin/devel (verified 2026-10-21 with git rev-list against the fetched remotes).
 
 ## Caveats
 - **The manuscript is out of date** (`methods_algorithm.tex`):

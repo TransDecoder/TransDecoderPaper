@@ -108,5 +108,5 @@ Before fixes (`baseline_v6.0.0.summary.tsv`):
 ## Caveats
 - **Wall-clock timing.** Regression runs were sequential per dataset. Benchmark runs ran 6–16 at a time on a shared host (load ~40). Ratios are more reliable than absolute times.
 - **Different modes.** The regression runs Perl via `util/TransDecoder.LongOrfs`/`Predict`, not the v6 wrapper. The benchmark runs either `TD/TransDecoder.LongOrfs` or `TD/util/...`, as `run_tool.sh` resolves them.
-- **Unpushed code.** The final-default code (48c870c, de3f57e) is on unpushed local branches (E07).
+- **Code location.** 48c870c is on PyTransDecoder origin/main and de3f57e on TransDecoder origin/devel (verified 2026-10-21 with git rev-list against the fetched remotes).
 - **Manuscript out of date.** `methods_algorithm.tex` §Implementations still says the two implementations "differ only in start codons chosen by the randomised PWM training". At the final defaults they do not differ at all on the benchmark.
