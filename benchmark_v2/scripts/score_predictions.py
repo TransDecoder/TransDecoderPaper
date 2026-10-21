@@ -87,7 +87,8 @@ def main():
         for call, p in calls:
             c["n_pred"] += 1
             c["n_pred_random" if is_rand else "n_pred_real"] += 1
-            c[call] += 1
+            if call != "FP":
+                c[call] += 1  # TP_exact / TP_stop / FP_dup; plain FP is counted below
             if call.startswith("FP"):
                 c["FP"] += 1
                 if is_rand:
