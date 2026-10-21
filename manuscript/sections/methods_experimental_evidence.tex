@@ -1,0 +1,22 @@
+\subsection{Ribosome profiling support}
+GM12878 ribosome footprints \citep{Cenik2015} (GEO GSE65912; SRR1803147, SRR1803148) were processed
+as follows:
+\begin{itemize}
+  \item adapter-trimmed with cutadapt, keeping 25--34~nt;
+  \item depleted of rRNA, mitochondrial rRNA and tRNA reads with bowtie2;
+  \item aligned end-to-end with STAR to GRCh38 with GENCODE v50 splice junctions, keeping unique
+  alignments only (11.5 million footprints).
+\end{itemize}
+P-site offsets were calibrated per read length on MANE Select CDSs. For each length we chose the
+5$'$ offset that maximised the frame-0 fraction, and used only lengths with a frame-0 fraction
+$\ge$0.5 (27, 29 and 30~nt). For each predicted CDS, P-sites were counted by frame in spliced CDS
+coordinates, excluding the first and last codons. A CDS was called supported when it had at least
+ten P-sites, frame~0 was the most frequent frame, and the binomial probability of the frame-0 count
+under $p=1/3$ was below 0.01.
+
+\subsection{Mass-spectrometry support}
+We used the published MaxQuant peptide table for GM12878 \citep{Sinitcyn2023} (MassIVE
+MSV000086944), with peptides already filtered at 1\% PSM and protein FDR. We removed reverse and
+contaminant entries, then matched peptides exactly (I and L treated as equivalent, Aho--Corasick)
+to the predicted proteins, GENCODE v50 translations and the UniProt human proteome. A peptide was
+called non-reference when it occurred in neither reference set.

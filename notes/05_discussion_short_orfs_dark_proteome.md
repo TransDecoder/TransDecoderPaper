@@ -215,3 +215,15 @@ Other notes:
 - FEELnc (Wucher V et al. Nucleic Acids Res 2017;45(8):e57) is a stand-alone classifier and does not use TransDecoder.
 - Not yet checked: wheat (PMC5587677), chicken (PMC8847365), CANTATAdb (PMC4722178), Anopheles (PMC12090406).
 - Do NOT cite Kashyap 2020 (beaver): it uses TransDecoder only for MAKER genome annotation, not for lncRNA filtering.
+
+## Experimental evidence on GM12878 (2026-10-21): for Results and Discussion
+Brian marked these as paper findings. Drafted in `manuscript/sections/results_gm12878_evidence.tex`; details in notes/06.
+- Unannotated ORFs with MS peptides are almost all paralog or pseudogene copies of known genes (NCF1B/C, HERC2P3, RPS/RPL processed pseudogenes). MS cannot tell copy from parent.
+- Non-reference peptides on unannotated ORFs are nearly all GM12878 variant-allele peptides of parent genes, landing on duplicated copies (PWP2 copy on 21p, NAPSB).
+- The one credible exception is C3orf86P: protein-coding in the authors' Ensembl release, a pseudogene in GENCODE v50, with 3 peptides from 3 proteases.
+- The published-search route cannot find new proteins, because our ORFs were not in the search database.
+- Ribo-seq and MS agree: the short unannotated ORFs show no translation or protein evidence in this cell line.
+- Discussion angles:
+  - pseudogene and duplicated loci as a source of plausible-looking predictions (and possibly of real variant-bearing proteoforms);
+  - experimental evidence as the deciding filter for the dark proteome;
+  - immunopeptidomics and neo-ORFs (transposon-derived ORFs; Brian 2026-10-21).
