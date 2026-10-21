@@ -212,3 +212,23 @@ The lost CDSs of 1 kb or more are all in *T. thermophila* or *C. reinhardtii*.
   - HGT: no gene set tested;
   - reduced codon-usage selection on fly chromosome 4/Y;
   - frame errors in *Tetrahymena* gene models.
+
+## Addendum: length fallback vs homology fallback (2026-10-21)
+```bash
+$P/env/td/bin/python $T/analyses/long_orf_failures/length_vs_homology_fallback.py   # -> results/length_vs_homology_fallback.tsv
+```
+Of the 447 true CDSs that fail the coding test and are retained by the long-ORF rule:
+- 362 (81%) also have a homology hit (Swiss-Prot minus the organism's own entries, or Pfam; from the `pytd_homology` runs).
+- **85 (19%) have no homology hit**, so only the length rule recovers them:
+
+| Organism | Length-only |
+|---|---|
+| fly | 40 |
+| mouse | 21 |
+| *A. thaliana* | 14 |
+| *C. reinhardtii* | 5 |
+| human | 2 |
+| *S. pombe* | 2 |
+| *P. falciparum* | 1 |
+
+Swiss-Prot keeps close relatives of each organism, so for a truly novel organism this is a lower bound. Manuscript use: the Results subsection "True coding regions that fail the coding test motivate a length-based fallback".
