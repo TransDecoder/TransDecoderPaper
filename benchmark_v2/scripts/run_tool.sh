@@ -3,7 +3,7 @@
 #
 # usage: run_tool.sh <tool> <input.fa> <outdir> <org>
 #
-# tools: pytd pytd_norefine pytd_homology perl_td perl_td_v600 perl_td_v571 prodigal codan gmst
+# tools: pytd pytd_norefine pytd_homology pytd_dev_v2_homology perl_td perl_td_v600 perl_td_v571 prodigal codan gmst
 #        cpat cpc2 borf rnasamba angel
 # Inputs named *.unstranded* are predicted on both strands; other inputs are treated
 # as strand-specific (TransDecoder -S, Prodigal + strand only, CodAn --strand plus).
@@ -75,7 +75,9 @@ case $tool in
       $PYTHON "$here/convert_predictions.py" transdecoder_gff3 --longest-per-transcript $lo > longest_orf.preds.tsv
     fi
     ;;
-  pytd_homology)
+  pytd_homology|pytd_dev_v2_homology)
+    # pytd_dev_v2_homology: the same with the final-default development tree (PYTD_DEV)
+    [ $tool = pytd_dev_v2_homology ] && PYTD=$PYTD_DEV
     # homology-assisted: DIAMOND vs Swiss-Prot without the organism's own entries (-k 1, 1e-5, as
     # in the TransDecoder wrapper) and hmmsearch vs Pfam-A with gathering thresholds
     taxid=$(cut -f7 <<< "$orgrow")
