@@ -238,3 +238,10 @@ Brian marked these as paper findings. Drafted in `manuscript/sections/results_gm
   - Curated databases contain TE-derived segments, which is a caution for homology-based annotation generally.
   - Recommend reporting the best-hit protein so TE-derived calls can be flagged.
 - Citations (verified via Crossref 2026-10-21; in references.bib): Shah2023 (Nat Genet 55:631, pan-cancer TE-chimeric tumor-specific antigens, MS-supported); Attig2019 (Genome Res 29:1578, de novo assembly expands LTR transcripts and immunopeptidome); Merlotti2023 (Sci Immunol 8:eabm6359, exon-TE junction neoantigens, HLA-I peptidomics, CD8 T cells); Bonte2022 (Cell Rep 39:110916, glioblastoma TE-encoded HLA-I peptides, incl. intact LINE-1/LTR/SVA ORFs). Attig2019 is especially apt: de novo assembly + ORF calling, as here.
+
+## Corrections found while writing evidence records (2026-10-21; the files take precedence, see evidence/E03–E05, E11)
+- **100–199 aa predictions with no GENCODE CDS overlap** (final defaults): 29.4% StringTie, 30.5% Trinity. The 100–149 aa bin alone: 38.6% / 40.7%. The earlier "26–38%" does not reproduce.
+- **GENCODE Ribo-seq catalogue matches** ("178 / 217 / 455") count prediction models. Distinct catalogue ORFs: 120 / 152 / 258.
+- **"HLA-supported" catalogue counts** ("148 → 37 LRAA", "157 StringTie") include all phase-1 peptide tiers. HLA tiers only, LRAA: 132 at -m 50, 24 with the guard.
+- **Expression filtering and GENCODE sensitivity:** the GENCODE rows do rise (e.g. StringTie exact 0.23 → 0.31), just much less than MANE. "Barely move" was too strong.
+- **Unprojected Trinity ORFs (4,624):** 4,611 have CDS outside the aligned part; 13 are on unmapped transcripts.

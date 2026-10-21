@@ -32,15 +32,15 @@ Rules:
 |---|---|---|---|
 | [E01](E01_gm12878_riboseq.md) | GM12878 Ribo-seq support of predicted ORFs | Results: GM12878 evidence; Methods: Ribo-seq support | complete |
 | [E02](E02_gm12878_ms_peptides.md) | GM12878 MS peptide support of predicted ORFs | Results: GM12878 evidence; Methods: MS support | complete |
-| E03 | GM12878 three-assembly annotation vs MANE/GENCODE (final defaults) | Results: application | to write (notes/06) |
-| E04 | Minimum ORF length sweep (benchmark lncRNA/random negatives; GM12878 post-hoc) | Results: short ORFs | to write (notes/05, notes/06) |
-| E05 | Expressed-gene sensitivity (GM12878) | Results: application | to write (notes/06) |
+| [E03](E03_gm12878_three_assemblies.md) | GM12878 three-assembly annotation vs MANE/GENCODE (final defaults) | Results: application | complete |
+| [E04](E04_min_orf_length.md) | Minimum ORF length sweep (benchmark lncRNA/random negatives; GM12878 post-hoc) | Results: short ORFs | complete |
+| [E05](E05_expressed_sensitivity.md) | Expressed-gene sensitivity (GM12878) | Results: application | complete |
 | [E06](E06_gm12878_homology_series.md) | Homology restriction series (clade-excluded Swiss-Prot); Alu-in-UTY_PANTR retention artifact | Results: homology | complete |
 | E07 | Cross-species benchmark (bench_v3): data, truth sets, tools, scoring | Methods/Results: benchmark | to write |
 | E08 | Perl/Python concordance and runtime | Results | to write (regression/) |
 | E09 | Start-codon refinement and Kozak | Methods/Results | to write (analyses/start_*, figures/kozak) |
 | E10 | Long-ORF retention rule and GC | Methods/Results | to write (analyses/long_orf_threshold) |
-| E11 | Trinity genome-guided assembly of GM12878 | Methods: application data | to write |
+| [E11](E11_gm12878_trinity_gg.md) | Trinity genome-guided assembly of GM12878 | Methods: application data | complete |
 
 ## Large files (decision, Brian 2026-10-21)
 - Until the paper's analyses are final, large outputs stay in the project work area (`$P/work`, `$P/data`). Each record lists their paths.

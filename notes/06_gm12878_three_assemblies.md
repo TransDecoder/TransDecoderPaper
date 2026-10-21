@@ -140,3 +140,10 @@ Novel class (no GENCODE CDS overlap):
 - One credible non-reference case: C3orf86P (protein-coding in the authors' Ensembl release, now a transcribed unitary pseudogene in GENCODE v50). It has 3 independent peptides from 3 proteases.
 - Limitation: the search database did not contain our ORFs, so this cannot discover new proteins. A re-search of the raw data (534 GB) would be needed.
 - Taken with the Ribo-seq result: unannotated short ORFs lack translation and protein evidence in this cell line. Their apparent homology support mostly reflects paralogs and pseudogenes.
+
+## Corrections found while writing evidence records (2026-10-21; the files take precedence, see evidence/E03–E05, E11)
+- **100–199 aa predictions with no GENCODE CDS overlap** (final defaults): 29.4% StringTie, 30.5% Trinity. The 100–149 aa bin alone: 38.6% / 40.7%. The earlier "26–38%" does not reproduce.
+- **GENCODE Ribo-seq catalogue matches** ("178 / 217 / 455") count prediction models. Distinct catalogue ORFs: 120 / 152 / 258.
+- **"HLA-supported" catalogue counts** ("148 → 37 LRAA", "157 StringTie") include all phase-1 peptide tiers. HLA tiers only, LRAA: 132 at -m 50, 24 with the guard.
+- **Expression filtering and GENCODE sensitivity:** the GENCODE rows do rise (e.g. StringTie exact 0.23 → 0.31), just much less than MANE. "Barely move" was too strong.
+- **Unprojected Trinity ORFs (4,624):** 4,611 have CDS outside the aligned part; 13 are on unmapped transcripts.
