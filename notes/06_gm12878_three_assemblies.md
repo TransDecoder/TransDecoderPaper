@@ -55,3 +55,24 @@ The homology-retention run on Trinity (DIAMOND + Pfam) is still running.
 1. Partial ORFs from fragmented transcripts can never match exactly (Trinity: 20k partials).
 2. The MANE precision row counts correct alternative-isoform CDSs as misses, so it is low by construction. The GENCODE exact/compatible shares are the fair measure.
 3. 100-199 aa ORFs on noncoding transcripts.
+
+## Sensitivity restricted to expressed genes (2026-10-21)
+- Expression: `stringtie -e --rf -G gencode.v50` on the same STAR BAM (`data/gm12878/expr/`). Gene TPM is the sum of its transcripts' TPMs.
+- Script: `genome_annotation/scripts/expressed_sensitivity.py`. Table: `genome_annotation/results/gm12878_expressed_sensitivity.tsv`.
+- 11,076 of the 19,229 MANE genes have TPM >= 1; 7,823 have TPM >= 10.
+
+MANE Select, gene TPM >= 1 (>= 10):
+
+| | assembled | exact | compatible | exact given assembled |
+|---|---|---|---|---|
+| LRAA | 0.544 (0.621) | 0.510 (0.580) | 0.655 (0.731) | 0.937 |
+| StringTie | 0.796 (0.874) | 0.741 (0.814) | 0.879 (0.898) | 0.931 |
+| Trinity GG | 0.688 (0.777) | 0.625 (0.707) | 0.892 (0.913) | 0.909 |
+
+**Reading**
+- For expressed genes, short-read RNA-seq from one cell line plus TransDecoder gives the exact MANE CDS for 74-81% (StringTie), and a correct full or partial CDS for about 90% (Trinity/StringTie).
+- LRAA is lower because its long-read depth is lower; the TPMs come from the short reads.
+
+**Caveat**
+- For GENCODE (all isoforms), gene-level TPM does not tell which isoforms are expressed, so the GENCODE rows barely move.
+- A transcript-level TPM filter would be the right one there, but isoform-level quantification is itself uncertain.
