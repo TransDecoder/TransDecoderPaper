@@ -21,7 +21,9 @@ Prediction-centric, over distinct predicted CDSs:
   exact match to a MANE CDS (among predictions overlapping a MANE CDS on the same strand);
   exact / compatible with any GENCODE CDS; no same-strand overlap with any GENCODE CDS.
 
-Outputs: <out_prefix>.summary.tsv (metric, value), <out_prefix>.ref_status.tsv
+Outputs: <out_prefix>.summary.tsv (metric, value), <out_prefix>.ref_status.tsv,
+         <out_prefix>.pred_status.tsv (per distinct prediction)
+--min-aa N keeps only predictions whose CDS encodes >= N aa (a post-hoc minimum-length filter).
 """
 import argparse
 import gzip
@@ -112,6 +114,12 @@ def read_pred_gff3(path):
     return {k: v for k, v in models.items() if v["segs"]}
 
 
+def aa_len(p):
+    """Encoded amino acids (the stop codon is part of a complete CDS's segments)."""
+    nt = sum(b - a + 1 for a, b in p["segs"])
+    return nt // 3 - (p["orf_type"] in ("complete", "5prime_partial"))
+
+
 def contained(sub, sup):
     """Index j of sup's segment holding sub's first segment if sub lies inside sup with sub's
     internal boundaries equal to sup's (consecutive segments), else None."""
@@ -185,6 +193,7 @@ def main():
     ap.add_argument("--gencode", required=True)
     ap.add_argument("--label", required=True)
     ap.add_argument("-o", "--out-prefix", required=True)
+    ap.add_argument("--min-aa", type=int, default=0, help="drop predictions encoding fewer amino acids")
     args = ap.parse_args()
 
     structs = read_structures(Path(args.structures))
@@ -198,7 +207,7 @@ def main():
     gencode, _ = read_ref_gtf(args.gencode, None)
     mane, mane_skipped = read_ref_gtf(args.mane, {r["chrom"] for r in gencode.values()})
     mane = {t: r for t, r in mane.items() if "MANE_Select" in r["tags"]}   # not MANE Plus Clinical
-    preds = read_pred_gff3(args.pred)
+    preds = {k: p for k, p in read_pred_gff3(args.pred).items() if aa_len(p) >= args.min_aa}
     print(f"[{args.label}] {len(preds)} predicted CDS models; MANE {len(mane)} "
           f"(+{mane_skipped} off primary assembly); GENCODE CDS transcripts {len(gencode)}", file=sys.stderr)
 
@@ -245,6 +254,7 @@ def main():
     mane_index, gc_index = Index(mane), Index(gencode)
     mane_keys = {(r["chrom"], r["strand"], r["segs"]) for r in mane.values()}
     gc_keys = {(r["chrom"], r["strand"], r["segs"]) for r in gencode.values()}
+    pred_rows = []
     for subset in ("complete", "partial", "all"):
         ps = [p for p in pred_by_key.values()
               if subset == "all" or (p["orf_type"] == "complete") == (subset == "complete")]
@@ -257,11 +267,13 @@ def main():
             ov = [k for k in gc_index.overlapping(p) if cds_overlap(p["segs"], gencode[k]["segs"])]
             if not ov:
                 novel += 1
-            if key in gc_keys:
-                gc_exact += 1
-                gc_comp += 1
-            elif any(compatible(p, gencode[k]) for k in ov):
-                gc_comp += 1
+            is_gc_exact = key in gc_keys
+            is_gc_comp = is_gc_exact or any(compatible(p, gencode[k]) for k in ov)
+            gc_exact += is_gc_exact
+            gc_comp += is_gc_comp
+            if subset == "all":
+                pred_rows.append((p["model_id"], p["orf_type"], aa_len(p), int(is_gc_exact), int(is_gc_comp),
+                                  int(not ov), int(key in mane_keys)))
         m = max(len(ps), 1)
         summary += [(f"pred_{subset}_n", len(ps)),
                     (f"pred_{subset}_overlapping_MANE", at_mane),
@@ -276,6 +288,10 @@ def main():
     with open(f"{args.out_prefix}.ref_status.tsv", "w") as fh:
         fh.write("set\ttranscript_id\tgene_name\tassembled\texact\tcompatible\n")
         for row in status_rows:
+            fh.write("\t".join(map(str, row)) + "\n")
+    with open(f"{args.out_prefix}.pred_status.tsv", "w") as fh:
+        fh.write("model_id\torf_type\taa\tgencode_exact\tgencode_compatible\tno_gencode_cds_overlap\tmane_exact\n")
+        for row in pred_rows:
             fh.write("\t".join(map(str, row)) + "\n")
     for k, v in summary:
         print(f"{k}\t{v}")
