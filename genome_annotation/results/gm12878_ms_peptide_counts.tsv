@@ -1,0 +1,15 @@
+rows	768554
+kept_rows	758603
+contaminant	8204
+reverse	1747
+distinct_IL_normalised	758225
+ref_sequences	552079
+peptides_in_ref	753266
+peptides_not_in_ref	4959
+peptides_not_in_ref_mutated	4913
+lraa:distinct_models	23922
+lraa:peptides_matched	573269
+stringtie:distinct_models	34404
+stringtie:peptides_matched	737308
+trinity:distinct_models	72323
+trinity:peptides_matched	729013

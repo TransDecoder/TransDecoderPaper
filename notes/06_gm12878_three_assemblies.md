@@ -118,3 +118,25 @@ Caveats:
 - Only uniquely mapped footprints are counted, so repeat-derived ORFs are invisible.
 - Single-exon transcripts assembled on the wrong strand would also lack sense footprints.
 - A deeper, RNase I Ribo-seq dataset, or MS (Sinitcyn 2023 PXD024364, 534 GB raw), would be needed to call individual novel ORFs as translated.
+
+## MS peptide support (GM12878 deep proteome, Sinitcyn et al. 2023, MassIVE MSV000086944)
+
+Data:
+- Published MaxQuant `peptides.txt`: 6 proteases, 1% FDR, 758k peptides after removing reverse and contaminant hits.
+- The authors searched Ensembl plus GM12878 variant proteins.
+- Peptides were mapped exactly (I = L) onto our predicted proteins.
+- Script: `analyses/proteomics/ms_peptide_support.py`.
+- Results: `results/gm12878_ms_*.tsv`.
+
+Annotated classes (positive control):
+- 92–94% of long LRAA and StringTie predictions that exactly match GENCODE have ≥1 peptide (≥2 for nearly all of these).
+- Short exact predictions: 81–87%.
+- Trinity's compatible and other-overlap classes: 87–88%.
+
+Novel class (no GENCODE CDS overlap):
+- 10–25% share peptides with known proteins: 208 / 849 / 1,018 ORFs for LRAA / StringTie / Trinity.
+- These lie at pseudogene, segmental-duplication or processed-pseudogene copies of the parent gene (e.g. NCF1B/C, HERC2P3, RPS/RPL copies). MS cannot tell copy from parent.
+- Peptides absent from GENCODE v50 and UniProt that land on novel ORFs are nearly all GM12878 variant-allele peptides of parent genes, mapping to duplicated copies (e.g. a PWP2 copy on 21p, NAPSB, AMZ2P1).
+- One credible non-reference case: C3orf86P (protein-coding in the authors' Ensembl release, now a transcribed unitary pseudogene in GENCODE v50). It has 3 independent peptides from 3 proteases.
+- Limitation: the search database did not contain our ORFs, so this cannot discover new proteins. A re-search of the raw data (534 GB) would be needed.
+- Taken with the Ribo-seq result: unannotated short ORFs lack translation and protein evidence in this cell line. Their apparent homology support mostly reflects paralogs and pseudogenes.
