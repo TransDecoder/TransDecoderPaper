@@ -227,3 +227,14 @@ Brian marked these as paper findings. Drafted in `manuscript/sections/results_gm
   - pseudogene and duplicated loci as a source of plausible-looking predictions (and possibly of real variant-bearing proteoforms);
   - experimental evidence as the deciding filter for the dark proteome;
   - immunopeptidomics and neo-ORFs (transposon-derived ORFs; Brian 2026-10-21).
+
+## TE-derived ORFs retained by homology (2026-10-21; evidence/E06)
+- Swiss-Prot minus human: about 4.7k Trinity (1.3k StringTie) unannotated ORFs are retained only through homology to TE-derived protein segments. Most are via the Alu-encoded C-terminus of chimp UTY (Q6B4Z3); 185 are via LINE-1 ORF1. 95% are <100 aa.
+- **Brian's decision:** no code change. Present them as candidate neo-ORFs.
+  - TE-derived transcripts and peptides are studied as tumor antigens and immunotherapy targets.
+  - Users who want a canonical proteome can screen them out easily (best-hit protein, repeat overlap).
+- **Points for the Discussion:**
+  - Homology retention overrides coding-signal filters by design. These ORFs would not pass on coding signal alone.
+  - Curated databases contain TE-derived segments, which is a caution for homology-based annotation generally.
+  - Recommend reporting the best-hit protein so TE-derived calls can be flagged.
+- Citations for TE-derived neoantigens are still to find and verify.

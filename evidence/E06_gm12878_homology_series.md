@@ -74,10 +74,12 @@ python3 $T/analyses/homology_series_retention.py <A.pred_status> <B.pred_status>
 - **Human exclusion by taxonomy** matches the earlier OX=9606 database to within one entry.
 - **Minus-human vs minus-primates** differ almost only in unannotated short ORFs. The sensitivity columns are unchanged (0.3671 / 0.5680 vs 0.3671 / 0.5677). This localises the artifact.
 
-## Caveats and follow-ups
-- **No retention filter.** TransDecoder retains any ORF with a hit at E ≤ 1e-5, regardless of hit coverage or repeat origin. Options to evaluate:
-  - a subject-coverage minimum;
-  - masking TE/Alu-derived segments in the database;
-  - reporting TE-homology-only ORFs separately, as candidate neo-ORFs (Brian 2026-10-21).
-- **Pfam is not distance-controlled**, because its HMMs include human sequences.
-- **Default DIAMOND sensitivity** may under-detect distant homologs; `--more-sensitive` has not been tested.
+## Decision (Brian, 2026-10-21)
+No change to TransDecoder's homology retention.
+- TE-homology-retained ORFs are kept and presented as candidate neo-ORFs. TE-derived peptides are of interest as tumor antigens for immunotherapy.
+- Users can screen them out easily, by best-hit protein or by repeat overlap.
+- Paper framing: these ORFs are retained on homology when their coding signal alone would not retain them. Most are short (95% <100 aa).
+
+## Caveats
+- Pfam is not distance-controlled, because its HMMs include human sequences.
+- Default DIAMOND sensitivity may under-detect distant homologs; `--more-sensitive` has not been tested.
