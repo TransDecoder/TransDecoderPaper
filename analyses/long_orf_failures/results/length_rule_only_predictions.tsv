@@ -1,0 +1,22 @@
+dataset	L_star	predictions	length_rule_only	length_rule_only_pct	lo_is_truth_cds	lo_on_negative_transcript	lo_other_orf_on_coding_transcript	lo_distinct_in_eval	lo_mane_exact	lo_gencode_compatible	lo_no_gencode_cds_overlap
+bench_v3:athal:complete	663	25595	55	0.215	54	0	1				
+bench_v3:athal:complete.wRand	663	25720	71	0.276	70	0	1				
+bench_v3:creinhardtii:complete	1347	16640	7	0.042	7	0	0				
+bench_v3:creinhardtii:complete.wRand	1347	16689	66	0.395	8	58	0				
+bench_v3:dmel:complete	804	13189	181	1.372	181	0	0				
+bench_v3:dmel:complete.wRand	804	13214	188	1.423	181	7	0				
+bench_v3:human:complete	804	18816	45	0.239	41	0	4				
+bench_v3:human:complete.wLnc	726	25766	151	0.586	47	99	5				
+bench_v3:human:complete.wRand	804	18975	126	0.664	40	82	4				
+bench_v3:mouse:complete	804	20925	110	0.526	110	0	0				
+bench_v3:mouse:complete.wLnc	726	26368	151	0.573	103	48	0				
+bench_v3:mouse:complete.wRand	804	21011	133	0.633	107	26	0				
+bench_v3:pfalciparum:complete	519	5124	1	0.02	1	0	0				
+bench_v3:pfalciparum:complete.wRand	519	5123	3	0.059	3	0	0				
+bench_v3:spombe:complete	615	4919	3	0.061	3	0	0				
+bench_v3:spombe:complete.wRand	615	4949	3	0.061	3	0	0				
+bench_v3:tthermophila:complete	inf	24858	0	0	0	0	0				
+bench_v3:tthermophila:complete.wRand	inf	25157	0	0	0	0	0				
+gm12878:stringtie:final_abinitio	726	40666	148	0.364				116	11	35	46
+gm12878:lraa:final_abinitio	726	34592	39	0.113				27	5	19	2
+gm12878:trinity:final_abinitio	726	97088	251	0.259				168	6	32	75

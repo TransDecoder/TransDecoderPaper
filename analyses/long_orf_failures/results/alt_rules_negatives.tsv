@@ -1,0 +1,11 @@
+org	input	L_star	mu	n_pos	n_neg	pos_pass_current	pos_pass_A_no_S1	pos_pass_B_contrast	neg_with_candidate_current	neg_with_candidate_A_no_S1	neg_with_candidate_B_contrast
+athal	complete.wRand	663	0.063	26867	26867	25552	25654	25910	146	1175	4225
+creinhardtii	complete.wRand	1347	0.1357	17621	17621	16594	16856	16887	59	7704	1239
+dmel	complete.wRand	804	0.1149	13884	13884	13164	13311	13343	32	1521	812
+human	complete.wLnc	726	0.0655	19167	33668	18791	18802	18881	6943	7124	11013
+human	complete.wRand	804	0.0665	19167	19167	18785	18797	18877	154	3548	3701
+mouse	complete.wLnc	726	0.063	21409	31467	20896	20906	20984	5424	5675	9416
+mouse	complete.wRand	804	0.064	21409	21409	20873	20899	20968	90	3439	3849
+pfalciparum	complete.wRand	519	0.1254	5281	5281	5121	5127	5201	1	10	58
+spombe	complete.wRand	615	0.0905	5100	5100	4918	4935	4971	31	108	365
+tthermophila	complete.wRand	inf	0.0633	26456	26456	24065	24602	24152	467	19684	6912

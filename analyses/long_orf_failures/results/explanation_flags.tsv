@@ -1,0 +1,154 @@
+org	flag	n_fail	fail_pct	n_ctrl	ctrl_pct
+athal	f_low_complexity	234	20.51	1170	17.52
+athal	f_gc3_low	234	10.68	1170	9.06
+athal	f_gc3_high	234	33.33	1170	10.77
+athal	f_gc3_extreme	234	44.02	1170	19.83
+athal	f_rescued_gc3_model	234	65.38	1170	98.38
+athal	f_rescued_any_truth_model	234	77.78	1170	99.83
+athal	f_no_sprot	234	70.09	1170	58.72
+athal	f_no_pfam	234	38.03	1170	26.41
+athal	f_orphan	234	35.9	1170	25.56
+athal	f_altframe_orf_50pct	234	11.97	1170	5.56
+athal	f_altframe_orf_stronger	234	7.26	1170	0.34
+athal	f_organelle	234	0	1170	0
+athal	attr:low_complexity_or_repetitive	234	20.51	1170	
+athal	attr:atypical_gc3_composition	234	62.39	1170	
+athal	attr:stronger_out_of_frame_orf	234	1.71	1170	
+athal	attr:no_homology_orphan	234	8.55	1170	
+athal	attr:unexplained	234	6.84	1170	
+creinhardtii	f_low_complexity	349	11.75	1279	10.16
+creinhardtii	f_gc3_low	349	55.01	1279	9.93
+creinhardtii	f_gc3_high	349	0.29	1279	5.08
+creinhardtii	f_gc3_extreme	349	55.3	1279	15.01
+creinhardtii	f_rescued_gc3_model	349	40.11	1279	99.37
+creinhardtii	f_rescued_any_truth_model	349	45.85	1279	99.84
+creinhardtii	f_no_sprot	349	95.42	1279	70.13
+creinhardtii	f_no_pfam	349	88.25	1279	56.14
+creinhardtii	f_orphan	349	88.25	1279	54.89
+creinhardtii	f_altframe_orf_50pct	349	31.52	1279	24.78
+creinhardtii	f_altframe_orf_stronger	349	5.16	1279	0.31
+creinhardtii	f_organelle	349	0	1279	0
+creinhardtii	attr:low_complexity_or_repetitive	349	11.75	1279	
+creinhardtii	attr:atypical_gc3_composition	349	65.04	1279	
+creinhardtii	attr:stronger_out_of_frame_orf	349	1.15	1279	
+creinhardtii	attr:no_homology_orphan	349	20.06	1279	
+creinhardtii	attr:unexplained	349	2.01	1279	
+dmel	f_low_complexity	369	14.36	1845	9.92
+dmel	f_gc3_low	369	72.9	1845	3.09
+dmel	f_gc3_high	369	0	1845	6.18
+dmel	f_gc3_extreme	369	72.9	1845	9.27
+dmel	f_rescued_gc3_model	369	89.97	1845	99.89
+dmel	f_rescued_any_truth_model	369	91.33	1845	100
+dmel	f_no_sprot	369	62.06	1845	42.66
+dmel	f_no_pfam	369	43.63	1845	21.25
+dmel	f_orphan	369	42.55	1845	20.38
+dmel	f_altframe_orf_50pct	369	6.23	1845	7.53
+dmel	f_altframe_orf_stronger	369	1.08	1845	0
+dmel	f_organelle	369	0	1845	0
+dmel	attr:low_complexity_or_repetitive	369	14.36	1845	
+dmel	attr:atypical_gc3_composition	369	81.57	1845	
+dmel	attr:stronger_out_of_frame_orf	369	0.54	1845	
+dmel	attr:no_homology_orphan	369	2.17	1845	
+dmel	attr:unexplained	369	1.36	1845	
+human	f_low_complexity	162	78.4	810	13.21
+human	f_gc3_low	162	9.88	810	3.33
+human	f_gc3_high	162	3.7	810	7.16
+human	f_gc3_extreme	162	13.58	810	10.49
+human	f_rescued_gc3_model	162	46.91	810	98.89
+human	f_rescued_any_truth_model	162	53.7	810	99.88
+human	f_no_sprot	162	53.7	810	6.42
+human	f_no_pfam	162	20.37	810	4.32
+human	f_orphan	162	17.9	810	1.6
+human	f_altframe_orf_50pct	162	32.72	810	12.1
+human	f_altframe_orf_stronger	162	23.46	810	0.49
+human	f_organelle	162	0	810	0
+human	attr:low_complexity_or_repetitive	162	78.4	810	
+human	attr:atypical_gc3_composition	162	12.35	810	
+human	attr:stronger_out_of_frame_orf	162	0.62	810	
+human	attr:no_homology_orphan	162	3.09	810	
+human	attr:unexplained	162	5.56	810	
+mouse	f_low_complexity	358	77.93	1790	13.07
+mouse	f_gc3_low	358	34.36	1790	4.36
+mouse	f_gc3_high	358	8.38	1790	8.32
+mouse	f_gc3_extreme	358	42.74	1790	12.68
+mouse	f_rescued_gc3_model	358	59.78	1790	99.05
+mouse	f_rescued_any_truth_model	358	65.08	1790	100
+mouse	f_no_sprot	358	39.11	1790	7.21
+mouse	f_no_pfam	358	29.89	1790	5.47
+mouse	f_orphan	358	23.18	1790	2.4
+mouse	f_altframe_orf_50pct	358	25.42	1790	6.82
+mouse	f_altframe_orf_stronger	358	12.57	1790	0.28
+mouse	f_organelle	358	0	1790	0
+mouse	attr:low_complexity_or_repetitive	358	77.93	1790	
+mouse	attr:atypical_gc3_composition	358	10.89	1790	
+mouse	attr:stronger_out_of_frame_orf	358	0.84	1790	
+mouse	attr:no_homology_orphan	358	3.07	1790	
+mouse	attr:unexplained	358	7.26	1790	
+pfalciparum	f_low_complexity	6	0	30	6.67
+pfalciparum	f_gc3_low	6	0	30	0
+pfalciparum	f_gc3_high	6	50	30	20
+pfalciparum	f_gc3_extreme	6	50	30	20
+pfalciparum	f_rescued_gc3_model	6	100	30	100
+pfalciparum	f_rescued_any_truth_model	6	100	30	100
+pfalciparum	f_no_sprot	6	66.67	30	83.33
+pfalciparum	f_no_pfam	6	66.67	30	53.33
+pfalciparum	f_orphan	6	66.67	30	53.33
+pfalciparum	f_altframe_orf_50pct	6	0	30	0
+pfalciparum	f_altframe_orf_stronger	6	0	30	0
+pfalciparum	f_organelle	6	0	30	0
+pfalciparum	attr:low_complexity_or_repetitive	6	0	30	
+pfalciparum	attr:atypical_gc3_composition	6	100	30	
+pfalciparum	attr:stronger_out_of_frame_orf	6	0	30	
+pfalciparum	attr:no_homology_orphan	6	0	30	
+pfalciparum	attr:unexplained	6	0	30	
+spombe	f_low_complexity	45	48.89	225	18.22
+spombe	f_gc3_low	45	4.44	225	6.67
+spombe	f_gc3_high	45	20	225	12.89
+spombe	f_gc3_extreme	45	24.44	225	19.56
+spombe	f_rescued_gc3_model	45	11.11	225	94.67
+spombe	f_rescued_any_truth_model	45	22.22	225	100
+spombe	f_no_sprot	45	97.78	225	51.11
+spombe	f_no_pfam	45	86.67	225	22.22
+spombe	f_orphan	45	86.67	225	21.78
+spombe	f_altframe_orf_50pct	45	2.22	225	6.67
+spombe	f_altframe_orf_stronger	45	0	225	0
+spombe	f_organelle	45	0	225	0.44
+spombe	attr:low_complexity_or_repetitive	45	48.89	225	
+spombe	attr:atypical_gc3_composition	45	13.33	225	
+spombe	attr:stronger_out_of_frame_orf	45	0	225	
+spombe	attr:no_homology_orphan	45	28.89	225	
+spombe	attr:unexplained	45	8.89	225	
+tthermophila	f_low_complexity	1591	26.9	4843	12.12
+tthermophila	f_gc3_low	1591	6.98	4843	9.29
+tthermophila	f_gc3_high	1591	13.95	4843	9.09
+tthermophila	f_gc3_extreme	1591	20.93	4843	18.38
+tthermophila	f_rescued_gc3_model	1591	9.3	4843	95.02
+tthermophila	f_rescued_any_truth_model	1591	17.72	4843	99.36
+tthermophila	f_no_sprot	1591	97.93	4843	79.15
+tthermophila	f_no_pfam	1591	96.98	4843	58.43
+tthermophila	f_orphan	1591	96.98	4843	58.04
+tthermophila	f_altframe_orf_50pct	1591	48.08	4843	29.67
+tthermophila	f_altframe_orf_stronger	1591	25.96	4843	0.58
+tthermophila	f_organelle	1591	0	4843	0
+tthermophila	attr:low_complexity_or_repetitive	1591	26.9	4843	
+tthermophila	attr:atypical_gc3_composition	1591	17.47	4843	
+tthermophila	attr:stronger_out_of_frame_orf	1591	11.82	4843	
+tthermophila	attr:no_homology_orphan	1591	43.37	4843	
+tthermophila	attr:unexplained	1591	0.44	4843	
+ALL	f_low_complexity	3114	32.05	11992	12.68
+ALL	f_gc3_low	3114	23.7	11992	7.28
+ALL	f_gc3_high	3114	11.21	11992	8.31
+ALL	f_gc3_extreme	3114	34.91	11992	15.59
+ALL	f_rescued_gc3_model	3114	34.49	11992	97.46
+ALL	f_rescued_any_truth_model	3114	41.65	11992	99.71
+ALL	f_no_sprot	3114	82.18	11992	53.83
+ALL	f_no_pfam	3114	73.35	11992	36.94
+ALL	f_orphan	3114	72.16	11992	35.8
+ALL	f_altframe_orf_50pct	3114	34.39	11992	18.35
+ALL	f_altframe_orf_stronger	3114	17.18	11992	0.36
+ALL	f_organelle	3114	0	11992	0
+ALL	attr:low_complexity_or_repetitive	3114	32.05	11992	
+ALL	attr:atypical_gc3_composition	3114	32.85	11992	
+ALL	attr:stronger_out_of_frame_orf	3114	6.49	11992	
+ALL	attr:no_homology_orphan	3114	26.24	11992	
+ALL	attr:unexplained	3114	2.38	11992	

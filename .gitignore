@@ -3,3 +3,4 @@ analyses/long_orf_threshold/sim_large/*.err
 *.pyc
 __pycache__/
 .nfs*
+analyses/long_orf_failures/results/per_cds/

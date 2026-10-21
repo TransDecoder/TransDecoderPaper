@@ -1,0 +1,98 @@
+org	kind	term	n	n_fail	fail_pct	org_fail_pct	fisher_p	examples
+athal	description	hypothetical	2023	73	3.61	0.92	2.616e-25	AT1G02070,AT1G04455,AT1G05085,AT1G12064,AT1G13143,AT1G13605,AT1G15900,AT1G20405
+athal	description	cysteine-rich	95	12	12.63	0.92	7.408e-11	AT2G02147,AT2G10535,AT3G21900,AT3G21920,AT3G21930,AT3G21945,AT3G22020,AT4G09984
+athal	description	defensin	9	4	44.44	0.92	8.361e-07	AT2G02147,AT2G10535,AT4G09984,AT4G29305
+athal	description	conserved	103	4	3.88	0.92	0.01501	AT1G01310,AT3G09590,AT4G25780,AT5G02730
+athal	description	glycine-rich	26	2	7.69	0.92	0.02353	AT2G05380,AT5G07540
+athal	description	zinc finger	258	5	1.94	0.92	0.08956	AT1G75560,AT2G26695,AT3G10815,AT3G15680,AT4G30370
+athal	description	pseudo	32	1	3.12	0.92	0.2553	AT3G28060
+athal	description	chloroplast	129	1	0.78	0.92	0.696	AT2G47840
+athal	description	repeat	875	5	0.57	0.92	0.9065	AT3G21900,AT3G21920,AT3G21930,AT3G21945,AT3G22020
+athal	description	F-box	794	3	0.38	0.92	0.9779	AT2G33705,AT3G63060,AT5G35770
+athal	description	SCR	1950	9	0.46	0.92	0.9942	AT1G23965,AT1G63030,AT1G70270,AT2G14282,AT3G21890,AT3G27503,AT3G66656,AT5G07500
+athal	description	kinase	1488	1	0.07	0.92	1	AT4G11845
+athal	description	putative	8645	32	0.37	0.92	1	AT1G22480,AT1G48070,AT1G58265,AT1G63030,AT1G75000,AT1G77815,AT1G98087,AT2G03000
+athal	name_prefix	AT	25530	234	0.92	0.92	1	AT1G01310,AT1G02070,AT1G02210,AT1G04455,AT1G05085,AT1G05785,AT1G06080,AT1G07130
+athal	description	uncharacterized	20	0	0	0.92	1	
+athal	description	unknown	370	0	0	0.92	1	
+athal	description	ribosomal	256	0	0	0.92	1	
+athal	description	histone	209	0	0	0.92	1	
+athal	description	transposon	90	0	0	0.92	1	
+athal	description	retrotransposon	84	0	0	0.92	1	
+athal	description	collagen	15	0	0	0.92	1	
+athal	description	surface	8	0	0	0.92	1	
+athal	description	proline-rich	29	0	0	0.92	1	
+athal	description	serine-rich	9	0	0	0.92	1	
+athal	description	mitochondrial	165	0	0	0.92	1	
+athal	description	PPR	94	0	0	0.92	1	
+athal	description	pentatricopeptide	234	0	0	0.92	1	
+athal	description	leucine-rich	113	0	0	0.92	1	
+creinhardtii	description	uncharacterized	16632	348	2.09	2.09	0.4487	CHLRE_12g503900v5,CHLRE_06g307900v5,CHLRE_16g685350v5,CHLRE_16g682052v5,CHLRE_07g345800v5,CHLRE_13g591750v5,CHLRE_13g568025v5,CHLRE_13g571100v5
+creinhardtii	description	ribosomal	56	1	1.79	2.09	0.6937	CHLRE_02g145250v5
+creinhardtii	name_prefix	CHLRE	16720	349	2.09	2.09	1	CHLRE_12g503900v5,CHLRE_06g307900v5,CHLRE_16g685350v5,CHLRE_16g682052v5,CHLRE_07g345800v5,CHLRE_13g591750v5,CHLRE_13g568025v5,CHLRE_13g571100v5
+dmel	name_prefix	CG	5307	221	4.16	2.8	1.096e-14	CG33217,CG2871,CG12239,CG30429,CG32845,CG10862,CG32219,CG32198
+dmel	name_prefix	EIG	9	7	77.78	2.8	4.391e-10	Eig71Ed,Eig71Eg,Eig71Ek,Eig71Ej,Eig71Ee,Eig71Ec,Eig71Ea
+dmel	name_prefix	SFP	15	8	53.33	2.8	1.907e-09	Sfp24Bb,Sfp33A3,Sfp84E,Sfp51E,Sfp24Bc,Sfp24Bd,Sfp26Ad,Sfp78E
+dmel	name_prefix	MUC	13	3	23.08	2.8	0.00506	Muc14A,Muc30E,Muc12Ea
+dmel	name_prefix	L	48	3	6.25	2.8	0.1508	l(3)80Fj,l(2)41Ab,l(3)80Fg
+dmel	name_prefix	OBP	51	3	5.88	2.8	0.1712	Obp56i,Obp50a,Obp57d
+human	name_prefix	KRTAP	72	52	72.22	0.86	1.442e-94	KRTAP9-8,KRTAP1-1,KRTAP11-1,KRTAP4-8,KRTAP9-4,KRTAP17-1,KRTAP4-5,KRTAP1-3
+human	name_prefix	LCE	14	12	85.71	0.86	1.021e-23	LCE1D,LCE5A,LCE1F,LCE1A,LCE1B,LCE1E,LCE4A,LCE2A
+human	name_prefix	RBMY	6	6	100	0.86	3.783e-13	RBMY1J,RBMY1F,RBMY1E,RBMY1D,RBMY1A1,RBMY1B
+human	name_prefix	SCYGR	5	5	100	0.86	4.518e-11	SCYGR2,SCYGR4,SCYGR6,SCYGR8,SCYGR3
+human	name_prefix	TP	19	7	36.84	0.86	1.453e-10	TP53TG3B,TP53TG3D,TP53TG3,TP53AIP1,TP53TG3C,TP53TG3F,TP53TG3E
+human	name_prefix	BPY	3	3	100	0.86	6.325e-07	BPY2,BPY2C,BPY2B
+human	name_prefix	H	95	8	8.42	0.86	1.674e-06	H4C6,H2AC1,H1-7,H4C2,H4C3,H4C4,H4C5,H4C13
+human	name_prefix	SRSF	12	4	33.33	0.86	2.515e-06	SRSF6,SRSF1,SRSF7,SRSF2
+human	name_prefix	RP	19	3	15.79	0.86	0.0005536	RP11-624J6.2,RP3-341E18.2,RP11-159G9.5
+human	name_prefix	ZNF	507	9	1.78	0.86	0.0322	ZNF417,ZNF843,ZNF776,ZNF587,ZNF678,ZNF441,ZNF596,ZNF814
+human	name_prefix	C	246	3	1.22	0.86	0.3574	C11orf21,C19orf73,C11orf71
+mouse	name_prefix	KRTAP	92	78	84.78	1.71	2.078e-126	Krtap4-13,Krtap13-22,Krtap1-5,Krtap4-7,Krtap31-2,Krtap4-2,Krtap13-1,Krtap5-4
+mouse	name_prefix	GM	628	77	12.26	1.71	1.244e-43	Gm61961,Gm5617,Gm13199,Gm10033,Gm14393,Gm6871,Gm8369,Gm10283
+mouse	name_prefix	LCE	20	20	100	1.71	2.688e-36	Lce1m,Lce1d,Lce1g,Lce1a2,Lce1b,Lce3b,Lce1c,Lce1f
+mouse	name_prefix	ZFP	405	44	10.86	1.71	9.725e-23	Zfp40,Zfp938,Zfp788,Zfp771,Zfp119b,Zfp760,Zfp937,Zfp119a
+mouse	name_prefix	SRSF	12	6	50	1.71	2.032e-08	Srsf7,Srsf12,Srsf2,Srsf10,Srsf6,Srsf1
+mouse	name_prefix	A	27	7	25.93	1.71	2.668e-07	A930009A15Rik,A630023A22Rik,A030005K14Rik,A030005L19Rik,A030003K21Rik,A030014E15Rik,A630089N07Rik
+mouse	name_prefix	ENSMUSG	54	5	9.26	1.71	0.002263	ENSMUSG00000079222,ENSMUSG00000121597,ENSMUSG00000144228,ENSMUSG00000144229,ENSMUSG00000144252
+mouse	name_prefix	TMEM	231	4	1.73	1.71	0.5594	Tmem167b,Tmem267,Tmem167,Tmem258
+pfalciparum	description	ribosomal	144	2	1.39	0.12	0.01096	PF3D7_1474100,PF3D7_0210400
+pfalciparum	description	mitochondrial	64	1	1.56	0.12	0.0728	PF3D7_1474100
+pfalciparum	description	uncharacterized	1276	3	0.24	0.12	0.1685	PF3D7_1115000,PF3D7_0710300,PF3D7_0720500
+pfalciparum	name_prefix	PF	3035	5	0.16	0.12	0.2229	PF3D7_1115000,PF3D7_1474100,PF3D7_0210400,PF3D7_0710300,PF3D7_0720500
+pfalciparum	description	putative	1441	2	0.14	0.12	0.5396	SDH4,PF3D7_1474100
+pfalciparum	description	histone	25	0	0	0.12	1	
+pfalciparum	description	zinc finger	63	0	0	0.12	1	
+pfalciparum	description	erythrocyte membrane protein	66	0	0	0.12	1	
+pfalciparum	description	rifin	157	0	0	0.12	1	
+pfalciparum	description	stevor	32	0	0	0.12	1	
+pfalciparum	description	PfEMP1	65	0	0	0.12	1	
+pfalciparum	description	surface	37	0	0	0.12	1	
+pfalciparum	description	repeat	164	0	0	0.12	1	
+pfalciparum	description	kinase	154	0	0	0.12	1	
+pfalciparum	description	pseudo	17	0	0	0.12	1	
+pfalciparum	description	SCR	76	0	0	0.12	1	
+pfalciparum	description	leucine-rich	13	0	0	0.12	1	
+spombe	name_prefix	SPAC	298	19	6.38	0.92	2.753e-12	SPAC1002.20,SPAC1142.09,SPAC1399.06,SPAC1687.17c,SPAC1786.04,SPAC17A2.11,SPAC17H9.18c,SPAC1A6.11
+spombe	name_prefix	FTM	6	4	66.67	0.92	9.32e-08	ftm3,ftm2,ftm6,ftm7
+spombe	name_prefix	MUG	86	6	6.98	0.92	0.0001176	mug155,mug114,mug177,mug150,mug42,mug128
+spombe	name_prefix	SPAPB	20	3	15	0.92	0.0007474	SPAPB15E9.02c,SPAPB18E9.05c,SPAPB8E5.08
+spombe	name_prefix	SPCC	141	6	4.26	0.92	0.001678	SPCC1235.17,SPCC1235.18,SPCC1840.13,SPCC191.03c,SPCC191.06,SPCC576.19c
+spombe	name_prefix	SPBC	192	5	2.6	0.92	0.03046	SPBC1271.08c,SPBC12C2.14c,SPBC13G1.15c,SPBC27.05,SPBC32H8.15
+tthermophila	description	hypothetical	11148	1512	13.56	6.18	0	TTHERM_00780428,TTHERM_00185709,TTHERM_01473465,TTHERM_01023050,TTHERM_00326920,TTHERM_00328500,TTHERM_00052484,TTHERM_00016130
+tthermophila	description	ribosomal	127	24	18.9	6.18	8.374e-07	TTHERM_01151500,TTHERM_01151600,TTHERM_00266390,TTHERM_00633150,TTHERM_00149630,TTHERM_00131110,TTHERM_00193740,TTHERM_00577240
+tthermophila	description	putative	144	8	5.56	6.18	0.6727	TTHERM_00131110,TTHERM_00637520,TTHERM_00193740,TTHERM_00227267,TTHERM_00943005,TTHERM_00365333,TTHERM_01044372,TTHERM_00446280
+tthermophila	description	histone	37	2	5.41	6.18	0.6761	TTHERM_00283180,TTHERM_00633360
+tthermophila	description	surface	104	1	0.96	6.18	0.9987	TTHERM_00489480
+tthermophila	description	unknown	208	4	1.92	6.18	0.9991	TTHERM_00143600,TTHERM_00079750,TTHERM_00770862,TTHERM_00558575
+tthermophila	description	SCR	116	1	0.86	6.18	0.9994	TTHERM_00575570
+tthermophila	description	zinc finger	315	1	0.32	6.18	1	TTHERM_00419925
+tthermophila	description	cysteine-rich	410	1	0.24	6.18	1	TTHERM_00595530
+tthermophila	name_prefix	TTHERM	25730	1591	6.18	6.18	1	TTHERM_00780428,TTHERM_00185709,TTHERM_01473465,TTHERM_01023050,TTHERM_00326920,TTHERM_00328500,TTHERM_00052484,TTHERM_00016130
+tthermophila	description	uncharacterized	5	0	0	6.18	1	
+tthermophila	description	conserved	18	0	0	6.18	1	
+tthermophila	description	repeat	1529	6	0.39	6.18	1	TTHERM_01063950,TTHERM_01550951,TTHERM_00850634,TTHERM_01184195,TTHERM_00316576,TTHERM_00518700
+tthermophila	description	kinase	1199	1	0.08	6.18	1	TTHERM_01113100
+tthermophila	description	mitochondrial	91	0	0	6.18	1	
+tthermophila	description	pseudo	12	0	0	6.18	1	
+tthermophila	description	F-box	24	0	0	6.18	1	
+tthermophila	description	leucine-rich	885	5	0.56	6.18	1	TTHERM_01063950,TTHERM_01550951,TTHERM_01184195,TTHERM_00316576,TTHERM_00518700

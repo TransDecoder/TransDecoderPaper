@@ -41,6 +41,7 @@ Rules:
 | [E09](E09_start_refinement_kozak.md) | Start-codon refinement and Kozak | Methods/Results | complete (gaps listed) |
 | [E10](E10_long_orf_rule_gc.md) | Long-ORF retention rule and GC | Methods/Results | complete (gaps listed) |
 | [E11](E11_gm12878_trinity_gg.md) | Trinity genome-guided assembly of GM12878 | Methods: application data | complete |
+| [E12](E12_long_orf_failures.md) | True CDSs that fail the coding criteria; long-ORF rule rescues; causes (composition, low complexity, unconserved models); GM12878 MANE | Methods: long-ORF rule (E10 gap); Results/Discussion (not yet cited) | draft |
 
 ## Large files (decision, Brian 2026-10-21)
 - Until the paper's analyses are final, large outputs stay in the project work area (`$P/work`, `$P/data`). Each record lists their paths.

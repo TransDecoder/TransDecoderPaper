@@ -1,0 +1,3 @@
+assembly	mane_assembled	exact	not_exact	not_exact_predicted_exact	not_exact_predicted_stop	not_exact_lost_outcompeted	not_exact_fail_coding_lost	not_exact_no_orf	not_exact_fail_coding_pct	fail_S1_le0	fail_shifted_frame	fail_short_guard	all_assembled_fail_coding	all_assembled_fail_coding_pct	all_assembled_fail_but_long_rescued	fail_also_fail_in_bench_human	fail_bench_pass
+lraa	6294	5882	412	0	256	18	125	13	30.34	19	18	88	130	2.07	5	81	39
+stringtie	8919	8268	651	0	441	75	113	22	17.36	17	16	80	127	1.43	14	90	20
