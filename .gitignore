@@ -2,10 +2,4 @@ analyses/long_orf_threshold/sim_runs/*.err
 analyses/long_orf_threshold/sim_large/*.err
 *.pyc
 __pycache__/
-manuscript/*.pdf
-manuscript/*.aux
-manuscript/*.log
-manuscript/*.bbl
-manuscript/*.blg
-manuscript/*.out
 .nfs*
