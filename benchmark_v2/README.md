@@ -68,6 +68,8 @@ Stranded inputs are run strand-specifically:
 | borf | Borf 1.2, defaults (`-s` when unstranded) |
 | rnasamba | RNAsamba 0.2.5 with the authors' human weights (full-length / partial). Forward strand only, so stranded inputs only; proteins mapped back to transcript coordinates |
 | angel | ANGEL 3.0 (PacBio; deprecated upstream), self-training workflow from its README (`dumb_predict` → `angel_make_training_set --random` → `angel_train` → `angel_predict --output_mode best`, ≥100 aa) |
+
+**ANGEL was dropped from the benchmark** (Brian, 2026-10-19): it is too slow to be practical. 3 runs (*A. thaliana* complete inputs) took 17–22 h each, so the runner was stopped. Its results are not reported.
 | longest_orf | Baseline: the longest LongOrfs ORF per transcript |
 | all_orfs | Baseline: every LongOrfs ORF (≥100 aa) |
 
