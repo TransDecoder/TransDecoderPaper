@@ -237,4 +237,4 @@ Brian marked these as paper findings. Drafted in `manuscript/sections/results_gm
   - Homology retention overrides coding-signal filters by design. These ORFs would not pass on coding signal alone.
   - Curated databases contain TE-derived segments, which is a caution for homology-based annotation generally.
   - Recommend reporting the best-hit protein so TE-derived calls can be flagged.
-- Citations for TE-derived neoantigens are still to find and verify.
+- Citations (verified via Crossref 2026-10-21; in references.bib): Shah2023 (Nat Genet 55:631, pan-cancer TE-chimeric tumor-specific antigens, MS-supported); Attig2019 (Genome Res 29:1578, de novo assembly expands LTR transcripts and immunopeptidome); Merlotti2023 (Sci Immunol 8:eabm6359, exon-TE junction neoantigens, HLA-I peptidomics, CD8 T cells); Bonte2022 (Cell Rep 39:110916, glioblastoma TE-encoded HLA-I peptides, incl. intact LINE-1/LTR/SVA ORFs). Attig2019 is especially apt: de novo assembly + ORF calling, as here.
