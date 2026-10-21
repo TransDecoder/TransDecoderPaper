@@ -76,3 +76,45 @@ MANE Select, gene TPM >= 1 (>= 10):
 **Caveat**
 - For GENCODE (all isoforms), gene-level TPM does not tell which isoforms are expressed, so the GENCODE rows barely move.
 - A transcript-level TPM filter would be the right one there, but isoform-level quantification is itself uncertain.
+
+## Sample-matched Ribo-seq support (GM12878, Cenik et al. 2015, GSE65912)
+
+Data: SRR1803147 and SRR1803148 (CHX, RNase A+T1). Pipeline:
+- adapter trim to 25–34 nt;
+- rRNA/tRNA removal with bowtie2: 37–48% of reads remain non-rRNA;
+- STAR end-to-end, unique alignments only: **11.5M footprints in total** (modest depth).
+
+Scripts:
+- `genome_annotation/scripts/gm12878_riboseq_{download,process}.sh`
+- `analyses/riboseq/riboseq_orf_support.py`
+- `analyses/riboseq/expr_matched_support.awk`
+
+**Calibration on MANE CDSs** (`results/gm12878_riboseq_calibration.tsv`):
+- 98.8% of footprints are sense to the CDS.
+- Periodicity is weak, as expected for A+T1 digestion. The best frame-0 fraction is about 0.55, for read lengths 27, 29 and 30 only (chance is 0.33).
+- The support test is therefore conservative. Of MANE-exact predictions that have ≥10 P-sites, only 64% pass the frame test.
+
+**Footprint support by prediction class** (distinct CDSs; "covered" = at least 10 P-sites; "supported" = frame-0 enriched, binomial p < 0.01):
+
+| Assembly | Class | n | Covered | Supported |
+|---|---|---|---|---|
+| LRAA | GENCODE exact | 12,021 | 89% | 59% |
+| LRAA | Novel (no GENCODE CDS overlap) | 885 | 4.3% | 1.5% |
+| StringTie | GENCODE exact | 13,807 | 83% | 54% |
+| StringTie | Novel | 4,127 | 1.0% | 0.4% |
+| Trinity | GENCODE exact | 13,832 | 84% | 53% |
+| Trinity | Other overlap | 30,509 | 69% | 41% |
+| Trinity | Novel | 11,235 | 0.6% | 0.2% |
+
+**Expression-matched comparison** (StringTie source-transcript TPM; `results/gm12878_riboseq_stringtie_by_expression.tsv`):
+- At TPM 5–20, 89% of exact ORFs are covered, but only 3.4% of novel ORFs (235 ORFs).
+- At TPM ≥ 100, 96% of exact ORFs are covered, but only 10% of novel ORFs (30 ORFs).
+- So the lack of footprints is not explained by low RNA abundance.
+- Most unannotated predictions (mostly 50–199 aa, many on lncRNA-like transcripts) show no ribosome engagement in this cell line. They are best treated as candidate ORFs, not proteins.
+- This matches the minimum-length sweep: the precision cost of the 50 aa minimum falls mainly on this class.
+
+Caveats:
+- Depth is modest, and the A+T1 periodicity is weak.
+- Only uniquely mapped footprints are counted, so repeat-derived ORFs are invisible.
+- Single-exon transcripts assembled on the wrong strand would also lack sense footprints.
+- A deeper, RNase I Ribo-seq dataset, or MS (Sinitcyn 2023 PXD024364, 534 GB raw), would be needed to call individual novel ORFs as translated.
