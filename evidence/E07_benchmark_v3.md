@@ -1,6 +1,6 @@
 # E07. Cross-species benchmark (bench_v3)
 
-**Status: complete except CodAn scores.** CodAn has 68/80 runs finished as of 2026-10-21 13:57 (the task brief said 67/80 at 14:00). Twelve runs are still going: all 7 remaining *T. thermophila* variants, plus athal, human and mouse `complete.unstranded.wRand`, and mouse `complete.wRand` and `fragments.unstranded.wRand`. The committed `summary.tsv` holds 62 CodAn rows.
+**Status: complete except CodAn scores.** CodAn has 71/80 runs finished as of 2026-10-22 11:40. Nine are still running: 6 *T. thermophila* variants (complete.unstranded, complete_fullutr.unstranded, complete.wRand, complete.unstranded.wRand, fragments.wRand, fragments.unstranded.wRand), athal and mouse `complete.unstranded.wRand`, and mouse `fragments.unstranded.wRand`. The committed `summary.tsv` holds 62 CodAn rows. The homology-assisted final-default runs (`pytd_dev_v2_homology`, 84/84) were added on 2026-10-22; see Results.
 
 ## Claims supported
 Manuscript: Methods, "Benchmark data", "Compared methods", "Accuracy measures" (`manuscript/sections/methods_benchmark.tex`); Results, benchmark (not yet drafted).
@@ -55,6 +55,7 @@ Benchmark runs are in `$P/work/bench_v3/runs/<org>/<variant>/<tool>/`. Labels, t
 |---|---|---|---|
 | `pytd_dev_v2` (**final defaults**) | PyTD `work/trees/PY_dev` (branch dev/frame-contrast-starts) | 48c870c (see Caveats) | 84, 2026-10-20 12:41–15:13 |
 | `perl_td_dev_v2` (**final defaults**) | TransDecoder `work/trees/TD_fix` (branch fix/start-refinement) | de3f57e (see Caveats) | 84, 2026-10-20 12:45–15:32 |
+| `pytd_dev_v2_homology` (final defaults + DIAMOND/Pfam) | PyTD `work/trees/PY_dev`; 5 *T. thermophila* runs re-predicted from `work/trees/PY_48c870c` (see Caveats) | 48c870c | 84, launch17, finished 2026-10-22 |
 | `pytd`, `pytd_norefine`, `pytd_homology` | PyTD `work/trees/PY_fix` (dev/paper; = origin/main) | 27bfb5e | 80/80/56, 10-18 09:37 – 10-19 11:16 |
 | `perl_td` | `TD_fix` | 351634a (tree HEAD on 10-18; the tree has since moved to de3f57e) | 80, 10-18 |
 | `perl_td_v600` | `work/trees/TD_base`, v6.0.0 | 66d4712 | 80 |
@@ -90,6 +91,10 @@ bash TransDecoderPaper/benchmark_v2/launch_v3/launch3.sh    # cpat cpc2 borf; rn
 bash TransDecoderPaper/benchmark_v2/launch_v3/launch4.sh    # angel (stopped, see Caveats)
 bash TransDecoderPaper/benchmark_v2/launch_v3/launch14.sh   # comparators on the wLnc inputs
 bash TransDecoderPaper/benchmark_v2/launch_v3/launch16.sh   # final defaults pytd_dev_v2 / perl_td_dev_v2 on all inputs
+bash TransDecoderPaper/benchmark_v2/launch_v3/launch17.sh   # pytd_dev_v2_homology (JOBS=3 THREADS=4)
+R=work/bench_v3/runs/tthermophila                           # Predict re-run at 48c870c, reusing the searches
+TransDecoderPaper/benchmark_v2/scripts/repredict_homology.sh work/trees/PY_48c870c \
+  $R/{complete.wRand,complete.unstranded.wRand,fragments.unstranded,fragments.unstranded.wRand,fragments.wRand}/pytd_dev_v2_homology
 env/td/bin/python TransDecoderPaper/benchmark_v2/scripts/score_all.py data/bench_v3/inputs work/bench_v3/runs \
   > work/bench_v3/scores/summary.tsv          # copied to $T/benchmark_v2/results_v3/summary.tsv
 ```
@@ -106,6 +111,7 @@ env/td/bin/python TransDecoderPaper/benchmark_v2/scripts/score_all.py data/bench
 ## Outputs
 - `$T/benchmark_v2/results_v3/summary.tsv`: 1,957 scored runs, long format. Columns: n_truth, n_pred, tp_stop, tp_exact, fp, fp_random, fp_wrong_strand, fp_dup, fn, sensitivity/precision/F1 at stop and exact level, and runtime_sec.
   - It is byte-identical to `$P/work/bench_v3/scores/summary.tsv` (written 2026-10-20 15:37).
+- `$T/benchmark_v2/results_v3/homology_vs_abinitio.tsv`: `pytd_dev_v2_homology` minus `pytd_dev_v2` per input (84 rows), from `compare_homology.py` on the interim rescoring `$P/work/bench_v3/scores/summary.interim_20261022.tsv` (fixed scorer, all runs as of 2026-10-22 11:30; not committed, as CodAn is incomplete).
 - `results_v3/by_length.tsv`, `short_orf_summary.tsv` and `lnc_by_era.human.tsv` are covered in E04.
 - Per-run outputs (not in git): `$P/work/bench_v3/runs/<org>/<variant>/<tool>/{preds.tsv,runtime_sec.txt,*.log}`. Logs are in `runs/logs/`.
 
@@ -155,7 +161,12 @@ What can be said without over-reading:
 - **Fragments, stop level:** Prodigal is higher than TransDecoder in 7 of 8 organisms; *T. thermophila* is the exception (0.869 vs 0.896). This is consistent with its lower minimum gene length (90 nt) against the -m 50/100-codon floor; see E04 for length-stratified numbers. No significance testing was done.
 - **Classifier-type tools** (CPAT, RNAsamba, CPC2) have high exact F1 on complete transcripts but low exact F1 on fragments (CPAT median 0.44).
 - **CodAn** stop F1 is 0.710 on *P. falciparum*, which has no clade model (INV used).
-- **Homology** (`pytd_homology` vs `pytd`, complete) changes stop sensitivity by +0.0004 to +0.0089.
+- **Homology** (`pytd_dev_v2_homology` vs `pytd_dev_v2`, `homology_vs_abinitio.tsv`). Swiss-Prot without the organism's own entries plus Pfam, at the final defaults:
+  - Complete-type inputs (complete and complete_fullutr, 48 inputs): stop sensitivity +0.0008 to +0.0246, exact F1 −0.0013 to +0.0180. Gains are smallest in *T. thermophila* and *C. reinhardtii* (exact F1 ≤ +0.0021).
+  - Fragments (32 inputs): stop sensitivity +0.013 to +0.099, exact F1 +0.006 to +0.053. Largest in human, mouse and athal (exact F1 +0.040 to +0.053); smallest in *T. thermophila* and *C. reinhardtii* (+0.006 to +0.008).
+  - Precision changes by −0.006 to +0.018 (stop level), so the gains come from recovered true CDSs. Predictions on GC-matched random negatives barely move: +0 to +3 per input in seven organisms, +12 to +36 in *T. thermophila* (e.g. complete.unstranded.wRand 1,059 → 1,095).
+  - lncRNA negatives: lncRNAs with a prediction rise from 6,943 to 7,827 (human complete.wLnc) and 5,423 to 5,921 (mouse), so precision falls: exact F1 −0.0074 (human complete.wLnc) and +0.0020 (mouse); on fragments.wLnc the sensitivity gain still dominates (+0.021, +0.033).
+  - This supersedes the earlier `pytd_homology` runs at 27bfb5e (stop sensitivity +0.0004 to +0.0089 on complete inputs).
 - **Runtime** (wall clock under shared load; athal complete): PyTD final 173 s, Perl final 411 s, Prodigal 45 s, GMST 34 s, CodAn 35,114 s, ANGEL 62,503 s.
 
 ## Checks
@@ -165,6 +176,8 @@ What can be said without over-reading:
 - **Truth counts:** every input's `truth.tsv` row count equals the organism's kept-gene count in its truth log, and `.wRand` FASTAs have 2× the transcripts.
 - **v6.0.0 vs v5.7.1:** `perl_td_v600` and `perl_td_v571` `preds.tsv` files are byte-identical in 80/80 runs, so Predict output did not change between these releases on these inputs.
 
+- **Homology runs at one code version:** after the re-prediction, all 84 `pytd_dev_v2_homology` GFF3 files carry the 48c870c attribute `upstream_frame_contrast` and none carries the 44e417a attribute `upstream_coding_score`. In the 5 re-predicted runs, 7–30 ORFs (0.03–0.13%) differ from the 44e417a predictions they replaced (kept in `predict_44e417a/`).
+
 ## Gaps
 - **Builder for `sprot_minus_<taxid>.dmnd`:** the per-organism Swiss-Prot taxid-exclusion databases used by `pytd_homology` have no builder in this repo. Only the later clade builder, `genome_annotation/scripts/make_sprot_clade_excluded.py`, is committed. The commands that made the per-taxid databases were not saved.
 - **Move to `rerun_old16/`:** the move of the earlier final-default runs is not scripted (`launch16.sh` assumes an empty target). Nor are the deletions or moves before relaunching other labels.
@@ -173,6 +186,7 @@ What can be said without over-reading:
 - **Early benchmark observations in notes/04** (e.g. "TD 0.96–0.985 vs Prodigal 0.92–0.94"; human exact 14,204 → 13,099) come from earlier partial runs (bench_v2 truth, `$P/work/bench_v2`), not bench_v3. They should not be quoted.
 
 ## Caveats
+- **Homology runs and the shared tree:** launch17 ran from `work/trees/PY_dev`, which moved to 44e417a (Kozak in bits) on 2026-10-22 while it was running. The Predict step of 5 *T. thermophila* runs (complete.wRand, complete.unstranded.wRand, fragments.unstranded, fragments.unstranded.wRand, fragments.wRand) used 44e417a. Their Predict step was re-run with `repredict_homology.sh` from a worktree pinned at 48c870c, reusing their DIAMOND and Pfam results. LongOrfs and the searches were unaffected, as 44e417a changes only start refinement. `runtime_sec.txt` of those runs is the original run's.
 - **Run code predates its commits.** The final-default runs ended at 15:13 (PyTD) and 15:32 (Perl) on 2026-10-20, a few minutes before 48c870c (15:38:00) and de3f57e (15:37:58) were committed. The 2-input rerun above matches the commits, but the other 82 inputs per tool were not rerun.
 - **Commits on remotes:** 48c870c is on PyTransDecoder origin/main and de3f57e on TransDecoder origin/devel (verified 2026-10-21 with git rev-list against the fetched remotes).
 - **Labels track trees, not commits.** `perl_td` ran from `TD_fix` on 10-18 (351634a). Rerunning that label today would use de3f57e.
