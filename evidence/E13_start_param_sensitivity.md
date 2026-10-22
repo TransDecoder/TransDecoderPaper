@@ -81,3 +81,24 @@ Key numbers:
 - The fragment inputs are cut once inside every CDS, which is more truncation than real
   assemblies have.
 - Only stranded inputs were run. Each cell is a single run, with no variance estimate.
+
+## Addendum (2026-10-22): Kozak score in bits, two-score form
+At Brian's request the rule was restated for readability, with no change in behaviour beyond rounding:
+- coding score = C(u)/mu; UTR score = alpha*|u| + w*K, with K now in bits (log2-odds); trim when the UTR
+  score is higher. Algebraically the same as C(u) < (alpha*|u| + w*K)*mu.
+- The weight moves from 25 per nat to 17 per bit (25 x ln 2 = 17.33, rounded). All w values in this record
+  are per nat; multiply by ln 2 = 0.693 for per-bit values: the grid's 0-100 is 0-69 per bit, and
+  the flat range 10-50 is 7-35 per bit.
+- Code: PyTD 44e417a, Perl ab38ca6 (see E08 for parity). Documentation:
+  docs/start_codon_refinement.md in both code repos.
+
+Check (`compare_bits.py` -> `results/bits_vs_nats.tsv`): the bits code at alpha 0.4 was run on all 16
+stranded complete/fragments inputs with w = 17 and with w = 17.32868, in
+`$P/work/start_param_grid/runs_bits` (GRID_DIR env var of run_grid.py), and compared with the nats
+cell a0.4_w25.
+- w = 17.33 (exact equivalent): 0-4 predictions differ per input, from the Kozak model file being written
+  to 3 decimals; exact F1 identical to 4 decimals on 13 of 16 inputs, within 0.0001 on the rest.
+- w = 17 (new default): 0-26 predictions differ per input (at most 0.13% of predictions); exact F1 within
+  0.0003 of the old default on every input.
+- Perl/Python regression on the 5 sample sets: identical predictions; vs the previous code, 4 of 4,277
+  ORFs change (two duplicated PASA assembly pairs on the decision boundary).

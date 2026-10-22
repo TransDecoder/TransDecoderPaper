@@ -219,3 +219,11 @@ kfold picks (19,10) in athal and (20,9) in creinhardtii. This line was supersede
 - **The Kozak figure is trained on `perl_td` (TD_fix, 2026-10-18) training sets**, not on final-default runs. The training sets do not depend on the start rule.
 - **The `start_downstream_in_tx` label is large** (1,931 LRAA, 1,127 StringTie), although `start_labels.py` documents it as "should not happen". It has not been investigated.
 - **C. reinhardtii is the one organism where later in-frame starts are common (19.6%).** No tested rule recovers most of them.
+
+## Addendum (2026-10-22): units and wording changed
+The rule is now written as two scores, with the Kozak score in bits and the weight at 17 per bit (25 per nat
+before). Numbers in this record are per nat (multiply K by 1.443 for bits). Behaviour and the equivalence
+check are in E13 (Addendum); Kozak score distributions in bits are in
+`analyses/start_param_sensitivity/results/kozak_score_distribution.tsv` (`kozak_score_distribution.py`).
+`genome_annotation/scripts/start_labels.py` reads both the old (upstream_frame_contrast, nats) and new
+(upstream_coding_score, bits) GFF3 attributes.

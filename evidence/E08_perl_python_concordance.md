@@ -127,3 +127,13 @@ Output: `$T/regression/results/final_48c870c_de3f57e.summary.tsv`. Predictions a
 | Cufflinks | 58 | 3 | 2 | 1.62× |
 
 This replaces the 2026-10-17 regression (`dev_paper_r6`), which predates the final start rule and had 4–53 start differences per set. Speedups are wall clock on a shared host and are lower on these small sets than on the benchmark (median 2.3×), because fixed start-up costs dominate.
+
+## Rerun after the Kozak-in-bits change (2026-10-22)
+```bash
+cd $P; PYTHON=$P/env/td/bin/python bash $T/regression/run_regression.sh $P/work/trees/TD_fix $P/work/trees/PY_dev \
+  $P/work/regression/kozak_bits
+```
+Run on the working trees that were then committed unchanged as PyTD 44e417a and Perl ab38ca6; summary in `regression/results/kozak_bits_44e417a_ab38ca6.summary.tsv`. Predictions are
+identical on all five sample sets (Trinity 692, PASA 777, StringTie 2,681, SuperTranscripts 69, Cufflinks 58 ORFs;
+no start differences, no implementation-only ORFs). Against the previous final commits, 4 of 4,277 ORFs change
+(PASA asmbl_234/639 and asmbl_235/640, two duplicated pairs on the decision boundary; 17 vs 17.33 bases per bit).

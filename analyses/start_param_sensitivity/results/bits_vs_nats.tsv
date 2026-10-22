@@ -1,0 +1,17 @@
+org	input	n_pred_nats25	differ_bits17	differ_bits17.33	f1_exact_nats25	f1_exact_bits17	f1_exact_bits17.33
+athal	complete	25595	14	2	0.8966	0.8966	0.8966
+athal	fragments	20104	17	0	0.7226	0.7227	0.7226
+creinhardtii	complete	16640	4	1	0.7415	0.7416	0.7415
+creinhardtii	fragments	14741	9	0	0.7605	0.7603	0.7605
+dmel	complete	13189	2	0	0.9220	0.9220	0.9220
+dmel	fragments	10929	6	0	0.7944	0.7944	0.7944
+human	complete	18816	10	0	0.9222	0.9220	0.9222
+human	fragments	16603	21	1	0.8124	0.8123	0.8124
+mouse	complete	20925	12	0	0.9082	0.9082	0.9082
+mouse	fragments	18161	24	1	0.8019	0.8016	0.8018
+pfalciparum	complete	5124	1	0	0.9284	0.9282	0.9284
+pfalciparum	fragments	4276	2	0	0.8059	0.8059	0.8059
+spombe	complete	4919	0	0	0.9119	0.9119	0.9119
+spombe	fragments	4091	5	0	0.7845	0.7847	0.7845
+tthermophila	complete	24858	10	0	0.8398	0.8399	0.8398
+tthermophila	fragments	22199	26	4	0.7620	0.7620	0.7619

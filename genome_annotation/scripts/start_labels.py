@@ -4,6 +4,10 @@ label: utr_first_atg  - trimmed CDS == MANE CDS (transcript holds the MANE start
        truncated      - MANE start not in the transcript; trimmed CDS is an in-frame piece of MANE (keep open)
        upstream_atg   - trimmed CDS starts upstream of MANE start, same stop (first ATG is upstream in-frame)
        start_downstream_in_tx - MANE start in transcript but trimmed start is downstream (should not happen)
+Features: upstream_frame_contrast = the segment's frame contrast per base / the training median, and the
+ATG's kozak_score. PyTD 48c870c and earlier write upstream_frame_contrast and Kozak in nats; later
+versions write upstream_coding_score (bases) and Kozak in bits, from which the same per-base fraction is
+derived (kozak_score is then reported in bits).
 """
 import re, sys
 sys.path.insert(0, "/broad/hptmp/bhaas/TRANSDECODER_PAPER/TransDecoderPaper/genome_annotation/scripts")
@@ -18,8 +22,9 @@ for l in open(f"{run}/transcripts.fa.transdecoder.gff3"):
     f = l.split("\t")
     if len(f) == 9 and f[2] == "mRNA" and "start_revised=true" in f[8]:
         a = dict(x.split("=", 1) for x in f[8].strip().split(";") if "=" in x)
-        feat[a["ID"]] = (float(a["upstream_frame_contrast"]), float(a["kozak_score"]),
-                         None)
+        con = float(a["upstream_frame_contrast"]) if "upstream_frame_contrast" in a else \
+            ("coding", float(a["upstream_coding_score"]))
+        feat[a["ID"]] = (con, float(a["kozak_score"]), None)
 preds = read_pred_gff3(f"{run}/transcripts.fa.transdecoder.genome.gff3")
 exons = {}
 for l in open(f"{run}/transcripts.fa.transdecoder.genome.gff3"):
@@ -37,6 +42,8 @@ with open(out, "w") as fh:
     fh.write("model_id\tlabel\tupstream_frame_contrast\tkozak_score\tupstream_nt\tcds_len\ttx_upstream_nt\n")
     for mid, (con, koz, tx_up) in feat.items():
         tx_up = cds5.get(mid)
+        if isinstance(con, tuple):
+            con = round(con[1] / tx_up, 3) if tx_up else float("nan")
         p = preds.get(mid)
         if p is None: continue
         pst, psp = ends(p)
