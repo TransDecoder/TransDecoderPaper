@@ -1,0 +1,17 @@
+org	input	n_configs	default_preds_identical_to_pytd_dev_v2	n_pred_values	tp_stop_values	stop_invariant_over_refining_configs	stop_invariant_incl_norefine
+athal	complete	79	True	25595	25541	True	True
+athal	fragments	79	True	20104	20030	True	True
+creinhardtii	complete	79	True	16640	16590	True	True
+creinhardtii	fragments	79	True	14741	14686	True	True
+dmel	complete	79	True	13189	13158	True	True
+dmel	fragments	79	True	10929	10893	True	True
+human	complete	79	True	18816	18772	True	True
+human	fragments	79	True	16603	16532	True	True
+mouse	complete	79	True	20925	20826	True	True
+mouse	fragments	79	True	18161	18033	True	True
+pfalciparum	complete	79	True	5124	5123	True	True
+pfalciparum	fragments	79	True	4276	4276	True	True
+spombe	complete	79	True	4919	4919	True	True
+spombe	fragments	79	True	4091	4089	True	True
+tthermophila	complete	79	True	24858	24129	True	True
+tthermophila	fragments	79	True	22199	21794	True	True
