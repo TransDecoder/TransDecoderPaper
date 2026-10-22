@@ -4,7 +4,7 @@
 Manuscript: Results, homology integration and the GM12878 application (to be drafted).
 
 1. **Homology evidence gives modest gains** over ab initio predictions on assembled transcripts.
-   - MANE exact given assembled, Swiss-Prot minus human: +1.2 (LRAA) / +1.1 (StringTie) / +1.4 (Trinity) points.
+   - MANE exact given assembled, Swiss-Prot minus human: +1.8 (LRAA) / +1.1 (StringTie) / +1.4 (Trinity) points (0.9345 → 0.9528, 0.9270 → 0.9380, 0.9055 → 0.9196; ab initio = `<asm>_final_abinitio.summary.tsv`, minus human = `hseries/<asm>_blast_9606_nopfam.summary.tsv`). Corrected 2026-10-22: LRAA was given as +1.2.
    - MANE compatible: +0.9 / +2.3 / +2.1 points.
 2. **The Swiss-Prot gain shrinks with evolutionary distance** (human → primates → mammals → vertebrates → all animals removed). Excluding all animals still gives a small gain.
 3. **Pfam alone recovers most of the gain, independent of the BLAST database.**
@@ -12,7 +12,7 @@ Manuscript: Results, homology integration and the GM12878 application (to be dra
 4. **Retention artifact from an Alu-derived segment.**
    - One curated protein with an Alu-derived segment drives most homology-retained unannotated ORFs: chimp UTY, Swiss-Prot Q6B4Z3 (UTY_PANTR).
    - Its C-terminal ~85 aa (residues ~995–1079) is Alu-encoded (…QWCDLSSLQPPPPGFKRFSHLSLPNSWNYRHLPSCPTNFCIFVETGFHHVGQAHLELLTSGG…).
-   - Minus-human vs minus-primates (BLAST only): 4,692 of the 4,981 Trinity CDSs found only in the minus-human run are unannotated. Of those, 4,468 have UTY_PANTR as best hit, 95% are <100 aa, and 185 more hit slow-loris LINE-1 ORF1 (LIN1_NYCCO).
+   - Minus-human vs minus-primates (BLAST only): 4,692 of the 4,981 Trinity CDSs found only in the minus-human run are unannotated. Of those, 4,465 have UTY_PANTR as best hit (4,468 have a chimpanzee protein, PANTR), 95% are <100 aa, and 185 more hit slow-loris LINE-1 ORF1 (LIN1_NYCCO).
    - StringTie: 1,232 of 1,305.
    - GM12878 is female, so UTY is not expressed. These are Alu-containing transcripts.
 

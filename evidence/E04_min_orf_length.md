@@ -214,6 +214,7 @@ The 60–90 and 300 aa rows are in the table. No-GENCODE-overlap fraction by pre
 - The current `pytd_dev_v2` and `pytd_dev_m50_sc200` outputs give the same lncRNA call counts as the table (6,943 complete, 6,833 fragments). `pytd_dev_v2` was rerun at 13:47, after the table was written at 12:25.
 
 ## Caveats
+- **The short-ORF rule was tuned coarsely.** launch12 compared only the factor (150, 200, 250) at `-m 50`, on four input types (complete/fragments with random or lncRNA negatives). The 100-codon length limit was never varied, and no finer grid or cross-validation was run (noted 2026-10-22).
 - **Predicted-length bins include the stop codon** (`(end − start + 1) // 3`). So `-m 100` runs have calls in the "<50" and 50–99 bins (e.g. 331 and 603 on human complete.wLnc), from partial ORFs and start refinement.
 - **"Calls per random sequence"** counts calls on `rand_*` sequences divided by the number of random sequences. A sequence with two calls counts twice.
 - **The lncRNA negatives are not perfectly clean.** Some contain translated sORFs (E01, Ribo-seq catalogues).
