@@ -36,8 +36,8 @@ Rules:
 | [E04](E04_min_orf_length.md) | Minimum ORF length sweep (benchmark lncRNA/random negatives; GM12878 post-hoc) | Results: short ORFs | complete |
 | [E05](E05_expressed_sensitivity.md) | Expressed-gene sensitivity (GM12878) | Results: application | complete |
 | [E06](E06_gm12878_homology_series.md) | Homology restriction series (clade-excluded Swiss-Prot); Alu-in-UTY_PANTR retention artifact | Results: homology | complete |
-| [E07](E07_benchmark_v3.md) | Cross-species benchmark (bench_v3): data, truth sets, tools, scoring | Methods/Results: benchmark | complete except CodAn scores (68/80 runs) |
-| [E08](E08_perl_python_concordance.md) | Perl/Python concordance and runtime | Methods: implementations | complete (regression not yet rerun at final code) |
+| [E07](E07_benchmark_v3.md) | Cross-species benchmark (bench_v3): data, truth sets, tools, scoring | Methods/Results: benchmark | complete except CodAn scores (71/80 runs); homology at final defaults added 2026-10-22 |
+| [E08](E08_perl_python_concordance.md) | Perl/Python concordance and runtime | Methods: implementations | complete (rerun at final commits 2026-10-21 and after Kozak-in-bits 2026-10-22) |
 | [E09](E09_start_refinement_kozak.md) | Start-codon refinement and Kozak | Methods/Results | complete (gaps listed) |
 | [E10](E10_long_orf_rule_gc.md) | Long-ORF retention rule and GC | Methods/Results | complete (gaps listed) |
 | [E11](E11_gm12878_trinity_gg.md) | Trinity genome-guided assembly of GM12878 | Methods: application data | complete |
