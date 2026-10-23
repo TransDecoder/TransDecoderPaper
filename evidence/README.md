@@ -52,3 +52,4 @@ Rules:
 - A subset chosen as the paper's supplementary material is also deposited separately on Zenodo, for a DOI.
 | E16 | [Comparator and third-party benchmarks (literature)](E16_comparator_benchmarks.md) | background; not yet cited |
 | E17 | [Earlier critiques old vs new; bootstrap CIs](E17_critiques_and_uncertainty.md) | planned supplement |
+- E18_stringency_precise_mode.md — stringency sweep for a --precise mode; TD2-preprint benchmarks (min length, 30-mer protein matches) revisited
