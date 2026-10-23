@@ -51,3 +51,4 @@ Rules:
 - Once the analyses are final, the important large files go into this repo via Git LFS: benchmark inputs and truth sets, the GM12878 assemblies and genome-projected predictions, and the per-ORF tables.
 - A subset chosen as the paper's supplementary material is also deposited separately on Zenodo, for a DOI.
 | E16 | [Comparator and third-party benchmarks (literature)](E16_comparator_benchmarks.md) | background; not yet cited |
+| E17 | [Earlier critiques old vs new; bootstrap CIs](E17_critiques_and_uncertainty.md) | planned supplement |
