@@ -50,3 +50,4 @@ Rules:
 - Until the paper's analyses are final, large outputs stay in the project work area (`$P/work`, `$P/data`). Each record lists their paths.
 - Once the analyses are final, the important large files go into this repo via Git LFS: benchmark inputs and truth sets, the GM12878 assemblies and genome-projected predictions, and the per-ORF tables.
 - A subset chosen as the paper's supplementary material is also deposited separately on Zenodo, for a DOI.
+| E16 | [Comparator and third-party benchmarks (literature)](E16_comparator_benchmarks.md) | background; not yet cited |
