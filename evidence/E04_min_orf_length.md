@@ -196,9 +196,9 @@ RNAsamba calls fewer pre-v28 lncRNAs than later ones, which is consistent with t
 | Trinity | 150 | 48,628 | 0.829 | 0.247 | 3.3% |
 | Trinity | 200 | 40,306 | 0.755 | 0.263 | 1.5% |
 
-The 60–90 and 300 aa rows are in the table. No-GENCODE-overlap fraction by predicted length, final defaults (from `$P/work/gm12878_td/eval/status/<asm>_final_abinitio.pred_status.tsv`):
+The 60–90 and 300 aa rows are in the table. No-GENCODE-overlap fraction by predicted length (first bin includes the few predictions under 50 aa, e.g. 78 of LRAA's 822, from partial ORFs and start refinement; relabelled 2026-10-22), final defaults (from `$P/work/gm12878_td/eval/status/<asm>_final_abinitio.pred_status.tsv`):
 
-| Asm | 50–99 aa | 100–149 | 150–199 | 200–299 | ≥ 300 |
+| Asm | < 100 aa | 100–149 | 150–199 | 200–299 | ≥ 300 |
 |---|---|---|---|---|---|
 | LRAA | 18.2% (n=822) | 20.5% (2,448) | 4.5% (2,272) | 1.8% (4,320) | 0.4% (14,060) |
 | StringTie | 29.6% (2,956) | 38.6% (5,545) | 15.6% (3,682) | 6.3% (5,472) | 1.2% (16,749) |

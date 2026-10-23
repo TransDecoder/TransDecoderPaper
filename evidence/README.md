@@ -44,6 +44,7 @@ Rules:
 | [E12](E12_long_orf_failures.md) | True CDSs that fail the coding criteria; long-ORF rule rescues; causes (composition, low complexity, unconserved models); GM12878 MANE | Methods: long-ORF rule (E10 gap); Results: coding-test failures | complete |
 | [E13](E13_start_param_sensitivity.md) | Start-refinement parameter sensitivity: alpha x Kozak weight grid, leave-one-organism-out, GM12878 sub-grid | Methods: start-codon refinement | complete |
 | [E14](E14_references.md) | Literature references added via paperclip/Crossref: TGD and genome, *Drosophila* chr4/Y codon bias, Kozak, assembly and alignment tools | Methods, Results: coding-test failures | complete (Singh2014 not read in full) |
+| [E15](E15_figures.md) | Main Figs. 1-7 and Supplementary Figs. S1-S2: scripts, sources, checks | All Results figures | Fig. 2 and Fig. 5d,e to redraw after CodAn |
 
 ## Large files (decision, Brian 2026-10-21)
 - Until the paper's analyses are final, large outputs stay in the project work area (`$P/work`, `$P/data`). Each record lists their paths.

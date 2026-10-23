@@ -1,0 +1,9 @@
+group	lo	hi	n	fail_score	rescued_gc3_model
+gc3_q1	0.2113	0.5611	2635	356	326
+gc3_q2	0.5613	0.628	2634	8	5
+gc3_q3	0.628	0.6761	2635	3	1
+gc3_q4	0.6761	0.7288	2634	1	0
+gc3_q5	0.7289	0.9564	2634	1	0
+chr4	NA	NA	80	40	39
+chrY	NA	NA	22	8	8
+other_chr	NA	NA	13070	321	285
