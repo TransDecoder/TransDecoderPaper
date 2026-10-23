@@ -5,8 +5,8 @@ Manuscript: Methods, "Start-codon refinement" (methods_algorithm.tex, sec:start:
 and w = 25 were chosen, and the trade-off). Fills the E09 gap "the grid or summary that selected
 alpha and w is not saved".
 1. With complete and fragment inputs weighted equally, (0.4, 25) is the best of 78 (alpha, w)
-   cells on the 8-organism benchmark (mean exact F1 0.8322). Eight cells (alpha 0.3-0.5,
-   w 10-50) lie within 0.5 points.
+   cells on the 8-organism benchmark (mean exact F1 0.8322). Eight cells (alpha 0.2-0.5,
+   w 10-50 per nat) lie within 0.5 points (plateau.tsv; corrected 2026-10-22 from "0.3-0.5").
 2. Leave-one-organism-out picks (0.4, 25) in 7 of 8 folds; the T. thermophila fold picks
    (0.3, 25).
 3. alpha trades complete-transcript accuracy against fragment accuracy. Complete inputs favour

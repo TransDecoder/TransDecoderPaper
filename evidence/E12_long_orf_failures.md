@@ -1,7 +1,8 @@
-# E12. True CDSs that fail the coding criteria (draft)
+# E12. True CDSs that fail the coding criteria
 
 ## Claims supported
-Draft. No manuscript text cites it yet. It supports, or could support:
+Cited by Results, "True coding regions that fail the coding test, and two fallbacks"
+(results_coding_failures.tex, Fig. 5) and Methods, "GC-calibrated long-ORF rule". It supports:
 
 - **Methods, "GC-calibrated long-ORF rule"** (`methods_algorithm.tex`). The rule "is intended to recover genes with atypical composition". This record is the analysis that E10 Gaps lists as missing.
 - **Results/Discussion, if added:**
@@ -44,7 +45,8 @@ Draft. No manuscript text cites it yet. It supports, or could support:
 ## Software
 - **Python:** 3.11 (`$P/env/td`), with numpy 2.4.6, scipy 1.17.1 and pandas 3.0.6.
 - **PyTD:** `$P/work/trees/PY_dev` at 48c870c. The analysis imports it read-only: `Translator`, `genome.read_structures`, and `eval_genome_cds.py` from `$T/genome_annotation/scripts`.
-- **This repo:** at 5f3c269 when the analysis was run. The new files are uncommitted:
+- **This repo:** at 5f3c269 when the analysis was run. The scripts were committed later
+  (analyses/long_orf_failures/, last change d90c38a):
   - `analyses/long_orf_failures/long_orf_failures.py`;
   - `analyses/long_orf_failures/markov.py`, a vectorised copy of PyTD's Markov training and scoring;
   - `analyses/long_orf_failures/features.py`;
@@ -196,7 +198,7 @@ The lost CDSs of 1 kb or more are all in *T. thermophila* or *C. reinhardtii*.
 - **Truth-set organelle check.** Only 7 *S. pombe* mitochondrial CDSs are in the truth sets, and none fails the score test.
 
 ## Caveats
-- **Draft, not reviewed or committed.** No manuscript text cites it yet.
+- **Reviewed and cited** (status updated 2026-10-22; earlier drafts of this record said uncommitted).
 - **The truth sets are annotations.** Unconserved *Tetrahymena*, *S. pombe* and *Chlamydomonas* models, and mouse Gm genes, may not be real proteins. Their failure may be correct behaviour.
 - **Pfam and Swiss-Prot come from the old-code `pytd_homology` LongOrfs (−m 100).** CDSs under 100 aa have no homology data. "No Swiss-Prot hit" means no curated homolog outside the organism; it does not mean species-specific.
 - **Low-complexity measures are proxies:**
