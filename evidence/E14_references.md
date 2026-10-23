@@ -39,5 +39,5 @@ checked against Crossref (`api.crossref.org/works/<doi>`) for every entry.
 - Yu2026 uses the DOI given by paperclip (10.64898/2026.02.12.705617). Crossref does not resolve it.
 - Kozak (1986, Cell) is not cited; add it if the journal prefers the original
   context paper.
-- The LaTeX was not compiled locally (no TeX installation). All cite keys resolve to bib entries,
-  checked by script.
+- Build check: `scripts/build_manuscript.sh` (Tectonic) reports no undefined citations and no BibTeX
+  warnings (2026-10-22).
