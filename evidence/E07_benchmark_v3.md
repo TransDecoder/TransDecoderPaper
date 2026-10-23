@@ -11,7 +11,7 @@ Manuscript: Methods, "Benchmark data", "Compared methods", "Accuracy measures" (
 2. TransDecoder (Perl and PyTD, final defaults) was compared with:
    - its own earlier releases;
    - Prodigal, CodAn, GeneMarkS-T, CPAT, CPC2, Borf and RNAsamba;
-   - the longest-ORF and all-ORFs baselines.
+   - the longest-ORF baseline. An all-ORFs (>= 100 codons) baseline was also scored (in summary.tsv) but is not reported (Brian, 2026-10-23: leave it out).
    - The Perl and Python final defaults give identical predictions on all 84 inputs (see E08).
 3. Matching follows the 2018 evaluation: the stop within 2 nt for a stop-level match, and the start within 2 nt as well for an exact match. Each truth CDS is credited once. Precision counts predictions on random negatives.
 4. Headline accuracy is given under Results below. The minimum-length sweep and lncRNA negatives are in E04, start refinement in E09, and the long-ORF rule in E10.
@@ -194,4 +194,5 @@ What can be said without over-reading:
 - **GeneMarkS-T on *T. thermophila*:** it supports only codes 1/4/11, so it was run with code 1; TAA/TAG (Gln in ciliates) are read as stops. The same applies to CPC2, Borf, RNAsamba and CodAn. Their *T. thermophila* scores reflect the code, not the method.
 - **Runtimes** are wall clock with 6–16 concurrent jobs on a 28-core host (load ~40). They are indicative only.
 - **Manuscript out of date:** `methods_benchmark.tex` still describes the superseded RefSeq `rna.gbff` truth (NM_/XM_ records, "longest CDS per gene") and four input types. It also omits complete_fullutr, CPAT/CPC2/Borf/RNAsamba and GeneMarkS-T (a `\todo`), and the GC values are `\todo` (22.1% and 68.3% here).
+- **Why the random negatives matter (2026-10-23):** on stranded complete transcripts the longest-ORF baseline has a stop-level F1 of 0.954-0.984 (median 0.976, against 0.978 for the final defaults), so stop-level accuracy on complete coding transcripts alone does not separate methods. With random negatives added, its stop precision falls to a median of 0.803 (0.499 *T. thermophila*, 0.567 *C. reinhardtii*), against 0.993 for the final defaults. Its median exact F1 on complete inputs is 0.689. Source: `$P/work/bench_v3/scores/summary.interim_20261022.tsv` (these cells are final; only CodAn cells are pending). The manuscript (results_benchmark.tex) now presents the noncoding test before start codons for this reason.
 - *C. reinhardtii* v5.5 transcripts all have annotated UTRs (0 added). v6.1 is only available through JGI login.
