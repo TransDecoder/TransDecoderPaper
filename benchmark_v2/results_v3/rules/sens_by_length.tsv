@@ -1,0 +1,1757 @@
+org	variant	label	set	length_bin	n	hits
+mouse	complete.wLnc	cliff_c200	coding	0-49	60	1
+mouse	complete.wLnc	cliff_c200	coding	50-74	143	34
+mouse	complete.wLnc	cliff_c200	coding	75-99	382	206
+mouse	complete.wLnc	cliff_c200	coding	100-124	525	479
+mouse	complete.wLnc	cliff_c200	coding	125-149	634	585
+mouse	complete.wLnc	cliff_c200	coding	150-199	1407	1360
+mouse	complete.wLnc	cliff_c200	coding	200-267	2301	2268
+mouse	complete.wLnc	cliff_c200	coding	268-399	5278	5270
+mouse	complete.wLnc	cliff_c200	coding	>=400	10679	10631
+mouse	complete.wLnc	cliff_c200	negative	0-49		195
+mouse	complete.wLnc	cliff_c200	negative	50-74		293
+mouse	complete.wLnc	cliff_c200	negative	75-99		389
+mouse	complete.wLnc	cliff_c200	negative	100-124		2200
+mouse	complete.wLnc	cliff_c200	negative	125-149		903
+mouse	complete.wLnc	cliff_c200	negative	150-199		684
+mouse	complete.wLnc	cliff_c200	negative	200-267		479
+mouse	complete.wLnc	cliff_c200	negative	268-399		143
+mouse	complete.wLnc	cliff_c200	negative	>=400		137
+mouse	complete.wLnc	taper_c150	coding	0-49	60	1
+mouse	complete.wLnc	taper_c150	coding	50-74	143	35
+mouse	complete.wLnc	taper_c150	coding	75-99	382	210
+mouse	complete.wLnc	taper_c150	coding	100-124	525	418
+mouse	complete.wLnc	taper_c150	coding	125-149	634	550
+mouse	complete.wLnc	taper_c150	coding	150-199	1407	1347
+mouse	complete.wLnc	taper_c150	coding	200-267	2301	2269
+mouse	complete.wLnc	taper_c150	coding	268-399	5278	5270
+mouse	complete.wLnc	taper_c150	coding	>=400	10679	10631
+mouse	complete.wLnc	taper_c150	negative	0-49		44
+mouse	complete.wLnc	taper_c150	negative	50-74		275
+mouse	complete.wLnc	taper_c150	negative	75-99		517
+mouse	complete.wLnc	taper_c150	negative	100-124		658
+mouse	complete.wLnc	taper_c150	negative	125-149		436
+mouse	complete.wLnc	taper_c150	negative	150-199		494
+mouse	complete.wLnc	taper_c150	negative	200-267		473
+mouse	complete.wLnc	taper_c150	negative	268-399		145
+mouse	complete.wLnc	taper_c150	negative	>=400		137
+mouse	complete.wLnc	taper_c200	coding	0-49	60	1
+mouse	complete.wLnc	taper_c200	coding	50-74	143	23
+mouse	complete.wLnc	taper_c200	coding	75-99	382	166
+mouse	complete.wLnc	taper_c200	coding	100-124	525	378
+mouse	complete.wLnc	taper_c200	coding	125-149	634	531
+mouse	complete.wLnc	taper_c200	coding	150-199	1407	1338
+mouse	complete.wLnc	taper_c200	coding	200-267	2301	2268
+mouse	complete.wLnc	taper_c200	coding	268-399	5278	5270
+mouse	complete.wLnc	taper_c200	coding	>=400	10679	10631
+mouse	complete.wLnc	taper_c200	negative	0-49		20
+mouse	complete.wLnc	taper_c200	negative	50-74		61
+mouse	complete.wLnc	taper_c200	negative	75-99		180
+mouse	complete.wLnc	taper_c200	negative	100-124		355
+mouse	complete.wLnc	taper_c200	negative	125-149		315
+mouse	complete.wLnc	taper_c200	negative	150-199		429
+mouse	complete.wLnc	taper_c200	negative	200-267		475
+mouse	complete.wLnc	taper_c200	negative	268-399		147
+mouse	complete.wLnc	taper_c200	negative	>=400		137
+mouse	complete.wLnc	fixed_c150	coding	0-49	60	2
+mouse	complete.wLnc	fixed_c150	coding	50-74	143	44
+mouse	complete.wLnc	fixed_c150	coding	75-99	382	215
+mouse	complete.wLnc	fixed_c150	coding	100-124	525	397
+mouse	complete.wLnc	fixed_c150	coding	125-149	634	527
+mouse	complete.wLnc	fixed_c150	coding	150-199	1407	1285
+mouse	complete.wLnc	fixed_c150	coding	200-267	2301	2249
+mouse	complete.wLnc	fixed_c150	coding	268-399	5278	5270
+mouse	complete.wLnc	fixed_c150	coding	>=400	10679	10631
+mouse	complete.wLnc	fixed_c150	negative	0-49		34
+mouse	complete.wLnc	fixed_c150	negative	50-74		815
+mouse	complete.wLnc	fixed_c150	negative	75-99		665
+mouse	complete.wLnc	fixed_c150	negative	100-124		524
+mouse	complete.wLnc	fixed_c150	negative	125-149		305
+mouse	complete.wLnc	fixed_c150	negative	150-199		338
+mouse	complete.wLnc	fixed_c150	negative	200-267		441
+mouse	complete.wLnc	fixed_c150	negative	268-399		147
+mouse	complete.wLnc	fixed_c150	negative	>=400		137
+mouse	complete.wLnc	fixed_c200	coding	0-49	60	0
+mouse	complete.wLnc	fixed_c200	coding	50-74	143	31
+mouse	complete.wLnc	fixed_c200	coding	75-99	382	168
+mouse	complete.wLnc	fixed_c200	coding	100-124	525	345
+mouse	complete.wLnc	fixed_c200	coding	125-149	634	482
+mouse	complete.wLnc	fixed_c200	coding	150-199	1407	1243
+mouse	complete.wLnc	fixed_c200	coding	200-267	2301	2234
+mouse	complete.wLnc	fixed_c200	coding	268-399	5278	5270
+mouse	complete.wLnc	fixed_c200	coding	>=400	10679	10632
+mouse	complete.wLnc	fixed_c200	negative	0-49		8
+mouse	complete.wLnc	fixed_c200	negative	50-74		180
+mouse	complete.wLnc	fixed_c200	negative	75-99		238
+mouse	complete.wLnc	fixed_c200	negative	100-124		279
+mouse	complete.wLnc	fixed_c200	negative	125-149		203
+mouse	complete.wLnc	fixed_c200	negative	150-199		251
+mouse	complete.wLnc	fixed_c200	negative	200-267		429
+mouse	complete.wLnc	fixed_c200	negative	268-399		150
+mouse	complete.wLnc	fixed_c200	negative	>=400		137
+mouse	complete.wLnc	inverse_c200	coding	0-49	60	1
+mouse	complete.wLnc	inverse_c200	coding	50-74	143	15
+mouse	complete.wLnc	inverse_c200	coding	75-99	382	162
+mouse	complete.wLnc	inverse_c200	coding	100-124	525	381
+mouse	complete.wLnc	inverse_c200	coding	125-149	634	529
+mouse	complete.wLnc	inverse_c200	coding	150-199	1407	1324
+mouse	complete.wLnc	inverse_c200	coding	200-267	2301	2265
+mouse	complete.wLnc	inverse_c200	coding	268-399	5278	5271
+mouse	complete.wLnc	inverse_c200	coding	>=400	10679	10631
+mouse	complete.wLnc	inverse_c200	negative	0-49		18
+mouse	complete.wLnc	inverse_c200	negative	50-74		35
+mouse	complete.wLnc	inverse_c200	negative	75-99		152
+mouse	complete.wLnc	inverse_c200	negative	100-124		367
+mouse	complete.wLnc	inverse_c200	negative	125-149		317
+mouse	complete.wLnc	inverse_c200	negative	150-199		397
+mouse	complete.wLnc	inverse_c200	negative	200-267		460
+mouse	complete.wLnc	inverse_c200	negative	268-399		147
+mouse	complete.wLnc	inverse_c200	negative	>=400		137
+human	complete.wLnc	cliff_c200	coding	0-49	41	3
+human	complete.wLnc	cliff_c200	coding	50-74	170	49
+human	complete.wLnc	cliff_c200	coding	75-99	364	244
+human	complete.wLnc	cliff_c200	coding	100-124	462	418
+human	complete.wLnc	cliff_c200	coding	125-149	575	549
+human	complete.wLnc	cliff_c200	coding	150-199	1232	1204
+human	complete.wLnc	cliff_c200	coding	200-267	1847	1833
+human	complete.wLnc	cliff_c200	coding	268-399	4038	4037
+human	complete.wLnc	cliff_c200	coding	>=400	10438	10438
+human	complete.wLnc	cliff_c200	negative	0-49		323
+human	complete.wLnc	cliff_c200	negative	50-74		370
+human	complete.wLnc	cliff_c200	negative	75-99		488
+human	complete.wLnc	cliff_c200	negative	100-124		2771
+human	complete.wLnc	cliff_c200	negative	125-149		1324
+human	complete.wLnc	cliff_c200	negative	150-199		921
+human	complete.wLnc	cliff_c200	negative	200-267		428
+human	complete.wLnc	cliff_c200	negative	268-399		222
+human	complete.wLnc	cliff_c200	negative	>=400		96
+human	complete.wLnc	taper_c150	coding	0-49	41	4
+human	complete.wLnc	taper_c150	coding	50-74	170	50
+human	complete.wLnc	taper_c150	coding	75-99	364	242
+human	complete.wLnc	taper_c150	coding	100-124	462	361
+human	complete.wLnc	taper_c150	coding	125-149	575	522
+human	complete.wLnc	taper_c150	coding	150-199	1232	1193
+human	complete.wLnc	taper_c150	coding	200-267	1847	1834
+human	complete.wLnc	taper_c150	coding	268-399	4038	4037
+human	complete.wLnc	taper_c150	coding	>=400	10438	10438
+human	complete.wLnc	taper_c150	negative	0-49		78
+human	complete.wLnc	taper_c150	negative	50-74		319
+human	complete.wLnc	taper_c150	negative	75-99		627
+human	complete.wLnc	taper_c150	negative	100-124		769
+human	complete.wLnc	taper_c150	negative	125-149		638
+human	complete.wLnc	taper_c150	negative	150-199		655
+human	complete.wLnc	taper_c150	negative	200-267		421
+human	complete.wLnc	taper_c150	negative	268-399		223
+human	complete.wLnc	taper_c150	negative	>=400		97
+human	complete.wLnc	taper_c200	coding	0-49	41	0
+human	complete.wLnc	taper_c200	coding	50-74	170	32
+human	complete.wLnc	taper_c200	coding	75-99	364	189
+human	complete.wLnc	taper_c200	coding	100-124	462	326
+human	complete.wLnc	taper_c200	coding	125-149	575	503
+human	complete.wLnc	taper_c200	coding	150-199	1232	1185
+human	complete.wLnc	taper_c200	coding	200-267	1847	1834
+human	complete.wLnc	taper_c200	coding	268-399	4038	4037
+human	complete.wLnc	taper_c200	coding	>=400	10438	10438
+human	complete.wLnc	taper_c200	negative	0-49		51
+human	complete.wLnc	taper_c200	negative	50-74		70
+human	complete.wLnc	taper_c200	negative	75-99		214
+human	complete.wLnc	taper_c200	negative	100-124		422
+human	complete.wLnc	taper_c200	negative	125-149		457
+human	complete.wLnc	taper_c200	negative	150-199		579
+human	complete.wLnc	taper_c200	negative	200-267		419
+human	complete.wLnc	taper_c200	negative	268-399		224
+human	complete.wLnc	taper_c200	negative	>=400		97
+human	complete.wLnc	fixed_c150	coding	0-49	41	6
+human	complete.wLnc	fixed_c150	coding	50-74	170	63
+human	complete.wLnc	fixed_c150	coding	75-99	364	241
+human	complete.wLnc	fixed_c150	coding	100-124	462	343
+human	complete.wLnc	fixed_c150	coding	125-149	575	495
+human	complete.wLnc	fixed_c150	coding	150-199	1232	1162
+human	complete.wLnc	fixed_c150	coding	200-267	1847	1811
+human	complete.wLnc	fixed_c150	coding	268-399	4038	4037
+human	complete.wLnc	fixed_c150	coding	>=400	10438	10438
+human	complete.wLnc	fixed_c150	negative	0-49		55
+human	complete.wLnc	fixed_c150	negative	50-74		842
+human	complete.wLnc	fixed_c150	negative	75-99		817
+human	complete.wLnc	fixed_c150	negative	100-124		649
+human	complete.wLnc	fixed_c150	negative	125-149		447
+human	complete.wLnc	fixed_c150	negative	150-199		420
+human	complete.wLnc	fixed_c150	negative	200-267		342
+human	complete.wLnc	fixed_c150	negative	268-399		225
+human	complete.wLnc	fixed_c150	negative	>=400		97
+human	complete.wLnc	fixed_c200	coding	0-49	41	2
+human	complete.wLnc	fixed_c200	coding	50-74	170	43
+human	complete.wLnc	fixed_c200	coding	75-99	364	193
+human	complete.wLnc	fixed_c200	coding	100-124	462	304
+human	complete.wLnc	fixed_c200	coding	125-149	575	469
+human	complete.wLnc	fixed_c200	coding	150-199	1232	1127
+human	complete.wLnc	fixed_c200	coding	200-267	1847	1797
+human	complete.wLnc	fixed_c200	coding	268-399	4038	4037
+human	complete.wLnc	fixed_c200	coding	>=400	10438	10438
+human	complete.wLnc	fixed_c200	negative	0-49		18
+human	complete.wLnc	fixed_c200	negative	50-74		189
+human	complete.wLnc	fixed_c200	negative	75-99		270
+human	complete.wLnc	fixed_c200	negative	100-124		330
+human	complete.wLnc	fixed_c200	negative	125-149		290
+human	complete.wLnc	fixed_c200	negative	150-199		305
+human	complete.wLnc	fixed_c200	negative	200-267		321
+human	complete.wLnc	fixed_c200	negative	268-399		226
+human	complete.wLnc	fixed_c200	negative	>=400		97
+human	complete.wLnc	inverse_c200	coding	0-49	41	0
+human	complete.wLnc	inverse_c200	coding	50-74	170	24
+human	complete.wLnc	inverse_c200	coding	75-99	364	182
+human	complete.wLnc	inverse_c200	coding	100-124	462	331
+human	complete.wLnc	inverse_c200	coding	125-149	575	502
+human	complete.wLnc	inverse_c200	coding	150-199	1232	1176
+human	complete.wLnc	inverse_c200	coding	200-267	1847	1827
+human	complete.wLnc	inverse_c200	coding	268-399	4038	4037
+human	complete.wLnc	inverse_c200	coding	>=400	10438	10438
+human	complete.wLnc	inverse_c200	negative	0-49		38
+human	complete.wLnc	inverse_c200	negative	50-74		48
+human	complete.wLnc	inverse_c200	negative	75-99		185
+human	complete.wLnc	inverse_c200	negative	100-124		435
+human	complete.wLnc	inverse_c200	negative	125-149		464
+human	complete.wLnc	inverse_c200	negative	150-199		524
+human	complete.wLnc	inverse_c200	negative	200-267		382
+human	complete.wLnc	inverse_c200	negative	268-399		225
+human	complete.wLnc	inverse_c200	negative	>=400		97
+mouse	fragments.wLnc	cliff_c200	coding	0-49	1073	34
+mouse	fragments.wLnc	cliff_c200	coding	50-74	1641	531
+mouse	fragments.wLnc	cliff_c200	coding	75-99	2048	1255
+mouse	fragments.wLnc	cliff_c200	coding	100-124	2186	2092
+mouse	fragments.wLnc	cliff_c200	coding	125-149	2456	2405
+mouse	fragments.wLnc	cliff_c200	coding	150-199	3399	3339
+mouse	fragments.wLnc	cliff_c200	coding	200-267	2992	2948
+mouse	fragments.wLnc	cliff_c200	coding	268-399	2905	2895
+mouse	fragments.wLnc	cliff_c200	coding	>=400	2709	2707
+mouse	fragments.wLnc	cliff_c200	negative	0-49		173
+mouse	fragments.wLnc	cliff_c200	negative	50-74		269
+mouse	fragments.wLnc	cliff_c200	negative	75-99		383
+mouse	fragments.wLnc	cliff_c200	negative	100-124		2193
+mouse	fragments.wLnc	cliff_c200	negative	125-149		893
+mouse	fragments.wLnc	cliff_c200	negative	150-199		677
+mouse	fragments.wLnc	cliff_c200	negative	200-267		480
+mouse	fragments.wLnc	cliff_c200	negative	268-399		144
+mouse	fragments.wLnc	cliff_c200	negative	>=400		136
+mouse	fragments.wLnc	taper_c150	coding	0-49	1073	21
+mouse	fragments.wLnc	taper_c150	coding	50-74	1641	572
+mouse	fragments.wLnc	taper_c150	coding	75-99	2048	1383
+mouse	fragments.wLnc	taper_c150	coding	100-124	2186	1822
+mouse	fragments.wLnc	taper_c150	coding	125-149	2456	2304
+mouse	fragments.wLnc	taper_c150	coding	150-199	3399	3286
+mouse	fragments.wLnc	taper_c150	coding	200-267	2992	2948
+mouse	fragments.wLnc	taper_c150	coding	268-399	2905	2897
+mouse	fragments.wLnc	taper_c150	coding	>=400	2709	2707
+mouse	fragments.wLnc	taper_c150	negative	0-49		38
+mouse	fragments.wLnc	taper_c150	negative	50-74		247
+mouse	fragments.wLnc	taper_c150	negative	75-99		484
+mouse	fragments.wLnc	taper_c150	negative	100-124		603
+mouse	fragments.wLnc	taper_c150	negative	125-149		433
+mouse	fragments.wLnc	taper_c150	negative	150-199		493
+mouse	fragments.wLnc	taper_c150	negative	200-267		479
+mouse	fragments.wLnc	taper_c150	negative	268-399		147
+mouse	fragments.wLnc	taper_c150	negative	>=400		136
+mouse	fragments.wLnc	taper_c200	coding	0-49	1073	6
+mouse	fragments.wLnc	taper_c200	coding	50-74	1641	301
+mouse	fragments.wLnc	taper_c200	coding	75-99	2048	1084
+mouse	fragments.wLnc	taper_c200	coding	100-124	2186	1624
+mouse	fragments.wLnc	taper_c200	coding	125-149	2456	2224
+mouse	fragments.wLnc	taper_c200	coding	150-199	3399	3248
+mouse	fragments.wLnc	taper_c200	coding	200-267	2992	2945
+mouse	fragments.wLnc	taper_c200	coding	268-399	2905	2897
+mouse	fragments.wLnc	taper_c200	coding	>=400	2709	2707
+mouse	fragments.wLnc	taper_c200	negative	0-49		17
+mouse	fragments.wLnc	taper_c200	negative	50-74		60
+mouse	fragments.wLnc	taper_c200	negative	75-99		173
+mouse	fragments.wLnc	taper_c200	negative	100-124		334
+mouse	fragments.wLnc	taper_c200	negative	125-149		306
+mouse	fragments.wLnc	taper_c200	negative	150-199		442
+mouse	fragments.wLnc	taper_c200	negative	200-267		478
+mouse	fragments.wLnc	taper_c200	negative	268-399		147
+mouse	fragments.wLnc	taper_c200	negative	>=400		136
+mouse	fragments.wLnc	fixed_c150	coding	0-49	1073	30
+mouse	fragments.wLnc	fixed_c150	coding	50-74	1641	764
+mouse	fragments.wLnc	fixed_c150	coding	75-99	2048	1425
+mouse	fragments.wLnc	fixed_c150	coding	100-124	2186	1748
+mouse	fragments.wLnc	fixed_c150	coding	125-149	2456	2208
+mouse	fragments.wLnc	fixed_c150	coding	150-199	3399	3185
+mouse	fragments.wLnc	fixed_c150	coding	200-267	2992	2903
+mouse	fragments.wLnc	fixed_c150	coding	268-399	2905	2897
+mouse	fragments.wLnc	fixed_c150	coding	>=400	2709	2708
+mouse	fragments.wLnc	fixed_c150	negative	0-49		30
+mouse	fragments.wLnc	fixed_c150	negative	50-74		717
+mouse	fragments.wLnc	fixed_c150	negative	75-99		626
+mouse	fragments.wLnc	fixed_c150	negative	100-124		498
+mouse	fragments.wLnc	fixed_c150	negative	125-149		299
+mouse	fragments.wLnc	fixed_c150	negative	150-199		325
+mouse	fragments.wLnc	fixed_c150	negative	200-267		436
+mouse	fragments.wLnc	fixed_c150	negative	268-399		147
+mouse	fragments.wLnc	fixed_c150	negative	>=400		136
+mouse	fragments.wLnc	fixed_c200	coding	0-49	1073	15
+mouse	fragments.wLnc	fixed_c200	coding	50-74	1641	500
+mouse	fragments.wLnc	fixed_c200	coding	75-99	2048	1152
+mouse	fragments.wLnc	fixed_c200	coding	100-124	2186	1505
+mouse	fragments.wLnc	fixed_c200	coding	125-149	2456	2039
+mouse	fragments.wLnc	fixed_c200	coding	150-199	3399	3065
+mouse	fragments.wLnc	fixed_c200	coding	200-267	2992	2866
+mouse	fragments.wLnc	fixed_c200	coding	268-399	2905	2898
+mouse	fragments.wLnc	fixed_c200	coding	>=400	2709	2708
+mouse	fragments.wLnc	fixed_c200	negative	0-49		5
+mouse	fragments.wLnc	fixed_c200	negative	50-74		161
+mouse	fragments.wLnc	fixed_c200	negative	75-99		231
+mouse	fragments.wLnc	fixed_c200	negative	100-124		262
+mouse	fragments.wLnc	fixed_c200	negative	125-149		181
+mouse	fragments.wLnc	fixed_c200	negative	150-199		244
+mouse	fragments.wLnc	fixed_c200	negative	200-267		424
+mouse	fragments.wLnc	fixed_c200	negative	268-399		150
+mouse	fragments.wLnc	fixed_c200	negative	>=400		136
+mouse	fragments.wLnc	inverse_c200	coding	0-49	1073	6
+mouse	fragments.wLnc	inverse_c200	coding	50-74	1641	175
+mouse	fragments.wLnc	inverse_c200	coding	75-99	2048	1015
+mouse	fragments.wLnc	inverse_c200	coding	100-124	2186	1636
+mouse	fragments.wLnc	inverse_c200	coding	125-149	2456	2218
+mouse	fragments.wLnc	inverse_c200	coding	150-199	3399	3231
+mouse	fragments.wLnc	inverse_c200	coding	200-267	2992	2925
+mouse	fragments.wLnc	inverse_c200	coding	268-399	2905	2898
+mouse	fragments.wLnc	inverse_c200	coding	>=400	2709	2707
+mouse	fragments.wLnc	inverse_c200	negative	0-49		16
+mouse	fragments.wLnc	inverse_c200	negative	50-74		36
+mouse	fragments.wLnc	inverse_c200	negative	75-99		146
+mouse	fragments.wLnc	inverse_c200	negative	100-124		356
+mouse	fragments.wLnc	inverse_c200	negative	125-149		316
+mouse	fragments.wLnc	inverse_c200	negative	150-199		390
+mouse	fragments.wLnc	inverse_c200	negative	200-267		462
+mouse	fragments.wLnc	inverse_c200	negative	268-399		147
+mouse	fragments.wLnc	inverse_c200	negative	>=400		136
+human	fragments.wLnc	cliff_c200	coding	0-49	1033	37
+human	fragments.wLnc	cliff_c200	coding	50-74	1442	549
+human	fragments.wLnc	cliff_c200	coding	75-99	1578	1005
+human	fragments.wLnc	cliff_c200	coding	100-124	1742	1685
+human	fragments.wLnc	cliff_c200	coding	125-149	1808	1789
+human	fragments.wLnc	cliff_c200	coding	150-199	3125	3085
+human	fragments.wLnc	cliff_c200	coding	200-267	2917	2902
+human	fragments.wLnc	cliff_c200	coding	268-399	2823	2820
+human	fragments.wLnc	cliff_c200	coding	>=400	2699	2699
+human	fragments.wLnc	cliff_c200	negative	0-49		314
+human	fragments.wLnc	cliff_c200	negative	50-74		361
+human	fragments.wLnc	cliff_c200	negative	75-99		472
+human	fragments.wLnc	cliff_c200	negative	100-124		2745
+human	fragments.wLnc	cliff_c200	negative	125-149		1287
+human	fragments.wLnc	cliff_c200	negative	150-199		903
+human	fragments.wLnc	cliff_c200	negative	200-267		437
+human	fragments.wLnc	cliff_c200	negative	268-399		219
+human	fragments.wLnc	cliff_c200	negative	>=400		95
+human	fragments.wLnc	taper_c150	coding	0-49	1033	33
+human	fragments.wLnc	taper_c150	coding	50-74	1442	603
+human	fragments.wLnc	taper_c150	coding	75-99	1578	1120
+human	fragments.wLnc	taper_c150	coding	100-124	1742	1494
+human	fragments.wLnc	taper_c150	coding	125-149	1808	1710
+human	fragments.wLnc	taper_c150	coding	150-199	3125	3051
+human	fragments.wLnc	taper_c150	coding	200-267	2917	2896
+human	fragments.wLnc	taper_c150	coding	268-399	2823	2820
+human	fragments.wLnc	taper_c150	coding	>=400	2699	2699
+human	fragments.wLnc	taper_c150	negative	0-49		74
+human	fragments.wLnc	taper_c150	negative	50-74		284
+human	fragments.wLnc	taper_c150	negative	75-99		604
+human	fragments.wLnc	taper_c150	negative	100-124		771
+human	fragments.wLnc	taper_c150	negative	125-149		606
+human	fragments.wLnc	taper_c150	negative	150-199		630
+human	fragments.wLnc	taper_c150	negative	200-267		424
+human	fragments.wLnc	taper_c150	negative	268-399		221
+human	fragments.wLnc	taper_c150	negative	>=400		96
+human	fragments.wLnc	taper_c200	coding	0-49	1033	9
+human	fragments.wLnc	taper_c200	coding	50-74	1442	329
+human	fragments.wLnc	taper_c200	coding	75-99	1578	871
+human	fragments.wLnc	taper_c200	coding	100-124	1742	1359
+human	fragments.wLnc	taper_c200	coding	125-149	1808	1664
+human	fragments.wLnc	taper_c200	coding	150-199	3125	3029
+human	fragments.wLnc	taper_c200	coding	200-267	2917	2897
+human	fragments.wLnc	taper_c200	coding	268-399	2823	2820
+human	fragments.wLnc	taper_c200	coding	>=400	2699	2699
+human	fragments.wLnc	taper_c200	negative	0-49		41
+human	fragments.wLnc	taper_c200	negative	50-74		80
+human	fragments.wLnc	taper_c200	negative	75-99		209
+human	fragments.wLnc	taper_c200	negative	100-124		440
+human	fragments.wLnc	taper_c200	negative	125-149		451
+human	fragments.wLnc	taper_c200	negative	150-199		548
+human	fragments.wLnc	taper_c200	negative	200-267		426
+human	fragments.wLnc	taper_c200	negative	268-399		221
+human	fragments.wLnc	taper_c200	negative	>=400		96
+human	fragments.wLnc	fixed_c150	coding	0-49	1033	55
+human	fragments.wLnc	fixed_c150	coding	50-74	1442	765
+human	fragments.wLnc	fixed_c150	coding	75-99	1578	1169
+human	fragments.wLnc	fixed_c150	coding	100-124	1742	1448
+human	fragments.wLnc	fixed_c150	coding	125-149	1808	1653
+human	fragments.wLnc	fixed_c150	coding	150-199	3125	2957
+human	fragments.wLnc	fixed_c150	coding	200-267	2917	2855
+human	fragments.wLnc	fixed_c150	coding	268-399	2823	2820
+human	fragments.wLnc	fixed_c150	coding	>=400	2699	2699
+human	fragments.wLnc	fixed_c150	negative	0-49		52
+human	fragments.wLnc	fixed_c150	negative	50-74		797
+human	fragments.wLnc	fixed_c150	negative	75-99		790
+human	fragments.wLnc	fixed_c150	negative	100-124		625
+human	fragments.wLnc	fixed_c150	negative	125-149		427
+human	fragments.wLnc	fixed_c150	negative	150-199		398
+human	fragments.wLnc	fixed_c150	negative	200-267		348
+human	fragments.wLnc	fixed_c150	negative	268-399		223
+human	fragments.wLnc	fixed_c150	negative	>=400		96
+human	fragments.wLnc	fixed_c200	coding	0-49	1033	26
+human	fragments.wLnc	fixed_c200	coding	50-74	1442	510
+human	fragments.wLnc	fixed_c200	coding	75-99	1578	925
+human	fragments.wLnc	fixed_c200	coding	100-124	1742	1269
+human	fragments.wLnc	fixed_c200	coding	125-149	1808	1540
+human	fragments.wLnc	fixed_c200	coding	150-199	3125	2871
+human	fragments.wLnc	fixed_c200	coding	200-267	2917	2827
+human	fragments.wLnc	fixed_c200	coding	268-399	2823	2820
+human	fragments.wLnc	fixed_c200	coding	>=400	2699	2699
+human	fragments.wLnc	fixed_c200	negative	0-49		16
+human	fragments.wLnc	fixed_c200	negative	50-74		184
+human	fragments.wLnc	fixed_c200	negative	75-99		267
+human	fragments.wLnc	fixed_c200	negative	100-124		335
+human	fragments.wLnc	fixed_c200	negative	125-149		261
+human	fragments.wLnc	fixed_c200	negative	150-199		304
+human	fragments.wLnc	fixed_c200	negative	200-267		323
+human	fragments.wLnc	fixed_c200	negative	268-399		226
+human	fragments.wLnc	fixed_c200	negative	>=400		96
+human	fragments.wLnc	inverse_c200	coding	0-49	1033	6
+human	fragments.wLnc	inverse_c200	coding	50-74	1442	192
+human	fragments.wLnc	inverse_c200	coding	75-99	1578	819
+human	fragments.wLnc	inverse_c200	coding	100-124	1742	1371
+human	fragments.wLnc	inverse_c200	coding	125-149	1808	1665
+human	fragments.wLnc	inverse_c200	coding	150-199	3125	3004
+human	fragments.wLnc	inverse_c200	coding	200-267	2917	2884
+human	fragments.wLnc	inverse_c200	coding	268-399	2823	2820
+human	fragments.wLnc	inverse_c200	coding	>=400	2699	2699
+human	fragments.wLnc	inverse_c200	negative	0-49		35
+human	fragments.wLnc	inverse_c200	negative	50-74		41
+human	fragments.wLnc	inverse_c200	negative	75-99		185
+human	fragments.wLnc	inverse_c200	negative	100-124		457
+human	fragments.wLnc	inverse_c200	negative	125-149		462
+human	fragments.wLnc	inverse_c200	negative	150-199		493
+human	fragments.wLnc	inverse_c200	negative	200-267		389
+human	fragments.wLnc	inverse_c200	negative	268-399		223
+human	fragments.wLnc	inverse_c200	negative	>=400		96
+pfalciparum	complete.wRand	cliff_c200	coding	0-49	4	0
+pfalciparum	complete.wRand	cliff_c200	coding	50-74	56	0
+pfalciparum	complete.wRand	cliff_c200	coding	75-99	107	14
+pfalciparum	complete.wRand	cliff_c200	coding	100-124	159	156
+pfalciparum	complete.wRand	cliff_c200	coding	125-149	173	170
+pfalciparum	complete.wRand	cliff_c200	coding	150-199	327	326
+pfalciparum	complete.wRand	cliff_c200	coding	200-267	493	493
+pfalciparum	complete.wRand	cliff_c200	coding	268-399	997	997
+pfalciparum	complete.wRand	cliff_c200	coding	>=400	2965	2965
+pfalciparum	complete.wRand	cliff_c200	negative	100-124		1
+pfalciparum	complete.wRand	taper_c150	coding	0-49	4	0
+pfalciparum	complete.wRand	taper_c150	coding	50-74	56	0
+pfalciparum	complete.wRand	taper_c150	coding	75-99	107	28
+pfalciparum	complete.wRand	taper_c150	coding	100-124	159	123
+pfalciparum	complete.wRand	taper_c150	coding	125-149	173	169
+pfalciparum	complete.wRand	taper_c150	coding	150-199	327	326
+pfalciparum	complete.wRand	taper_c150	coding	200-267	493	493
+pfalciparum	complete.wRand	taper_c150	coding	268-399	997	997
+pfalciparum	complete.wRand	taper_c150	coding	>=400	2965	2965
+pfalciparum	complete.wRand	taper_c200	coding	0-49	4	0
+pfalciparum	complete.wRand	taper_c200	coding	50-74	56	0
+pfalciparum	complete.wRand	taper_c200	coding	75-99	107	11
+pfalciparum	complete.wRand	taper_c200	coding	100-124	159	98
+pfalciparum	complete.wRand	taper_c200	coding	125-149	173	163
+pfalciparum	complete.wRand	taper_c200	coding	150-199	327	325
+pfalciparum	complete.wRand	taper_c200	coding	200-267	493	493
+pfalciparum	complete.wRand	taper_c200	coding	268-399	997	997
+pfalciparum	complete.wRand	taper_c200	coding	>=400	2965	2965
+pfalciparum	complete.wRand	fixed_c150	coding	0-49	4	0
+pfalciparum	complete.wRand	fixed_c150	coding	50-74	56	10
+pfalciparum	complete.wRand	fixed_c150	coding	75-99	107	46
+pfalciparum	complete.wRand	fixed_c150	coding	100-124	159	114
+pfalciparum	complete.wRand	fixed_c150	coding	125-149	173	149
+pfalciparum	complete.wRand	fixed_c150	coding	150-199	327	319
+pfalciparum	complete.wRand	fixed_c150	coding	200-267	493	493
+pfalciparum	complete.wRand	fixed_c150	coding	268-399	997	997
+pfalciparum	complete.wRand	fixed_c150	coding	>=400	2965	2965
+pfalciparum	complete.wRand	fixed_c150	negative	50-74		1
+pfalciparum	complete.wRand	fixed_c150	negative	75-99		1
+pfalciparum	complete.wRand	fixed_c200	coding	0-49	4	0
+pfalciparum	complete.wRand	fixed_c200	coding	50-74	56	0
+pfalciparum	complete.wRand	fixed_c200	coding	75-99	107	13
+pfalciparum	complete.wRand	fixed_c200	coding	100-124	159	84
+pfalciparum	complete.wRand	fixed_c200	coding	125-149	173	126
+pfalciparum	complete.wRand	fixed_c200	coding	150-199	327	314
+pfalciparum	complete.wRand	fixed_c200	coding	200-267	493	493
+pfalciparum	complete.wRand	fixed_c200	coding	268-399	997	997
+pfalciparum	complete.wRand	fixed_c200	coding	>=400	2965	2965
+pfalciparum	complete.wRand	inverse_c200	coding	0-49	4	0
+pfalciparum	complete.wRand	inverse_c200	coding	50-74	56	0
+pfalciparum	complete.wRand	inverse_c200	coding	75-99	107	11
+pfalciparum	complete.wRand	inverse_c200	coding	100-124	159	95
+pfalciparum	complete.wRand	inverse_c200	coding	125-149	173	150
+pfalciparum	complete.wRand	inverse_c200	coding	150-199	327	319
+pfalciparum	complete.wRand	inverse_c200	coding	200-267	493	493
+pfalciparum	complete.wRand	inverse_c200	coding	268-399	997	997
+pfalciparum	complete.wRand	inverse_c200	coding	>=400	2965	2965
+tthermophila	complete.wRand	cliff_c200	coding	0-49	97	3
+tthermophila	complete.wRand	cliff_c200	coding	50-74	304	45
+tthermophila	complete.wRand	cliff_c200	coding	75-99	587	180
+tthermophila	complete.wRand	cliff_c200	coding	100-124	841	470
+tthermophila	complete.wRand	cliff_c200	coding	125-149	874	543
+tthermophila	complete.wRand	cliff_c200	coding	150-199	1717	1291
+tthermophila	complete.wRand	cliff_c200	coding	200-267	2241	1890
+tthermophila	complete.wRand	cliff_c200	coding	268-399	4209	4061
+tthermophila	complete.wRand	cliff_c200	coding	>=400	15586	15508
+tthermophila	complete.wRand	cliff_c200	negative	0-49		3
+tthermophila	complete.wRand	cliff_c200	negative	50-74		42
+tthermophila	complete.wRand	cliff_c200	negative	75-99		75
+tthermophila	complete.wRand	cliff_c200	negative	100-124		258
+tthermophila	complete.wRand	cliff_c200	negative	125-149		65
+tthermophila	complete.wRand	cliff_c200	negative	150-199		21
+tthermophila	complete.wRand	cliff_c200	negative	200-267		2
+tthermophila	complete.wRand	cliff_c200	negative	268-399		1
+tthermophila	complete.wRand	taper_c150	coding	0-49	97	2
+tthermophila	complete.wRand	taper_c150	coding	50-74	304	34
+tthermophila	complete.wRand	taper_c150	coding	75-99	587	174
+tthermophila	complete.wRand	taper_c150	coding	100-124	841	360
+tthermophila	complete.wRand	taper_c150	coding	125-149	874	467
+tthermophila	complete.wRand	taper_c150	coding	150-199	1717	1234
+tthermophila	complete.wRand	taper_c150	coding	200-267	2241	1875
+tthermophila	complete.wRand	taper_c150	coding	268-399	4209	4063
+tthermophila	complete.wRand	taper_c150	coding	>=400	15586	15509
+tthermophila	complete.wRand	taper_c150	negative	0-49		2
+tthermophila	complete.wRand	taper_c150	negative	50-74		100
+tthermophila	complete.wRand	taper_c150	negative	75-99		178
+tthermophila	complete.wRand	taper_c150	negative	100-124		140
+tthermophila	complete.wRand	taper_c150	negative	125-149		46
+tthermophila	complete.wRand	taper_c150	negative	150-199		21
+tthermophila	complete.wRand	taper_c150	negative	200-267		2
+tthermophila	complete.wRand	taper_c150	negative	268-399		1
+tthermophila	complete.wRand	taper_c200	coding	0-49	97	2
+tthermophila	complete.wRand	taper_c200	coding	50-74	304	16
+tthermophila	complete.wRand	taper_c200	coding	75-99	587	120
+tthermophila	complete.wRand	taper_c200	coding	100-124	841	328
+tthermophila	complete.wRand	taper_c200	coding	125-149	874	446
+tthermophila	complete.wRand	taper_c200	coding	150-199	1717	1202
+tthermophila	complete.wRand	taper_c200	coding	200-267	2241	1868
+tthermophila	complete.wRand	taper_c200	coding	268-399	4209	4065
+tthermophila	complete.wRand	taper_c200	coding	>=400	15586	15509
+tthermophila	complete.wRand	taper_c200	negative	50-74		15
+tthermophila	complete.wRand	taper_c200	negative	75-99		49
+tthermophila	complete.wRand	taper_c200	negative	100-124		73
+tthermophila	complete.wRand	taper_c200	negative	125-149		37
+tthermophila	complete.wRand	taper_c200	negative	150-199		18
+tthermophila	complete.wRand	taper_c200	negative	200-267		2
+tthermophila	complete.wRand	taper_c200	negative	268-399		1
+tthermophila	complete.wRand	fixed_c150	coding	0-49	97	2
+tthermophila	complete.wRand	fixed_c150	coding	50-74	304	37
+tthermophila	complete.wRand	fixed_c150	coding	75-99	587	166
+tthermophila	complete.wRand	fixed_c150	coding	100-124	841	343
+tthermophila	complete.wRand	fixed_c150	coding	125-149	874	438
+tthermophila	complete.wRand	fixed_c150	coding	150-199	1717	1167
+tthermophila	complete.wRand	fixed_c150	coding	200-267	2241	1838
+tthermophila	complete.wRand	fixed_c150	coding	268-399	4209	4047
+tthermophila	complete.wRand	fixed_c150	coding	>=400	15586	15506
+tthermophila	complete.wRand	fixed_c150	negative	0-49		5
+tthermophila	complete.wRand	fixed_c150	negative	50-74		265
+tthermophila	complete.wRand	fixed_c150	negative	75-99		211
+tthermophila	complete.wRand	fixed_c150	negative	100-124		124
+tthermophila	complete.wRand	fixed_c150	negative	125-149		39
+tthermophila	complete.wRand	fixed_c150	negative	150-199		16
+tthermophila	complete.wRand	fixed_c150	negative	200-267		2
+tthermophila	complete.wRand	fixed_c150	negative	268-399		1
+tthermophila	complete.wRand	fixed_c200	coding	0-49	97	2
+tthermophila	complete.wRand	fixed_c200	coding	50-74	304	17
+tthermophila	complete.wRand	fixed_c200	coding	75-99	587	118
+tthermophila	complete.wRand	fixed_c200	coding	100-124	841	295
+tthermophila	complete.wRand	fixed_c200	coding	125-149	874	404
+tthermophila	complete.wRand	fixed_c200	coding	150-199	1717	1130
+tthermophila	complete.wRand	fixed_c200	coding	200-267	2241	1816
+tthermophila	complete.wRand	fixed_c200	coding	268-399	4209	4040
+tthermophila	complete.wRand	fixed_c200	coding	>=400	15586	15506
+tthermophila	complete.wRand	fixed_c200	negative	50-74		37
+tthermophila	complete.wRand	fixed_c200	negative	75-99		72
+tthermophila	complete.wRand	fixed_c200	negative	100-124		60
+tthermophila	complete.wRand	fixed_c200	negative	125-149		29
+tthermophila	complete.wRand	fixed_c200	negative	150-199		14
+tthermophila	complete.wRand	fixed_c200	negative	200-267		2
+tthermophila	complete.wRand	fixed_c200	negative	268-399		1
+tthermophila	complete.wRand	inverse_c200	coding	0-49	97	2
+tthermophila	complete.wRand	inverse_c200	coding	50-74	304	13
+tthermophila	complete.wRand	inverse_c200	coding	75-99	587	120
+tthermophila	complete.wRand	inverse_c200	coding	100-124	841	335
+tthermophila	complete.wRand	inverse_c200	coding	125-149	874	452
+tthermophila	complete.wRand	inverse_c200	coding	150-199	1717	1211
+tthermophila	complete.wRand	inverse_c200	coding	200-267	2241	1863
+tthermophila	complete.wRand	inverse_c200	coding	268-399	4209	4058
+tthermophila	complete.wRand	inverse_c200	coding	>=400	15586	15507
+tthermophila	complete.wRand	inverse_c200	negative	50-74		1
+tthermophila	complete.wRand	inverse_c200	negative	75-99		33
+tthermophila	complete.wRand	inverse_c200	negative	100-124		83
+tthermophila	complete.wRand	inverse_c200	negative	125-149		42
+tthermophila	complete.wRand	inverse_c200	negative	150-199		18
+tthermophila	complete.wRand	inverse_c200	negative	200-267		2
+tthermophila	complete.wRand	inverse_c200	negative	268-399		1
+spombe	complete.wRand	cliff_c200	coding	0-49	19	0
+spombe	complete.wRand	cliff_c200	coding	50-74	76	22
+spombe	complete.wRand	cliff_c200	coding	75-99	139	70
+spombe	complete.wRand	cliff_c200	coding	100-124	234	211
+spombe	complete.wRand	cliff_c200	coding	125-149	228	219
+spombe	complete.wRand	cliff_c200	coding	150-199	356	348
+spombe	complete.wRand	cliff_c200	coding	200-267	591	591
+spombe	complete.wRand	cliff_c200	coding	268-399	1080	1080
+spombe	complete.wRand	cliff_c200	coding	>=400	2377	2377
+spombe	complete.wRand	cliff_c200	negative	50-74		2
+spombe	complete.wRand	cliff_c200	negative	75-99		6
+spombe	complete.wRand	cliff_c200	negative	100-124		23
+spombe	complete.wRand	taper_c150	coding	0-49	19	0
+spombe	complete.wRand	taper_c150	coding	50-74	76	23
+spombe	complete.wRand	taper_c150	coding	75-99	139	78
+spombe	complete.wRand	taper_c150	coding	100-124	234	182
+spombe	complete.wRand	taper_c150	coding	125-149	228	213
+spombe	complete.wRand	taper_c150	coding	150-199	356	347
+spombe	complete.wRand	taper_c150	coding	200-267	591	591
+spombe	complete.wRand	taper_c150	coding	268-399	1080	1080
+spombe	complete.wRand	taper_c150	coding	>=400	2377	2377
+spombe	complete.wRand	taper_c150	negative	50-74		2
+spombe	complete.wRand	taper_c150	negative	75-99		9
+spombe	complete.wRand	taper_c150	negative	100-124		14
+spombe	complete.wRand	taper_c200	coding	0-49	19	0
+spombe	complete.wRand	taper_c200	coding	50-74	76	7
+spombe	complete.wRand	taper_c200	coding	75-99	139	57
+spombe	complete.wRand	taper_c200	coding	100-124	234	163
+spombe	complete.wRand	taper_c200	coding	125-149	228	204
+spombe	complete.wRand	taper_c200	coding	150-199	356	346
+spombe	complete.wRand	taper_c200	coding	200-267	591	591
+spombe	complete.wRand	taper_c200	coding	268-399	1080	1080
+spombe	complete.wRand	taper_c200	coding	>=400	2377	2377
+spombe	complete.wRand	taper_c200	negative	75-99		2
+spombe	complete.wRand	taper_c200	negative	100-124		8
+spombe	complete.wRand	fixed_c150	coding	0-49	19	0
+spombe	complete.wRand	fixed_c150	coding	50-74	76	32
+spombe	complete.wRand	fixed_c150	coding	75-99	139	84
+spombe	complete.wRand	fixed_c150	coding	100-124	234	173
+spombe	complete.wRand	fixed_c150	coding	125-149	228	200
+spombe	complete.wRand	fixed_c150	coding	150-199	356	337
+spombe	complete.wRand	fixed_c150	coding	200-267	591	591
+spombe	complete.wRand	fixed_c150	coding	268-399	1080	1080
+spombe	complete.wRand	fixed_c150	coding	>=400	2377	2377
+spombe	complete.wRand	fixed_c150	negative	50-74		18
+spombe	complete.wRand	fixed_c150	negative	75-99		16
+spombe	complete.wRand	fixed_c150	negative	100-124		10
+spombe	complete.wRand	fixed_c200	coding	0-49	19	0
+spombe	complete.wRand	fixed_c200	coding	50-74	76	21
+spombe	complete.wRand	fixed_c200	coding	75-99	139	64
+spombe	complete.wRand	fixed_c200	coding	100-124	234	148
+spombe	complete.wRand	fixed_c200	coding	125-149	228	185
+spombe	complete.wRand	fixed_c200	coding	150-199	356	326
+spombe	complete.wRand	fixed_c200	coding	200-267	591	591
+spombe	complete.wRand	fixed_c200	coding	268-399	1080	1080
+spombe	complete.wRand	fixed_c200	coding	>=400	2377	2377
+spombe	complete.wRand	fixed_c200	negative	50-74		2
+spombe	complete.wRand	fixed_c200	negative	75-99		6
+spombe	complete.wRand	fixed_c200	negative	100-124		5
+spombe	complete.wRand	inverse_c200	coding	0-49	19	0
+spombe	complete.wRand	inverse_c200	coding	50-74	76	5
+spombe	complete.wRand	inverse_c200	coding	75-99	139	56
+spombe	complete.wRand	inverse_c200	coding	100-124	234	162
+spombe	complete.wRand	inverse_c200	coding	125-149	228	198
+spombe	complete.wRand	inverse_c200	coding	150-199	356	343
+spombe	complete.wRand	inverse_c200	coding	200-267	591	591
+spombe	complete.wRand	inverse_c200	coding	268-399	1080	1080
+spombe	complete.wRand	inverse_c200	coding	>=400	2377	2377
+spombe	complete.wRand	inverse_c200	negative	75-99		2
+spombe	complete.wRand	inverse_c200	negative	100-124		8
+athal	complete.wRand	cliff_c200	coding	0-49	113	1
+athal	complete.wRand	cliff_c200	coding	50-74	446	62
+athal	complete.wRand	cliff_c200	coding	75-99	971	316
+athal	complete.wRand	cliff_c200	coding	100-124	1040	974
+athal	complete.wRand	cliff_c200	coding	125-149	1123	1079
+athal	complete.wRand	cliff_c200	coding	150-199	2440	2380
+athal	complete.wRand	cliff_c200	coding	200-267	3186	3171
+athal	complete.wRand	cliff_c200	coding	268-399	6232	6227
+athal	complete.wRand	cliff_c200	coding	>=400	11316	11311
+athal	complete.wRand	cliff_c200	negative	0-49		4
+athal	complete.wRand	cliff_c200	negative	50-74		28
+athal	complete.wRand	cliff_c200	negative	75-99		39
+athal	complete.wRand	cliff_c200	negative	100-124		67
+athal	complete.wRand	cliff_c200	negative	125-149		8
+athal	complete.wRand	taper_c150	coding	0-49	113	1
+athal	complete.wRand	taper_c150	coding	50-74	446	69
+athal	complete.wRand	taper_c150	coding	75-99	971	367
+athal	complete.wRand	taper_c150	coding	100-124	1040	766
+athal	complete.wRand	taper_c150	coding	125-149	1123	1009
+athal	complete.wRand	taper_c150	coding	150-199	2440	2355
+athal	complete.wRand	taper_c150	coding	200-267	3186	3170
+athal	complete.wRand	taper_c150	coding	268-399	6232	6229
+athal	complete.wRand	taper_c150	coding	>=400	11316	11312
+athal	complete.wRand	taper_c150	negative	0-49		4
+athal	complete.wRand	taper_c150	negative	50-74		31
+athal	complete.wRand	taper_c150	negative	75-99		87
+athal	complete.wRand	taper_c150	negative	100-124		32
+athal	complete.wRand	taper_c150	negative	125-149		6
+athal	complete.wRand	taper_c200	coding	0-49	113	1
+athal	complete.wRand	taper_c200	coding	50-74	446	24
+athal	complete.wRand	taper_c200	coding	75-99	971	211
+athal	complete.wRand	taper_c200	coding	100-124	1040	625
+athal	complete.wRand	taper_c200	coding	125-149	1123	969
+athal	complete.wRand	taper_c200	coding	150-199	2440	2341
+athal	complete.wRand	taper_c200	coding	200-267	3186	3172
+athal	complete.wRand	taper_c200	coding	268-399	6232	6229
+athal	complete.wRand	taper_c200	coding	>=400	11316	11313
+athal	complete.wRand	taper_c200	negative	0-49		1
+athal	complete.wRand	taper_c200	negative	75-99		13
+athal	complete.wRand	taper_c200	negative	100-124		20
+athal	complete.wRand	taper_c200	negative	125-149		4
+athal	complete.wRand	fixed_c150	coding	0-49	113	1
+athal	complete.wRand	fixed_c150	coding	50-74	446	114
+athal	complete.wRand	fixed_c150	coding	75-99	971	405
+athal	complete.wRand	fixed_c150	coding	100-124	1040	713
+athal	complete.wRand	fixed_c150	coding	125-149	1123	931
+athal	complete.wRand	fixed_c150	coding	150-199	2440	2233
+athal	complete.wRand	fixed_c150	coding	200-267	3186	3148
+athal	complete.wRand	fixed_c150	coding	268-399	6232	6228
+athal	complete.wRand	fixed_c150	coding	>=400	11316	11311
+athal	complete.wRand	fixed_c150	negative	0-49		5
+athal	complete.wRand	fixed_c150	negative	50-74		283
+athal	complete.wRand	fixed_c150	negative	75-99		121
+athal	complete.wRand	fixed_c150	negative	100-124		31
+athal	complete.wRand	fixed_c150	negative	125-149		4
+athal	complete.wRand	fixed_c200	coding	0-49	113	1
+athal	complete.wRand	fixed_c200	coding	50-74	446	49
+athal	complete.wRand	fixed_c200	coding	75-99	971	234
+athal	complete.wRand	fixed_c200	coding	100-124	1040	559
+athal	complete.wRand	fixed_c200	coding	125-149	1123	816
+athal	complete.wRand	fixed_c200	coding	150-199	2440	2120
+athal	complete.wRand	fixed_c200	coding	200-267	3186	3135
+athal	complete.wRand	fixed_c200	coding	268-399	6232	6229
+athal	complete.wRand	fixed_c200	coding	>=400	11316	11314
+athal	complete.wRand	fixed_c200	negative	0-49		1
+athal	complete.wRand	fixed_c200	negative	50-74		27
+athal	complete.wRand	fixed_c200	negative	75-99		40
+athal	complete.wRand	fixed_c200	negative	100-124		16
+athal	complete.wRand	fixed_c200	negative	125-149		3
+athal	complete.wRand	inverse_c200	coding	0-49	113	1
+athal	complete.wRand	inverse_c200	coding	50-74	446	18
+athal	complete.wRand	inverse_c200	coding	75-99	971	201
+athal	complete.wRand	inverse_c200	coding	100-124	1040	627
+athal	complete.wRand	inverse_c200	coding	125-149	1123	955
+athal	complete.wRand	inverse_c200	coding	150-199	2440	2299
+athal	complete.wRand	inverse_c200	coding	200-267	3186	3168
+athal	complete.wRand	inverse_c200	coding	268-399	6232	6229
+athal	complete.wRand	inverse_c200	coding	>=400	11316	11314
+athal	complete.wRand	inverse_c200	negative	0-49		1
+athal	complete.wRand	inverse_c200	negative	75-99		11
+athal	complete.wRand	inverse_c200	negative	100-124		21
+athal	complete.wRand	inverse_c200	negative	125-149		4
+dmel	complete.wRand	cliff_c200	coding	0-49	119	1
+dmel	complete.wRand	cliff_c200	coding	50-74	253	46
+dmel	complete.wRand	cliff_c200	coding	75-99	436	211
+dmel	complete.wRand	cliff_c200	coding	100-124	548	507
+dmel	complete.wRand	cliff_c200	coding	125-149	581	536
+dmel	complete.wRand	cliff_c200	coding	150-199	1165	1105
+dmel	complete.wRand	cliff_c200	coding	200-267	1486	1456
+dmel	complete.wRand	cliff_c200	coding	268-399	2500	2498
+dmel	complete.wRand	cliff_c200	coding	>=400	6796	6791
+dmel	complete.wRand	cliff_c200	negative	50-74		3
+dmel	complete.wRand	cliff_c200	negative	75-99		3
+dmel	complete.wRand	cliff_c200	negative	100-124		14
+dmel	complete.wRand	cliff_c200	negative	125-149		4
+dmel	complete.wRand	cliff_c200	negative	150-199		1
+dmel	complete.wRand	cliff_c200	negative	268-399		7
+dmel	complete.wRand	taper_c150	coding	0-49	119	1
+dmel	complete.wRand	taper_c150	coding	50-74	253	56
+dmel	complete.wRand	taper_c150	coding	75-99	436	244
+dmel	complete.wRand	taper_c150	coding	100-124	548	460
+dmel	complete.wRand	taper_c150	coding	125-149	581	517
+dmel	complete.wRand	taper_c150	coding	150-199	1165	1096
+dmel	complete.wRand	taper_c150	coding	200-267	1486	1454
+dmel	complete.wRand	taper_c150	coding	268-399	2500	2495
+dmel	complete.wRand	taper_c150	coding	>=400	6796	6793
+dmel	complete.wRand	taper_c150	negative	50-74		3
+dmel	complete.wRand	taper_c150	negative	75-99		12
+dmel	complete.wRand	taper_c150	negative	100-124		5
+dmel	complete.wRand	taper_c150	negative	125-149		4
+dmel	complete.wRand	taper_c150	negative	150-199		1
+dmel	complete.wRand	taper_c150	negative	268-399		7
+dmel	complete.wRand	taper_c200	coding	0-49	119	0
+dmel	complete.wRand	taper_c200	coding	50-74	253	21
+dmel	complete.wRand	taper_c200	coding	75-99	436	163
+dmel	complete.wRand	taper_c200	coding	100-124	548	419
+dmel	complete.wRand	taper_c200	coding	125-149	581	500
+dmel	complete.wRand	taper_c200	coding	150-199	1165	1090
+dmel	complete.wRand	taper_c200	coding	200-267	1486	1452
+dmel	complete.wRand	taper_c200	coding	268-399	2500	2498
+dmel	complete.wRand	taper_c200	coding	>=400	6796	6793
+dmel	complete.wRand	taper_c200	negative	75-99		1
+dmel	complete.wRand	taper_c200	negative	100-124		1
+dmel	complete.wRand	taper_c200	negative	125-149		3
+dmel	complete.wRand	taper_c200	negative	150-199		1
+dmel	complete.wRand	taper_c200	negative	268-399		7
+dmel	complete.wRand	fixed_c150	coding	0-49	119	2
+dmel	complete.wRand	fixed_c150	coding	50-74	253	73
+dmel	complete.wRand	fixed_c150	coding	75-99	436	255
+dmel	complete.wRand	fixed_c150	coding	100-124	548	446
+dmel	complete.wRand	fixed_c150	coding	125-149	581	502
+dmel	complete.wRand	fixed_c150	coding	150-199	1165	1077
+dmel	complete.wRand	fixed_c150	coding	200-267	1486	1446
+dmel	complete.wRand	fixed_c150	coding	268-399	2500	2495
+dmel	complete.wRand	fixed_c150	coding	>=400	6796	6792
+dmel	complete.wRand	fixed_c150	negative	50-74		20
+dmel	complete.wRand	fixed_c150	negative	75-99		21
+dmel	complete.wRand	fixed_c150	negative	100-124		5
+dmel	complete.wRand	fixed_c150	negative	125-149		3
+dmel	complete.wRand	fixed_c150	negative	150-199		1
+dmel	complete.wRand	fixed_c150	negative	268-399		7
+dmel	complete.wRand	fixed_c200	coding	0-49	119	1
+dmel	complete.wRand	fixed_c200	coding	50-74	253	44
+dmel	complete.wRand	fixed_c200	coding	75-99	436	179
+dmel	complete.wRand	fixed_c200	coding	100-124	548	391
+dmel	complete.wRand	fixed_c200	coding	125-149	581	470
+dmel	complete.wRand	fixed_c200	coding	150-199	1165	1056
+dmel	complete.wRand	fixed_c200	coding	200-267	1486	1441
+dmel	complete.wRand	fixed_c200	coding	268-399	2500	2498
+dmel	complete.wRand	fixed_c200	coding	>=400	6796	6794
+dmel	complete.wRand	fixed_c200	negative	50-74		3
+dmel	complete.wRand	fixed_c200	negative	75-99		3
+dmel	complete.wRand	fixed_c200	negative	125-149		1
+dmel	complete.wRand	fixed_c200	negative	150-199		1
+dmel	complete.wRand	fixed_c200	negative	268-399		7
+dmel	complete.wRand	inverse_c200	coding	0-49	119	0
+dmel	complete.wRand	inverse_c200	coding	50-74	253	8
+dmel	complete.wRand	inverse_c200	coding	75-99	436	155
+dmel	complete.wRand	inverse_c200	coding	100-124	548	428
+dmel	complete.wRand	inverse_c200	coding	125-149	581	506
+dmel	complete.wRand	inverse_c200	coding	150-199	1165	1089
+dmel	complete.wRand	inverse_c200	coding	200-267	1486	1451
+dmel	complete.wRand	inverse_c200	coding	268-399	2500	2498
+dmel	complete.wRand	inverse_c200	coding	>=400	6796	6793
+dmel	complete.wRand	inverse_c200	negative	100-124		2
+dmel	complete.wRand	inverse_c200	negative	125-149		4
+dmel	complete.wRand	inverse_c200	negative	150-199		1
+dmel	complete.wRand	inverse_c200	negative	268-399		7
+mouse	complete.wRand	cliff_c200	coding	0-49	60	0
+mouse	complete.wRand	cliff_c200	coding	50-74	143	34
+mouse	complete.wRand	cliff_c200	coding	75-99	382	206
+mouse	complete.wRand	cliff_c200	coding	100-124	525	479
+mouse	complete.wRand	cliff_c200	coding	125-149	634	581
+mouse	complete.wRand	cliff_c200	coding	150-199	1407	1356
+mouse	complete.wRand	cliff_c200	coding	200-267	2301	2253
+mouse	complete.wRand	cliff_c200	coding	268-399	5278	5274
+mouse	complete.wRand	cliff_c200	coding	>=400	10679	10644
+mouse	complete.wRand	cliff_c200	negative	0-49		1
+mouse	complete.wRand	cliff_c200	negative	50-74		22
+mouse	complete.wRand	cliff_c200	negative	75-99		14
+mouse	complete.wRand	cliff_c200	negative	100-124		25
+mouse	complete.wRand	cliff_c200	negative	125-149		2
+mouse	complete.wRand	cliff_c200	negative	150-199		1
+mouse	complete.wRand	cliff_c200	negative	200-267		5
+mouse	complete.wRand	cliff_c200	negative	268-399		19
+mouse	complete.wRand	cliff_c200	negative	>=400		1
+mouse	complete.wRand	taper_c150	coding	0-49	60	1
+mouse	complete.wRand	taper_c150	coding	50-74	143	36
+mouse	complete.wRand	taper_c150	coding	75-99	382	210
+mouse	complete.wRand	taper_c150	coding	100-124	525	415
+mouse	complete.wRand	taper_c150	coding	125-149	634	549
+mouse	complete.wRand	taper_c150	coding	150-199	1407	1341
+mouse	complete.wRand	taper_c150	coding	200-267	2301	2252
+mouse	complete.wRand	taper_c150	coding	268-399	5278	5274
+mouse	complete.wRand	taper_c150	coding	>=400	10679	10644
+mouse	complete.wRand	taper_c150	negative	0-49		1
+mouse	complete.wRand	taper_c150	negative	50-74		35
+mouse	complete.wRand	taper_c150	negative	75-99		23
+mouse	complete.wRand	taper_c150	negative	100-124		13
+mouse	complete.wRand	taper_c150	negative	125-149		2
+mouse	complete.wRand	taper_c150	negative	150-199		1
+mouse	complete.wRand	taper_c150	negative	200-267		5
+mouse	complete.wRand	taper_c150	negative	268-399		19
+mouse	complete.wRand	taper_c150	negative	>=400		1
+mouse	complete.wRand	taper_c200	coding	0-49	60	0
+mouse	complete.wRand	taper_c200	coding	50-74	143	24
+mouse	complete.wRand	taper_c200	coding	75-99	382	165
+mouse	complete.wRand	taper_c200	coding	100-124	525	373
+mouse	complete.wRand	taper_c200	coding	125-149	634	526
+mouse	complete.wRand	taper_c200	coding	150-199	1407	1330
+mouse	complete.wRand	taper_c200	coding	200-267	2301	2252
+mouse	complete.wRand	taper_c200	coding	268-399	5278	5274
+mouse	complete.wRand	taper_c200	coding	>=400	10679	10644
+mouse	complete.wRand	taper_c200	negative	50-74		1
+mouse	complete.wRand	taper_c200	negative	75-99		9
+mouse	complete.wRand	taper_c200	negative	100-124		7
+mouse	complete.wRand	taper_c200	negative	125-149		2
+mouse	complete.wRand	taper_c200	negative	150-199		1
+mouse	complete.wRand	taper_c200	negative	200-267		5
+mouse	complete.wRand	taper_c200	negative	268-399		19
+mouse	complete.wRand	taper_c200	negative	>=400		1
+mouse	complete.wRand	fixed_c150	coding	0-49	60	1
+mouse	complete.wRand	fixed_c150	coding	50-74	143	44
+mouse	complete.wRand	fixed_c150	coding	75-99	382	217
+mouse	complete.wRand	fixed_c150	coding	100-124	525	399
+mouse	complete.wRand	fixed_c150	coding	125-149	634	525
+mouse	complete.wRand	fixed_c150	coding	150-199	1407	1283
+mouse	complete.wRand	fixed_c150	coding	200-267	2301	2219
+mouse	complete.wRand	fixed_c150	coding	268-399	5278	5274
+mouse	complete.wRand	fixed_c150	coding	>=400	10679	10644
+mouse	complete.wRand	fixed_c150	negative	50-74		115
+mouse	complete.wRand	fixed_c150	negative	75-99		32
+mouse	complete.wRand	fixed_c150	negative	100-124		12
+mouse	complete.wRand	fixed_c150	negative	125-149		2
+mouse	complete.wRand	fixed_c150	negative	150-199		1
+mouse	complete.wRand	fixed_c150	negative	200-267		5
+mouse	complete.wRand	fixed_c150	negative	268-399		19
+mouse	complete.wRand	fixed_c150	negative	>=400		1
+mouse	complete.wRand	fixed_c200	coding	0-49	60	0
+mouse	complete.wRand	fixed_c200	coding	50-74	143	31
+mouse	complete.wRand	fixed_c200	coding	75-99	382	167
+mouse	complete.wRand	fixed_c200	coding	100-124	525	344
+mouse	complete.wRand	fixed_c200	coding	125-149	634	483
+mouse	complete.wRand	fixed_c200	coding	150-199	1407	1236
+mouse	complete.wRand	fixed_c200	coding	200-267	2301	2199
+mouse	complete.wRand	fixed_c200	coding	268-399	5278	5274
+mouse	complete.wRand	fixed_c200	coding	>=400	10679	10644
+mouse	complete.wRand	fixed_c200	negative	50-74		22
+mouse	complete.wRand	fixed_c200	negative	75-99		14
+mouse	complete.wRand	fixed_c200	negative	100-124		7
+mouse	complete.wRand	fixed_c200	negative	125-149		1
+mouse	complete.wRand	fixed_c200	negative	150-199		1
+mouse	complete.wRand	fixed_c200	negative	200-267		5
+mouse	complete.wRand	fixed_c200	negative	268-399		19
+mouse	complete.wRand	fixed_c200	negative	>=400		1
+mouse	complete.wRand	inverse_c200	coding	0-49	60	0
+mouse	complete.wRand	inverse_c200	coding	50-74	143	15
+mouse	complete.wRand	inverse_c200	coding	75-99	382	158
+mouse	complete.wRand	inverse_c200	coding	100-124	525	380
+mouse	complete.wRand	inverse_c200	coding	125-149	634	528
+mouse	complete.wRand	inverse_c200	coding	150-199	1407	1322
+mouse	complete.wRand	inverse_c200	coding	200-267	2301	2245
+mouse	complete.wRand	inverse_c200	coding	268-399	5278	5274
+mouse	complete.wRand	inverse_c200	coding	>=400	10679	10644
+mouse	complete.wRand	inverse_c200	negative	75-99		5
+mouse	complete.wRand	inverse_c200	negative	100-124		8
+mouse	complete.wRand	inverse_c200	negative	125-149		2
+mouse	complete.wRand	inverse_c200	negative	150-199		1
+mouse	complete.wRand	inverse_c200	negative	200-267		5
+mouse	complete.wRand	inverse_c200	negative	268-399		19
+mouse	complete.wRand	inverse_c200	negative	>=400		1
+human	complete.wRand	cliff_c200	coding	0-49	41	3
+human	complete.wRand	cliff_c200	coding	50-74	170	48
+human	complete.wRand	cliff_c200	coding	75-99	364	247
+human	complete.wRand	cliff_c200	coding	100-124	462	419
+human	complete.wRand	cliff_c200	coding	125-149	575	550
+human	complete.wRand	cliff_c200	coding	150-199	1232	1204
+human	complete.wRand	cliff_c200	coding	200-267	1847	1832
+human	complete.wRand	cliff_c200	coding	268-399	4038	4037
+human	complete.wRand	cliff_c200	coding	>=400	10438	10438
+human	complete.wRand	cliff_c200	negative	50-74		29
+human	complete.wRand	cliff_c200	negative	75-99		16
+human	complete.wRand	cliff_c200	negative	100-124		22
+human	complete.wRand	cliff_c200	negative	125-149		7
+human	complete.wRand	cliff_c200	negative	150-199		3
+human	complete.wRand	cliff_c200	negative	200-267		9
+human	complete.wRand	cliff_c200	negative	268-399		67
+human	complete.wRand	cliff_c200	negative	>=400		1
+human	complete.wRand	taper_c150	coding	0-49	41	4
+human	complete.wRand	taper_c150	coding	50-74	170	50
+human	complete.wRand	taper_c150	coding	75-99	364	240
+human	complete.wRand	taper_c150	coding	100-124	462	355
+human	complete.wRand	taper_c150	coding	125-149	575	517
+human	complete.wRand	taper_c150	coding	150-199	1232	1186
+human	complete.wRand	taper_c150	coding	200-267	1847	1828
+human	complete.wRand	taper_c150	coding	268-399	4038	4037
+human	complete.wRand	taper_c150	coding	>=400	10438	10438
+human	complete.wRand	taper_c150	negative	0-49		1
+human	complete.wRand	taper_c150	negative	50-74		43
+human	complete.wRand	taper_c150	negative	75-99		33
+human	complete.wRand	taper_c150	negative	100-124		18
+human	complete.wRand	taper_c150	negative	125-149		7
+human	complete.wRand	taper_c150	negative	150-199		3
+human	complete.wRand	taper_c150	negative	200-267		9
+human	complete.wRand	taper_c150	negative	268-399		67
+human	complete.wRand	taper_c150	negative	>=400		1
+human	complete.wRand	taper_c200	coding	0-49	41	1
+human	complete.wRand	taper_c200	coding	50-74	170	34
+human	complete.wRand	taper_c200	coding	75-99	364	189
+human	complete.wRand	taper_c200	coding	100-124	462	323
+human	complete.wRand	taper_c200	coding	125-149	575	499
+human	complete.wRand	taper_c200	coding	150-199	1232	1181
+human	complete.wRand	taper_c200	coding	200-267	1847	1829
+human	complete.wRand	taper_c200	coding	268-399	4038	4037
+human	complete.wRand	taper_c200	coding	>=400	10438	10438
+human	complete.wRand	taper_c200	negative	50-74		5
+human	complete.wRand	taper_c200	negative	75-99		11
+human	complete.wRand	taper_c200	negative	100-124		11
+human	complete.wRand	taper_c200	negative	125-149		6
+human	complete.wRand	taper_c200	negative	150-199		3
+human	complete.wRand	taper_c200	negative	200-267		9
+human	complete.wRand	taper_c200	negative	268-399		68
+human	complete.wRand	taper_c200	negative	>=400		1
+human	complete.wRand	fixed_c150	coding	0-49	41	6
+human	complete.wRand	fixed_c150	coding	50-74	170	62
+human	complete.wRand	fixed_c150	coding	75-99	364	241
+human	complete.wRand	fixed_c150	coding	100-124	462	340
+human	complete.wRand	fixed_c150	coding	125-149	575	496
+human	complete.wRand	fixed_c150	coding	150-199	1232	1163
+human	complete.wRand	fixed_c150	coding	200-267	1847	1792
+human	complete.wRand	fixed_c150	coding	268-399	4038	4037
+human	complete.wRand	fixed_c150	coding	>=400	10438	10438
+human	complete.wRand	fixed_c150	negative	0-49		1
+human	complete.wRand	fixed_c150	negative	50-74		120
+human	complete.wRand	fixed_c150	negative	75-99		36
+human	complete.wRand	fixed_c150	negative	100-124		17
+human	complete.wRand	fixed_c150	negative	125-149		6
+human	complete.wRand	fixed_c150	negative	150-199		3
+human	complete.wRand	fixed_c150	negative	200-267		9
+human	complete.wRand	fixed_c150	negative	268-399		66
+human	complete.wRand	fixed_c150	negative	>=400		1
+human	complete.wRand	fixed_c200	coding	0-49	41	2
+human	complete.wRand	fixed_c200	coding	50-74	170	43
+human	complete.wRand	fixed_c200	coding	75-99	364	192
+human	complete.wRand	fixed_c200	coding	100-124	462	305
+human	complete.wRand	fixed_c200	coding	125-149	575	469
+human	complete.wRand	fixed_c200	coding	150-199	1232	1130
+human	complete.wRand	fixed_c200	coding	200-267	1847	1769
+human	complete.wRand	fixed_c200	coding	268-399	4038	4037
+human	complete.wRand	fixed_c200	coding	>=400	10438	10438
+human	complete.wRand	fixed_c200	negative	50-74		29
+human	complete.wRand	fixed_c200	negative	75-99		16
+human	complete.wRand	fixed_c200	negative	100-124		11
+human	complete.wRand	fixed_c200	negative	125-149		6
+human	complete.wRand	fixed_c200	negative	150-199		3
+human	complete.wRand	fixed_c200	negative	200-267		9
+human	complete.wRand	fixed_c200	negative	268-399		67
+human	complete.wRand	fixed_c200	negative	>=400		1
+human	complete.wRand	inverse_c200	coding	0-49	41	0
+human	complete.wRand	inverse_c200	coding	50-74	170	24
+human	complete.wRand	inverse_c200	coding	75-99	364	179
+human	complete.wRand	inverse_c200	coding	100-124	462	328
+human	complete.wRand	inverse_c200	coding	125-149	575	500
+human	complete.wRand	inverse_c200	coding	150-199	1232	1179
+human	complete.wRand	inverse_c200	coding	200-267	1847	1819
+human	complete.wRand	inverse_c200	coding	268-399	4038	4037
+human	complete.wRand	inverse_c200	coding	>=400	10438	10438
+human	complete.wRand	inverse_c200	negative	50-74		1
+human	complete.wRand	inverse_c200	negative	75-99		9
+human	complete.wRand	inverse_c200	negative	100-124		11
+human	complete.wRand	inverse_c200	negative	125-149		6
+human	complete.wRand	inverse_c200	negative	150-199		3
+human	complete.wRand	inverse_c200	negative	200-267		9
+human	complete.wRand	inverse_c200	negative	268-399		69
+human	complete.wRand	inverse_c200	negative	>=400		1
+creinhardtii	complete.wRand	cliff_c200	coding	50-74	628	124
+creinhardtii	complete.wRand	cliff_c200	coding	75-99	554	240
+creinhardtii	complete.wRand	cliff_c200	coding	100-124	561	476
+creinhardtii	complete.wRand	cliff_c200	coding	125-149	572	519
+creinhardtii	complete.wRand	cliff_c200	coding	150-199	1001	958
+creinhardtii	complete.wRand	cliff_c200	coding	200-267	1348	1324
+creinhardtii	complete.wRand	cliff_c200	coding	268-399	2463	2447
+creinhardtii	complete.wRand	cliff_c200	coding	>=400	10494	10492
+creinhardtii	complete.wRand	cliff_c200	negative	0-49		1
+creinhardtii	complete.wRand	cliff_c200	negative	75-99		1
+creinhardtii	complete.wRand	cliff_c200	negative	100-124		1
+creinhardtii	complete.wRand	cliff_c200	negative	200-267		1
+creinhardtii	complete.wRand	cliff_c200	negative	268-399		1
+creinhardtii	complete.wRand	cliff_c200	negative	>=400		54
+creinhardtii	complete.wRand	taper_c150	coding	50-74	628	150
+creinhardtii	complete.wRand	taper_c150	coding	75-99	554	254
+creinhardtii	complete.wRand	taper_c150	coding	100-124	561	435
+creinhardtii	complete.wRand	taper_c150	coding	125-149	572	512
+creinhardtii	complete.wRand	taper_c150	coding	150-199	1001	948
+creinhardtii	complete.wRand	taper_c150	coding	200-267	1348	1320
+creinhardtii	complete.wRand	taper_c150	coding	268-399	2463	2446
+creinhardtii	complete.wRand	taper_c150	coding	>=400	10494	10492
+creinhardtii	complete.wRand	taper_c150	negative	0-49		1
+creinhardtii	complete.wRand	taper_c150	negative	50-74		1
+creinhardtii	complete.wRand	taper_c150	negative	75-99		5
+creinhardtii	complete.wRand	taper_c150	negative	100-124		1
+creinhardtii	complete.wRand	taper_c150	negative	200-267		1
+creinhardtii	complete.wRand	taper_c150	negative	268-399		1
+creinhardtii	complete.wRand	taper_c150	negative	>=400		54
+creinhardtii	complete.wRand	taper_c200	coding	50-74	628	99
+creinhardtii	complete.wRand	taper_c200	coding	75-99	554	205
+creinhardtii	complete.wRand	taper_c200	coding	100-124	561	412
+creinhardtii	complete.wRand	taper_c200	coding	125-149	572	504
+creinhardtii	complete.wRand	taper_c200	coding	150-199	1001	946
+creinhardtii	complete.wRand	taper_c200	coding	200-267	1348	1321
+creinhardtii	complete.wRand	taper_c200	coding	268-399	2463	2446
+creinhardtii	complete.wRand	taper_c200	coding	>=400	10494	10492
+creinhardtii	complete.wRand	taper_c200	negative	0-49		1
+creinhardtii	complete.wRand	taper_c200	negative	100-124		1
+creinhardtii	complete.wRand	taper_c200	negative	200-267		1
+creinhardtii	complete.wRand	taper_c200	negative	268-399		1
+creinhardtii	complete.wRand	taper_c200	negative	>=400		54
+creinhardtii	complete.wRand	fixed_c150	coding	50-74	628	167
+creinhardtii	complete.wRand	fixed_c150	coding	75-99	554	256
+creinhardtii	complete.wRand	fixed_c150	coding	100-124	561	430
+creinhardtii	complete.wRand	fixed_c150	coding	125-149	572	509
+creinhardtii	complete.wRand	fixed_c150	coding	150-199	1001	945
+creinhardtii	complete.wRand	fixed_c150	coding	200-267	1348	1320
+creinhardtii	complete.wRand	fixed_c150	coding	268-399	2463	2446
+creinhardtii	complete.wRand	fixed_c150	coding	>=400	10494	10492
+creinhardtii	complete.wRand	fixed_c150	negative	0-49		1
+creinhardtii	complete.wRand	fixed_c150	negative	50-74		5
+creinhardtii	complete.wRand	fixed_c150	negative	75-99		6
+creinhardtii	complete.wRand	fixed_c150	negative	100-124		1
+creinhardtii	complete.wRand	fixed_c150	negative	200-267		1
+creinhardtii	complete.wRand	fixed_c150	negative	268-399		1
+creinhardtii	complete.wRand	fixed_c150	negative	>=400		54
+creinhardtii	complete.wRand	fixed_c200	coding	50-74	628	109
+creinhardtii	complete.wRand	fixed_c200	coding	75-99	554	210
+creinhardtii	complete.wRand	fixed_c200	coding	100-124	561	401
+creinhardtii	complete.wRand	fixed_c200	coding	125-149	572	497
+creinhardtii	complete.wRand	fixed_c200	coding	150-199	1001	935
+creinhardtii	complete.wRand	fixed_c200	coding	200-267	1348	1310
+creinhardtii	complete.wRand	fixed_c200	coding	268-399	2463	2442
+creinhardtii	complete.wRand	fixed_c200	coding	>=400	10494	10492
+creinhardtii	complete.wRand	fixed_c200	negative	0-49		1
+creinhardtii	complete.wRand	fixed_c200	negative	100-124		1
+creinhardtii	complete.wRand	fixed_c200	negative	200-267		1
+creinhardtii	complete.wRand	fixed_c200	negative	268-399		1
+creinhardtii	complete.wRand	fixed_c200	negative	>=400		54
+creinhardtii	complete.wRand	inverse_c200	coding	50-74	628	61
+creinhardtii	complete.wRand	inverse_c200	coding	75-99	554	184
+creinhardtii	complete.wRand	inverse_c200	coding	100-124	561	420
+creinhardtii	complete.wRand	inverse_c200	coding	125-149	572	511
+creinhardtii	complete.wRand	inverse_c200	coding	150-199	1001	951
+creinhardtii	complete.wRand	inverse_c200	coding	200-267	1348	1322
+creinhardtii	complete.wRand	inverse_c200	coding	268-399	2463	2446
+creinhardtii	complete.wRand	inverse_c200	coding	>=400	10494	10492
+creinhardtii	complete.wRand	inverse_c200	negative	0-49		1
+creinhardtii	complete.wRand	inverse_c200	negative	75-99		1
+creinhardtii	complete.wRand	inverse_c200	negative	100-124		1
+creinhardtii	complete.wRand	inverse_c200	negative	200-267		1
+creinhardtii	complete.wRand	inverse_c200	negative	268-399		1
+creinhardtii	complete.wRand	inverse_c200	negative	>=400		54
+pfalciparum	fragments.wRand	cliff_c200	coding	0-49	301	0
+pfalciparum	fragments.wRand	cliff_c200	coding	50-74	394	25
+pfalciparum	fragments.wRand	cliff_c200	coding	75-99	470	145
+pfalciparum	fragments.wRand	cliff_c200	coding	100-124	426	414
+pfalciparum	fragments.wRand	cliff_c200	coding	125-149	445	437
+pfalciparum	fragments.wRand	cliff_c200	coding	150-199	666	660
+pfalciparum	fragments.wRand	cliff_c200	coding	200-267	580	580
+pfalciparum	fragments.wRand	cliff_c200	coding	268-399	679	679
+pfalciparum	fragments.wRand	cliff_c200	coding	>=400	1320	1320
+pfalciparum	fragments.wRand	taper_c150	coding	0-49	301	0
+pfalciparum	fragments.wRand	taper_c150	coding	50-74	394	17
+pfalciparum	fragments.wRand	taper_c150	coding	75-99	470	195
+pfalciparum	fragments.wRand	taper_c150	coding	100-124	426	369
+pfalciparum	fragments.wRand	taper_c150	coding	125-149	445	429
+pfalciparum	fragments.wRand	taper_c150	coding	150-199	666	660
+pfalciparum	fragments.wRand	taper_c150	coding	200-267	580	580
+pfalciparum	fragments.wRand	taper_c150	coding	268-399	679	679
+pfalciparum	fragments.wRand	taper_c150	coding	>=400	1320	1320
+pfalciparum	fragments.wRand	taper_c200	coding	0-49	301	0
+pfalciparum	fragments.wRand	taper_c200	coding	50-74	394	5
+pfalciparum	fragments.wRand	taper_c200	coding	75-99	470	86
+pfalciparum	fragments.wRand	taper_c200	coding	100-124	426	312
+pfalciparum	fragments.wRand	taper_c200	coding	125-149	445	423
+pfalciparum	fragments.wRand	taper_c200	coding	150-199	666	659
+pfalciparum	fragments.wRand	taper_c200	coding	200-267	580	580
+pfalciparum	fragments.wRand	taper_c200	coding	268-399	679	679
+pfalciparum	fragments.wRand	taper_c200	coding	>=400	1320	1320
+pfalciparum	fragments.wRand	fixed_c150	coding	0-49	301	1
+pfalciparum	fragments.wRand	fixed_c150	coding	50-74	394	91
+pfalciparum	fragments.wRand	fixed_c150	coding	75-99	470	249
+pfalciparum	fragments.wRand	fixed_c150	coding	100-124	426	341
+pfalciparum	fragments.wRand	fixed_c150	coding	125-149	445	405
+pfalciparum	fragments.wRand	fixed_c150	coding	150-199	666	652
+pfalciparum	fragments.wRand	fixed_c150	coding	200-267	580	580
+pfalciparum	fragments.wRand	fixed_c150	coding	268-399	679	679
+pfalciparum	fragments.wRand	fixed_c150	coding	>=400	1320	1320
+pfalciparum	fragments.wRand	fixed_c200	coding	0-49	301	0
+pfalciparum	fragments.wRand	fixed_c200	coding	50-74	394	23
+pfalciparum	fragments.wRand	fixed_c200	coding	75-99	470	135
+pfalciparum	fragments.wRand	fixed_c200	coding	100-124	426	246
+pfalciparum	fragments.wRand	fixed_c200	coding	125-149	445	352
+pfalciparum	fragments.wRand	fixed_c200	coding	150-199	666	642
+pfalciparum	fragments.wRand	fixed_c200	coding	200-267	580	580
+pfalciparum	fragments.wRand	fixed_c200	coding	268-399	679	679
+pfalciparum	fragments.wRand	fixed_c200	coding	>=400	1320	1320
+pfalciparum	fragments.wRand	inverse_c200	coding	0-49	301	0
+pfalciparum	fragments.wRand	inverse_c200	coding	50-74	394	4
+pfalciparum	fragments.wRand	inverse_c200	coding	75-99	470	88
+pfalciparum	fragments.wRand	inverse_c200	coding	100-124	426	291
+pfalciparum	fragments.wRand	inverse_c200	coding	125-149	445	405
+pfalciparum	fragments.wRand	inverse_c200	coding	150-199	666	656
+pfalciparum	fragments.wRand	inverse_c200	coding	200-267	580	580
+pfalciparum	fragments.wRand	inverse_c200	coding	268-399	679	679
+pfalciparum	fragments.wRand	inverse_c200	coding	>=400	1320	1320
+tthermophila	fragments.wRand	cliff_c200	coding	0-49	1723	75
+tthermophila	fragments.wRand	cliff_c200	coding	50-74	2158	549
+tthermophila	fragments.wRand	cliff_c200	coding	75-99	2046	1073
+tthermophila	fragments.wRand	cliff_c200	coding	100-124	1945	1729
+tthermophila	fragments.wRand	cliff_c200	coding	125-149	1906	1820
+tthermophila	fragments.wRand	cliff_c200	coding	150-199	3476	3410
+tthermophila	fragments.wRand	cliff_c200	coding	200-267	3618	3575
+tthermophila	fragments.wRand	cliff_c200	coding	268-399	4053	4031
+tthermophila	fragments.wRand	cliff_c200	coding	>=400	5531	5528
+tthermophila	fragments.wRand	cliff_c200	negative	0-49		12
+tthermophila	fragments.wRand	cliff_c200	negative	50-74		46
+tthermophila	fragments.wRand	cliff_c200	negative	75-99		65
+tthermophila	fragments.wRand	cliff_c200	negative	100-124		238
+tthermophila	fragments.wRand	cliff_c200	negative	125-149		83
+tthermophila	fragments.wRand	cliff_c200	negative	150-199		43
+tthermophila	fragments.wRand	cliff_c200	negative	200-267		6
+tthermophila	fragments.wRand	taper_c150	coding	0-49	1723	60
+tthermophila	fragments.wRand	taper_c150	coding	50-74	2158	574
+tthermophila	fragments.wRand	taper_c150	coding	75-99	2046	1183
+tthermophila	fragments.wRand	taper_c150	coding	100-124	1945	1522
+tthermophila	fragments.wRand	taper_c150	coding	125-149	1906	1739
+tthermophila	fragments.wRand	taper_c150	coding	150-199	3476	3360
+tthermophila	fragments.wRand	taper_c150	coding	200-267	3618	3567
+tthermophila	fragments.wRand	taper_c150	coding	268-399	4053	4031
+tthermophila	fragments.wRand	taper_c150	coding	>=400	5531	5528
+tthermophila	fragments.wRand	taper_c150	negative	0-49		5
+tthermophila	fragments.wRand	taper_c150	negative	50-74		103
+tthermophila	fragments.wRand	taper_c150	negative	75-99		154
+tthermophila	fragments.wRand	taper_c150	negative	100-124		118
+tthermophila	fragments.wRand	taper_c150	negative	125-149		56
+tthermophila	fragments.wRand	taper_c150	negative	150-199		40
+tthermophila	fragments.wRand	taper_c150	negative	200-267		3
+tthermophila	fragments.wRand	taper_c200	coding	0-49	1723	41
+tthermophila	fragments.wRand	taper_c200	coding	50-74	2158	350
+tthermophila	fragments.wRand	taper_c200	coding	75-99	2046	923
+tthermophila	fragments.wRand	taper_c200	coding	100-124	1945	1373
+tthermophila	fragments.wRand	taper_c200	coding	125-149	1906	1681
+tthermophila	fragments.wRand	taper_c200	coding	150-199	3476	3320
+tthermophila	fragments.wRand	taper_c200	coding	200-267	3618	3564
+tthermophila	fragments.wRand	taper_c200	coding	268-399	4053	4032
+tthermophila	fragments.wRand	taper_c200	coding	>=400	5531	5528
+tthermophila	fragments.wRand	taper_c200	negative	0-49		1
+tthermophila	fragments.wRand	taper_c200	negative	50-74		14
+tthermophila	fragments.wRand	taper_c200	negative	75-99		43
+tthermophila	fragments.wRand	taper_c200	negative	100-124		62
+tthermophila	fragments.wRand	taper_c200	negative	125-149		40
+tthermophila	fragments.wRand	taper_c200	negative	150-199		37
+tthermophila	fragments.wRand	taper_c200	negative	200-267		5
+tthermophila	fragments.wRand	fixed_c150	coding	0-49	1723	70
+tthermophila	fragments.wRand	fixed_c150	coding	50-74	2158	692
+tthermophila	fragments.wRand	fixed_c150	coding	75-99	2046	1204
+tthermophila	fragments.wRand	fixed_c150	coding	100-124	1945	1478
+tthermophila	fragments.wRand	fixed_c150	coding	125-149	1906	1690
+tthermophila	fragments.wRand	fixed_c150	coding	150-199	3476	3275
+tthermophila	fragments.wRand	fixed_c150	coding	200-267	3618	3524
+tthermophila	fragments.wRand	fixed_c150	coding	268-399	4053	4023
+tthermophila	fragments.wRand	fixed_c150	coding	>=400	5531	5525
+tthermophila	fragments.wRand	fixed_c150	negative	0-49		7
+tthermophila	fragments.wRand	fixed_c150	negative	50-74		203
+tthermophila	fragments.wRand	fixed_c150	negative	75-99		182
+tthermophila	fragments.wRand	fixed_c150	negative	100-124		106
+tthermophila	fragments.wRand	fixed_c150	negative	125-149		45
+tthermophila	fragments.wRand	fixed_c150	negative	150-199		32
+tthermophila	fragments.wRand	fixed_c150	negative	200-267		3
+tthermophila	fragments.wRand	fixed_c200	coding	0-49	1723	43
+tthermophila	fragments.wRand	fixed_c200	coding	50-74	2158	419
+tthermophila	fragments.wRand	fixed_c200	coding	75-99	2046	935
+tthermophila	fragments.wRand	fixed_c200	coding	100-124	1945	1288
+tthermophila	fragments.wRand	fixed_c200	coding	125-149	1906	1594
+tthermophila	fragments.wRand	fixed_c200	coding	150-199	3476	3162
+tthermophila	fragments.wRand	fixed_c200	coding	200-267	3618	3489
+tthermophila	fragments.wRand	fixed_c200	coding	268-399	4053	4013
+tthermophila	fragments.wRand	fixed_c200	coding	>=400	5531	5525
+tthermophila	fragments.wRand	fixed_c200	negative	0-49		1
+tthermophila	fragments.wRand	fixed_c200	negative	50-74		38
+tthermophila	fragments.wRand	fixed_c200	negative	75-99		56
+tthermophila	fragments.wRand	fixed_c200	negative	100-124		49
+tthermophila	fragments.wRand	fixed_c200	negative	125-149		23
+tthermophila	fragments.wRand	fixed_c200	negative	150-199		25
+tthermophila	fragments.wRand	fixed_c200	negative	200-267		5
+tthermophila	fragments.wRand	inverse_c200	coding	0-49	1723	37
+tthermophila	fragments.wRand	inverse_c200	coding	50-74	2158	236
+tthermophila	fragments.wRand	inverse_c200	coding	75-99	2046	844
+tthermophila	fragments.wRand	inverse_c200	coding	100-124	1945	1413
+tthermophila	fragments.wRand	inverse_c200	coding	125-149	1906	1700
+tthermophila	fragments.wRand	inverse_c200	coding	150-199	3476	3338
+tthermophila	fragments.wRand	inverse_c200	coding	200-267	3618	3554
+tthermophila	fragments.wRand	inverse_c200	coding	268-399	4053	4031
+tthermophila	fragments.wRand	inverse_c200	coding	>=400	5531	5527
+tthermophila	fragments.wRand	inverse_c200	negative	0-49		1
+tthermophila	fragments.wRand	inverse_c200	negative	50-74		5
+tthermophila	fragments.wRand	inverse_c200	negative	75-99		29
+tthermophila	fragments.wRand	inverse_c200	negative	100-124		70
+tthermophila	fragments.wRand	inverse_c200	negative	125-149		46
+tthermophila	fragments.wRand	inverse_c200	negative	150-199		39
+tthermophila	fragments.wRand	inverse_c200	negative	200-267		5
+spombe	fragments.wRand	cliff_c200	coding	0-49	418	2
+spombe	fragments.wRand	cliff_c200	coding	50-74	510	120
+spombe	fragments.wRand	cliff_c200	coding	75-99	506	314
+spombe	fragments.wRand	cliff_c200	coding	100-124	528	521
+spombe	fragments.wRand	cliff_c200	coding	125-149	447	444
+spombe	fragments.wRand	cliff_c200	coding	150-199	831	830
+spombe	fragments.wRand	cliff_c200	coding	200-267	800	800
+spombe	fragments.wRand	cliff_c200	coding	268-399	631	631
+spombe	fragments.wRand	cliff_c200	coding	>=400	429	429
+spombe	fragments.wRand	cliff_c200	negative	50-74		1
+spombe	fragments.wRand	cliff_c200	negative	75-99		1
+spombe	fragments.wRand	cliff_c200	negative	100-124		3
+spombe	fragments.wRand	taper_c150	coding	0-49	418	0
+spombe	fragments.wRand	taper_c150	coding	50-74	510	114
+spombe	fragments.wRand	taper_c150	coding	75-99	506	348
+spombe	fragments.wRand	taper_c150	coding	100-124	528	484
+spombe	fragments.wRand	taper_c150	coding	125-149	447	435
+spombe	fragments.wRand	taper_c150	coding	150-199	831	830
+spombe	fragments.wRand	taper_c150	coding	200-267	800	800
+spombe	fragments.wRand	taper_c150	coding	268-399	631	631
+spombe	fragments.wRand	taper_c150	coding	>=400	429	429
+spombe	fragments.wRand	taper_c150	negative	75-99		3
+spombe	fragments.wRand	taper_c150	negative	100-124		2
+spombe	fragments.wRand	taper_c200	coding	0-49	418	0
+spombe	fragments.wRand	taper_c200	coding	50-74	510	40
+spombe	fragments.wRand	taper_c200	coding	75-99	506	250
+spombe	fragments.wRand	taper_c200	coding	100-124	528	442
+spombe	fragments.wRand	taper_c200	coding	125-149	447	430
+spombe	fragments.wRand	taper_c200	coding	150-199	831	829
+spombe	fragments.wRand	taper_c200	coding	200-267	800	800
+spombe	fragments.wRand	taper_c200	coding	268-399	631	631
+spombe	fragments.wRand	taper_c200	coding	>=400	429	429
+spombe	fragments.wRand	taper_c200	negative	100-124		1
+spombe	fragments.wRand	fixed_c150	coding	0-49	418	13
+spombe	fragments.wRand	fixed_c150	coding	50-74	510	237
+spombe	fragments.wRand	fixed_c150	coding	75-99	506	375
+spombe	fragments.wRand	fixed_c150	coding	100-124	528	472
+spombe	fragments.wRand	fixed_c150	coding	125-149	447	425
+spombe	fragments.wRand	fixed_c150	coding	150-199	831	812
+spombe	fragments.wRand	fixed_c150	coding	200-267	800	799
+spombe	fragments.wRand	fixed_c150	coding	268-399	631	631
+spombe	fragments.wRand	fixed_c150	coding	>=400	429	429
+spombe	fragments.wRand	fixed_c150	negative	50-74		5
+spombe	fragments.wRand	fixed_c150	negative	75-99		7
+spombe	fragments.wRand	fixed_c150	negative	100-124		2
+spombe	fragments.wRand	fixed_c200	coding	0-49	418	2
+spombe	fragments.wRand	fixed_c200	coding	50-74	510	120
+spombe	fragments.wRand	fixed_c200	coding	75-99	506	299
+spombe	fragments.wRand	fixed_c200	coding	100-124	528	409
+spombe	fragments.wRand	fixed_c200	coding	125-149	447	400
+spombe	fragments.wRand	fixed_c200	coding	150-199	831	791
+spombe	fragments.wRand	fixed_c200	coding	200-267	800	798
+spombe	fragments.wRand	fixed_c200	coding	268-399	631	631
+spombe	fragments.wRand	fixed_c200	coding	>=400	429	429
+spombe	fragments.wRand	fixed_c200	negative	75-99		1
+spombe	fragments.wRand	inverse_c200	coding	0-49	418	0
+spombe	fragments.wRand	inverse_c200	coding	50-74	510	29
+spombe	fragments.wRand	inverse_c200	coding	75-99	506	237
+spombe	fragments.wRand	inverse_c200	coding	100-124	528	440
+spombe	fragments.wRand	inverse_c200	coding	125-149	447	426
+spombe	fragments.wRand	inverse_c200	coding	150-199	831	822
+spombe	fragments.wRand	inverse_c200	coding	200-267	800	800
+spombe	fragments.wRand	inverse_c200	coding	268-399	631	631
+spombe	fragments.wRand	inverse_c200	coding	>=400	429	429
+spombe	fragments.wRand	inverse_c200	negative	100-124		1
+athal	fragments.wRand	cliff_c200	coding	0-49	2533	10
+athal	fragments.wRand	cliff_c200	coding	50-74	2786	487
+athal	fragments.wRand	cliff_c200	coding	75-99	2827	1168
+athal	fragments.wRand	cliff_c200	coding	100-124	2844	2689
+athal	fragments.wRand	cliff_c200	coding	125-149	2652	2572
+athal	fragments.wRand	cliff_c200	coding	150-199	4762	4684
+athal	fragments.wRand	cliff_c200	coding	200-267	4118	4098
+athal	fragments.wRand	cliff_c200	coding	268-399	2935	2933
+athal	fragments.wRand	cliff_c200	coding	>=400	1410	1410
+athal	fragments.wRand	cliff_c200	negative	50-74		15
+athal	fragments.wRand	cliff_c200	negative	75-99		18
+athal	fragments.wRand	cliff_c200	negative	100-124		23
+athal	fragments.wRand	cliff_c200	negative	125-149		1
+athal	fragments.wRand	cliff_c200	negative	150-199		1
+athal	fragments.wRand	taper_c150	coding	0-49	2533	8
+athal	fragments.wRand	taper_c150	coding	50-74	2786	551
+athal	fragments.wRand	taper_c150	coding	75-99	2827	1424
+athal	fragments.wRand	taper_c150	coding	100-124	2844	2194
+athal	fragments.wRand	taper_c150	coding	125-149	2652	2420
+athal	fragments.wRand	taper_c150	coding	150-199	4762	4622
+athal	fragments.wRand	taper_c150	coding	200-267	4118	4097
+athal	fragments.wRand	taper_c150	coding	268-399	2935	2935
+athal	fragments.wRand	taper_c150	coding	>=400	1410	1410
+athal	fragments.wRand	taper_c150	negative	0-49		1
+athal	fragments.wRand	taper_c150	negative	50-74		21
+athal	fragments.wRand	taper_c150	negative	75-99		37
+athal	fragments.wRand	taper_c150	negative	100-124		13
+athal	fragments.wRand	taper_c150	negative	125-149		1
+athal	fragments.wRand	taper_c150	negative	150-199		1
+athal	fragments.wRand	taper_c200	coding	0-49	2533	2
+athal	fragments.wRand	taper_c200	coding	50-74	2786	200
+athal	fragments.wRand	taper_c200	coding	75-99	2827	875
+athal	fragments.wRand	taper_c200	coding	100-124	2844	1853
+athal	fragments.wRand	taper_c200	coding	125-149	2652	2300
+athal	fragments.wRand	taper_c200	coding	150-199	4762	4578
+athal	fragments.wRand	taper_c200	coding	200-267	4118	4098
+athal	fragments.wRand	taper_c200	coding	268-399	2935	2935
+athal	fragments.wRand	taper_c200	coding	>=400	1410	1410
+athal	fragments.wRand	taper_c200	negative	75-99		6
+athal	fragments.wRand	taper_c200	negative	100-124		2
+athal	fragments.wRand	taper_c200	negative	150-199		1
+athal	fragments.wRand	fixed_c150	coding	0-49	2533	28
+athal	fragments.wRand	fixed_c150	coding	50-74	2786	931
+athal	fragments.wRand	fixed_c150	coding	75-99	2827	1581
+athal	fragments.wRand	fixed_c150	coding	100-124	2844	2063
+athal	fragments.wRand	fixed_c150	coding	125-149	2652	2250
+athal	fragments.wRand	fixed_c150	coding	150-199	4762	4379
+athal	fragments.wRand	fixed_c150	coding	200-267	4118	4061
+athal	fragments.wRand	fixed_c150	coding	268-399	2935	2935
+athal	fragments.wRand	fixed_c150	coding	>=400	1410	1410
+athal	fragments.wRand	fixed_c150	negative	0-49		5
+athal	fragments.wRand	fixed_c150	negative	50-74		138
+athal	fragments.wRand	fixed_c150	negative	75-99		58
+athal	fragments.wRand	fixed_c150	negative	100-124		10
+athal	fragments.wRand	fixed_c150	negative	125-149		1
+athal	fragments.wRand	fixed_c150	negative	150-199		1
+athal	fragments.wRand	fixed_c200	coding	0-49	2533	4
+athal	fragments.wRand	fixed_c200	coding	50-74	2786	455
+athal	fragments.wRand	fixed_c200	coding	75-99	2827	1022
+athal	fragments.wRand	fixed_c200	coding	100-124	2844	1647
+athal	fragments.wRand	fixed_c200	coding	125-149	2652	1955
+athal	fragments.wRand	fixed_c200	coding	150-199	4762	4122
+athal	fragments.wRand	fixed_c200	coding	200-267	4118	4027
+athal	fragments.wRand	fixed_c200	coding	268-399	2935	2935
+athal	fragments.wRand	fixed_c200	coding	>=400	1410	1410
+athal	fragments.wRand	fixed_c200	negative	50-74		14
+athal	fragments.wRand	fixed_c200	negative	75-99		17
+athal	fragments.wRand	fixed_c200	negative	100-124		1
+athal	fragments.wRand	inverse_c200	coding	0-49	2533	2
+athal	fragments.wRand	inverse_c200	coding	50-74	2786	107
+athal	fragments.wRand	inverse_c200	coding	75-99	2827	811
+athal	fragments.wRand	inverse_c200	coding	100-124	2844	1856
+athal	fragments.wRand	inverse_c200	coding	125-149	2652	2270
+athal	fragments.wRand	inverse_c200	coding	150-199	4762	4498
+athal	fragments.wRand	inverse_c200	coding	200-267	4118	4086
+athal	fragments.wRand	inverse_c200	coding	268-399	2935	2935
+athal	fragments.wRand	inverse_c200	coding	>=400	1410	1410
+athal	fragments.wRand	inverse_c200	negative	75-99		3
+athal	fragments.wRand	inverse_c200	negative	100-124		3
+athal	fragments.wRand	inverse_c200	negative	150-199		1
+dmel	fragments.wRand	cliff_c200	coding	0-49	1251	5
+dmel	fragments.wRand	cliff_c200	coding	50-74	1408	380
+dmel	fragments.wRand	cliff_c200	coding	75-99	1361	831
+dmel	fragments.wRand	cliff_c200	coding	100-124	1276	1227
+dmel	fragments.wRand	cliff_c200	coding	125-149	1136	1089
+dmel	fragments.wRand	cliff_c200	coding	150-199	1969	1909
+dmel	fragments.wRand	cliff_c200	coding	200-267	1961	1913
+dmel	fragments.wRand	cliff_c200	coding	268-399	1768	1767
+dmel	fragments.wRand	cliff_c200	coding	>=400	1754	1753
+dmel	fragments.wRand	cliff_c200	negative	0-49		2
+dmel	fragments.wRand	cliff_c200	negative	75-99		3
+dmel	fragments.wRand	cliff_c200	negative	100-124		3
+dmel	fragments.wRand	cliff_c200	negative	200-267		1
+dmel	fragments.wRand	cliff_c200	negative	268-399		2
+dmel	fragments.wRand	taper_c150	coding	0-49	1251	8
+dmel	fragments.wRand	taper_c150	coding	50-74	1408	462
+dmel	fragments.wRand	taper_c150	coding	75-99	1361	963
+dmel	fragments.wRand	taper_c150	coding	100-124	1276	1119
+dmel	fragments.wRand	taper_c150	coding	125-149	1136	1075
+dmel	fragments.wRand	taper_c150	coding	150-199	1969	1904
+dmel	fragments.wRand	taper_c150	coding	200-267	1961	1913
+dmel	fragments.wRand	taper_c150	coding	268-399	1768	1767
+dmel	fragments.wRand	taper_c150	coding	>=400	1754	1753
+dmel	fragments.wRand	taper_c150	negative	0-49		1
+dmel	fragments.wRand	taper_c150	negative	50-74		1
+dmel	fragments.wRand	taper_c150	negative	75-99		9
+dmel	fragments.wRand	taper_c150	negative	100-124		1
+dmel	fragments.wRand	taper_c150	negative	200-267		1
+dmel	fragments.wRand	taper_c150	negative	268-399		2
+dmel	fragments.wRand	taper_c200	coding	0-49	1251	1
+dmel	fragments.wRand	taper_c200	coding	50-74	1408	179
+dmel	fragments.wRand	taper_c200	coding	75-99	1361	734
+dmel	fragments.wRand	taper_c200	coding	100-124	1276	1026
+dmel	fragments.wRand	taper_c200	coding	125-149	1136	1044
+dmel	fragments.wRand	taper_c200	coding	150-199	1969	1899
+dmel	fragments.wRand	taper_c200	coding	200-267	1961	1913
+dmel	fragments.wRand	taper_c200	coding	268-399	1768	1767
+dmel	fragments.wRand	taper_c200	coding	>=400	1754	1753
+dmel	fragments.wRand	taper_c200	negative	75-99		3
+dmel	fragments.wRand	taper_c200	negative	100-124		1
+dmel	fragments.wRand	taper_c200	negative	200-267		1
+dmel	fragments.wRand	taper_c200	negative	268-399		2
+dmel	fragments.wRand	fixed_c150	coding	0-49	1251	17
+dmel	fragments.wRand	fixed_c150	coding	50-74	1408	664
+dmel	fragments.wRand	fixed_c150	coding	75-99	1361	1007
+dmel	fragments.wRand	fixed_c150	coding	100-124	1276	1097
+dmel	fragments.wRand	fixed_c150	coding	125-149	1136	1051
+dmel	fragments.wRand	fixed_c150	coding	150-199	1969	1884
+dmel	fragments.wRand	fixed_c150	coding	200-267	1961	1904
+dmel	fragments.wRand	fixed_c150	coding	268-399	1768	1767
+dmel	fragments.wRand	fixed_c150	coding	>=400	1754	1753
+dmel	fragments.wRand	fixed_c150	negative	0-49		1
+dmel	fragments.wRand	fixed_c150	negative	50-74		8
+dmel	fragments.wRand	fixed_c150	negative	75-99		11
+dmel	fragments.wRand	fixed_c150	negative	100-124		1
+dmel	fragments.wRand	fixed_c150	negative	200-267		1
+dmel	fragments.wRand	fixed_c150	negative	268-399		2
+dmel	fragments.wRand	fixed_c200	coding	0-49	1251	3
+dmel	fragments.wRand	fixed_c200	coding	50-74	1408	372
+dmel	fragments.wRand	fixed_c200	coding	75-99	1361	796
+dmel	fragments.wRand	fixed_c200	coding	100-124	1276	981
+dmel	fragments.wRand	fixed_c200	coding	125-149	1136	999
+dmel	fragments.wRand	fixed_c200	coding	150-199	1969	1852
+dmel	fragments.wRand	fixed_c200	coding	200-267	1961	1899
+dmel	fragments.wRand	fixed_c200	coding	268-399	1768	1767
+dmel	fragments.wRand	fixed_c200	coding	>=400	1754	1753
+dmel	fragments.wRand	fixed_c200	negative	75-99		3
+dmel	fragments.wRand	fixed_c200	negative	100-124		1
+dmel	fragments.wRand	fixed_c200	negative	200-267		1
+dmel	fragments.wRand	fixed_c200	negative	268-399		2
+dmel	fragments.wRand	inverse_c200	coding	0-49	1251	1
+dmel	fragments.wRand	inverse_c200	coding	50-74	1408	74
+dmel	fragments.wRand	inverse_c200	coding	75-99	1361	651
+dmel	fragments.wRand	inverse_c200	coding	100-124	1276	1042
+dmel	fragments.wRand	inverse_c200	coding	125-149	1136	1052
+dmel	fragments.wRand	inverse_c200	coding	150-199	1969	1898
+dmel	fragments.wRand	inverse_c200	coding	200-267	1961	1911
+dmel	fragments.wRand	inverse_c200	coding	268-399	1768	1767
+dmel	fragments.wRand	inverse_c200	coding	>=400	1754	1753
+dmel	fragments.wRand	inverse_c200	negative	75-99		1
+dmel	fragments.wRand	inverse_c200	negative	100-124		1
+dmel	fragments.wRand	inverse_c200	negative	200-267		1
+dmel	fragments.wRand	inverse_c200	negative	268-399		2
+mouse	fragments.wRand	cliff_c200	coding	0-49	1073	29
+mouse	fragments.wRand	cliff_c200	coding	50-74	1641	517
+mouse	fragments.wRand	cliff_c200	coding	75-99	2048	1213
+mouse	fragments.wRand	cliff_c200	coding	100-124	2186	2080
+mouse	fragments.wRand	cliff_c200	coding	125-149	2456	2387
+mouse	fragments.wRand	cliff_c200	coding	150-199	3399	3304
+mouse	fragments.wRand	cliff_c200	coding	200-267	2992	2926
+mouse	fragments.wRand	cliff_c200	coding	268-399	2905	2896
+mouse	fragments.wRand	cliff_c200	coding	>=400	2709	2707
+mouse	fragments.wRand	cliff_c200	negative	0-49		1
+mouse	fragments.wRand	cliff_c200	negative	50-74		9
+mouse	fragments.wRand	cliff_c200	negative	75-99		5
+mouse	fragments.wRand	cliff_c200	negative	100-124		5
+mouse	fragments.wRand	cliff_c200	negative	125-149		1
+mouse	fragments.wRand	cliff_c200	negative	150-199		1
+mouse	fragments.wRand	cliff_c200	negative	200-267		1
+mouse	fragments.wRand	cliff_c200	negative	268-399		5
+mouse	fragments.wRand	taper_c150	coding	0-49	1073	19
+mouse	fragments.wRand	taper_c150	coding	50-74	1641	584
+mouse	fragments.wRand	taper_c150	coding	75-99	2048	1369
+mouse	fragments.wRand	taper_c150	coding	100-124	2186	1796
+mouse	fragments.wRand	taper_c150	coding	125-149	2456	2282
+mouse	fragments.wRand	taper_c150	coding	150-199	3399	3238
+mouse	fragments.wRand	taper_c150	coding	200-267	2992	2915
+mouse	fragments.wRand	taper_c150	coding	268-399	2905	2896
+mouse	fragments.wRand	taper_c150	coding	>=400	2709	2707
+mouse	fragments.wRand	taper_c150	negative	0-49		1
+mouse	fragments.wRand	taper_c150	negative	50-74		15
+mouse	fragments.wRand	taper_c150	negative	75-99		14
+mouse	fragments.wRand	taper_c150	negative	100-124		5
+mouse	fragments.wRand	taper_c150	negative	125-149		1
+mouse	fragments.wRand	taper_c150	negative	150-199		1
+mouse	fragments.wRand	taper_c150	negative	200-267		1
+mouse	fragments.wRand	taper_c150	negative	268-399		5
+mouse	fragments.wRand	taper_c200	coding	0-49	1073	7
+mouse	fragments.wRand	taper_c200	coding	50-74	1641	314
+mouse	fragments.wRand	taper_c200	coding	75-99	2048	1068
+mouse	fragments.wRand	taper_c200	coding	100-124	2186	1591
+mouse	fragments.wRand	taper_c200	coding	125-149	2456	2186
+mouse	fragments.wRand	taper_c200	coding	150-199	3399	3203
+mouse	fragments.wRand	taper_c200	coding	200-267	2992	2909
+mouse	fragments.wRand	taper_c200	coding	268-399	2905	2897
+mouse	fragments.wRand	taper_c200	coding	>=400	2709	2707
+mouse	fragments.wRand	taper_c200	negative	0-49		1
+mouse	fragments.wRand	taper_c200	negative	50-74		2
+mouse	fragments.wRand	taper_c200	negative	75-99		3
+mouse	fragments.wRand	taper_c200	negative	100-124		3
+mouse	fragments.wRand	taper_c200	negative	125-149		1
+mouse	fragments.wRand	taper_c200	negative	150-199		1
+mouse	fragments.wRand	taper_c200	negative	200-267		1
+mouse	fragments.wRand	taper_c200	negative	268-399		5
+mouse	fragments.wRand	fixed_c150	coding	0-49	1073	28
+mouse	fragments.wRand	fixed_c150	coding	50-74	1641	752
+mouse	fragments.wRand	fixed_c150	coding	75-99	2048	1398
+mouse	fragments.wRand	fixed_c150	coding	100-124	2186	1741
+mouse	fragments.wRand	fixed_c150	coding	125-149	2456	2196
+mouse	fragments.wRand	fixed_c150	coding	150-199	3399	3152
+mouse	fragments.wRand	fixed_c150	coding	200-267	2992	2869
+mouse	fragments.wRand	fixed_c150	coding	268-399	2905	2896
+mouse	fragments.wRand	fixed_c150	coding	>=400	2709	2707
+mouse	fragments.wRand	fixed_c150	negative	0-49		1
+mouse	fragments.wRand	fixed_c150	negative	50-74		55
+mouse	fragments.wRand	fixed_c150	negative	75-99		18
+mouse	fragments.wRand	fixed_c150	negative	100-124		5
+mouse	fragments.wRand	fixed_c150	negative	125-149		1
+mouse	fragments.wRand	fixed_c150	negative	150-199		1
+mouse	fragments.wRand	fixed_c150	negative	200-267		1
+mouse	fragments.wRand	fixed_c150	negative	268-399		5
+mouse	fragments.wRand	fixed_c200	coding	0-49	1073	14
+mouse	fragments.wRand	fixed_c200	coding	50-74	1641	490
+mouse	fragments.wRand	fixed_c200	coding	75-99	2048	1128
+mouse	fragments.wRand	fixed_c200	coding	100-124	2186	1486
+mouse	fragments.wRand	fixed_c200	coding	125-149	2456	2030
+mouse	fragments.wRand	fixed_c200	coding	150-199	3399	3035
+mouse	fragments.wRand	fixed_c200	coding	200-267	2992	2827
+mouse	fragments.wRand	fixed_c200	coding	268-399	2905	2897
+mouse	fragments.wRand	fixed_c200	coding	>=400	2709	2707
+mouse	fragments.wRand	fixed_c200	negative	0-49		1
+mouse	fragments.wRand	fixed_c200	negative	50-74		9
+mouse	fragments.wRand	fixed_c200	negative	75-99		5
+mouse	fragments.wRand	fixed_c200	negative	100-124		3
+mouse	fragments.wRand	fixed_c200	negative	125-149		1
+mouse	fragments.wRand	fixed_c200	negative	150-199		1
+mouse	fragments.wRand	fixed_c200	negative	200-267		1
+mouse	fragments.wRand	fixed_c200	negative	268-399		5
+mouse	fragments.wRand	inverse_c200	coding	0-49	1073	6
+mouse	fragments.wRand	inverse_c200	coding	50-74	1641	168
+mouse	fragments.wRand	inverse_c200	coding	75-99	2048	976
+mouse	fragments.wRand	inverse_c200	coding	100-124	2186	1628
+mouse	fragments.wRand	inverse_c200	coding	125-149	2456	2204
+mouse	fragments.wRand	inverse_c200	coding	150-199	3399	3201
+mouse	fragments.wRand	inverse_c200	coding	200-267	2992	2900
+mouse	fragments.wRand	inverse_c200	coding	268-399	2905	2897
+mouse	fragments.wRand	inverse_c200	coding	>=400	2709	2707
+mouse	fragments.wRand	inverse_c200	negative	0-49		1
+mouse	fragments.wRand	inverse_c200	negative	50-74		1
+mouse	fragments.wRand	inverse_c200	negative	75-99		2
+mouse	fragments.wRand	inverse_c200	negative	100-124		3
+mouse	fragments.wRand	inverse_c200	negative	125-149		1
+mouse	fragments.wRand	inverse_c200	negative	150-199		1
+mouse	fragments.wRand	inverse_c200	negative	200-267		1
+mouse	fragments.wRand	inverse_c200	negative	268-399		5
+human	fragments.wRand	cliff_c200	coding	0-49	1033	36
+human	fragments.wRand	cliff_c200	coding	50-74	1442	534
+human	fragments.wRand	cliff_c200	coding	75-99	1578	998
+human	fragments.wRand	cliff_c200	coding	100-124	1742	1683
+human	fragments.wRand	cliff_c200	coding	125-149	1808	1778
+human	fragments.wRand	cliff_c200	coding	150-199	3125	3085
+human	fragments.wRand	cliff_c200	coding	200-267	2917	2896
+human	fragments.wRand	cliff_c200	coding	268-399	2823	2820
+human	fragments.wRand	cliff_c200	coding	>=400	2699	2699
+human	fragments.wRand	cliff_c200	negative	0-49		1
+human	fragments.wRand	cliff_c200	negative	50-74		14
+human	fragments.wRand	cliff_c200	negative	75-99		6
+human	fragments.wRand	cliff_c200	negative	100-124		5
+human	fragments.wRand	cliff_c200	negative	150-199		2
+human	fragments.wRand	cliff_c200	negative	200-267		3
+human	fragments.wRand	cliff_c200	negative	268-399		10
+human	fragments.wRand	taper_c150	coding	0-49	1033	33
+human	fragments.wRand	taper_c150	coding	50-74	1442	618
+human	fragments.wRand	taper_c150	coding	75-99	1578	1127
+human	fragments.wRand	taper_c150	coding	100-124	1742	1480
+human	fragments.wRand	taper_c150	coding	125-149	1808	1699
+human	fragments.wRand	taper_c150	coding	150-199	3125	3032
+human	fragments.wRand	taper_c150	coding	200-267	2917	2887
+human	fragments.wRand	taper_c150	coding	268-399	2823	2820
+human	fragments.wRand	taper_c150	coding	>=400	2699	2699
+human	fragments.wRand	taper_c150	negative	0-49		1
+human	fragments.wRand	taper_c150	negative	50-74		26
+human	fragments.wRand	taper_c150	negative	75-99		13
+human	fragments.wRand	taper_c150	negative	150-199		2
+human	fragments.wRand	taper_c150	negative	200-267		3
+human	fragments.wRand	taper_c150	negative	268-399		10
+human	fragments.wRand	taper_c200	coding	0-49	1033	11
+human	fragments.wRand	taper_c200	coding	50-74	1442	332
+human	fragments.wRand	taper_c200	coding	75-99	1578	874
+human	fragments.wRand	taper_c200	coding	100-124	1742	1343
+human	fragments.wRand	taper_c200	coding	125-149	1808	1650
+human	fragments.wRand	taper_c200	coding	150-199	3125	3007
+human	fragments.wRand	taper_c200	coding	200-267	2917	2885
+human	fragments.wRand	taper_c200	coding	268-399	2823	2820
+human	fragments.wRand	taper_c200	coding	>=400	2699	2699
+human	fragments.wRand	taper_c200	negative	0-49		1
+human	fragments.wRand	taper_c200	negative	50-74		2
+human	fragments.wRand	taper_c200	negative	75-99		2
+human	fragments.wRand	taper_c200	negative	150-199		2
+human	fragments.wRand	taper_c200	negative	200-267		3
+human	fragments.wRand	taper_c200	negative	268-399		10
+human	fragments.wRand	fixed_c150	coding	0-49	1033	49
+human	fragments.wRand	fixed_c150	coding	50-74	1442	743
+human	fragments.wRand	fixed_c150	coding	75-99	1578	1159
+human	fragments.wRand	fixed_c150	coding	100-124	1742	1441
+human	fragments.wRand	fixed_c150	coding	125-149	1808	1652
+human	fragments.wRand	fixed_c150	coding	150-199	3125	2955
+human	fragments.wRand	fixed_c150	coding	200-267	2917	2837
+human	fragments.wRand	fixed_c150	coding	268-399	2823	2820
+human	fragments.wRand	fixed_c150	coding	>=400	2699	2699
+human	fragments.wRand	fixed_c150	negative	0-49		1
+human	fragments.wRand	fixed_c150	negative	50-74		76
+human	fragments.wRand	fixed_c150	negative	75-99		17
+human	fragments.wRand	fixed_c150	negative	150-199		2
+human	fragments.wRand	fixed_c150	negative	200-267		3
+human	fragments.wRand	fixed_c150	negative	268-399		10
+human	fragments.wRand	fixed_c200	coding	0-49	1033	26
+human	fragments.wRand	fixed_c200	coding	50-74	1442	498
+human	fragments.wRand	fixed_c200	coding	75-99	1578	926
+human	fragments.wRand	fixed_c200	coding	100-124	1742	1264
+human	fragments.wRand	fixed_c200	coding	125-149	1808	1532
+human	fragments.wRand	fixed_c200	coding	150-199	3125	2858
+human	fragments.wRand	fixed_c200	coding	200-267	2917	2791
+human	fragments.wRand	fixed_c200	coding	268-399	2823	2820
+human	fragments.wRand	fixed_c200	coding	>=400	2699	2699
+human	fragments.wRand	fixed_c200	negative	0-49		1
+human	fragments.wRand	fixed_c200	negative	50-74		14
+human	fragments.wRand	fixed_c200	negative	75-99		6
+human	fragments.wRand	fixed_c200	negative	150-199		2
+human	fragments.wRand	fixed_c200	negative	200-267		3
+human	fragments.wRand	fixed_c200	negative	268-399		10
+human	fragments.wRand	inverse_c200	coding	0-49	1033	5
+human	fragments.wRand	inverse_c200	coding	50-74	1442	188
+human	fragments.wRand	inverse_c200	coding	75-99	1578	817
+human	fragments.wRand	inverse_c200	coding	100-124	1742	1362
+human	fragments.wRand	inverse_c200	coding	125-149	1808	1660
+human	fragments.wRand	inverse_c200	coding	150-199	3125	3006
+human	fragments.wRand	inverse_c200	coding	200-267	2917	2867
+human	fragments.wRand	inverse_c200	coding	268-399	2823	2820
+human	fragments.wRand	inverse_c200	coding	>=400	2699	2699
+human	fragments.wRand	inverse_c200	negative	0-49		1
+human	fragments.wRand	inverse_c200	negative	50-74		1
+human	fragments.wRand	inverse_c200	negative	75-99		2
+human	fragments.wRand	inverse_c200	negative	150-199		2
+human	fragments.wRand	inverse_c200	negative	200-267		3
+human	fragments.wRand	inverse_c200	negative	268-399		10
+creinhardtii	fragments.wRand	cliff_c200	coding	0-49	1679	44
+creinhardtii	fragments.wRand	cliff_c200	coding	50-74	1287	564
+creinhardtii	fragments.wRand	cliff_c200	coding	75-99	1191	836
+creinhardtii	fragments.wRand	cliff_c200	coding	100-124	1198	1104
+creinhardtii	fragments.wRand	cliff_c200	coding	125-149	1148	1096
+creinhardtii	fragments.wRand	cliff_c200	coding	150-199	2000	1958
+creinhardtii	fragments.wRand	cliff_c200	coding	200-267	2196	2170
+creinhardtii	fragments.wRand	cliff_c200	coding	268-399	2744	2733
+creinhardtii	fragments.wRand	cliff_c200	coding	>=400	4178	4177
+creinhardtii	fragments.wRand	cliff_c200	negative	100-124		1
+creinhardtii	fragments.wRand	cliff_c200	negative	268-399		1
+creinhardtii	fragments.wRand	cliff_c200	negative	>=400		14
+creinhardtii	fragments.wRand	taper_c150	coding	0-49	1679	47
+creinhardtii	fragments.wRand	taper_c150	coding	50-74	1287	700
+creinhardtii	fragments.wRand	taper_c150	coding	75-99	1191	899
+creinhardtii	fragments.wRand	taper_c150	coding	100-124	1198	1058
+creinhardtii	fragments.wRand	taper_c150	coding	125-149	1148	1069
+creinhardtii	fragments.wRand	taper_c150	coding	150-199	2000	1948
+creinhardtii	fragments.wRand	taper_c150	coding	200-267	2196	2166
+creinhardtii	fragments.wRand	taper_c150	coding	268-399	2744	2731
+creinhardtii	fragments.wRand	taper_c150	coding	>=400	4178	4177
+creinhardtii	fragments.wRand	taper_c150	negative	268-399		1
+creinhardtii	fragments.wRand	taper_c150	negative	>=400		14
+creinhardtii	fragments.wRand	taper_c200	coding	0-49	1679	27
+creinhardtii	fragments.wRand	taper_c200	coding	50-74	1287	472
+creinhardtii	fragments.wRand	taper_c200	coding	75-99	1191	797
+creinhardtii	fragments.wRand	taper_c200	coding	100-124	1198	1000
+creinhardtii	fragments.wRand	taper_c200	coding	125-149	1148	1047
+creinhardtii	fragments.wRand	taper_c200	coding	150-199	2000	1940
+creinhardtii	fragments.wRand	taper_c200	coding	200-267	2196	2162
+creinhardtii	fragments.wRand	taper_c200	coding	268-399	2744	2730
+creinhardtii	fragments.wRand	taper_c200	coding	>=400	4178	4177
+creinhardtii	fragments.wRand	taper_c200	negative	268-399		1
+creinhardtii	fragments.wRand	taper_c200	negative	>=400		14
+creinhardtii	fragments.wRand	fixed_c150	coding	0-49	1679	55
+creinhardtii	fragments.wRand	fixed_c150	coding	50-74	1287	750
+creinhardtii	fragments.wRand	fixed_c150	coding	75-99	1191	906
+creinhardtii	fragments.wRand	fixed_c150	coding	100-124	1198	1051
+creinhardtii	fragments.wRand	fixed_c150	coding	125-149	1148	1063
+creinhardtii	fragments.wRand	fixed_c150	coding	150-199	2000	1940
+creinhardtii	fragments.wRand	fixed_c150	coding	200-267	2196	2162
+creinhardtii	fragments.wRand	fixed_c150	coding	268-399	2744	2729
+creinhardtii	fragments.wRand	fixed_c150	coding	>=400	4178	4177
+creinhardtii	fragments.wRand	fixed_c150	negative	50-74		2
+creinhardtii	fragments.wRand	fixed_c150	negative	268-399		1
+creinhardtii	fragments.wRand	fixed_c150	negative	>=400		14
+creinhardtii	fragments.wRand	fixed_c200	coding	0-49	1679	32
+creinhardtii	fragments.wRand	fixed_c200	coding	50-74	1287	547
+creinhardtii	fragments.wRand	fixed_c200	coding	75-99	1191	818
+creinhardtii	fragments.wRand	fixed_c200	coding	100-124	1198	986
+creinhardtii	fragments.wRand	fixed_c200	coding	125-149	1148	1036
+creinhardtii	fragments.wRand	fixed_c200	coding	150-199	2000	1919
+creinhardtii	fragments.wRand	fixed_c200	coding	200-267	2196	2156
+creinhardtii	fragments.wRand	fixed_c200	coding	268-399	2744	2728
+creinhardtii	fragments.wRand	fixed_c200	coding	>=400	4178	4177
+creinhardtii	fragments.wRand	fixed_c200	negative	268-399		1
+creinhardtii	fragments.wRand	fixed_c200	negative	>=400		14
+creinhardtii	fragments.wRand	inverse_c200	coding	0-49	1679	20
+creinhardtii	fragments.wRand	inverse_c200	coding	50-74	1287	223
+creinhardtii	fragments.wRand	inverse_c200	coding	75-99	1191	737
+creinhardtii	fragments.wRand	inverse_c200	coding	100-124	1198	1020
+creinhardtii	fragments.wRand	inverse_c200	coding	125-149	1148	1065
+creinhardtii	fragments.wRand	inverse_c200	coding	150-199	2000	1948
+creinhardtii	fragments.wRand	inverse_c200	coding	200-267	2196	2168
+creinhardtii	fragments.wRand	inverse_c200	coding	268-399	2744	2733
+creinhardtii	fragments.wRand	inverse_c200	coding	>=400	4178	4177
+creinhardtii	fragments.wRand	inverse_c200	negative	268-399		1
+creinhardtii	fragments.wRand	inverse_c200	negative	>=400		14
