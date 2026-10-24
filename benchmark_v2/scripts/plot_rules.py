@@ -2,8 +2,9 @@
 """Sensitivity against calls on negatives for the short-ORF rule families (fresh full runs), with
 other tools as points.
 
-Input: score_negatives.py output. Labels '<rule>_c<C>' (rule: cliff, fixed, inverse, taper) are drawn
-as one curve per rule over C; other labels given on the command line are drawn as single points.
+Input: score_negatives.py output. Labels '<rule>_c<C>' (rule: cliff, fixed, inverse, taper, curve) are
+drawn as one curve per rule over C, and 'decoy_q<Q>' as one curve over the q cutoff; other labels given on
+the command line are drawn as single points.
 Per variant: the median over organisms of each metric.
 
 usage: plot_rules.py <scores.tsv> <out_prefix> [label,label,... to draw as points]
@@ -23,8 +24,10 @@ VARIANTS = [("complete.wRand", "complete + random"), ("fragments.wRand", "fragme
 RULES = [("cliff", "cliff: C below 100 codons only (release)", "k"),
          ("fixed", "fixed: C at all lengths", "tab:orange"),
          ("inverse", "inverse: C x 100/L", "tab:green"),
-         ("taper", "taper: C at 100 codons -> 0 at auto-accept", "tab:blue")]
-RX = re.compile(r"^(cliff|fixed|inverse|taper)_c([0-9.]+)$")
+         ("taper", "taper: C at 100 codons -> 0 at auto-accept", "tab:blue"),
+         ("curve", "curve: oracle log-odds taper", "tab:purple"),
+         ("decoy", "decoy FDR: q cutoff (shuffled transcripts)", "tab:red")]
+RX = re.compile(r"^(cliff|fixed|inverse|taper|curve|decoy)_[cq]([0-9.]+)$")
 MARK = "ovs^D<>pPhX*"
 
 
@@ -42,7 +45,7 @@ def main():
         for i, metric in enumerate(["sens_stop", "sens_exact"]):
             ax = axes[i, j]
             for rule, name, col in RULES:
-                f = m[m.label.str.match(rf"^{rule}_c[0-9.]+$")].copy()
+                f = m[m.label.str.match(rf"^{rule}_[cq][0-9.]+$")].copy()
                 if not len(f):
                     continue
                 f["c"] = f.label.map(lambda x: float(RX.match(x).group(2)))

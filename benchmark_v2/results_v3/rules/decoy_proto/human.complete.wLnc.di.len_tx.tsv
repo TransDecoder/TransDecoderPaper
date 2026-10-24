@@ -1,0 +1,13 @@
+label	q_cutoff	sens_stop	neg_rate	n_pred
+human.complete.wLnc.len_tx	0.001	0.9338	0.0271	18820
+human.complete.wLnc.len_tx	0.002	0.9355	0.0273	18857
+human.complete.wLnc.len_tx	0.005	0.9403	0.0282	18980
+human.complete.wLnc.len_tx	0.01	0.9461	0.0293	19130
+human.complete.wLnc.len_tx	0.02	0.9515	0.0309	19294
+human.complete.wLnc.len_tx	0.05	0.9593	0.0382	19689
+human.complete.wLnc.len_tx	0.1	0.9674	0.0506	20268
+human.complete.wLnc.len_tx	0.2	0.9732	0.0713	21084
+human.complete.wLnc.len_tx	0.3	0.9763	0.0897	21772
+human.complete.wLnc.len_tx	0.5	0.9806	0.1364	23438
+human.complete.wLnc.len_tx	1	0.9879	0.3837	31966
+human.complete.wLnc.len_tx	base	0.9879	0.6361	40467

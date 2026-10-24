@@ -1,0 +1,13 @@
+label	q_cutoff	sens_stop	neg_rate	n_pred
+human.fragments.wRand.len_tx	0.001	0.7610	0.0005	14609
+human.fragments.wRand.len_tx	0.002	0.7701	0.0005	14783
+human.fragments.wRand.len_tx	0.005	0.7923	0.0006	15215
+human.fragments.wRand.len_tx	0.01	0.8169	0.0008	15698
+human.fragments.wRand.len_tx	0.02	0.8458	0.0009	16265
+human.fragments.wRand.len_tx	0.05	0.8732	0.0011	16811
+human.fragments.wRand.len_tx	0.1	0.8942	0.0017	17253
+human.fragments.wRand.len_tx	0.2	0.9129	0.0025	17687
+human.fragments.wRand.len_tx	0.3	0.9207	0.0029	17888
+human.fragments.wRand.len_tx	0.5	0.9272	0.0041	18074
+human.fragments.wRand.len_tx	1	0.9314	0.0067	18238
+human.fragments.wRand.len_tx	base	0.9314	0.0289	18710

@@ -1,0 +1,13 @@
+label	q_cutoff	sens_stop	neg_rate	n_pred
+human.mono	0.001	0.9403	0.0345	19194
+human.mono	0.002	0.9459	0.0385	19439
+human.mono	0.005	0.9553	0.0579	20277
+human.mono	0.01	0.9626	0.0892	21476
+human.mono	0.02	0.9713	0.1463	23578
+human.mono	0.05	0.9797	0.2781	28196
+human.mono	0.1	0.9852	0.5521	37561
+human.mono	0.2	0.9855	0.6335	40330
+human.mono	0.3	0.9855	0.6335	40330
+human.mono	0.5	0.9855	0.6335	40330
+human.mono	1	0.9879	0.6361	40467
+human.mono	base	0.9879	0.6361	40467

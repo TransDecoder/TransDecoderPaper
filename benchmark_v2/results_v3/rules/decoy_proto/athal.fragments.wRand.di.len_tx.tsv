@@ -1,0 +1,13 @@
+label	q_cutoff	sens_stop	neg_rate	n_pred
+athal.fragments.wRand.len_tx	0.001	0.6153	0.0003	16558
+athal.fragments.wRand.len_tx	0.002	0.6303	0.0003	16964
+athal.fragments.wRand.len_tx	0.005	0.6597	0.0003	17759
+athal.fragments.wRand.len_tx	0.01	0.6865	0.0004	18489
+athal.fragments.wRand.len_tx	0.02	0.7261	0.0008	19581
+athal.fragments.wRand.len_tx	0.05	0.7752	0.0016	20956
+athal.fragments.wRand.len_tx	0.1	0.8034	0.0030	21788
+athal.fragments.wRand.len_tx	0.2	0.8341	0.0058	22757
+athal.fragments.wRand.len_tx	0.3	0.8497	0.0080	23297
+athal.fragments.wRand.len_tx	0.5	0.8651	0.0119	23925
+athal.fragments.wRand.len_tx	1	0.8752	0.0150	24375
+athal.fragments.wRand.len_tx	base	0.8757	0.0591	25670

@@ -1,0 +1,13 @@
+label	q_cutoff	sens_stop	neg_rate	n_pred
+dmel.fragments.wRand.len_tx_type	0.001	0.8101	0.0024	11331
+dmel.fragments.wRand.len_tx_type	0.002	0.8106	0.0024	11340
+dmel.fragments.wRand.len_tx_type	0.005	0.8233	0.0025	11519
+dmel.fragments.wRand.len_tx_type	0.01	0.8292	0.0026	11603
+dmel.fragments.wRand.len_tx_type	0.02	0.8406	0.0030	11770
+dmel.fragments.wRand.len_tx_type	0.05	0.8572	0.0035	12017
+dmel.fragments.wRand.len_tx_type	0.1	0.8682	0.0042	12187
+dmel.fragments.wRand.len_tx_type	0.2	0.8756	0.0055	12321
+dmel.fragments.wRand.len_tx_type	0.3	0.8778	0.0063	12369
+dmel.fragments.wRand.len_tx_type	0.5	0.8778	0.0074	12387
+dmel.fragments.wRand.len_tx_type	1	0.8836	0.0109	12518
+dmel.fragments.wRand.len_tx_type	base	0.8837	0.0319	12829

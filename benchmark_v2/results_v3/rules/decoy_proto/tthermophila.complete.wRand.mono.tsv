@@ -1,0 +1,13 @@
+label	q_cutoff	sens_stop	neg_rate	n_pred
+tthermophila.mono	0.001	0.8326	0.0003	22280
+tthermophila.mono	0.002	0.8412	0.0003	22518
+tthermophila.mono	0.005	0.8428	0.0003	22565
+tthermophila.mono	0.01	0.8500	0.0003	22767
+tthermophila.mono	0.02	0.8618	0.0005	23107
+tthermophila.mono	0.05	0.8718	0.0007	23416
+tthermophila.mono	0.1	0.8793	0.0014	23679
+tthermophila.mono	0.2	0.8846	0.0026	23892
+tthermophila.mono	0.3	0.8905	0.0036	24145
+tthermophila.mono	0.5	0.8956	0.0064	24403
+tthermophila.mono	1	0.9078	0.0440	26170
+tthermophila.mono	base	0.9100	0.1463	29392

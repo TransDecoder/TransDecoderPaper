@@ -54,3 +54,4 @@ Rules:
 | E17 | [Earlier critiques old vs new; bootstrap CIs](E17_critiques_and_uncertainty.md) | planned supplement |
 | E18 | [Stringency sweep for a --precise mode; TD2-preprint benchmarks revisited](E18_stringency_precise_mode.md) | planned (supplement / --precise option) |
 | E19 | [Short-ORF threshold shape: removing the 100-codon cliff](E19_short_orf_rule_shape.md) | planned (default-rule decision) |
+| E20 | [Target-decoy FDR rule (shuffled-transcript decoys)](E20_decoy_fdr_rule.md) | planned (default-rule decision) |
