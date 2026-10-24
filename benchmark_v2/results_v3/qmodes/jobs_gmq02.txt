@@ -1,0 +1,2 @@
+decoy_q0.2_longgc /broad/hptmp/bhaas/TRANSDECODER_PAPER/work/gm12878_td/comparators/inputs/lraa.fa /broad/hptmp/bhaas/TRANSDECODER_PAPER/work/bench_v3/rules/gm12878/lraa/decoy_q0.2_longgc human
+decoy_q0.2_longgc /broad/hptmp/bhaas/TRANSDECODER_PAPER/work/gm12878_td/comparators/inputs/stringtie.fa /broad/hptmp/bhaas/TRANSDECODER_PAPER/work/bench_v3/rules/gm12878/stringtie/decoy_q0.2_longgc human
