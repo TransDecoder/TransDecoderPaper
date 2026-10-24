@@ -1,0 +1,7 @@
+/broad/hptmp/bhaas/TRANSDECODER_PAPER/data/bench_v3/inputs/tthermophila/fragments.wRand.fa /broad/hptmp/bhaas/TRANSDECODER_PAPER/work/bench_v3/parity/tthermophila_fragments Tetrahymena S
+/broad/hptmp/bhaas/TRANSDECODER_PAPER/data/bench_v3/inputs/dmel/fragments.unstranded.wRand.fa /broad/hptmp/bhaas/TRANSDECODER_PAPER/work/bench_v3/parity/dmel_fragments_unstranded Universal U
+/broad/hptmp/bhaas/TRANSDECODER_PAPER/data/bench_v3/inputs/human/complete.wLnc.fa /broad/hptmp/bhaas/TRANSDECODER_PAPER/work/bench_v3/parity/human_complete_wLnc Universal S
+/broad/hptmp/bhaas/TRANSDECODER_PAPER/data/bench_v3/inputs/creinhardtii/complete.wRand.fa /broad/hptmp/bhaas/TRANSDECODER_PAPER/work/bench_v3/parity/creinhardtii_precise Universal S --precise
+/broad/hptmp/bhaas/TRANSDECODER_PAPER/work/bench_v3/presets/tests/human/complete.wRand.B200.r1.fa /broad/hptmp/bhaas/TRANSDECODER_PAPER/work/bench_v3/parity/human_B200_preset Universal S --preset /broad/hptmp/bhaas/TRANSDECODER_PAPER/work/bench_v3/presets/presets/humanmix
+/broad/hptmp/bhaas/TRANSDECODER_PAPER/work/bench_v3/presets/tests/human/fragments.wRand.B200.r1.fa /broad/hptmp/bhaas/TRANSDECODER_PAPER/work/bench_v3/parity/human_B200_frag_preset_sensitive Universal S --preset /broad/hptmp/bhaas/TRANSDECODER_PAPER/work/bench_v3/presets/presets/humanmix --sensitive
+/broad/hptmp/bhaas/TRANSDECODER_PAPER/work/bench_v3/presets/tests/human/complete.wRand.B200.r1.fa /broad/hptmp/bhaas/TRANSDECODER_PAPER/work/bench_v3/parity/human_B200_nopreset Universal S

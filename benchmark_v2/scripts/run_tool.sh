@@ -4,6 +4,8 @@
 # usage: run_tool.sh <tool> <input.fa> <outdir> <org>
 #
 # tools: pytd pytd_norefine pytd_homology pytd_dev_v2_homology perl_td perl_td_v600 perl_td_v571 prodigal codan gmst
+#        pytd_v7 pytd_v7_precise pytd_v7_sensitive pytd_v7_homology perl_td_v7 perl_td_v7_precise perl_td_v7_sensitive
+#        (v7: the release commits, worktrees PYTD_V7 / TD_V7; decoy-FDR ORF rule)
 #        cpat cpc2 borf rnasamba angel
 # Inputs named *.unstranded* are predicted on both strands; other inputs are treated
 # as strand-specific (TransDecoder -S, Prodigal + strand only, CodAn --strand plus).
@@ -35,6 +37,8 @@ TD_V600=${TD_V600:-$ROOT/work/trees/TD_base}
 TD_V571=${TD_V571:-$ROOT/work/trees/TD_v571}
 PYTD=${PYTD:-$ROOT/work/trees/PY_fix}
 PYTD_DEV=${PYTD_DEV:-$ROOT/work/trees/PY_dev}
+PYTD_V7=${PYTD_V7:-$ROOT/work/trees/PY_v7}
+TD_V7=${TD_V7:-$ROOT/work/trees/TD_v7}
 export PATH=$ROOT/env/td/bin:$PATH PERL_HASH_SEED=0
 
 orgrow=$(awk -F'\t' -v o="$org" '$1==o' "$here/../organisms.tsv")
@@ -53,6 +57,26 @@ ln -sf "$input" input.fa
 t0=$(date +%s.%N)
 
 case $tool in
+  pytd_v7|pytd_v7_precise|pytd_v7_sensitive)
+    # release PyTransDecoder (decoy-FDR rule): default q 0.05, --precise (0.01), --sensitive (0.2)
+    ss=(); [ $stranded = 1 ] && ss=(-S)
+    qa=(); [ $tool = pytd_v7_precise ] && qa=(--precise); [ $tool = pytd_v7_sensitive ] && qa=(--sensitive)
+    (cd "$PYTD_V7" && git rev-parse --short HEAD) > pytd_version.txt
+    PYTHONPATH=$PYTD_V7 $PYTHON -m pytransdecoder.cli longorfs -t input.fa -G "$gcode" ${ss[@]+"${ss[@]}"} > longorfs.log 2>&1
+    PYTHONPATH=$PYTD_V7 $PYTHON -m pytransdecoder.cli predict -t input.fa -G "$gcode" ${qa[@]+"${qa[@]}"} > predict.log 2>&1
+    $PYTHON "$here/convert_predictions.py" transdecoder_gff3 input.fa.transdecoder.gff3 > preds.tsv
+    lo=input.fa.transdecoder_dir/longest_orfs.gff3
+    $PYTHON "$here/convert_predictions.py" transdecoder_gff3 --longest-per-transcript $lo > longest_orf.preds.tsv
+    ;;
+  perl_td_v7|perl_td_v7_precise|perl_td_v7_sensitive)
+    # release TransDecoder (Perl), same rule and settings as pytd_v7*
+    ss=(); [ $stranded = 1 ] && ss=(-S)
+    qa=(); [ $tool = perl_td_v7_precise ] && qa=(--precise); [ $tool = perl_td_v7_sensitive ] && qa=(--sensitive)
+    (cd "$TD_V7" && git rev-parse --short HEAD) > td_version.txt
+    "$TD_V7/util/TransDecoder.LongOrfs" -t input.fa -G "$gcode" ${ss[@]+"${ss[@]}"} > longorfs.log 2>&1
+    "$TD_V7/util/TransDecoder.Predict" -t input.fa -G "$gcode" ${qa[@]+"${qa[@]}"} > predict.log 2>&1
+    $PYTHON "$here/convert_predictions.py" transdecoder_gff3 input.fa.transdecoder.gff3 > preds.tsv
+    ;;
   pytd|pytd_norefine|pytd_dev|pytd_dev_pwm|pytd_dev_single|pytd_dev_kozak|pytd_dev_kozak_add|pytd_dev_m[0-9]*|pytd_dev_v2)
     # pytd_dev*: development tree (PYTD_DEV); pytd_dev_pwm chooses trimmed starts by PWM;
     # pytd_dev_single keeps one ORF per transcript (--single-best-only); pytd_dev_kozak: dev defaults
@@ -75,9 +99,10 @@ case $tool in
       $PYTHON "$here/convert_predictions.py" transdecoder_gff3 --longest-per-transcript $lo > longest_orf.preds.tsv
     fi
     ;;
-  pytd_homology|pytd_dev_v2_homology)
+  pytd_homology|pytd_dev_v2_homology|pytd_v7_homology)
     # pytd_dev_v2_homology: the same with the final-default development tree (PYTD_DEV)
     [ $tool = pytd_dev_v2_homology ] && PYTD=$PYTD_DEV
+    [ $tool = pytd_v7_homology ] && PYTD=$PYTD_V7
     # homology-assisted: DIAMOND vs Swiss-Prot without the organism's own entries (-k 1, 1e-5, as
     # in the TransDecoder wrapper) and hmmsearch vs Pfam-A with gathering thresholds
     taxid=$(cut -f7 <<< "$orgrow")
