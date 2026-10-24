@@ -7,6 +7,8 @@
 #   rule: cliff | fixed | inverse | taper | curve   (Predict --short-orf-rule; see PY_taper predict.py)
 #   curve needs a 5th argument: the log prior-odds curve file (--short-orf-curve)
 #   C:    Predict --short-orf-min-contrast
+#   or preset_<name>_q<Q>: Predict --preset $PRESET_DIR/<name> --decoy-q Q (default PRESET_DIR
+#      work/bench_v3/presets/presets)
 #   or decoy_q<Q>[_<strata>][_long<gc|decoy>]: Predict --short-orf-rule decoy --decoy-q Q
 #      [--decoy-strata strata] [--decoy-long-orfs gc|decoy]
 # Tree: $PYTD_TAPER (default work/trees/PY_taper, branch exp/short-orf-taper, from PyTD 44e417a).
@@ -17,7 +19,11 @@ ROOT=${BENCH_ROOT:-/broad/hptmp/bhaas/TRANSDECODER_PAPER}
 PYTHON=${PYTHON:-$ROOT/env/td/bin/python}
 PYTD=${PYTD_TAPER:-$ROOT/work/trees/PY_taper}
 export PATH=$ROOT/env/td/bin:$PATH
-if [[ $setting =~ ^decoy_q([0-9.]+)(_(len|len_tx|len_tx_type))?(_long(gc|decoy))?$ ]]; then
+if [[ $setting =~ ^preset_([A-Za-z0-9]+)_q([0-9.]+)$ ]]; then
+  rule=preset; pdir=${PRESET_DIR:-$ROOT/work/bench_v3/presets/presets}/${BASH_REMATCH[1]}
+  [ -s "$pdir/preset.json" ] || { echo "no preset $pdir" >&2; exit 1; }
+  pargs=(--preset "$pdir" --decoy-q "${BASH_REMATCH[2]}")
+elif [[ $setting =~ ^decoy_q([0-9.]+)(_(len|len_tx|len_tx_type))?(_long(gc|decoy))?$ ]]; then
   rule=decoy; pargs=(--short-orf-rule decoy --decoy-q "${BASH_REMATCH[1]}")
   [ -n "${BASH_REMATCH[3]}" ] && pargs+=(--decoy-strata "${BASH_REMATCH[3]}")
   [ -n "${BASH_REMATCH[5]}" ] && pargs+=(--decoy-long-orfs "${BASH_REMATCH[5]}")

@@ -55,3 +55,4 @@ Rules:
 | E18 | [Stringency sweep for a --precise mode; TD2-preprint benchmarks revisited](E18_stringency_precise_mode.md) | planned (supplement / --precise option) |
 | E19 | [Short-ORF threshold shape: removing the 100-codon cliff](E19_short_orf_rule_shape.md) | planned (default-rule decision) |
 | E20 | [Target-decoy FDR rule (shuffled-transcript decoys)](E20_decoy_fdr_rule.md) | planned (default-rule decision) |
+| E21 | [Presets for small/partial inputs](E21_presets_small_inputs.md) | planned (in paper) |
