@@ -2,7 +2,7 @@
 
 Code: PyTD main 3a793ff (`work/trees/PY_v7`), Perl devel 41fc5ee (`work/trees/TD_v7`). All runs fresh (new run directories; `run_tool.sh` tools `pytd_v7`, `perl_td_v7`, `pytd_v7_precise`, `pytd_v7_sensitive`, `pytd_v7_homology`; GM12878 `genome_annotation/scripts/gm12878_final_v7.sh`). Release defaults: decoy q-value test at q 0.05, GC-table long-ORF accept, 50-codon minimum, start refinement (alpha 0.4, Kozak 17/bit).
 
-Status: phase 1 (pytd_v7, perl_td_v7 on all 84 inputs) and the 7 GM12878 ab initio runs are done and scored here. Still running: phase 2 (`--precise`/`--sensitive` on the 20 negatives inputs), phase 3 (`pytd_v7_homology`, 84 inputs) and the GM12878 Trinity homology run. Add them to this record when done.
+Status: phase 1 (pytd_v7, perl_td_v7 on all 84 inputs) and the 7 GM12878 ab initio runs are done and scored here. Phase 2 (`--precise`/`--sensitive`) is done and scored below. Still running: phase 3 (`pytd_v7_homology`, 84 inputs) and the GM12878 Trinity homology run. Add them to this record when done.
 
 ## Claims supported
 - **Perl and Python give identical predictions on all 84 benchmark inputs** at the release commits (`sort preds.tsv | cmp`; 84/84 identical). This extends E24's 7 parity cases to the full benchmark, with the q-value test active.
@@ -16,6 +16,12 @@ Status: phase 1 (pytd_v7, perl_td_v7 on all 84 inputs) and the 7 GM12878 ab init
   | fragments + lncRNA (human, mouse) | 0.858 / 0.756 / 5.89 | 0.857 / 0.755 / 5.83 | 0.858 / 0.753 / 18.65 |
 
   (`negatives_scores.tsv`, `score_negatives.py`.)
+- **`--precise` and `--sensitive` (phase 2, 40 runs, none failed) also reproduce the development runs** (stop / exact / % negatives called; release vs development):
+
+  | setting | complete + random | fragments + random | complete + lncRNA | fragments + lncRNA |
+  |---|---|---|---|---|
+  | `--precise` (q 0.01) | 0.955 / 0.888 / 0.29 (dev 0.956 / 0.888 / 0.33) | 0.837 / 0.729 / 0.17 (0.836 / 0.727 / 0.19) | 0.950 / 0.881 / 4.25 (0.950 / 0.881 / 4.09) | 0.794 / 0.703 / 4.56 (0.790 / 0.698 / 4.52) |
+  | `--sensitive` (q 0.2) | 0.971 / 0.905 / 0.40 (0.970 / 0.905 / 0.42) | 0.895 / 0.798 / 0.45 (0.896 / 0.799 / 0.43) | 0.974 / 0.904 / 7.80 (0.974 / 0.904 / 7.67) | 0.906 / 0.795 / 10.23 (0.909 / 0.797 / 10.51) |
 - **All 84 inputs, F1 against the previous main-benchmark default (`pytd_dev_v2`, fixed short-ORF test)**, medians (`all_scores.tsv`, `score_predictions.py`):
 
   | inputs | stop F1 | exact F1 | stop sensitivity | stop precision |
@@ -64,5 +70,5 @@ Earlier fixed short-ORF test: LRAA 33,587 / 1,005; StringTie 36,547 / 4,119.
 - GM12878: `gm12878_final_v7.sh` (predict, genome map, `eval_genome_cds.py`, `match_riboseq.py`); then `riboseq_orf_support.py` and `ms_peptide_support.py` with the E01/E02 arguments on the v7 GFF3/pep files (`work/gm12878_td/final_v7_scoring/`).
 
 ## Caveats
-- `--precise`/`--sensitive` benchmark rows and all homology runs pending (above).
+- Homology runs pending (above).
 - GM12878 MANE exact recovery falls 0.5–1.2 points with the q-value test (exact given assembled: LRAA −0.5, StringTie −1.2, Trinity −1.2 points), the price of 2.4- to 4.4-fold fewer unannotated CDSs.
