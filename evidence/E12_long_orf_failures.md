@@ -68,7 +68,7 @@ The run in this record was done step by step, on 2026-10-21, on the shared host 
 5. `summarize`.
 
 ## Outputs
-All outputs are in `$T/analyses/long_orf_failures/results/`.
+All outputs are in `$T/data/long_orf_failures/`.
 
 - **Per-CDS tables:** `per_cds/<org>.per_cds.tsv.gz` and `per_cds/<org>.complete_fullutr.per_cds.tsv.gz`, one row per truth CDS. Each row has:
   - the matched ORF and its scores S1–S6, the contrast, and the rule flags;

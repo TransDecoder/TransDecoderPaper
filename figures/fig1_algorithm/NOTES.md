@@ -16,7 +16,7 @@ at 170 mm width. Panel (a) is a draft schematic that Brian may redraw.
     (l.126-134);
   - start refinement and outputs/genome projection (Start-codon refinement; Outputs).
   The footer states Perl/Python identity (E08).
-- **(b) L\*(GC).** Source: `analyses/long_orf_threshold/final_thresholds.tsv`, column q0.999
+- **(b) L\*(GC).** Source: `data/long_orf_threshold/final_thresholds.tsv`, column q0.999
   (E10). It is drawn as the lookup the code uses: G+C rounded up to the next 5% step, 25% value
   below 25%, no rule above 80% (methods_algorithm.tex l.114-117).
   - Organisms are placed at the G+C of their *complete* input (E07 Table 1, `style.ORG_GC`) with

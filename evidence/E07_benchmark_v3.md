@@ -96,7 +96,7 @@ R=work/bench_v3/runs/tthermophila                           # Predict re-run at 
 TransDecoderPaper/benchmark_v2/scripts/repredict_homology.sh work/trees/PY_48c870c \
   $R/{complete.wRand,complete.unstranded.wRand,fragments.unstranded,fragments.unstranded.wRand,fragments.wRand}/pytd_dev_v2_homology
 env/td/bin/python TransDecoderPaper/benchmark_v2/scripts/score_all.py data/bench_v3/inputs work/bench_v3/runs \
-  > work/bench_v3/scores/summary.tsv          # copied to $T/benchmark_v2/results_v3/summary.tsv
+  > work/bench_v3/scores/summary.tsv          # copied to $T/data/benchmark/summary.tsv
 ```
 - **Launch scripts:** each `launch*.sh` in `launch_v3/` is a copy of `$P/work/bench_v3/launch*.sh`. Each runs `run_all.sh` locally with `xargs -P JOBS`. `launch5/9/10–13/15` are development runs (E04, E09, E10).
 - **Before launch16,** the earlier final-default runs were moved to `$P/work/bench_v3/rerun_old16/` (168 runs; their summary is `rerun_old16/summary.pre16.tsv`). This step is not in the launch script (see Gaps).
@@ -109,10 +109,10 @@ env/td/bin/python TransDecoderPaper/benchmark_v2/scripts/score_all.py data/bench
   - **CPAT cutoffs:** Human 0.364, Mouse 0.44, Fly 0.39. The Human model is used for organisms without their own model.
 
 ## Outputs
-- `$T/benchmark_v2/results_v3/summary.tsv`: 1,957 scored runs, long format. Columns: n_truth, n_pred, tp_stop, tp_exact, fp, fp_random, fp_wrong_strand, fp_dup, fn, sensitivity/precision/F1 at stop and exact level, and runtime_sec.
+- `$T/data/benchmark/summary.tsv`: 1,957 scored runs, long format. Columns: n_truth, n_pred, tp_stop, tp_exact, fp, fp_random, fp_wrong_strand, fp_dup, fn, sensitivity/precision/F1 at stop and exact level, and runtime_sec.
   - It is byte-identical to `$P/work/bench_v3/scores/summary.tsv` (written 2026-10-20 15:37).
-- `$T/benchmark_v2/results_v3/homology_vs_abinitio.tsv`: `pytd_dev_v2_homology` minus `pytd_dev_v2` per input (84 rows), from `compare_homology.py` on the interim rescoring `$P/work/bench_v3/scores/summary.interim_20261022.tsv` (fixed scorer, all runs as of 2026-10-22 11:30; not committed, as CodAn is incomplete).
-- `results_v3/by_length.tsv`, `short_orf_summary.tsv` and `lnc_by_era.human.tsv` are covered in E04.
+- `$T/data/benchmark/homology_vs_abinitio.tsv`: `pytd_dev_v2_homology` minus `pytd_dev_v2` per input (84 rows), from `compare_homology.py` on the interim rescoring `$P/work/bench_v3/scores/summary.interim_20261022.tsv` (fixed scorer, all runs as of 2026-10-22 11:30; not committed, as CodAn is incomplete).
+- `data/benchmark/by_length.tsv`, `short_orf_summary.tsv` and `lnc_by_era.human.tsv` are covered in E04.
 - Per-run outputs (not in git): `$P/work/bench_v3/runs/<org>/<variant>/<tool>/{preds.tsv,runtime_sec.txt,*.log}`. Logs are in `runs/logs/`.
 
 ## Results

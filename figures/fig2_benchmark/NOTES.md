@@ -8,7 +8,7 @@ the fixed scorer, where `fp` is no longer doubled. It also includes the patched 
 fragments.wRand homology row. Once the CodAn runs finish, regenerate summary.tsv and rerun the
 script on it:
 
-    $P/env/td/bin/python make_fig2.py $T/benchmark_v2/results_v3/summary.tsv
+    $P/env/td/bin/python make_fig2.py $T/data/benchmark/summary.tsv
 
 Outputs:
 - `fig2_benchmark.{pdf,png}`;

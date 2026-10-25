@@ -17,7 +17,7 @@ Evidence records: E13 (grid, open ends, GM12878, Kozak distributions), E07 (v6.0
 ## Panels
 
 ### Fig. 3a: open 5' ends without refinement
-- **Source:** `analyses/start_param_sensitivity/results/open_end_mix.tsv`.
+- **Source:** `data/start_param_sensitivity/open_end_mix.tsv`.
 - **Plotted:** the fraction truncated / (truncated + utr_extended), per organism, for complete and fragments. The `other` column (543 complete, 563 fragments) is left out.
 - **Check:** complete inputs have 0 truncated in every organism (41,127 UTR-extended). Fragments are 0.642 (*T. thermophila*) to 0.955 (*P. falciparum*); ALL is 0.749. This matches results_start_refinement.tex:8-14 ("75%", "64% ... 96%").
 
@@ -25,7 +25,7 @@ Evidence records: E13 (grid, open ends, GM12878, Kozak distributions), E07 (v6.0
 - **Sources:**
   - no refinement: `optima.tsv` `norefine_f1`;
   - α 0.4 with w 0, and the final defaults (a0.4_w25): `grid_scores.tsv`;
-  - v6.0.0: `benchmark_v2/results_v3/summary.tsv`, tool `perl_td_v600`. Its f1_exact is identical in `$P/work/bench_v3/scores/summary.interim_20261022.tsv` (fixed scorer); the doubled `fp` column does not enter f1_exact.
+  - v6.0.0: `data/benchmark/summary.tsv`, tool `perl_td_v600`. Its f1_exact is identical in `$P/work/bench_v3/scores/summary.interim_20261022.tsv` (fixed scorer); the doubled `fp` column does not enter f1_exact.
 - **Checks:** the script prints these, and they match results_start_refinement.tex:16-29.
 
   | Quantity | Text | Script |

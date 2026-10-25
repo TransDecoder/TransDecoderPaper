@@ -43,7 +43,7 @@ Method (`expressed_sensitivity.py`):
 - Assembled, exact, compatible and exact given assembled are as defined in E03 (`eval_genome_cds.py`), recomputed over the expressed subset.
 
 ## Outputs
-- `$T/genome_annotation/results/gm12878_expressed_sensitivity.tsv` (identical copy: `eval_summaries/expressed_sensitivity.tsv`)
+- `$T/data/gm12878/gm12878_expressed_sensitivity.tsv` (identical copy: `eval_summaries/expressed_sensitivity.tsv`)
 - Not in git: `$P/data/gm12878/expr/gencode_v50.ref_quant.gtf` (950 MB), `gencode_v50.gene_abund.tsv`, `stringtie_e.log` (contains only `EXPR_DONE`).
 
 ## Results

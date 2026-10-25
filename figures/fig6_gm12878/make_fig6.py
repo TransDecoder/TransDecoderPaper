@@ -2,7 +2,7 @@
 """Figure 6. PyTransDecoder on three GM12878 assemblies, tested against Ribo-seq and MS.
 
 usage: make_fig6.py [results_dir] [out_dir]
-  results_dir default: genome_annotation/results (relative to the repo root)
+  results_dir default: data/gm12878 (relative to the repo root)
   out_dir     default: figures/fig6_gm12878
 Panels:
   a  MANE Select CDSs assembled and predicted exactly, all genes and expressed genes
@@ -27,7 +27,7 @@ from matplotlib.patches import Patch  # noqa: E402
 from matplotlib.lines import Line2D  # noqa: E402
 
 REPO = HERE.parents[1]
-RES = Path(sys.argv[1]) if len(sys.argv) > 1 else REPO / "genome_annotation/results"
+RES = Path(sys.argv[1]) if len(sys.argv) > 1 else REPO / "data/gm12878"
 OUT = Path(sys.argv[2]) if len(sys.argv) > 2 else HERE
 ASM = ["lraa", "stringtie", "trinity"]
 SHORT = {"lraa": "LRAA", "stringtie": "StringTie", "trinity": "Trinity"}

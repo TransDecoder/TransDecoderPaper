@@ -31,7 +31,7 @@
   - `longest_orf_m50`: the longest ORF per transcript (`convert_predictions.py --longest-per-transcript`);
   - `longest_orf_m100`: the same, kept if ≥ 303 nt;
   - `longest_orf_atg`: `longest_orf_with_start.py`.
-- Scores: `score_negatives.py` → `results_v3/qmodes/qmodes_scores.tsv`; `plot_rules.py` → `qmodes.{pdf,png,medians.tsv}`. GM12878: `score_protein_matches.py` (GENCODE v50 translations) → `gm12878_qmodes_protein_matches.tsv`. The TD2 points are in a private copy only (`work/td2_private/qmodes/`).
+- Scores: `score_negatives.py` → `data/benchmark/qmodes/qmodes_scores.tsv`; `plot_rules.py` → `qmodes.{pdf,png,medians.tsv}`. GM12878: `score_protein_matches.py` (GENCODE v50 translations) → `gm12878_qmodes_protein_matches.tsv`. The TD2 points are in a private copy only (`work/td2_private/qmodes/`).
 
 ## Results: medians (stop sensitivity / exact sensitivity / % negatives with a prediction)
 | setting | complete.wRand | fragments.wRand | complete.wLnc | fragments.wLnc |

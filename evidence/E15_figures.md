@@ -8,14 +8,14 @@ Plan: Fable review of 2026-10-22 (main session scratchpad, `fable_review/fable_r
 ## Sources
 | Figure | Script (`figures/`) | Data | Evidence | State |
 |---|---|---|---|---|
-| 1 algorithm | fig1_algorithm/make_fig1.py | methods_algorithm.tex; analyses/long_orf_threshold/final_thresholds.tsv | E10, E09, E13 | final |
+| 1 algorithm | fig1_algorithm/make_fig1.py | methods_algorithm.tex; data/long_orf_threshold/final_thresholds.tsv | E10, E09, E13 | final |
 | 2 benchmark | fig2_benchmark/make_fig2.py `<summary.tsv>` | `$P/work/bench_v3/scores/summary.interim_20261022.tsv` (fixed scorer) | E07 | **redraw** from the final summary.tsv when CodAn finishes (1 cell pending) |
-| 3 start refinement | fig3_start/make_fig3.py | analyses/start_param_sensitivity/results/*; benchmark summary | E09, E13 | final |
+| 3 start refinement | fig3_start/make_fig3.py | data/start_param_sensitivity/*; benchmark summary | E09, E13 | final |
 | S2 start grid | fig3_start/make_fig3.py | same | E13 | final |
-| 4 short ORFs | fig4_short_orfs/make_fig4.py | benchmark_v2/results_v3/{short_orf_summary,lnc_by_era.human}.tsv | E04 | final |
-| 5 coding failures | fig5_failures/make_fig5.py (+ derive_dmel_gc3_rescue.py) | analyses/long_orf_failures/results/*; homology_vs_abinitio.tsv | E12, E07 | panels d,e **regenerate** from the final summary |
-| 6 GM12878 | fig6_gm12878/make_fig6.py (+ derive_class_by_length.py) | genome_annotation/results/*; data/pred_class_by_length.tsv from `$P/work/gm12878_td/eval/status/` | E01-E05, E11 | final |
-| 7 parameters | fig7_parameters/make_fig7.py | analyses/start_param_sensitivity/results/gm12878.tsv; genome_annotation/results/{gm12878_minaa_sweep,gm12878_homology_series}.tsv | E13, E04, E06 | final |
+| 4 short ORFs | fig4_short_orfs/make_fig4.py | data/benchmark/{short_orf_summary,lnc_by_era.human}.tsv | E04 | final |
+| 5 coding failures | fig5_failures/make_fig5.py (+ derive_dmel_gc3_rescue.py) | data/long_orf_failures/*; homology_vs_abinitio.tsv | E12, E07 | panels d,e **regenerate** from the final summary |
+| 6 GM12878 | fig6_gm12878/make_fig6.py (+ derive_class_by_length.py) | data/gm12878/*; data/pred_class_by_length.tsv from `$P/work/gm12878_td/eval/status/` | E01-E05, E11 | final |
+| 7 parameters | fig7_parameters/make_fig7.py | data/start_param_sensitivity/gm12878.tsv; data/gm12878/{gm12878_minaa_sweep,gm12878_homology_series}.tsv | E13, E04, E06 | final |
 | S1 Kozak logos | kozak/make_kozak_figure.py (existing) | as in E09 | E09 | final (reused) |
 
 Per-panel sources, computations and the checks against the manuscript text (with line numbers) are in

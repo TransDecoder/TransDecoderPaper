@@ -4,7 +4,7 @@ Question (Brian): does adding the three reverse-strand frames to the frame contr
 
 Code: PyTD branch `exp/contrast-frames` (83a4806, local worktree `work/trees/PY_frames`, not merged), = release main 3a793ff plus `--contrast-frames {forward,all}`. `all` uses C = S1 − max(S2,…,S6) instead of S1 − max(S2,S3) for both the C > 0 condition and the q-value contrast, for targets and decoys alike (decoy contrast scores the reverse complement's frames too). Start refinement and its μ unchanged. Check: `forward` reproduces release `pytd_v7` exactly on S. pombe complete.wRand (4,984 predictions); 67 tests pass.
 
-Runs: fresh, `benchmark_v2/scripts/frames_run.sh` (same settings as `run_tool.sh pytd_v7`), launchers `results_v3/frames/launch2.sh` (84 inputs, `all`, q 0.05) and `launch_q.sh` (36 inputs with negatives, `all`, q 0.1 and 0.2). 156 runs, none failed. Release comparison: E25 `pytd_v7`, `pytd_v7_precise` (q 0.01), `pytd_v7_sensitive` (q 0.2).
+Runs: fresh, `benchmark_v2/scripts/frames_run.sh` (same settings as `run_tool.sh pytd_v7`), launchers `data/benchmark/frames/launch2.sh` (84 inputs, `all`, q 0.05) and `launch_q.sh` (36 inputs with negatives, `all`, q 0.1 and 0.2). 156 runs, none failed. Release comparison: E25 `pytd_v7`, `pytd_v7_precise` (q 0.01), `pytd_v7_sensitive` (q 0.2).
 
 ## Claims supported
 - **At the same q (0.05), all-frames is worse on 75 of 84 inputs** (exact F1 median −0.33 points, stop F1 −0.35; better on 9, at most +0.27). Medians by input class, all-frames vs release (`all_scores.tsv`):
@@ -37,7 +37,7 @@ Runs: fresh, `benchmark_v2/scripts/frames_run.sh` (same settings as `run_tool.sh
 Conclusion (benchmark and GM12878): no reason to restore the reverse frames. On the full benchmark with the q-value test, they lower sensitivity at the same q, are at best equal at matched negative rates (slightly better only on unstranded complete transcripts), cost ~1 point on stranded fragments and up to 7.7 points in T. thermophila, and add 40% run time. This replaces the v5 rationale in Methods.
 
 ## GM12878 (ab initio, q 0.05; all-frames vs release E25 `final_v7_abinitio`)
-`genome_annotation/scripts/gm12878_frames.sh`, launcher `results_v3/frames/launch_gm12878_frames.sh`. Eval `eval_genome_cds.py`; proteins `score_protein_matches.py` (GENCODE v50 translations; `gm12878_frames_protein_matches.tsv`); catalogue `match_riboseq.py` (stop matches, counted as in E25).
+`genome_annotation/scripts/gm12878_frames.sh`, launcher `data/benchmark/frames/launch_gm12878_frames.sh`. Eval `eval_genome_cds.py`; proteins `score_protein_matches.py` (GENCODE v50 translations; `gm12878_frames_protein_matches.tsv`); catalogue `match_riboseq.py` (stop matches, counted as in E25).
 
 | assembly | distinct CDSs | MANE exact (given assembled) | no GENCODE CDS overlap (all preds) | matching / non-matching proteins | catalogued Ribo-seq ORF stop matches |
 |---|---|---|---|---|---|
@@ -49,4 +49,4 @@ All-frames loses matching proteins in every assembly (−306, −585, −2,226) 
 `--sensitive` (q 0.2) all-frames: LRAA 23,232 distinct CDSs, MANE exact 5,866 (0.932), no overlap 2.18%, proteins 33,176 / 492, catalogue 132; StringTie 32,750, 8,232 (0.923), 8.24%, 36,298 / 2,267, catalogue 139 (release `--sensitive`: LRAA 33,443 / 560, catalogue 144; StringTie 36,903 / 2,879, catalogue 165). At matched non-matching counts (linear interpolation between release default and `--sensitive`), the release rule gives LRAA 33,277 vs 33,176 matching proteins at 492 non-matching, and StringTie 36,322 vs 36,298 at 2,267: equal or slightly better.
 
 ## Files
-`benchmark_v2/results_v3/frames/`: `all_scores.tsv` (score_predictions.py, release rows from E25 plus `all`), `negatives_scores.tsv`, `negatives_curve.tsv` (score_negatives.py), `score_all.sh`, launchers and job lists.
+`data/benchmark/frames/`: `all_scores.tsv` (score_predictions.py, release rows from E25 plus `all`), `negatives_scores.tsv`, `negatives_curve.tsv` (score_negatives.py), `score_all.sh`, launchers and job lists.

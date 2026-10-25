@@ -19,7 +19,7 @@ No external data are used. Random sequences are simulated with seeds:
   - Each chunk has 100,000 sequences of 5 kb.
   - Raw lengths (88 files, 2.4 MB): `$P/work/thresh_big/raw/gc<GC>_seed<seed>.tsv`.
   - UGER job logs: `$P/work/thresh_big/log/thr<GC>_<c>.o<jobid>`.
-- Single-run simulations (seed 1): `$T/analyses/long_orf_threshold/sim_runs/` and `sim_large/`.
+- Single-run simulations (seed 1): `$T/data/long_orf_threshold/sim_runs/` and `sim_large/`.
 - Benchmark inputs used for the GC estimate checks are bench_v3 (record E07).
 
 ## Software
@@ -60,7 +60,7 @@ python $T/analyses/long_orf_threshold/pool_chunk_quantiles.py $P/work/thresh_big
 Benchmark checks of the GC estimate: `$T/benchmark_v2/launch_v3/launch15.sh` reruns the 7 Perl/PyTD-mismatched inputs after the GC estimate was unified. The earlier runs were moved to `$P/work/bench_v3/rerun_old/`. `launch16.sh` reruns all inputs after the tie-break fix (earlier runs in `$P/work/bench_v3/rerun_old16/`).
 
 ## Outputs
-- `$T/analyses/long_orf_threshold/final_thresholds.tsv`: the adopted table (n_orfs, q0.95/0.99/0.999/0.9999).
+- `$T/data/long_orf_threshold/final_thresholds.tsv`: the adopted table (n_orfs, q0.95/0.99/0.999/0.9999).
 - `lowgc_large_sample.tsv`: pooled low-GC chunks.
 - `regenerated_thresholds.tsv`: single 5 kb run, seed 1, with the 2017 q0.999 column.
 - `table_2017.tsv`: the 2017 table, from the comment in TransDecoder `33247f5`.
@@ -133,7 +133,7 @@ In the final runs:
   - It does not say that the rule is skipped for genetic codes whose stops are not TAA/TAG/TGA, nor how the 5% table is looked up (round up to the next step).
 - **What the threshold models:** a single i.i.d. sequence model with universal stops, 5 kb sequences and a 300-nt LongOrfs minimum. It is a per-ORF 0.999 quantile, not a transcriptome-wide FDR; the old usage text said "1% FDR".
 - **LongOrfs minimum:** the threshold was simulated with a 300-nt minimum. The final default LongOrfs `-m 50` changes the candidate set, but not the upper tail that the q0.999 describes.
-- **Not covered here:** `$T/analyses/short_orf_threshold/collect_calls.py` and `results_v3/short_orf_summary.tsv` concern the short-ORF frame-contrast guard (`-m 50`, notes/05). That is a separate rule (E04), not the long-ORF retention.
+- **Not covered here:** `$T/analyses/short_orf_threshold/collect_calls.py` and `data/benchmark/short_orf_summary.tsv` concern the short-ORF frame-contrast guard (`-m 50`, notes/05). That is a separate rule (E04), not the long-ORF retention.
 - **Minor discrepancies between the notes and the files:**
   - notes/03 says "10 kb sequences give the same values". The files show up to +3.1% at 80% GC (2,511 vs 2,436).
   - notes/03 gives "2–10% lower" for the 2017 table at ≤45% GC, but against the adopted table the difference is 2.8–10.3%. Against the 5 kb single run (`regenerated_thresholds.tsv`) it is 1.2–10.4%, at 40% GC 590 vs 597.

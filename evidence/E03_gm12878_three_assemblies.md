@@ -91,8 +91,8 @@ Prediction-centric (per distinct predicted CDS, split complete / partial / all):
 - **pred_complete GENCODE-exact frac:** the same, for complete predictions only.
 
 ## Outputs
-- `$T/genome_annotation/results/eval_summaries/{lraa,stringtie,trinity}_final_abinitio.summary.tsv`
-- `$T/genome_annotation/results/eval_summaries/trinity_final_homology.summary.tsv` (copied from `$P/work/gm12878_td/eval/` on 2026-10-21 for this record)
+- `$T/data/gm12878/eval_summaries/{lraa,stringtie,trinity}_final_abinitio.summary.tsv`
+- `$T/data/gm12878/eval_summaries/trinity_final_homology.summary.tsv` (copied from `$P/work/gm12878_td/eval/` on 2026-10-21 for this record)
 - Not in git:
   - predictions `$P/work/gm12878_td/<asm>/final_<mode>/transcripts.fa.transdecoder.genome.gff3` (and `.bed`, `.pep`, `.cds`);
   - per-reference / per-prediction status `$P/work/gm12878_td/eval/<asm>_final_<mode>.ref_status.tsv`, `$P/work/gm12878_td/eval/status/<asm>_final_abinitio.pred_status.tsv`;

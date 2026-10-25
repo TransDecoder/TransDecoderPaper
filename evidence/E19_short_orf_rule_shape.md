@@ -19,10 +19,10 @@
 - New Predict option `--short-orf-rule {cliff,fixed,inverse,taper}`; `cliff` is the release default and identical to it.
 - With no auto-accept length (non-standard stop codons, e.g. T. thermophila, or GC > 80%), taper ends at 300 codons (`TAPER_FALLBACK_CODONS`).
 - `benchmark_v2/scripts/short_orf_rule_run.sh`: full, fresh runs (LongOrfs + Predict) in new directories. It never resumes; an incomplete directory is moved aside first. Brian asked for no reuse of earlier checkpoints. All 172 runs were fresh: no `_trash` directories exist, and every run records 652d5e4 in `pytd_version.txt`.
-- Runs: `work/bench_v3/rules/<org>/<variant>/<rule>_c<C>/` and `work/bench_v3/rules/gm12878/<asm>/<rule>_c<C>/`; job list `results_v3/rules/jobs.txt`.
+- Runs: `work/bench_v3/rules/<org>/<variant>/<rule>_c<C>/` and `work/bench_v3/rules/gm12878/<asm>/<rule>_c<C>/`; job list `data/benchmark/rules/jobs.txt`.
 - Settings: cliff_c200 (= release defaults at the final commit), taper_c150/200/250, fixed_c150/200, inverse_c200/250. Inputs: 8 organisms × complete/fragments wRand, human and mouse × complete/fragments wLnc, and GM12878 LRAA/StringTie (6 settings).
 
-## Scoring (results in `benchmark_v2/results_v3/rules/`)
+## Scoring (results in `data/benchmark/rules/`)
 - `score_negatives.py` → `rules_scores.tsv`; `plot_rules.py` → `rules.{pdf,png,medians.tsv}`. Comparator points (v5.7.1, CPAT, RNAsamba, GMST) come from `work/bench_v3/runs`. TD2 points are in a private copy only (`work/td2_private/rules/`).
 - `sens_by_length.py` → `sens_by_length.tsv`: stop sensitivity by true CDS length, and negatives with a prediction by predicted ORF length.
 - `score_protein_matches.py` → `gm12878_protein_matches.tsv`: TD2-preprint-style complete / 30-mer match / nonmatching against GENCODE v50 proteins.

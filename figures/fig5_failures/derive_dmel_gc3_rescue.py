@@ -2,10 +2,10 @@
 """D. melanogaster coding-test failures (ORFs >= 300 nt) by GC3 quintile, with the number rescued
 by the GC3-matched Markov model, for Fig. 5c.
 
-Reads analyses/long_orf_failures/results/per_cds/dmel.per_cds.tsv.gz (not in git; made by
+Reads data/long_orf_failures/per_cds/dmel.per_cds.tsv.gz (not in git; made by
 long_orf_failures.py) and applies the definitions of summarize.py (fail_score: category in
 fail_coding_*, fail_reason S1<=0 or shifted_frame>=S1; quintiles over matched ORFs >= 300 nt).
-Check: n and fail_score must equal analyses/long_orf_failures/results/fail_rate_by_feature.tsv
+Check: n and fail_score must equal data/long_orf_failures/fail_rate_by_feature.tsv
 (dmel, gc3).
 
 usage: derive_dmel_gc3_rescue.py > data/dmel_gc3_rescue.tsv
@@ -15,7 +15,7 @@ from pathlib import Path
 
 import pandas as pd
 
-RES = Path(__file__).resolve().parents[2] / "analyses/long_orf_failures/results"
+RES = Path(__file__).resolve().parents[2] / "data/long_orf_failures"
 d = pd.read_csv(RES / "per_cds/dmel.per_cds.tsv.gz", sep="\t", low_memory=False,
                 keep_default_na=False, na_values=["NA", ""])
 m = d[(d.category != "no_orf") & (d.orf_len >= 300)].copy()

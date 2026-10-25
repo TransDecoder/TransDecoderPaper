@@ -53,7 +53,7 @@ python3 -I $T/analyses/proteomics/novel_peptide_loci.py $W/proteomics/ms_peptide
 ```
 
 ## Outputs
-- Committed: `$T/genome_annotation/results/gm12878_ms_peptide_support.tsv`, `gm12878_ms_peptide_counts.tsv`, `gm12878_ms_novel_with_peptides.tsv`.
+- Committed: `$T/data/gm12878/gm12878_ms_peptide_support.tsv`, `gm12878_ms_peptide_counts.tsv`, `gm12878_ms_novel_with_peptides.tsv`.
 - Not in git: `$P/work/gm12878_td/proteomics/ms_peptide_support.{<asm>.model_hits,novel_specific_hits}.tsv`.
 
 ## Results

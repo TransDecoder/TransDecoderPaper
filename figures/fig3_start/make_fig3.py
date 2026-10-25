@@ -4,9 +4,9 @@
 usage: make_fig3.py [out_dir]          (default: figures/fig3_start)
 
 Inputs (repo-relative):
-  analyses/start_param_sensitivity/results/{open_end_mix,grid_scores,optima,plateau,
+  data/start_param_sensitivity/{open_end_mix,grid_scores,optima,plateau,
       kozak_score_distribution,gm12878}.tsv
-  benchmark_v2/results_v3/summary.tsv   (perl_td_v600 exact F1 only)
+  data/benchmark/summary.tsv   (perl_td_v600 exact F1 only)
 Outputs: fig3_start.{pdf,png}, figS2_start_grid.{pdf,png}, fig3_values.tsv (plotted values).
 Evidence records: E13 (grid, open ends, GM12878, Kozak distributions), E07 (v6.0.0), E09.
 
@@ -27,8 +27,8 @@ import matplotlib.pyplot as plt  # noqa: E402
 from matplotlib.patches import Rectangle  # noqa: E402
 
 REPO = Path(__file__).resolve().parents[2]
-RES = REPO / "analyses/start_param_sensitivity/results"
-SUMMARY = REPO / "benchmark_v2/results_v3/summary.tsv"
+RES = REPO / "data/start_param_sensitivity"
+SUMMARY = REPO / "data/benchmark/summary.tsv"
 OUT = Path(sys.argv[1]) if len(sys.argv) > 1 else REPO / "figures/fig3_start"
 
 ALPHAS = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.8, 1, 1.25, 1.5, 2, 3]

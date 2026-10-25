@@ -63,9 +63,9 @@ Method summary:
   - Only the distinct representative of each CDS is scored.
 
 ## Outputs
-- `$T/genome_annotation/results/gm12878_riboseq_calibration.tsv`
-- `$T/genome_annotation/results/gm12878_riboseq_support.tsv`, by assembly × class × short (<100 aa) / long
-- `$T/genome_annotation/results/gm12878_riboseq_stringtie_by_expression.tsv`
+- `$T/data/gm12878/gm12878_riboseq_calibration.tsv`
+- `$T/data/gm12878/gm12878_riboseq_support.tsv`, by assembly × class × short (<100 aa) / long
+- `$T/data/gm12878/gm12878_riboseq_stringtie_by_expression.tsv`
 - Per-ORF tables (not in git): `$P/work/gm12878_td/ribo_gm12878/gm12878.<asm>.orf_support.tsv`
 
 ## Results

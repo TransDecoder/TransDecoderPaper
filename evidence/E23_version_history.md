@@ -28,7 +28,7 @@
 | v7 (this paper; Perl + PyTD) | 2026 | start refinement by frame contrast + Kozak context; 50 aa minimum with short-ORF frame-contrast test; regenerated retention table; code-aware stops; deterministic output; then target-decoy FDR acceptance with shuffled transcripts (default q 0.05; `--precise` / `--sensitive`) and presets for small or partial inputs |
 
 ## Runs
-- 80 fresh runs: 4 releases × 20 benchmark inputs (`results_v3/history/jobs.txt`, `scripts/hist_run.sh`). Each release used its own defaults, with `-S` (stranded inputs). `-G` was given only for non-standard codes.
+- 80 fresh runs: 4 releases × 20 benchmark inputs (`data/benchmark/history/jobs.txt`, `scripts/hist_run.sh`). Each release used its own defaults, with `-S` (stranded inputs). `-G` was given only for non-standard codes.
   - Releases up to v5.2 need DB_File, supplied by `work/history/compat`.
   - None failed.
 - v5.7.1, Perl devel and the v7 rules come from the main benchmark (`runs/*/perl_td_v571`, `runs/*/perl_td_dev_v2`, `rules/*/cliff_c200`, `rules/*/decoy_q0.05_longgc`).
@@ -55,7 +55,7 @@
 | v7, length rule (PyTD; Perl devel equal at the median) | 0.957 / 0.897 / 0.5 | 0.815 / 0.708 / 0.1 | 0.976 / 0.905 / 18.9 | 0.858 / 0.753 / 18.6 |
 | v7, decoy FDR q 0.05 | 0.965 / 0.899 / 0.4 | 0.872 / 0.773 / 0.2 | 0.964 / 0.894 / 5.0 | 0.857 / 0.755 / 5.8 |
 
-Files: `results_v3/history/history_scores.tsv`, `history.medians.tsv`, `history.{pdf,png}` (`plot_history.py`), `VERSIONS.md`.
+Files: `data/benchmark/history/history_scores.tsv`, `history.medians.tsv`, `history.{pdf,png}` (`plot_history.py`), `VERSIONS.md`.
 
 ## Text guidance (Brian)
 - Describe what each release changed in method. Do not discuss defects of earlier releases.

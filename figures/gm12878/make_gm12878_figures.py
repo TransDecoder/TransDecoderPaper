@@ -2,7 +2,7 @@
 """GM12878 application figures, drawn from committed result tables only.
 
 usage: make_gm12878_figures.py [results_dir] [out_dir]
-  results_dir default: genome_annotation/results (relative to the repo root)
+  results_dir default: data/gm12878 (relative to the repo root)
   out_dir     default: figures/gm12878
 
 Figures (PDF + PNG):
@@ -21,7 +21,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 REPO = Path(__file__).resolve().parents[2]
-RES = Path(sys.argv[1]) if len(sys.argv) > 1 else REPO / "genome_annotation/results"
+RES = Path(sys.argv[1]) if len(sys.argv) > 1 else REPO / "data/gm12878"
 OUT = Path(sys.argv[2]) if len(sys.argv) > 2 else REPO / "figures/gm12878"
 ASM = ["lraa", "stringtie", "trinity"]
 ASM_LABEL = {"lraa": "LRAA (long reads)", "stringtie": "StringTie", "trinity": "Trinity (genome-guided)"}

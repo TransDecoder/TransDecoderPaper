@@ -22,8 +22,8 @@
   - 84 long-ORF variants.
   - All finished; no runs were set aside.
 - Earlier steps:
-  - The oracle "curve" taper (annotation-derived log prior odds; `oracle_logodds_curve.py`, `results_v3/rules/curves/`; commit 5799c35; 64 runs) was no better than the linear taper (E19).
-  - Prototype: `decoy_fdr_prototype.py`, post-filter on fresh `cliff_c0` runs; results in `results_v3/rules/decoy_proto/`.
+  - The oracle "curve" taper (annotation-derived log prior odds; `oracle_logodds_curve.py`, `data/benchmark/rules/curves/`; commit 5799c35; 64 runs) was no better than the linear taper (E19).
+  - Prototype: `decoy_fdr_prototype.py`, post-filter on fresh `cliff_c0` runs; results in `data/benchmark/rules/decoy_proto/`.
 
 ## Results: medians (stop sensitivity / exact sensitivity / % negatives with a prediction)
 | setting | complete.wRand | fragments.wRand | complete.wLnc | fragments.wLnc |

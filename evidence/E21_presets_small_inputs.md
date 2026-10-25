@@ -31,7 +31,7 @@
   - trained on the input, with the release rule (cliff_c200) or the decoy rule (decoy_q0.05_longgc);
   - same-species preset (complete-only, or mix);
   - other-species preset: mouse for human, human for mouse, Arabidopsis and Drosophila.
-- **Runs.** 912 fresh runs, all at 6b024ca. Scores: `results_v3/presets/preset_scores.tsv` (score_negatives.py). Preset metadata and thresholds: `results_v3/presets/preset_meta/`.
+- **Runs.** 912 fresh runs, all at 6b024ca. Scores: `data/benchmark/presets/preset_scores.tsv` (score_negatives.py). Preset metadata and thresholds: `data/benchmark/presets/preset_meta/`.
 
 ## Results (median over organisms × replicates; stop sensitivity / % random with a prediction)
 | complete + random | trained on input, release | trained on input, decoy | preset same | preset same mix | preset other |

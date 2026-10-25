@@ -5,7 +5,7 @@
   - Without homology support, an ORF needs in-frame score > 0, frame contrast > 0 and q ≤ `--max-qvalue`. The default is 0.05; `--precise` is 0.01 and `--sensitive` is 0.2.
   - ORFs at or above the GC-table length are kept on length alone.
   - The 100-codon short-ORF contrast test and the experimental rule shapes (E19) are removed.
-- **Perl and PyTD give identical results.** Their decoys, q-values and predicted coordinates are byte-identical on all 7 parity cases (`results_v3/release/parity_perl_pytd.tsv`). Together they cover:
+- **Perl and PyTD give identical results.** Their decoys, q-values and predicted coordinates are byte-identical on all 7 parity cases (`data/benchmark/release/parity_perl_pytd.tsv`). Together they cover:
   - complete, fragment and lncRNA inputs;
   - stranded and unstranded inputs;
   - the standard and Tetrahymena genetic codes;
@@ -83,7 +83,7 @@
 - Release worktrees for the final runs: `work/trees/PY_v7` (3a793ff) and `work/trees/TD_v7` (41fc5ee).
 
 **Bundled preset builds**
-- `make_bundled_preset_refs.py`, then `results_v3/release/bundled_preset_run_ref.sh`: a fresh PyTD LongOrfs -S, Predict and build-preset.
+- `make_bundled_preset_refs.py`, then `data/benchmark/release/bundled_preset_run_ref.sh`: a fresh PyTD LongOrfs -S, Predict and build-preset.
 - The PyTD working tree used had the content of c78845d; `pytd_version.txt` says be23241 because the q-rounding change was not yet committed.
 
 ## Caveats

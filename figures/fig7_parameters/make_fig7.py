@@ -5,9 +5,9 @@ usage: make_fig7.py [repo_root] [out_dir]
 Panels:
   a  start refinement: alpha series at w = 17 per bit (= 25 per nat in the grid) and w = 0;
      x = MANE exact given assembled, y = exact-start share of GENCODE-compatible complete calls
-     (analyses/start_param_sensitivity/results/gm12878.tsv; LRAA and StringTie only)
+     (data/start_param_sensitivity/gm12878.tsv; LRAA and StringTie only)
   b  post-hoc minimum length (--min-aa) on the final-default predictions: MANE exact given assembled
-     and fraction of predictions with no GENCODE CDS overlap (genome_annotation/results/
+     and fraction of predictions with no GENCODE CDS overlap (data/gm12878/
      gm12878_minaa_sweep.tsv, headerless, columns in evidence/E04); pre-defined LongOrfs minimum
      runs overlaid (eval_summaries/{lraa,stringtie}_{kozak_add,m50,m50_sc200}.summary.tsv)
   c  homology: change in MANE exact given assembled over ab initio vs clade removed from Swiss-Prot,
@@ -29,7 +29,7 @@ from matplotlib.patches import Patch  # noqa: E402
 
 REPO = Path(sys.argv[1]) if len(sys.argv) > 1 else HERE.parents[1]
 OUT = Path(sys.argv[2]) if len(sys.argv) > 2 else HERE
-RES = REPO / "genome_annotation/results"
+RES = REPO / "data/gm12878"
 ASM = ["lraa", "stringtie", "trinity"]
 SHORT = {"lraa": "LRAA", "stringtie": "StringTie", "trinity": "Trinity"}
 CLADES = [("9606", "human"), ("9443", "primates"), ("40674", "mammals"), ("7742", "vertebrates"),
@@ -48,7 +48,7 @@ def kv(path):
 
 def panel_a(ax):
     d = {(r["assembly"], r["config"]): r for r in
-         rows(REPO / "analyses/start_param_sensitivity/results/gm12878.tsv")}
+         rows(REPO / "data/start_param_sensitivity/gm12878.tsv")}
     alphas = ["0.2", "0.4", "0.6", "1.0"]
     for a in ["lraa", "stringtie"]:
         for w, ls, mfc in [("25", "-", None), ("0", "--", "white")]:

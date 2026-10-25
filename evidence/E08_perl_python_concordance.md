@@ -41,7 +41,7 @@ cd $P
 # regression (script: $T/regression/run_regression.sh; comparison: $T/regression/compare_orfs.py)
 PYTHON=env/td/bin/python TransDecoderPaper/regression/run_regression.sh work/trees/TD_base work/trees/PY_base work/regression/baseline_v6.0.0
 PYTHON=env/td/bin/python TransDecoderPaper/regression/run_regression.sh work/trees/TD_fix  work/trees/PY_fix  work/regression/dev_paper_r6
-cp work/regression/<run>/summary.tsv TransDecoderPaper/regression/results/<run>.summary.tsv
+cp work/regression/<run>/summary.tsv TransDecoderPaper/data/regression/<run>.summary.tsv
 # benchmark concordance: E07 commands (launch16.sh), then compare preds.tsv per input
 for f in work/bench_v3/runs/*/*/pytd_dev_v2/preds.tsv; do
   cmp -s <(cut -f1-4 $f | sort) <(cut -f1-4 ${f/pytd_dev_v2/perl_td_dev_v2} | sort) || echo DIFF $f; done
@@ -52,10 +52,10 @@ for f in work/bench_v3/runs/*/*/pytd_dev_v2/preds.tsv; do
 - **Reconstruction:** the exact invocations of the regression runs were not saved; the commands above are reconstructed (see Gaps).
 
 ## Outputs
-- `$T/regression/results/baseline_v6.0.0.summary.tsv`, `dev_paper_r4.summary.tsv` and `dev_paper_r6.summary.tsv`.
+- `$T/data/regression/baseline_v6.0.0.summary.tsv`, `dev_paper_r4.summary.tsv` and `dev_paper_r6.summary.tsv`.
 - Run directories (not in git): `$P/work/regression/{baseline_v6.0.0,dev_paper_r1..r4,dev_paper_r6,fix_start_refinement}/<dataset>/{perl,py}/`, with `discordant.tsv` and `compare.txt` per dataset.
   - Runs r1–r3, r5 and `fix_start_refinement` were intermediate development iterations.
-- Benchmark summaries: `$T/benchmark_v2/results_v3/summary.tsv` (E07).
+- Benchmark summaries: `$T/data/benchmark/summary.tsv` (E07).
 
 ## Results
 **Regression, final ORFs** (`dev_paper_r6.summary.tsv`; r4 is identical except for runtime):
@@ -116,7 +116,7 @@ Before fixes (`baseline_v6.0.0.summary.tsv`):
 cd $P; PYTHON=$P/env/td/bin/python bash $T/regression/run_regression.sh $P/work/trees/TD_fix $P/work/trees/PY_dev \
   $P/work/regression/final_48c870c_de3f57e    # TD_fix = de3f57e, PY_dev = 48c870c
 ```
-Output: `$T/regression/results/final_48c870c_de3f57e.summary.tsv`. Predictions are identical on all five sample sets (exact match = all ORFs; no start differences; no implementation-only ORFs):
+Output: `$T/data/regression/final_48c870c_de3f57e.summary.tsv`. Predictions are identical on all five sample sets (exact match = all ORFs; no start differences; no implementation-only ORFs):
 
 | Set | ORFs | Perl (s) | Python (s) | Speedup |
 |---|---|---|---|---|
@@ -133,7 +133,7 @@ This replaces the 2026-10-17 regression (`dev_paper_r6`), which predates the fin
 cd $P; PYTHON=$P/env/td/bin/python bash $T/regression/run_regression.sh $P/work/trees/TD_fix $P/work/trees/PY_dev \
   $P/work/regression/kozak_bits
 ```
-Run on the working trees that were then committed unchanged as PyTD 44e417a and Perl ab38ca6; summary in `regression/results/kozak_bits_44e417a_ab38ca6.summary.tsv`. Predictions are
+Run on the working trees that were then committed unchanged as PyTD 44e417a and Perl ab38ca6; summary in `data/regression/kozak_bits_44e417a_ab38ca6.summary.tsv`. Predictions are
 identical on all five sample sets (Trinity 692, PASA 777, StringTie 2,681, SuperTranscripts 69, Cufflinks 58 ORFs;
 no start differences, no implementation-only ORFs). Against the previous final commits, 4 of 4,277 ORFs change
 (PASA asmbl_234/639 and asmbl_235/640, two duplicated pairs on the decision boundary; 17 vs 17.33 bases per bit).

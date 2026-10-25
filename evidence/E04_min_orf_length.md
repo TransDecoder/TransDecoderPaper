@@ -85,7 +85,7 @@ bash $T/genome_annotation/scripts/minaa_sweep.sh
 ```
 `--min-aa L` keeps predictions whose CDS encodes ≥ L aa (stop excluded), applied before collapsing to distinct CDSs. The headerless table `gm12878_minaa_sweep.tsv` was assembled from the 27 summaries by a one-off command. This reconstruction reproduces it exactly:
 ```bash
-cd $T/genome_annotation/results/eval_summaries/minaa
+cd $T/data/gm12878/eval_summaries/minaa
 for a in lraa stringtie trinity; do for L in 50 60 70 80 90 100 150 200 300; do f=${a}_min$L.summary.tsv
   g(){ awk -v k=$1 '$1==k{print $2}' $f; }
   printf "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n" $a $L $(g distinct_predicted_cds) $(g MANE_sens_exact) \
@@ -96,10 +96,10 @@ done; done > ../../gm12878_minaa_sweep.tsv
 Columns: assembly, min aa, distinct CDSs, MANE sens exact, MANE exact given assembled, GENCODE complete sens compatible, all-prediction GENCODE exact frac, GENCODE compatible frac, no-GENCODE-overlap frac, complete-prediction GENCODE exact frac.
 
 ## Outputs
-- `$T/benchmark_v2/results_v3/by_length.tsv`, `short_orf_summary.tsv`, `lnc_by_era.human.tsv` (identical to `$P/work/bench_v3/scores/`)
-- `$T/genome_annotation/results/gm12878_minaa_sweep.tsv` (= `eval_summaries/minaa_sweep.summary.tsv`)
-- `$T/genome_annotation/results/eval_summaries/minaa/<asm>_min<L>.summary.tsv`
-- `$T/genome_annotation/results/eval_summaries/{lraa,stringtie}_{kozak_add,m90,m80,m70,m60,m50,m50_sc200}.summary.tsv`
+- `$T/data/benchmark/by_length.tsv`, `short_orf_summary.tsv`, `lnc_by_era.human.tsv` (identical to `$P/work/bench_v3/scores/`)
+- `$T/data/gm12878/gm12878_minaa_sweep.tsv` (= `eval_summaries/minaa_sweep.summary.tsv`)
+- `$T/data/gm12878/eval_summaries/minaa/<asm>_min<L>.summary.tsv`
+- `$T/data/gm12878/eval_summaries/{lraa,stringtie}_{kozak_add,m90,m80,m70,m60,m50,m50_sc200}.summary.tsv`
 - Not in git:
   - benchmark predictions `$P/work/bench_v3/runs/<org>/<variant>/<tool>/preds.tsv`;
   - GM12878 runs `$P/work/gm12878_td/<asm>/{kozak_add,m*,m50_sc200}/`;

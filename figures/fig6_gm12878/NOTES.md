@@ -16,7 +16,7 @@ The PDF is 151 × 117 mm, with fonts embedded. It uses DejaVu Sans because Arial
 
 ## Panels and sources
 
-**(a) MANE Select recovery.** Source: `genome_annotation/results/gm12878_expressed_sensitivity.tsv`, MANE rows, tpm_min 0, 1 and 10.
+**(a) MANE Select recovery.** Source: `data/gm12878/gm12878_expressed_sensitivity.tsv`, MANE rows, tpm_min 0, 1 and 10.
 - Hollow bar: `assembled_frac`.
 - Filled bar: `sens_exact`.
 - Number above each bar: `sens_exact_given_assembled`.

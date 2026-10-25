@@ -37,7 +37,7 @@
 The homology-retention run on Trinity (DIAMOND + Pfam) is still running.
 
 ## Minimum ORF length vs sensitivity / precision (post-hoc filter, 2026-10-21)
-- Method: `eval_genome_cds.py --min-aa L` on the final-default predictions. Script: `genome_annotation/scripts/minaa_sweep.sh`. Table: `genome_annotation/results/gm12878_minaa_sweep.tsv`.
+- Method: `eval_genome_cds.py --min-aa L` on the final-default predictions. Script: `genome_annotation/scripts/minaa_sweep.sh`. Table: `data/gm12878/gm12878_minaa_sweep.tsv`.
 
 **50 vs 100 aa barely changes precision.**
 
@@ -58,7 +58,7 @@ The homology-retention run on Trinity (DIAMOND + Pfam) is still running.
 
 ## Sensitivity restricted to expressed genes (2026-10-21)
 - Expression: `stringtie -e --rf -G gencode.v50` on the same STAR BAM (`data/gm12878/expr/`). Gene TPM is the sum of its transcripts' TPMs.
-- Script: `genome_annotation/scripts/expressed_sensitivity.py`. Table: `genome_annotation/results/gm12878_expressed_sensitivity.tsv`.
+- Script: `genome_annotation/scripts/expressed_sensitivity.py`. Table: `data/gm12878/gm12878_expressed_sensitivity.tsv`.
 - 11,076 of the 19,229 MANE genes have TPM >= 1; 7,823 have TPM >= 10.
 
 MANE Select, gene TPM >= 1 (>= 10):

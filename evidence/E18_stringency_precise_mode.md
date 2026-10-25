@@ -16,15 +16,15 @@ All runs used the pytd_dev_v2 checkpoints at PyTD 48c870c. The final commits are
 
   The sweep has 16 settings over 20 inputs: 8 organisms × complete/fragments with random negatives, plus human and mouse × complete/fragments with lncRNA negatives. Outputs are in `work/bench_v3/stringency/`.
 - `scripts/score_negatives.py`: per input and setting, reports sensitivity (stop and exact), precision, and the fraction of negatives with a prediction. Its output matches `summary.tsv` for the tools that are in both.
-- `scripts/plot_stringency.py`: medians over organisms. Writes `results_v3/stringency/stringency_sweep.{pdf,png,medians.tsv}` and takes scores from `results_v3/stringency/stringency_scores.tsv`.
-- `scripts/prediction_features.py`: lists features for each prediction. `results_v3/stringency/postfilter_rules.tsv` holds the post-filter rules that were tested on those features.
-- `scripts/minlen_run.sh`: runs pytd, perl v5.7.1 or TD2 at LongOrfs `-m` 50, 98 and 150 on human and mouse wLnc inputs. Scores are in `results_v3/stringency/minlen_scores.no_td2.tsv`.
+- `scripts/plot_stringency.py`: medians over organisms. Writes `data/benchmark/stringency/stringency_sweep.{pdf,png,medians.tsv}` and takes scores from `data/benchmark/stringency/stringency_scores.tsv`.
+- `scripts/prediction_features.py`: lists features for each prediction. `data/benchmark/stringency/postfilter_rules.tsv` holds the post-filter rules that were tested on those features.
+- `scripts/minlen_run.sh`: runs pytd, perl v5.7.1 or TD2 at LongOrfs `-m` 50, 98 and 150 on human and mouse wLnc inputs. Scores are in `data/benchmark/stringency/minlen_scores.no_td2.tsv`.
 - `scripts/score_protein_matches.py`: scores proteins the way TD2 Tables 2 and 3 do:
   - complete = identical to a GENCODE v50 protein;
   - match30 = shares an exact 30-aa window with one;
   - everything else is nonmatching.
 
-  The GM12878 LRAA and StringTie assemblies were scored this way; results are in `results_v3/stringency/gm12878_protein_matches.no_td2.tsv`. The `pytd_sall_c200` rows come from a checkpoint rerun in `work/bench_v3/stringency/gm12878/<asm>/sall_c200`.
+  The GM12878 LRAA and StringTie assemblies were scored this way; results are in `data/benchmark/stringency/gm12878_protein_matches.no_td2.tsv`. The `pytd_sall_c200` rows come from a checkpoint rerun in `work/bench_v3/stringency/gm12878/<asm>/sall_c200`.
 - LNCipedia (TD2 Table 4) could not be downloaded: every lncipedia.org URL returned 404 on 2026-10-23. We used the GENCODE lncRNA negatives in the wLnc inputs instead.
 
 ## Results: medians (stop sensitivity / % negatives with a prediction)

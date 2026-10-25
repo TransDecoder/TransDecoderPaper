@@ -4,7 +4,7 @@
 usage: make_fig1.py [out_dir]     (default: figures/fig1_algorithm)
 
 (a) workflow schematic (numbers and rules as in manuscript/sections/methods_algorithm.tex)
-(b) GC-calibrated long-ORF length L*(GC), from analyses/long_orf_threshold/final_thresholds.tsv
+(b) GC-calibrated long-ORF length L*(GC), from data/long_orf_threshold/final_thresholds.tsv
     (q0.999), with the benchmark organisms at their transcriptome G+C (E07 Table 1)
 (c) start-codon refinement: the worked 90-nt example of methods_algorithm.tex
 Evidence records: E08, E09, E10, E04, E13.
@@ -22,7 +22,7 @@ from matplotlib.patches import FancyBboxPatch, Rectangle  # noqa: E402
 
 REPO = HERE.parents[1]
 OUT = Path(sys.argv[1]) if len(sys.argv) > 1 else HERE
-THRESH = REPO / "analyses/long_orf_threshold/final_thresholds.tsv"
+THRESH = REPO / "data/long_orf_threshold/final_thresholds.tsv"
 
 INK, MUTED = "#222222", "#666666"
 BOX_FC = {"stage": "#e8eef6", "model": "#eef6ea", "select": "#fbf1e3", "out": "#f2f2f2",

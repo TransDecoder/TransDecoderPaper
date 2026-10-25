@@ -52,9 +52,9 @@ python3 $T/analyses/homology_series_retention.py <A.pred_status> <B.pred_status>
   - BLAST + Pfam × 5 clades.
 
 ## Outputs
-- `$T/genome_annotation/results/gm12878_homology_series.tsv` (summary table)
-- `$T/genome_annotation/results/eval_summaries/hseries/*.summary.tsv`
-- `$T/genome_annotation/results/gm12878_homology_primate_retention.txt`
+- `$T/data/gm12878/gm12878_homology_series.tsv` (summary table)
+- `$T/data/gm12878/eval_summaries/hseries/*.summary.tsv`
+- `$T/data/gm12878/gm12878_homology_primate_retention.txt`
 - Not in git: `$P/work/gm12878_td/<asm>/hseries/`, `$P/work/gm12878_td/eval/hseries/*status.tsv`
 
 ## Results (Trinity; LRAA and StringTie are in the table)

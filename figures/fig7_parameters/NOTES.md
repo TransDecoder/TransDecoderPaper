@@ -8,7 +8,7 @@ The PDF is 153 × 124 mm, with fonts embedded (DejaVu Sans). Evidence records: E
 
 ## Panels and sources
 
-**(a) Start refinement.** Source: `analyses/start_param_sensitivity/results/gm12878.tsv`.
+**(a) Start refinement.** Source: `data/start_param_sensitivity/gm12878.tsv`.
 - Data: configs a{0.2,0.4,0.6,1.0}_w{25,0}, for LRAA and StringTie only, since the grid was not run on Trinity.
 - x is `MANE_sens_exact_given_assembled`.
 - y is `pred_complete_start_precision`: the exact-start share of complete calls compatible with a GENCODE CDS (E13).
@@ -17,17 +17,17 @@ The PDF is 153 × 124 mm, with fonts embedded (DejaVu Sans). Evidence records: E
 - No refinement is off scale and goes in the caption: LRAA 0.591 / 0.817; StringTie 0.610 / 0.733.
 
 **(b) Minimum length.**
-- Lines: the post-hoc `--min-aa` filter on the final-default predictions. Source: `genome_annotation/results/gm12878_minaa_sweep.tsv`, which is headerless.
+- Lines: the post-hoc `--min-aa` filter on the final-default predictions. Source: `data/gm12878/gm12878_minaa_sweep.tsv`, which is headerless.
   - Column 5 is MANE exact given assembled.
   - Column 9 is the all-prediction no-GENCODE-CDS-overlap fraction.
   - Column definitions are in E04.
-- Open markers: runs with a pre-defined LongOrfs minimum, for LRAA and StringTie only. Source: `genome_annotation/results/eval_summaries/{asm}_{m50,m50_sc200,kozak_add}.summary.tsv`.
+- Open markers: runs with a pre-defined LongOrfs minimum, for LRAA and StringTie only. Source: `data/gm12878/eval_summaries/{asm}_{m50,m50_sc200,kozak_add}.summary.tsv`.
   - Square: −m 50, no rule.
   - Star: −m 50 + rule; its summary equals the final defaults.
   - Triangle: −m 100 (`kozak_add`).
 - Dotted line: 50 aa, the default.
 
-**(c, d) Homology.** Source: `genome_annotation/results/gm12878_homology_series.tsv`.
+**(c, d) Homology.** Source: `data/gm12878/gm12878_homology_series.tsv`.
 - The value plotted is config minus `abinitio`. Panel c shows `MANE_sens_exact_given_assembled` × 100 (percentage points); panel d shows `distinct_predicted_cds` / 1000.
 - Clade taxids: 9606 human, 9443 primates, 40674 mammals, 7742 vertebrates, 33208 animals (Metazoa).
 - Line styles: solid = `blast_<taxid>_nopfam`; dashed = `blast_<taxid>_pfam`; diamond = `pfam` alone.

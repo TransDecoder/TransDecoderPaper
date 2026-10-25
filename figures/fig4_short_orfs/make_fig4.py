@@ -2,7 +2,7 @@
 """Figure 4: minimum ORF length and the short-ORF rule.
 
 usage: make_fig4.py [results_dir] [out_dir]
-  results_dir default: benchmark_v2/results_v3
+  results_dir default: data/benchmark
   out_dir     default: figures/fig4_short_orfs
 
 Panels
@@ -31,7 +31,7 @@ sys.path.insert(0, str(HERE.parent))
 import style  # noqa: E402
 
 REPO = HERE.parents[1]
-RES = Path(sys.argv[1]) if len(sys.argv) > 1 else REPO / "benchmark_v2/results_v3"
+RES = Path(sys.argv[1]) if len(sys.argv) > 1 else REPO / "data/benchmark"
 OUT = Path(sys.argv[2]) if len(sys.argv) > 2 else HERE
 
 N_LNC = {"human": 33668, "mouse": 31467}

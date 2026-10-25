@@ -2,20 +2,20 @@
 """Figure 5: true CDSs that fail the coding test, and the two fallbacks (length, homology).
 
 usage: make_fig5.py [homology_vs_abinitio.tsv] [out_dir]
-  homology_vs_abinitio.tsv default: benchmark_v2/results_v3/homology_vs_abinitio.tsv. Regenerate it
+  homology_vs_abinitio.tsv default: data/benchmark/homology_vs_abinitio.tsv. Regenerate it
   from a new summary.tsv with benchmark_v2/scripts/compare_homology.py and pass its path here.
   out_dir default: figures/fig5_failures
 
 Panels
   a  failure rate of matched true CDSs by CDS length, per organism; pooled failure and pooled
-     "still lost after the length rule"            long_orf_failures/results/summary_by_length.tsv
-  b  exclusive attribution of failures >= 300 nt   long_orf_failures/results/explanation_flags.tsv
+     "still lost after the length rule"            data/long_orf_failures/summary_by_length.tsv
+  b  exclusive attribution of failures >= 300 nt   data/long_orf_failures/explanation_flags.tsv
   c  D. melanogaster failures >= 300 nt by GC3 quintile and chromosome, with the share rescued by
      a GC3-matched model                           data/dmel_gc3_rescue.tsv (derive_dmel_gc3_rescue.py)
   d  homology minus ab initio, stop-level sensitivity, stranded complete vs fragments
   e  same, exact-CDS F1                            homology_vs_abinitio.tsv
   f  failing CDSs retained by the length rule, with or without a homology hit
-                                                   long_orf_failures/results/length_vs_homology_fallback.tsv
+                                                   data/long_orf_failures/length_vs_homology_fallback.tsv
 Evidence: E12 (a-c, f), E07 (d, e).
 """
 import csv
@@ -30,8 +30,8 @@ sys.path.insert(0, str(HERE.parent))
 import style  # noqa: E402
 
 REPO = HERE.parents[1]
-LOF = REPO / "analyses/long_orf_failures/results"
-HOM = Path(sys.argv[1]) if len(sys.argv) > 1 else REPO / "benchmark_v2/results_v3/homology_vs_abinitio.tsv"
+LOF = REPO / "data/long_orf_failures"
+HOM = Path(sys.argv[1]) if len(sys.argv) > 1 else REPO / "data/benchmark/homology_vs_abinitio.tsv"
 OUT = Path(sys.argv[2]) if len(sys.argv) > 2 else HERE
 
 BINS = ["0-299", "300-599", "600-999", "1000-1999", "2000-4999", ">=5000"]

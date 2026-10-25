@@ -76,7 +76,7 @@ python $T/figures/kozak/make_kozak_figure.py $P/data/bench_v3/inputs $P/work/ben
 ```
 
 ## Outputs
-- `$T/benchmark_v2/results_v3/summary.tsv` (exact-level columns `tp_exact`, `f1_exact`).
+- `$T/data/benchmark/summary.tsv` (exact-level columns `tp_exact`, `f1_exact`).
 - `$T/figures/kozak/kozak_logos{,_bits,_self_vs_truth}.{pdf,png}` and `kozak_stats.tsv`.
 - Not in git:
   - `$P/work/start_seed_runs/{pasa,stringtie}/seed{1..5}`
@@ -224,6 +224,6 @@ kfold picks (19,10) in athal and (20,9) in creinhardtii. This line was supersede
 The rule is now written as two scores, with the Kozak score in bits and the weight at 17 per bit (25 per nat
 before). Numbers in this record are per nat (multiply K by 1.443 for bits). Behaviour and the equivalence
 check are in E13 (Addendum); Kozak score distributions in bits are in
-`analyses/start_param_sensitivity/results/kozak_score_distribution.tsv` (`kozak_score_distribution.py`).
+`data/start_param_sensitivity/kozak_score_distribution.tsv` (`kozak_score_distribution.py`).
 `genome_annotation/scripts/start_labels.py` reads both the old (upstream_frame_contrast, nats) and new
 (upstream_coding_score, bits) GFF3 attributes.

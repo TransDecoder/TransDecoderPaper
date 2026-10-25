@@ -1,16 +1,16 @@
 # Figure 4: minimum ORF length and the short-ORF rule
 
-Script: `make_fig4.py [results_dir] [out_dir]` (defaults `benchmark_v2/results_v3`, this dir), run with
+Script: `make_fig4.py [results_dir] [out_dir]` (defaults `data/benchmark`, this dir), run with
 `$P/env/td/bin/python`. Output: `fig4_short_orfs.{pdf,png}`. Shared style: `figures/style.py`.
 Evidence: E04 (panels a–c), E07 (panel d).
 
 ## Panels and data
 | panel | content | source | computation |
 |---|---|---|---|
-| a | human and mouse `complete.wLnc`: x = lncRNAs with a prediction (%), y = stop-level sensitivity for true proteins of 50–99 aa (%). Solid path: LongOrfs minimum 100, 90, …, 50 codons. Dashed path: 50 codons → 50 + rule ×150, ×200, ×250. Star: default (50 + rule ×200). | `benchmark_v2/results_v3/short_orf_summary.tsv` (cfg m100…m50, m50+g150/200/250) | x = `neg` / lncRNA count (33,668 human, 31,467 mouse); y = `sens_short` |
+| a | human and mouse `complete.wLnc`: x = lncRNAs with a prediction (%), y = stop-level sensitivity for true proteins of 50–99 aa (%). Solid path: LongOrfs minimum 100, 90, …, 50 codons. Dashed path: 50 codons → 50 + rule ×150, ×200, ×250. Star: default (50 + rule ×200). | `data/benchmark/short_orf_summary.tsv` (cfg m100…m50, m50+g150/200/250) | x = `neg` / lncRNA count (33,668 human, 31,467 mouse); y = `sens_short` |
 | b | the same for `fragments.wLnc` | same | same |
 | c | predictions per negative sequence (log y) at 100 codons, 50 codons, 50 + rule ×200: GC-matched random sequences (`complete.wRand`, 8 organisms ordered by G+C) and lncRNAs (`complete.wLnc`, human and mouse) | same | `neg` / number of negatives. Random: one per truth transcript (Table 1 gene counts; checked: 19,167 `rand_` sequences in human, 5,281 in *P. falciparum*) |
-| d | share of human lncRNAs with a prediction by method, lncRNAs present in GENCODE v28 vs added later (`complete.wLnc`) | `benchmark_v2/results_v3/lnc_by_era.human.tsv` (block `complete.wLnc`) | `n_called / n_lnc`, methods sorted by the overall rate |
+| d | share of human lncRNAs with a prediction by method, lncRNAs present in GENCODE v28 vs added later (`complete.wLnc`) | `data/benchmark/lnc_by_era.human.tsv` (block `complete.wLnc`) | `n_called / n_lnc`, methods sorted by the overall rate |
 
 Configurations: `m100` is `pytd_dev_kozak_add` (LongOrfs `-m 100`) and `m50+g200` is `pytd_dev_m50_sc200`
 (see `benchmark_v2/scripts/short_orf_summary.awk`; E04 software table). Check: `m50+g200` reproduces the
