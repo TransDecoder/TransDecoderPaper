@@ -3,7 +3,11 @@
 **Status:** all non-CodAn runs are done and scored (204 of 204). CodAn is running, 2 at a time. It has 21 runs, of which 0 were scored when this record was written. To rescore when CodAn finishes, see Commands.
 
 ## Claims supported
-None in the manuscript yet. This record backs the notebook section "Balanced mixed inputs" in `notebooks/02_benchmark.Rmd`. It answers two questions:
+Manuscript (2026-10-25): Methods "Benchmark data" (balanced mixed inputs); Table 1 "mixed" columns;
+Results "Balanced types of coding region" (two paragraphs and the 5'-open distance sentence);
+Supplementary Table S9 (`tab:mixedtypes`); Discussion (start-codon paragraph, Limitations). Values are
+from `data/benchmark/final_v7/mixed_medians.tsv` (`pipeline/derive/02_mixed_table.py`: median over
+organisms within a trial, mean over trials). CodAn cells are marked as runs in progress. This record backs the notebook section "Balanced mixed inputs" in `notebooks/02_benchmark.Rmd`. It answers two questions:
 - how the methods do when complete transcripts and all three partial types, including internal fragments (no start and no stop), are mixed in one input;
 - how the decision to leave a 5' partial open depends on the distance to the first in-frame ATG.
 

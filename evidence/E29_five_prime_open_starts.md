@@ -147,3 +147,9 @@ fragments weighted equally) looks conservative on fragments.
 - Benchmark complete inputs clip UTRs to 250 nt, which creates extra long open UTRs (utr_first at
   d >= 200: 4,917 in complete vs 2,718 in complete_fullutr).
 - Offline and fresh counts differ by <= 1 exact match per input (score ties).
+
+
+## Use in the manuscript (2026-10-25)
+Results, Start-codon refinement, paragraphs "Truncated ORFs and short UTRs are hard to tell apart"
+(error anatomy vs distance, cut-model and annotation checks, UTR-length prior not adopted, GM12878
+truncated share 0.20-0.37 vs 0.76) and Discussion Limitations (76% vs 20-37%). No notebook section yet.

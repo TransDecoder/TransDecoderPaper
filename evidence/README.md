@@ -62,5 +62,5 @@ Rules:
 | E25 | [Final reruns at the release commits](E25_final_release_reruns.md) | in paper |
 | E26 | [Frame contrast: forward frames vs all five other frames](E26_frame_contrast_reverse_frames.md) | in paper (Methods) |
 | E27 | [How the compared methods work](E27_comparator_algorithms.md) | in paper (Background, Table S7) |
-| E28 | [Balanced mixed inputs: complete, 5', 3' and internal partial CDSs](E28_mixed_partial_inputs.md) | notebook 02; CodAn running |
-| E29 | [Start placement on 5'-open ORFs; UTR-length prior (not adopted)](E29_five_prime_open_starts.md) | pending text |
+| E28 | [Balanced mixed inputs: complete, 5', 3' and internal partial CDSs](E28_mixed_partial_inputs.md) | in paper (Table 1, Table S9); CodAn running |
+| E29 | [Start placement on 5'-open ORFs; UTR-length prior (not adopted)](E29_five_prime_open_starts.md) | in paper (Start-codon refinement) |
