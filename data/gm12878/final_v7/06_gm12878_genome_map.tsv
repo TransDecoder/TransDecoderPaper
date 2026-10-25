@@ -1,0 +1,7 @@
+run	assembly	transcript_orfs	projected	skipped_unaligned_cds	skipped_no_structure
+earlier	lraa	34592	34592	0	0
+earlier	stringtie	40666	40666	0	0
+earlier	trinity	97088	92464	4611	13
+release	lraa	33028	33028	0	0
+release	stringtie	36479	36479	0	0
+release	trinity	80797	77481	3312	4

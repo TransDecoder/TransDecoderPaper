@@ -1,0 +1,570 @@
+---
+title: "GM12878: three assemblies annotated with PyTransDecoder"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    code_folding: hide
+    self_contained: true
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, fig.align = "center")
+source(file.path("R", "common.R"))
+library(knitr)
+```
+
+This notebook supports two manuscript sections:
+
+- Methods, GM12878 transcriptome assemblies
+  ([`../manuscript/sections/methods_gm12878_assemblies.tex`](../manuscript/sections/methods_gm12878_assemblies.tex));
+- Results, annotating three GM12878 transcriptome assemblies, with Table `tab:gm12878`
+  ([`../manuscript/sections/results_gm12878_application.tex`](../manuscript/sections/results_gm12878_application.tex));
+
+and draws Fig. 6 (`fig:gm12878`, `figures/fig6_gm12878.{pdf,png}`). Panels c-e of Fig. 6 (Ribo-seq and
+MS) are drawn here; the numbers the text quotes from them are computed in `07_gm12878_evidence.Rmd`.
+
+Provenance: `r evidence("E11")` (reads, STAR, Trinity), `r evidence("E03")` (assemblies, PyTD runs,
+evaluation metrics), `r evidence("E05")` (expressed-gene sensitivity), `r evidence("E25")` (release reruns).
+
+**Which runs.** Two sets of PyTD runs on the same three assemblies exist:
+
+- *earlier*: PyTD 48c870c, fixed short-ORF test (records E03, E05). The manuscript text and table
+  currently quote these runs.
+- *release*: PyTD main 3a793ff, release defaults (decoy q-value test at q 0.05; record E25).
+
+Figures and the numbers written in this notebook use the **release** runs. The earlier values are
+shown next to them, and the checks at the end compare the release values with the text, so a mismatch
+shows a number the text must update.
+
+Data (all in `data/`):
+
+- `benchmark/final_v7/eval.<asm>_final_v7_abinitio.summary.tsv`: release evaluation summaries
+  (`eval_genome_cds.py`; identical to `$P/work/gm12878_td/eval/`).
+- `gm12878/eval_summaries/<asm>_final_abinitio.summary.tsv`: earlier evaluation summaries (E03).
+- `gm12878/final_v7/06_*.tsv`, written by `pipeline/derive/06_gm12878_application.sh` (calls
+  `06_gm12878_tables.py`) from the per-reference and per-prediction status tables, the genome-map
+  logs and the genome GFF3 files of both runs:
+  - `06_gm12878_inputs.tsv`: read and transcript counts of the inputs;
+  - `06_gm12878_genome_map.tsv`: transcript ORFs and those projected to the genome;
+  - `06_gm12878_class_by_length.tsv`: distinct predicted CDSs by protein length and GENCODE class;
+  - `06_gm12878_mane_not_exact.tsv`: assembled MANE CDSs not predicted exactly, and whether a
+    prediction has the same stop codon;
+  - `06_gm12878_v7_expressed_sensitivity.tsv`: `expressed_sensitivity.py` (E05 method) on the release runs.
+- `gm12878/gm12878_expressed_sensitivity.tsv`: the same for the earlier runs (E05).
+- `benchmark/final_v7/gm12878_v7_riboseq_support.tsv`, `gm12878_v7_ms_peptide_support.tsv` (E25) and
+  `gm12878/final_v7/gm12878_v7_riboseq_stringtie_by_expression.tsv`
+  (`pipeline/derive/07_gm12878_evidence_v7.sh`): Fig. 6c-e.
+
+```{r data}
+ASMS <- c("lraa", "stringtie", "trinity")
+SHORT <- c(lraa = "LRAA", stringtie = "StringTie", trinity = "Trinity")
+read_summary <- function(run, asm) {
+  f <- if (run == "release") data_path("benchmark", "final_v7", sprintf("eval.%s_final_v7_abinitio.summary.tsv", asm))
+       else data_path("gm12878", "eval_summaries", sprintf("%s_final_abinitio.summary.tsv", asm))
+  read_tsv(f, col_names = c("metric", "value"), col_types = "cc") %>%
+    filter(metric != "label") %>% mutate(value = as.numeric(value), run = run, assembly = asm)
+}
+summ <- bind_rows(lapply(c("release", "earlier"), function(r) bind_rows(lapply(ASMS, read_summary, run = r))))
+# S("release", "lraa", "MANE_exact"); vectorised over assemblies when asm = ASMS
+S <- function(run, asm, metric) {
+  v <- sapply(asm, function(a) summ$value[summ$run == run & summ$assembly == a & summ$metric == metric])
+  setNames(as.numeric(v), asm)
+}
+R <- function(metric, asm = ASMS) S("release", asm, metric)
+E <- function(metric, asm = ASMS) S("earlier", asm, metric)
+
+by_len <- read_tab("gm12878", "final_v7", "06_gm12878_class_by_length.tsv")
+# The summaries round fractions to 4 decimals; a value ending in 5 then rounds ambiguously at 3 decimals.
+# Recompute the fractions that have counts: exact given assembled = exact / assembled (every exact
+# reference is also assembled, E03), and the prediction-class fractions from the class counts.
+cnt <- by_len %>% group_by(run, assembly) %>%
+  summarise(n = sum(n), ex = sum(exact), co = sum(exact) + sum(compatible), nov = sum(novel), .groups = "drop")
+recomp <- bind_rows(
+  summ %>% filter(metric %in% c("MANE_exact", "MANE_assembled", "GENCODE_complete_exact", "GENCODE_complete_assembled")) %>%
+    pivot_wider(names_from = metric, values_from = value) %>%
+    transmute(run, assembly, MANE_sens_exact_given_assembled = MANE_exact / MANE_assembled,
+              GENCODE_complete_sens_exact_given_assembled = GENCODE_complete_exact / GENCODE_complete_assembled) %>%
+    pivot_longer(-c(run, assembly), names_to = "metric"),
+  cnt %>% transmute(run, assembly, pred_all_GENCODE_exact_frac = ex / n, pred_all_GENCODE_compatible_frac = co / n,
+                    pred_all_no_GENCODE_CDS_overlap_frac = nov / n) %>%
+    pivot_longer(-c(run, assembly), names_to = "metric"))
+chk <- recomp %>% inner_join(summ, by = c("run", "assembly", "metric"))
+stopifnot(all(abs(chk$value.x - chk$value.y) < 6e-5))
+summ <- summ %>% anti_join(recomp, by = c("run", "assembly", "metric")) %>% bind_rows(recomp)
+
+inputs <- read_tab("gm12878", "final_v7", "06_gm12878_inputs.tsv")
+I <- function(m) inputs$value[inputs$metric == m]
+gmap <- read_tab("gm12878", "final_v7", "06_gm12878_genome_map.tsv")
+not_exact <- read_tab("gm12878", "final_v7", "06_gm12878_mane_not_exact.tsv")
+expr_rel <- read_tab("gm12878", "final_v7", "06_gm12878_v7_expressed_sensitivity.tsv") %>% mutate(run = "release")
+expr_ear <- read_tab("gm12878", "gm12878_expressed_sensitivity.tsv") %>% mutate(run = "earlier")
+expr <- bind_rows(expr_rel, expr_ear)
+ribo <- read_tab("benchmark", "final_v7", "gm12878_v7_riboseq_support.tsv") %>% filter(assembly %in% ASMS)
+ms <- read_tab("benchmark", "final_v7", "gm12878_v7_ms_peptide_support.tsv") %>% filter(assembly %in% ASMS)
+ribo_expr <- read_tab("gm12878", "final_v7", "gm12878_v7_riboseq_stringtie_by_expression.tsv")
+```
+
+## GM12878 transcriptome assemblies (Methods)
+
+Inputs (`06_gm12878_inputs.tsv`, from the STAR, minimap2 and read-count logs; `r evidence("E11")`,
+`r evidence("E03")`):
+
+- Short reads: `r num(I("short_read_pairs"))` pairs (`r f1(I("short_read_pairs") / 1e6)` million),
+  `r I("short_read_unique_pct")`% uniquely mapped by STAR.
+- StringTie: `r num(I("stringtie_transcripts"))` transcripts.
+- Trinity GG: `r num(I("trinity_transcripts"))` transcripts, `r num(I("trinity_primary_mapped"))`
+  with a primary minimap2 alignment.
+- Long reads: `r num(I("long_reads_flnc"))` FLNC reads (`r f1(I("long_reads_flnc") / 1e6)` million);
+  LRAA: `r num(I("lraa_transcripts"))` transcripts.
+- References: `r num(R("MANE_n")[1])` MANE Select transcripts on the primary assembly and
+  `r num(R("GENCODE_complete_n")[1])` GENCODE v50 protein-coding transcripts with complete CDSs.
+
+The assembled-transcript counts used by the evaluation equal these counts:
+`r paste(num(R("assembled_transcripts")), collapse = " / ")` (LRAA / StringTie / Trinity).
+
+The Methods text names PyTD commit 48c870c. That is the commit of the earlier runs; the release runs
+used PyTD main 3a793ff (E25).
+
+```{r methods-checks}
+stopifnot(R("assembled_transcripts")[["lraa"]] == I("lraa_transcripts"),
+          R("assembled_transcripts")[["stringtie"]] == I("stringtie_transcripts"),
+          R("assembled_transcripts")[["trinity"]] == I("trinity_primary_mapped"))
+kable(inputs)
+```
+
+## Annotating three GM12878 transcriptome assemblies
+
+The three assemblies differ in size: `r num(I("trinity_primary_mapped"))` aligned Trinity transcripts,
+against `r num(I("stringtie_transcripts"))` (StringTie) and `r num(I("lraa_transcripts"))` (LRAA).
+The long-read sample had `r f1(I("long_reads_flnc") / 1e6)` million reads. `r evidence("E03")`
+
+## Predictions
+
+```{r predictions}
+n_rel <- R("distinct_predicted_cds"); n_ear <- E("distinct_predicted_cds")
+part_rel <- n_rel - R("distinct_predicted_complete"); part_ear <- n_ear - E("distinct_predicted_complete")
+gm <- gmap %>% mutate(not_projected = transcript_orfs - projected, frac_not = not_projected / transcript_orfs)
+g <- function(run, asm, col) gm[[col]][gm$run == run & gm$assembly == asm]
+kable(gm, digits = 3)
+```
+
+Release runs: PyTD predicted `r num(n_rel[["lraa"]])` (LRAA), `r num(n_rel[["stringtie"]])` (StringTie)
+and `r num(n_rel[["trinity"]])` (Trinity) distinct CDSs after genome projection (earlier runs:
+`r paste(num(n_ear), collapse = " / ")`). Partial CDSs made up
+`r paste(pct(part_rel / n_rel, 0), collapse = " / ")` of the predictions (earlier:
+`r paste(pct(part_ear / n_ear, 0), collapse = " / ")`).
+
+All LRAA and StringTie ORFs were projected to the genome. Trinity lost
+`r num(g("release", "trinity", "not_projected"))` of `r num(g("release", "trinity", "transcript_orfs"))`
+ORFs (`r pct(g("release", "trinity", "frac_not"))`): `r num(g("release", "trinity", "skipped_unaligned_cds"))`
+with a CDS outside the aligned part of the transcript and `r num(g("release", "trinity", "skipped_no_structure"))`
+on unmapped transcripts. In the earlier run it lost `r num(g("earlier", "trinity", "not_projected"))` of
+`r num(g("earlier", "trinity", "transcript_orfs"))` (`r pct(g("earlier", "trinity", "frac_not"))`).
+`r evidence("E03")`, `r evidence("E25")`
+
+## CDS prediction on assembled transcripts
+
+```{r assembled}
+ega_mane <- R("MANE_sens_exact_given_assembled"); ega_gc <- R("GENCODE_complete_sens_exact_given_assembled")
+ne <- not_exact %>% mutate(frac_same_stop = same_stop / assembled_not_exact,
+                           frac_upstream = same_stop_start_upstream / same_stop)
+ss <- function(run, asm) ne$frac_same_stop[ne$run == run & ne$assembly == asm]
+kable(ne, digits = 3)
+```
+
+Exact given assembled (release) was `r f3(min(ega_mane))`–`r f3(max(ega_mane))` for MANE Select
+(earlier `r f3(min(E("MANE_sens_exact_given_assembled")))`–`r f3(max(E("MANE_sens_exact_given_assembled")))`)
+and `r f3(min(ega_gc))`–`r f3(max(ega_gc))` for complete GENCODE CDSs (earlier
+`r f3(min(E("GENCODE_complete_sens_exact_given_assembled")))`–`r f3(max(E("GENCODE_complete_sens_exact_given_assembled")))`).
+
+Assembled MANE CDSs that were not predicted exactly: for `r pct(ss("release", "lraa"), 0)` (LRAA),
+`r pct(ss("release", "stringtie"), 0)` (StringTie) and `r pct(ss("release", "trinity"), 0)` (Trinity),
+a predicted CDS (complete or 5′ partial) had the same stop codon, so it differed only at the start. In
+most of these the predicted start was upstream of the MANE start
+(`r paste(pct(ne$frac_upstream[ne$run == "release"], 0), collapse = " / ")`). With the earlier runs the
+same count gives `r pct(ss("earlier", "lraa"), 0)` (LRAA) and `r pct(ss("earlier", "stringtie"), 0)`
+(StringTie).
+
+The text quotes 62% (LRAA) and 68% (StringTie). No evidence record documents how these were computed,
+and the definition used here (any distinct predicted CDS with the same stop codon, chromosome and strand)
+does not reproduce them on the earlier runs (64% and 70%). The text should take the release values
+from this table, and the definition should be stated in the Methods or an evidence record.
+
+## Table: PyTD on three GM12878 assemblies
+
+```{r table}
+rows <- tribble(
+  ~row,                                         ~metric,
+  "Distinct predicted CDSs",                    "distinct_predicted_cds",
+  "complete",                                   "distinct_predicted_complete",
+  "partial",                                    "partial",
+  "MANE assembled",                             "MANE_assembled_frac",
+  "MANE exact",                                 "MANE_sens_exact",
+  "MANE compatible",                            "MANE_sens_compatible",
+  "MANE exact given assembled",                 "MANE_sens_exact_given_assembled",
+  "GENCODE complete exact",                     "GENCODE_complete_sens_exact",
+  "GENCODE complete compatible",                "GENCODE_complete_sens_compatible",
+  "GENCODE exact given assembled",              "GENCODE_complete_sens_exact_given_assembled",
+  "Predictions identical to a GENCODE CDS",     "pred_all_GENCODE_exact_frac",
+  "Predictions compatible with a GENCODE CDS",  "pred_all_GENCODE_compatible_frac",
+  "Predictions with no GENCODE CDS overlap",    "pred_all_no_GENCODE_CDS_overlap_frac"
+)
+summ_p <- summ %>% bind_rows(
+  summ %>% filter(metric %in% c("distinct_predicted_cds", "distinct_predicted_complete")) %>%
+    pivot_wider(names_from = metric, values_from = value) %>%
+    transmute(run, assembly, metric = "partial", value = distinct_predicted_cds - distinct_predicted_complete))
+tab <- rows %>% left_join(summ_p, by = "metric", relationship = "many-to-many") %>%
+  mutate(value = ifelse(value >= 1, num(value), f3(round(value, 3)))) %>%
+  mutate(col = paste(SHORT[assembly], run)) %>% select(row, col, value) %>%
+  pivot_wider(names_from = col, values_from = value) %>%
+  select(row, `LRAA release`, `StringTie release`, `Trinity release`,
+         `LRAA earlier`, `StringTie earlier`, `Trinity earlier`)
+kable(tab, align = "lrrrrrr")
+```
+
+The manuscript table (`tab:gm12878`) currently shows the earlier values (right-hand columns).
+`r evidence("E03")`, `r evidence("E25")`
+
+## Sensitivity is limited by assembly
+
+```{r expressed}
+mane_e <- expr %>% filter(set == "MANE")
+X <- function(run_, asm, tpm, col) mane_e[[col]][mane_e$run == run_ & mane_e$label == asm & mane_e$tpm_min == tpm]
+n_tpm1 <- unique(mane_e$n[mane_e$tpm_min == 1]); n_tpm10 <- unique(mane_e$n[mane_e$tpm_min == 10])
+st_ex1 <- X("release", "stringtie", 1, "sens_exact"); st_ex10 <- X("release", "stringtie", 10, "sens_exact")
+comp1 <- sapply(c("stringtie", "trinity"), X, run_ = "release", tpm = 1, col = "sens_compatible")
+comp10 <- sapply(c("stringtie", "trinity"), X, run_ = "release", tpm = 10, col = "sens_compatible")
+ega_expr <- mane_e %>% filter(run == "release", tpm_min > 0) %>% pull(sens_exact_given_assembled)
+lraa_ex <- c(X("release", "lraa", 1, "sens_exact"), X("release", "lraa", 10, "sens_exact"))
+stopifnot(all(abs(sapply(ASMS, X, run_ = "release", tpm = 0, col = "sens_exact") - R("MANE_sens_exact")) < 1e-4))
+expr %>% filter(set == "MANE") %>% arrange(run, label, tpm_min) %>% kable(digits = 3)
+```
+
+Release runs, all MANE Select CDSs: `r pct(min(R("MANE_sens_exact")), 0)`–`r pct(max(R("MANE_sens_exact")), 0)`
+predicted exactly and `r pct(min(R("MANE_sens_compatible")), 0)`–`r pct(max(R("MANE_sens_compatible")), 0)`
+compatibly; assembled `r pct(min(R("MANE_assembled_frac")), 0)`–`r pct(max(R("MANE_assembled_frac")), 0)`
+(the assembled fractions do not depend on the PyTD run).
+
+MANE genes expressed at gene TPM ≥ 1: `r num(n_tpm1)` genes. StringTie plus PyTD gave the exact MANE
+CDS for `r pct(st_ex1, 0)` (earlier `r pct(X("earlier", "stringtie", 1, "sens_exact"), 0)`);
+StringTie and Trinity gave a compatible CDS for `r pct(min(comp1), 0)`–`r pct(max(comp1), 0)`.
+At TPM ≥ 10 (`r num(n_tpm10)` genes): StringTie exact `r pct(st_ex10, 0)`, compatible
+`r pct(min(comp10), 0)`–`r pct(max(comp10), 0)` (StringTie, Trinity). Exact given assembled at
+TPM ≥ 1, 5 and 10: `r f3(min(ega_expr))`–`r f3(max(ega_expr))`. LRAA exact at TPM ≥ 1 and ≥ 10:
+`r f3(lraa_ex[1])` and `r f3(lraa_ex[2])`. `r evidence("E05")`, `r evidence("E25")`
+
+## Assembly type
+
+GENCODE complete compatible sensitivity (release): `r paste(f3(R("GENCODE_complete_sens_compatible")), collapse = " / ")`
+(LRAA / StringTie / Trinity). Share of predictions identical to a GENCODE CDS:
+`r paste(pct(R("pred_all_GENCODE_exact_frac"), 0), collapse = " / ")`; compatible with a GENCODE CDS:
+`r paste(pct(R("pred_all_GENCODE_compatible_frac"), 0), collapse = " / ")`. Among complete predictions,
+identical to a GENCODE CDS: `r paste(pct(R("pred_complete_GENCODE_exact_frac"), 0), collapse = " / ")`
+(earlier `r paste(pct(E("pred_complete_GENCODE_exact_frac"), 0), collapse = " / ")`). `r evidence("E03")`, `r evidence("E25")`
+
+## Unannotated predictions
+
+```{r unannotated}
+un <- tibble(assembly = ASMS,
+             all_release = R("pred_all_no_GENCODE_CDS_overlap_frac"),
+             partial_release = R("pred_partial_no_GENCODE_CDS_overlap_frac"),
+             complete_release = R("pred_complete_no_GENCODE_CDS_overlap_frac"),
+             all_earlier = E("pred_all_no_GENCODE_CDS_overlap_frac"),
+             partial_earlier = E("pred_partial_no_GENCODE_CDS_overlap_frac"),
+             complete_earlier = E("pred_complete_no_GENCODE_CDS_overlap_frac"))
+n_novel <- by_len %>% group_by(run, assembly) %>% summarise(novel = sum(novel), n = sum(n), .groups = "drop")
+kable(un, digits = 4)
+```
+
+Release runs: predictions with no same-strand overlap with any GENCODE CDS made up
+`r pct(un$all_release[1])` (LRAA), `r pct(un$all_release[2])` (StringTie) and `r pct(un$all_release[3])`
+(Trinity) of distinct CDSs (`r paste(num(n_novel$novel[n_novel$run == "release"]), collapse = " / ")` CDSs;
+earlier `r paste(pct(un$all_earlier), collapse = " / ")`). Among partial predictions of the short-read
+assemblies: `r pct(un$partial_release[2], 0)` (StringTie), `r pct(un$partial_release[3], 0)` (Trinity);
+among complete ones: `r pct(un$complete_release[2], 0)`, `r pct(un$complete_release[3], 0)`.
+The release test removes most of them: the counts fall from
+`r paste(num(n_novel$novel[n_novel$run == "earlier"]), collapse = " / ")` to
+`r paste(num(n_novel$novel[n_novel$run == "release"]), collapse = " / ")`. `r evidence("E03")`, `r evidence("E25")`
+
+## Figure 6
+
+Same panels as the earlier matplotlib figure (`figures/fig6_gm12878/make_fig6.py`), drawn from the
+release runs. Panel b of the earlier figure was made by `figures/fig6_gm12878/derive_class_by_length.py`;
+the `earlier` rows of `06_gm12878_class_by_length.tsv` equal its output
+(`figures/fig6_gm12878/data/pred_class_by_length.tsv`, checked below).
+
+```{r fig6-data}
+CLASSES <- c("exact", "compatible", "other_overlap", "novel")
+CLASS_LAB <- c(exact = "GENCODE exact", compatible = "compatible", other_overlap = "other overlap",
+               novel = "unannotated")
+CLASS_COLOR <- c(exact = "#08519c", compatible = "#6baed6", other_overlap = "#bdbdbd", novel = "#e7298a")
+asm_f <- function(x) factor(x, levels = ASMS, labels = SHORT[ASMS])
+cls_f <- function(x) factor(x, levels = CLASSES, labels = CLASS_LAB[CLASSES])
+ASM_COL <- setNames(ASM_COLOR[ASMS], SHORT[ASMS])
+
+old_len <- read_tab("..", "figures", "fig6_gm12878", "data", "pred_class_by_length.tsv")
+stopifnot(isTRUE(all.equal(as.data.frame(by_len %>% filter(run == "earlier") %>% select(-run)),
+                           as.data.frame(old_len), check.attributes = FALSE)))
+
+# a: MANE Select recovery by expression threshold
+pa_d <- expr_rel %>% filter(set == "MANE", tpm_min %in% c(0, 1, 10)) %>%
+  mutate(assembly = asm_f(label), tpm = factor(tpm_min, levels = c(0, 1, 10), labels = c("all", "≥1", "≥10")))
+# b: class composition by length
+BINS <- c("lt100", "100-149", "150-199", "200-299", "ge300")
+BIN_LAB <- c("<100", "100–149", "150–199", "200–299", "≥300")
+pb_d <- by_len %>% filter(run == "release") %>%
+  pivot_longer(all_of(CLASSES), names_to = "class", values_to = "count") %>%
+  mutate(frac = count / n, assembly = asm_f(assembly), class = cls_f(class),
+         length_bin = factor(length_bin, levels = BINS, labels = BIN_LAB))
+stopifnot(all(by_len %>% filter(run == "release") %>% group_by(assembly) %>% summarise(n = sum(n)) %>%
+                pull(n) == R("distinct_predicted_cds")))
+# c: Ribo-seq
+pc_d <- ribo %>% filter(class %in% CLASSES) %>%
+  mutate(frac_psites = with_min_psites / n, frac_frame0 = supported / n,
+         assembly = asm_f(assembly), class = cls_f(class))
+# d: MS
+pd_d <- ms %>% filter(size %in% c("long", "short")) %>%
+  select(assembly, class, size, n, frac_ge1) %>%
+  pivot_wider(names_from = size, values_from = c(n, frac_ge1)) %>%
+  mutate(assembly = asm_f(assembly), class = cls_f(class))
+# e: Ribo-seq by expression (StringTie)
+TPMB <- c("a<1", "b1-5", "c5-20", "d20-100", "e>=100")
+pe_d <- ribo_expr %>% mutate(class = cls_f(class), tpm_bin = factor(tpm_bin, levels = TPMB,
+                                                                     labels = c("<1", "1–5", "5–20", "20–100", "≥100")))
+```
+
+```{r fig6, fig.width = FULL_W, fig.height = 5.2}
+pa <- ggplot(pa_d, aes(tpm)) +
+  geom_col(aes(y = assembled_frac, colour = assembly), fill = "white", width = 0.8, linewidth = 0.35) +
+  geom_col(aes(y = sens_exact, fill = assembly, alpha = tpm), width = 0.8) +
+  geom_text(aes(y = assembled_frac + 0.02, label = sprintf("%.2f", sens_exact_given_assembled)),
+            angle = 90, hjust = 0, size = 5.5 / .pt) +
+  facet_wrap(~assembly, nrow = 1, strip.position = "bottom") +
+  scale_fill_manual(values = ASM_COL, guide = "none") + scale_colour_manual(values = ASM_COL, guide = "none") +
+  scale_alpha_manual(values = c(1, 0.7, 0.45), guide = "none") +
+  scale_y_continuous(limits = c(0, 1.2), breaks = seq(0, 1, 0.2), expand = c(0, 0)) +
+  labs(x = "gene TPM", y = "fraction of MANE Select CDSs", title = "MANE Select recovery",
+       subtitle = "hollow: assembled; filled: exact;\nnumber: exact given assembled") +
+  theme(strip.placement = "outside", panel.spacing = unit(1, "mm"),
+        plot.subtitle = element_text(size = 5.5))
+
+pb <- ggplot(pb_d, aes(length_bin, frac, fill = class)) +
+  geom_col(width = 0.85, position = position_stack(reverse = TRUE)) +
+  facet_wrap(~assembly, nrow = 1, strip.position = "bottom") +
+  scale_fill_manual(values = setNames(CLASS_COLOR, CLASS_LAB[CLASSES]), name = NULL) +
+  scale_y_continuous(expand = c(0, 0)) +
+  labs(x = "predicted protein length (aa)", y = "fraction of predicted CDSs",
+       title = "Distinct predicted CDSs by length and relation to GENCODE") +
+  theme(strip.placement = "outside", legend.position = "top", legend.justification = "right",
+        axis.text.x = element_text(angle = 45, hjust = 1, size = 5), panel.spacing = unit(2, "mm"))
+
+dodge <- position_dodge(width = 0.8)
+SHORT_CLS <- c("GENCODE exact" = "exact", compatible = "compat-\nible", "other overlap" = "other\noverlap",
+               unannotated = "unanno-\ntated")
+pc <- ggplot(pc_d, aes(class, group = assembly)) +
+  geom_col(aes(y = frac_psites, fill = assembly), alpha = 0.45, width = 0.75, position = dodge) +
+  geom_col(aes(y = frac_frame0, fill = assembly), width = 0.75, position = dodge) +
+  geom_text(data = pc_d %>% filter(class == "unannotated"),
+            aes(y = frac_psites + 0.02, label = paste0("n=", num(n))), position = dodge,
+            angle = 90, hjust = 0, size = 5 / .pt) +
+  scale_fill_manual(values = ASM_COL, name = NULL) +
+  scale_y_continuous(limits = c(0, 1.2), breaks = seq(0, 1, 0.2), expand = c(0, 0)) +
+  scale_x_discrete(labels = SHORT_CLS) +
+  labs(x = NULL, y = "fraction of predicted CDSs", title = "Ribo-seq footprints",
+       subtitle = "light: ≥10 P-sites; dark: frame 0") +
+  theme(legend.position = "none", plot.subtitle = element_text(size = 5.5))
+
+pd <- ggplot(pd_d, aes(class, group = assembly)) +
+  geom_col(aes(y = frac_ge1_long, fill = assembly), width = 0.75, position = dodge) +
+  geom_point(aes(y = frac_ge1_short), position = dodge, shape = 23, size = 1.1, fill = "white",
+             colour = "black", stroke = 0.3) +
+  scale_fill_manual(values = ASM_COL, name = NULL) +
+  scale_y_continuous(limits = c(0, 1.2), breaks = seq(0, 1, 0.2), expand = c(0, 0)) +
+  scale_x_discrete(labels = SHORT_CLS) +
+  labs(x = NULL, y = "fraction with ≥ 1 peptide", title = "MS peptides",
+       subtitle = "bars: ≥ 100 aa; diamonds: < 100 aa") +
+  theme(legend.position = "none", plot.subtitle = element_text(size = 5.5))
+
+pe <- ggplot(pe_d, aes(tpm_bin, frac_ge10_psites, colour = class, group = class)) +
+  geom_line(linewidth = 0.4) + geom_point(size = 0.8) +
+  scale_colour_manual(values = setNames(replace(CLASS_COLOR, "other_overlap", "#8c8c8c"), CLASS_LAB[CLASSES]),
+                      name = NULL) +
+  scale_y_continuous(limits = c(0, 1.2), breaks = seq(0, 1, 0.2), expand = c(0, 0)) +
+  labs(x = "source transcript TPM", y = "fraction with ≥ 10 P-sites", title = "Ribo-seq by expression (StringTie)") +
+  theme(legend.position = "inside", legend.position.inside = c(0.98, 0.3), legend.justification = c(1, 0.5))
+
+# assembly legend: shared by panels a, c, d
+asm_legend <- ggplot(tibble(assembly = factor(ASM_LABEL[ASMS], levels = ASM_LABEL[ASMS]), x = 1, y = 1),
+                     aes(x, y, fill = assembly)) + geom_col() +
+  scale_fill_manual(values = setNames(ASM_COLOR[ASMS], ASM_LABEL[ASMS]), name = NULL) +
+  theme(legend.position = "top", legend.direction = "horizontal")
+leg_g <- ggplotGrob(asm_legend)
+leg <- wrap_elements(full = leg_g$grobs[[which(leg_g$layout$name == "guide-box-top")]])
+
+fig6 <- (pa + pb + plot_layout(widths = c(2, 4))) / leg / (pc + pd + pe) +
+  plot_layout(heights = c(1, 0.06, 1)) +
+  plot_annotation(tag_levels = list(c("a", "b", "", "c", "d", "e")))
+save_fig(fig6, "fig6_gm12878", FULL_W, 5.2)
+fig6
+```
+
+### Plotted values
+
+<details><summary>a. MANE Select recovery (release; gene TPM thresholds)</summary>
+```{r tab-a}
+pa_d %>% select(assembly, tpm_min, n, assembled_frac, sens_exact, sens_exact_given_assembled) %>% kable(digits = 4)
+```
+</details>
+
+<details><summary>b. Class composition by predicted protein length (release; counts)</summary>
+```{r tab-b}
+by_len %>% filter(run == "release") %>% select(-run) %>% kable()
+```
+</details>
+
+<details><summary>c. Ribo-seq: ≥ 10 P-sites and frame-0 test, by class (release)</summary>
+```{r tab-c}
+pc_d %>% select(assembly, class, n, with_min_psites, supported, frac_psites, frac_frame0) %>% kable(digits = 4)
+```
+</details>
+
+<details><summary>d. MS: ≥ 1 peptide, by class and size (release)</summary>
+```{r tab-d}
+pd_d %>% kable(digits = 4)
+```
+</details>
+
+<details><summary>e. Ribo-seq by source-transcript TPM (StringTie, release)</summary>
+```{r tab-e}
+pe_d %>% kable(digits = 3)
+```
+</details>
+
+## Checks against the manuscript
+
+Each value the two sections quote is compared with the release value computed here, rounded as the
+text rounds it. `ok = FALSE` marks a value the text must update (most are earlier-run values; see
+the report at the end).
+
+```{r checks}
+M <- "methods_gm12878_assemblies.tex"; Rs <- "results_gm12878_application.tex"
+L <- function(f, l, what) sprintf("%s:%d %s", f, l, what)
+# Methods
+check_text(L(M, 6, "short-read pairs (million)"), round(I("short_read_pairs") / 1e6, 1), 97.5)
+check_text(L(M, 7, "uniquely mapped %"), round(I("short_read_unique_pct"), 1), 83.3)
+check_text(L(M, 10, "StringTie transcripts"), I("stringtie_transcripts"), 83342)
+check_text(L(M, 12, "Trinity transcripts"), I("trinity_transcripts"), 428960)
+check_text(L(M, 14, "Trinity primary alignments"), I("trinity_primary_mapped"), 428223)
+check_text(L(M, 15, "long reads (million)"), round(I("long_reads_flnc") / 1e6, 1), 2.5)
+check_text(L(M, 17, "LRAA transcripts"), I("lraa_transcripts"), 39530)
+check_text(L(M, 24, "MANE Select transcripts"), R("MANE_n")[["lraa"]], 19229)
+check_text(L(M, 25, "GENCODE complete transcripts"), R("GENCODE_complete_n")[["lraa"]], 253709)
+# Results: intro
+check_text(L(Rs, 9, "long reads (million)"), round(I("long_reads_flnc") / 1e6, 1), 2.5)
+check_text(L(Rs, 11, "Trinity aligned"), R("assembled_transcripts")[["trinity"]], 428223)
+check_text(L(Rs, 11, "StringTie transcripts"), R("assembled_transcripts")[["stringtie"]], 83342)
+check_text(L(Rs, 11, "LRAA transcripts"), R("assembled_transcripts")[["lraa"]], 39530)
+# Predictions
+for (a in ASMS) check_text(L(Rs, 14, paste("distinct CDSs", a)), n_rel[[a]],
+                           c(lraa = 23922, stringtie = 34404, trinity = 72323)[[a]])
+for (a in ASMS) check_text(L(Rs, 15, paste("% partial", a)), round(100 * part_rel[[a]] / n_rel[[a]]),
+                           c(lraa = 21, stringtie = 21, trinity = 28)[[a]])
+check_text(L(Rs, 17, "Trinity ORFs not projected"), g("release", "trinity", "not_projected"), 4624)
+check_text(L(Rs, 17, "Trinity transcript ORFs"), g("release", "trinity", "transcript_orfs"), 97088)
+check_text(L(Rs, 17, "Trinity % not projected"), round(100 * g("release", "trinity", "frac_not"), 1), 4.8)
+check_text(L(Rs, 16, "LRAA + StringTie ORFs not projected (none)"),
+           sum(gm$not_projected[gm$run == "release" & gm$assembly != "trinity"]), 0)
+# CDS prediction on assembled transcripts
+check_text(L(Rs, 22, "MANE exact given assembled, min"), round(min(ega_mane), 3), 0.906)
+check_text(L(Rs, 22, "MANE exact given assembled, max"), round(max(ega_mane), 3), 0.935)
+check_text(L(Rs, 23, "GENCODE exact given assembled, min"), round(min(ega_gc), 3), 0.876)
+check_text(L(Rs, 23, "GENCODE exact given assembled, max"), round(max(ega_gc), 3), 0.889)
+check_text(L(Rs, 24, "same stop, different start % LRAA"), round(100 * ss("release", "lraa")), 62)
+check_text(L(Rs, 24, "same stop, different start % StringTie"), round(100 * ss("release", "stringtie")), 68)
+# Table tab:gm12878 (lines 38-49)
+quoted <- list(
+  list(38, "distinct_predicted_cds", c(23922, 34404, 72323), 0),
+  list(39, "distinct_predicted_complete", c(18807, 27034, 52123), 0),
+  list(39, "partial", c(5115, 7370, 20200), 0),
+  list(40, "MANE_assembled_frac", c(0.327, 0.464, 0.399), 3),
+  list(41, "MANE_sens_exact", c(0.306, 0.430, 0.362), 3),
+  list(42, "MANE_sens_compatible", c(0.395, 0.569, 0.547), 3),
+  list(43, "MANE_sens_exact_given_assembled", c(0.935, 0.927, 0.906), 3),
+  list(44, "GENCODE_complete_sens_exact", c(0.192, 0.234, 0.209), 3),
+  list(45, "GENCODE_complete_sens_compatible", c(0.269, 0.352, 0.446), 3),
+  list(46, "GENCODE_complete_sens_exact_given_assembled", c(0.889, 0.886, 0.876), 3),
+  list(47, "pred_all_GENCODE_exact_frac", c(0.503, 0.401, 0.191), 3),
+  list(48, "pred_all_GENCODE_compatible_frac", c(0.726, 0.616, 0.423), 3),
+  list(49, "pred_all_no_GENCODE_CDS_overlap_frac", c(0.037, 0.120, 0.155), 3))
+for (q in quoted) for (i in seq_along(ASMS)) {
+  v <- summ_p$value[summ_p$run == "release" & summ_p$assembly == ASMS[i] & summ_p$metric == q[[2]]]
+  check_text(L(Rs, q[[1]], paste("table", q[[2]], ASMS[i])), round(v, q[[4]]), q[[3]][i])
+}
+# Sensitivity is limited by assembly
+check_text(L(Rs, 55, "MANE exact %, min"), round(100 * min(R("MANE_sens_exact"))), 31)
+check_text(L(Rs, 55, "MANE exact %, max"), round(100 * max(R("MANE_sens_exact"))), 43)
+check_text(L(Rs, 55, "MANE compatible %, min"), round(100 * min(R("MANE_sens_compatible"))), 40)
+check_text(L(Rs, 55, "MANE compatible %, max"), round(100 * max(R("MANE_sens_compatible"))), 57)
+check_text(L(Rs, 56, "MANE assembled %, min"), round(100 * min(R("MANE_assembled_frac"))), 33)
+check_text(L(Rs, 56, "MANE assembled %, max"), round(100 * max(R("MANE_assembled_frac"))), 46)
+check_text(L(Rs, 57, "MANE genes at TPM >= 1"), n_tpm1, 11076)
+check_text(L(Rs, 58, "StringTie exact %, TPM >= 1"), round(100 * st_ex1), 74)
+check_text(L(Rs, 59, "StringTie/Trinity compatible %, TPM >= 1, min"), round(100 * min(comp1)), 88)
+check_text(L(Rs, 59, "StringTie/Trinity compatible %, TPM >= 1, max"), round(100 * max(comp1)), 89)
+check_text(L(Rs, 59, "MANE genes at TPM >= 10"), n_tpm10, 7823)
+check_text(L(Rs, 59, "StringTie exact %, TPM >= 10"), round(100 * st_ex10), 81)
+check_text(L(Rs, 60, "StringTie/Trinity compatible %, TPM >= 10, min"), round(100 * min(comp10)), 90)
+check_text(L(Rs, 60, "StringTie/Trinity compatible %, TPM >= 10, max"), round(100 * max(comp10)), 91)
+check_text(L(Rs, 61, "MANE exact given assembled, TPM >= 1/5/10, min"), round(min(ega_expr), 3), 0.909)
+check_text(L(Rs, 61, "MANE exact given assembled, TPM >= 1/5/10, max"), round(max(ega_expr), 3), 0.937)
+check_text(L(Rs, 62, "LRAA exact, TPM >= 1"), round(lraa_ex[1], 2), 0.51)
+check_text(L(Rs, 62, "LRAA exact, TPM >= 10"), round(lraa_ex[2], 2), 0.58)
+# Assembly type
+check_text(L(Rs, 67, "Trinity GENCODE compatible sensitivity"), round(R("GENCODE_complete_sens_compatible")[["trinity"]], 3), 0.446)
+check_text(L(Rs, 67, "Trinity highest GENCODE compatible sensitivity (1 = yes)"),
+           as.numeric(which.max(R("GENCODE_complete_sens_compatible")) == 3), 1)
+check_text(L(Rs, 68, "Trinity % identical to GENCODE"), round(100 * R("pred_all_GENCODE_exact_frac")[["trinity"]]), 19)
+check_text(L(Rs, 69, "LRAA % identical to GENCODE"), round(100 * R("pred_all_GENCODE_exact_frac")[["lraa"]]), 50)
+check_text(L(Rs, 69, "LRAA % compatible with GENCODE"), round(100 * R("pred_all_GENCODE_compatible_frac")[["lraa"]]), 73)
+check_text(L(Rs, 70, "LRAA complete % identical"), round(100 * R("pred_complete_GENCODE_exact_frac")[["lraa"]]), 64)
+check_text(L(Rs, 70, "StringTie complete % identical"), round(100 * R("pred_complete_GENCODE_exact_frac")[["stringtie"]]), 51)
+check_text(L(Rs, 71, "Trinity complete % identical"), round(100 * R("pred_complete_GENCODE_exact_frac")[["trinity"]]), 27)
+# Unannotated predictions
+check_text(L(Rs, 74, "LRAA % no GENCODE overlap"), round(100 * un$all_release[1], 1), 3.7)
+check_text(L(Rs, 74, "StringTie % no GENCODE overlap"), round(100 * un$all_release[2], 1), 12.0)
+check_text(L(Rs, 75, "Trinity % no GENCODE overlap"), round(100 * un$all_release[3], 1), 15.5)
+check_text(L(Rs, 76, "StringTie partial % unannotated"), round(100 * un$partial_release[2]), 18)
+check_text(L(Rs, 76, "Trinity partial % unannotated"), round(100 * un$partial_release[3]), 24)
+check_text(L(Rs, 77, "StringTie complete % unannotated"), round(100 * un$complete_release[2]), 10)
+check_text(L(Rs, 77, "Trinity complete % unannotated"), round(100 * un$complete_release[3]), 12)
+check_report()
+```
+
+The same checks against the earlier runs (the values the text was written from), as a cross-check that
+the text matches its source:
+
+```{r checks-earlier}
+.checks$rows <- list()
+for (a in ASMS) check_text(paste("distinct CDSs", a), n_ear[[a]], c(lraa = 23922, stringtie = 34404, trinity = 72323)[[a]])
+for (a in ASMS) check_text(paste("% partial", a), round(100 * part_ear[[a]] / n_ear[[a]]), c(lraa = 21, stringtie = 21, trinity = 28)[[a]])
+check_text("Trinity ORFs not projected", g("earlier", "trinity", "not_projected"), 4624)
+check_text("Trinity transcript ORFs", g("earlier", "trinity", "transcript_orfs"), 97088)
+for (q in quoted) for (i in seq_along(ASMS)) {
+  v <- summ_p$value[summ_p$run == "earlier" & summ_p$assembly == ASMS[i] & summ_p$metric == q[[2]]]
+  check_text(paste("table", q[[2]], ASMS[i]), round(v, q[[4]]), q[[3]][i])
+}
+ega_e <- mane_e %>% filter(run == "earlier", tpm_min > 0) %>% pull(sens_exact_given_assembled)
+check_text("MANE exact given assembled, TPM >= 1/5/10, min", round(min(ega_e), 3), 0.909)
+check_text("MANE exact given assembled, TPM >= 1/5/10, max", round(max(ega_e), 3), 0.937)
+check_text("StringTie exact %, TPM >= 1", round(100 * X("earlier", "stringtie", 1, "sens_exact")), 74)
+check_text("StringTie exact %, TPM >= 10", round(100 * X("earlier", "stringtie", 10, "sens_exact")), 81)
+check_text("LRAA complete % identical", round(100 * E("pred_complete_GENCODE_exact_frac")[["lraa"]]), 64)
+check_text("StringTie partial % unannotated", round(100 * un$partial_earlier[2]), 18)
+check_text("Trinity partial % unannotated", round(100 * un$partial_earlier[3]), 24)
+check_text("StringTie complete % unannotated", round(100 * un$complete_earlier[2]), 10)
+check_text("Trinity complete % unannotated", round(100 * un$complete_earlier[3]), 12)
+check_text("same stop, different start % LRAA (this notebook's definition)", round(100 * ss("earlier", "lraa")), 62)
+check_text("same stop, different start % StringTie (this notebook's definition)", round(100 * ss("earlier", "stringtie")), 68)
+check_report()
+```

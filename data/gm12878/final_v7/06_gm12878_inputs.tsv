@@ -1,0 +1,8 @@
+metric	value	source
+short_read_pairs	97548052	STAR Log.final.out
+short_read_unique_pct	83.31	STAR Log.final.out
+long_reads_flnc	2538701	logs/readcount_long.txt
+stringtie_transcripts	83342	stringtie.gtf
+lraa_transcripts	39530	LRAA.gtf
+trinity_transcripts	428960	Trinity.fasta
+trinity_primary_mapped	428223	Trinity.minimap2.flagstat

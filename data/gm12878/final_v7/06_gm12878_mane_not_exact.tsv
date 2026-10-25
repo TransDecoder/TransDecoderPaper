@@ -1,0 +1,7 @@
+run	assembly	assembled	exact_and_assembled	assembled_not_exact	same_stop	same_stop_start_upstream	same_stop_start_downstream
+earlier	lraa	6294	5882	412	263	242	21
+earlier	stringtie	8919	8268	651	454	412	42
+earlier	trinity	7676	6951	725	496	362	134
+release	lraa	6294	5848	446	258	239	19
+release	stringtie	8919	8160	759	457	415	42
+release	trinity	7676	6857	819	495	364	131
