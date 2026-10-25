@@ -1,0 +1,130 @@
+From 83a4806f7164977c9dfe170437d13466115161c8 Mon Sep 17 00:00:00 2001
+From: Brian Haas <brianjohnhaas@gmail.com>
+Date: Sat, 24 Oct 2026 23:46:45 -0400
+Subject: [PATCH] Experimental --contrast-frames {forward,all}: contrast
+ against all five other frames in ORF acceptance
+
+Applies to target and decoy ORFs (eligibility and q-values); start refinement and mu unchanged.
+
+Co-Authored-By: Claude Opus 5.5 (1M context) <noreply@anthropic.com>
+---
+ pytransdecoder/cli.py     |  5 +++++
+ pytransdecoder/predict.py | 30 +++++++++++++++++++++++-------
+ 2 files changed, 28 insertions(+), 7 deletions(-)
+
+diff --git a/pytransdecoder/cli.py b/pytransdecoder/cli.py
+index 8315fce..96b0716 100644
+--- a/pytransdecoder/cli.py
++++ b/pytransdecoder/cli.py
+@@ -106,6 +106,9 @@ def _add_selection_args(parser):
+                              "(~20 Mb of decoy sequence, at most 50)")
+     parser.add_argument('--decoy-seed', type=int, default=DEFAULT_DECOY_SEED, dest='decoy_seed',
+                         help="Seed of the decoy shuffles (default: %(default)s)")
++    parser.add_argument('--contrast-frames', choices=['forward', 'all'], default='forward', dest='contrast_frames',
++                        help="Experimental: frames the in-frame score must beat in ORF acceptance: the two "
++                             "shifted forward frames (default) or all five other frames")
+     from .core.presets import bundled_presets
+     parser.add_argument('--preset', default=None,
+                         help="Use a preset's coding model, start model and q-value thresholds instead of "
+@@ -318,6 +321,7 @@ def predict_cmd(args):
+             decoy_shuffles=args.decoy_shuffles,
+             decoy_seed=args.decoy_seed,
+             preset=args.preset,
++            contrast_frames=args.contrast_frames,
+         )
+         predictor.run()
+     except Exception as e:
+@@ -590,6 +594,7 @@ def pipeline_cmd(args):
+             decoy_shuffles=args.decoy_shuffles,
+             decoy_seed=args.decoy_seed,
+             preset=args.preset,
++            contrast_frames=args.contrast_frames,
+         )
+         predictor.run()
+     except Exception as e:
+diff --git a/pytransdecoder/predict.py b/pytransdecoder/predict.py
+index 2f80594..4ab77e0 100644
+--- a/pytransdecoder/predict.py
++++ b/pytransdecoder/predict.py
+@@ -86,6 +86,7 @@ class TransDecoderPredict:
+         decoy_shuffles: int = 0,
+         decoy_seed: int = DEFAULT_DECOY_SEED,
+         preset: Optional[str] = None,
++        contrast_frames: str = "forward",
+     ):
+         """
+         Initialize TransDecoder.Predict
+@@ -128,6 +129,11 @@ class TransDecoderPredict:
+         self.decoy_q = decoy_q
+         self.decoy_shuffles = decoy_shuffles
+         self.decoy_seed = decoy_seed
++        # experimental: frames the in-frame score is contrasted with in ORF acceptance (targets and decoys);
++        # "forward" = the two shifted forward frames (release), "all" = all five other frames
++        if contrast_frames not in ("forward", "all"):
++            raise ValueError(f"contrast_frames must be 'forward' or 'all', not {contrast_frames!r}")
++        self.contrast_frames = contrast_frames
+         self.preset = None
+         if preset:
+             from pytransdecoder.core.presets import Preset, resolve
+@@ -692,7 +698,7 @@ class TransDecoderPredict:
+                 scores = cds_scores.get(orf_id, [0.0] * 6)
+                 
+                 # Apply selection criteria
+-                frame_contrast = scores[0] - max(scores[1], scores[2])
++                frame_contrast = self._acceptance_contrast(scores)
+                 meets_criteria = (homology_count > 0 or orf_length >= min_length_auto_accept or
+                                   (scores[0] > 0 and frame_contrast > 0 and
+                                    decoy_q.get(orf_id, 1.0) <= self.decoy_q))
+@@ -858,7 +864,7 @@ class TransDecoderPredict:
+                     info[x[0]] = (x[1].split(':', 1)[1], x[2].rsplit(':', 1)[0])
+         targets = {}
+         for orf_id, sc in cds_scores.items():
+-            c = sc[0] - max(sc[1], sc[2])
++            c = self._acceptance_contrast(sc)
+             if sc[0] > 0 and c > 0 and orf_id in info:
+                 orf_type, tid = info[orf_id]
+                 targets[orf_id] = (decoys.stratum(lengths[orf_id], tx_len.get(tid, 0), orf_type == 'complete',
+@@ -915,10 +921,14 @@ class TransDecoderPredict:
+         n_shuf = self.decoy_shuffles or max(1, min(DECOY_MAX_SHUFFLES, -(-DECOY_TARGET_NT // max(total_nt, 1))))
+ 
+         def contrast(seq):
+-            s0 = round(self._score_cds_via_markov(seq, 5, hex_scores), 2)
+-            s1 = round(self._score_cds_via_markov(seq[1:], 5, hex_scores), 2)
+-            s2 = round(self._score_cds_via_markov(seq[2:], 5, hex_scores), 2)
+-            return s0, s0 - max(s1, s2)
++            sc = [round(self._score_cds_via_markov(seq, 5, hex_scores), 2),
++                  round(self._score_cds_via_markov(seq[1:], 5, hex_scores), 2),
++                  round(self._score_cds_via_markov(seq[2:], 5, hex_scores), 2)]
++            if self.contrast_frames == "all":
++                from pytransdecoder.core.sequence import reverse_complement
++                rc = reverse_complement(seq)
++                sc += [round(self._score_cds_via_markov(rc[i:], 5, hex_scores), 2) for i in range(3)]
++            return sc[0], self._acceptance_contrast(sc)
+ 
+         # targets: eligible LongOrfs candidates
+         info = {}
+@@ -933,7 +943,7 @@ class TransDecoderPredict:
+                 lengths[r.id] = len(r.seq) // 3
+         targets = {}
+         for orf_id, sc in cds_scores.items():
+-            c = sc[0] - max(sc[1], sc[2])
++            c = self._acceptance_contrast(sc)
+             if sc[0] > 0 and c > 0 and orf_id in info:
+                 orf_type, tid = info[orf_id]
+                 targets[orf_id] = (decoys.stratum(lengths[orf_id], len(transcripts.get(tid, '')),
+@@ -1152,6 +1162,12 @@ class TransDecoderPredict:
+                     scores[parts[0]] = float(parts[3])
+         return scores
+ 
++    def _acceptance_contrast(self, sc) -> float:
++        """Frame contrast used for ORF acceptance: in-frame score minus the best competing frame."""
++        if self.contrast_frames == "all":
++            return sc[0] - max(sc[1:6])
++        return sc[0] - max(sc[1], sc[2])
++
+     def _frame_contrast(self, sequence: str, scores: Dict[str, float]) -> float:
+         """In-frame Markov score minus the better of the two shifted-frame scores."""
+         return self._score_cds_via_markov(sequence, 5, scores) - max(
+-- 
+2.52.0
+
