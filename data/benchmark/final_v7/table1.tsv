@@ -1,0 +1,11 @@
+tool	label	complete_stop_f1	complete_exact_f1	fragments_stop_f1	fragments_exact_f1	complete_rand_precision	min_orgs	note
+pytd_v7	TransDecoder (release)	0.9804	0.9117	0.9298	0.8216	0.9939	8	
+perl_td_v600	TransDecoder v6.0.0	0.972	0.7787	0.8687	0.7152	0.9948	8	
+longest_orf	longest ORF	0.9758	0.6892	0.839	0.7131	0.803	8	
+prodigal	Prodigal	0.9368	0.6434	0.9356	0.7817	0.6597	8	
+gmst	GeneMarkS-T	0.9733	0.7696	0.8535	0.7442	0.9962	8	
+cpat	CPAT	0.9646	0.9398	0.7834	0.4396	0.9713	8	
+rnasamba	RNAsamba	0.99	0.9533	0.8611	0.4832	0.7208	8	
+cpc2	CPC2	0.9641	0.935	0.5712	0.1807	0.9773	8	
+borf	Borf	0.9729	0.8964	0.8111	0.5378	0.8188	8	
+codan	CodAn	0.9733	0.8244	0.9112	0.7481	0.9439	8	
