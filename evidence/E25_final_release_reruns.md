@@ -40,7 +40,7 @@ Same transcripts as `final_abinitio`. Eval: `eval_genome_cds.py` (`eval.*.summar
 |---|---|---|---|---|
 | LRAA | 22,769 vs 23,922 | 5,848 vs 5,882 (0.929 vs 0.935) | 1.5% vs 3.7% | 341 vs 885 |
 | StringTie | 30,846 vs 34,404 | 8,160 vs 8,268 (0.915 vs 0.927) | 5.5% vs 12.0% | 1,687 vs 4,127 |
-| Trinity | 59,514 vs 72,323 | 6,857 vs 6,951 (0.893 vs 0.906) | 4.3% vs 15.5% | 2,528 vs 11,235 |
+| Trinity | 59,514 vs 72,323 | 6,857 vs 6,951 (0.893 vs 0.906) | 4.2% vs 15.5% | 2,528 vs 11,235 |
 
 Settings (LRAA / StringTie), distinct CDSs and no-overlap share: precise 21,984 / 28,947, 1.2% / 4.1%; default as above; sensitive 23,468 / 33,838, 2.3% / 9.6%. MANE exact: precise 5,737 / 8,043; sensitive 5,907 / 8,264.
 

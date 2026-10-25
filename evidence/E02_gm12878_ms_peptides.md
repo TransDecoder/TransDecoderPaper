@@ -125,3 +125,16 @@ Non-variant, non-reference peptides:
 - The published search contained only Ensembl and variant proteins, so this cannot detect new proteins. That would need a re-search of the raw data (534 GB).
 - "≥2 distinct peptides" counts nested or overlapping peptides from different proteases separately.
 - Tryptic status means little for the other five proteases. The experiments (protease and fragmentation) are listed per peptide.
+
+## Release (v7) update (2026-10-25)
+- **Claim 2 correction (development runs):** the share of unannotated predictions with a peptide was
+  9-24%, not 10-25% (`notebooks/07_gm12878_evidence.Rmd`, earlier-run checks).
+- **Release runs** (PyTD 3a793ff, release defaults; E25; tables in `data/benchmark/final_v7/` and
+  `data/gm12878/final_v7/`): exact-match predictions >= 100 aa with >= 1 peptide 94-95% (development
+  93-94%); short exact-match (< 100 aa) 85-90% (81-87%); unannotated with any peptide 30-49%
+  (167 of 341, 748 of 1,687, 765 of 2,528 for LRAA, StringTie, Trinity; development 9-24% of
+  885 / 4,127 / 11,235). The rise comes from the smaller denominator: the q-value test removed many
+  short unannotated ORFs without peptides. Unannotated CDSs with peptides overlapping a GENCODE
+  pseudogene: 86-93% (development 76-89%).
+- **C3orf86P:** the 101-aa ORF is predicted only in the StringTie `--sensitive` run, not in any release
+  default run. The peptide evidence above is unchanged.

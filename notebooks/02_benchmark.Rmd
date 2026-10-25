@@ -478,6 +478,104 @@ kable(hom_sum %>% mutate(across(starts_with("d_"), ~ round(.x, 4))),
 details(hom %>% mutate(across(starts_with("d_"), ~ round(.x, 4))), "per input")
 ```
 
+## Method rankings across inputs and measures
+
+Each method is ranked in every combination of organism, stranded input (complete, complete with full
+UTRs, fragments, complete + random, fragments + random) and measure (stop-level and exact sensitivity,
+precision and F1): 8 organisms x 5 inputs x 6 measures = 240 categories. Only the methods run on all
+of these inputs are ranked: TransDecoder (release), Prodigal, GeneMarkS-T, CodAn, CPAT, CPC2, RNAsamba
+and Borf (RNAsamba was not run on unstranded inputs; v6.0.0 and the longest-ORF baseline are not
+ranked). Ties share the best rank. Because ranks ignore margins, the gap to the best method in each
+category (best value minus the method's value) is reported too. The methods run with the standard code
+on *T. thermophila* rank last there in most categories, so counts are also given without it.
+
+```{r rank-data}
+RANK_TOOLS <- c(pytd_v7 = "TransDecoder", prodigal = "Prodigal", gmst = "GeneMarkS-T", codan = "CodAn",
+                cpat = "CPAT", cpc2 = "CPC2", rnasamba = "RNAsamba", borf = "Borf")
+RANK_INPUTS <- c(complete = "complete", complete_fullutr = "complete, full UTR", fragments = "fragments",
+                 complete.wRand = "complete + random", fragments.wRand = "fragments + random")
+RANK_MEASURES <- c(sensitivity_stop = "stop sensitivity", precision_stop = "stop precision",
+                   f1_stop = "stop F1", sensitivity_exact = "exact sensitivity",
+                   precision_exact = "exact precision", f1_exact = "exact F1")
+rk <- S %>% filter(tool %in% names(RANK_TOOLS), variant %in% names(RANK_INPUTS)) %>%
+  select(org, variant, tool, all_of(names(RANK_MEASURES))) %>%
+  pivot_longer(all_of(names(RANK_MEASURES)), names_to = "measure", values_to = "value") %>%
+  group_by(org, variant, measure) %>% filter(n_distinct(tool) == length(RANK_TOOLS), !any(is.na(value))) %>%
+  mutate(rank = rank(-value, ties.method = "min"), gap = max(value) - value) %>% ungroup()
+n_cat <- n_distinct(rk %>% select(org, variant, measure))
+rank_summary <- function(d) d %>% group_by(tool) %>%
+  summarise(categories = n(), first = sum(rank == 1), top3 = sum(rank <= 3), median_rank = median(rank),
+            within_0.01 = mean(gap <= 0.01), within_0.03 = mean(gap <= 0.03), median_gap = median(gap),
+            max_gap = max(gap)) %>%
+  mutate(method = RANK_TOOLS[tool]) %>% arrange(desc(first + top3 / 100))
+rs_all <- rank_summary(rk)
+rs_not <- rank_summary(rk %>% filter(org != "tthermophila"))
+rs_measure <- rk %>% group_by(measure, tool) %>%
+  summarise(first = sum(rank == 1), top3 = sum(rank <= 3), median_rank = median(rank), .groups = "drop")
+td_rs <- rs_all %>% filter(tool == TD)
+td_gap <- rk %>% filter(tool == TD) %>% group_by(measure) %>%
+  summarise(median_gap = median(gap), max_gap = max(gap), first = sum(rank == 1), top3 = sum(rank <= 3))
+td_worst <- rk %>% filter(tool == TD) %>% slice_max(gap, n = 1)
+```
+
+Categories ranked: `r n_cat`. TransDecoder ranks first in `r td_rs$first` (`r pct(td_rs$first / n_cat, 0)`)
+and in the top three in `r td_rs$top3` (`r pct(td_rs$top3 / n_cat, 0)`), more than any other method; its
+median rank is `r td_rs$median_rank`. It is within 0.01 of the best method in
+`r pct(td_rs$within_0.01, 0)` of categories and within 0.03 in `r pct(td_rs$within_0.03, 0)`; its median gap
+to the best is `r f3(td_rs$median_gap)` (next smallest: `r rs_all$method[order(rs_all$median_gap)][2]`,
+`r f3(sort(rs_all$median_gap)[2])`). Its largest gap is `r f3(td_worst$gap)`
+(`r ORG_LABEL[td_worst$org]`, `r RANK_INPUTS[td_worst$variant]`, `r RANK_MEASURES[td_worst$measure]`).
+By measure, TransDecoder is never first in stop sensitivity (Prodigal is first in
+`r rs_measure$first[rs_measure$measure == "sensitivity_stop" & rs_measure$tool == "prodigal"]` of 40) and
+is first or tied first most often in stop F1
+(`r td_gap$first[td_gap$measure == "f1_stop"]` of 40, median gap `r f3(td_gap$median_gap[td_gap$measure == "f1_stop"])`).
+
+```{r rank-tables}
+fmt_rs <- function(d) d %>% transmute(method, categories, first, `top 3` = top3, `median rank` = median_rank,
+                                      `within 0.01` = pct(within_0.01, 0), `within 0.03` = pct(within_0.03, 0),
+                                      `median gap` = f3(median_gap), `max gap` = f3(max_gap))
+kable(fmt_rs(rs_all), caption = "All organisms")
+kable(fmt_rs(rs_not), caption = "Without T. thermophila")
+kable(td_gap %>% transmute(measure = RANK_MEASURES[measure], first, `top 3` = top3,
+                           `median gap` = f3(median_gap), `max gap` = f3(max_gap)),
+      caption = "TransDecoder by measure (40 categories each)")
+details(rs_measure %>% mutate(measure = RANK_MEASURES[measure], method = RANK_TOOLS[tool]) %>%
+          select(measure, method, first, top3, median_rank) %>% arrange(measure, median_rank),
+        "rank counts by measure and method")
+details(rk %>% transmute(org = ORG_LABEL[org], input = RANK_INPUTS[variant], measure = RANK_MEASURES[measure],
+                         method = RANK_TOOLS[tool], value = r3(value), rank, gap = r3(gap)) %>%
+          arrange(org, input, measure, rank), "all ranks (one row per method and category)")
+```
+
+```{r figS4, fig.width = FULL_W, fig.height = 80 * MM}
+tool_order <- rs_all$method
+rank_bins <- rk %>% mutate(method = factor(RANK_TOOLS[tool], levels = rev(tool_order)),
+                           bin = cut(rank, c(0, 1, 2, 3, 8), labels = c("1", "2", "3", "4-8"))) %>%
+  count(method, bin)
+pa <- ggplot(rank_bins, aes(n, method, fill = forcats::fct_rev(bin))) + geom_col(width = 0.75) +
+  scale_fill_manual(values = c(`1` = "#08519c", `2` = "#4292c6", `3` = "#9ecae1", `4-8` = "#e5e5e5"),
+                    breaks = c("1", "2", "3", "4-8"), name = "rank") +
+  scale_x_continuous(expand = c(0, 0), breaks = c(0, 80, 160, 240)) +
+  labs(x = sprintf("categories (of %d)", n_cat), y = NULL, title = "rank in each category")
+heat_r <- rs_measure %>% mutate(method = factor(RANK_TOOLS[tool], levels = rev(tool_order)),
+                                measure = factor(RANK_MEASURES[measure], levels = RANK_MEASURES))
+pb <- ggplot(heat_r, aes(measure, method, fill = median_rank)) + geom_tile(colour = "white") +
+  geom_text(aes(label = sprintf("%d/%d", first, top3)), size = 1.55,
+            colour = ifelse(heat_r$median_rank <= 3, "white", "#222222")) +
+  scale_fill_gradient(low = "#08519c", high = "#f0f0f0", limits = c(1, 8), name = "median rank") +
+  labs(x = NULL, y = NULL, title = "first / top 3 (of 40), by measure") +
+  theme(axis.text.x = element_text(angle = 35, hjust = 1), axis.line = element_blank(), axis.ticks = element_blank())
+pc <- ggplot(rk %>% mutate(method = factor(RANK_TOOLS[tool], levels = rev(tool_order))),
+             aes(pmax(gap, 1e-4), method)) +
+  geom_boxplot(outlier.size = 0.3, linewidth = 0.25, fill = "#deebf7") +
+  scale_x_log10(breaks = c(1e-4, 1e-2, 1), labels = c("0", "0.01", "1")) +
+  labs(x = "gap to best (log)", y = NULL, title = "gap to best")
+figS4 <- (pa + pb + pc) + plot_layout(widths = c(0.9, 1.5, 0.8)) + plot_annotation(tag_levels = "a") &
+  theme(legend.position = "bottom", legend.title.position = "top", legend.key.width = unit(4, "mm"))
+save_fig(figS4, "figS4_rankings", FULL_W, 70 * MM)
+figS4
+```
+
 ## Release versus earlier final defaults
 
 The TransDecoder numbers the text quotes, computed from the earlier final defaults (`pytd_dev_v2`,

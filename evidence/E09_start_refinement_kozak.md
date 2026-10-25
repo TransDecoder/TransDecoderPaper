@@ -227,3 +227,18 @@ check are in E13 (Addendum); Kozak score distributions in bits are in
 `data/start_param_sensitivity/kozak_score_distribution.tsv` (`kozak_score_distribution.py`).
 `genome_annotation/scripts/start_labels.py` reads both the old (upstream_frame_contrast, nats) and new
 (upstream_coding_score, bits) GFF3 attributes.
+
+## Release (v7) update (2026-10-25)
+Checked in `notebooks/03_start_refinement.Rmd` against the release runs (`pytd_v7`, PyTD 3a793ff; E25).
+- **Claim 5 correction:** the lowest Pearson r between self-trained and annotation-trained Kozak models
+  is 0.8446 (T. thermophila), i.e. 0.84 to two decimals, not 0.85. Range 0.84-0.98. The release
+  self-trained models have the same counts as the `perl_td` training sets used here, so the other
+  statistics are unchanged (253-476 training starts; -3 A/G log2-odds positive in 8 of 8, 0.10-0.76).
+- **Later ATGs by start context (PWM choice):** lower in 6 organisms, higher by one exact match in
+  P. falciparum (+0.02 points) and higher in C. reinhardtii (+0.41 points). "Did not improve accuracy in
+  seven of eight" holds only when changes of <= 0.05 points count as no improvement.
+- **Comparison with v6.0.0, release values:** median exact F1 on complete inputs 0.912 (development
+  0.910); summed exact matches 116,362 (116,384); gain per organism 2.8-26.6 points (1.7-27.3); stop F1
+  change -1.4 to +1.3 points (-0.7 to +0.8); fragments exact gain 6.0-13.8 points (1.8-14.1) and
+  stop F1 gain 1.1-10.1 points (1.7-5.0), the latter mostly from the q-value test, not the lower minimum.
+- **C. reinhardtii** exact F1 on complete inputs: 0.747 (development 0.742).

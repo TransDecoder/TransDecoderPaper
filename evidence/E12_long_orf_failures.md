@@ -234,3 +234,53 @@ Of the 447 true CDSs that fail the coding test and are retained by the long-ORF 
 | *P. falciparum* | 1 |
 
 Swiss-Prot keeps close relatives of each organism, so for a truly novel organism this is a lower bound. Manuscript use: the Results subsection "True coding regions that fail the coding test motivate a length-based fallback".
+
+## Release (v7) update (2026-10-25)
+The analysis above used the development rule (S1 > 0, C > 0 and a fixed short-ORF test below 300 nt).
+It was rerun on the release predictions (`pytd_v7`: PyTD 3a793ff, identical to Perl 41fc5ee; E25) with
+the release coding test: S1 > 0, C > 0 and target-decoy q-value <= 0.05, the q-value of each candidate
+read from the run's `decoy_qvalues.tsv`.
+
+- Code: `pipeline/derive/05_long_orf_failures_v7.sh` (runs `05_long_orf_failures_v7.py`,
+  `05_summarize_v7.py`, `05_length_vs_homology_v7.py`, `05_fig5_tables_v7.py`; copies of
+  `analyses/long_orf_failures/*.py` changed for the release rule).
+- Outputs: `data/long_orf_failures/v7/`. Notebook: `notebooks/05_coding_failures.Rmd` (knitted HTML),
+  which also checks that the recomputed Markov scores equal `longest_orfs.cds.scores` and that the
+  recomputed q-values equal `decoy_qvalues.tsv` for all 475,989 LongOrfs candidates.
+- Homology flags: release homology runs (`pytd_v7_homology`) where finished (A. thaliana,
+  C. reinhardtii, D. melanogaster, human), otherwise `pytd_dev_v2_homology` (same LongOrfs ORFs >= 50 aa,
+  same databases). Truth-trained models now also require q <= 0.05 against decoys scored with the same
+  model.
+
+Release values (development values of this record in brackets):
+
+| Quantity | Release | Development |
+|---|---|---|
+| matched CDSs failing the coding test | 4.9% of 135,429 | 4.9% |
+| failing, < 300 nt | 53% (1,543 of 3,026 through the q-value) | 67% |
+| failing, 300-599 nt / 600-999 nt | 13.5% / 2.6% | 9.4% / 2.3% |
+| length-only predictions on complete inputs, false | 5 of 409 | 5 of 402 (text: 4) |
+| human lncRNA input, length-only true vs on lncRNAs | 49 vs 159 | 47 vs 99 |
+| attribution >= 300 nt: GC3 / low complexity / no homology + other frame | 31 / 29 / 34% | 33 / 32 / 33% |
+| ... no homology / other frame / unexplained | 29 / 5.3 / 4.9% | 26 / 6.5 / 2.4% |
+| D. melanogaster lowest GC3 quintile failing | 13.9% | 13.5% |
+| T. thermophila ribosomal proteins failing | 29 of 60 | 21 of 60 |
+| GC3-matched model rescue, all / D. melanogaster | 27% / 63% | 25% / 69% |
+| other training sets vs TD model, % failing (>= 300 nt) | 2.8-3.2% vs 3.2% | 2.08-2.49% vs 2.38% |
+| human + mouse failures low complexity vs controls | 61% vs 14% | 78% vs 13% |
+| human KRTAP failing | 55 of 72 | 52 of 72 |
+| human failing Cys vs controls; low-complexity fold | 10% vs 2.4%; 2.8-fold | 14% vs 2.5%; 4-fold |
+| T. thermophila failures without homology vs controls | 95% vs 52% | 97% vs 58% |
+| T. thermophila failures with stronger ORF in another frame | 19% | 25% |
+| human failing without vs with Swiss-Prot hit | 20.5% vs 0.9% | 14.7% vs 0.4% |
+| dropping S1 > 0: true CDSs as candidates | -0.66 to +0.65% | +0.06 to +2% |
+| dropping S1 > 0: random sequences with a candidate | 1.4- to 7.9-fold (median 2.5) | 10- to 40-fold |
+
+Unchanged: 398 failing CDSs >= 1 kb (named genes all still fail), 76 T. thermophila CDSs >= 1 kb lost,
+447 failing CDSs kept by the length rule, 85 (19%) of them by the length rule only, 4.6% of true CDSs
+not predicted, length-only predictions 0-1.4% of all.
+
+Consequence for the text: dropping S1 > 0 no longer floods random sequence (1.4-7.9-fold, not 10-40-fold)
+and gains essentially no true CDSs; the Implications sentence was rewritten accordingly. The homology
+comparison (Fig. 5d,e) still uses the development runs (`data/benchmark/homology_vs_abinitio.tsv`) until
+`pytd_v7_homology` finishes.
