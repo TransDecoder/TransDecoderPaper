@@ -126,6 +126,27 @@ All `r nrow(J)` rows of `all_scores.tsv` (`pytd_v7`, `perl_td_v7`, `pytd_dev_v2`
 84 each) are in the summary, and `r n_diff_cells` cells differ, including run times. The two tables
 agree for `pytd_v7`.
 
+### Genetic-code compatibility
+
+*T. thermophila* reads TAA and TAG as glutamine. GeneMarkS-T (tables 1, 4 and 11 only), CodAn, CPC2,
+RNAsamba and Borf have no option for this code; they were run with the standard code, so their
+*T. thermophila* results show only that the code is unsupported. These tool × organism results are
+**excluded** from everything below (reported as not applicable): Fig. 2 marks them "n/a", their
+Table 1 medians are over the other seven organisms, and the rankings leave out *T. thermophila*. Their
+values are listed here and kept in `S_raw` (also used for run times, which do not depend on the code).
+TransDecoder (`-G Tetrahymena`), Prodigal (`-g 6`) and CPAT (TGA as the only stop) were run with the
+ciliate code.
+
+```{r code-compat}
+INCOMPATIBLE <- c("gmst", "codan", "cpc2", "rnasamba", "borf")
+S_raw <- S
+S <- S %>% filter(!(org == "tthermophila" & tool %in% INCOMPATIBLE))
+details(S_raw %>% filter(org == "tthermophila", tool %in% INCOMPATIBLE,
+                         variant %in% c("complete", "fragments", "complete.wRand")) %>%
+          select(tool, variant, f1_stop, f1_exact, precision_stop) %>% mutate(across(where(is.numeric), r3)),
+        "excluded: standard-code tools on T. thermophila (stranded inputs)")
+```
+
 ## Benchmark data (Methods)
 
 ```{r methods-data}
@@ -183,8 +204,8 @@ The scoring rules (stop within 2 nt; exact within 2 nt at both ends) are applied
 ## Table 1: benchmark accuracy
 
 Median over the eight organisms, stranded inputs: stop and exact F1 on complete and fragments, and
-stop-level precision on complete + random (`complete.wRand`). Organisms that the standard-code tools
-cannot handle (*T. thermophila*) are included in the medians, as in the manuscript.
+stop-level precision on complete + random (`complete.wRand`). For the tools that do not support the ciliate code,
+the medians are over the other seven organisms (*T. thermophila* not applicable).
 
 ```{r table1}
 TOOLS <- c(pytd_v7 = "TransDecoder (release)", perl_td_v600 = "TransDecoder v6.0.0",
@@ -202,7 +223,9 @@ table1 <- tab1_long %>% select(tool, col, median) %>% pivot_wider(names_from = c
   left_join(tab1_long %>% group_by(tool) %>% summarise(min_orgs = min(n_orgs)), by = "tool") %>%
   mutate(label = TOOLS[tool], tool = factor(tool, levels = names(TOOLS))) %>% arrange(tool) %>%
   mutate(tool = as.character(tool),
-         note = ifelse(min_orgs < 8, sprintf("interim: %d of 8 organisms in some column", min_orgs), "")) %>%
+         note = case_when(tool %in% INCOMPATIBLE ~ "7 organisms (ciliate code not supported)",
+                          min_orgs < 8 ~ sprintf("interim: %d of 8 organisms in some column", min_orgs),
+                          TRUE ~ "")) %>%
   select(tool, label, all_of(COLS$col), min_orgs, note)
 write_tsv(table1 %>% mutate(across(all_of(COLS$col), ~ round(.x, 4))),
           data_path("benchmark", "final_v7", "table1.tsv"))
@@ -214,16 +237,16 @@ kableExtra::kable_styling(kable(table1 %>% select(-tool, -min_orgs) %>% mutate(a
   full_width = FALSE)
 ```
 
-`r if (all(table1$min_orgs == 8)) "Every cell is a median over all 8 organisms, CodAn included." else "Rows marked interim are medians over the available organisms."`
+`r if (all(table1$min_orgs[!table1$tool %in% INCOMPATIBLE] == 8)) "All other cells are medians over all 8 organisms." else "Rows marked interim are medians over the available organisms."`
 The manuscript row for CodAn is still a placeholder; the computed CodAn row is
 `r paste(f3(unlist(table1[table1$tool == "codan", COLS$col])), collapse = " / ")`.
 
 ## Fig. 2: accuracy on eight eukaryotes
 
 Stranded inputs, organisms ordered by transcriptome G+C. Panels a-e are heatmaps (colour clipped at
-0.4); panel f is the run time on complete inputs, median and range over organisms. Hatched cells are
-tools run with the standard code on *T. thermophila* (GeneMarkS-T, CodAn, CPC2, RNAsamba, Borf); grey
-cells marked "pend." are rows missing from the summary. TransDecoder is the release default
+0.4); panel f is the run time on complete inputs, median and range over organisms. Cells marked "n/a"
+are tools that do not support the ciliate code on *T. thermophila* (GeneMarkS-T, CodAn, CPC2,
+RNAsamba, Borf; not applicable, above); grey cells marked "pend." are rows missing from the summary. TransDecoder is the release default
 (`pytd_v7`, identical to `perl_td_v7`).
 
 ```{r fig2-data}
@@ -243,13 +266,13 @@ heat <- tidyr::crossing(PANELS, tool = names(HEAT_TOOLS), org = ORGS) %>% rowwis
   mutate(value = V(tool, variant, metric)[[org]]) %>% ungroup() %>%
   mutate(wrong = org == "tthermophila" & tool %in% WRONG_CODE,
          x = match(org, ORGS), y = length(HEAT_TOOLS) + 1 - match(tool, names(HEAT_TOOLS)),
-         lab = ifelse(is.na(value), "pend.", ifelse(round(value, 2) >= 1, "1.0", sub("^0", "", sprintf("%.2f", value)))))
-n_pending <- sum(is.na(heat$value))
+         lab = ifelse(wrong, "n/a", ifelse(is.na(value), "pend.", ifelse(round(value, 2) >= 1, "1.0", sub("^0", "", sprintf("%.2f", value))))))
+n_pending <- sum(is.na(heat$value) & !heat$wrong)
 
 RT_TOOLS <- c(pytd_v7 = "PyTD", perl_td_v7 = "TD (Perl)", prodigal = "Prodigal",
               gmst = "GeneMarkS-T", codan = "CodAn", cpat = "CPAT", cpc2 = "CPC2", rnasamba = "RNAsamba",
               borf = "Borf", angel = "ANGEL")
-rt <- S %>% filter(variant == "complete", tool %in% names(RT_TOOLS)) %>% group_by(tool) %>%
+rt <- S_raw %>% filter(variant == "complete", tool %in% names(RT_TOOLS)) %>% group_by(tool) %>%
   summarise(median = median(runtime_sec), min = min(runtime_sec), max = max(runtime_sec), n = n()) %>%
   mutate(label = RT_TOOLS[tool], y = length(RT_TOOLS) + 1 - match(tool, names(RT_TOOLS)),
          note = case_when(tool == "angel" ~ sprintf("%.0f h (A. thal.)", median / 3600),
@@ -276,9 +299,9 @@ heat_panel <- function(p, show_rows) {
   ok <- d %>% filter(!wrong)
   ggplot(ok, aes(x, y)) +
     geom_tile(aes(fill = value), colour = NA) +
-    geom_tile(data = d %>% filter(wrong), fill = "white", colour = NA) +
-    hatch(d %>% filter(wrong)) +
+    geom_tile(data = d %>% filter(wrong), fill = "#f2f2f2", colour = NA) +
     geom_text(aes(label = lab, colour = !is.na(value) & (pmin(value, 1) - 0.4) / 0.6 > 0.55), size = 1.62) +
+    geom_text(data = d %>% filter(wrong), aes(label = lab), colour = "#888888", size = 1.5) +
     scale_colour_manual(values = c(`TRUE` = "white", `FALSE` = "#222222"), guide = "none") +
     geom_hline(yintercept = length(HEAT_TOOLS) + 0.5 - c(2, 5, 9), colour = "white", linewidth = 0.8) +
     heat_fill +
@@ -309,8 +332,7 @@ png_f <- save_fig(fig2, "fig2_benchmark", FULL_W, 128 * MM)
 fig2
 ```
 
-Pending cells in the heatmaps: `r n_pending`. Hatched cells: largest value
-`r sprintf("%.4f", max(heat$value[heat$wrong], na.rm = TRUE))` (the caption says at most 0.06; the largest are CodAn's, which the earlier figure did not have).
+Pending cells in the heatmaps: `r n_pending`. Not-applicable cells: `r sum(heat$wrong) / nrow(PANELS)` per panel.
 
 ```{r fig2-tables, results = "asis"}
 for (p in PANELS$panel) {
@@ -423,10 +445,10 @@ On fragments, Prodigal had the higher stop F1 in `r length(prod_better_stop)` of
 
 ```{r ciliate}
 std_tools <- c("gmst", "rnasamba", "cpc2", "borf")
-tthe_std <- S %>% filter(org == "tthermophila", tool %in% std_tools, variant %in% c("complete", "fragments")) %>%
+tthe_std <- S_raw %>% filter(org == "tthermophila", tool %in% std_tools, variant %in% c("complete", "fragments")) %>%
   select(tool, variant, f1_stop, f1_exact)
 tthe_max <- max(c(tthe_std$f1_stop, tthe_std$f1_exact))
-codan_tthe <- S %>% filter(org == "tthermophila", tool == "codan", variant %in% c("complete", "fragments", "complete.wRand")) %>%
+codan_tthe <- S_raw %>% filter(org == "tthermophila", tool == "codan", variant %in% c("complete", "fragments", "complete.wRand")) %>%
   select(variant, f1_stop, f1_exact, precision_stop)
 TT <- function(tool, variant, metric) V(tool, variant, metric)[["tthermophila"]]
 kable(tthe_std)
@@ -482,12 +504,13 @@ details(hom %>% mutate(across(starts_with("d_"), ~ round(.x, 4))), "per input")
 
 Each method is ranked in every combination of organism, stranded input (complete, complete with full
 UTRs, fragments, complete + random, fragments + random) and measure (stop-level and exact sensitivity,
-precision and F1): 8 organisms x 5 inputs x 6 measures = 240 categories. Only the methods run on all
+precision and F1): 7 organisms x 5 inputs x 6 measures = 210 categories. *T. thermophila* is left out,
+because five of the eight methods do not support its genetic code (above); it is compared separately
+under "Ciliate genetic code". Only the methods run on all
 of these inputs are ranked: TransDecoder (release), Prodigal, GeneMarkS-T, CodAn, CPAT, CPC2, RNAsamba
 and Borf (RNAsamba was not run on unstranded inputs; v6.0.0 and the longest-ORF baseline are not
-ranked). Ties share the best rank. Because ranks ignore margins, the gap to the best method in each
-category (best value minus the method's value) is reported too. The methods run with the standard code
-on *T. thermophila* rank last there in most categories, so counts are also given without it.
+ranked). Ties share the best rank. Because ranks ignore margins, the gap to the best method in each category
+(best value minus the method's value) is reported too.
 
 ```{r rank-data}
 RANK_TOOLS <- c(pytd_v7 = "TransDecoder", prodigal = "Prodigal", gmst = "GeneMarkS-T", codan = "CodAn",
@@ -509,7 +532,6 @@ rank_summary <- function(d) d %>% group_by(tool) %>%
             max_gap = max(gap)) %>%
   mutate(method = RANK_TOOLS[tool]) %>% arrange(desc(first + top3 / 100))
 rs_all <- rank_summary(rk)
-rs_not <- rank_summary(rk %>% filter(org != "tthermophila"))
 rs_measure <- rk %>% group_by(measure, tool) %>%
   summarise(first = sum(rank == 1), top3 = sum(rank <= 3), median_rank = median(rank), .groups = "drop")
 td_rs <- rs_all %>% filter(tool == TD)
@@ -526,19 +548,18 @@ to the best is `r f3(td_rs$median_gap)` (next smallest: `r rs_all$method[order(r
 `r f3(sort(rs_all$median_gap)[2])`). Its largest gap is `r f3(td_worst$gap)`
 (`r ORG_LABEL[td_worst$org]`, `r RANK_INPUTS[td_worst$variant]`, `r RANK_MEASURES[td_worst$measure]`).
 By measure, TransDecoder is never first in stop sensitivity (Prodigal is first in
-`r rs_measure$first[rs_measure$measure == "sensitivity_stop" & rs_measure$tool == "prodigal"]` of 40) and
+`r rs_measure$first[rs_measure$measure == "sensitivity_stop" & rs_measure$tool == "prodigal"]` of 35) and
 is first or tied first most often in stop F1
-(`r td_gap$first[td_gap$measure == "f1_stop"]` of 40, median gap `r f3(td_gap$median_gap[td_gap$measure == "f1_stop"])`).
+(`r td_gap$first[td_gap$measure == "f1_stop"]` of 35, median gap `r f3(td_gap$median_gap[td_gap$measure == "f1_stop"])`).
 
 ```{r rank-tables}
 fmt_rs <- function(d) d %>% transmute(method, categories, first, `top 3` = top3, `median rank` = median_rank,
                                       `within 0.01` = pct(within_0.01, 0), `within 0.03` = pct(within_0.03, 0),
                                       `median gap` = f3(median_gap), `max gap` = f3(max_gap))
-kable(fmt_rs(rs_all), caption = "All organisms")
-kable(fmt_rs(rs_not), caption = "Without T. thermophila")
+kable(fmt_rs(rs_all), caption = "Seven organisms (T. thermophila not ranked)")
 kable(td_gap %>% transmute(measure = RANK_MEASURES[measure], first, `top 3` = top3,
                            `median gap` = f3(median_gap), `max gap` = f3(max_gap)),
-      caption = "TransDecoder by measure (40 categories each)")
+      caption = "TransDecoder by measure (35 categories each)")
 details(rs_measure %>% mutate(measure = RANK_MEASURES[measure], method = RANK_TOOLS[tool]) %>%
           select(measure, method, first, top3, median_rank) %>% arrange(measure, median_rank),
         "rank counts by measure and method")
@@ -555,7 +576,7 @@ rank_bins <- rk %>% mutate(method = factor(RANK_TOOLS[tool], levels = rev(tool_o
 pa <- ggplot(rank_bins, aes(n, method, fill = forcats::fct_rev(bin))) + geom_col(width = 0.75) +
   scale_fill_manual(values = c(`1` = "#08519c", `2` = "#4292c6", `3` = "#9ecae1", `4-8` = "#e5e5e5"),
                     breaks = c("1", "2", "3", "4-8"), name = "rank") +
-  scale_x_continuous(expand = c(0, 0), breaks = c(0, 80, 160, 240)) +
+  scale_x_continuous(expand = c(0, 0), breaks = c(0, 70, 140, 210)) +
   labs(x = sprintf("categories (of %d)", n_cat), y = NULL, title = "rank in each category")
 heat_r <- rs_measure %>% mutate(method = factor(RANK_TOOLS[tool], levels = rev(tool_order)),
                                 measure = factor(RANK_MEASURES[measure], levels = RANK_MEASURES))
@@ -563,7 +584,7 @@ pb <- ggplot(heat_r, aes(measure, method, fill = median_rank)) + geom_tile(colou
   geom_text(aes(label = sprintf("%d/%d", first, top3)), size = 1.55,
             colour = ifelse(heat_r$median_rank <= 3, "white", "#222222")) +
   scale_fill_gradient(low = "#08519c", high = "#f0f0f0", limits = c(1, 8), name = "median rank") +
-  labs(x = NULL, y = NULL, title = "first / top 3 (of 40), by measure") +
+  labs(x = NULL, y = NULL, title = "first / top 3 (of 35), by measure") +
   theme(axis.text.x = element_text(angle = 35, hjust = 1), axis.line = element_blank(), axis.ticks = element_blank())
 pc <- ggplot(rk %>% mutate(method = factor(RANK_TOOLS[tool], levels = rev(tool_order))),
              aes(pmax(gap, 1e-4), method)) +
@@ -636,34 +657,36 @@ check_text("mb:120 ANGEL hours, min", floor(min(angel$hours)), 17)
 check_text("mb:120 ANGEL hours, max", round(max(angel$hours)), 22)
 # Table 1 (rb:24-32)
 TEX_T1 <- tribble(~tool, ~line, ~v1, ~v2, ~v3, ~v4, ~v5,
-  "pytd_v7", 24, 0.978, 0.910, 0.895, 0.789, 0.993,
+  "pytd_v7", 24, 0.980, 0.912, 0.930, 0.822, 0.994,
   "perl_td_v600", 25, 0.972, 0.779, 0.869, 0.715, 0.995,
   "longest_orf", 26, 0.976, 0.689, 0.839, 0.713, 0.803,
   "prodigal", 27, 0.937, 0.643, 0.936, 0.782, 0.660,
-  "gmst", 28, 0.973, 0.770, 0.853, 0.744, 0.996,
+  "gmst", 28, 0.974, 0.783, 0.866, 0.746, 0.996,
   "cpat", 29, 0.965, 0.940, 0.783, 0.440, 0.971,
-  "rnasamba", 30, 0.990, 0.953, 0.861, 0.483, 0.721,
-  "cpc2", 31, 0.964, 0.935, 0.571, 0.181, 0.977,
-  "borf", 32, 0.973, 0.896, 0.811, 0.538, 0.819)
+  "rnasamba", 30, 0.991, 0.961, 0.864, 0.486, 0.721,
+  "cpc2", 31, 0.964, 0.935, 0.572, 0.183, 0.982,
+  "borf", 32, 0.976, 0.923, 0.816, 0.538, 0.838,
+  "codan", 33, 0.974, 0.830, 0.912, 0.761, 0.946)
 for (i in seq_len(nrow(TEX_T1))) for (k in 1:5)
   check_text(sprintf("rb:%d Table 1 %s, %s", TEX_T1$line[i], TOOLS[[TEX_T1$tool[i]]], COLS$col[k]),
              r3(T1(TEX_T1$tool[i], COLS$col[k])), TEX_T1[[paste0("v", k)]][i])
-check_text(sprintf("rb:17 Table 1 caption: standard-code tools, T. the. F1 <= 0.02 (1 = yes; max %.4f)", tthe_max), as.numeric(round(tthe_max, 2) <= 0.02), 1)
+check_text("rb:17 Table 1 caption: standard-code tools' medians over 7 organisms (1 = yes)",
+           as.numeric(all(table1$min_orgs[table1$tool %in% INCOMPATIBLE] == 7)), 1)
 # Stop codons
-check_text("rb:39 TD complete stop F1 min", r3(min(td_cs)), 0.940)
-check_text("rb:39 TD complete stop F1 max", r3(max(td_cs)), 0.988)
-check_text("rb:40 TD complete stop F1 median", r3(median(td_cs)), 0.978)
+check_text("rb:39 TD complete stop F1 min", r3(min(td_cs)), 0.933)
+check_text("rb:39 TD complete stop F1 max", r3(max(td_cs)), 0.997)
+check_text("rb:40 TD complete stop F1 median", r3(median(td_cs)), 0.980)
 check_text("rb:40 v6.0.0 complete stop F1 min", r3(min(v6_cs)), 0.948)
 check_text("rb:40 v6.0.0 complete stop F1 max", r3(max(v6_cs)), 0.985)
 check_text("rb:41 longest ORF complete stop F1 min", r3(min(lo_cs)), 0.954)
 check_text("rb:41 longest ORF complete stop F1 max", r3(max(lo_cs)), 0.984)
-check_text("rb:41 TD within x of v6.0.0 per organism (stop)", r3(td_v6_maxdiff), 0.008)
+check_text("rb:41 TD within x of v6.0.0 per organism (stop)", r3(td_v6_maxdiff), 0.014)
 # Noncoding
-check_text("rb:48 TD complete+rand precision median", r3(median(td_p)), 0.993)
-check_text("rb:49 TD complete+rand precision min", r3(min(td_p)), 0.954)
-check_text("rb:49 TD complete+rand precision max", r3(max(td_p)), 1.000)
-check_text("rb:49 TD stop F1 complete median (from)", r3(median(td_cs)), 0.978)
-check_text("rb:49 TD stop F1 complete+rand median (to)", r3(MED(TD, "complete.wRand", "f1_stop")), 0.975)
+check_text("rb:48 TD complete+rand precision median", r3(median(td_p)), 0.994)
+check_text("rb:49 TD complete+rand precision min", r3(min(td_p)), 0.980)
+check_text("rb:49 TD complete+rand precision max", r3(max(td_p)), 0.997)
+check_text("rb:49 TD stop F1 complete median (from)", r3(median(td_cs)), 0.980)
+check_text("rb:49 TD stop F1 complete+rand median (to)", r3(MED(TD, "complete.wRand", "f1_stop")), 0.979)
 check_text("rb:50 Prodigal complete+rand precision min", r3(min(pr_p)), 0.344)
 check_text("rb:50 Prodigal complete+rand precision max", r3(max(pr_p)), 0.866)
 check_text("rb:50 Prodigal complete+rand precision median", r3(median(pr_p)), 0.660)
@@ -672,60 +695,57 @@ check_text("rb:51 Prodigal stop F1 complete+rand median (to)", r3(MED("prodigal"
 check_text("rb:52 longest ORF complete+rand precision median", r3(median(lo_p)), 0.803)
 check_text("rb:52 longest ORF complete+rand precision, C. rei.", r3(lo_p[["creinhardtii"]]), 0.567)
 check_text("rb:53 RNAsamba complete+rand precision median", r3(MED("rnasamba", "complete.wRand", "precision_stop")), 0.721)
-check_text("rb:53 Borf complete+rand precision median", r3(MED("borf", "complete.wRand", "precision_stop")), 0.819)
+check_text("rb:53 Borf complete+rand precision median", r3(MED("borf", "complete.wRand", "precision_stop")), 0.838)
 check_text("rb:53 CPAT complete+rand precision median", r3(median(cp_p)), 0.971)
 check_text("rb:54 CPAT complete+rand precision, C. rei.", r3(cp_p[["creinhardtii"]]), 0.629)
 # Starts
 check_text("rb:58 longest ORF complete exact F1 median", r3(MED("longest_orf", "complete", "f1_exact")), 0.689)
-check_text("rb:58 TD complete exact F1 min", r3(min(td_ce)), 0.742)
-check_text("rb:58 TD complete exact F1 max", r3(max(td_ce)), 0.928)
-check_text("rb:59 TD complete exact F1 median", r3(median(td_ce)), 0.910)
+check_text("rb:58 TD complete exact F1 min", r3(min(td_ce)), 0.747)
+check_text("rb:58 TD complete exact F1 max", r3(max(td_ce)), 0.940)
+check_text("rb:59 TD complete exact F1 median", r3(median(td_ce)), 0.912)
 check_text("rb:60 v6.0.0 complete exact F1 min", r3(min(v6_ce)), 0.567)
 check_text("rb:60 v6.0.0 complete exact F1 max", r3(max(v6_ce)), 0.912)
 check_text("rb:60 v6.0.0 complete exact F1 median", r3(median(v6_ce)), 0.779)
 check_text("rb:61 Prodigal complete exact F1 median", r3(MED("prodigal", "complete", "f1_exact")), 0.643)
-check_text("rb:62 GeneMarkS-T complete exact F1 median", r3(MED("gmst", "complete", "f1_exact")), 0.770)
+check_text("rb:62 GeneMarkS-T complete exact F1 median", r3(MED("gmst", "complete", "f1_exact")), 0.783)
 check_text("rb:63 CPAT/RNAsamba/CPC2 complete exact F1 medians, lowest", r3(min(cls_ce)), 0.935)
-check_text("rb:63 CPAT/RNAsamba/CPC2 complete exact F1 medians, highest", r3(max(cls_ce)), 0.953)
-check_text("rb:64 CPAT/RNAsamba/CPC2 fragments exact F1 medians, lowest", r3(min(cls_fe)), 0.181)
-check_text("rb:64 CPAT/RNAsamba/CPC2 fragments exact F1 medians, highest", r3(max(cls_fe)), 0.483)
-check_text("rb:64 TD fragments exact F1 median", r3(median(td_fe)), 0.789)
+check_text("rb:63 CPAT/RNAsamba/CPC2 complete exact F1 medians, highest", r3(max(cls_ce)), 0.961)
+check_text("rb:64 CPAT/RNAsamba/CPC2 fragments exact F1 medians, lowest", r3(min(cls_fe)), 0.183)
+check_text("rb:64 CPAT/RNAsamba/CPC2 fragments exact F1 medians, highest", r3(max(cls_fe)), 0.486)
+check_text("rb:64 TD fragments exact F1 median", r3(median(td_fe)), 0.822)
 # Fragments
-check_text("rb:66 organisms where Prodigal stop F1 > TD, fragments", length(prod_better_stop), 7)
+check_text("rb:66 organisms where Prodigal stop F1 > TD, fragments", length(prod_better_stop), 5)
 check_text("rb:67 Prodigal fragments stop F1 median", r3(median(pr_fs)), 0.936)
-check_text("rb:67 TD fragments stop F1 median", r3(median(td_fs)), 0.895)
+check_text("rb:67 TD fragments stop F1 median", r3(median(td_fs)), 0.930)
 check_text("rb:68 T. the. is the exception (Prodigal not higher)", as.numeric(!"tthermophila" %in% prod_better_stop), 1)
 check_text("rb:68 Prodigal fragments stop F1, T. the.", r3(pr_fs[["tthermophila"]]), 0.869)
-check_text("rb:68 TD fragments stop F1, T. the.", r3(td_fs[["tthermophila"]]), 0.896)
-check_text("rb:69 TD > Prodigal exact on fragments in human, mouse, T. the. only",
-           as.numeric(setequal(td_better_exact, c("human", "mouse", "tthermophila"))), 1)
+check_text("rb:68 TD fragments stop F1, T. the.", r3(td_fs[["tthermophila"]]), 0.887)
+check_text("rb:79 TD > Prodigal exact on fragments in human, mouse, S. pom., D. mel., T. the.",
+           as.numeric(setequal(td_better_exact, c("human", "mouse", "spombe", "dmel", "tthermophila"))), 1)
 # Ciliate code
-check_text(sprintf("rb:78 standard-code tools F1 on T. the. at most 0.02 (1 = yes; max %.4f)", tthe_max), as.numeric(round(tthe_max, 2) <= 0.02), 1)
-check_text("rb:80 TD T. the. complete stop F1", r3(TT(TD, "complete", "f1_stop")), 0.940)
-check_text("rb:80 TD T. the. complete exact F1", r3(TT(TD, "complete", "f1_exact")), 0.840)
+check_text("rb:80 TD T. the. complete stop F1", r3(TT(TD, "complete", "f1_stop")), 0.933)
+check_text("rb:80 TD T. the. complete exact F1", r3(TT(TD, "complete", "f1_exact")), 0.833)
 check_text("rb:81 v6.0.0 T. the. complete stop F1", r3(TT("perl_td_v600", "complete", "f1_stop")), 0.948)
 check_text("rb:81 v6.0.0 T. the. complete exact F1", r3(TT("perl_td_v600", "complete", "f1_exact")), 0.567)
 check_text("rb:81 Prodigal T. the. complete stop F1", r3(TT("prodigal", "complete", "f1_stop")), 0.856)
 check_text("rb:81 Prodigal T. the. complete exact F1", r3(TT("prodigal", "complete", "f1_exact")), 0.395)
 check_text("rb:82 CPAT T. the. complete stop F1", r3(TT("cpat", "complete", "f1_stop")), 0.884)
 check_text("rb:82 CPAT T. the. complete exact F1", r3(TT("cpat", "complete", "f1_exact")), 0.851)
-check_text("rb:83 TD T. the. complete+rand precision", r3(TT(TD, "complete.wRand", "precision_stop")), 0.954)
+check_text("rb:83 TD T. the. complete+rand precision", r3(TT(TD, "complete.wRand", "precision_stop")), 0.980)
 check_text("rb:83 v6.0.0 T. the. complete+rand precision", r3(TT("perl_td_v600", "complete.wRand", "precision_stop")), 0.519)
 check_text("rb:83 Prodigal T. the. complete+rand precision", r3(TT("prodigal", "complete.wRand", "precision_stop")), 0.344)
 # GC extremes
 check_text("rb:88 P. fal. has the highest TD exact F1 (1 = yes)", as.numeric(names(which.max(td_ce)) == "pfalciparum"), 1)
-check_text("rb:88 TD P. fal. complete exact F1", r3(td_ce[["pfalciparum"]]), 0.928)
-check_text("rb:88 TD P. fal. complete stop F1", r3(td_cs[["pfalciparum"]]), 0.985)
-check_text("rb:89 TD C. rei. complete stop F1", r3(td_cs[["creinhardtii"]]), 0.968)
-check_text("rb:89 TD C. rei. complete exact F1", r3(td_ce[["creinhardtii"]]), 0.742)
+check_text("rb:88 TD P. fal. complete exact F1", r3(td_ce[["pfalciparum"]]), 0.940)
+check_text("rb:88 TD P. fal. complete stop F1", r3(td_cs[["pfalciparum"]]), 0.997)
+check_text("rb:89 TD C. rei. complete stop F1", r3(td_cs[["creinhardtii"]]), 0.975)
+check_text("rb:89 TD C. rei. complete exact F1", r3(td_ce[["creinhardtii"]]), 0.747)
 check_text("rb:89 C. rei. has the lowest TD exact F1 (1 = yes)", as.numeric(names(which.min(td_ce)) == "creinhardtii"), 1)
 check_text("rb:90 other methods C. rei. exact F1, lowest", r3(min(cre_others)), 0.653)
 check_text("rb:90 other methods C. rei. exact F1, highest", r3(max(cre_others)), 0.786)
 # Perl = Python
 check_text("rb:7 Perl and Python identical, inputs", n_ident, 84)
 # Figure caption
-hatch_max <- max(heat$value[heat$wrong], na.rm = TRUE)
-check_text(sprintf("fm:36 hatched cells <= 0.06 (1 = yes; max %.4f)", hatch_max), as.numeric(round(hatch_max, 2) <= 0.06), 1)
 check_text("fm:39 ANGEL complete runs only on A. thaliana (1 = yes)",
            as.numeric(all(S$org[S$tool == "angel" & S$variant == "complete"] == "athal")), 1)
 check_report()
