@@ -1,0 +1,11 @@
+org	variant	label	n_lnc	lnc_pred	lnc_pred_cat	cat_orfs	cat_found
+human	complete.wLnc	pytd_v7	33668	1639	14	698	13
+human	complete.wLnc	pytd_v7_precise	33668	1378	13	698	12
+human	complete.wLnc	pytd_v7_sensitive	33668	2685	25	698	21
+human	complete.wLnc	cliff_c200	33668	6943	92	698	67
+human	complete.wLnc	decoy_q0.05	33668	1451	13	698	12
+human	fragments.wLnc	pytd_v7	33668	1928	18	698	14
+human	fragments.wLnc	pytd_v7_precise	33668	1507	14	698	11
+human	fragments.wLnc	pytd_v7_sensitive	33668	3621	43	698	33
+human	fragments.wLnc	cliff_c200	33668	6833	87	698	64
+human	fragments.wLnc	decoy_q0.05	33668	1734	16	698	13

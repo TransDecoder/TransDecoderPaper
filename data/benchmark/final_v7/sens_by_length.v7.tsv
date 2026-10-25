@@ -1,0 +1,1212 @@
+org	variant	label	set	length_bin	n	hits
+pfalciparum	complete.wRand	cliff_c200	coding	0-49	4	0
+pfalciparum	complete.wRand	cliff_c200	coding	50-74	56	0
+pfalciparum	complete.wRand	cliff_c200	coding	75-99	107	14
+pfalciparum	complete.wRand	cliff_c200	coding	100-124	159	156
+pfalciparum	complete.wRand	cliff_c200	coding	125-149	173	170
+pfalciparum	complete.wRand	cliff_c200	coding	150-199	327	326
+pfalciparum	complete.wRand	cliff_c200	coding	200-267	493	493
+pfalciparum	complete.wRand	cliff_c200	coding	268-399	997	997
+pfalciparum	complete.wRand	cliff_c200	coding	>=400	2965	2965
+pfalciparum	complete.wRand	cliff_c200	negative	100-124		1
+pfalciparum	complete.wRand	pytd_v7	coding	0-49	4	0
+pfalciparum	complete.wRand	pytd_v7	coding	50-74	56	40
+pfalciparum	complete.wRand	pytd_v7	coding	75-99	107	102
+pfalciparum	complete.wRand	pytd_v7	coding	100-124	159	155
+pfalciparum	complete.wRand	pytd_v7	coding	125-149	173	170
+pfalciparum	complete.wRand	pytd_v7	coding	150-199	327	326
+pfalciparum	complete.wRand	pytd_v7	coding	200-267	493	493
+pfalciparum	complete.wRand	pytd_v7	coding	268-399	997	997
+pfalciparum	complete.wRand	pytd_v7	coding	>=400	2965	2965
+pfalciparum	complete.wRand	pytd_v7	negative	0-49		2
+pfalciparum	complete.wRand	pytd_v7	negative	50-74		7
+pfalciparum	complete.wRand	pytd_v7	negative	75-99		3
+pfalciparum	complete.wRand	pytd_v7	negative	100-124		1
+pfalciparum	complete.wRand	pytd_v7_precise	coding	0-49	4	0
+pfalciparum	complete.wRand	pytd_v7_precise	coding	50-74	56	40
+pfalciparum	complete.wRand	pytd_v7_precise	coding	75-99	107	99
+pfalciparum	complete.wRand	pytd_v7_precise	coding	100-124	159	155
+pfalciparum	complete.wRand	pytd_v7_precise	coding	125-149	173	170
+pfalciparum	complete.wRand	pytd_v7_precise	coding	150-199	327	326
+pfalciparum	complete.wRand	pytd_v7_precise	coding	200-267	493	493
+pfalciparum	complete.wRand	pytd_v7_precise	coding	268-399	997	997
+pfalciparum	complete.wRand	pytd_v7_precise	coding	>=400	2965	2965
+pfalciparum	complete.wRand	pytd_v7_precise	negative	0-49		2
+pfalciparum	complete.wRand	pytd_v7_precise	negative	50-74		7
+pfalciparum	complete.wRand	pytd_v7_precise	negative	75-99		3
+pfalciparum	complete.wRand	pytd_v7_precise	negative	100-124		1
+pfalciparum	complete.wRand	pytd_v7_sensitive	coding	0-49	4	0
+pfalciparum	complete.wRand	pytd_v7_sensitive	coding	50-74	56	43
+pfalciparum	complete.wRand	pytd_v7_sensitive	coding	75-99	107	102
+pfalciparum	complete.wRand	pytd_v7_sensitive	coding	100-124	159	155
+pfalciparum	complete.wRand	pytd_v7_sensitive	coding	125-149	173	170
+pfalciparum	complete.wRand	pytd_v7_sensitive	coding	150-199	327	326
+pfalciparum	complete.wRand	pytd_v7_sensitive	coding	200-267	493	492
+pfalciparum	complete.wRand	pytd_v7_sensitive	coding	268-399	997	997
+pfalciparum	complete.wRand	pytd_v7_sensitive	coding	>=400	2965	2965
+pfalciparum	complete.wRand	pytd_v7_sensitive	negative	0-49		4
+pfalciparum	complete.wRand	pytd_v7_sensitive	negative	50-74		18
+pfalciparum	complete.wRand	pytd_v7_sensitive	negative	75-99		7
+pfalciparum	complete.wRand	pytd_v7_sensitive	negative	100-124		1
+tthermophila	complete.wRand	cliff_c200	coding	0-49	97	3
+tthermophila	complete.wRand	cliff_c200	coding	50-74	304	45
+tthermophila	complete.wRand	cliff_c200	coding	75-99	587	180
+tthermophila	complete.wRand	cliff_c200	coding	100-124	841	470
+tthermophila	complete.wRand	cliff_c200	coding	125-149	874	543
+tthermophila	complete.wRand	cliff_c200	coding	150-199	1717	1291
+tthermophila	complete.wRand	cliff_c200	coding	200-267	2241	1890
+tthermophila	complete.wRand	cliff_c200	coding	268-399	4209	4061
+tthermophila	complete.wRand	cliff_c200	coding	>=400	15586	15508
+tthermophila	complete.wRand	cliff_c200	negative	0-49		3
+tthermophila	complete.wRand	cliff_c200	negative	50-74		42
+tthermophila	complete.wRand	cliff_c200	negative	75-99		75
+tthermophila	complete.wRand	cliff_c200	negative	100-124		258
+tthermophila	complete.wRand	cliff_c200	negative	125-149		65
+tthermophila	complete.wRand	cliff_c200	negative	150-199		21
+tthermophila	complete.wRand	cliff_c200	negative	200-267		2
+tthermophila	complete.wRand	cliff_c200	negative	268-399		1
+tthermophila	complete.wRand	pytd_v7	coding	0-49	97	3
+tthermophila	complete.wRand	pytd_v7	coding	50-74	304	33
+tthermophila	complete.wRand	pytd_v7	coding	75-99	587	105
+tthermophila	complete.wRand	pytd_v7	coding	100-124	841	313
+tthermophila	complete.wRand	pytd_v7	coding	125-149	874	418
+tthermophila	complete.wRand	pytd_v7	coding	150-199	1717	1169
+tthermophila	complete.wRand	pytd_v7	coding	200-267	2241	1849
+tthermophila	complete.wRand	pytd_v7	coding	268-399	4209	4063
+tthermophila	complete.wRand	pytd_v7	coding	>=400	15586	15511
+tthermophila	complete.wRand	pytd_v7	negative	0-49		1
+tthermophila	complete.wRand	pytd_v7	negative	50-74		27
+tthermophila	complete.wRand	pytd_v7	negative	75-99		12
+tthermophila	complete.wRand	pytd_v7	negative	100-124		5
+tthermophila	complete.wRand	pytd_v7	negative	125-149		3
+tthermophila	complete.wRand	pytd_v7	negative	150-199		1
+tthermophila	complete.wRand	pytd_v7_precise	coding	0-49	97	3
+tthermophila	complete.wRand	pytd_v7_precise	coding	50-74	304	31
+tthermophila	complete.wRand	pytd_v7_precise	coding	75-99	587	96
+tthermophila	complete.wRand	pytd_v7_precise	coding	100-124	841	258
+tthermophila	complete.wRand	pytd_v7_precise	coding	125-149	874	346
+tthermophila	complete.wRand	pytd_v7_precise	coding	150-199	1717	1055
+tthermophila	complete.wRand	pytd_v7_precise	coding	200-267	2241	1725
+tthermophila	complete.wRand	pytd_v7_precise	coding	268-399	4209	4038
+tthermophila	complete.wRand	pytd_v7_precise	coding	>=400	15586	15511
+tthermophila	complete.wRand	pytd_v7_precise	negative	0-49		1
+tthermophila	complete.wRand	pytd_v7_precise	negative	50-74		27
+tthermophila	complete.wRand	pytd_v7_precise	negative	75-99		12
+tthermophila	complete.wRand	pytd_v7_precise	negative	100-124		4
+tthermophila	complete.wRand	pytd_v7_precise	negative	125-149		3
+tthermophila	complete.wRand	pytd_v7_precise	negative	150-199		1
+tthermophila	complete.wRand	pytd_v7_sensitive	coding	0-49	97	3
+tthermophila	complete.wRand	pytd_v7_sensitive	coding	50-74	304	59
+tthermophila	complete.wRand	pytd_v7_sensitive	coding	75-99	587	172
+tthermophila	complete.wRand	pytd_v7_sensitive	coding	100-124	841	382
+tthermophila	complete.wRand	pytd_v7_sensitive	coding	125-149	874	501
+tthermophila	complete.wRand	pytd_v7_sensitive	coding	150-199	1717	1262
+tthermophila	complete.wRand	pytd_v7_sensitive	coding	200-267	2241	1875
+tthermophila	complete.wRand	pytd_v7_sensitive	coding	268-399	4209	4066
+tthermophila	complete.wRand	pytd_v7_sensitive	coding	>=400	15586	15511
+tthermophila	complete.wRand	pytd_v7_sensitive	negative	0-49		1
+tthermophila	complete.wRand	pytd_v7_sensitive	negative	50-74		33
+tthermophila	complete.wRand	pytd_v7_sensitive	negative	75-99		21
+tthermophila	complete.wRand	pytd_v7_sensitive	negative	100-124		10
+tthermophila	complete.wRand	pytd_v7_sensitive	negative	125-149		5
+tthermophila	complete.wRand	pytd_v7_sensitive	negative	150-199		3
+spombe	complete.wRand	cliff_c200	coding	0-49	19	0
+spombe	complete.wRand	cliff_c200	coding	50-74	76	22
+spombe	complete.wRand	cliff_c200	coding	75-99	139	70
+spombe	complete.wRand	cliff_c200	coding	100-124	234	211
+spombe	complete.wRand	cliff_c200	coding	125-149	228	219
+spombe	complete.wRand	cliff_c200	coding	150-199	356	348
+spombe	complete.wRand	cliff_c200	coding	200-267	591	591
+spombe	complete.wRand	cliff_c200	coding	268-399	1080	1080
+spombe	complete.wRand	cliff_c200	coding	>=400	2377	2377
+spombe	complete.wRand	cliff_c200	negative	50-74		2
+spombe	complete.wRand	cliff_c200	negative	75-99		6
+spombe	complete.wRand	cliff_c200	negative	100-124		23
+spombe	complete.wRand	pytd_v7	coding	0-49	19	0
+spombe	complete.wRand	pytd_v7	coding	50-74	76	42
+spombe	complete.wRand	pytd_v7	coding	75-99	139	90
+spombe	complete.wRand	pytd_v7	coding	100-124	234	211
+spombe	complete.wRand	pytd_v7	coding	125-149	228	219
+spombe	complete.wRand	pytd_v7	coding	150-199	356	348
+spombe	complete.wRand	pytd_v7	coding	200-267	591	591
+spombe	complete.wRand	pytd_v7	coding	268-399	1080	1080
+spombe	complete.wRand	pytd_v7	coding	>=400	2377	2377
+spombe	complete.wRand	pytd_v7	negative	50-74		8
+spombe	complete.wRand	pytd_v7	negative	75-99		9
+spombe	complete.wRand	pytd_v7	negative	100-124		8
+spombe	complete.wRand	pytd_v7_precise	coding	0-49	19	0
+spombe	complete.wRand	pytd_v7_precise	coding	50-74	76	42
+spombe	complete.wRand	pytd_v7_precise	coding	75-99	139	77
+spombe	complete.wRand	pytd_v7_precise	coding	100-124	234	176
+spombe	complete.wRand	pytd_v7_precise	coding	125-149	228	217
+spombe	complete.wRand	pytd_v7_precise	coding	150-199	356	348
+spombe	complete.wRand	pytd_v7_precise	coding	200-267	591	591
+spombe	complete.wRand	pytd_v7_precise	coding	268-399	1080	1080
+spombe	complete.wRand	pytd_v7_precise	coding	>=400	2377	2377
+spombe	complete.wRand	pytd_v7_precise	negative	50-74		8
+spombe	complete.wRand	pytd_v7_precise	negative	75-99		9
+spombe	complete.wRand	pytd_v7_precise	negative	100-124		8
+spombe	complete.wRand	pytd_v7_sensitive	coding	0-49	19	0
+spombe	complete.wRand	pytd_v7_sensitive	coding	50-74	76	54
+spombe	complete.wRand	pytd_v7_sensitive	coding	75-99	139	112
+spombe	complete.wRand	pytd_v7_sensitive	coding	100-124	234	211
+spombe	complete.wRand	pytd_v7_sensitive	coding	125-149	228	219
+spombe	complete.wRand	pytd_v7_sensitive	coding	150-199	356	348
+spombe	complete.wRand	pytd_v7_sensitive	coding	200-267	591	591
+spombe	complete.wRand	pytd_v7_sensitive	coding	268-399	1080	1080
+spombe	complete.wRand	pytd_v7_sensitive	coding	>=400	2377	2377
+spombe	complete.wRand	pytd_v7_sensitive	negative	0-49		1
+spombe	complete.wRand	pytd_v7_sensitive	negative	50-74		15
+spombe	complete.wRand	pytd_v7_sensitive	negative	75-99		13
+spombe	complete.wRand	pytd_v7_sensitive	negative	100-124		8
+athal	complete.wRand	cliff_c200	coding	0-49	113	1
+athal	complete.wRand	cliff_c200	coding	50-74	446	62
+athal	complete.wRand	cliff_c200	coding	75-99	971	316
+athal	complete.wRand	cliff_c200	coding	100-124	1040	974
+athal	complete.wRand	cliff_c200	coding	125-149	1123	1079
+athal	complete.wRand	cliff_c200	coding	150-199	2440	2380
+athal	complete.wRand	cliff_c200	coding	200-267	3186	3171
+athal	complete.wRand	cliff_c200	coding	268-399	6232	6227
+athal	complete.wRand	cliff_c200	coding	>=400	11316	11311
+athal	complete.wRand	cliff_c200	negative	0-49		4
+athal	complete.wRand	cliff_c200	negative	50-74		28
+athal	complete.wRand	cliff_c200	negative	75-99		39
+athal	complete.wRand	cliff_c200	negative	100-124		67
+athal	complete.wRand	cliff_c200	negative	125-149		8
+athal	complete.wRand	pytd_v7	coding	0-49	113	2
+athal	complete.wRand	pytd_v7	coding	50-74	446	91
+athal	complete.wRand	pytd_v7	coding	75-99	971	507
+athal	complete.wRand	pytd_v7	coding	100-124	1040	813
+athal	complete.wRand	pytd_v7	coding	125-149	1123	1081
+athal	complete.wRand	pytd_v7	coding	150-199	2440	2379
+athal	complete.wRand	pytd_v7	coding	200-267	3186	3172
+athal	complete.wRand	pytd_v7	coding	268-399	6232	6230
+athal	complete.wRand	pytd_v7	coding	>=400	11316	11315
+athal	complete.wRand	pytd_v7	negative	0-49		6
+athal	complete.wRand	pytd_v7	negative	50-74		13
+athal	complete.wRand	pytd_v7	negative	75-99		13
+athal	complete.wRand	pytd_v7	negative	100-124		5
+athal	complete.wRand	pytd_v7	negative	125-149		2
+athal	complete.wRand	pytd_v7_precise	coding	0-49	113	2
+athal	complete.wRand	pytd_v7_precise	coding	50-74	446	65
+athal	complete.wRand	pytd_v7_precise	coding	75-99	971	286
+athal	complete.wRand	pytd_v7_precise	coding	100-124	1040	585
+athal	complete.wRand	pytd_v7_precise	coding	125-149	1123	1009
+athal	complete.wRand	pytd_v7_precise	coding	150-199	2440	2351
+athal	complete.wRand	pytd_v7_precise	coding	200-267	3186	3172
+athal	complete.wRand	pytd_v7_precise	coding	268-399	6232	6230
+athal	complete.wRand	pytd_v7_precise	coding	>=400	11316	11315
+athal	complete.wRand	pytd_v7_precise	negative	0-49		6
+athal	complete.wRand	pytd_v7_precise	negative	50-74		12
+athal	complete.wRand	pytd_v7_precise	negative	75-99		9
+athal	complete.wRand	pytd_v7_precise	negative	100-124		3
+athal	complete.wRand	pytd_v7_precise	negative	125-149		1
+athal	complete.wRand	pytd_v7_sensitive	coding	0-49	113	5
+athal	complete.wRand	pytd_v7_sensitive	coding	50-74	446	134
+athal	complete.wRand	pytd_v7_sensitive	coding	75-99	971	645
+athal	complete.wRand	pytd_v7_sensitive	coding	100-124	1040	973
+athal	complete.wRand	pytd_v7_sensitive	coding	125-149	1123	1080
+athal	complete.wRand	pytd_v7_sensitive	coding	150-199	2440	2382
+athal	complete.wRand	pytd_v7_sensitive	coding	200-267	3186	3172
+athal	complete.wRand	pytd_v7_sensitive	coding	268-399	6232	6230
+athal	complete.wRand	pytd_v7_sensitive	coding	>=400	11316	11315
+athal	complete.wRand	pytd_v7_sensitive	negative	0-49		7
+athal	complete.wRand	pytd_v7_sensitive	negative	50-74		18
+athal	complete.wRand	pytd_v7_sensitive	negative	75-99		22
+athal	complete.wRand	pytd_v7_sensitive	negative	100-124		9
+athal	complete.wRand	pytd_v7_sensitive	negative	125-149		2
+dmel	complete.wRand	cliff_c200	coding	0-49	119	1
+dmel	complete.wRand	cliff_c200	coding	50-74	253	46
+dmel	complete.wRand	cliff_c200	coding	75-99	436	211
+dmel	complete.wRand	cliff_c200	coding	100-124	548	507
+dmel	complete.wRand	cliff_c200	coding	125-149	581	536
+dmel	complete.wRand	cliff_c200	coding	150-199	1165	1105
+dmel	complete.wRand	cliff_c200	coding	200-267	1486	1456
+dmel	complete.wRand	cliff_c200	coding	268-399	2500	2498
+dmel	complete.wRand	cliff_c200	coding	>=400	6796	6791
+dmel	complete.wRand	cliff_c200	negative	50-74		3
+dmel	complete.wRand	cliff_c200	negative	75-99		3
+dmel	complete.wRand	cliff_c200	negative	100-124		14
+dmel	complete.wRand	cliff_c200	negative	125-149		4
+dmel	complete.wRand	cliff_c200	negative	150-199		1
+dmel	complete.wRand	cliff_c200	negative	268-399		7
+dmel	complete.wRand	pytd_v7	coding	0-49	119	8
+dmel	complete.wRand	pytd_v7	coding	50-74	253	101
+dmel	complete.wRand	pytd_v7	coding	75-99	436	303
+dmel	complete.wRand	pytd_v7	coding	100-124	548	503
+dmel	complete.wRand	pytd_v7	coding	125-149	581	535
+dmel	complete.wRand	pytd_v7	coding	150-199	1165	1103
+dmel	complete.wRand	pytd_v7	coding	200-267	1486	1456
+dmel	complete.wRand	pytd_v7	coding	268-399	2500	2497
+dmel	complete.wRand	pytd_v7	coding	>=400	6796	6792
+dmel	complete.wRand	pytd_v7	negative	0-49		2
+dmel	complete.wRand	pytd_v7	negative	50-74		20
+dmel	complete.wRand	pytd_v7	negative	75-99		7
+dmel	complete.wRand	pytd_v7	negative	100-124		5
+dmel	complete.wRand	pytd_v7	negative	125-149		2
+dmel	complete.wRand	pytd_v7	negative	150-199		1
+dmel	complete.wRand	pytd_v7	negative	268-399		7
+dmel	complete.wRand	pytd_v7_precise	coding	0-49	119	8
+dmel	complete.wRand	pytd_v7_precise	coding	50-74	253	100
+dmel	complete.wRand	pytd_v7_precise	coding	75-99	436	279
+dmel	complete.wRand	pytd_v7_precise	coding	100-124	548	481
+dmel	complete.wRand	pytd_v7_precise	coding	125-149	581	525
+dmel	complete.wRand	pytd_v7_precise	coding	150-199	1165	1100
+dmel	complete.wRand	pytd_v7_precise	coding	200-267	1486	1454
+dmel	complete.wRand	pytd_v7_precise	coding	268-399	2500	2497
+dmel	complete.wRand	pytd_v7_precise	coding	>=400	6796	6792
+dmel	complete.wRand	pytd_v7_precise	negative	0-49		2
+dmel	complete.wRand	pytd_v7_precise	negative	50-74		20
+dmel	complete.wRand	pytd_v7_precise	negative	75-99		7
+dmel	complete.wRand	pytd_v7_precise	negative	100-124		5
+dmel	complete.wRand	pytd_v7_precise	negative	125-149		2
+dmel	complete.wRand	pytd_v7_precise	negative	150-199		1
+dmel	complete.wRand	pytd_v7_precise	negative	268-399		7
+dmel	complete.wRand	pytd_v7_sensitive	coding	0-49	119	9
+dmel	complete.wRand	pytd_v7_sensitive	coding	50-74	253	144
+dmel	complete.wRand	pytd_v7_sensitive	coding	75-99	436	353
+dmel	complete.wRand	pytd_v7_sensitive	coding	100-124	548	506
+dmel	complete.wRand	pytd_v7_sensitive	coding	125-149	581	535
+dmel	complete.wRand	pytd_v7_sensitive	coding	150-199	1165	1103
+dmel	complete.wRand	pytd_v7_sensitive	coding	200-267	1486	1455
+dmel	complete.wRand	pytd_v7_sensitive	coding	268-399	2500	2497
+dmel	complete.wRand	pytd_v7_sensitive	coding	>=400	6796	6792
+dmel	complete.wRand	pytd_v7_sensitive	negative	0-49		2
+dmel	complete.wRand	pytd_v7_sensitive	negative	50-74		31
+dmel	complete.wRand	pytd_v7_sensitive	negative	75-99		11
+dmel	complete.wRand	pytd_v7_sensitive	negative	100-124		5
+dmel	complete.wRand	pytd_v7_sensitive	negative	125-149		2
+dmel	complete.wRand	pytd_v7_sensitive	negative	150-199		1
+dmel	complete.wRand	pytd_v7_sensitive	negative	268-399		7
+mouse	complete.wRand	cliff_c200	coding	0-49	60	0
+mouse	complete.wRand	cliff_c200	coding	50-74	143	34
+mouse	complete.wRand	cliff_c200	coding	75-99	382	206
+mouse	complete.wRand	cliff_c200	coding	100-124	525	479
+mouse	complete.wRand	cliff_c200	coding	125-149	634	581
+mouse	complete.wRand	cliff_c200	coding	150-199	1407	1356
+mouse	complete.wRand	cliff_c200	coding	200-267	2301	2253
+mouse	complete.wRand	cliff_c200	coding	268-399	5278	5274
+mouse	complete.wRand	cliff_c200	coding	>=400	10679	10644
+mouse	complete.wRand	cliff_c200	negative	0-49		1
+mouse	complete.wRand	cliff_c200	negative	50-74		22
+mouse	complete.wRand	cliff_c200	negative	75-99		14
+mouse	complete.wRand	cliff_c200	negative	100-124		25
+mouse	complete.wRand	cliff_c200	negative	125-149		2
+mouse	complete.wRand	cliff_c200	negative	150-199		1
+mouse	complete.wRand	cliff_c200	negative	200-267		5
+mouse	complete.wRand	cliff_c200	negative	268-399		19
+mouse	complete.wRand	cliff_c200	negative	>=400		1
+mouse	complete.wRand	pytd_v7	coding	0-49	60	1
+mouse	complete.wRand	pytd_v7	coding	50-74	143	40
+mouse	complete.wRand	pytd_v7	coding	75-99	382	224
+mouse	complete.wRand	pytd_v7	coding	100-124	525	413
+mouse	complete.wRand	pytd_v7	coding	125-149	634	569
+mouse	complete.wRand	pytd_v7	coding	150-199	1407	1336
+mouse	complete.wRand	pytd_v7	coding	200-267	2301	2255
+mouse	complete.wRand	pytd_v7	coding	268-399	5278	5275
+mouse	complete.wRand	pytd_v7	coding	>=400	10679	10648
+mouse	complete.wRand	pytd_v7	negative	50-74		8
+mouse	complete.wRand	pytd_v7	negative	75-99		3
+mouse	complete.wRand	pytd_v7	negative	100-124		4
+mouse	complete.wRand	pytd_v7	negative	125-149		1
+mouse	complete.wRand	pytd_v7	negative	150-199		1
+mouse	complete.wRand	pytd_v7	negative	200-267		5
+mouse	complete.wRand	pytd_v7	negative	268-399		19
+mouse	complete.wRand	pytd_v7	negative	>=400		1
+mouse	complete.wRand	pytd_v7_precise	coding	0-49	60	1
+mouse	complete.wRand	pytd_v7_precise	coding	50-74	143	38
+mouse	complete.wRand	pytd_v7_precise	coding	75-99	382	167
+mouse	complete.wRand	pytd_v7_precise	coding	100-124	525	331
+mouse	complete.wRand	pytd_v7_precise	coding	125-149	634	476
+mouse	complete.wRand	pytd_v7_precise	coding	150-199	1407	1289
+mouse	complete.wRand	pytd_v7_precise	coding	200-267	2301	2246
+mouse	complete.wRand	pytd_v7_precise	coding	268-399	5278	5275
+mouse	complete.wRand	pytd_v7_precise	coding	>=400	10679	10648
+mouse	complete.wRand	pytd_v7_precise	negative	50-74		8
+mouse	complete.wRand	pytd_v7_precise	negative	75-99		2
+mouse	complete.wRand	pytd_v7_precise	negative	100-124		4
+mouse	complete.wRand	pytd_v7_precise	negative	125-149		1
+mouse	complete.wRand	pytd_v7_precise	negative	150-199		1
+mouse	complete.wRand	pytd_v7_precise	negative	200-267		5
+mouse	complete.wRand	pytd_v7_precise	negative	268-399		19
+mouse	complete.wRand	pytd_v7_precise	negative	>=400		1
+mouse	complete.wRand	pytd_v7_sensitive	coding	0-49	60	1
+mouse	complete.wRand	pytd_v7_sensitive	coding	50-74	143	49
+mouse	complete.wRand	pytd_v7_sensitive	coding	75-99	382	262
+mouse	complete.wRand	pytd_v7_sensitive	coding	100-124	525	468
+mouse	complete.wRand	pytd_v7_sensitive	coding	125-149	634	581
+mouse	complete.wRand	pytd_v7_sensitive	coding	150-199	1407	1356
+mouse	complete.wRand	pytd_v7_sensitive	coding	200-267	2301	2255
+mouse	complete.wRand	pytd_v7_sensitive	coding	268-399	5278	5275
+mouse	complete.wRand	pytd_v7_sensitive	coding	>=400	10679	10648
+mouse	complete.wRand	pytd_v7_sensitive	negative	50-74		10
+mouse	complete.wRand	pytd_v7_sensitive	negative	75-99		4
+mouse	complete.wRand	pytd_v7_sensitive	negative	100-124		5
+mouse	complete.wRand	pytd_v7_sensitive	negative	125-149		1
+mouse	complete.wRand	pytd_v7_sensitive	negative	150-199		1
+mouse	complete.wRand	pytd_v7_sensitive	negative	200-267		5
+mouse	complete.wRand	pytd_v7_sensitive	negative	268-399		19
+mouse	complete.wRand	pytd_v7_sensitive	negative	>=400		1
+human	complete.wRand	cliff_c200	coding	0-49	41	3
+human	complete.wRand	cliff_c200	coding	50-74	170	48
+human	complete.wRand	cliff_c200	coding	75-99	364	247
+human	complete.wRand	cliff_c200	coding	100-124	462	419
+human	complete.wRand	cliff_c200	coding	125-149	575	550
+human	complete.wRand	cliff_c200	coding	150-199	1232	1204
+human	complete.wRand	cliff_c200	coding	200-267	1847	1832
+human	complete.wRand	cliff_c200	coding	268-399	4038	4037
+human	complete.wRand	cliff_c200	coding	>=400	10438	10438
+human	complete.wRand	cliff_c200	negative	50-74		29
+human	complete.wRand	cliff_c200	negative	75-99		16
+human	complete.wRand	cliff_c200	negative	100-124		22
+human	complete.wRand	cliff_c200	negative	125-149		7
+human	complete.wRand	cliff_c200	negative	150-199		3
+human	complete.wRand	cliff_c200	negative	200-267		9
+human	complete.wRand	cliff_c200	negative	268-399		67
+human	complete.wRand	cliff_c200	negative	>=400		1
+human	complete.wRand	pytd_v7	coding	0-49	41	5
+human	complete.wRand	pytd_v7	coding	50-74	170	59
+human	complete.wRand	pytd_v7	coding	75-99	364	216
+human	complete.wRand	pytd_v7	coding	100-124	462	354
+human	complete.wRand	pytd_v7	coding	125-149	575	543
+human	complete.wRand	pytd_v7	coding	150-199	1232	1194
+human	complete.wRand	pytd_v7	coding	200-267	1847	1832
+human	complete.wRand	pytd_v7	coding	268-399	4038	4037
+human	complete.wRand	pytd_v7	coding	>=400	10438	10438
+human	complete.wRand	pytd_v7	negative	50-74		18
+human	complete.wRand	pytd_v7	negative	75-99		5
+human	complete.wRand	pytd_v7	negative	100-124		5
+human	complete.wRand	pytd_v7	negative	125-149		5
+human	complete.wRand	pytd_v7	negative	150-199		2
+human	complete.wRand	pytd_v7	negative	200-267		9
+human	complete.wRand	pytd_v7	negative	268-399		68
+human	complete.wRand	pytd_v7	negative	>=400		1
+human	complete.wRand	pytd_v7_precise	coding	0-49	41	5
+human	complete.wRand	pytd_v7_precise	coding	50-74	170	58
+human	complete.wRand	pytd_v7_precise	coding	75-99	364	178
+human	complete.wRand	pytd_v7_precise	coding	100-124	462	251
+human	complete.wRand	pytd_v7_precise	coding	125-149	575	457
+human	complete.wRand	pytd_v7_precise	coding	150-199	1232	1143
+human	complete.wRand	pytd_v7_precise	coding	200-267	1847	1806
+human	complete.wRand	pytd_v7_precise	coding	268-399	4038	4037
+human	complete.wRand	pytd_v7_precise	coding	>=400	10438	10438
+human	complete.wRand	pytd_v7_precise	negative	50-74		18
+human	complete.wRand	pytd_v7_precise	negative	75-99		4
+human	complete.wRand	pytd_v7_precise	negative	100-124		5
+human	complete.wRand	pytd_v7_precise	negative	125-149		5
+human	complete.wRand	pytd_v7_precise	negative	150-199		2
+human	complete.wRand	pytd_v7_precise	negative	200-267		9
+human	complete.wRand	pytd_v7_precise	negative	268-399		68
+human	complete.wRand	pytd_v7_precise	negative	>=400		1
+human	complete.wRand	pytd_v7_sensitive	coding	0-49	41	6
+human	complete.wRand	pytd_v7_sensitive	coding	50-74	170	71
+human	complete.wRand	pytd_v7_sensitive	coding	75-99	364	260
+human	complete.wRand	pytd_v7_sensitive	coding	100-124	462	405
+human	complete.wRand	pytd_v7_sensitive	coding	125-149	575	550
+human	complete.wRand	pytd_v7_sensitive	coding	150-199	1232	1201
+human	complete.wRand	pytd_v7_sensitive	coding	200-267	1847	1832
+human	complete.wRand	pytd_v7_sensitive	coding	268-399	4038	4037
+human	complete.wRand	pytd_v7_sensitive	coding	>=400	10438	10438
+human	complete.wRand	pytd_v7_sensitive	negative	50-74		20
+human	complete.wRand	pytd_v7_sensitive	negative	75-99		6
+human	complete.wRand	pytd_v7_sensitive	negative	100-124		5
+human	complete.wRand	pytd_v7_sensitive	negative	125-149		5
+human	complete.wRand	pytd_v7_sensitive	negative	150-199		2
+human	complete.wRand	pytd_v7_sensitive	negative	200-267		9
+human	complete.wRand	pytd_v7_sensitive	negative	268-399		68
+human	complete.wRand	pytd_v7_sensitive	negative	>=400		1
+creinhardtii	complete.wRand	cliff_c200	coding	50-74	628	124
+creinhardtii	complete.wRand	cliff_c200	coding	75-99	554	240
+creinhardtii	complete.wRand	cliff_c200	coding	100-124	561	476
+creinhardtii	complete.wRand	cliff_c200	coding	125-149	572	519
+creinhardtii	complete.wRand	cliff_c200	coding	150-199	1001	958
+creinhardtii	complete.wRand	cliff_c200	coding	200-267	1348	1324
+creinhardtii	complete.wRand	cliff_c200	coding	268-399	2463	2447
+creinhardtii	complete.wRand	cliff_c200	coding	>=400	10494	10492
+creinhardtii	complete.wRand	cliff_c200	negative	0-49		1
+creinhardtii	complete.wRand	cliff_c200	negative	75-99		1
+creinhardtii	complete.wRand	cliff_c200	negative	100-124		1
+creinhardtii	complete.wRand	cliff_c200	negative	200-267		1
+creinhardtii	complete.wRand	cliff_c200	negative	268-399		1
+creinhardtii	complete.wRand	cliff_c200	negative	>=400		54
+creinhardtii	complete.wRand	pytd_v7	coding	50-74	628	246
+creinhardtii	complete.wRand	pytd_v7	coding	75-99	554	351
+creinhardtii	complete.wRand	pytd_v7	coding	100-124	561	475
+creinhardtii	complete.wRand	pytd_v7	coding	125-149	572	516
+creinhardtii	complete.wRand	pytd_v7	coding	150-199	1001	955
+creinhardtii	complete.wRand	pytd_v7	coding	200-267	1348	1324
+creinhardtii	complete.wRand	pytd_v7	coding	268-399	2463	2447
+creinhardtii	complete.wRand	pytd_v7	coding	>=400	10494	10492
+creinhardtii	complete.wRand	pytd_v7	negative	0-49		1
+creinhardtii	complete.wRand	pytd_v7	negative	50-74		5
+creinhardtii	complete.wRand	pytd_v7	negative	75-99		2
+creinhardtii	complete.wRand	pytd_v7	negative	100-124		1
+creinhardtii	complete.wRand	pytd_v7	negative	200-267		1
+creinhardtii	complete.wRand	pytd_v7	negative	268-399		1
+creinhardtii	complete.wRand	pytd_v7	negative	>=400		54
+creinhardtii	complete.wRand	pytd_v7_precise	coding	50-74	628	206
+creinhardtii	complete.wRand	pytd_v7_precise	coding	75-99	554	278
+creinhardtii	complete.wRand	pytd_v7_precise	coding	100-124	561	461
+creinhardtii	complete.wRand	pytd_v7_precise	coding	125-149	572	518
+creinhardtii	complete.wRand	pytd_v7_precise	coding	150-199	1001	956
+creinhardtii	complete.wRand	pytd_v7_precise	coding	200-267	1348	1324
+creinhardtii	complete.wRand	pytd_v7_precise	coding	268-399	2463	2447
+creinhardtii	complete.wRand	pytd_v7_precise	coding	>=400	10494	10492
+creinhardtii	complete.wRand	pytd_v7_precise	negative	0-49		1
+creinhardtii	complete.wRand	pytd_v7_precise	negative	50-74		5
+creinhardtii	complete.wRand	pytd_v7_precise	negative	75-99		2
+creinhardtii	complete.wRand	pytd_v7_precise	negative	100-124		1
+creinhardtii	complete.wRand	pytd_v7_precise	negative	200-267		1
+creinhardtii	complete.wRand	pytd_v7_precise	negative	268-399		1
+creinhardtii	complete.wRand	pytd_v7_precise	negative	>=400		54
+creinhardtii	complete.wRand	pytd_v7_sensitive	coding	50-74	628	299
+creinhardtii	complete.wRand	pytd_v7_sensitive	coding	75-99	554	361
+creinhardtii	complete.wRand	pytd_v7_sensitive	coding	100-124	561	472
+creinhardtii	complete.wRand	pytd_v7_sensitive	coding	125-149	572	515
+creinhardtii	complete.wRand	pytd_v7_sensitive	coding	150-199	1001	955
+creinhardtii	complete.wRand	pytd_v7_sensitive	coding	200-267	1348	1324
+creinhardtii	complete.wRand	pytd_v7_sensitive	coding	268-399	2463	2447
+creinhardtii	complete.wRand	pytd_v7_sensitive	coding	>=400	10494	10492
+creinhardtii	complete.wRand	pytd_v7_sensitive	negative	0-49		1
+creinhardtii	complete.wRand	pytd_v7_sensitive	negative	50-74		9
+creinhardtii	complete.wRand	pytd_v7_sensitive	negative	75-99		2
+creinhardtii	complete.wRand	pytd_v7_sensitive	negative	100-124		1
+creinhardtii	complete.wRand	pytd_v7_sensitive	negative	200-267		1
+creinhardtii	complete.wRand	pytd_v7_sensitive	negative	268-399		1
+creinhardtii	complete.wRand	pytd_v7_sensitive	negative	>=400		54
+pfalciparum	fragments.wRand	cliff_c200	coding	0-49	301	0
+pfalciparum	fragments.wRand	cliff_c200	coding	50-74	394	25
+pfalciparum	fragments.wRand	cliff_c200	coding	75-99	470	145
+pfalciparum	fragments.wRand	cliff_c200	coding	100-124	426	414
+pfalciparum	fragments.wRand	cliff_c200	coding	125-149	445	437
+pfalciparum	fragments.wRand	cliff_c200	coding	150-199	666	660
+pfalciparum	fragments.wRand	cliff_c200	coding	200-267	580	580
+pfalciparum	fragments.wRand	cliff_c200	coding	268-399	679	679
+pfalciparum	fragments.wRand	cliff_c200	coding	>=400	1320	1320
+pfalciparum	fragments.wRand	pytd_v7	coding	0-49	301	19
+pfalciparum	fragments.wRand	pytd_v7	coding	50-74	394	362
+pfalciparum	fragments.wRand	pytd_v7	coding	75-99	470	456
+pfalciparum	fragments.wRand	pytd_v7	coding	100-124	426	413
+pfalciparum	fragments.wRand	pytd_v7	coding	125-149	445	437
+pfalciparum	fragments.wRand	pytd_v7	coding	150-199	666	659
+pfalciparum	fragments.wRand	pytd_v7	coding	200-267	580	580
+pfalciparum	fragments.wRand	pytd_v7	coding	268-399	679	679
+pfalciparum	fragments.wRand	pytd_v7	coding	>=400	1320	1320
+pfalciparum	fragments.wRand	pytd_v7	negative	50-74		10
+pfalciparum	fragments.wRand	pytd_v7_precise	coding	0-49	301	16
+pfalciparum	fragments.wRand	pytd_v7_precise	coding	50-74	394	201
+pfalciparum	fragments.wRand	pytd_v7_precise	coding	75-99	470	456
+pfalciparum	fragments.wRand	pytd_v7_precise	coding	100-124	426	413
+pfalciparum	fragments.wRand	pytd_v7_precise	coding	125-149	445	437
+pfalciparum	fragments.wRand	pytd_v7_precise	coding	150-199	666	659
+pfalciparum	fragments.wRand	pytd_v7_precise	coding	200-267	580	580
+pfalciparum	fragments.wRand	pytd_v7_precise	coding	268-399	679	679
+pfalciparum	fragments.wRand	pytd_v7_precise	coding	>=400	1320	1320
+pfalciparum	fragments.wRand	pytd_v7_precise	negative	50-74		7
+pfalciparum	fragments.wRand	pytd_v7_sensitive	coding	0-49	301	19
+pfalciparum	fragments.wRand	pytd_v7_sensitive	coding	50-74	394	365
+pfalciparum	fragments.wRand	pytd_v7_sensitive	coding	75-99	470	455
+pfalciparum	fragments.wRand	pytd_v7_sensitive	coding	100-124	426	413
+pfalciparum	fragments.wRand	pytd_v7_sensitive	coding	125-149	445	436
+pfalciparum	fragments.wRand	pytd_v7_sensitive	coding	150-199	666	659
+pfalciparum	fragments.wRand	pytd_v7_sensitive	coding	200-267	580	580
+pfalciparum	fragments.wRand	pytd_v7_sensitive	coding	268-399	679	679
+pfalciparum	fragments.wRand	pytd_v7_sensitive	coding	>=400	1320	1320
+pfalciparum	fragments.wRand	pytd_v7_sensitive	negative	0-49		1
+pfalciparum	fragments.wRand	pytd_v7_sensitive	negative	50-74		12
+tthermophila	fragments.wRand	cliff_c200	coding	0-49	1723	75
+tthermophila	fragments.wRand	cliff_c200	coding	50-74	2158	549
+tthermophila	fragments.wRand	cliff_c200	coding	75-99	2046	1073
+tthermophila	fragments.wRand	cliff_c200	coding	100-124	1945	1729
+tthermophila	fragments.wRand	cliff_c200	coding	125-149	1906	1820
+tthermophila	fragments.wRand	cliff_c200	coding	150-199	3476	3410
+tthermophila	fragments.wRand	cliff_c200	coding	200-267	3618	3575
+tthermophila	fragments.wRand	cliff_c200	coding	268-399	4053	4031
+tthermophila	fragments.wRand	cliff_c200	coding	>=400	5531	5528
+tthermophila	fragments.wRand	cliff_c200	negative	0-49		12
+tthermophila	fragments.wRand	cliff_c200	negative	50-74		46
+tthermophila	fragments.wRand	cliff_c200	negative	75-99		65
+tthermophila	fragments.wRand	cliff_c200	negative	100-124		238
+tthermophila	fragments.wRand	cliff_c200	negative	125-149		83
+tthermophila	fragments.wRand	cliff_c200	negative	150-199		43
+tthermophila	fragments.wRand	cliff_c200	negative	200-267		6
+tthermophila	fragments.wRand	pytd_v7	coding	0-49	1723	55
+tthermophila	fragments.wRand	pytd_v7	coding	50-74	2158	521
+tthermophila	fragments.wRand	pytd_v7	coding	75-99	2046	1068
+tthermophila	fragments.wRand	pytd_v7	coding	100-124	1945	1342
+tthermophila	fragments.wRand	pytd_v7	coding	125-149	1906	1669
+tthermophila	fragments.wRand	pytd_v7	coding	150-199	3476	3313
+tthermophila	fragments.wRand	pytd_v7	coding	200-267	3618	3572
+tthermophila	fragments.wRand	pytd_v7	coding	268-399	4053	4031
+tthermophila	fragments.wRand	pytd_v7	coding	>=400	5531	5528
+tthermophila	fragments.wRand	pytd_v7	negative	0-49		1
+tthermophila	fragments.wRand	pytd_v7	negative	50-74		31
+tthermophila	fragments.wRand	pytd_v7	negative	75-99		30
+tthermophila	fragments.wRand	pytd_v7	negative	100-124		26
+tthermophila	fragments.wRand	pytd_v7	negative	125-149		10
+tthermophila	fragments.wRand	pytd_v7	negative	150-199		12
+tthermophila	fragments.wRand	pytd_v7	negative	200-267		4
+tthermophila	fragments.wRand	pytd_v7_precise	coding	0-49	1723	32
+tthermophila	fragments.wRand	pytd_v7_precise	coding	50-74	2158	326
+tthermophila	fragments.wRand	pytd_v7_precise	coding	75-99	2046	654
+tthermophila	fragments.wRand	pytd_v7_precise	coding	100-124	1945	1031
+tthermophila	fragments.wRand	pytd_v7_precise	coding	125-149	1906	1451
+tthermophila	fragments.wRand	pytd_v7_precise	coding	150-199	3476	3023
+tthermophila	fragments.wRand	pytd_v7_precise	coding	200-267	3618	3497
+tthermophila	fragments.wRand	pytd_v7_precise	coding	268-399	4053	4026
+tthermophila	fragments.wRand	pytd_v7_precise	coding	>=400	5531	5528
+tthermophila	fragments.wRand	pytd_v7_precise	negative	50-74		20
+tthermophila	fragments.wRand	pytd_v7_precise	negative	75-99		16
+tthermophila	fragments.wRand	pytd_v7_precise	negative	100-124		15
+tthermophila	fragments.wRand	pytd_v7_precise	negative	125-149		5
+tthermophila	fragments.wRand	pytd_v7_precise	negative	150-199		9
+tthermophila	fragments.wRand	pytd_v7_precise	negative	200-267		4
+tthermophila	fragments.wRand	pytd_v7_sensitive	coding	0-49	1723	107
+tthermophila	fragments.wRand	pytd_v7_sensitive	coding	50-74	2158	911
+tthermophila	fragments.wRand	pytd_v7_sensitive	coding	75-99	2046	1372
+tthermophila	fragments.wRand	pytd_v7_sensitive	coding	100-124	1945	1601
+tthermophila	fragments.wRand	pytd_v7_sensitive	coding	125-149	1906	1799
+tthermophila	fragments.wRand	pytd_v7_sensitive	coding	150-199	3476	3405
+tthermophila	fragments.wRand	pytd_v7_sensitive	coding	200-267	3618	3573
+tthermophila	fragments.wRand	pytd_v7_sensitive	coding	268-399	4053	4031
+tthermophila	fragments.wRand	pytd_v7_sensitive	coding	>=400	5531	5528
+tthermophila	fragments.wRand	pytd_v7_sensitive	negative	0-49		8
+tthermophila	fragments.wRand	pytd_v7_sensitive	negative	50-74		71
+tthermophila	fragments.wRand	pytd_v7_sensitive	negative	75-99		80
+tthermophila	fragments.wRand	pytd_v7_sensitive	negative	100-124		45
+tthermophila	fragments.wRand	pytd_v7_sensitive	negative	125-149		19
+tthermophila	fragments.wRand	pytd_v7_sensitive	negative	150-199		14
+tthermophila	fragments.wRand	pytd_v7_sensitive	negative	200-267		4
+spombe	fragments.wRand	cliff_c200	coding	0-49	418	2
+spombe	fragments.wRand	cliff_c200	coding	50-74	510	120
+spombe	fragments.wRand	cliff_c200	coding	75-99	506	314
+spombe	fragments.wRand	cliff_c200	coding	100-124	528	521
+spombe	fragments.wRand	cliff_c200	coding	125-149	447	444
+spombe	fragments.wRand	cliff_c200	coding	150-199	831	830
+spombe	fragments.wRand	cliff_c200	coding	200-267	800	800
+spombe	fragments.wRand	cliff_c200	coding	268-399	631	631
+spombe	fragments.wRand	cliff_c200	coding	>=400	429	429
+spombe	fragments.wRand	cliff_c200	negative	50-74		1
+spombe	fragments.wRand	cliff_c200	negative	75-99		1
+spombe	fragments.wRand	cliff_c200	negative	100-124		3
+spombe	fragments.wRand	pytd_v7	coding	0-49	418	21
+spombe	fragments.wRand	pytd_v7	coding	50-74	510	365
+spombe	fragments.wRand	pytd_v7	coding	75-99	506	479
+spombe	fragments.wRand	pytd_v7	coding	100-124	528	520
+spombe	fragments.wRand	pytd_v7	coding	125-149	447	443
+spombe	fragments.wRand	pytd_v7	coding	150-199	831	830
+spombe	fragments.wRand	pytd_v7	coding	200-267	800	800
+spombe	fragments.wRand	pytd_v7	coding	268-399	631	631
+spombe	fragments.wRand	pytd_v7	coding	>=400	429	429
+spombe	fragments.wRand	pytd_v7	negative	50-74		12
+spombe	fragments.wRand	pytd_v7	negative	75-99		6
+spombe	fragments.wRand	pytd_v7	negative	100-124		1
+spombe	fragments.wRand	pytd_v7_precise	coding	0-49	418	16
+spombe	fragments.wRand	pytd_v7_precise	coding	50-74	510	270
+spombe	fragments.wRand	pytd_v7_precise	coding	75-99	506	413
+spombe	fragments.wRand	pytd_v7_precise	coding	100-124	528	504
+spombe	fragments.wRand	pytd_v7_precise	coding	125-149	447	436
+spombe	fragments.wRand	pytd_v7_precise	coding	150-199	831	830
+spombe	fragments.wRand	pytd_v7_precise	coding	200-267	800	800
+spombe	fragments.wRand	pytd_v7_precise	coding	268-399	631	631
+spombe	fragments.wRand	pytd_v7_precise	coding	>=400	429	429
+spombe	fragments.wRand	pytd_v7_precise	negative	50-74		4
+spombe	fragments.wRand	pytd_v7_precise	negative	75-99		4
+spombe	fragments.wRand	pytd_v7_precise	negative	100-124		1
+spombe	fragments.wRand	pytd_v7_sensitive	coding	0-49	418	38
+spombe	fragments.wRand	pytd_v7_sensitive	coding	50-74	510	444
+spombe	fragments.wRand	pytd_v7_sensitive	coding	75-99	506	489
+spombe	fragments.wRand	pytd_v7_sensitive	coding	100-124	528	521
+spombe	fragments.wRand	pytd_v7_sensitive	coding	125-149	447	444
+spombe	fragments.wRand	pytd_v7_sensitive	coding	150-199	831	830
+spombe	fragments.wRand	pytd_v7_sensitive	coding	200-267	800	800
+spombe	fragments.wRand	pytd_v7_sensitive	coding	268-399	631	631
+spombe	fragments.wRand	pytd_v7_sensitive	coding	>=400	429	429
+spombe	fragments.wRand	pytd_v7_sensitive	negative	0-49		5
+spombe	fragments.wRand	pytd_v7_sensitive	negative	50-74		31
+spombe	fragments.wRand	pytd_v7_sensitive	negative	75-99		7
+spombe	fragments.wRand	pytd_v7_sensitive	negative	100-124		2
+athal	fragments.wRand	cliff_c200	coding	0-49	2533	10
+athal	fragments.wRand	cliff_c200	coding	50-74	2786	487
+athal	fragments.wRand	cliff_c200	coding	75-99	2827	1168
+athal	fragments.wRand	cliff_c200	coding	100-124	2844	2689
+athal	fragments.wRand	cliff_c200	coding	125-149	2652	2572
+athal	fragments.wRand	cliff_c200	coding	150-199	4762	4684
+athal	fragments.wRand	cliff_c200	coding	200-267	4118	4098
+athal	fragments.wRand	cliff_c200	coding	268-399	2935	2933
+athal	fragments.wRand	cliff_c200	coding	>=400	1410	1410
+athal	fragments.wRand	cliff_c200	negative	50-74		15
+athal	fragments.wRand	cliff_c200	negative	75-99		18
+athal	fragments.wRand	cliff_c200	negative	100-124		23
+athal	fragments.wRand	cliff_c200	negative	125-149		1
+athal	fragments.wRand	cliff_c200	negative	150-199		1
+athal	fragments.wRand	pytd_v7	coding	0-49	2533	46
+athal	fragments.wRand	pytd_v7	coding	50-74	2786	1069
+athal	fragments.wRand	pytd_v7	coding	75-99	2827	2045
+athal	fragments.wRand	pytd_v7	coding	100-124	2844	2555
+athal	fragments.wRand	pytd_v7	coding	125-149	2652	2565
+athal	fragments.wRand	pytd_v7	coding	150-199	4762	4681
+athal	fragments.wRand	pytd_v7	coding	200-267	4118	4099
+athal	fragments.wRand	pytd_v7	coding	268-399	2935	2935
+athal	fragments.wRand	pytd_v7	coding	>=400	1410	1410
+athal	fragments.wRand	pytd_v7	negative	0-49		3
+athal	fragments.wRand	pytd_v7	negative	50-74		34
+athal	fragments.wRand	pytd_v7	negative	75-99		14
+athal	fragments.wRand	pytd_v7	negative	100-124		6
+athal	fragments.wRand	pytd_v7	negative	150-199		1
+athal	fragments.wRand	pytd_v7_precise	coding	0-49	2533	14
+athal	fragments.wRand	pytd_v7_precise	coding	50-74	2786	526
+athal	fragments.wRand	pytd_v7_precise	coding	75-99	2827	1220
+athal	fragments.wRand	pytd_v7_precise	coding	100-124	2844	1909
+athal	fragments.wRand	pytd_v7_precise	coding	125-149	2652	2317
+athal	fragments.wRand	pytd_v7_precise	coding	150-199	4762	4681
+athal	fragments.wRand	pytd_v7_precise	coding	200-267	4118	4100
+athal	fragments.wRand	pytd_v7_precise	coding	268-399	2935	2935
+athal	fragments.wRand	pytd_v7_precise	coding	>=400	1410	1410
+athal	fragments.wRand	pytd_v7_precise	negative	50-74		16
+athal	fragments.wRand	pytd_v7_precise	negative	75-99		7
+athal	fragments.wRand	pytd_v7_precise	negative	100-124		4
+athal	fragments.wRand	pytd_v7_precise	negative	150-199		1
+athal	fragments.wRand	pytd_v7_sensitive	coding	0-49	2533	129
+athal	fragments.wRand	pytd_v7_sensitive	coding	50-74	2786	1899
+athal	fragments.wRand	pytd_v7_sensitive	coding	75-99	2827	2532
+athal	fragments.wRand	pytd_v7_sensitive	coding	100-124	2844	2680
+athal	fragments.wRand	pytd_v7_sensitive	coding	125-149	2652	2567
+athal	fragments.wRand	pytd_v7_sensitive	coding	150-199	4762	4682
+athal	fragments.wRand	pytd_v7_sensitive	coding	200-267	4118	4098
+athal	fragments.wRand	pytd_v7_sensitive	coding	268-399	2935	2935
+athal	fragments.wRand	pytd_v7_sensitive	coding	>=400	1410	1410
+athal	fragments.wRand	pytd_v7_sensitive	negative	0-49		19
+athal	fragments.wRand	pytd_v7_sensitive	negative	50-74		89
+athal	fragments.wRand	pytd_v7_sensitive	negative	75-99		40
+athal	fragments.wRand	pytd_v7_sensitive	negative	100-124		7
+athal	fragments.wRand	pytd_v7_sensitive	negative	150-199		1
+dmel	fragments.wRand	cliff_c200	coding	0-49	1251	5
+dmel	fragments.wRand	cliff_c200	coding	50-74	1408	380
+dmel	fragments.wRand	cliff_c200	coding	75-99	1361	831
+dmel	fragments.wRand	cliff_c200	coding	100-124	1276	1227
+dmel	fragments.wRand	cliff_c200	coding	125-149	1136	1089
+dmel	fragments.wRand	cliff_c200	coding	150-199	1969	1909
+dmel	fragments.wRand	cliff_c200	coding	200-267	1961	1913
+dmel	fragments.wRand	cliff_c200	coding	268-399	1768	1767
+dmel	fragments.wRand	cliff_c200	coding	>=400	1754	1753
+dmel	fragments.wRand	cliff_c200	negative	0-49		2
+dmel	fragments.wRand	cliff_c200	negative	75-99		3
+dmel	fragments.wRand	cliff_c200	negative	100-124		3
+dmel	fragments.wRand	cliff_c200	negative	200-267		1
+dmel	fragments.wRand	cliff_c200	negative	268-399		2
+dmel	fragments.wRand	pytd_v7	coding	0-49	1251	58
+dmel	fragments.wRand	pytd_v7	coding	50-74	1408	1104
+dmel	fragments.wRand	pytd_v7	coding	75-99	1361	1262
+dmel	fragments.wRand	pytd_v7	coding	100-124	1276	1227
+dmel	fragments.wRand	pytd_v7	coding	125-149	1136	1090
+dmel	fragments.wRand	pytd_v7	coding	150-199	1969	1909
+dmel	fragments.wRand	pytd_v7	coding	200-267	1961	1912
+dmel	fragments.wRand	pytd_v7	coding	268-399	1768	1767
+dmel	fragments.wRand	pytd_v7	coding	>=400	1754	1753
+dmel	fragments.wRand	pytd_v7	negative	0-49		5
+dmel	fragments.wRand	pytd_v7	negative	50-74		26
+dmel	fragments.wRand	pytd_v7	negative	75-99		16
+dmel	fragments.wRand	pytd_v7	negative	100-124		2
+dmel	fragments.wRand	pytd_v7	negative	200-267		1
+dmel	fragments.wRand	pytd_v7	negative	268-399		2
+dmel	fragments.wRand	pytd_v7_precise	coding	0-49	1251	33
+dmel	fragments.wRand	pytd_v7_precise	coding	50-74	1408	882
+dmel	fragments.wRand	pytd_v7_precise	coding	75-99	1361	1154
+dmel	fragments.wRand	pytd_v7_precise	coding	100-124	1276	1184
+dmel	fragments.wRand	pytd_v7_precise	coding	125-149	1136	1089
+dmel	fragments.wRand	pytd_v7_precise	coding	150-199	1969	1910
+dmel	fragments.wRand	pytd_v7_precise	coding	200-267	1961	1912
+dmel	fragments.wRand	pytd_v7_precise	coding	268-399	1768	1767
+dmel	fragments.wRand	pytd_v7_precise	coding	>=400	1754	1753
+dmel	fragments.wRand	pytd_v7_precise	negative	0-49		3
+dmel	fragments.wRand	pytd_v7_precise	negative	50-74		17
+dmel	fragments.wRand	pytd_v7_precise	negative	75-99		12
+dmel	fragments.wRand	pytd_v7_precise	negative	100-124		2
+dmel	fragments.wRand	pytd_v7_precise	negative	200-267		1
+dmel	fragments.wRand	pytd_v7_precise	negative	268-399		2
+dmel	fragments.wRand	pytd_v7_sensitive	coding	0-49	1251	104
+dmel	fragments.wRand	pytd_v7_sensitive	coding	50-74	1408	1240
+dmel	fragments.wRand	pytd_v7_sensitive	coding	75-99	1361	1269
+dmel	fragments.wRand	pytd_v7_sensitive	coding	100-124	1276	1227
+dmel	fragments.wRand	pytd_v7_sensitive	coding	125-149	1136	1090
+dmel	fragments.wRand	pytd_v7_sensitive	coding	150-199	1969	1909
+dmel	fragments.wRand	pytd_v7_sensitive	coding	200-267	1961	1912
+dmel	fragments.wRand	pytd_v7_sensitive	coding	268-399	1768	1767
+dmel	fragments.wRand	pytd_v7_sensitive	coding	>=400	1754	1753
+dmel	fragments.wRand	pytd_v7_sensitive	negative	0-49		9
+dmel	fragments.wRand	pytd_v7_sensitive	negative	50-74		45
+dmel	fragments.wRand	pytd_v7_sensitive	negative	75-99		20
+dmel	fragments.wRand	pytd_v7_sensitive	negative	100-124		2
+dmel	fragments.wRand	pytd_v7_sensitive	negative	200-267		1
+dmel	fragments.wRand	pytd_v7_sensitive	negative	268-399		2
+mouse	fragments.wRand	cliff_c200	coding	0-49	1073	29
+mouse	fragments.wRand	cliff_c200	coding	50-74	1641	517
+mouse	fragments.wRand	cliff_c200	coding	75-99	2048	1213
+mouse	fragments.wRand	cliff_c200	coding	100-124	2186	2080
+mouse	fragments.wRand	cliff_c200	coding	125-149	2456	2387
+mouse	fragments.wRand	cliff_c200	coding	150-199	3399	3304
+mouse	fragments.wRand	cliff_c200	coding	200-267	2992	2926
+mouse	fragments.wRand	cliff_c200	coding	268-399	2905	2896
+mouse	fragments.wRand	cliff_c200	coding	>=400	2709	2707
+mouse	fragments.wRand	cliff_c200	negative	0-49		1
+mouse	fragments.wRand	cliff_c200	negative	50-74		9
+mouse	fragments.wRand	cliff_c200	negative	75-99		5
+mouse	fragments.wRand	cliff_c200	negative	100-124		5
+mouse	fragments.wRand	cliff_c200	negative	125-149		1
+mouse	fragments.wRand	cliff_c200	negative	150-199		1
+mouse	fragments.wRand	cliff_c200	negative	200-267		1
+mouse	fragments.wRand	cliff_c200	negative	268-399		5
+mouse	fragments.wRand	pytd_v7	coding	0-49	1073	42
+mouse	fragments.wRand	pytd_v7	coding	50-74	1641	869
+mouse	fragments.wRand	pytd_v7	coding	75-99	2048	1497
+mouse	fragments.wRand	pytd_v7	coding	100-124	2186	1929
+mouse	fragments.wRand	pytd_v7	coding	125-149	2456	2372
+mouse	fragments.wRand	pytd_v7	coding	150-199	3399	3304
+mouse	fragments.wRand	pytd_v7	coding	200-267	2992	2926
+mouse	fragments.wRand	pytd_v7	coding	268-399	2905	2897
+mouse	fragments.wRand	pytd_v7	coding	>=400	2709	2708
+mouse	fragments.wRand	pytd_v7	negative	0-49		2
+mouse	fragments.wRand	pytd_v7	negative	50-74		12
+mouse	fragments.wRand	pytd_v7	negative	75-99		8
+mouse	fragments.wRand	pytd_v7	negative	100-124		3
+mouse	fragments.wRand	pytd_v7	negative	150-199		1
+mouse	fragments.wRand	pytd_v7	negative	200-267		1
+mouse	fragments.wRand	pytd_v7	negative	268-399		5
+mouse	fragments.wRand	pytd_v7_precise	coding	0-49	1073	19
+mouse	fragments.wRand	pytd_v7_precise	coding	50-74	1641	534
+mouse	fragments.wRand	pytd_v7_precise	coding	75-99	2048	1165
+mouse	fragments.wRand	pytd_v7_precise	coding	100-124	2186	1608
+mouse	fragments.wRand	pytd_v7_precise	coding	125-149	2456	2242
+mouse	fragments.wRand	pytd_v7_precise	coding	150-199	3399	3219
+mouse	fragments.wRand	pytd_v7_precise	coding	200-267	2992	2923
+mouse	fragments.wRand	pytd_v7_precise	coding	268-399	2905	2897
+mouse	fragments.wRand	pytd_v7_precise	coding	>=400	2709	2708
+mouse	fragments.wRand	pytd_v7_precise	negative	0-49		2
+mouse	fragments.wRand	pytd_v7_precise	negative	50-74		10
+mouse	fragments.wRand	pytd_v7_precise	negative	75-99		3
+mouse	fragments.wRand	pytd_v7_precise	negative	100-124		3
+mouse	fragments.wRand	pytd_v7_precise	negative	150-199		1
+mouse	fragments.wRand	pytd_v7_precise	negative	200-267		1
+mouse	fragments.wRand	pytd_v7_precise	negative	268-399		5
+mouse	fragments.wRand	pytd_v7_sensitive	coding	0-49	1073	92
+mouse	fragments.wRand	pytd_v7_sensitive	coding	50-74	1641	1274
+mouse	fragments.wRand	pytd_v7_sensitive	coding	75-99	2048	1830
+mouse	fragments.wRand	pytd_v7_sensitive	coding	100-124	2186	2066
+mouse	fragments.wRand	pytd_v7_sensitive	coding	125-149	2456	2379
+mouse	fragments.wRand	pytd_v7_sensitive	coding	150-199	3399	3304
+mouse	fragments.wRand	pytd_v7_sensitive	coding	200-267	2992	2926
+mouse	fragments.wRand	pytd_v7_sensitive	coding	268-399	2905	2897
+mouse	fragments.wRand	pytd_v7_sensitive	coding	>=400	2709	2708
+mouse	fragments.wRand	pytd_v7_sensitive	negative	0-49		2
+mouse	fragments.wRand	pytd_v7_sensitive	negative	50-74		21
+mouse	fragments.wRand	pytd_v7_sensitive	negative	75-99		11
+mouse	fragments.wRand	pytd_v7_sensitive	negative	100-124		3
+mouse	fragments.wRand	pytd_v7_sensitive	negative	150-199		1
+mouse	fragments.wRand	pytd_v7_sensitive	negative	200-267		1
+mouse	fragments.wRand	pytd_v7_sensitive	negative	268-399		5
+human	fragments.wRand	cliff_c200	coding	0-49	1033	36
+human	fragments.wRand	cliff_c200	coding	50-74	1442	534
+human	fragments.wRand	cliff_c200	coding	75-99	1578	998
+human	fragments.wRand	cliff_c200	coding	100-124	1742	1683
+human	fragments.wRand	cliff_c200	coding	125-149	1808	1778
+human	fragments.wRand	cliff_c200	coding	150-199	3125	3085
+human	fragments.wRand	cliff_c200	coding	200-267	2917	2896
+human	fragments.wRand	cliff_c200	coding	268-399	2823	2820
+human	fragments.wRand	cliff_c200	coding	>=400	2699	2699
+human	fragments.wRand	cliff_c200	negative	0-49		1
+human	fragments.wRand	cliff_c200	negative	50-74		14
+human	fragments.wRand	cliff_c200	negative	75-99		6
+human	fragments.wRand	cliff_c200	negative	100-124		5
+human	fragments.wRand	cliff_c200	negative	150-199		2
+human	fragments.wRand	cliff_c200	negative	200-267		3
+human	fragments.wRand	cliff_c200	negative	268-399		10
+human	fragments.wRand	pytd_v7	coding	0-49	1033	80
+human	fragments.wRand	pytd_v7	coding	50-74	1442	874
+human	fragments.wRand	pytd_v7	coding	75-99	1578	1216
+human	fragments.wRand	pytd_v7	coding	100-124	1742	1560
+human	fragments.wRand	pytd_v7	coding	125-149	1808	1761
+human	fragments.wRand	pytd_v7	coding	150-199	3125	3082
+human	fragments.wRand	pytd_v7	coding	200-267	2917	2896
+human	fragments.wRand	pytd_v7	coding	268-399	2823	2820
+human	fragments.wRand	pytd_v7	coding	>=400	2699	2699
+human	fragments.wRand	pytd_v7	negative	0-49		1
+human	fragments.wRand	pytd_v7	negative	50-74		20
+human	fragments.wRand	pytd_v7	negative	75-99		7
+human	fragments.wRand	pytd_v7	negative	100-124		1
+human	fragments.wRand	pytd_v7	negative	150-199		2
+human	fragments.wRand	pytd_v7	negative	200-267		3
+human	fragments.wRand	pytd_v7	negative	268-399		10
+human	fragments.wRand	pytd_v7_precise	coding	0-49	1033	42
+human	fragments.wRand	pytd_v7_precise	coding	50-74	1442	652
+human	fragments.wRand	pytd_v7_precise	coding	75-99	1578	927
+human	fragments.wRand	pytd_v7_precise	coding	100-124	1742	1325
+human	fragments.wRand	pytd_v7_precise	coding	125-149	1808	1606
+human	fragments.wRand	pytd_v7_precise	coding	150-199	3125	2995
+human	fragments.wRand	pytd_v7_precise	coding	200-267	2917	2896
+human	fragments.wRand	pytd_v7_precise	coding	268-399	2823	2820
+human	fragments.wRand	pytd_v7_precise	coding	>=400	2699	2699
+human	fragments.wRand	pytd_v7_precise	negative	0-49		1
+human	fragments.wRand	pytd_v7_precise	negative	50-74		15
+human	fragments.wRand	pytd_v7_precise	negative	75-99		6
+human	fragments.wRand	pytd_v7_precise	negative	150-199		2
+human	fragments.wRand	pytd_v7_precise	negative	200-267		3
+human	fragments.wRand	pytd_v7_precise	negative	268-399		10
+human	fragments.wRand	pytd_v7_sensitive	coding	0-49	1033	137
+human	fragments.wRand	pytd_v7_sensitive	coding	50-74	1442	1148
+human	fragments.wRand	pytd_v7_sensitive	coding	75-99	1578	1442
+human	fragments.wRand	pytd_v7_sensitive	coding	100-124	1742	1663
+human	fragments.wRand	pytd_v7_sensitive	coding	125-149	1808	1774
+human	fragments.wRand	pytd_v7_sensitive	coding	150-199	3125	3084
+human	fragments.wRand	pytd_v7_sensitive	coding	200-267	2917	2896
+human	fragments.wRand	pytd_v7_sensitive	coding	268-399	2823	2820
+human	fragments.wRand	pytd_v7_sensitive	coding	>=400	2699	2699
+human	fragments.wRand	pytd_v7_sensitive	negative	0-49		2
+human	fragments.wRand	pytd_v7_sensitive	negative	50-74		36
+human	fragments.wRand	pytd_v7_sensitive	negative	75-99		8
+human	fragments.wRand	pytd_v7_sensitive	negative	100-124		1
+human	fragments.wRand	pytd_v7_sensitive	negative	150-199		2
+human	fragments.wRand	pytd_v7_sensitive	negative	200-267		3
+human	fragments.wRand	pytd_v7_sensitive	negative	268-399		10
+creinhardtii	fragments.wRand	cliff_c200	coding	0-49	1679	44
+creinhardtii	fragments.wRand	cliff_c200	coding	50-74	1287	564
+creinhardtii	fragments.wRand	cliff_c200	coding	75-99	1191	836
+creinhardtii	fragments.wRand	cliff_c200	coding	100-124	1198	1104
+creinhardtii	fragments.wRand	cliff_c200	coding	125-149	1148	1096
+creinhardtii	fragments.wRand	cliff_c200	coding	150-199	2000	1958
+creinhardtii	fragments.wRand	cliff_c200	coding	200-267	2196	2170
+creinhardtii	fragments.wRand	cliff_c200	coding	268-399	2744	2733
+creinhardtii	fragments.wRand	cliff_c200	coding	>=400	4178	4177
+creinhardtii	fragments.wRand	cliff_c200	negative	100-124		1
+creinhardtii	fragments.wRand	cliff_c200	negative	268-399		1
+creinhardtii	fragments.wRand	cliff_c200	negative	>=400		14
+creinhardtii	fragments.wRand	pytd_v7	coding	0-49	1679	131
+creinhardtii	fragments.wRand	pytd_v7	coding	50-74	1287	984
+creinhardtii	fragments.wRand	pytd_v7	coding	75-99	1191	1029
+creinhardtii	fragments.wRand	pytd_v7	coding	100-124	1198	1103
+creinhardtii	fragments.wRand	pytd_v7	coding	125-149	1148	1096
+creinhardtii	fragments.wRand	pytd_v7	coding	150-199	2000	1957
+creinhardtii	fragments.wRand	pytd_v7	coding	200-267	2196	2171
+creinhardtii	fragments.wRand	pytd_v7	coding	268-399	2744	2733
+creinhardtii	fragments.wRand	pytd_v7	coding	>=400	4178	4177
+creinhardtii	fragments.wRand	pytd_v7	negative	0-49		1
+creinhardtii	fragments.wRand	pytd_v7	negative	50-74		12
+creinhardtii	fragments.wRand	pytd_v7	negative	100-124		1
+creinhardtii	fragments.wRand	pytd_v7	negative	268-399		1
+creinhardtii	fragments.wRand	pytd_v7	negative	>=400		14
+creinhardtii	fragments.wRand	pytd_v7_precise	coding	0-49	1679	96
+creinhardtii	fragments.wRand	pytd_v7_precise	coding	50-74	1287	882
+creinhardtii	fragments.wRand	pytd_v7_precise	coding	75-99	1191	957
+creinhardtii	fragments.wRand	pytd_v7_precise	coding	100-124	1198	1097
+creinhardtii	fragments.wRand	pytd_v7_precise	coding	125-149	1148	1096
+creinhardtii	fragments.wRand	pytd_v7_precise	coding	150-199	2000	1957
+creinhardtii	fragments.wRand	pytd_v7_precise	coding	200-267	2196	2171
+creinhardtii	fragments.wRand	pytd_v7_precise	coding	268-399	2744	2733
+creinhardtii	fragments.wRand	pytd_v7_precise	coding	>=400	4178	4177
+creinhardtii	fragments.wRand	pytd_v7_precise	negative	0-49		1
+creinhardtii	fragments.wRand	pytd_v7_precise	negative	50-74		11
+creinhardtii	fragments.wRand	pytd_v7_precise	negative	100-124		1
+creinhardtii	fragments.wRand	pytd_v7_precise	negative	268-399		1
+creinhardtii	fragments.wRand	pytd_v7_precise	negative	>=400		14
+creinhardtii	fragments.wRand	pytd_v7_sensitive	coding	0-49	1679	139
+creinhardtii	fragments.wRand	pytd_v7_sensitive	coding	50-74	1287	1005
+creinhardtii	fragments.wRand	pytd_v7_sensitive	coding	75-99	1191	1032
+creinhardtii	fragments.wRand	pytd_v7_sensitive	coding	100-124	1198	1101
+creinhardtii	fragments.wRand	pytd_v7_sensitive	coding	125-149	1148	1096
+creinhardtii	fragments.wRand	pytd_v7_sensitive	coding	150-199	2000	1956
+creinhardtii	fragments.wRand	pytd_v7_sensitive	coding	200-267	2196	2171
+creinhardtii	fragments.wRand	pytd_v7_sensitive	coding	268-399	2744	2733
+creinhardtii	fragments.wRand	pytd_v7_sensitive	coding	>=400	4178	4177
+creinhardtii	fragments.wRand	pytd_v7_sensitive	negative	0-49		2
+creinhardtii	fragments.wRand	pytd_v7_sensitive	negative	50-74		18
+creinhardtii	fragments.wRand	pytd_v7_sensitive	negative	100-124		1
+creinhardtii	fragments.wRand	pytd_v7_sensitive	negative	268-399		1
+creinhardtii	fragments.wRand	pytd_v7_sensitive	negative	>=400		14
+mouse	complete.wLnc	cliff_c200	coding	0-49	60	1
+mouse	complete.wLnc	cliff_c200	coding	50-74	143	34
+mouse	complete.wLnc	cliff_c200	coding	75-99	382	206
+mouse	complete.wLnc	cliff_c200	coding	100-124	525	479
+mouse	complete.wLnc	cliff_c200	coding	125-149	634	585
+mouse	complete.wLnc	cliff_c200	coding	150-199	1407	1360
+mouse	complete.wLnc	cliff_c200	coding	200-267	2301	2268
+mouse	complete.wLnc	cliff_c200	coding	268-399	5278	5270
+mouse	complete.wLnc	cliff_c200	coding	>=400	10679	10631
+mouse	complete.wLnc	cliff_c200	negative	0-49		195
+mouse	complete.wLnc	cliff_c200	negative	50-74		293
+mouse	complete.wLnc	cliff_c200	negative	75-99		389
+mouse	complete.wLnc	cliff_c200	negative	100-124		2200
+mouse	complete.wLnc	cliff_c200	negative	125-149		903
+mouse	complete.wLnc	cliff_c200	negative	150-199		684
+mouse	complete.wLnc	cliff_c200	negative	200-267		479
+mouse	complete.wLnc	cliff_c200	negative	268-399		143
+mouse	complete.wLnc	cliff_c200	negative	>=400		137
+mouse	complete.wLnc	pytd_v7	coding	0-49	60	0
+mouse	complete.wLnc	pytd_v7	coding	50-74	143	26
+mouse	complete.wLnc	pytd_v7	coding	75-99	382	149
+mouse	complete.wLnc	pytd_v7	coding	100-124	525	359
+mouse	complete.wLnc	pytd_v7	coding	125-149	634	515
+mouse	complete.wLnc	pytd_v7	coding	150-199	1407	1331
+mouse	complete.wLnc	pytd_v7	coding	200-267	2301	2270
+mouse	complete.wLnc	pytd_v7	coding	268-399	5278	5272
+mouse	complete.wLnc	pytd_v7	coding	>=400	10679	10643
+mouse	complete.wLnc	pytd_v7	negative	0-49		20
+mouse	complete.wLnc	pytd_v7	negative	50-74		87
+mouse	complete.wLnc	pytd_v7	negative	75-99		122
+mouse	complete.wLnc	pytd_v7	negative	100-124		190
+mouse	complete.wLnc	pytd_v7	negative	125-149		173
+mouse	complete.wLnc	pytd_v7	negative	150-199		297
+mouse	complete.wLnc	pytd_v7	negative	200-267		459
+mouse	complete.wLnc	pytd_v7	negative	268-399		154
+mouse	complete.wLnc	pytd_v7	negative	>=400		138
+mouse	complete.wLnc	pytd_v7_precise	coding	0-49	60	0
+mouse	complete.wLnc	pytd_v7_precise	coding	50-74	143	24
+mouse	complete.wLnc	pytd_v7_precise	coding	75-99	382	112
+mouse	complete.wLnc	pytd_v7_precise	coding	100-124	525	294
+mouse	complete.wLnc	pytd_v7_precise	coding	125-149	634	447
+mouse	complete.wLnc	pytd_v7_precise	coding	150-199	1407	1248
+mouse	complete.wLnc	pytd_v7_precise	coding	200-267	2301	2258
+mouse	complete.wLnc	pytd_v7_precise	coding	268-399	5278	5272
+mouse	complete.wLnc	pytd_v7_precise	coding	>=400	10679	10643
+mouse	complete.wLnc	pytd_v7_precise	negative	0-49		14
+mouse	complete.wLnc	pytd_v7_precise	negative	50-74		81
+mouse	complete.wLnc	pytd_v7_precise	negative	75-99		90
+mouse	complete.wLnc	pytd_v7_precise	negative	100-124		153
+mouse	complete.wLnc	pytd_v7_precise	negative	125-149		117
+mouse	complete.wLnc	pytd_v7_precise	negative	150-199		209
+mouse	complete.wLnc	pytd_v7_precise	negative	200-267		431
+mouse	complete.wLnc	pytd_v7_precise	negative	268-399		154
+mouse	complete.wLnc	pytd_v7_precise	negative	>=400		138
+mouse	complete.wLnc	pytd_v7_sensitive	coding	0-49	60	1
+mouse	complete.wLnc	pytd_v7_sensitive	coding	50-74	143	33
+mouse	complete.wLnc	pytd_v7_sensitive	coding	75-99	382	207
+mouse	complete.wLnc	pytd_v7_sensitive	coding	100-124	525	439
+mouse	complete.wLnc	pytd_v7_sensitive	coding	125-149	634	582
+mouse	complete.wLnc	pytd_v7_sensitive	coding	150-199	1407	1359
+mouse	complete.wLnc	pytd_v7_sensitive	coding	200-267	2301	2269
+mouse	complete.wLnc	pytd_v7_sensitive	coding	268-399	5278	5271
+mouse	complete.wLnc	pytd_v7_sensitive	coding	>=400	10679	10639
+mouse	complete.wLnc	pytd_v7_sensitive	negative	0-49		37
+mouse	complete.wLnc	pytd_v7_sensitive	negative	50-74		164
+mouse	complete.wLnc	pytd_v7_sensitive	negative	75-99		241
+mouse	complete.wLnc	pytd_v7_sensitive	negative	100-124		420
+mouse	complete.wLnc	pytd_v7_sensitive	negative	125-149		353
+mouse	complete.wLnc	pytd_v7_sensitive	negative	150-199		424
+mouse	complete.wLnc	pytd_v7_sensitive	negative	200-267		470
+mouse	complete.wLnc	pytd_v7_sensitive	negative	268-399		153
+mouse	complete.wLnc	pytd_v7_sensitive	negative	>=400		138
+human	complete.wLnc	cliff_c200	coding	0-49	41	3
+human	complete.wLnc	cliff_c200	coding	50-74	170	49
+human	complete.wLnc	cliff_c200	coding	75-99	364	244
+human	complete.wLnc	cliff_c200	coding	100-124	462	418
+human	complete.wLnc	cliff_c200	coding	125-149	575	549
+human	complete.wLnc	cliff_c200	coding	150-199	1232	1204
+human	complete.wLnc	cliff_c200	coding	200-267	1847	1833
+human	complete.wLnc	cliff_c200	coding	268-399	4038	4037
+human	complete.wLnc	cliff_c200	coding	>=400	10438	10438
+human	complete.wLnc	cliff_c200	negative	0-49		323
+human	complete.wLnc	cliff_c200	negative	50-74		370
+human	complete.wLnc	cliff_c200	negative	75-99		488
+human	complete.wLnc	cliff_c200	negative	100-124		2771
+human	complete.wLnc	cliff_c200	negative	125-149		1324
+human	complete.wLnc	cliff_c200	negative	150-199		921
+human	complete.wLnc	cliff_c200	negative	200-267		428
+human	complete.wLnc	cliff_c200	negative	268-399		222
+human	complete.wLnc	cliff_c200	negative	>=400		96
+human	complete.wLnc	pytd_v7	coding	0-49	41	4
+human	complete.wLnc	pytd_v7	coding	50-74	170	38
+human	complete.wLnc	pytd_v7	coding	75-99	364	167
+human	complete.wLnc	pytd_v7	coding	100-124	462	294
+human	complete.wLnc	pytd_v7	coding	125-149	575	501
+human	complete.wLnc	pytd_v7	coding	150-199	1232	1175
+human	complete.wLnc	pytd_v7	coding	200-267	1847	1832
+human	complete.wLnc	pytd_v7	coding	268-399	4038	4037
+human	complete.wLnc	pytd_v7	coding	>=400	10438	10438
+human	complete.wLnc	pytd_v7	negative	0-49		36
+human	complete.wLnc	pytd_v7	negative	50-74		116
+human	complete.wLnc	pytd_v7	negative	75-99		133
+human	complete.wLnc	pytd_v7	negative	100-124		199
+human	complete.wLnc	pytd_v7	negative	125-149		214
+human	complete.wLnc	pytd_v7	negative	150-199		285
+human	complete.wLnc	pytd_v7	negative	200-267		330
+human	complete.wLnc	pytd_v7	negative	268-399		229
+human	complete.wLnc	pytd_v7	negative	>=400		97
+human	complete.wLnc	pytd_v7_precise	coding	0-49	41	4
+human	complete.wLnc	pytd_v7_precise	coding	50-74	170	36
+human	complete.wLnc	pytd_v7_precise	coding	75-99	364	134
+human	complete.wLnc	pytd_v7_precise	coding	100-124	462	237
+human	complete.wLnc	pytd_v7_precise	coding	125-149	575	443
+human	complete.wLnc	pytd_v7_precise	coding	150-199	1232	1099
+human	complete.wLnc	pytd_v7_precise	coding	200-267	1847	1810
+human	complete.wLnc	pytd_v7_precise	coding	268-399	4038	4037
+human	complete.wLnc	pytd_v7_precise	coding	>=400	10438	10438
+human	complete.wLnc	pytd_v7_precise	negative	0-49		25
+human	complete.wLnc	pytd_v7_precise	negative	50-74		109
+human	complete.wLnc	pytd_v7_precise	negative	75-99		111
+human	complete.wLnc	pytd_v7_precise	negative	100-124		158
+human	complete.wLnc	pytd_v7_precise	negative	125-149		150
+human	complete.wLnc	pytd_v7_precise	negative	150-199		202
+human	complete.wLnc	pytd_v7_precise	negative	200-267		297
+human	complete.wLnc	pytd_v7_precise	negative	268-399		229
+human	complete.wLnc	pytd_v7_precise	negative	>=400		97
+human	complete.wLnc	pytd_v7_sensitive	coding	0-49	41	6
+human	complete.wLnc	pytd_v7_sensitive	coding	50-74	170	51
+human	complete.wLnc	pytd_v7_sensitive	coding	75-99	364	232
+human	complete.wLnc	pytd_v7_sensitive	coding	100-124	462	383
+human	complete.wLnc	pytd_v7_sensitive	coding	125-149	575	548
+human	complete.wLnc	pytd_v7_sensitive	coding	150-199	1232	1202
+human	complete.wLnc	pytd_v7_sensitive	coding	200-267	1847	1835
+human	complete.wLnc	pytd_v7_sensitive	coding	268-399	4038	4037
+human	complete.wLnc	pytd_v7_sensitive	coding	>=400	10438	10438
+human	complete.wLnc	pytd_v7_sensitive	negative	0-49		87
+human	complete.wLnc	pytd_v7_sensitive	negative	50-74		232
+human	complete.wLnc	pytd_v7_sensitive	negative	75-99		291
+human	complete.wLnc	pytd_v7_sensitive	negative	100-124		469
+human	complete.wLnc	pytd_v7_sensitive	negative	125-149		446
+human	complete.wLnc	pytd_v7_sensitive	negative	150-199		472
+human	complete.wLnc	pytd_v7_sensitive	negative	200-267		365
+human	complete.wLnc	pytd_v7_sensitive	negative	268-399		226
+human	complete.wLnc	pytd_v7_sensitive	negative	>=400		97
+mouse	fragments.wLnc	cliff_c200	coding	0-49	1073	34
+mouse	fragments.wLnc	cliff_c200	coding	50-74	1641	531
+mouse	fragments.wLnc	cliff_c200	coding	75-99	2048	1255
+mouse	fragments.wLnc	cliff_c200	coding	100-124	2186	2092
+mouse	fragments.wLnc	cliff_c200	coding	125-149	2456	2405
+mouse	fragments.wLnc	cliff_c200	coding	150-199	3399	3339
+mouse	fragments.wLnc	cliff_c200	coding	200-267	2992	2948
+mouse	fragments.wLnc	cliff_c200	coding	268-399	2905	2895
+mouse	fragments.wLnc	cliff_c200	coding	>=400	2709	2707
+mouse	fragments.wLnc	cliff_c200	negative	0-49		173
+mouse	fragments.wLnc	cliff_c200	negative	50-74		269
+mouse	fragments.wLnc	cliff_c200	negative	75-99		383
+mouse	fragments.wLnc	cliff_c200	negative	100-124		2193
+mouse	fragments.wLnc	cliff_c200	negative	125-149		893
+mouse	fragments.wLnc	cliff_c200	negative	150-199		677
+mouse	fragments.wLnc	cliff_c200	negative	200-267		480
+mouse	fragments.wLnc	cliff_c200	negative	268-399		144
+mouse	fragments.wLnc	cliff_c200	negative	>=400		136
+mouse	fragments.wLnc	pytd_v7	coding	0-49	1073	31
+mouse	fragments.wLnc	pytd_v7	coding	50-74	1641	771
+mouse	fragments.wLnc	pytd_v7	coding	75-99	2048	1397
+mouse	fragments.wLnc	pytd_v7	coding	100-124	2186	1801
+mouse	fragments.wLnc	pytd_v7	coding	125-149	2456	2348
+mouse	fragments.wLnc	pytd_v7	coding	150-199	3399	3340
+mouse	fragments.wLnc	pytd_v7	coding	200-267	2992	2955
+mouse	fragments.wLnc	pytd_v7	coding	268-399	2905	2899
+mouse	fragments.wLnc	pytd_v7	coding	>=400	2709	2708
+mouse	fragments.wLnc	pytd_v7	negative	0-49		46
+mouse	fragments.wLnc	pytd_v7	negative	50-74		147
+mouse	fragments.wLnc	pytd_v7	negative	75-99		162
+mouse	fragments.wLnc	pytd_v7	negative	100-124		277
+mouse	fragments.wLnc	pytd_v7	negative	125-149		240
+mouse	fragments.wLnc	pytd_v7	negative	150-199		299
+mouse	fragments.wLnc	pytd_v7	negative	200-267		446
+mouse	fragments.wLnc	pytd_v7	negative	268-399		151
+mouse	fragments.wLnc	pytd_v7	negative	>=400		136
+mouse	fragments.wLnc	pytd_v7_precise	coding	0-49	1073	16
+mouse	fragments.wLnc	pytd_v7_precise	coding	50-74	1641	514
+mouse	fragments.wLnc	pytd_v7_precise	coding	75-99	2048	1018
+mouse	fragments.wLnc	pytd_v7_precise	coding	100-124	2186	1399
+mouse	fragments.wLnc	pytd_v7_precise	coding	125-149	2456	2087
+mouse	fragments.wLnc	pytd_v7_precise	coding	150-199	3399	3183
+mouse	fragments.wLnc	pytd_v7_precise	coding	200-267	2992	2951
+mouse	fragments.wLnc	pytd_v7_precise	coding	268-399	2905	2899
+mouse	fragments.wLnc	pytd_v7_precise	coding	>=400	2709	2709
+mouse	fragments.wLnc	pytd_v7_precise	negative	0-49		17
+mouse	fragments.wLnc	pytd_v7_precise	negative	50-74		99
+mouse	fragments.wLnc	pytd_v7_precise	negative	75-99		95
+mouse	fragments.wLnc	pytd_v7_precise	negative	100-124		172
+mouse	fragments.wLnc	pytd_v7_precise	negative	125-149		143
+mouse	fragments.wLnc	pytd_v7_precise	negative	150-199		231
+mouse	fragments.wLnc	pytd_v7_precise	negative	200-267		418
+mouse	fragments.wLnc	pytd_v7_precise	negative	268-399		152
+mouse	fragments.wLnc	pytd_v7_precise	negative	>=400		137
+mouse	fragments.wLnc	pytd_v7_sensitive	coding	0-49	1073	69
+mouse	fragments.wLnc	pytd_v7_sensitive	coding	50-74	1641	1116
+mouse	fragments.wLnc	pytd_v7_sensitive	coding	75-99	2048	1766
+mouse	fragments.wLnc	pytd_v7_sensitive	coding	100-124	2186	2062
+mouse	fragments.wLnc	pytd_v7_sensitive	coding	125-149	2456	2399
+mouse	fragments.wLnc	pytd_v7_sensitive	coding	150-199	3399	3338
+mouse	fragments.wLnc	pytd_v7_sensitive	coding	200-267	2992	2952
+mouse	fragments.wLnc	pytd_v7_sensitive	coding	268-399	2905	2898
+mouse	fragments.wLnc	pytd_v7_sensitive	coding	>=400	2709	2707
+mouse	fragments.wLnc	pytd_v7_sensitive	negative	0-49		152
+mouse	fragments.wLnc	pytd_v7_sensitive	negative	50-74		371
+mouse	fragments.wLnc	pytd_v7_sensitive	negative	75-99		457
+mouse	fragments.wLnc	pytd_v7_sensitive	negative	100-124		547
+mouse	fragments.wLnc	pytd_v7_sensitive	negative	125-149		347
+mouse	fragments.wLnc	pytd_v7_sensitive	negative	150-199		407
+mouse	fragments.wLnc	pytd_v7_sensitive	negative	200-267		489
+mouse	fragments.wLnc	pytd_v7_sensitive	negative	268-399		148
+mouse	fragments.wLnc	pytd_v7_sensitive	negative	>=400		136
+human	fragments.wLnc	cliff_c200	coding	0-49	1033	37
+human	fragments.wLnc	cliff_c200	coding	50-74	1442	549
+human	fragments.wLnc	cliff_c200	coding	75-99	1578	1005
+human	fragments.wLnc	cliff_c200	coding	100-124	1742	1685
+human	fragments.wLnc	cliff_c200	coding	125-149	1808	1789
+human	fragments.wLnc	cliff_c200	coding	150-199	3125	3085
+human	fragments.wLnc	cliff_c200	coding	200-267	2917	2902
+human	fragments.wLnc	cliff_c200	coding	268-399	2823	2820
+human	fragments.wLnc	cliff_c200	coding	>=400	2699	2699
+human	fragments.wLnc	cliff_c200	negative	0-49		314
+human	fragments.wLnc	cliff_c200	negative	50-74		361
+human	fragments.wLnc	cliff_c200	negative	75-99		472
+human	fragments.wLnc	cliff_c200	negative	100-124		2745
+human	fragments.wLnc	cliff_c200	negative	125-149		1287
+human	fragments.wLnc	cliff_c200	negative	150-199		903
+human	fragments.wLnc	cliff_c200	negative	200-267		437
+human	fragments.wLnc	cliff_c200	negative	268-399		219
+human	fragments.wLnc	cliff_c200	negative	>=400		95
+human	fragments.wLnc	pytd_v7	coding	0-49	1033	63
+human	fragments.wLnc	pytd_v7	coding	50-74	1442	768
+human	fragments.wLnc	pytd_v7	coding	75-99	1578	1097
+human	fragments.wLnc	pytd_v7	coding	100-124	1742	1444
+human	fragments.wLnc	pytd_v7	coding	125-149	1808	1700
+human	fragments.wLnc	pytd_v7	coding	150-199	3125	3071
+human	fragments.wLnc	pytd_v7	coding	200-267	2917	2902
+human	fragments.wLnc	pytd_v7	coding	268-399	2823	2820
+human	fragments.wLnc	pytd_v7	coding	>=400	2699	2699
+human	fragments.wLnc	pytd_v7	negative	0-49		54
+human	fragments.wLnc	pytd_v7	negative	50-74		148
+human	fragments.wLnc	pytd_v7	negative	75-99		184
+human	fragments.wLnc	pytd_v7	negative	100-124		272
+human	fragments.wLnc	pytd_v7	negative	125-149		254
+human	fragments.wLnc	pytd_v7	negative	150-199		346
+human	fragments.wLnc	pytd_v7	negative	200-267		349
+human	fragments.wLnc	pytd_v7	negative	268-399		225
+human	fragments.wLnc	pytd_v7	negative	>=400		96
+human	fragments.wLnc	pytd_v7_precise	coding	0-49	1033	36
+human	fragments.wLnc	pytd_v7_precise	coding	50-74	1442	549
+human	fragments.wLnc	pytd_v7_precise	coding	75-99	1578	815
+human	fragments.wLnc	pytd_v7_precise	coding	100-124	1742	1186
+human	fragments.wLnc	pytd_v7_precise	coding	125-149	1808	1503
+human	fragments.wLnc	pytd_v7_precise	coding	150-199	3125	2933
+human	fragments.wLnc	pytd_v7_precise	coding	200-267	2917	2873
+human	fragments.wLnc	pytd_v7_precise	coding	268-399	2823	2820
+human	fragments.wLnc	pytd_v7_precise	coding	>=400	2699	2699
+human	fragments.wLnc	pytd_v7_precise	negative	0-49		29
+human	fragments.wLnc	pytd_v7_precise	negative	50-74		110
+human	fragments.wLnc	pytd_v7_precise	negative	75-99		124
+human	fragments.wLnc	pytd_v7_precise	negative	100-124		173
+human	fragments.wLnc	pytd_v7_precise	negative	125-149		168
+human	fragments.wLnc	pytd_v7_precise	negative	150-199		257
+human	fragments.wLnc	pytd_v7_precise	negative	200-267		323
+human	fragments.wLnc	pytd_v7_precise	negative	268-399		227
+human	fragments.wLnc	pytd_v7_precise	negative	>=400		96
+human	fragments.wLnc	pytd_v7_sensitive	coding	0-49	1033	111
+human	fragments.wLnc	pytd_v7_sensitive	coding	50-74	1442	1004
+human	fragments.wLnc	pytd_v7_sensitive	coding	75-99	1578	1391
+human	fragments.wLnc	pytd_v7_sensitive	coding	100-124	1742	1647
+human	fragments.wLnc	pytd_v7_sensitive	coding	125-149	1808	1783
+human	fragments.wLnc	pytd_v7_sensitive	coding	150-199	3125	3086
+human	fragments.wLnc	pytd_v7_sensitive	coding	200-267	2917	2901
+human	fragments.wLnc	pytd_v7_sensitive	coding	268-399	2823	2820
+human	fragments.wLnc	pytd_v7_sensitive	coding	>=400	2699	2699
+human	fragments.wLnc	pytd_v7_sensitive	negative	0-49		212
+human	fragments.wLnc	pytd_v7_sensitive	negative	50-74		429
+human	fragments.wLnc	pytd_v7_sensitive	negative	75-99		586
+human	fragments.wLnc	pytd_v7_sensitive	negative	100-124		662
+human	fragments.wLnc	pytd_v7_sensitive	negative	125-149		478
+human	fragments.wLnc	pytd_v7_sensitive	negative	150-199		520
+human	fragments.wLnc	pytd_v7_sensitive	negative	200-267		416
+human	fragments.wLnc	pytd_v7_sensitive	negative	268-399		222
+human	fragments.wLnc	pytd_v7_sensitive	negative	>=400		96
