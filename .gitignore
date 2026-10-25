@@ -1,6 +1,7 @@
-analyses/long_orf_threshold/sim_runs/*.err
-analyses/long_orf_threshold/sim_large/*.err
+data/long_orf_threshold/sim_runs/*.err
+data/long_orf_threshold/sim_large/*.err
 *.pyc
 __pycache__/
 .nfs*
-analyses/long_orf_failures/results/per_cds/
+data/long_orf_failures/per_cds/
+data/start_param_sensitivity/kozak_score_distribution.txt
