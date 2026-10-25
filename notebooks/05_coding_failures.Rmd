@@ -1,0 +1,583 @@
+---
+title: "True coding regions that fail the coding test, and two fallbacks"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    code_folding: hide
+    self_contained: true
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, fig.align = "center")
+source(file.path("R", "common.R"))
+library(knitr)
+```
+
+This notebook supports the Results section "True coding regions that fail the coding test, and two
+fallbacks", including its paragraph "Homology evidence recovers true coding regions, mostly in
+fragments" ([`../manuscript/sections/results_coding_failures.tex`](../manuscript/sections/results_coding_failures.tex)),
+and draws Fig. 5 (`fig:failures`, `figures/fig5_failures.{pdf,png}`). Provenance:
+`r evidence("E12")` (the coding-failure analysis), `r evidence("E07")` (homology runs of the
+benchmark) and `r evidence("E25")` (final release runs).
+
+**Release rule.** The analysis of E12 used the development rule: $S_1>0$, frame contrast
+$C=S_1-\max(S_2,S_3)>0$ and, below 300 nt, a fixed short-ORF test ($C \ge 200\mu$). The text still
+quotes it (it carries a `\todo`). Here the analysis is rerun on the release predictions
+(`pytd_v7`: PyTD 3a793ff, release defaults; Perl gives identical predictions, E25), with the
+release coding test: $S_1>0$, $C>0$ and target-decoy q-value $\le 0.05$. The q-value of each
+candidate is read from the run's `decoy_qvalues.tsv`.
+
+Data (`data/long_orf_failures/v7/`, written by `pipeline/derive/05_long_orf_failures_v7.sh`, which
+runs `05_long_orf_failures_v7.py`, `05_summarize_v7.py`, `05_length_vs_homology_v7.py` and
+`05_fig5_tables_v7.py`; these are copies of `analyses/long_orf_failures/*.py` changed for the
+release rule):
+
+- the matched CDS tables of the 8 benchmark organisms (complete transcripts, UTRs trimmed to 250 nt),
+  aggregated: by organism, length, GC3 quintile, chromosome, failure cause, and model;
+- homology flags from the release homology runs (`pytd_v7_homology`) where they had finished
+  (*A. thaliana*, *C. reinhardtii*, *D. melanogaster*, human) and otherwise from
+  `pytd_dev_v2_homology`. Both search the same LongOrfs ORFs ($\ge$ 50 aa) against the same
+  databases; their hits were identical for the three organisms compared. E12 used older runs with a
+  100-aa minimum, so CDSs of 50--99 aa now have homology flags;
+- the truth-trained Markov models of E12 (two folds by gene) now pass an ORF only if it also has a
+  q-value $\le 0.05$ computed from decoys scored with the same model. The decoys are regenerated as
+  PyTD generates them; with the run's own model this reproduces every q-value in `decoy_qvalues.tsv`
+  (checked below);
+- the homology comparison (Fig. 5d,e) uses `data/benchmark/homology_vs_abinitio.tsv`, i.e. the
+  development runs `pytd_dev_v2` and `pytd_dev_v2_homology`. The release homology runs had not
+  finished for all organisms when this notebook was written, so that part is not yet on release data.
+
+```{r data}
+V7 <- function(f) read_tab("long_orf_failures", "v7", f)
+by_org <- V7("summary_by_org.tsv")
+by_len <- V7("summary_by_length.tsv")
+oracle <- V7("oracle_models.tsv")
+flags <- V7("explanation_flags.tsv")
+rate_feat <- V7("fail_rate_by_feature.tsv")
+by_chr <- V7("fail_by_chromosome.tsv") %>% mutate(seqid = as.character(seqid))
+rp <- V7("ribosomal_proteins.tsv")
+feat <- V7("features_fail_vs_pass.tsv")
+fam <- V7("family_keyword_enrichment.tsv")
+utr <- V7("utr_effect.tsv")
+meta <- V7("org_meta.tsv")
+lvh <- V7("length_vs_homology_fallback.tsv")
+lro <- V7("length_rule_only_predictions.tsv") %>%
+  separate(dataset, c("src", "org", "input"), sep = ":", remove = FALSE)
+alt <- V7("alt_rules_negatives.tsv")
+dmel_c <- V7("dmel_gc3_rescue.tsv")
+long_fail <- V7("failing_ge1kb.tsv")
+reasons <- V7("reasons_by_length.tsv")
+hom <- read_tab("benchmark", "homology_vs_abinitio.tsv")
+# development-rule tables of E12, for comparison
+dev_by_org <- read_tab("long_orf_failures", "summary_by_org.tsv")
+dev_by_len <- read_tab("long_orf_failures", "summary_by_length.tsv")
+
+ALL <- by_org %>% filter(org == "ALL")
+LEN_BINS <- c("0-299", "300-599", "600-999", "1000-1999", "2000-4999", ">=5000")
+```
+
+## Release runs and reproduction checks
+
+```{r checks-repro}
+repro <- meta %>% transmute(org, run, homology_source, L_star, n_truth, n_training, training_is_truth_cds,
+                            q_values = check_td_q_n, q_identical = check_td_q_identical,
+                            score_diffs = check_td_scores_ndiff_gt0.011, decoy_orfs = n_decoy_orfs,
+                            shuffles = n_decoy_shuffles)
+kable(repro)
+stopifnot(all(repro$q_identical == repro$q_values), all(repro$score_diffs == 0))
+```
+
+For every organism, the Markov scores recomputed here equal `longest_orfs.cds.scores`, and the
+q-values recomputed from the regenerated decoys equal `decoy_qvalues.tsv` for all
+`r num(sum(repro$q_values))` LongOrfs candidates. The same code therefore gives valid q-values for
+the truth-trained models below.
+
+## How often
+
+```{r how-often}
+fail_pct <- ALL$fail_coding_pct
+len_all <- by_len %>% filter(org == "ALL") %>% mutate(cds_len_bin = factor(cds_len_bin, LEN_BINS)) %>% arrange(cds_len_bin)
+lp <- setNames(len_all$fail_coding_pct, as.character(len_all$cds_len_bin))
+reason_short <- len_all %>% filter(cds_len_bin == "0-299")
+n_ge1kb <- nrow(long_fail)
+named <- c("Muc14A", "kl-2", "kl-3", "MUC4", "FLG", "HRNR", "COL4A4", "ELN")
+named_tab <- long_fail %>% filter(gene_name %in% named) %>%
+  group_by(org, gene_name) %>% slice_max(cds_len, n = 1, with_ties = FALSE) %>% ungroup() %>%
+  select(org, gene_name, cds_len, fail_reason, category, decoy_q)
+dev_all <- dev_by_org %>% filter(org == "ALL")
+```
+
+Of `r num(ALL$n_matched)` annotated CDSs matched to a LongOrfs candidate
+(`r num(ALL$n_truth)` truth CDSs; E12 matched `r num(dev_all$n_matched)`), **`r f1(fail_pct)`%**
+fail the release coding test (development rule: `r f1(dev_all$fail_coding_pct)`%). By cause:
+$S_1 \le 0$ `r num(ALL$fail_S1_le0)`, shifted frame $\ge S_1$ `r num(ALL$fail_shifted_frame)`,
+q-value above 0.05 `r num(ALL$fail_decoy_q)`. `r evidence("E12")` `r evidence("E25")`
+
+The failure rate by annotated CDS length (all organisms):
+
+```{r how-often-len}
+cmp_len <- len_all %>% select(cds_len_bin, n, fail_coding, fail_coding_pct, fail_S1_le0, fail_shifted_frame,
+                              fail_decoy_q, rescued_by_long_rule, still_lost, still_lost_pct) %>%
+  left_join(dev_by_len %>% filter(org == "ALL") %>% select(cds_len_bin, dev_n = n, dev_fail_pct = fail_coding_pct),
+            by = "cds_len_bin")
+kable(cmp_len, caption = "All organisms, release rule; dev_*: development rule (E12).")
+```
+
+- below 300 nt: `r f1(lp[["0-299"]])`% (`r num(reason_short$fail_decoy_q)` of
+  `r num(reason_short$fail_coding)` failures through the q-value; development rule 67%, mostly
+  the fixed short-ORF test);
+- 300--599 nt: `r f1(lp[["300-599"]])`%; 600--999 nt: `r f1(lp[["600-999"]])`%;
+- 1--2 kb: `r f1(lp[["1000-1999"]])`%; 2--5 kb: `r f1(lp[["2000-4999"]])`%; $\ge$ 5 kb:
+  `r f1(lp[[">=5000"]])`%.
+
+Failing CDSs of at least 1 kb: **`r num(n_ge1kb)`**. The named genes of the text:
+
+```{r named-genes}
+kable(named_tab)
+```
+
+Genes named in the text and not failing under the release rule:
+`r paste(setdiff(named, named_tab$gene_name), collapse = ", ")`.
+The longest failing CDSs per organism:
+
+```{r long-examples}
+kable(long_fail %>% group_by(org) %>% slice_max(cds_len, n = 5, with_ties = FALSE) %>% ungroup() %>%
+        select(org, gene_name, transcript_id, cds_len, fail_reason, category))
+```
+
+### The length rule
+
+```{r length-rule}
+tt_len <- by_len %>% filter(org == "tthermophila", cds_len_bin %in% c("1000-1999", "2000-4999", ">=5000"))
+tt_lost_1kb <- sum(tt_len$still_lost)
+# failing CDSs with an ORF at or above L* that the rule does not keep (should be T. thermophila only)
+above_lstar <- by_len %>% filter(org != "ALL") %>% group_by(org) %>%
+  summarise(rescued = sum(rescued_by_long_rule), still_lost = sum(still_lost), .groups = "drop")
+lvh_all <- lvh %>% filter(org == "ALL")
+lo_pct <- 100 * lvh_all$length_only / lvh_all$rescued_by_length
+kable(lvh, caption = "Failing true CDSs retained by the length rule, and whether they also have a homology hit.")
+```
+
+The length rule keeps every failing CDS whose ORF reaches $L^\ast$; it is off in
+*T. thermophila*, where `r num(tt_lost_1kb)` failing CDSs of at least 1 kb are lost. In total it
+retains **`r num(lvh_all$rescued_by_length)`** failing true CDSs; **`r num(lvh_all$length_only)`**
+(`r f1(lo_pct)`%) of them have no Swiss-Prot or Pfam hit. `r evidence("E12")`
+
+### Not predicted, and predictions kept by length alone
+
+```{r lost}
+lost_pct <- ALL$fail_lost_pct_of_matched
+lro_b <- lro %>% filter(src == "bench_v3")
+lro_cplt <- lro_b %>% filter(input == "complete")
+lo_total <- sum(lro_cplt$length_rule_only)
+lo_false <- sum(lro_cplt$length_rule_only - lro_cplt$lo_is_truth_cds)
+h_lnc <- lro_b %>% filter(org == "human", input == "complete.wLnc")
+kable(lro_b %>% select(org, input, L_star, predictions, length_rule_only, length_rule_only_pct, lo_is_truth_cds,
+                       lo_on_negative_transcript, lo_other_orf_on_coding_transcript))
+```
+
+**`r f1(lost_pct)`%** of matched true CDSs fail the coding test and are not retained by the length
+rule. Predictions kept by length alone are `r f1(min(lro_b$length_rule_only_pct))`--`r f1(max(lro_b$length_rule_only_pct))`%
+of all predictions. On complete transcripts `r num(lo_false)` of `r num(lo_total)` are not the
+annotated CDS; on human lncRNA negatives `r num(h_lnc$lo_is_truth_cds)` are true and
+`r num(h_lnc$lo_on_negative_transcript)` are on lncRNAs. `r evidence("E12")`
+
+## Why
+
+### Exclusive attribution (failures of at least 300 nt)
+
+```{r attribution}
+attr_lab <- c(atypical_gc3_composition = "atypical GC3", low_complexity_or_repetitive = "low complexity / repetitive",
+              no_homology_orphan = "no homology", stronger_out_of_frame_orf = "stronger ORF in another frame",
+              unexplained = "unexplained")
+attr <- flags %>% filter(startsWith(flag, "attr:")) %>% mutate(cause = sub("attr:", "", flag))
+attr_all <- attr %>% filter(org == "ALL") %>% { setNames(.$fail_pct, .$cause) }
+kable(attr %>% select(org, cause, n_fail, fail_pct) %>% pivot_wider(names_from = cause, values_from = fail_pct))
+```
+
+Of `r num(attr %>% filter(org == "ALL") %>% pull(n_fail) %>% first())` failures of at least 300 nt:
+atypical GC3 `r f1(attr_all[["atypical_gc3_composition"]])`%, low complexity
+`r f1(attr_all[["low_complexity_or_repetitive"]])`%, no homology `r f1(attr_all[["no_homology_orphan"]])`%,
+stronger ORF in another frame `r f1(attr_all[["stronger_out_of_frame_orf"]])`% (the last two together
+`r f1(attr_all[["no_homology_orphan"]] + attr_all[["stronger_out_of_frame_orf"]])`%), unexplained
+`r f1(attr_all[["unexplained"]])`%. `r evidence("E12")`
+
+### Codon-usage heterogeneity
+
+```{r gc3}
+dq <- rate_feat %>% filter(org == "dmel", feature == "gc3") %>% arrange(quintile)
+chr4 <- by_chr %>% filter(org == "dmel", seqid == "4")
+chrY <- by_chr %>% filter(org == "dmel", seqid == "Y")
+tt_rp <- rp %>% filter(org == "tthermophila")
+o_all <- oracle %>% filter(org == "ALL")
+o_dmel <- oracle %>% filter(org == "dmel")
+other_models <- c(o_all$all_fail_ge300_pct, o_all$rand500_fail_ge300_pct, o_all$long500_fail_ge300_pct)
+purity <- meta$training_is_truth_cds / meta$n_training
+kable(dq %>% select(quintile, lo, hi, n, fail_score, fail_score_pct), caption = "D. melanogaster, ORFs >= 300 nt, by GC3 quintile.")
+kable(oracle %>% select(org, n, td_fail_pct, td_fail_ge300_pct, all_fail_ge300_pct, rand500_fail_ge300_pct,
+                        long500_fail_ge300_pct, gc3match500_fail_ge300_pct, td_scorefail_n,
+                        gc3match500_rescues_td_scorefail_pct),
+      caption = "Failure rates (%) under TransDecoder's model (td) and truth-trained models; rescue by the GC3-matched model.")
+```
+
+- *D. melanogaster*: `r f1(dq$fail_score_pct[1])`% of CDSs ($\ge$ 300 nt) in the lowest GC3 quintile
+  fail, against `r f1(min(dq$fail_score_pct[-1]))`--`r f1(max(dq$fail_score_pct[-1]))`% in the
+  others; chromosome 4 `r chr4$fail_score` of `r chr4$n`, chromosome Y `r chrY$fail_score` of
+  `r chrY$n`.
+- *T. thermophila* ribosomal proteins: `r tt_rp$rp_fail` of `r tt_rp$n_rp` fail.
+- GC3-matched model: rescues `r f1(o_all$gc3match500_rescues_td_scorefail_pct)`% of failures overall
+  and `r f1(o_dmel$gc3match500_rescues_td_scorefail_pct)`% in *D. melanogaster*;
+  `r chr4$rescued_gc3_model` of the `r chr4$fail_score` on chromosome 4.
+- Models trained on all annotated CDSs, 500 random or the 500 longest: `r f1(min(other_models))`--`r f1(max(other_models))`%
+  of ORFs $\ge$ 300 nt fail, against `r f1(o_all$td_fail_ge300_pct)`% with TransDecoder's model.
+  TransDecoder's training ORFs are `r f1(100 * min(purity))`--`r f1(100 * max(purity))`% annotated CDSs.
+
+`r evidence("E12")`
+
+### Low-complexity and repetitive proteins
+
+```{r lowc}
+hm <- flags %>% filter(org %in% c("human", "mouse"), flag == "f_low_complexity")
+lowc_fail <- sum(hm$n_fail * hm$fail_pct) / sum(hm$n_fail)
+lowc_ctrl <- sum(hm$n_ctrl * hm$ctrl_pct) / sum(hm$n_ctrl)
+hm_shift <- by_org %>% filter(org %in% c("human", "mouse")) %>% select(org, fail_coding, fail_S1_le0, fail_shifted_frame, fail_decoy_q)
+krtap <- fam %>% filter(org == "human", kind == "name_prefix", term == "KRTAP")
+fh <- feat %>% filter(org == "human", feature %in% c("aa_C", "aa_S", "aa_G", "aa_P", "seg_lowc_frac")) %>%
+  select(feature, n_fail, n_ctrl, fail_mean, ctrl_mean, mannwhitney_p)
+cys <- fh %>% filter(feature == "aa_C")
+seg <- fh %>% filter(feature == "seg_lowc_frac")
+kable(hm_shift, caption = "Human and mouse failures by cause (all lengths).")
+kable(fh, digits = 4, caption = "Human, failing ORFs >= 300 nt vs length-matched passing controls.")
+```
+
+- `r f1(lowc_fail)`% of human and mouse failures ($\ge$ 300 nt) are low-complexity or repetitive,
+  against `r f1(lowc_ctrl)`% of length-matched passing CDSs.
+- Human *KRTAP*: `r if (nrow(krtap)) paste(krtap$n_fail, "of", krtap$n) else "fewer than 3"` fail.
+- Failing human CDSs: Cys `r f1(100 * cys$fail_mean)`% vs `r f1(100 * cys$ctrl_mean)`%;
+  low-complexity fraction `r f3(seg$fail_mean)` vs `r f3(seg$ctrl_mean)`
+  (`r f1(seg$fail_mean / seg$ctrl_mean)`-fold).
+
+`r evidence("E12")`
+
+### Unconserved gene models
+
+```{r orphans}
+tt_orph <- flags %>% filter(org == "tthermophila", flag == "f_orphan")
+tt_alt <- flags %>% filter(org == "tthermophila", flag == "f_altframe_orf_stronger")
+sp <- rate_feat %>% filter(feature == "has_sprot") %>% select(org, has_sprot = quintile, n, fail_score, fail_score_pct)
+h_sp <- sp %>% filter(org == "human")
+kable(sp %>% pivot_wider(names_from = has_sprot, values_from = c(n, fail_score, fail_score_pct)),
+      caption = "Failure rate (ORFs >= 300 nt) by Swiss-Prot hit (0: none, 1: hit).")
+```
+
+- *T. thermophila*: `r f1(tt_orph$fail_pct)`% of failures have no Swiss-Prot or Pfam hit, against
+  `r f1(tt_orph$ctrl_pct)`% of controls; `r f1(tt_alt$fail_pct)`% have a stronger ORF in another frame.
+- Human: `r f1(h_sp$fail_score_pct[h_sp$has_sprot == 0])`% of CDSs without a Swiss-Prot hit fail,
+  against `r f1(h_sp$fail_score_pct[h_sp$has_sprot == 1])`% with one.
+
+`r evidence("E12")`
+
+### UTR length
+
+```{r utr}
+kable(utr %>% select(org, n_trim, n_full, fail_pct_trim, fail_pct_full, predicted_pct_trim, predicted_pct_full,
+                     category_changed, lost_only_in_full, lost_only_in_full_outcompeted))
+```
+
+Complete transcripts with UTRs trimmed to 250 nt (`trim`) and with full UTRs (`full`). The failure
+rate differs by at most `r f1(max(abs(utr$fail_pct_full - utr$fail_pct_trim)))` points; CDSs predicted
+with trimmed but not with full UTRs are mostly out-competed by another ORF
+(`r num(sum(utr$lost_only_in_full_outcompeted))` of `r num(sum(utr$lost_only_in_full))`).
+`r evidence("E12")`
+
+## Implications
+
+```{r altrules}
+alt_r <- alt %>% filter(input == "complete.wRand") %>%
+  mutate(pos_gain_pct = 100 * (pos_pass_A_no_S1 - pos_pass_current) / n_pos,
+         neg_fold = neg_with_candidate_A_no_S1 / neg_with_candidate_current)
+kable(alt %>% select(org, input, n_pos, n_neg, pos_pass_current, pos_pass_A_no_S1, neg_with_candidate_current,
+                     neg_with_candidate_A_no_S1, check_q_identical, check_q_n))
+kable(alt_r %>% select(org, pos_gain_pct, neg_fold), digits = 2)
+```
+
+Dropping $S_1>0$ (keeping $C>0$ and the q-value, recomputed with $C>0$ as the only eligibility
+condition) adds `r sprintf("%.2f", min(alt_r$pos_gain_pct))`--`r f1(max(alt_r$pos_gain_pct))`% of
+true CDSs as candidates, while the number of random sequences with a candidate changes
+`r f1(min(alt_r$neg_fold))`- to `r f1(max(alt_r$neg_fold))`-fold (median
+`r f1(median(alt_r$neg_fold))`). Candidate counts are upper bounds on calls (one ORF per transcript
+is kept). `r evidence("E12")`
+
+## Homology evidence recovers true coding regions, mostly in fragments
+
+Development runs (`pytd_dev_v2` vs `pytd_dev_v2_homology`, `data/benchmark/homology_vs_abinitio.tsv`);
+the release homology runs were not complete. `r evidence("E07")`
+
+```{r homology}
+hom <- hom %>% mutate(kind = case_when(grepl("wLnc", variant) ~ "lnc",
+                                       startsWith(variant, "complete") ~ "complete",
+                                       startsWith(variant, "fragments") ~ "fragments"))
+rng <- function(x) c(min(x), max(x))
+hc <- hom %>% filter(kind == "complete")
+hf <- hom %>% filter(kind == "fragments")
+hneg <- hom %>% filter(kind != "lnc")
+frag_s <- hom %>% filter(variant == "fragments") %>% { setNames(100 * .$d_f1_exact, .$org) }
+rand <- hom %>% filter(grepl("wRand", variant)) %>% mutate(d_neg = neg_pred_homology - neg_pred_abinitio)
+rand_other <- rand %>% filter(org != "tthermophila")
+rand_tt <- rand %>% filter(org == "tthermophila")
+lnc <- hom %>% filter(kind == "lnc")
+lncv <- function(o, v, col) lnc %>% filter(org == o, variant == v) %>% pull({{ col }})
+kable(hom %>% count(kind), caption = "Inputs per kind.")
+```
+
+- Complete transcripts (`r nrow(hc)` inputs): stop-level sensitivity
+  +`r f1(100 * min(hc$d_sensitivity_stop))` to +`r f1(100 * max(hc$d_sensitivity_stop))` points;
+  exact F1 `r f1(100 * min(hc$d_f1_exact))` to +`r f1(100 * max(hc$d_f1_exact))` points.
+- Fragments (`r nrow(hf)` inputs): sensitivity +`r f1(100 * min(hf$d_sensitivity_stop))` to
+  +`r f1(100 * max(hf$d_sensitivity_stop))`; exact F1 +`r f1(100 * min(hf$d_f1_exact))` to
+  +`r f1(100 * max(hf$d_f1_exact))` points.
+- Stranded fragments, exact F1: human +`r f1(frag_s[["human"]])`, mouse +`r f1(frag_s[["mouse"]])`,
+  *A. thaliana* +`r f1(frag_s[["athal"]])`, *T. thermophila* +`r f1(frag_s[["tthermophila"]])`,
+  *C. reinhardtii* +`r f1(frag_s[["creinhardtii"]])` points.
+- Stop-level precision, all inputs without lncRNAs: `r f1(100 * min(hneg$d_precision_stop))` to
+  +`r f1(100 * max(hneg$d_precision_stop))` points. Calls on random sequences rose by
+  `r min(rand_other$d_neg)`--`r max(rand_other$d_neg)` per input in seven organisms and
+  `r min(rand_tt$d_neg)`--`r max(rand_tt$d_neg)` in *T. thermophila*.
+- Human lncRNAs with a prediction: `r num(lncv("human", "complete.wLnc", neg_pred_abinitio))` to
+  `r num(lncv("human", "complete.wLnc", neg_pred_homology))` (mouse
+  `r num(lncv("mouse", "complete.wLnc", neg_pred_abinitio))` to `r num(lncv("mouse", "complete.wLnc", neg_pred_homology))`).
+  Exact F1 with lncRNA negatives: complete human `r f1(100 * lncv("human", "complete.wLnc", d_f1_exact))`,
+  mouse +`r f1(100 * lncv("mouse", "complete.wLnc", d_f1_exact))`; fragments human
+  +`r f1(100 * lncv("human", "fragments.wLnc", d_f1_exact))`, mouse
+  +`r f1(100 * lncv("mouse", "fragments.wLnc", d_f1_exact))` points.
+
+## Figure 5
+
+```{r fig5-data}
+SHORT <- c(pfalciparum = "P. falc.", tthermophila = "T. therm.", spombe = "S. pombe", athal = "A. thal.",
+           dmel = "D. mel.", mouse = "M. mus.", human = "H. sap.", creinhardtii = "C. rein.")
+BIN_LABEL <- c("<0.3", "0.3–\n0.6", "0.6–\n1", "1–2", "2–5", "≥5")
+ATTR_COL <- c(atypical_gc3_composition = "#2c7fb8", low_complexity_or_repetitive = "#d95f02",
+              no_homology_orphan = "#7570b3", stronger_out_of_frame_orf = "#e6ab02", unexplained = "#bdbdbd")
+it <- function(x) x  # organism labels are set in italic through element_text below
+
+pa_org <- by_len %>% filter(org != "ALL") %>%
+  mutate(bin = factor(cds_len_bin, LEN_BINS, BIN_LABEL), org = factor(org, ORGS)) %>%
+  filter(fail_coding_pct > 0)
+pa_all <- by_len %>% filter(org == "ALL") %>% mutate(bin = factor(cds_len_bin, LEN_BINS, BIN_LABEL)) %>%
+  select(bin, `all, failing` = fail_coding_pct, `all, still lost after length rule` = still_lost_pct) %>%
+  pivot_longer(-bin, names_to = "series", values_to = "pct") %>% filter(pct > 0)
+pb <- attr %>% mutate(org = factor(org, rev(c(ORGS, "ALL")), labels = rev(c(SHORT[ORGS], "all"))),
+                      cause = factor(cause, names(ATTR_COL)))
+pb_n <- pb %>% distinct(org, n_fail)
+pc <- dmel_c %>% filter(group != "other_chr") %>%
+  mutate(x = c(0, 1, 2, 3, 4, 5.6, 6.6)[match(group, c(paste0("gc3_q", 1:5), "chr4", "chrY"))],
+         lab = c("Q1\n(low)", "Q2", "Q3", "Q4", "Q5\n(high)", "4", "Y")[match(x, c(0, 1, 2, 3, 4, 5.6, 6.6))],
+         fail_pct = 100 * fail_score / n, rescued_pct = 100 * rescued_gc3_model / n,
+         label = ifelse(group %in% c("gc3_q1", "chr4", "chrY"), paste0(fail_score, "/", n), NA))
+pde <- hom %>% filter(variant %in% c("complete", "fragments")) %>%
+  mutate(org = factor(org, ORGS, labels = SHORT[ORGS]),
+         sens = 100 * d_sensitivity_stop, f1x = 100 * d_f1_exact)
+pf <- lvh %>% filter(org != "ALL", org != "tthermophila") %>%
+  mutate(org = factor(org, rev(ORGS[ORGS != "tthermophila"]), labels = rev(SHORT[ORGS[ORGS != "tthermophila"]])))
+```
+
+```{r fig5, fig.width = FULL_W, fig.height = 140 * MM}
+ital_y <- theme(axis.text.y = element_text(face = "italic"))
+ital_x <- theme(axis.text.x = element_text(face = "italic", angle = 45, hjust = 1))
+pA <- ggplot() +
+  geom_line(data = pa_org, aes(bin, fail_coding_pct, colour = org, group = org), linewidth = 0.35, alpha = 0.85) +
+  geom_point(data = pa_org, aes(bin, fail_coding_pct, colour = org), size = 0.7) +
+  geom_line(data = pa_all, aes(bin, pct, linetype = series, group = series), linewidth = 0.8) +
+  scale_colour_manual(values = ORG_COLOR, labels = SHORT, name = NULL) +
+  scale_linetype_manual(values = c("solid", "dashed"), name = NULL) +
+  scale_y_log10(breaks = c(0.1, 1, 10, 100), labels = c("0.1", "1", "10", "100"), limits = c(0.015, 150)) +
+  labs(x = "annotated CDS length (kb)", y = "true CDSs failing the coding test (%)") +
+  guides(colour = guide_legend(ncol = 4, order = 2, override.aes = list(size = 0.8)),
+         linetype = guide_legend(ncol = 1, order = 1, keywidth = unit(6, "mm"))) +
+  theme(legend.position = "bottom", legend.box = "vertical", legend.text = element_text(size = 5, face = "italic"),
+        legend.key.size = unit(2.2, "mm"), legend.spacing.y = unit(0, "mm"), legend.margin = margin(0, 0, 0, 0))
+pB <- ggplot(pb, aes(fail_pct, org, fill = cause)) +
+  geom_col(width = 0.72, colour = "white", linewidth = 0.2, position = position_stack(reverse = TRUE)) +
+  geom_text(data = pb_n, aes(x = 101, y = org, label = num(n_fail)), inherit.aes = FALSE, hjust = 0,
+            size = 1.9, colour = "#444444") +
+  scale_fill_manual(values = ATTR_COL, labels = attr_lab, name = NULL) +
+  scale_x_continuous(limits = c(0, 122), breaks = seq(0, 100, 25), expand = c(0, 0)) +
+  labs(x = "failures ≥300 nt (%)", y = NULL) +
+  guides(fill = guide_legend(ncol = 2)) + ital_y +
+  theme(legend.position = "bottom", axis.line.y = element_blank(), axis.ticks.y = element_blank(),
+        legend.text = element_text(size = 5), legend.key.size = unit(2.2, "mm"))
+pC <- ggplot(pc, aes(x)) +
+  geom_col(aes(y = fail_pct, fill = "fail"), width = 0.72) +
+  geom_col(aes(y = rescued_pct, fill = "rescued by GC3-matched model"), width = 0.72) +
+  geom_text(aes(y = fail_pct + 1, label = label), vjust = 0, size = 1.8, na.rm = TRUE) +
+  geom_vline(xintercept = 4.8, colour = "#bbbbbb", linewidth = 0.3, linetype = "dotted") +
+  scale_fill_manual(values = c(fail = "#cfcfcf", `rescued by GC3-matched model` = COMPLETE_C), name = NULL) +
+  scale_x_continuous(breaks = pc$x, labels = pc$lab, expand = expansion(add = 0.6)) +
+  scale_y_continuous(limits = c(0, max(58, max(pc$fail_pct) + 6)), expand = expansion(mult = c(0, 0.02))) +
+  labs(x = "GC3 quintile             chromosome", y = "CDSs ≥300 nt failing (%)", title = "D. melanogaster") +
+  theme(plot.title = element_text(face = "italic", hjust = 0.5), legend.position = "inside",
+        legend.position.inside = c(0.5, 0.82), legend.text = element_text(size = 5.5))
+hom_panel <- function(col, ylab) {
+  ggplot(pde, aes(org, .data[[col]], fill = variant)) +
+    geom_col(position = position_dodge(width = 0.55), width = 0.5) +
+    geom_hline(yintercept = 0, linewidth = 0.3) +
+    scale_fill_manual(values = c(complete = COMPLETE_C, fragments = FRAG_C), name = NULL) +
+    coord_cartesian(ylim = c(-0.5, 10)) + labs(x = NULL, y = ylab) + ital_x
+}
+pD <- hom_panel("sens", "homology − ab initio:\nstop-level sensitivity (points)") + theme(legend.position = "top")
+pE <- hom_panel("f1x", "homology − ab initio:\nexact-CDS F1 (points)") + theme(legend.position = "none")
+lvh_all_lab <- sprintf("all: %d of %d length rule only", lvh_all$length_only, lvh_all$rescued_by_length)
+pF <- pf %>% select(org, `also a homology hit` = also_homology_hit, `length rule only` = length_only) %>%
+  pivot_longer(-org, names_to = "kind", values_to = "n") %>%
+  ggplot(aes(n, org, fill = kind)) +
+  geom_col(width = 0.72, position = position_stack(reverse = TRUE)) +
+  geom_text(data = pf, aes(x = rescued_by_length + 3, y = org, label = paste0(length_only, "/", rescued_by_length)),
+            inherit.aes = FALSE, hjust = 0, size = 1.9, colour = "#444444") +
+  scale_fill_manual(values = c(`also a homology hit` = "#9ecae1", `length rule only` = TD_C), name = NULL) +
+  scale_x_continuous(limits = c(0, max(pf$rescued_by_length) * 1.25), expand = c(0, 0)) +
+  labs(x = "failing true CDSs kept by\nthe length rule", y = NULL, title = lvh_all_lab) + ital_y +
+  theme(legend.position = "inside", legend.position.inside = c(0.7, 0.2), axis.line.y = element_blank(), axis.ticks.y = element_blank())
+fig5 <- (pA | pB | pC) / (pD | pE | pF) + plot_layout(heights = c(1, 0.85)) +
+  plot_annotation(tag_levels = "a")
+save_fig(fig5, "fig5_failures", width = FULL_W, height = 150 * MM)
+fig5
+```
+
+Panel data:
+
+<details><summary>a: failure rate by CDS length (%), per organism and all</summary>
+
+```{r tab-a}
+kable(by_len %>% select(org, cds_len_bin, n, fail_coding, fail_coding_pct, still_lost, still_lost_pct))
+```
+</details>
+
+<details><summary>b: exclusive attribution of failures ≥300 nt (%)</summary>
+
+```{r tab-b}
+kable(attr %>% select(org, n_fail, cause, fail_pct) %>% pivot_wider(names_from = cause, values_from = fail_pct))
+```
+</details>
+
+```{r tab-c}
+kable(dmel_c, caption = "c: D. melanogaster CDSs >= 300 nt by GC3 quintile and chromosome.")
+kable(pde %>% select(org, variant, d_sensitivity_stop, d_f1_exact), caption = "d, e: homology minus ab initio (fractions; plotted x 100).")
+kable(lvh, caption = "f: failing true CDSs kept by the length rule.")
+```
+
+## Development rule vs release rule
+
+```{r dev-vs-release}
+cmp_org <- by_org %>% select(org, n_matched, fail_coding_pct, fail_ge300_pct_of_ge300, rescued_by_long_rule,
+                             fail_lost_pct_of_matched) %>%
+  left_join(dev_by_org %>% select(org, dev_n_matched = n_matched, dev_fail_coding_pct = fail_coding_pct,
+                                  dev_fail_ge300_pct = fail_ge300_pct_of_ge300,
+                                  dev_rescued_by_long_rule = rescued_by_long_rule,
+                                  dev_fail_lost_pct = fail_lost_pct_of_matched), by = "org")
+kable(cmp_org)
+```
+
+The release matched more CDSs than E12 for some organisms; the main difference is below 300 nt,
+where the q-value test replaces the fixed short-ORF test.
+
+## Checks against the manuscript
+
+Values quoted in `results_coding_failures.tex` (line numbers in the labels) against the release
+analysis (homology paragraph: development runs, see above).
+
+```{r checks}
+ok <- function(...) invisible(check_text(...))
+ok("L14 matched CDSs", ALL$n_matched, 135429)
+ok("L15 % failing", round(fail_pct, 1), 4.9, 0.05)
+ok("L19 % failing <300 nt", round(lp[["0-299"]]), 67, 0.5)
+ok("L20 % failing 300-599", round(lp[["300-599"]], 1), 9.4, 0.05)
+ok("L21 % failing 600-999", round(lp[["600-999"]], 1), 2.3, 0.05)
+ok("L22 % failing 1-2 kb", round(lp[["1000-1999"]], 1), 0.6, 0.05)
+ok("L23 % failing 2-5 kb (0.3-0.4)", round(lp[["2000-4999"]], 1), 0.3, 0.05)
+ok("L23 % failing >=5 kb (0.3-0.4)", round(lp[[">=5000"]], 1), 0.4, 0.05)
+ok("L25 failing CDSs >= 1 kb", n_ge1kb, 398)
+ok("L25-28 named genes failing (of 8)", nrow(named_tab), 8)
+ok("L31 T. thermophila failing >=1 kb lost", tt_lost_1kb, 76)
+ok("L32 failing CDSs kept by length rule", lvh_all$rescued_by_length, 447)
+ok("L33 length rule only", lvh_all$length_only, 85)
+ok("L33 length rule only (%)", round(lo_pct), 19, 0.5)
+ok("L38 % not predicted", round(lost_pct, 1), 4.6, 0.05)
+ok("L39 length-only predictions, min %", round(min(lro_b$length_rule_only_pct), 1), 0, 0.05)
+ok("L39 length-only predictions, max %", round(max(lro_b$length_rule_only_pct), 1), 1.4, 0.05)
+ok("L40 length-only on complete, false", lo_false, 4)
+ok("L40 length-only on complete, total", lo_total, 402)
+ok("L41 human lncRNA input, length-only true", h_lnc$lo_is_truth_cds, 47)
+ok("L41 human lncRNA input, length-only on lncRNAs", h_lnc$lo_on_negative_transcript, 99)
+ok("L44 attribution: atypical GC3 %", round(attr_all[["atypical_gc3_composition"]]), 33, 0.5)
+ok("L45 attribution: low complexity %", round(attr_all[["low_complexity_or_repetitive"]]), 32, 0.5)
+ok("L45 attribution: no homology + other frame %",
+   round(attr_all[["no_homology_orphan"]] + attr_all[["stronger_out_of_frame_orf"]]), 33, 0.5)
+ok("L45 attribution: no homology %", round(attr_all[["no_homology_orphan"]]), 26, 0.5)
+ok("L45 attribution: stronger ORF other frame %", round(attr_all[["stronger_out_of_frame_orf"]], 1), 6.5, 0.05)
+ok("L46 attribution: unexplained %", round(attr_all[["unexplained"]], 1), 2.4, 0.05)
+ok("L51 D. mel lowest GC3 quintile failing %", round(dq$fail_score_pct[1], 1), 13.5, 0.05)
+ok("L52 D. mel other quintiles, max %", round(max(dq$fail_score_pct[-1]), 1), 0.3, 0.05)
+ok("L52 D. mel chr 4 failing", chr4$fail_score, 40)
+ok("L52 D. mel chr 4 n", chr4$n, 80)
+ok("L52 D. mel chr Y failing", chrY$fail_score, 8)
+ok("L53 D. mel chr Y n", chrY$n, 22)
+ok("L56 T. therm ribosomal proteins failing", tt_rp$rp_fail, 21)
+ok("L56 T. therm ribosomal proteins n", tt_rp$n_rp, 60)
+ok("L58 GC3 model rescue, all %", round(o_all$gc3match500_rescues_td_scorefail_pct), 25, 0.5)
+ok("L59 GC3 model rescue, D. mel %", round(o_dmel$gc3match500_rescues_td_scorefail_pct), 69, 0.5)
+ok("L59 GC3 model rescue, chr 4", chr4$rescued_gc3_model, 39)
+ok("L61 other models fail %, min", round(min(other_models), 2), 2.08, 0.005)
+ok("L61 other models fail %, max", round(max(other_models), 2), 2.49, 0.005)
+ok("L61 TD model fail % (>=300 nt)", round(o_all$td_fail_ge300_pct, 2), 2.38, 0.005)
+ok("L61 training ORFs true CDSs, min %", round(100 * min(purity), 1), 99.8, 0.05)
+ok("L62 training ORFs true CDSs, max %", round(100 * max(purity), 1), 100, 0.05)
+ok("L69 human+mouse failures low complexity %", round(lowc_fail), 78, 0.5)
+ok("L70 human+mouse controls low complexity %", round(lowc_ctrl), 13, 0.5)
+ok("L71 human KRTAP failing", if (nrow(krtap)) krtap$n_fail else 0, 52)
+ok("L71 human KRTAP n", if (nrow(krtap)) krtap$n else NA, 72)
+ok("L74 human failing Cys %", round(100 * cys$fail_mean), 14, 0.5)
+ok("L74 human control Cys %", round(100 * cys$ctrl_mean, 1), 2.5, 0.05)
+ok("L75 low-complexity fraction fold", round(seg$fail_mean / seg$ctrl_mean), 4, 0.5)
+ok("L79 T. therm failures without homology %", round(tt_orph$fail_pct), 97, 0.5)
+ok("L80 T. therm controls without homology %", round(tt_orph$ctrl_pct), 58, 0.5)
+ok("L80 T. therm stronger ORF other frame (a quarter) %", round(tt_alt$fail_pct), 25, 3)
+ok("L81 human failing without Swiss-Prot hit %", round(h_sp$fail_score_pct[h_sp$has_sprot == 0], 1), 14.7, 0.05)
+ok("L82 human failing with Swiss-Prot hit %", round(h_sp$fail_score_pct[h_sp$has_sprot == 1], 1), 0.4, 0.05)
+ok("L89 dropping S1>0: true CDSs gained, min %", round(min(alt_r$pos_gain_pct), 2), 0.06, 0.005)
+ok("L89 dropping S1>0: true CDSs gained, max %", round(max(alt_r$pos_gain_pct)), 2, 0.5)
+ok("L90 dropping S1>0: random fold, min", round(min(alt_r$neg_fold)), 10, 0.5)
+ok("L90 dropping S1>0: random fold, max", round(max(alt_r$neg_fold)), 40, 0.5)
+# homology paragraph (development runs)
+ok("L96 homology inputs", nrow(hom), 84)
+ok("L104 complete inputs", nrow(hc), 48)
+ok("L105 complete: sensitivity gain min", round(100 * min(hc$d_sensitivity_stop), 1), 0.1, 0.05)
+ok("L105 complete: sensitivity gain max", round(100 * max(hc$d_sensitivity_stop), 1), 2.5, 0.05)
+ok("L105 complete: exact F1 min", round(100 * min(hc$d_f1_exact), 1), -0.1, 0.05)
+ok("L105 complete: exact F1 max", round(100 * max(hc$d_f1_exact), 1), 1.8, 0.05)
+ok("L106 fragment inputs", nrow(hf), 32)
+ok("L106 fragments: sensitivity min", 100 * min(hf$d_sensitivity_stop), 1.3, 0.05)  # 1.25: unrounded, R rounds to even
+ok("L106 fragments: sensitivity max", 100 * max(hf$d_sensitivity_stop), 9.9, 0.05)  # 9.85
+ok("L107 fragments: exact F1 min", round(100 * min(hf$d_f1_exact), 1), 0.6, 0.05)
+ok("L107 fragments: exact F1 max", round(100 * max(hf$d_f1_exact), 1), 5.3, 0.05)
+ok("L108 stranded fragments F1, min of human/mouse/athal", round(min(frag_s[c("human", "mouse", "athal")]), 1), 3.8, 0.05)
+ok("L108 stranded fragments F1, max of human/mouse/athal", round(max(frag_s[c("human", "mouse", "athal")]), 1), 4.7, 0.05)
+ok("L109 stranded fragments F1, T. therm", round(frag_s[["tthermophila"]], 1), 0.6, 0.05)
+ok("L110 stranded fragments F1, C. rein", round(frag_s[["creinhardtii"]], 1), 0.6, 0.05)
+ok("L115 precision change min", round(100 * min(hneg$d_precision_stop), 1), -0.6, 0.05)
+ok("L116 precision change max", round(100 * max(hneg$d_precision_stop), 1), 1.8, 0.05)
+ok("L116 random calls added, 7 orgs, min", min(rand_other$d_neg), 0)
+ok("L116 random calls added, 7 orgs, max", max(rand_other$d_neg), 3)
+ok("L117 random calls added, T. therm, min", min(rand_tt$d_neg), 12)
+ok("L117 random calls added, T. therm, max", max(rand_tt$d_neg), 36)
+ok("L118 human lncRNAs predicted, ab initio", lncv("human", "complete.wLnc", neg_pred_abinitio), 6943)
+ok("L118 human lncRNAs predicted, homology", lncv("human", "complete.wLnc", neg_pred_homology), 7827)
+ok("L118 mouse lncRNAs predicted, ab initio", lncv("mouse", "complete.wLnc", neg_pred_abinitio), 5423)
+ok("L118 mouse lncRNAs predicted, homology", lncv("mouse", "complete.wLnc", neg_pred_homology), 5921)
+ok("L119 complete+lnc exact F1, human", round(100 * lncv("human", "complete.wLnc", d_f1_exact), 1), -0.7, 0.05)
+ok("L119 complete+lnc exact F1, mouse", round(100 * lncv("mouse", "complete.wLnc", d_f1_exact), 1), 0.2, 0.05)
+ok("L120 fragments+lnc exact F1, human", round(100 * lncv("human", "fragments.wLnc", d_f1_exact), 1), 2.1, 0.05)
+ok("L121 fragments+lnc exact F1, mouse", round(100 * lncv("mouse", "fragments.wLnc", d_f1_exact), 1), 3.3, 0.05)
+check_report()
+```
