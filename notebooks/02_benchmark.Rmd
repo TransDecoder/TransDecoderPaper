@@ -500,6 +500,45 @@ kable(hom_sum %>% mutate(across(starts_with("d_"), ~ round(.x, 4))),
 details(hom %>% mutate(across(starts_with("d_"), ~ round(.x, 4))), "per input")
 ```
 
+## Fragments by partial type
+
+Each fragment keeps either the 3' piece of the transcript (stop present, start lost: a 5' partial
+CDS) or the 5' piece (start present, stop lost: a 3' partial CDS), about half each. For a 3' partial
+the reference 3' end is the last whole codon at the fragment end, so a stop-level match means the
+prediction runs to the fragment end; for a 5' partial an exact match means it starts at the fragment
+start (no start codon). Table from `pipeline/derive/02_partial_types.py` (same matching as
+`score_predictions.py`; summed over the two types it reproduces every true-positive count of the
+summary). Stranded fragments, median over organisms (seven for the tools that do not support the
+ciliate code). Precision is over predictions on fragments of that type.
+Inputs with both ends missing (internal fragments) are not part of the benchmark.
+
+```{r partial-types}
+PT <- read_tab("benchmark", "final_v7", "partial_types.tsv") %>%
+  filter(!(org == "tthermophila" & tool %in% INCOMPATIBLE))
+PT_TOOLS <- c(pytd_v7 = "TransDecoder", perl_td_v600 = "TransDecoder v6.0.0", prodigal = "Prodigal",
+              gmst = "GeneMarkS-T", codan = "CodAn", cpat = "CPAT", cpc2 = "CPC2", rnasamba = "RNAsamba",
+              borf = "Borf", longest_orf = "longest ORF")
+pt <- PT %>% filter(variant == "fragments", tool %in% names(PT_TOOLS)) %>%
+  mutate(type = recode(type, `5prime_partial` = "5' partial (start lost)", `3prime_partial` = "3' partial (stop lost)")) %>%
+  group_by(tool, type) %>%
+  summarise(n_org = n(), across(c(sensitivity_stop, sensitivity_exact, precision_stop), median), .groups = "drop") %>%
+  mutate(method = factor(PT_TOOLS[tool], levels = PT_TOOLS)) %>% arrange(method, type)
+pt_wide <- pt %>% select(method, type, sensitivity_stop, sensitivity_exact, precision_stop) %>%
+  pivot_wider(names_from = type, values_from = c(sensitivity_stop, sensitivity_exact, precision_stop), names_glue = "{type}: {.value}")
+kable(pt_wide %>% mutate(across(where(is.numeric), r3)))
+details(PT %>% filter(tool %in% names(PT_TOOLS)) %>% mutate(across(starts_with(c("sens", "prec")), r3)),
+        "per organism, input and tool")
+PTV <- function(tool, type, m) pt[[m]][pt$tool == tool & grepl(paste0("^", type), pt$type)]
+```
+
+TransDecoder: on 3' partials stop-level sensitivity `r f3(PTV(TD, "3'", "sensitivity_stop"))`, exact
+`r f3(PTV(TD, "3'", "sensitivity_exact"))`; on 5' partials `r f3(PTV(TD, "5'", "sensitivity_stop"))`
+and `r f3(PTV(TD, "5'", "sensitivity_exact"))`. Prodigal: 3' partials `r f3(PTV("prodigal", "3'", "sensitivity_stop"))` /
+`r f3(PTV("prodigal", "3'", "sensitivity_exact"))`, 5' partials `r f3(PTV("prodigal", "5'", "sensitivity_stop"))` /
+`r f3(PTV("prodigal", "5'", "sensitivity_exact"))`. The classifiers that require an ATG (CPAT, CPC2,
+RNAsamba) have exact sensitivity of at most `r f3(max(sapply(c("cpat", "cpc2", "rnasamba"), PTV, type = "5'", m = "sensitivity_exact")))`
+on 5' partials.
+
 ## Method rankings across inputs and measures
 
 Each method is ranked in every combination of organism, stranded input (complete, complete with full

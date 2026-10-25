@@ -1,0 +1,155 @@
+\setlength{\LTcapwidth}{\textwidth}
+\begin{longtable}{@{}>{\raggedright}p{3.2cm}>{\raggedright\arraybackslash}p{12.3cm}@{}}
+\caption{\textbf{The compared methods in detail.} Features from the installed code and the methods' papers (evidence E27; ANGEL was not benchmarked). Benchmark values are medians over the organisms of complete stop / exact F1, fragment stop / exact F1, stop-level precision on complete transcripts with random sequence added, and exact sensitivity on 3$'$- and 5$'$-partial fragments (Table~1 and Supplementary Table~S8).}\label{tab:comparators_detail}\\
+\toprule
+Feature & Description \\
+\midrule
+\endfirsthead
+\toprule
+Feature & Description \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\multicolumn{2}{@{}l}{\textbf{TransDecoder} (Perl v7.0.0 / PyTD v0.2.0)} \\*
+Designed for & eukaryotic transcript assemblies \\*
+Coding model & 3-periodic 5th-order Markov chain; frame contrast \\*
+Training & self-trained on longest ORFs of the input (presets optional) \\*
+CDS choice & rank candidates by homology, score, length \\*
+Several CDSs per sequence & optional (-{}-retain\_multiple\_orfs) \\*
+Start codon & most upstream ATG; open 5$'$ ends trimmed by coding vs UTR+Kozak score \\*
+Partial CDSs & 5$'$, 3$'$ and internal partial \\*
+Genetic code & yes (-G, 24 codes) \\*
+Strand & both or forward (-S) \\*
+Noncoding control & target-decoy q-value (shuffled transcripts) + GC-calibrated length \\*
+External evidence & optional BLASTP/DIAMOND and Pfam hits \\*
+Run here & Release defaults (Perl v7.0.0 and PyTD give identical predictions); ciliate code for \textit{T.~thermophila}. \\*
+Benchmark & complete 0.980 / 0.912; fragments 0.930 / 0.822; precision +random 0.994; exact 3$'$ / 5$'$ partial 0.816 / 0.735 \\*
+Compared & Most often first or in the top three of the method ranks; high precision with random sequence. \\
+\addlinespace[6pt]
+\multicolumn{2}{@{}l}{\textbf{Prodigal} \citep{Hyatt2010} (2.6.3)} \\*
+Designed for & prokaryotic genomes and metagenomes \\*
+Coding model & in-frame hexamer log-ratio ($\sim$5th-order) + start score (RBS, start type, upstream) \\*
+Training & self-trained on the input (GC frame bias, then iterative) \\*
+CDS choice & dynamic-programming gene tiling \\*
+Several CDSs per sequence & yes (by design) \\*
+Start codon & ATG/GTG/TTG with RBS motif model \\*
+Partial CDSs & genes may run off either end (unless -c) \\*
+Genetic code & yes (-g NCBI table) \\*
+Strand & both (forward-only by filtering) \\*
+Noncoding control & score $>$ 0; short-gene penalty \\*
+External evidence & none \\*
+Run here & Single mode, full motif scan (-n), the organism's translation table. \\*
+Benchmark & complete 0.937 / 0.643; fragments 0.936 / 0.782; precision +random 0.660; exact 3$'$ / 5$'$ partial 0.650 / 0.937 \\*
+Compared & Highest stop-level sensitivity, but reports ORFs in many random sequences (score $>$ 0 suffices). Runs partial genes to the sequence ends, so best exact sensitivity on 5$'$ partials and poor start placement on complete transcripts. \\
+\addlinespace[6pt]
+\multicolumn{2}{@{}l}{\textbf{GeneMarkS-T} \citep{Tang2015} (gmst.pl 5.1)} \\*
+Designed for & eukaryotic transcripts \\*
+Coding model & HSMM; 3-periodic 4th-order Markov chain (non-coding 2nd order) \\*
+Training & self-trained, iterative, up to 3 GC clusters \\*
+CDS choice & Viterbi parse; best-scoring CDS kept (-{}-filter 1) \\*
+Several CDSs per sequence & optional (-{}-filter 0) \\*
+Start codon & ATG; learned 12-nt Kozak positional model \\*
+Partial CDSs & incomplete genes at ends \\*
+Genetic code & codes 1, 4, 11 only \\*
+Strand & both or direct (-{}-strand) \\*
+Noncoding control & implicit (parse may be non-coding) \\*
+External evidence & none \\*
+Run here & Self-trained on each input; not applicable to \textit{T.~thermophila}. \\*
+Benchmark & complete 0.974 / 0.783; fragments 0.866 / 0.746; precision +random 0.996; exact 3$'$ / 5$'$ partial 0.593 / 0.742 \\*
+Compared & Self-trained like TransDecoder; highest precision with random sequence, lower fragment sensitivity and exact F1. \\
+\addlinespace[6pt]
+\multicolumn{2}{@{}l}{\textbf{CodAn} \citep{Nachtigall2021} (1.1)} \\*
+Designed for & eukaryotic transcripts \\*
+Coding model & GHMM; 3-phase Markov chain up to order 4; 10 GC submodels \\*
+Training & pre-trained by clade (vertebrate, invertebrate, plant, fungi) \\*
+CDS choice & Viterbi parse; one CDS by architecture \\*
+Several CDSs per sequence & no \\*
+Start codon & ATG + 4-nt downstream pattern \\*
+Partial CDSs & separate partial model (5$'$/3$'$ open) \\*
+Genetic code & none (stops fixed in trained models) \\*
+Strand & plus, minus or both (higher Viterbi score) \\*
+Noncoding control & implicit (all-UTR parse allowed) \\*
+External evidence & optional BLASTX labels only \\*
+Run here & Pre-trained model of the closest clade; full model for complete inputs, partial model for fragments; not applicable to \textit{T.~thermophila}. \\*
+Benchmark & complete 0.974 / 0.830; fragments 0.912 / 0.761; precision +random 0.946; exact 3$'$ / 5$'$ partial 0.529 / 0.910 \\*
+Compared & Strong on fragments with its partial model; clade model fits AT-rich \textit{P.~falciparum} poorly (complete stop F1 0.710); slowest method (median 5.8 h per input). \\
+\addlinespace[6pt]
+\multicolumn{2}{@{}l}{\textbf{CPAT} \citep{Wang2013} (3.0.5)} \\*
+Designed for & coding-potential classification (lncRNA vs mRNA) \\*
+Coding model & logistic regression: transcript length, ORF length, Fickett, hexamer log-likelihood \\*
+Training & pre-trained (human, mouse, fly, zebrafish); user-trainable \\*
+CDS choice & highest probability among 5 longest ATG ORFs \\*
+Several CDSs per sequence & no \\*
+Start codon & first ATG of the ORF \\*
+Partial CDSs & 3$'$ open only \\*
+Genetic code & yes (-{}-start, -{}-stop) \\*
+Strand & sense or both (-{}-antisense) \\*
+Noncoding control & probability cutoff (human 0.364) \\*
+External evidence & none \\*
+Run here & Prebuilt human, mouse or fly model with its published cutoff; human model for other organisms; TGA as the only stop for \textit{T.~thermophila}. \\*
+Benchmark & complete 0.965 / 0.940; fragments 0.783 / 0.440; precision +random 0.971; exact 3$'$ / 5$'$ partial 0.724 / 0.014 \\*
+Compared & High exact F1 on complete transcripts; needs an ATG, so almost no exact 5$'$-partial starts; precision with random sequence falls on GC-rich \textit{C.~reinhardtii} (0.629). \\
+\addlinespace[6pt]
+\multicolumn{2}{@{}l}{\textbf{CPC2} \citep{Kang2017} (1.0.1)} \\*
+Designed for & coding-potential classification \\*
+Coding model & RBF SVM: transcript Fickett, peptide length, pI, ORF integrity \\*
+Training & pre-trained on human only \\*
+CDS choice & longest ATG ORF \\*
+Several CDSs per sequence & no \\*
+Start codon & first ATG of the longest ORF \\*
+Partial CDSs & 3$'$ open only (penalised via integrity) \\*
+Genetic code & none (hard-coded) \\*
+Strand & forward or both (-r) \\*
+Noncoding control & SVM class label \\*
+External evidence & none \\*
+Run here & ORF reported for transcripts classified as coding (--ORF); not applicable to \textit{T.~thermophila}. \\*
+Benchmark & complete 0.964 / 0.935; fragments 0.572 / 0.183; precision +random 0.982; exact 3$'$ / 5$'$ partial 0.239 / 0.015 \\*
+Compared & ORF integrity is a feature, so few calls on 3$'$ partials (stop-level sensitivity 0.247). \\
+\addlinespace[6pt]
+\multicolumn{2}{@{}l}{\textbf{RNAsamba} \citep{Camargo2020} (0.2.5)} \\*
+Designed for & coding-potential classification incl. partial transcripts \\*
+Coding model & neural network (IGLOO; whole sequence + longest-ORF branches) \\*
+Training & pre-trained on human (full and partial weights); user-trainable \\*
+CDS choice & longest ATG ORF \\*
+Several CDSs per sequence & no \\*
+Start codon & first ATG of the longest ORF \\*
+Partial CDSs & 3$'$ open only; partial-length weights \\*
+Genetic code & none \\*
+Strand & forward only \\*
+Noncoding control & softmax label (score $\ge$ 0.5) \\*
+External evidence & none \\*
+Run here & Human-trained full-length or partial weights; stranded inputs only; not applicable to \textit{T.~thermophila}. \\*
+Benchmark & complete 0.991 / 0.961; fragments 0.864 / 0.486; precision +random 0.721; exact 3$'$ / 5$'$ partial 0.878 / 0.018 \\*
+Compared & Highest F1 on complete transcripts; reports ORFs in many random sequences. \\
+\addlinespace[6pt]
+\multicolumn{2}{@{}l}{\textbf{Borf} \citep{Signal2021} (1.2)} \\*
+Designed for & ORF prediction in de novo assemblies \\*
+Coding model & none (length only) \\*
+Training & none \\*
+CDS choice & longest ATG ORF ($\ge$ 100 aa) \\*
+Several CDSs per sequence & no (ties kept; -a for all) \\*
+Start codon & first ATG; extended to 5$'$ end if no upstream stop and $>$ 50 aa upstream \\*
+Partial CDSs & 5$'$ and 3$'$ incomplete \\*
+Genetic code & none (standard code) \\*
+Strand & forward or both (-s) \\*
+Noncoding control & length cutoff only \\*
+External evidence & none \\*
+Run here & Default settings; not applicable to \textit{T.~thermophila}. \\*
+Benchmark & complete 0.976 / 0.923; fragments 0.816 / 0.538; precision +random 0.838; exact 3$'$ / 5$'$ partial 0.679 / 0.262 \\*
+Compared & Longest ATG ORF of at least 100 aa without a coding score. \\
+\addlinespace[6pt]
+\multicolumn{2}{@{}l}{\textbf{ANGEL} \citep{Shimizu2006} (3.0; not benchmarked)} \\*
+Designed for & ORF prediction in full-length cDNA (PacBio) \\*
+Coding model & self-trained hexamer model + AdaBoost on amino-acid, di-amino-acid and codon features \\*
+Training & self-trained on longest ORFs of the input \\*
+CDS choice & longest of classifier and longest-ORF predictions \\*
+Several CDSs per sequence & no (best mode) \\*
+Start codon & in-frame ATG extension \\*
+Partial CDSs & 5$'$ and 3$'$ partial \\*
+Genetic code & none (hard-coded) \\*
+Strand & forward or both (-{}-use\_rev\_strand) \\*
+Noncoding control & classifier + minimum lengths \\*
+External evidence & none \\*
+Run here & Dropped: each of three \textit{A.~thaliana} runs took 17--22 h. \\
+\end{longtable}
