@@ -11,6 +11,11 @@ Per (org, variant, tool, type): references, stop- and exact-level true positives
 transcripts of that type and how many of them are credited, giving sensitivity and precision
 (precision excludes predictions on random negatives, which have no type).
 
+Also scored: the balanced mixed inputs fragments_mixed_t1..t3 (pipeline/benchmark/make_mixed_inputs.py,
+E28), each 25% complete, 5prime_partial, 3prime_partial and internal (both ends missing; a
+stop-level match means the prediction runs to the fragment end, exact also from the fragment
+start). Their longest-ORF baseline comes from the pytd_v7 run (they have no `pytd` run).
+
 usage: 02_partial_types.py <inputs_dir> <runs_dir> > data/benchmark/final_v7/partial_types.tsv
 """
 import collections
@@ -20,7 +25,8 @@ import sys
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "benchmark_v2", "scripts"))
 from score_predictions import TOL, ends, read_preds, read_truth  # noqa: E402
 
-VARIANTS = ["fragments", "fragments.unstranded", "fragments.wRand", "fragments.unstranded.wRand"]
+VARIANTS = ["fragments", "fragments.unstranded", "fragments.wRand", "fragments.unstranded.wRand",
+            "fragments_mixed_t1", "fragments_mixed_t2", "fragments_mixed_t3"]
 TOOLS = ["pytd_v7", "perl_td_v7", "perl_td_v600", "prodigal", "gmst", "codan", "cpat", "cpc2", "rnasamba", "borf",
          "longest_orf"]
 
@@ -62,6 +68,8 @@ def main():
             for tool in TOOLS:
                 if tool == "longest_orf":
                     pf = os.path.join(runs, org, variant, "pytd", "longest_orf.preds.tsv")
+                    if not os.path.exists(pf):
+                        pf = os.path.join(runs, org, variant, "pytd_v7", "longest_orf.preds.tsv")
                 else:
                     pf = os.path.join(runs, org, variant, tool, "preds.tsv")
                 if not os.path.exists(pf):

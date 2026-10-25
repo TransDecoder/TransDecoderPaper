@@ -510,7 +510,7 @@ start (no start codon). Table from `pipeline/derive/02_partial_types.py` (same m
 `score_predictions.py`; summed over the two types it reproduces every true-positive count of the
 summary). Stranded fragments, median over organisms (seven for the tools that do not support the
 ciliate code). Precision is over predictions on fragments of that type.
-Inputs with both ends missing (internal fragments) are not part of the benchmark.
+Fragments with both ends missing (internal) are scored in the balanced mixed inputs (next section).
 
 ```{r partial-types}
 PT <- read_tab("benchmark", "final_v7", "partial_types.tsv") %>%
@@ -538,6 +538,143 @@ and `r f3(PTV(TD, "5'", "sensitivity_exact"))`. Prodigal: 3' partials `r f3(PTV(
 `r f3(PTV("prodigal", "5'", "sensitivity_exact"))`. The classifiers that require an ATG (CPAT, CPC2,
 RNAsamba) have exact sensitivity of at most `r f3(max(sapply(c("cpat", "cpc2", "rnasamba"), PTV, type = "5'", m = "sensitivity_exact")))`
 on 5' partials.
+
+## Balanced mixed inputs
+
+The `fragments` inputs hold one partial type per sequence and no complete transcripts, and have no
+internal fragments (both ends missing). Methods that train on their input (TransDecoder's coding and
+start models, GeneMarkS-T, Prodigal) are affected by such a composition. The balanced mixed inputs
+`fragments_mixed_t1`, `_t2` and `_t3` (`pipeline/benchmark/make_mixed_inputs.py`, `r evidence("E28")`)
+are built from the same transcripts as `fragments` (UTRs at most 250 nt). Each one assigns every transcript at random to one of four
+equal groups:
+
+- complete (unchanged);
+- 5' partial: cut inside codons 2 to 80% of the CDS, uniformly, keeping the 3' piece;
+- 3' partial: cut from 20% of the CDS to just before the stop codon, uniformly, keeping the 5' piece;
+- internal: a window of about half the CDS (fraction from $\mathcal N(0.5,0.1)$), with both ends inside the CDS.
+
+At least 150 nt of CDS must remain. Trials 1-3 use seeds 1-3 for both the assignment and the
+cuts. The inputs are stranded, the tools were run as for `fragments` (CodAn partial models,
+RNAsamba partial weights) and the scoring is the same. For an internal fragment, a stop-level match
+means the prediction runs to the fragment end; an exact match means it also starts at the fragment start.
+Values are the median over organisms (seven for the tools without the ciliate code) in each trial,
+shown as the mean over the three trials (min-max over trials). The longest-ORF baseline is the
+longest ORF of the `pytd_v7` LongOrfs run.
+
+```{r mixed}
+MX_TOOLS <- c(pytd_v7 = "TransDecoder", perl_td_v600 = "TransDecoder v6.0.0", longest_orf = "longest ORF",
+              prodigal = "Prodigal", gmst = "GeneMarkS-T", codan = "CodAn", cpat = "CPAT", rnasamba = "RNAsamba",
+              cpc2 = "CPC2", borf = "Borf")
+trial_of <- function(v) sub("fragments_mixed_", "", v)
+MX_RAW <- read_tab("benchmark", "final_v7", "mixed_scores.tsv") %>% mutate(trial = trial_of(variant))
+MX <- MX_RAW %>% filter(!(org == "tthermophila" & tool %in% INCOMPATIBLE))
+mr <- function(x) sprintf("%.3f (%.3f-%.3f)", mean(x), min(x), max(x))
+mx_metrics <- c("sensitivity_stop", "precision_stop", "f1_stop", "sensitivity_exact", "precision_exact", "f1_exact")
+mx_trial <- MX %>% filter(tool %in% names(MX_TOOLS)) %>% group_by(tool, trial) %>%
+  summarise(n_org = n(), across(all_of(mx_metrics), median), .groups = "drop")
+mx <- mx_trial %>% group_by(tool) %>%
+  summarise(organisms = paste(unique(range(n_org)), collapse = "-"), trials = n(),
+            across(all_of(mx_metrics), mr), .groups = "drop") %>%
+  mutate(method = factor(MX_TOOLS[tool], levels = MX_TOOLS)) %>% arrange(method) %>%
+  select(method, organisms, trials, all_of(mx_metrics))
+mx_mean <- mx_trial %>% group_by(tool) %>% summarise(across(all_of(mx_metrics), mean), .groups = "drop")
+MXV <- function(tool, m) mx_mean[[m]][mx_mean$tool == tool]
+mx_n <- MX %>% filter(tool == TD) %>% select(org, trial, n_truth) %>% pivot_wider(names_from = trial, values_from = n_truth)
+mx_trial_spread <- mx_trial %>% group_by(tool) %>%
+  summarise(across(all_of(mx_metrics), ~ max(.x) - min(.x)), .groups = "drop")
+kable(mx, caption = "Balanced mixed inputs: all references, median over organisms, mean (range) over 3 trials")
+details(mx_n %>% mutate(organism = ORG_LABEL[org]) %>% select(organism, starts_with("t")),
+        "references per organism and trial")
+details(MX %>% filter(tool %in% names(MX_TOOLS)) %>%
+          select(org, trial, tool, n_truth, n_pred, tp_stop, tp_exact, all_of(mx_metrics), runtime_sec) %>%
+          mutate(across(all_of(mx_metrics), r3), runtime_sec = round(runtime_sec)) %>% arrange(org, tool, trial),
+        "per organism, trial and tool")
+```
+
+Over the three trials the per-trial medians of every method and measure vary by at most
+`r f3(max(as.matrix(mx_trial_spread[, mx_metrics])))` (largest range). TransDecoder: stop-level F1
+`r f3(MXV(TD, "f1_stop"))`, exact F1 `r f3(MXV(TD, "f1_exact"))`; Prodigal `r f3(MXV("prodigal", "f1_stop"))` /
+`r f3(MXV("prodigal", "f1_exact"))`; GeneMarkS-T `r f3(MXV("gmst", "f1_stop"))` / `r f3(MXV("gmst", "f1_exact"))`;
+longest ORF `r f3(MXV("longest_orf", "f1_stop"))` / `r f3(MXV("longest_orf", "f1_exact"))`.
+
+**By partial type** (`02_partial_types.py` on the mixed inputs). Sensitivity is per type. Precision
+is over the predictions on sequences of that type, as in the previous section.
+
+```{r mixed-types}
+MPT <- read_tab("benchmark", "final_v7", "partial_types.tsv") %>%
+  filter(grepl("^fragments_mixed_", variant), !(org == "tthermophila" & tool %in% INCOMPATIBLE),
+         tool %in% names(MX_TOOLS)) %>% mutate(trial = trial_of(variant))
+TYPE_LABEL <- c(complete = "complete", `5prime_partial` = "5' partial", `3prime_partial` = "3' partial",
+                internal = "internal")
+mpt_trial <- MPT %>% group_by(tool, type, trial) %>%
+  summarise(across(c(sensitivity_stop, sensitivity_exact, precision_stop), median), .groups = "drop")
+mpt_mean <- mpt_trial %>% group_by(tool, type) %>%
+  summarise(across(c(sensitivity_stop, sensitivity_exact, precision_stop), mean), .groups = "drop")
+mpt_tab <- function(m) mpt_trial %>% group_by(tool, type) %>% summarise(v = mr(.data[[m]]), .groups = "drop") %>%
+  mutate(type = factor(TYPE_LABEL[type], levels = TYPE_LABEL), method = factor(MX_TOOLS[tool], levels = MX_TOOLS)) %>%
+  arrange(type) %>% select(method, type, v) %>% pivot_wider(names_from = type, values_from = v) %>% arrange(method)
+kable(mpt_tab("sensitivity_stop"), caption = "Stop-level sensitivity by type")
+kable(mpt_tab("sensitivity_exact"), caption = "Exact sensitivity by type")
+details(mpt_tab("precision_stop"), "stop-level precision by type")
+details(MPT %>% select(org, trial, tool, type, n_truth, n_pred, tp_stop, tp_exact, sensitivity_stop,
+                       sensitivity_exact, precision_stop) %>%
+          mutate(across(c(sensitivity_stop, sensitivity_exact, precision_stop), r3)) %>% arrange(org, tool, type, trial),
+        "per organism, trial, tool and type")
+MPTV <- function(tool, type, m) mpt_mean[[m]][mpt_mean$tool == tool & mpt_mean$type == type]
+f3p <- function(x) if (length(x) == 0) "(pending)" else f3(x)
+codan_mx <- MX_RAW %>% filter(tool == "codan") %>% distinct(org, trial)
+```
+
+On internal fragments TransDecoder has stop-level sensitivity `r f3(MPTV(TD, "internal", "sensitivity_stop"))`
+and exact `r f3(MPTV(TD, "internal", "sensitivity_exact"))`. Prodigal has `r f3(MPTV("prodigal", "internal", "sensitivity_stop"))` /
+`r f3(MPTV("prodigal", "internal", "sensitivity_exact"))`, GeneMarkS-T `r f3(MPTV("gmst", "internal", "sensitivity_stop"))` /
+`r f3(MPTV("gmst", "internal", "sensitivity_exact"))` and CodAn `r f3p(MPTV("codan", "internal", "sensitivity_stop"))` /
+`r f3p(MPTV("codan", "internal", "sensitivity_exact"))`
+(CodAn: `r nrow(codan_mx)` of 21 runs scored so far; CodAn takes hours per input and its runs
+were still going when this was knitted; its rows appear in the tables once `score_mixed.py` and
+`02_partial_types.py` are re-run). The ATG-requiring classifiers (CPAT, CPC2, RNAsamba, Borf)
+have stop-level sensitivity of at most `r f3(max(sapply(c("cpat", "cpc2", "rnasamba", "borf"), MPTV, type = "internal", m = "sensitivity_stop")))`
+on internal fragments. The longest ORF of an internal fragment is almost always the reference frame, which has no stop
+codon, so the baseline is near 1 on this type by construction (`r f3(MPTV("longest_orf", "internal", "sensitivity_exact"))`).
+
+**5' partials by distance to the first in-frame ATG and by the share of the CDS removed**
+(`five_prime_by_distance.tsv`, from `score_mixed.py`). On a 5' partial an exact match means the
+prediction is left open at the fragment start. A stop-level match without an exact match usually
+means the prediction starts at a downstream ATG. "none": no in-frame ATG in the remaining CDS.
+
+```{r mixed-5p}
+FD <- read_tab("benchmark", "final_v7", "five_prime_by_distance.tsv") %>%
+  filter(!(org == "tthermophila" & tool %in% INCOMPATIBLE), tool %in% names(MX_TOOLS)) %>%
+  mutate(trial = trial_of(variant))
+fd_tab <- function(stratum_, m) {
+  bins <- unique(FD$bin[FD$stratum == stratum_])
+  FD %>% filter(stratum == stratum_) %>% group_by(tool, bin, trial) %>% summarise(v = median(.data[[m]]), .groups = "drop") %>%
+    group_by(tool, bin) %>% summarise(v = r3(mean(v)), .groups = "drop") %>%
+    mutate(bin = factor(bin, levels = bins), method = factor(MX_TOOLS[tool], levels = MX_TOOLS)) %>% arrange(bin) %>%
+    select(method, bin, v) %>% pivot_wider(names_from = bin, values_from = v) %>% arrange(method)
+}
+fd_n <- FD %>% filter(tool == TD) %>% group_by(stratum, bin, trial) %>% summarise(n = sum(n_truth), .groups = "drop") %>%
+  group_by(stratum, bin) %>% summarise(references = round(mean(n)), .groups = "drop")
+kable(fd_tab("dist_first_inframe_atg", "sensitivity_exact"),
+      caption = "5' partials: exact sensitivity (ORF left open) by nt from fragment start to first in-frame ATG")
+kable(fd_tab("dist_first_inframe_atg", "sensitivity_stop"), caption = "5' partials: stop-level sensitivity by distance to first in-frame ATG")
+kable(fd_tab("cut_frac", "sensitivity_exact"), caption = "5' partials: exact sensitivity by fraction of the CDS removed")
+details(fd_n %>% filter(stratum == "dist_first_inframe_atg") %>% select(-stratum) %>%
+          bind_rows(fd_n %>% filter(stratum == "cut_frac") %>% select(-stratum)),
+        "references per bin (all organisms, mean over trials)")
+details(FD %>% select(org, trial, tool, stratum, bin, n_truth, sensitivity_stop, sensitivity_exact) %>%
+          arrange(org, tool, stratum, trial), "per organism, trial, tool and bin")
+FDV <- function(tool, b) {
+  d <- FD %>% filter(stratum == "dist_first_inframe_atg", tool == !!tool, bin == b) %>% group_by(trial) %>%
+    summarise(v = median(sensitivity_exact), .groups = "drop")
+  mean(d$v)
+}
+```
+
+TransDecoder leaves `r f3(FDV(TD, "0-29"))` of the 5' partials open when an in-frame ATG lies within
+30 nt of the fragment start, and `r f3(FDV(TD, "300+"))` when the first in-frame ATG is 300 nt or more
+downstream. The corresponding values for Prodigal are `r f3(FDV("prodigal", "0-29"))` and
+`r f3(FDV("prodigal", "300+"))`.
 
 ## Method rankings across inputs and measures
 
