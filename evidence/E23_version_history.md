@@ -60,3 +60,6 @@ Files: `data/benchmark/history/history_scores.tsv`, `history.medians.tsv`, `hist
 ## Text guidance (Brian)
 - Describe what each release changed in method. Do not discuss defects of earlier releases.
 - Describe AI assistance in the v7 development in a measured, factual Methods statement, as journal policy requires.
+
+## Correction (2026-10-25, notebook S1)
+Medians recomputed from counts (not from 4-decimal rates) change three values by 0.001: v2.0 complete + random stop 0.935 (was 0.936); v5.0.0 and v5.7.1 fragments + random stop 0.771 (was 0.772); v7 fixed short-ORF test fragments + lncRNA stop 0.857 (was 0.858). The v7 row now uses the release runs (E25). See `notebooks/S1_release_history.html`.

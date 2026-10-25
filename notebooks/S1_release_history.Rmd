@@ -1,0 +1,279 @@
+---
+title: "Supplementary Note 1: TransDecoder releases, 2012-2026"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    code_folding: hide
+    self_contained: true
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, fig.align = "center")
+source(file.path("R", "common.R"))
+library(knitr)
+```
+
+This notebook supports Supplementary Note 1 of the supplement
+([`../manuscript/supplement.tex`](../manuscript/supplement.tex)): the table of method changes in key
+releases (Table S7, `tab:releases`), the benchmark of key releases (Table S8, `tab:history`) and
+Fig. S3 (`fig:history`). Provenance: `r evidence("E23")` (release history and runs of the old
+releases) and `r evidence("E25")` (final v7 release runs).
+
+Data:
+
+- `data/benchmark/history/history_scores.tsv`: per-organism scores of r2012-08-07, v2.0, v4.1.0,
+  v5.0.0 and v5.7.1 on the 20 stranded benchmark inputs with negatives (E23).
+- `data/benchmark/final_v7/negatives_scores.tsv`: the same inputs scored for the v7 release
+  (`pytd_v7`: PyTD main 3a793ff, release defaults, q 0.05; Perl devel 41fc5ee gives identical
+  predictions) and for the development run with the fixed short-ORF test (`cliff_c200`) (E25).
+
+Earlier versions of the table and figure used two development runs for v7 (`pytd_release`, the
+fixed short-ORF test, and `pytd_decoy_q0.05`, the q-value test from development code). Here the
+q-value row is the final release run. The fixed short-ORF test row is kept as a development run;
+`cliff_c200` in `negatives_scores.tsv` has the same counts as `pytd_release` in
+`history_scores.tsv` for all 20 inputs (checked below).
+
+```{r data}
+hist <- read_tab("benchmark", "history", "history_scores.tsv")
+neg <- read_tab("benchmark", "final_v7", "negatives_scores.tsv")
+
+RELEASES <- tribble(
+  ~label,         ~src,   ~row,                                    ~axis,
+  "r2012",        "hist", "r2012-08-07",                           "r2012 (SourceForge)",
+  "v2.0",         "hist", "v2.0",                                  "v2.0 (2015)",
+  "v4.1.0",       "hist", "v4.1.0",                                "v4.1.0 (2017)",
+  "v5.0.0",       "hist", "v5.0.0",                                "v5.0.0 (2017)",
+  "v5.7.1",       "hist", "v5.7.1 (= v6.0.0)",                     "v5.7.1 (2023)",
+  "cliff_c200",   "neg",  "v7 development, fixed short-ORF test",  "v7 dev., short-ORF test",
+  "pytd_v7",      "neg",  "v7 (release), q 0.05",                  "v7 release, q 0.05"
+)
+VARIANTS <- c(complete.wRand = "Complete + random", fragments.wRand = "Fragments + random",
+              complete.wLnc = "Complete + lncRNA", fragments.wLnc = "Fragments + lncRNA")
+
+scores <- bind_rows(
+  hist %>% filter(label %in% RELEASES$label[RELEASES$src == "hist"]),
+  neg %>% filter(label %in% RELEASES$label[RELEASES$src == "neg"])
+) %>% filter(variant %in% names(VARIANTS)) %>%
+  # recompute rates from counts: the TSV columns are rounded to 4 decimals, and the median of two
+  # rounded values can round differently at 3 decimals
+  mutate(sens_stop = tp_stop / n_truth, sens_exact = tp_exact / n_truth, neg_rate = neg_with_pred / n_neg)
+
+# same 20 inputs for every release
+stopifnot(all(count(scores, label)$n == 20))
+
+med <- scores %>%
+  group_by(label, variant) %>%
+  summarise(n_org = n(), sens_stop = median(sens_stop), sens_exact = median(sens_exact),
+            neg_pct = 100 * median(neg_rate), .groups = "drop") %>%
+  mutate(release = factor(RELEASES$row[match(label, RELEASES$label)], levels = RELEASES$row),
+         variant = factor(variant, levels = names(VARIANTS)))
+m <- function(lab, var, col) med[[col]][med$label == lab & med$variant == var]
+
+# development fixed short-ORF test: identical counts in both tables
+same_dev <- neg %>% filter(label == "cliff_c200") %>%
+  inner_join(hist %>% filter(label == "pytd_release"), by = c("org", "variant")) %>%
+  summarise(n = n(), diff = sum(abs(tp_stop.x - tp_stop.y) + abs(tp_exact.x - tp_exact.y) +
+                                  abs(n_pred.x - n_pred.y) + abs(neg_with_pred.x - neg_with_pred.y)))
+```
+
+`cliff_c200` (E25) against `pytd_release` (E23): `r same_dev$n` inputs, summed absolute difference
+in TP stop, TP exact, predictions and negatives with a prediction: `r same_dev$diff`.
+
+## Method changes in key releases
+
+Table S7 (`tab:releases`) is a reading of the code and change log of each release
+(`data/benchmark/history/VERSIONS.md`, `r evidence("E23")`). It has no computed values. The release
+dates in the table:
+
+```{r releases}
+tribble(
+  ~Release, ~Date, ~Source,
+  "Trinity utility", "2011-2012", "Trinity Release.Notes",
+  "r2012-08-07", "2012-08", "SourceForge archive",
+  "v2.0", "2015-01 (tag 2015-01-26)", "git tag",
+  "v4.1.0", "2017-08 (tag 2017-08-17)", "git tag",
+  "v5.0.0", "2017-08 (tag 2017-08-26)", "git tag",
+  "v5.4-v6.0.0", "2018-2026 (v5.4.0 2018-10-17; v6.0.0 2026-03-20)", "git tags",
+  "v7 (this study)", "2026", "PyTD main 3a793ff, Perl devel 41fc5ee (E25)"
+) %>% kable()
+```
+
+v6.0.0 gives the same predictions as v5.7.1 (VERSIONS.md section 4: phase scripts identical apart
+from paths and `--version`; identical smoke predictions), so v5.7.1 represents it below.
+
+## Key releases on the benchmark
+
+Medians over organisms (8 organisms with random negatives; human and mouse with lncRNA negatives)
+of stop-level sensitivity, exact-CDS sensitivity and the percentage of negative sequences with a
+prediction. Each release ran with its own defaults, `-S`, and a genetic code given only for
+*T. thermophila*; r2012 3'-partial ORFs were trimmed to the transcript before scoring
+(`r evidence("E23")`). v7 rows: `r evidence("E25")`.
+
+```{r table_history}
+tab <- med %>%
+  mutate(cell = sprintf("%s / %s / %s", f3(sens_stop), f3(sens_exact), f1(neg_pct))) %>%
+  select(release, variant, cell) %>%
+  pivot_wider(names_from = variant, values_from = cell) %>%
+  arrange(release) %>%
+  select(Release = release, all_of(names(VARIANTS)))
+names(tab)[-1] <- VARIANTS[names(tab)[-1]]
+kable(tab)
+```
+
+The same table as LaTeX rows for `tab:history` in `supplement.tex`:
+
+```{r table_latex, comment = ""}
+tex_name <- c("r2012-08-07" = "r2012-08-07", "v2.0" = "v2.0", "v4.1.0" = "v4.1.0",
+              "v5.0.0" = "v5.0.0", "v5.7.1 (= v6.0.0)" = "v5.7.1 ($\\equiv$ v6.0.0)",
+              "v7 development, fixed short-ORF test" = "v7 development, fixed short-ORF test",
+              "v7 (release), q 0.05" = "v7 (release), q~0.05")
+for (i in seq_len(nrow(tab))) {
+  cat(paste(c(tex_name[as.character(tab$Release[i])], unlist(tab[i, -1])), collapse = " & "),
+      "\\\\\n")
+}
+```
+
+### Text of the paragraph
+
+```{r text_numbers}
+old <- RELEASES$label[1:5]
+rel_all <- RELEASES$label
+rand_max <- med %>% filter(grepl("wRand", variant)) %>% pull(neg_pct) %>% max()
+frag_old <- med %>% filter(label %in% old, variant == "fragments.wRand") %>% pull(sens_stop)
+lnc_before_q <- med %>% filter(label %in% c(old, "cliff_c200"), grepl("wLnc", variant)) %>%
+  pull(neg_pct)
+lnc_q <- med %>% filter(label == "pytd_v7", grepl("wLnc", variant)) %>% pull(neg_pct)
+```
+
+- Every release kept predictions on random sequences rare: the largest median is
+  `r f1(rand_max)`% (manuscript: at most 0.5%).
+- Exact-CDS sensitivity on complete transcripts with random negatives:
+  `r f3(m("r2012", "complete.wRand", "sens_exact"))` (r2012),
+  `r f3(m("v4.1.0", "complete.wRand", "sens_exact"))` (v4.1.0),
+  `r f3(m("cliff_c200", "complete.wRand", "sens_exact"))` (v7 start rule, development run with the
+  fixed short-ORF test) and `r f3(m("pytd_v7", "complete.wRand", "sens_exact"))` (v7 release).
+- Stop-level sensitivity on fragments with random negatives: `r f3(min(frag_old))` to
+  `r f3(max(frag_old))` from r2012 to v5.7.1; `r f3(m("cliff_c200", "fragments.wRand", "sens_stop"))`
+  with the 50-codon minimum (development, fixed short-ORF test);
+  `r f3(m("pytd_v7", "fragments.wRand", "sens_stop"))` with the q-value test (release).
+- Predictions on annotated lncRNAs: `r f1(min(lnc_before_q))`-`r f1(max(lnc_before_q))`% in every
+  release up to the v7 fixed short-ORF test; `r f1(lnc_q[1])`% (complete) and `r f1(lnc_q[2])`%
+  (fragments) with the q-value test of the v7 release.
+
+## Fig. S3: key releases on the benchmark
+
+Port of `benchmark_v2/scripts/plot_history.py` (same three panels, series and release order). The
+two v7 points are the development run with the fixed short-ORF test and the release run (q 0.05);
+the earlier figure used the development q-value run for the last point.
+
+```{r figS3, fig.width = FULL_W, fig.height = 3}
+SER_COL <- c("Complete + random" = "#0072B2", "Fragments + random" = "#E69F00",
+             "Complete + lncRNA" = "#009E73", "Fragments + lncRNA" = "#CC79A7")
+SER_LT <- c("Complete + random" = "solid", "Fragments + random" = "solid",
+            "Complete + lncRNA" = "22", "Fragments + lncRNA" = "22")
+SER_SH <- c("Complete + random" = 16, "Fragments + random" = 17,
+            "Complete + lncRNA" = 1, "Fragments + lncRNA" = 2)
+METRICS <- c(sens_stop = "Sensitivity (stop)", sens_exact = "Sensitivity (exact CDS)",
+             neg_pct = "Negatives with a prediction (%)")
+
+plot_df <- med %>%
+  mutate(x = factor(RELEASES$axis[match(label, RELEASES$label)], levels = RELEASES$axis),
+         series = factor(VARIANTS[as.character(variant)], levels = VARIANTS))
+
+panel <- function(metric) {
+  ggplot(plot_df, aes(x, .data[[metric]], colour = series, linetype = series, shape = series,
+                      group = series)) +
+    geom_line(linewidth = 0.5) +
+    geom_point(size = 1.4) +
+    scale_colour_manual(values = SER_COL, name = NULL) +
+    scale_linetype_manual(values = SER_LT, name = NULL) +
+    scale_shape_manual(values = SER_SH, name = NULL) +
+    labs(x = NULL, y = METRICS[[metric]]) +
+    theme(axis.text.x = element_text(size = 5.5, angle = 40, hjust = 1),
+          panel.grid.major.y = element_line(linewidth = 0.2, colour = "grey90"))
+}
+p <- (panel("sens_stop") + panel("sens_exact") + panel("neg_pct")) +
+  plot_layout(guides = "collect") + plot_annotation(tag_levels = "a") &
+  theme(legend.position = "bottom")
+save_fig(p, "figS3_history", FULL_W, 3)
+p
+```
+
+<details><summary>Plotted values (medians over organisms)</summary>
+
+```{r figS3_values}
+plot_df %>% arrange(series, x) %>%
+  transmute(Input = series, Release = release, n_organisms = n_org, sens_stop = f3(sens_stop),
+            sens_exact = f3(sens_exact), neg_pct = f1(neg_pct)) %>%
+  kable()
+```
+
+</details>
+
+<details><summary>Per-organism values</summary>
+
+```{r per_org}
+scores %>%
+  mutate(release = RELEASES$row[match(label, RELEASES$label)]) %>%
+  transmute(org, variant, release, n_truth, tp_stop, tp_exact, n_pred, n_neg, neg_with_pred,
+            sens_stop, sens_exact, neg_pct = round(100 * neg_rate, 2)) %>%
+  arrange(variant, org, factor(release, levels = RELEASES$row)) %>%
+  kable()
+```
+
+</details>
+
+## Checks against the manuscript
+
+The manuscript values are those in `supplement.tex` (Supplementary Note 1). Table cells are checked
+at the rounding of the table (3 decimals for sensitivity, 1 for percentages). The two v7 rows of the
+manuscript table are compared with the rows that replace them: the "fixed short-ORF test" row with
+the development run (`cliff_c200`) and the "q-value test" row with the release run (`pytd_v7`); the
+manuscript row for the q-value test still holds the development run (TODO in the table).
+
+```{r checks}
+# manuscript tab:history (supplement.tex lines 94-100): stop / exact / % negatives
+quoted <- tribble(
+  ~label, ~variant, ~sens_stop, ~sens_exact, ~neg_pct,
+  "r2012", "complete.wRand", 0.935, 0.666, 0.1, "r2012", "fragments.wRand", 0.759, 0.620, 0.0,
+  "r2012", "complete.wLnc", 0.965, 0.618, 16.2, "r2012", "fragments.wLnc", 0.781, 0.633, 15.7,
+  "v2.0", "complete.wRand", 0.936, 0.667, 0.1, "v2.0", "fragments.wRand", 0.764, 0.623, 0.0,
+  "v2.0", "complete.wLnc", 0.966, 0.618, 16.4, "v2.0", "fragments.wLnc", 0.784, 0.636, 15.8,
+  "v4.1.0", "complete.wRand", 0.936, 0.744, 0.1, "v4.1.0", "fragments.wRand", 0.757, 0.621, 0.0,
+  "v4.1.0", "complete.wLnc", 0.956, 0.747, 13.4, "v4.1.0", "fragments.wLnc", 0.772, 0.643, 13.3,
+  "v5.0.0", "complete.wRand", 0.946, 0.748, 0.3, "v5.0.0", "fragments.wRand", 0.772, 0.625, 0.1,
+  "v5.0.0", "complete.wLnc", 0.969, 0.757, 17.9, "v5.0.0", "fragments.wLnc", 0.792, 0.658, 17.6,
+  "v5.7.1", "complete.wRand", 0.946, 0.758, 0.3, "v5.7.1", "fragments.wRand", 0.772, 0.623, 0.1,
+  "v5.7.1", "complete.wLnc", 0.969, 0.764, 17.9, "v5.7.1", "fragments.wLnc", 0.792, 0.653, 17.6,
+  "cliff_c200", "complete.wRand", 0.957, 0.897, 0.5, "cliff_c200", "fragments.wRand", 0.815, 0.708, 0.1,
+  "cliff_c200", "complete.wLnc", 0.976, 0.905, 18.9, "cliff_c200", "fragments.wLnc", 0.858, 0.753, 18.6,
+  "pytd_v7", "complete.wRand", 0.965, 0.899, 0.4, "pytd_v7", "fragments.wRand", 0.872, 0.773, 0.2,
+  "pytd_v7", "complete.wLnc", 0.964, 0.894, 5.0, "pytd_v7", "fragments.wLnc", 0.857, 0.755, 5.8
+)
+for (i in seq_len(nrow(quoted))) {
+  q <- quoted[i, ]
+  for (k in c("sens_stop", "sens_exact", "neg_pct")) {
+    v <- m(q$label, q$variant, k)
+    digits <- if (k == "neg_pct") 1 else 3
+    check_text(sprintf("Table S8 %s %s %s", q$label, q$variant, k), round(v, digits), q[[k]])
+  }
+}
+# paragraph after the table (supplement.tex lines 105-111)
+check_text("random negatives, max median % (at most 0.5)", round(rand_max, 1), 0.5)
+check_text("exact, complete+random, r2012", round(m("r2012", "complete.wRand", "sens_exact"), 3), 0.666)
+check_text("exact, complete+random, v4.1.0", round(m("v4.1.0", "complete.wRand", "sens_exact"), 3), 0.744)
+check_text("exact, complete+random, v7 start rule (dev. short-ORF test)",
+           round(m("cliff_c200", "complete.wRand", "sens_exact"), 3), 0.897)
+check_text("stop, fragments+random, 2012-v6.0.0 low (0.76)", round(min(frag_old), 2), 0.76)
+check_text("stop, fragments+random, 2012-v6.0.0 high (0.77)", round(max(frag_old), 2), 0.77)
+check_text("stop, fragments+random, v7 50-codon minimum (dev.)",
+           round(m("cliff_c200", "fragments.wRand", "sens_stop"), 3), 0.815)
+check_text("stop, fragments+random, v7 q-value test (release)",
+           round(m("pytd_v7", "fragments.wRand", "sens_stop"), 3), 0.872)
+check_text("lncRNA % before q-value test, low (13)", round(min(lnc_before_q)), 13)
+check_text("lncRNA % before q-value test, high (19)", round(max(lnc_before_q)), 19)
+check_text("lncRNA % with q-value test, low (5.0)", round(min(lnc_q), 1), 5.0)
+check_text("lncRNA % with q-value test, high (5.8)", round(max(lnc_q), 1), 5.8)
+check_report()
+```
