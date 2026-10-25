@@ -1,0 +1,5 @@
+assembly	run	distinct_predicted_cds	distinct_predicted_complete	distinct_predicted_5prime_partial	MANE_assembled	MANE_exact	MANE_sens_exact_given_assembled	GENCODE_complete_assembled	GENCODE_complete_exact	GENCODE_complete_sens_exact_given_assembled	pred_complete_GENCODE_exact_frac	pred_all_GENCODE_compatible_frac
+lraa	release	22769	17806	2502	6294	5848	0.9291	54830	48375	0.8823	0.6643	0.7475
+lraa	utr_l1	22751	17920	2370	6294	5876	0.9336	54830	48422	0.8831	0.6629	0.7497
+stringtie	release	30846	24077	2646	8919	8160	0.9149	66881	58060	0.8681	0.5563	0.6666
+stringtie	utr_l1	30865	24119	2624	8919	8187	0.9179	66881	58111	0.8689	0.5572	0.6667

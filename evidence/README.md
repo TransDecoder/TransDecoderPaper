@@ -56,3 +56,10 @@ Rules:
 | E19 | [Short-ORF threshold shape: removing the 100-codon cliff](E19_short_orf_rule_shape.md) | planned (default-rule decision) |
 | E20 | [Target-decoy FDR rule (shuffled-transcript decoys)](E20_decoy_fdr_rule.md) | planned (default-rule decision) |
 | E21 | [Presets for small/partial inputs](E21_presets_small_inputs.md) | planned (in paper) |
+| E22 | [q-value cutoff modes: default, --precise, --sensitive](E22_qvalue_modes.md) | in paper |
+| E23 | [Version history on the current benchmark](E23_version_history.md) | supplement |
+| E24 | [Release implementation: decoy rule and presets, Perl = PyTD](E24_release_decoy_rule_presets.md) | in paper (Methods) |
+| E25 | [Final reruns at the release commits](E25_final_release_reruns.md) | in paper |
+| E26 | [Frame contrast: forward frames vs all five other frames](E26_frame_contrast_reverse_frames.md) | in paper (Methods) |
+| E27 | [How the compared methods work](E27_comparator_algorithms.md) | in paper (Background, Table S7) |
+| E29 | [Start placement on 5'-open ORFs; UTR-length prior (not adopted)](E29_five_prime_open_starts.md) | pending text |

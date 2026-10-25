@@ -1,0 +1,7 @@
+org	input	ref_type	n_ref	n_stop	exact	trim_trunc	open_utr	trim_upstream	atg_other	other	trim_trunc_median_d	trim_trunc_frac_d_lt20	trim_trunc_frac_d_lt50	trim_trunc_median_trimmed_frac	open_utr_median_true_utr	open_utr_frac_true_utr_lt20
+gm12878	lraa	5prime_partial	1365	1195	880	315	0	0	0	0	60.0	0.2317	0.4381	0.0458		
+gm12878	lraa	complete	13584	13009	12197	0	503	63	245	1					63.0	0.1571
+gm12878	stringtie	5prime_partial	1017	776	630	146	0	0	0	0	64.5	0.1918	0.3836	0.0786		
+gm12878	stringtie	complete	12504	11970	11203	0	374	82	307	4					79.0	0.0695
+gm12878	trinity	5prime_partial	1915	1188	940	247	0	0	0	1	73.0	0.1741	0.3684	0.0855		
+gm12878	trinity	complete	12172	11439	10599	0	293	126	418	3					103.0	0.0614

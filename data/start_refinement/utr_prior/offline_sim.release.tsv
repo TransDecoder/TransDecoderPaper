@@ -1,0 +1,881 @@
+org	input	ref_type	variant	n_ref	n_stop	tp_exact	gained	lost	delta	sens_exact	f1_exact
+human	complete	all	release	19167	18672	17423	0	0	0	0.909	0.9199
+human	complete	complete	release	19167	18672	17423	0	0	0	0.909	
+human	complete	all	full_l0.5	19167	18672	17507	119	35	84	0.9134	0.9244
+human	complete	complete	full_l0.5	19167	18672	17507	119	35	84	0.9134	
+human	complete	all	full_l1	19167	18672	17572	231	82	149	0.9168	0.9278
+human	complete	complete	full_l1	19167	18672	17572	231	82	149	0.9168	
+human	complete	all	full_l2	19167	18672	17583	362	202	160	0.9174	0.9284
+human	complete	complete	full_l2	19167	18672	17583	362	202	160	0.9174	
+human	complete	all	short_l1	19167	18672	17418	0	5	-5	0.9087	0.9197
+human	complete	complete	short_l1	19167	18672	17418	0	5	-5	0.9087	
+human	complete_fullutr	all	release	19167	18462	17227	0	0	0	0.8988	0.9136
+human	complete_fullutr	complete	release	19167	18462	17227	0	0	0	0.8988	
+human	complete_fullutr	all	full_l0.5	19167	18462	17318	124	33	91	0.9035	0.9185
+human	complete_fullutr	complete	full_l0.5	19167	18462	17318	124	33	91	0.9035	
+human	complete_fullutr	all	full_l1	19167	18462	17382	232	77	155	0.9069	0.9219
+human	complete_fullutr	complete	full_l1	19167	18462	17382	232	77	155	0.9069	
+human	complete_fullutr	all	full_l2	19167	18462	17427	375	175	200	0.9092	0.9242
+human	complete_fullutr	complete	full_l2	19167	18462	17427	375	175	200	0.9092	
+human	complete_fullutr	all	short_l1	19167	18462	17221	0	6	-6	0.8985	0.9133
+human	complete_fullutr	complete	short_l1	19167	18462	17221	0	6	-6	0.8985	
+human	fragments	all	release	19167	16998	14945	0	0	0	0.7797	0.8251
+human	fragments	3prime_partial	release	9684	8709	8093	0	0	0	0.8357	
+human	fragments	5prime_partial	release	9483	8289	6852	0	0	0	0.7226	
+human	fragments	all	full_l0.5	19167	16998	14897	132	180	-48	0.7772	0.8224
+human	fragments	3prime_partial	full_l0.5	9684	8709	8135	60	18	42	0.84	
+human	fragments	5prime_partial	full_l0.5	9483	8289	6762	72	162	-90	0.7131	
+human	fragments	all	full_l1	19167	16998	14812	241	374	-133	0.7728	0.8178
+human	fragments	3prime_partial	full_l1	9684	8709	8172	112	33	79	0.8439	
+human	fragments	5prime_partial	full_l1	9483	8289	6640	129	341	-212	0.7002	
+human	fragments	all	full_l2	19167	16998	14583	409	771	-362	0.7608	0.8051
+human	fragments	3prime_partial	full_l2	9684	8709	8178	179	94	85	0.8445	
+human	fragments	5prime_partial	full_l2	9483	8289	6405	230	677	-447	0.6754	
+human	fragments	all	short_l1	19167	16998	14968	24	1	23	0.7809	0.8264
+human	fragments	3prime_partial	short_l1	9684	8709	8092	0	1	-1	0.8356	
+human	fragments	5prime_partial	short_l1	9483	8289	6876	24	0	24	0.7251	
+human	fragments_mixed_t1	all	release	19127	18062	15799	0	0	0	0.826	0.8491
+human	fragments_mixed_t1	3prime_partial	release	4784	4522	4216	0	0	0	0.8813	
+human	fragments_mixed_t1	5prime_partial	release	4778	4429	3596	0	0	0	0.7526	
+human	fragments_mixed_t1	complete	release	4792	4633	4332	0	0	0	0.904	
+human	fragments_mixed_t1	internal	release	4773	4478	3655	0	0	0	0.7658	
+human	fragments_mixed_t1	all	full_l0.5	19127	18062	15738	136	197	-61	0.8228	0.8458
+human	fragments_mixed_t1	3prime_partial	full_l0.5	4784	4522	4234	33	15	18	0.885	
+human	fragments_mixed_t1	5prime_partial	full_l0.5	4778	4429	3556	36	76	-40	0.7442	
+human	fragments_mixed_t1	complete	full_l0.5	4792	4633	4351	28	9	19	0.908	
+human	fragments_mixed_t1	internal	full_l0.5	4773	4478	3597	39	97	-58	0.7536	
+human	fragments_mixed_t1	all	full_l1	19127	18062	15666	262	395	-133	0.8191	0.842
+human	fragments_mixed_t1	3prime_partial	full_l1	4784	4522	4245	51	22	29	0.8873	
+human	fragments_mixed_t1	5prime_partial	full_l1	4778	4429	3504	79	171	-92	0.7334	
+human	fragments_mixed_t1	complete	full_l1	4792	4633	4376	62	18	44	0.9132	
+human	fragments_mixed_t1	internal	full_l1	4773	4478	3541	70	184	-114	0.7419	
+human	fragments_mixed_t1	all	full_l2	19127	18062	15459	479	819	-340	0.8082	0.8308
+human	fragments_mixed_t1	3prime_partial	full_l2	4784	4522	4259	93	50	43	0.8903	
+human	fragments_mixed_t1	5prime_partial	full_l2	4778	4429	3407	152	341	-189	0.7131	
+human	fragments_mixed_t1	complete	full_l2	4792	4633	4388	97	41	56	0.9157	
+human	fragments_mixed_t1	internal	full_l2	4773	4478	3405	137	387	-250	0.7134	
+human	fragments_mixed_t1	all	short_l1	19127	18062	15824	29	4	25	0.8273	0.8505
+human	fragments_mixed_t1	3prime_partial	short_l1	4784	4522	4214	0	2	-2	0.8809	
+human	fragments_mixed_t1	5prime_partial	short_l1	4778	4429	3613	17	0	17	0.7562	
+human	fragments_mixed_t1	complete	short_l1	4792	4633	4330	0	2	-2	0.9036	
+human	fragments_mixed_t1	internal	short_l1	4773	4478	3667	12	0	12	0.7683	
+human	fragments_mixed_t2	all	release	19137	17962	15789	0	0	0	0.8251	0.8506
+human	fragments_mixed_t2	3prime_partial	release	4784	4464	4192	0	0	0	0.8763	
+human	fragments_mixed_t2	5prime_partial	release	4781	4387	3641	0	0	0	0.7616	
+human	fragments_mixed_t2	complete	release	4792	4627	4325	0	0	0	0.9025	
+human	fragments_mixed_t2	internal	release	4780	4484	3631	0	0	0	0.7596	
+human	fragments_mixed_t2	all	full_l0.5	19137	17962	15762	152	179	-27	0.8236	0.8491
+human	fragments_mixed_t2	3prime_partial	full_l0.5	4784	4464	4213	30	9	21	0.8806	
+human	fragments_mixed_t2	5prime_partial	full_l0.5	4781	4387	3595	43	89	-46	0.7519	
+human	fragments_mixed_t2	complete	full_l0.5	4792	4627	4353	36	8	28	0.9084	
+human	fragments_mixed_t2	internal	full_l0.5	4780	4484	3601	43	73	-30	0.7533	
+human	fragments_mixed_t2	all	full_l1	19137	17962	15649	254	394	-140	0.8177	0.843
+human	fragments_mixed_t2	3prime_partial	full_l1	4784	4464	4216	45	21	24	0.8813	
+human	fragments_mixed_t2	5prime_partial	full_l1	4781	4387	3517	65	189	-124	0.7356	
+human	fragments_mixed_t2	complete	full_l1	4792	4627	4363	61	23	38	0.9105	
+human	fragments_mixed_t2	internal	full_l1	4780	4484	3553	83	161	-78	0.7433	
+human	fragments_mixed_t2	all	full_l2	19137	17962	15405	454	838	-384	0.805	0.8299
+human	fragments_mixed_t2	3prime_partial	full_l2	4784	4464	4210	73	55	18	0.88	
+human	fragments_mixed_t2	5prime_partial	full_l2	4781	4387	3399	131	373	-242	0.7109	
+human	fragments_mixed_t2	complete	full_l2	4792	4627	4354	89	60	29	0.9086	
+human	fragments_mixed_t2	internal	full_l2	4780	4484	3442	161	350	-189	0.7201	
+human	fragments_mixed_t2	all	short_l1	19137	17962	15818	33	4	29	0.8266	0.8521
+human	fragments_mixed_t2	3prime_partial	short_l1	4784	4464	4189	0	3	-3	0.8756	
+human	fragments_mixed_t2	5prime_partial	short_l1	4781	4387	3655	14	0	14	0.7645	
+human	fragments_mixed_t2	complete	short_l1	4792	4627	4324	0	1	-1	0.9023	
+human	fragments_mixed_t2	internal	short_l1	4780	4484	3650	19	0	19	0.7636	
+human	fragments_mixed_t3	all	release	19131	18084	15892	0	0	0	0.8307	0.8532
+human	fragments_mixed_t3	3prime_partial	release	4785	4536	4216	0	0	0	0.8811	
+human	fragments_mixed_t3	5prime_partial	release	4779	4430	3644	0	0	0	0.7625	
+human	fragments_mixed_t3	complete	release	4792	4634	4327	0	0	0	0.903	
+human	fragments_mixed_t3	internal	release	4775	4484	3705	0	0	0	0.7759	
+human	fragments_mixed_t3	all	full_l0.5	19131	18084	15837	145	200	-55	0.8278	0.8502
+human	fragments_mixed_t3	3prime_partial	full_l0.5	4785	4536	4242	34	8	26	0.8865	
+human	fragments_mixed_t3	5prime_partial	full_l0.5	4779	4430	3600	36	80	-44	0.7533	
+human	fragments_mixed_t3	complete	full_l0.5	4792	4634	4350	31	8	23	0.9078	
+human	fragments_mixed_t3	internal	full_l0.5	4775	4484	3645	44	104	-60	0.7634	
+human	fragments_mixed_t3	all	full_l1	19131	18084	15757	267	402	-135	0.8236	0.8459
+human	fragments_mixed_t3	3prime_partial	full_l1	4785	4536	4258	60	18	42	0.8899	
+human	fragments_mixed_t3	5prime_partial	full_l1	4779	4430	3548	68	164	-96	0.7424	
+human	fragments_mixed_t3	complete	full_l1	4792	4634	4360	54	21	33	0.9098	
+human	fragments_mixed_t3	internal	full_l1	4775	4484	3591	85	199	-114	0.752	
+human	fragments_mixed_t3	all	full_l2	19131	18084	15556	474	810	-336	0.8131	0.8351
+human	fragments_mixed_t3	3prime_partial	full_l2	4785	4536	4262	91	45	46	0.8907	
+human	fragments_mixed_t3	5prime_partial	full_l2	4779	4430	3428	135	351	-216	0.7173	
+human	fragments_mixed_t3	complete	full_l2	4792	4634	4380	100	47	53	0.914	
+human	fragments_mixed_t3	internal	full_l2	4775	4484	3486	148	367	-219	0.7301	
+human	fragments_mixed_t3	all	short_l1	19131	18084	15913	27	6	21	0.8318	0.8543
+human	fragments_mixed_t3	3prime_partial	short_l1	4785	4536	4212	0	4	-4	0.8803	
+human	fragments_mixed_t3	5prime_partial	short_l1	4779	4430	3655	11	0	11	0.7648	
+human	fragments_mixed_t3	complete	short_l1	4792	4634	4325	0	2	-2	0.9025	
+human	fragments_mixed_t3	internal	short_l1	4775	4484	3721	16	0	16	0.7793	
+mouse	complete	all	release	21409	20764	19163	0	0	0	0.8951	0.907
+mouse	complete	complete	release	21409	20764	19163	0	0	0	0.8951	
+mouse	complete	all	full_l0.5	21409	20764	19185	66	44	22	0.8961	0.9081
+mouse	complete	complete	full_l0.5	21409	20764	19185	66	44	22	0.8961	
+mouse	complete	all	full_l1	21409	20764	19191	125	97	28	0.8964	0.9083
+mouse	complete	complete	full_l1	21409	20764	19191	125	97	28	0.8964	
+mouse	complete	all	full_l2	21409	20764	19156	225	232	-7	0.8948	0.9067
+mouse	complete	complete	full_l2	21409	20764	19156	225	232	-7	0.8948	
+mouse	complete	all	short_l1	21409	20764	19158	0	5	-5	0.8949	0.9068
+mouse	complete	complete	short_l1	21409	20764	19158	0	5	-5	0.8949	
+mouse	complete_fullutr	all	release	21409	20449	18839	0	0	0	0.88	0.8975
+mouse	complete_fullutr	complete	release	21409	20449	18839	0	0	0	0.88	
+mouse	complete_fullutr	all	full_l0.5	21409	20449	18882	78	35	43	0.882	0.8995
+mouse	complete_fullutr	complete	full_l0.5	21409	20449	18882	78	35	43	0.882	
+mouse	complete_fullutr	all	full_l1	21409	20449	18911	137	65	72	0.8833	0.9009
+mouse	complete_fullutr	complete	full_l1	21409	20449	18911	137	65	72	0.8833	
+mouse	complete_fullutr	all	full_l2	21409	20449	18921	234	152	82	0.8838	0.9014
+mouse	complete_fullutr	complete	full_l2	21409	20449	18921	234	152	82	0.8838	
+mouse	complete_fullutr	all	short_l1	21409	20449	18833	0	6	-6	0.8797	0.8972
+mouse	complete_fullutr	complete	short_l1	21409	20449	18833	0	6	-6	0.8797	
+mouse	fragments	all	release	21409	18646	16429	0	0	0	0.7674	0.818
+mouse	fragments	3prime_partial	release	10837	9475	8754	0	0	0	0.8078	
+mouse	fragments	5prime_partial	release	10572	9171	7675	0	0	0	0.726	
+mouse	fragments	all	full_l0.5	21409	18646	16344	86	171	-85	0.7634	0.8137
+mouse	fragments	3prime_partial	full_l0.5	10837	9475	8760	25	19	6	0.8083	
+mouse	fragments	5prime_partial	full_l0.5	10572	9171	7584	61	152	-91	0.7174	
+mouse	fragments	all	full_l1	21409	18646	16214	173	388	-215	0.7573	0.8073
+mouse	fragments	3prime_partial	full_l1	10837	9475	8747	49	56	-7	0.8071	
+mouse	fragments	5prime_partial	full_l1	10572	9171	7467	124	332	-208	0.7063	
+mouse	fragments	all	full_l2	21409	18646	15917	324	836	-512	0.7435	0.7925
+mouse	fragments	3prime_partial	full_l2	10837	9475	8732	80	102	-22	0.8058	
+mouse	fragments	5prime_partial	full_l2	10572	9171	7185	244	734	-490	0.6796	
+mouse	fragments	all	short_l1	21409	18646	16453	27	3	24	0.7685	0.8192
+mouse	fragments	3prime_partial	short_l1	10837	9475	8751	0	3	-3	0.8075	
+mouse	fragments	5prime_partial	short_l1	10572	9171	7702	27	0	27	0.7285	
+mouse	fragments_mixed_t1	all	release	21367	20006	17262	0	0	0	0.8079	0.8328
+mouse	fragments_mixed_t1	3prime_partial	release	5341	4990	4623	0	0	0	0.8656	
+mouse	fragments_mixed_t1	5prime_partial	release	5337	4896	3948	0	0	0	0.7397	
+mouse	fragments_mixed_t1	complete	release	5353	5133	4713	0	0	0	0.8804	
+mouse	fragments_mixed_t1	internal	release	5336	4987	3978	0	0	0	0.7455	
+mouse	fragments_mixed_t1	all	full_l0.5	21367	20006	17180	139	221	-82	0.804	0.8288
+mouse	fragments_mixed_t1	3prime_partial	full_l0.5	5341	4990	4627	14	10	4	0.8663	
+mouse	fragments_mixed_t1	5prime_partial	full_l0.5	5337	4896	3902	54	100	-46	0.7311	
+mouse	fragments_mixed_t1	complete	full_l0.5	5353	5133	4725	21	9	12	0.8827	
+mouse	fragments_mixed_t1	internal	full_l0.5	5336	4987	3926	50	102	-52	0.7358	
+mouse	fragments_mixed_t1	all	full_l1	21367	20006	17063	269	468	-199	0.7986	0.8232
+mouse	fragments_mixed_t1	3prime_partial	full_l1	5341	4990	4637	32	18	14	0.8682	
+mouse	fragments_mixed_t1	5prime_partial	full_l1	5337	4896	3843	109	214	-105	0.7201	
+mouse	fragments_mixed_t1	complete	full_l1	5353	5133	4732	37	18	19	0.884	
+mouse	fragments_mixed_t1	internal	full_l1	5336	4987	3851	91	218	-127	0.7217	
+mouse	fragments_mixed_t1	all	full_l2	21367	20006	16748	463	977	-514	0.7838	0.808
+mouse	fragments_mixed_t1	3prime_partial	full_l2	5341	4990	4616	48	55	-7	0.8643	
+mouse	fragments_mixed_t1	5prime_partial	full_l2	5337	4896	3704	192	436	-244	0.694	
+mouse	fragments_mixed_t1	complete	full_l2	5353	5133	4725	58	46	12	0.8827	
+mouse	fragments_mixed_t1	internal	full_l2	5336	4987	3703	165	440	-275	0.694	
+mouse	fragments_mixed_t1	all	short_l1	21367	20006	17302	41	1	40	0.8098	0.8347
+mouse	fragments_mixed_t1	3prime_partial	short_l1	5341	4990	4622	0	1	-1	0.8654	
+mouse	fragments_mixed_t1	5prime_partial	short_l1	5337	4896	3966	18	0	18	0.7431	
+mouse	fragments_mixed_t1	complete	short_l1	5353	5133	4713	0	0	0	0.8804	
+mouse	fragments_mixed_t1	internal	short_l1	5336	4987	4001	23	0	23	0.7498	
+mouse	fragments_mixed_t2	all	release	21357	19899	17284	0	0	0	0.8093	0.8367
+mouse	fragments_mixed_t2	3prime_partial	release	5330	4940	4547	0	0	0	0.8531	
+mouse	fragments_mixed_t2	5prime_partial	release	5339	4858	3916	0	0	0	0.7335	
+mouse	fragments_mixed_t2	complete	release	5353	5143	4746	0	0	0	0.8866	
+mouse	fragments_mixed_t2	internal	release	5335	4958	4075	0	0	0	0.7638	
+mouse	fragments_mixed_t2	all	full_l0.5	21357	19899	17157	104	231	-127	0.8033	0.8305
+mouse	fragments_mixed_t2	3prime_partial	full_l0.5	5330	4940	4551	14	10	4	0.8538	
+mouse	fragments_mixed_t2	5prime_partial	full_l0.5	5339	4858	3852	36	100	-64	0.7215	
+mouse	fragments_mixed_t2	complete	full_l0.5	5353	5143	4752	17	11	6	0.8877	
+mouse	fragments_mixed_t2	internal	full_l0.5	5335	4958	4002	37	110	-73	0.7501	
+mouse	fragments_mixed_t2	all	full_l1	21357	19899	17065	236	455	-219	0.799	0.8261
+mouse	fragments_mixed_t2	3prime_partial	full_l1	5330	4940	4551	29	25	4	0.8538	
+mouse	fragments_mixed_t2	5prime_partial	full_l1	5339	4858	3807	92	201	-109	0.7131	
+mouse	fragments_mixed_t2	complete	full_l1	5353	5143	4761	37	22	15	0.8894	
+mouse	fragments_mixed_t2	internal	full_l1	5335	4958	3946	78	207	-129	0.7396	
+mouse	fragments_mixed_t2	all	full_l2	21357	19899	16700	418	1002	-584	0.7819	0.8084
+mouse	fragments_mixed_t2	3prime_partial	full_l2	5330	4940	4548	50	49	1	0.8533	
+mouse	fragments_mixed_t2	5prime_partial	full_l2	5339	4858	3670	169	415	-246	0.6874	
+mouse	fragments_mixed_t2	complete	full_l2	5353	5143	4744	63	65	-2	0.8862	
+mouse	fragments_mixed_t2	internal	full_l2	5335	4958	3738	136	473	-337	0.7007	
+mouse	fragments_mixed_t2	all	short_l1	21357	19899	17309	29	4	25	0.8105	0.8379
+mouse	fragments_mixed_t2	3prime_partial	short_l1	5330	4940	4546	0	1	-1	0.8529	
+mouse	fragments_mixed_t2	5prime_partial	short_l1	5339	4858	3933	17	0	17	0.7367	
+mouse	fragments_mixed_t2	complete	short_l1	5353	5143	4743	0	3	-3	0.886	
+mouse	fragments_mixed_t2	internal	short_l1	5335	4958	4087	12	0	12	0.7661	
+mouse	fragments_mixed_t3	all	release	21362	19891	17241	0	0	0	0.8071	0.8346
+mouse	fragments_mixed_t3	3prime_partial	release	5339	4952	4570	0	0	0	0.856	
+mouse	fragments_mixed_t3	5prime_partial	release	5334	4876	3939	0	0	0	0.7385	
+mouse	fragments_mixed_t3	complete	release	5353	5141	4746	0	0	0	0.8866	
+mouse	fragments_mixed_t3	internal	release	5336	4922	3986	0	0	0	0.747	
+mouse	fragments_mixed_t3	all	full_l0.5	21362	19891	17171	143	213	-70	0.8038	0.8312
+mouse	fragments_mixed_t3	3prime_partial	full_l0.5	5339	4952	4582	24	12	12	0.8582	
+mouse	fragments_mixed_t3	5prime_partial	full_l0.5	5334	4876	3906	53	86	-33	0.7323	
+mouse	fragments_mixed_t3	complete	full_l0.5	5353	5141	4755	19	10	9	0.8883	
+mouse	fragments_mixed_t3	internal	full_l0.5	5336	4922	3928	47	105	-58	0.7361	
+mouse	fragments_mixed_t3	all	full_l1	21362	19891	17032	245	454	-209	0.7973	0.8245
+mouse	fragments_mixed_t3	3prime_partial	full_l1	5339	4952	4588	36	18	18	0.8593	
+mouse	fragments_mixed_t3	5prime_partial	full_l1	5334	4876	3837	93	195	-102	0.7193	
+mouse	fragments_mixed_t3	complete	full_l1	5353	5141	4753	29	22	7	0.8879	
+mouse	fragments_mixed_t3	internal	full_l1	5336	4922	3854	87	219	-132	0.7223	
+mouse	fragments_mixed_t3	all	full_l2	21362	19891	16686	429	984	-555	0.7811	0.8077
+mouse	fragments_mixed_t3	3prime_partial	full_l2	5339	4952	4582	58	46	12	0.8582	
+mouse	fragments_mixed_t3	5prime_partial	full_l2	5334	4876	3665	159	433	-274	0.6871	
+mouse	fragments_mixed_t3	complete	full_l2	5353	5141	4737	53	62	-9	0.8849	
+mouse	fragments_mixed_t3	internal	full_l2	5336	4922	3702	159	443	-284	0.6938	
+mouse	fragments_mixed_t3	all	short_l1	21362	19891	17272	36	5	31	0.8085	0.8361
+mouse	fragments_mixed_t3	3prime_partial	short_l1	5339	4952	4568	0	2	-2	0.8556	
+mouse	fragments_mixed_t3	5prime_partial	short_l1	5334	4876	3957	18	0	18	0.7418	
+mouse	fragments_mixed_t3	complete	short_l1	5353	5141	4743	0	3	-3	0.886	
+mouse	fragments_mixed_t3	internal	short_l1	5336	4922	4004	18	0	18	0.7504	
+dmel	complete	all	release	13884	13331	12647	0	0	0	0.9109	0.9279
+dmel	complete	complete	release	13884	13331	12647	0	0	0	0.9109	
+dmel	complete	all	full_l0.5	13884	13331	12706	66	7	59	0.9152	0.9322
+dmel	complete	complete	full_l0.5	13884	13331	12706	66	7	59	0.9152	
+dmel	complete	all	full_l1	13884	13331	12738	113	22	91	0.9175	0.9346
+dmel	complete	complete	full_l1	13884	13331	12738	113	22	91	0.9175	
+dmel	complete	all	full_l2	13884	13331	12763	172	56	116	0.9193	0.9364
+dmel	complete	complete	full_l2	13884	13331	12763	172	56	116	0.9193	
+dmel	complete	all	short_l1	13884	13331	12633	0	14	-14	0.9099	0.9269
+dmel	complete	complete	short_l1	13884	13331	12633	0	14	-14	0.9099	
+dmel	complete_fullutr	all	release	13884	13092	12454	0	0	0	0.897	0.9153
+dmel	complete_fullutr	complete	release	13884	13092	12454	0	0	0	0.897	
+dmel	complete_fullutr	all	full_l0.5	13884	13092	12510	62	6	56	0.901	0.9194
+dmel	complete_fullutr	complete	full_l0.5	13884	13092	12510	62	6	56	0.901	
+dmel	complete_fullutr	all	full_l1	13884	13092	12547	107	14	93	0.9037	0.9221
+dmel	complete_fullutr	complete	full_l1	13884	13092	12547	107	14	93	0.9037	
+dmel	complete_fullutr	all	full_l2	13884	13092	12581	162	35	127	0.9062	0.9246
+dmel	complete_fullutr	complete	full_l2	13884	13092	12581	162	35	127	0.9062	
+dmel	complete_fullutr	all	short_l1	13884	13092	12442	0	12	-12	0.8961	0.9144
+dmel	complete_fullutr	complete	short_l1	13884	13092	12442	0	12	-12	0.8961	
+dmel	fragments	all	release	13884	12132	10970	1	0	1	0.7901	0.8412
+dmel	fragments	3prime_partial	release	7006	6156	5827	0	0	0	0.8317	
+dmel	fragments	5prime_partial	release	6878	5976	5143	1	0	1	0.7477	
+dmel	fragments	all	full_l0.5	13884	12132	10910	68	127	-59	0.7858	0.8366
+dmel	fragments	3prime_partial	full_l0.5	7006	6156	5853	33	7	26	0.8354	
+dmel	fragments	5prime_partial	full_l0.5	6878	5976	5057	35	120	-85	0.7352	
+dmel	fragments	all	full_l1	13884	12132	10822	131	278	-147	0.7795	0.8298
+dmel	fragments	3prime_partial	full_l1	7006	6156	5873	62	16	46	0.8383	
+dmel	fragments	5prime_partial	full_l1	6878	5976	4949	69	262	-193	0.7195	
+dmel	fragments	all	full_l2	13884	12132	10569	209	609	-400	0.7612	0.8104
+dmel	fragments	3prime_partial	full_l2	7006	6156	5882	82	27	55	0.8396	
+dmel	fragments	5prime_partial	full_l2	6878	5976	4687	127	582	-455	0.6814	
+dmel	fragments	all	short_l1	13884	12132	10986	24	7	17	0.7913	0.8424
+dmel	fragments	3prime_partial	short_l1	7006	6156	5820	0	7	-7	0.8307	
+dmel	fragments	5prime_partial	short_l1	6878	5976	5166	24	0	24	0.7511	
+dmel	fragments_mixed_t1	all	release	13789	13141	11748	0	0	0	0.852	0.8715
+dmel	fragments_mixed_t1	3prime_partial	release	3445	3264	3092	0	0	0	0.8975	
+dmel	fragments_mixed_t1	5prime_partial	release	3433	3267	2767	0	0	0	0.806	
+dmel	fragments_mixed_t1	complete	release	3471	3326	3129	0	0	0	0.9015	
+dmel	fragments_mixed_t1	internal	release	3440	3284	2760	0	0	0	0.8023	
+dmel	fragments_mixed_t1	all	full_l0.5	13789	13141	11705	92	135	-43	0.8489	0.8683
+dmel	fragments_mixed_t1	3prime_partial	full_l0.5	3445	3264	3101	12	3	9	0.9001	
+dmel	fragments_mixed_t1	5prime_partial	full_l0.5	3433	3267	2722	25	70	-45	0.7929	
+dmel	fragments_mixed_t1	complete	full_l0.5	3471	3326	3145	20	4	16	0.9061	
+dmel	fragments_mixed_t1	internal	full_l0.5	3440	3284	2737	35	58	-23	0.7956	
+dmel	fragments_mixed_t1	all	full_l1	13789	13141	11635	160	273	-113	0.8438	0.8631
+dmel	fragments_mixed_t1	3prime_partial	full_l1	3445	3264	3106	19	5	14	0.9016	
+dmel	fragments_mixed_t1	5prime_partial	full_l1	3433	3267	2679	48	136	-88	0.7804	
+dmel	fragments_mixed_t1	complete	full_l1	3471	3326	3163	41	7	34	0.9113	
+dmel	fragments_mixed_t1	internal	full_l1	3440	3284	2687	52	125	-73	0.7811	
+dmel	fragments_mixed_t1	all	full_l2	13789	13141	11436	275	587	-312	0.8294	0.8483
+dmel	fragments_mixed_t1	3prime_partial	full_l2	3445	3264	3121	41	12	29	0.906	
+dmel	fragments_mixed_t1	5prime_partial	full_l2	3433	3267	2566	87	288	-201	0.7475	
+dmel	fragments_mixed_t1	complete	full_l2	3471	3326	3173	57	13	44	0.9141	
+dmel	fragments_mixed_t1	internal	full_l2	3440	3284	2576	90	274	-184	0.7488	
+dmel	fragments_mixed_t1	all	short_l1	13789	13141	11770	28	6	22	0.8536	0.8731
+dmel	fragments_mixed_t1	3prime_partial	short_l1	3445	3264	3089	0	3	-3	0.8967	
+dmel	fragments_mixed_t1	5prime_partial	short_l1	3433	3267	2780	13	0	13	0.8098	
+dmel	fragments_mixed_t1	complete	short_l1	3471	3326	3126	0	3	-3	0.9006	
+dmel	fragments_mixed_t1	internal	short_l1	3440	3284	2775	15	0	15	0.8067	
+dmel	fragments_mixed_t2	all	release	13789	13137	11786	0	0	0	0.8547	0.8744
+dmel	fragments_mixed_t2	3prime_partial	release	3439	3285	3115	0	0	0	0.9058	
+dmel	fragments_mixed_t2	5prime_partial	release	3443	3252	2768	0	0	0	0.804	
+dmel	fragments_mixed_t2	complete	release	3471	3327	3146	0	0	0	0.9064	
+dmel	fragments_mixed_t2	internal	release	3436	3273	2757	0	0	0	0.8024	
+dmel	fragments_mixed_t2	all	full_l0.5	13789	13137	11738	90	138	-48	0.8513	0.8709
+dmel	fragments_mixed_t2	3prime_partial	full_l0.5	3439	3285	3127	14	2	12	0.9093	
+dmel	fragments_mixed_t2	5prime_partial	full_l0.5	3443	3252	2728	27	67	-40	0.7923	
+dmel	fragments_mixed_t2	complete	full_l0.5	3471	3327	3169	26	3	23	0.913	
+dmel	fragments_mixed_t2	internal	full_l0.5	3436	3273	2714	23	66	-43	0.7899	
+dmel	fragments_mixed_t2	all	full_l1	13789	13137	11646	169	309	-140	0.8446	0.864
+dmel	fragments_mixed_t2	3prime_partial	full_l1	3439	3285	3143	33	5	28	0.9139	
+dmel	fragments_mixed_t2	5prime_partial	full_l1	3443	3252	2678	53	143	-90	0.7778	
+dmel	fragments_mixed_t2	complete	full_l1	3471	3327	3184	41	3	38	0.9173	
+dmel	fragments_mixed_t2	internal	full_l1	3436	3273	2641	42	158	-116	0.7686	
+dmel	fragments_mixed_t2	all	full_l2	13789	13137	11389	265	662	-397	0.8259	0.845
+dmel	fragments_mixed_t2	3prime_partial	full_l2	3439	3285	3143	46	18	28	0.9139	
+dmel	fragments_mixed_t2	5prime_partial	full_l2	3443	3252	2539	88	317	-229	0.7374	
+dmel	fragments_mixed_t2	complete	full_l2	3471	3327	3182	53	17	36	0.9167	
+dmel	fragments_mixed_t2	internal	full_l2	3436	3273	2525	78	310	-232	0.7349	
+dmel	fragments_mixed_t2	all	short_l1	13789	13137	11806	24	4	20	0.8562	0.8759
+dmel	fragments_mixed_t2	3prime_partial	short_l1	3439	3285	3113	0	2	-2	0.9052	
+dmel	fragments_mixed_t2	5prime_partial	short_l1	3443	3252	2783	15	0	15	0.8083	
+dmel	fragments_mixed_t2	complete	short_l1	3471	3327	3144	0	2	-2	0.9058	
+dmel	fragments_mixed_t2	internal	short_l1	3436	3273	2766	9	0	9	0.805	
+dmel	fragments_mixed_t3	all	release	13778	13130	11732	0	0	0	0.8515	0.8708
+dmel	fragments_mixed_t3	3prime_partial	release	3440	3285	3102	0	0	0	0.9017	
+dmel	fragments_mixed_t3	5prime_partial	release	3426	3257	2705	0	0	0	0.7896	
+dmel	fragments_mixed_t3	complete	release	3471	3326	3156	0	0	0	0.9092	
+dmel	fragments_mixed_t3	internal	release	3441	3262	2769	0	0	0	0.8047	
+dmel	fragments_mixed_t3	all	full_l0.5	13778	13130	11631	64	165	-101	0.8442	0.8633
+dmel	fragments_mixed_t3	3prime_partial	full_l0.5	3440	3285	3117	20	5	15	0.9061	
+dmel	fragments_mixed_t3	5prime_partial	full_l0.5	3426	3257	2651	19	73	-54	0.7738	
+dmel	fragments_mixed_t3	complete	full_l0.5	3471	3326	3165	10	1	9	0.9118	
+dmel	fragments_mixed_t3	internal	full_l0.5	3441	3262	2698	15	86	-71	0.7841	
+dmel	fragments_mixed_t3	all	full_l1	13778	13130	11573	132	291	-159	0.84	0.859
+dmel	fragments_mixed_t3	3prime_partial	full_l1	3440	3285	3127	32	7	25	0.909	
+dmel	fragments_mixed_t3	5prime_partial	full_l1	3426	3257	2624	48	129	-81	0.7659	
+dmel	fragments_mixed_t3	complete	full_l1	3471	3326	3174	20	2	18	0.9144	
+dmel	fragments_mixed_t3	internal	full_l1	3441	3262	2648	32	153	-121	0.7695	
+dmel	fragments_mixed_t3	all	full_l2	13778	13130	11343	228	617	-389	0.8233	0.842
+dmel	fragments_mixed_t3	3prime_partial	full_l2	3440	3285	3133	48	17	31	0.9108	
+dmel	fragments_mixed_t3	5prime_partial	full_l2	3426	3257	2504	87	288	-201	0.7309	
+dmel	fragments_mixed_t3	complete	full_l2	3471	3326	3184	37	9	28	0.9173	
+dmel	fragments_mixed_t3	internal	full_l2	3441	3262	2522	56	303	-247	0.7329	
+dmel	fragments_mixed_t3	all	short_l1	13778	13130	11753	23	2	21	0.853	0.8724
+dmel	fragments_mixed_t3	3prime_partial	short_l1	3440	3285	3100	0	2	-2	0.9012	
+dmel	fragments_mixed_t3	5prime_partial	short_l1	3426	3257	2717	12	0	12	0.7931	
+dmel	fragments_mixed_t3	complete	short_l1	3471	3326	3156	0	0	0	0.9092	
+dmel	fragments_mixed_t3	internal	short_l1	3441	3262	2780	11	0	11	0.8079	
+athal	complete	all	release	26867	25695	23655	0	0	0	0.8804	0.8992
+athal	complete	complete	release	26867	25695	23655	0	0	0	0.8804	
+athal	complete	all	full_l0.5	26867	25695	23910	280	25	255	0.8899	0.9089
+athal	complete	complete	full_l0.5	26867	25695	23910	280	25	255	0.8899	
+athal	complete	all	full_l1	26867	25695	24165	562	52	510	0.8994	0.9186
+athal	complete	complete	full_l1	26867	25695	24165	562	52	510	0.8994	
+athal	complete	all	full_l2	26867	25695	24429	885	111	774	0.9093	0.9286
+athal	complete	complete	full_l2	26867	25695	24429	885	111	774	0.9093	
+athal	complete	all	short_l1	26867	25695	23634	0	21	-21	0.8797	0.8984
+athal	complete	complete	short_l1	26867	25695	23634	0	21	-21	0.8797	
+athal	complete_fullutr	all	release	26867	25468	23487	0	0	0	0.8742	0.8959
+athal	complete_fullutr	complete	release	26867	25468	23487	0	0	0	0.8742	
+athal	complete_fullutr	all	full_l0.5	26867	25468	23741	277	23	254	0.8836	0.9056
+athal	complete_fullutr	complete	full_l0.5	26867	25468	23741	277	23	254	0.8836	
+athal	complete_fullutr	all	full_l1	26867	25468	24002	560	45	515	0.8934	0.9155
+athal	complete_fullutr	complete	full_l1	26867	25468	24002	560	45	515	0.8934	
+athal	complete_fullutr	all	full_l2	26867	25468	24272	883	98	785	0.9034	0.9258
+athal	complete_fullutr	complete	full_l2	26867	25468	24272	883	98	785	0.9034	
+athal	complete_fullutr	all	short_l1	26867	25468	23468	0	19	-19	0.8735	0.8952
+athal	complete_fullutr	complete	short_l1	26867	25468	23468	0	19	-19	0.8735	
+athal	fragments	all	release	26867	21524	18262	0	0	0	0.6797	0.7531
+athal	fragments	3prime_partial	release	13541	10876	10048	0	0	0	0.742	
+athal	fragments	5prime_partial	release	13326	10648	8214	0	0	0	0.6164	
+athal	fragments	all	full_l0.5	26867	21524	18191	235	306	-71	0.6771	0.7502
+athal	fragments	3prime_partial	full_l0.5	13541	10876	10148	112	12	100	0.7494	
+athal	fragments	5prime_partial	full_l0.5	13326	10648	8043	123	294	-171	0.6036	
+athal	fragments	all	full_l1	26867	21524	18106	438	594	-156	0.6739	0.7467
+athal	fragments	3prime_partial	full_l1	13541	10876	10245	221	24	197	0.7566	
+athal	fragments	5prime_partial	full_l1	13326	10648	7861	217	570	-353	0.5899	
+athal	fragments	all	full_l2	26867	21524	17818	762	1206	-444	0.6632	0.7348
+athal	fragments	3prime_partial	full_l2	13541	10876	10349	353	52	301	0.7643	
+athal	fragments	5prime_partial	full_l2	13326	10648	7469	409	1154	-745	0.5605	
+athal	fragments	all	short_l1	26867	21524	18298	47	11	36	0.6811	0.7546
+athal	fragments	3prime_partial	short_l1	13541	10876	10037	0	11	-11	0.7412	
+athal	fragments	5prime_partial	short_l1	13326	10648	8261	47	0	47	0.6199	
+athal	fragments_mixed_t1	all	release	26787	23965	20276	0	0	0	0.7569	0.7979
+athal	fragments_mixed_t1	3prime_partial	release	6685	5984	5515	0	0	0	0.825	
+athal	fragments_mixed_t1	5prime_partial	release	6695	5912	4521	0	0	0	0.6753	
+athal	fragments_mixed_t1	complete	release	6717	6236	5787	0	0	0	0.8615	
+athal	fragments_mixed_t1	internal	release	6690	5833	4453	0	0	0	0.6656	
+athal	fragments_mixed_t1	all	full_l0.5	26787	23965	20291	331	316	15	0.7575	0.7985
+athal	fragments_mixed_t1	3prime_partial	full_l0.5	6685	5984	5589	80	6	74	0.8361	
+athal	fragments_mixed_t1	5prime_partial	full_l0.5	6695	5912	4454	92	159	-67	0.6653	
+athal	fragments_mixed_t1	complete	full_l0.5	6717	6236	5857	78	8	70	0.872	
+athal	fragments_mixed_t1	internal	full_l0.5	6690	5833	4391	81	143	-62	0.6564	
+athal	fragments_mixed_t1	all	full_l1	26787	23965	20203	557	630	-73	0.7542	0.7951
+athal	fragments_mixed_t1	3prime_partial	full_l1	6685	5984	5633	131	13	118	0.8426	
+athal	fragments_mixed_t1	5prime_partial	full_l1	6695	5912	4350	147	318	-171	0.6497	
+athal	fragments_mixed_t1	complete	full_l1	6717	6236	5896	121	12	109	0.8778	
+athal	fragments_mixed_t1	internal	full_l1	6690	5833	4324	158	287	-129	0.6463	
+athal	fragments_mixed_t1	all	full_l2	26787	23965	19912	907	1271	-364	0.7433	0.7836
+athal	fragments_mixed_t1	3prime_partial	full_l2	6685	5984	5688	199	26	173	0.8509	
+athal	fragments_mixed_t1	5prime_partial	full_l2	6695	5912	4116	246	651	-405	0.6148	
+athal	fragments_mixed_t1	complete	full_l2	6717	6236	5967	206	26	180	0.8883	
+athal	fragments_mixed_t1	internal	full_l2	6690	5833	4141	256	568	-312	0.619	
+athal	fragments_mixed_t1	all	short_l1	26787	23965	20325	59	10	49	0.7588	0.7999
+athal	fragments_mixed_t1	3prime_partial	short_l1	6685	5984	5511	0	4	-4	0.8244	
+athal	fragments_mixed_t1	5prime_partial	short_l1	6695	5912	4550	29	0	29	0.6796	
+athal	fragments_mixed_t1	complete	short_l1	6717	6236	5781	0	6	-6	0.8607	
+athal	fragments_mixed_t1	internal	short_l1	6690	5833	4483	30	0	30	0.6701	
+athal	fragments_mixed_t2	all	release	26764	23913	20343	0	0	0	0.7601	0.8019
+athal	fragments_mixed_t2	3prime_partial	release	6687	5938	5452	0	0	0	0.8153	
+athal	fragments_mixed_t2	5prime_partial	release	6677	5885	4570	0	0	0	0.6844	
+athal	fragments_mixed_t2	complete	release	6717	6282	5790	0	0	0	0.862	
+athal	fragments_mixed_t2	internal	release	6683	5808	4531	0	0	0	0.678	
+athal	fragments_mixed_t2	all	full_l0.5	26764	23913	20354	285	274	11	0.7605	0.8023
+athal	fragments_mixed_t2	3prime_partial	full_l0.5	6687	5938	5513	66	5	61	0.8244	
+athal	fragments_mixed_t2	5prime_partial	full_l0.5	6677	5885	4500	75	145	-70	0.674	
+athal	fragments_mixed_t2	complete	full_l0.5	6717	6282	5856	74	8	66	0.8718	
+athal	fragments_mixed_t2	internal	full_l0.5	6683	5808	4485	70	116	-46	0.6711	
+athal	fragments_mixed_t2	all	full_l1	26764	23913	20244	508	607	-99	0.7564	0.798
+athal	fragments_mixed_t2	3prime_partial	full_l1	6687	5938	5571	129	10	119	0.8331	
+athal	fragments_mixed_t2	5prime_partial	full_l1	6677	5885	4380	121	311	-190	0.656	
+athal	fragments_mixed_t2	complete	full_l1	6717	6282	5903	129	16	113	0.8788	
+athal	fragments_mixed_t2	internal	full_l1	6683	5808	4390	129	270	-141	0.6569	
+athal	fragments_mixed_t2	all	full_l2	26764	23913	20020	856	1179	-323	0.748	0.7892
+athal	fragments_mixed_t2	3prime_partial	full_l2	6687	5938	5628	200	24	176	0.8416	
+athal	fragments_mixed_t2	5prime_partial	full_l2	6677	5885	4192	221	599	-378	0.6278	
+athal	fragments_mixed_t2	complete	full_l2	6717	6282	5975	212	27	185	0.8895	
+athal	fragments_mixed_t2	internal	full_l2	6683	5808	4225	223	529	-306	0.6322	
+athal	fragments_mixed_t2	all	short_l1	26764	23913	20381	48	10	38	0.7615	0.8034
+athal	fragments_mixed_t2	3prime_partial	short_l1	6687	5938	5450	0	2	-2	0.815	
+athal	fragments_mixed_t2	5prime_partial	short_l1	6677	5885	4591	21	0	21	0.6876	
+athal	fragments_mixed_t2	complete	short_l1	6717	6282	5782	0	8	-8	0.8608	
+athal	fragments_mixed_t2	internal	short_l1	6683	5808	4558	27	0	27	0.682	
+athal	fragments_mixed_t3	all	release	26777	24113	20444	0	1	-1	0.7635	0.8025
+athal	fragments_mixed_t3	3prime_partial	release	6703	6039	5550	0	1	-1	0.828	
+athal	fragments_mixed_t3	5prime_partial	release	6685	5954	4559	0	0	0	0.682	
+athal	fragments_mixed_t3	complete	release	6717	6266	5802	0	0	0	0.8638	
+athal	fragments_mixed_t3	internal	release	6672	5854	4533	0	0	0	0.6794	
+athal	fragments_mixed_t3	all	full_l0.5	26777	24113	20412	293	326	-33	0.7623	0.8012
+athal	fragments_mixed_t3	3prime_partial	full_l0.5	6703	6039	5615	71	7	64	0.8377	
+athal	fragments_mixed_t3	5prime_partial	full_l0.5	6685	5954	4476	75	158	-83	0.6696	
+athal	fragments_mixed_t3	complete	full_l0.5	6717	6266	5864	71	9	62	0.873	
+athal	fragments_mixed_t3	internal	full_l0.5	6672	5854	4457	76	152	-76	0.668	
+athal	fragments_mixed_t3	all	full_l1	26777	24113	20298	514	661	-147	0.758	0.7967
+athal	fragments_mixed_t3	3prime_partial	full_l1	6703	6039	5648	115	18	97	0.8426	
+athal	fragments_mixed_t3	5prime_partial	full_l1	6685	5954	4390	139	308	-169	0.6567	
+athal	fragments_mixed_t3	complete	full_l1	6717	6266	5907	126	21	105	0.8794	
+athal	fragments_mixed_t3	internal	full_l1	6672	5854	4353	134	314	-180	0.6524	
+athal	fragments_mixed_t3	all	full_l2	26777	24113	20060	878	1263	-385	0.7492	0.7874
+athal	fragments_mixed_t3	3prime_partial	full_l2	6703	6039	5721	197	27	170	0.8535	
+athal	fragments_mixed_t3	5prime_partial	full_l2	6685	5954	4180	246	625	-379	0.6253	
+athal	fragments_mixed_t3	complete	full_l2	6717	6266	5983	214	33	181	0.8907	
+athal	fragments_mixed_t3	internal	full_l2	6672	5854	4176	221	578	-357	0.6259	
+athal	fragments_mixed_t3	all	short_l1	26777	24113	20472	46	19	27	0.7645	0.8036
+athal	fragments_mixed_t3	3prime_partial	short_l1	6703	6039	5542	0	9	-9	0.8268	
+athal	fragments_mixed_t3	5prime_partial	short_l1	6685	5954	4584	25	0	25	0.6857	
+athal	fragments_mixed_t3	complete	short_l1	6717	6266	5792	0	10	-10	0.8623	
+athal	fragments_mixed_t3	internal	short_l1	6672	5854	4554	21	0	21	0.6826	
+spombe	complete	all	release	5100	4969	4613	0	0	0	0.9045	0.9163
+spombe	complete	complete	release	5100	4969	4613	0	0	0	0.9045	
+spombe	complete	all	full_l0.5	5100	4969	4682	73	4	69	0.918	0.93
+spombe	complete	complete	full_l0.5	5100	4969	4682	73	4	69	0.918	
+spombe	complete	all	full_l1	5100	4969	4744	140	9	131	0.9302	0.9423
+spombe	complete	complete	full_l1	5100	4969	4744	140	9	131	0.9302	
+spombe	complete	all	full_l2	5100	4969	4802	209	20	189	0.9416	0.9538
+spombe	complete	complete	full_l2	5100	4969	4802	209	20	189	0.9416	
+spombe	complete	all	short_l1	5100	4969	4606	0	7	-7	0.9031	0.9149
+spombe	complete	complete	short_l1	5100	4969	4606	0	7	-7	0.9031	
+spombe	complete_fullutr	all	release	5100	4921	4574	0	0	0	0.8969	0.9109
+spombe	complete_fullutr	complete	release	5100	4921	4574	0	0	0	0.8969	
+spombe	complete_fullutr	all	full_l0.5	5100	4921	4641	71	4	67	0.91	0.9242
+spombe	complete_fullutr	complete	full_l0.5	5100	4921	4641	71	4	67	0.91	
+spombe	complete_fullutr	all	full_l1	5100	4921	4698	134	10	124	0.9212	0.9356
+spombe	complete_fullutr	complete	full_l1	5100	4921	4698	134	10	124	0.9212	
+spombe	complete_fullutr	all	full_l2	5100	4921	4758	204	20	184	0.9329	0.9475
+spombe	complete_fullutr	complete	full_l2	5100	4921	4758	204	20	184	0.9329	
+spombe	complete_fullutr	all	short_l1	5100	4921	4566	0	8	-8	0.8953	0.9093
+spombe	complete_fullutr	complete	short_l1	5100	4921	4566	0	8	-8	0.8953	
+spombe	fragments	all	release	5100	4539	4000	0	0	0	0.7843	0.8295
+spombe	fragments	3prime_partial	release	2572	2283	2119	0	0	0	0.8239	
+spombe	fragments	5prime_partial	release	2528	2256	1881	0	0	0	0.7441	
+spombe	fragments	all	full_l0.5	5100	4539	3979	36	57	-21	0.7802	0.8252
+spombe	fragments	3prime_partial	full_l0.5	2572	2283	2140	22	1	21	0.832	
+spombe	fragments	5prime_partial	full_l0.5	2528	2256	1839	14	56	-42	0.7275	
+spombe	fragments	all	full_l1	5100	4539	3971	70	99	-29	0.7786	0.8235
+spombe	fragments	3prime_partial	full_l1	2572	2283	2158	40	1	39	0.839	
+spombe	fragments	5prime_partial	full_l1	2528	2256	1813	30	98	-68	0.7172	
+spombe	fragments	all	full_l2	5100	4539	3951	131	180	-49	0.7747	0.8194
+spombe	fragments	3prime_partial	full_l2	2572	2283	2199	83	3	80	0.855	
+spombe	fragments	5prime_partial	full_l2	2528	2256	1752	48	177	-129	0.693	
+spombe	fragments	all	short_l1	5100	4539	4008	9	1	8	0.7859	0.8312
+spombe	fragments	3prime_partial	short_l1	2572	2283	2118	0	1	-1	0.8235	
+spombe	fragments	5prime_partial	short_l1	2528	2256	1890	9	0	9	0.7476	
+spombe	fragments_mixed_t1	all	release	5086	4833	4283	0	0	0	0.8421	0.8635
+spombe	fragments_mixed_t1	3prime_partial	release	1271	1212	1133	0	0	0	0.8914	
+spombe	fragments_mixed_t1	5prime_partial	release	1270	1212	1001	0	0	0	0.7882	
+spombe	fragments_mixed_t1	complete	release	1275	1230	1144	0	0	0	0.8973	
+spombe	fragments_mixed_t1	internal	release	1270	1179	1005	0	0	0	0.7913	
+spombe	fragments_mixed_t1	all	full_l0.5	5086	4833	4290	58	51	7	0.8435	0.8649
+spombe	fragments_mixed_t1	3prime_partial	full_l0.5	1271	1212	1142	10	1	9	0.8985	
+spombe	fragments_mixed_t1	5prime_partial	full_l0.5	1270	1212	999	17	19	-2	0.7866	
+spombe	fragments_mixed_t1	complete	full_l0.5	1275	1230	1167	23	0	23	0.9153	
+spombe	fragments_mixed_t1	internal	full_l0.5	1270	1179	982	8	31	-23	0.7732	
+spombe	fragments_mixed_t1	all	full_l1	5086	4833	4258	88	113	-25	0.8372	0.8585
+spombe	fragments_mixed_t1	3prime_partial	full_l1	1271	1212	1151	19	1	18	0.9056	
+spombe	fragments_mixed_t1	5prime_partial	full_l1	1270	1212	974	25	52	-27	0.7669	
+spombe	fragments_mixed_t1	complete	full_l1	1275	1230	1176	32	0	32	0.9224	
+spombe	fragments_mixed_t1	internal	full_l1	1270	1179	957	12	60	-48	0.7535	
+spombe	fragments_mixed_t1	all	full_l2	5086	4833	4201	155	237	-82	0.826	0.847
+spombe	fragments_mixed_t1	3prime_partial	full_l2	1271	1212	1172	43	4	39	0.9221	
+spombe	fragments_mixed_t1	5prime_partial	full_l2	1270	1212	924	38	115	-77	0.7276	
+spombe	fragments_mixed_t1	complete	full_l2	1275	1230	1194	53	3	50	0.9365	
+spombe	fragments_mixed_t1	internal	full_l2	1270	1179	911	21	115	-94	0.7173	
+spombe	fragments_mixed_t1	all	short_l1	5086	4833	4293	11	1	10	0.8441	0.8655
+spombe	fragments_mixed_t1	3prime_partial	short_l1	1271	1212	1132	0	1	-1	0.8906	
+spombe	fragments_mixed_t1	5prime_partial	short_l1	1270	1212	1008	7	0	7	0.7937	
+spombe	fragments_mixed_t1	complete	short_l1	1275	1230	1144	0	0	0	0.8973	
+spombe	fragments_mixed_t1	internal	short_l1	1270	1179	1009	4	0	4	0.7945	
+spombe	fragments_mixed_t2	all	release	5084	4877	4331	0	0	0	0.8519	0.8695
+spombe	fragments_mixed_t2	3prime_partial	release	1270	1234	1148	0	0	0	0.9039	
+spombe	fragments_mixed_t2	5prime_partial	release	1270	1214	1016	0	0	0	0.8	
+spombe	fragments_mixed_t2	complete	release	1275	1230	1157	0	0	0	0.9075	
+spombe	fragments_mixed_t2	internal	release	1269	1199	1010	0	0	0	0.7959	
+spombe	fragments_mixed_t2	all	full_l0.5	5084	4877	4320	50	61	-11	0.8497	0.8673
+spombe	fragments_mixed_t2	3prime_partial	full_l0.5	1270	1234	1162	16	2	14	0.915	
+spombe	fragments_mixed_t2	5prime_partial	full_l0.5	1270	1214	996	6	26	-20	0.7843	
+spombe	fragments_mixed_t2	complete	full_l0.5	1275	1230	1175	18	0	18	0.9216	
+spombe	fragments_mixed_t2	internal	full_l0.5	1269	1199	987	10	33	-23	0.7778	
+spombe	fragments_mixed_t2	all	full_l1	5084	4877	4282	90	139	-49	0.8423	0.8597
+spombe	fragments_mixed_t2	3prime_partial	full_l1	1270	1234	1170	27	5	22	0.9213	
+spombe	fragments_mixed_t2	5prime_partial	full_l1	1270	1214	964	14	66	-52	0.7591	
+spombe	fragments_mixed_t2	complete	full_l1	1275	1230	1184	29	2	27	0.9286	
+spombe	fragments_mixed_t2	internal	full_l1	1269	1199	964	20	66	-46	0.7597	
+spombe	fragments_mixed_t2	all	full_l2	5084	4877	4220	140	251	-111	0.8301	0.8472
+spombe	fragments_mixed_t2	3prime_partial	full_l2	1270	1234	1181	41	8	33	0.9299	
+spombe	fragments_mixed_t2	5prime_partial	full_l2	1270	1214	925	23	114	-91	0.7283	
+spombe	fragments_mixed_t2	complete	full_l2	1275	1230	1200	46	3	43	0.9412	
+spombe	fragments_mixed_t2	internal	full_l2	1269	1199	914	30	126	-96	0.7203	
+spombe	fragments_mixed_t2	all	short_l1	5084	4877	4332	8	7	1	0.8521	0.8697
+spombe	fragments_mixed_t2	3prime_partial	short_l1	1270	1234	1143	0	5	-5	0.9	
+spombe	fragments_mixed_t2	5prime_partial	short_l1	1270	1214	1019	3	0	3	0.8024	
+spombe	fragments_mixed_t2	complete	short_l1	1275	1230	1155	0	2	-2	0.9059	
+spombe	fragments_mixed_t2	internal	short_l1	1269	1199	1015	5	0	5	0.7998	
+spombe	fragments_mixed_t3	all	release	5084	4875	4341	0	0	0	0.8539	0.8715
+spombe	fragments_mixed_t3	3prime_partial	release	1269	1220	1141	0	0	0	0.8991	
+spombe	fragments_mixed_t3	5prime_partial	release	1270	1219	1017	0	0	0	0.8008	
+spombe	fragments_mixed_t3	complete	release	1275	1233	1159	0	0	0	0.909	
+spombe	fragments_mixed_t3	internal	release	1270	1203	1024	0	0	0	0.8063	
+spombe	fragments_mixed_t3	all	full_l0.5	5084	4875	4335	45	51	-6	0.8527	0.8703
+spombe	fragments_mixed_t3	3prime_partial	full_l0.5	1269	1220	1158	18	1	17	0.9125	
+spombe	fragments_mixed_t3	5prime_partial	full_l0.5	1270	1219	1001	6	22	-16	0.7882	
+spombe	fragments_mixed_t3	complete	full_l0.5	1275	1233	1171	14	2	12	0.9184	
+spombe	fragments_mixed_t3	internal	full_l0.5	1270	1203	1005	7	26	-19	0.7913	
+spombe	fragments_mixed_t3	all	full_l1	5084	4875	4320	85	106	-21	0.8497	0.8673
+spombe	fragments_mixed_t3	3prime_partial	full_l1	1269	1220	1167	30	4	26	0.9196	
+spombe	fragments_mixed_t3	5prime_partial	full_l1	1270	1219	979	17	55	-38	0.7709	
+spombe	fragments_mixed_t3	complete	full_l1	1275	1233	1184	28	3	25	0.9286	
+spombe	fragments_mixed_t3	internal	full_l1	1270	1203	990	10	44	-34	0.7795	
+spombe	fragments_mixed_t3	all	full_l2	5084	4875	4257	144	228	-84	0.8373	0.8546
+spombe	fragments_mixed_t3	3prime_partial	full_l2	1269	1220	1175	44	10	34	0.9259	
+spombe	fragments_mixed_t3	5prime_partial	full_l2	1270	1219	935	31	113	-82	0.7362	
+spombe	fragments_mixed_t3	complete	full_l2	1275	1233	1198	43	4	39	0.9396	
+spombe	fragments_mixed_t3	internal	full_l2	1270	1203	949	26	101	-75	0.7472	
+spombe	fragments_mixed_t3	all	short_l1	5084	4875	4342	7	6	1	0.8541	0.8717
+spombe	fragments_mixed_t3	3prime_partial	short_l1	1269	1220	1138	0	3	-3	0.8968	
+spombe	fragments_mixed_t3	5prime_partial	short_l1	1270	1219	1023	6	0	6	0.8055	
+spombe	fragments_mixed_t3	complete	short_l1	1275	1233	1156	0	3	-3	0.9067	
+spombe	fragments_mixed_t3	internal	short_l1	1270	1203	1025	1	0	1	0.8071	
+tthermophila	complete	all	release	26456	23541	21016	0	0	0	0.7944	0.8334
+tthermophila	complete	complete	release	26456	23541	21016	0	0	0	0.7944	
+tthermophila	complete	all	full_l0.5	26456	23541	21125	193	84	109	0.7985	0.8377
+tthermophila	complete	complete	full_l0.5	26456	23541	21125	193	84	109	0.7985	
+tthermophila	complete	all	full_l1	26456	23541	21189	338	165	173	0.8009	0.8402
+tthermophila	complete	complete	full_l1	26456	23541	21189	338	165	173	0.8009	
+tthermophila	complete	all	full_l2	26456	23541	21146	533	403	130	0.7993	0.8385
+tthermophila	complete	complete	full_l2	26456	23541	21146	533	403	130	0.7993	
+tthermophila	complete	all	short_l1	26456	23541	20998	0	18	-18	0.7937	0.8327
+tthermophila	complete	complete	short_l1	26456	23541	20998	0	18	-18	0.7937	
+tthermophila	complete_fullutr	all	release	26456	23343	20908	0	0	0	0.7903	0.8312
+tthermophila	complete_fullutr	complete	release	26456	23343	20908	0	0	0	0.7903	
+tthermophila	complete_fullutr	all	full_l0.5	26456	23343	21003	176	81	95	0.7939	0.835
+tthermophila	complete_fullutr	complete	full_l0.5	26456	23343	21003	176	81	95	0.7939	
+tthermophila	complete_fullutr	all	full_l1	26456	23343	21069	321	160	161	0.7964	0.8376
+tthermophila	complete_fullutr	complete	full_l1	26456	23343	21069	321	160	161	0.7964	
+tthermophila	complete_fullutr	all	full_l2	26456	23343	21091	522	339	183	0.7972	0.8385
+tthermophila	complete_fullutr	complete	full_l2	26456	23343	21091	522	339	183	0.7972	
+tthermophila	complete_fullutr	all	short_l1	26456	23343	20886	0	22	-22	0.7895	0.8303
+tthermophila	complete_fullutr	complete	short_l1	26456	23343	20886	0	22	-22	0.7895	
+tthermophila	fragments	all	release	26456	21282	18212	0	1	-1	0.6884	0.7593
+tthermophila	fragments	3prime_partial	release	13331	10811	9515	0	1	-1	0.7137	
+tthermophila	fragments	5prime_partial	release	13125	10471	8697	0	0	0	0.6626	
+tthermophila	fragments	all	full_l0.5	26456	21282	18151	169	231	-62	0.6861	0.7568
+tthermophila	fragments	3prime_partial	full_l0.5	13331	10811	9561	85	40	45	0.7172	
+tthermophila	fragments	5prime_partial	full_l0.5	13125	10471	8590	84	191	-107	0.6545	
+tthermophila	fragments	all	full_l1	26456	21282	18044	319	488	-169	0.682	0.7523
+tthermophila	fragments	3prime_partial	full_l1	13331	10811	9594	155	77	78	0.7197	
+tthermophila	fragments	5prime_partial	full_l1	13125	10471	8450	164	411	-247	0.6438	
+tthermophila	fragments	all	full_l2	26456	21282	17759	525	979	-454	0.6713	0.7405
+tthermophila	fragments	3prime_partial	full_l2	13331	10811	9585	251	182	69	0.719	
+tthermophila	fragments	5prime_partial	full_l2	13125	10471	8174	274	797	-523	0.6228	
+tthermophila	fragments	all	short_l1	26456	21282	18244	38	7	31	0.6896	0.7607
+tthermophila	fragments	3prime_partial	short_l1	13331	10811	9509	0	7	-7	0.7133	
+tthermophila	fragments	5prime_partial	short_l1	13125	10471	8735	38	0	38	0.6655	
+tthermophila	fragments_mixed_t1	all	release	26377	22739	19455	1	0	1	0.7376	0.7884
+tthermophila	fragments_mixed_t1	3prime_partial	release	6592	5725	4989	0	0	0	0.7568	
+tthermophila	fragments_mixed_t1	5prime_partial	release	6588	5546	4578	0	0	0	0.6949	
+tthermophila	fragments_mixed_t1	complete	release	6614	5789	5201	0	0	0	0.7864	
+tthermophila	fragments_mixed_t1	internal	release	6583	5679	4687	1	0	1	0.712	
+tthermophila	fragments_mixed_t1	all	full_l0.5	26377	22739	19363	206	297	-91	0.7341	0.7846
+tthermophila	fragments_mixed_t1	3prime_partial	full_l0.5	6592	5725	5022	57	24	33	0.7618	
+tthermophila	fragments_mixed_t1	5prime_partial	full_l0.5	6588	5546	4514	61	125	-64	0.6852	
+tthermophila	fragments_mixed_t1	complete	full_l0.5	6614	5789	5228	42	15	27	0.7904	
+tthermophila	fragments_mixed_t1	internal	full_l0.5	6583	5679	4599	46	133	-87	0.6986	
+tthermophila	fragments_mixed_t1	all	full_l1	26377	22739	19206	356	604	-248	0.7281	0.7783
+tthermophila	fragments_mixed_t1	3prime_partial	full_l1	6592	5725	5037	99	51	48	0.7641	
+tthermophila	fragments_mixed_t1	5prime_partial	full_l1	6588	5546	4415	95	258	-163	0.6702	
+tthermophila	fragments_mixed_t1	complete	full_l1	6614	5789	5233	69	37	32	0.7912	
+tthermophila	fragments_mixed_t1	internal	full_l1	6583	5679	4521	93	258	-165	0.6868	
+tthermophila	fragments_mixed_t1	all	full_l2	26377	22739	18843	563	1174	-611	0.7144	0.7636
+tthermophila	fragments_mixed_t1	3prime_partial	full_l2	6592	5725	5026	140	103	37	0.7624	
+tthermophila	fragments_mixed_t1	5prime_partial	full_l2	6588	5546	4270	167	475	-308	0.6481	
+tthermophila	fragments_mixed_t1	complete	full_l2	6614	5789	5222	117	96	21	0.7895	
+tthermophila	fragments_mixed_t1	internal	full_l2	6583	5679	4325	139	500	-361	0.657	
+tthermophila	fragments_mixed_t1	all	short_l1	26377	22739	19501	58	11	47	0.7393	0.7902
+tthermophila	fragments_mixed_t1	3prime_partial	short_l1	6592	5725	4984	0	5	-5	0.7561	
+tthermophila	fragments_mixed_t1	5prime_partial	short_l1	6588	5546	4603	25	0	25	0.6987	
+tthermophila	fragments_mixed_t1	complete	short_l1	6614	5789	5195	0	6	-6	0.7855	
+tthermophila	fragments_mixed_t1	internal	short_l1	6583	5679	4719	33	0	33	0.7168	
+tthermophila	fragments_mixed_t2	all	release	26362	22775	19448	0	0	0	0.7377	0.7875
+tthermophila	fragments_mixed_t2	3prime_partial	release	6581	5659	4968	0	0	0	0.7549	
+tthermophila	fragments_mixed_t2	5prime_partial	release	6588	5594	4621	0	0	0	0.7014	
+tthermophila	fragments_mixed_t2	complete	release	6614	5848	5237	0	0	0	0.7918	
+tthermophila	fragments_mixed_t2	internal	release	6579	5674	4622	0	0	0	0.7025	
+tthermophila	fragments_mixed_t2	all	full_l0.5	26362	22775	19374	205	279	-74	0.7349	0.7845
+tthermophila	fragments_mixed_t2	3prime_partial	full_l0.5	6581	5659	4998	54	24	30	0.7595	
+tthermophila	fragments_mixed_t2	5prime_partial	full_l0.5	6588	5594	4555	48	114	-66	0.6914	
+tthermophila	fragments_mixed_t2	complete	full_l0.5	6614	5848	5256	46	27	19	0.7947	
+tthermophila	fragments_mixed_t2	internal	full_l0.5	6579	5674	4565	57	114	-57	0.6939	
+tthermophila	fragments_mixed_t2	all	full_l1	26362	22775	19283	364	529	-165	0.7315	0.7808
+tthermophila	fragments_mixed_t2	3prime_partial	full_l1	6581	5659	5005	85	48	37	0.7605	
+tthermophila	fragments_mixed_t2	5prime_partial	full_l1	6588	5594	4494	90	217	-127	0.6821	
+tthermophila	fragments_mixed_t2	complete	full_l1	6614	5848	5274	83	46	37	0.7974	
+tthermophila	fragments_mixed_t2	internal	full_l1	6579	5674	4510	106	218	-112	0.6855	
+tthermophila	fragments_mixed_t2	all	full_l2	26362	22775	18949	572	1071	-499	0.7188	0.7673
+tthermophila	fragments_mixed_t2	3prime_partial	full_l2	6581	5659	4996	146	118	28	0.7592	
+tthermophila	fragments_mixed_t2	5prime_partial	full_l2	6588	5594	4341	141	421	-280	0.6589	
+tthermophila	fragments_mixed_t2	complete	full_l2	6614	5848	5262	121	96	25	0.7956	
+tthermophila	fragments_mixed_t2	internal	full_l2	6579	5674	4350	164	436	-272	0.6612	
+tthermophila	fragments_mixed_t2	all	short_l1	26362	22775	19505	63	6	57	0.7399	0.7898
+tthermophila	fragments_mixed_t2	3prime_partial	short_l1	6581	5659	4965	0	3	-3	0.7544	
+tthermophila	fragments_mixed_t2	5prime_partial	short_l1	6588	5594	4649	28	0	28	0.7057	
+tthermophila	fragments_mixed_t2	complete	short_l1	6614	5848	5234	0	3	-3	0.7914	
+tthermophila	fragments_mixed_t2	internal	short_l1	6579	5674	4657	35	0	35	0.7079	
+tthermophila	fragments_mixed_t3	all	release	26372	22735	19424	0	0	0	0.7365	0.7872
+tthermophila	fragments_mixed_t3	3prime_partial	release	6584	5661	4952	0	0	0	0.7521	
+tthermophila	fragments_mixed_t3	5prime_partial	release	6581	5541	4557	0	0	0	0.6924	
+tthermophila	fragments_mixed_t3	complete	release	6614	5837	5202	0	0	0	0.7865	
+tthermophila	fragments_mixed_t3	internal	release	6593	5696	4713	0	0	0	0.7148	
+tthermophila	fragments_mixed_t3	all	full_l0.5	26372	22735	19331	208	301	-93	0.733	0.7834
+tthermophila	fragments_mixed_t3	3prime_partial	full_l0.5	6584	5661	4980	55	27	28	0.7564	
+tthermophila	fragments_mixed_t3	5prime_partial	full_l0.5	6581	5541	4494	49	112	-63	0.6829	
+tthermophila	fragments_mixed_t3	complete	full_l0.5	6614	5837	5233	52	21	31	0.7912	
+tthermophila	fragments_mixed_t3	internal	full_l0.5	6593	5696	4624	52	141	-89	0.7013	
+tthermophila	fragments_mixed_t3	all	full_l1	26372	22735	19179	369	614	-245	0.7272	0.7772
+tthermophila	fragments_mixed_t3	3prime_partial	full_l1	6584	5661	4997	98	53	45	0.759	
+tthermophila	fragments_mixed_t3	5prime_partial	full_l1	6581	5541	4412	88	233	-145	0.6704	
+tthermophila	fragments_mixed_t3	complete	full_l1	6614	5837	5251	98	49	49	0.7939	
+tthermophila	fragments_mixed_t3	internal	full_l1	6593	5696	4519	85	279	-194	0.6854	
+tthermophila	fragments_mixed_t3	all	full_l2	26372	22735	18812	607	1219	-612	0.7133	0.7624
+tthermophila	fragments_mixed_t3	3prime_partial	full_l2	6584	5661	4985	151	118	33	0.7571	
+tthermophila	fragments_mixed_t3	5prime_partial	full_l2	6581	5541	4252	154	459	-305	0.6461	
+tthermophila	fragments_mixed_t3	complete	full_l2	6614	5837	5233	149	118	31	0.7912	
+tthermophila	fragments_mixed_t3	internal	full_l2	6593	5696	4342	153	524	-371	0.6586	
+tthermophila	fragments_mixed_t3	all	short_l1	26372	22735	19469	57	12	45	0.7382	0.789
+tthermophila	fragments_mixed_t3	3prime_partial	short_l1	6584	5661	4948	0	4	-4	0.7515	
+tthermophila	fragments_mixed_t3	5prime_partial	short_l1	6581	5541	4590	33	0	33	0.6975	
+tthermophila	fragments_mixed_t3	complete	short_l1	6614	5837	5194	0	8	-8	0.7853	
+tthermophila	fragments_mixed_t3	internal	short_l1	6593	5696	4737	24	0	24	0.7185	
+pfalciparum	complete	all	release	5281	5251	4954	0	0	0	0.9381	0.9404
+pfalciparum	complete	complete	release	5281	5251	4954	0	0	0	0.9381	
+pfalciparum	complete	all	full_l0.5	5281	5251	4960	6	0	6	0.9392	0.9415
+pfalciparum	complete	complete	full_l0.5	5281	5251	4960	6	0	6	0.9392	
+pfalciparum	complete	all	full_l1	5281	5251	4967	16	3	13	0.9405	0.9429
+pfalciparum	complete	complete	full_l1	5281	5251	4967	16	3	13	0.9405	
+pfalciparum	complete	all	full_l2	5281	5251	4973	23	4	19	0.9417	0.944
+pfalciparum	complete	complete	full_l2	5281	5251	4973	23	4	19	0.9417	
+pfalciparum	complete	all	short_l1	5281	5251	4952	0	2	-2	0.9377	0.94
+pfalciparum	complete	complete	short_l1	5281	5251	4952	0	2	-2	0.9377	
+pfalciparum	complete_fullutr	all	release	5281	5220	4929	0	0	0	0.9333	0.9371
+pfalciparum	complete_fullutr	complete	release	5281	5220	4929	0	0	0	0.9333	
+pfalciparum	complete_fullutr	all	full_l0.5	5281	5220	4934	6	1	5	0.9343	0.938
+pfalciparum	complete_fullutr	complete	full_l0.5	5281	5220	4934	6	1	5	0.9343	
+pfalciparum	complete_fullutr	all	full_l1	5281	5220	4939	13	3	10	0.9352	0.939
+pfalciparum	complete_fullutr	complete	full_l1	5281	5220	4939	13	3	10	0.9352	
+pfalciparum	complete_fullutr	all	full_l2	5281	5220	4947	21	3	18	0.9368	0.9405
+pfalciparum	complete_fullutr	complete	full_l2	5281	5220	4947	21	3	18	0.9368	
+pfalciparum	complete_fullutr	all	short_l1	5281	5220	4927	0	2	-2	0.933	0.9367
+pfalciparum	complete_fullutr	complete	short_l1	5281	5220	4927	0	2	-2	0.933	
+pfalciparum	fragments	all	release	5281	4942	4445	0	0	0	0.8417	0.8682
+pfalciparum	fragments	3prime_partial	release	2672	2510	2343	0	0	0	0.8769	
+pfalciparum	fragments	5prime_partial	release	2609	2432	2102	0	0	0	0.8057	
+pfalciparum	fragments	all	full_l0.5	5281	4942	4427	18	36	-18	0.8383	0.8647
+pfalciparum	fragments	3prime_partial	full_l0.5	2672	2510	2345	4	2	2	0.8776	
+pfalciparum	fragments	5prime_partial	full_l0.5	2609	2432	2082	14	34	-20	0.798	
+pfalciparum	fragments	all	full_l1	5281	4942	4378	30	97	-67	0.829	0.8552
+pfalciparum	fragments	3prime_partial	full_l1	2672	2510	2349	8	2	6	0.8791	
+pfalciparum	fragments	5prime_partial	full_l1	2609	2432	2029	22	95	-73	0.7777	
+pfalciparum	fragments	all	full_l2	5281	4942	4309	61	197	-136	0.8159	0.8417
+pfalciparum	fragments	3prime_partial	full_l2	2672	2510	2351	12	4	8	0.8799	
+pfalciparum	fragments	5prime_partial	full_l2	2609	2432	1958	49	193	-144	0.7505	
+pfalciparum	fragments	all	short_l1	5281	4942	4450	6	1	5	0.8426	0.8692
+pfalciparum	fragments	3prime_partial	short_l1	2672	2510	2342	0	1	-1	0.8765	
+pfalciparum	fragments	5prime_partial	short_l1	2609	2432	2108	6	0	6	0.808	
+pfalciparum	fragments_mixed_t1	all	release	5275	5223	4693	0	0	0	0.8897	0.8934
+pfalciparum	fragments_mixed_t1	3prime_partial	release	1319	1304	1232	0	0	0	0.934	
+pfalciparum	fragments_mixed_t1	5prime_partial	release	1319	1304	1115	0	0	0	0.8453	
+pfalciparum	fragments_mixed_t1	complete	release	1321	1310	1216	0	0	0	0.9205	
+pfalciparum	fragments_mixed_t1	internal	release	1316	1305	1130	0	0	0	0.8587	
+pfalciparum	fragments_mixed_t1	all	full_l0.5	5275	5223	4682	24	35	-11	0.8876	0.8913
+pfalciparum	fragments_mixed_t1	3prime_partial	full_l0.5	1319	1304	1232	0	0	0	0.934	
+pfalciparum	fragments_mixed_t1	5prime_partial	full_l0.5	1319	1304	1111	16	20	-4	0.8423	
+pfalciparum	fragments_mixed_t1	complete	full_l0.5	1321	1310	1218	2	0	2	0.922	
+pfalciparum	fragments_mixed_t1	internal	full_l0.5	1316	1305	1121	6	15	-9	0.8518	
+pfalciparum	fragments_mixed_t1	all	full_l1	5275	5223	4648	47	92	-45	0.8811	0.8848
+pfalciparum	fragments_mixed_t1	3prime_partial	full_l1	1319	1304	1232	1	1	0	0.934	
+pfalciparum	fragments_mixed_t1	5prime_partial	full_l1	1319	1304	1089	26	52	-26	0.8256	
+pfalciparum	fragments_mixed_t1	complete	full_l1	1321	1310	1217	2	1	1	0.9213	
+pfalciparum	fragments_mixed_t1	internal	full_l1	1316	1305	1110	18	38	-20	0.8435	
+pfalciparum	fragments_mixed_t1	all	full_l2	5275	5223	4556	72	209	-137	0.8637	0.8673
+pfalciparum	fragments_mixed_t1	3prime_partial	full_l2	1319	1304	1232	2	2	0	0.934	
+pfalciparum	fragments_mixed_t1	5prime_partial	full_l2	1319	1304	1045	37	107	-70	0.7923	
+pfalciparum	fragments_mixed_t1	complete	full_l2	1321	1310	1220	5	1	4	0.9235	
+pfalciparum	fragments_mixed_t1	internal	full_l2	1316	1305	1059	28	99	-71	0.8047	
+pfalciparum	fragments_mixed_t1	all	short_l1	5275	5223	4701	8	0	8	0.8912	0.8949
+pfalciparum	fragments_mixed_t1	3prime_partial	short_l1	1319	1304	1232	0	0	0	0.934	
+pfalciparum	fragments_mixed_t1	5prime_partial	short_l1	1319	1304	1122	7	0	7	0.8506	
+pfalciparum	fragments_mixed_t1	complete	short_l1	1321	1310	1216	0	0	0	0.9205	
+pfalciparum	fragments_mixed_t1	internal	short_l1	1316	1305	1131	1	0	1	0.8594	
+pfalciparum	fragments_mixed_t2	all	release	5277	5217	4685	0	0	0	0.8878	0.8921
+pfalciparum	fragments_mixed_t2	3prime_partial	release	1319	1303	1222	0	0	0	0.9265	
+pfalciparum	fragments_mixed_t2	5prime_partial	release	1320	1299	1080	0	0	0	0.8182	
+pfalciparum	fragments_mixed_t2	complete	release	1321	1307	1235	0	0	0	0.9349	
+pfalciparum	fragments_mixed_t2	internal	release	1317	1308	1148	0	0	0	0.8717	
+pfalciparum	fragments_mixed_t2	all	full_l0.5	5277	5217	4655	24	54	-30	0.8821	0.8864
+pfalciparum	fragments_mixed_t2	3prime_partial	full_l0.5	1319	1303	1226	4	0	4	0.9295	
+pfalciparum	fragments_mixed_t2	5prime_partial	full_l0.5	1320	1299	1068	15	27	-12	0.8091	
+pfalciparum	fragments_mixed_t2	complete	full_l0.5	1321	1307	1237	2	0	2	0.9364	
+pfalciparum	fragments_mixed_t2	internal	full_l0.5	1317	1308	1124	3	27	-24	0.8535	
+pfalciparum	fragments_mixed_t2	all	full_l1	5277	5217	4623	41	103	-62	0.8761	0.8803
+pfalciparum	fragments_mixed_t2	3prime_partial	full_l1	1319	1303	1225	5	2	3	0.9287	
+pfalciparum	fragments_mixed_t2	5prime_partial	full_l1	1320	1299	1053	23	50	-27	0.7977	
+pfalciparum	fragments_mixed_t2	complete	full_l1	1321	1307	1237	2	0	2	0.9364	
+pfalciparum	fragments_mixed_t2	internal	full_l1	1317	1308	1108	11	51	-40	0.8413	
+pfalciparum	fragments_mixed_t2	all	full_l2	5277	5217	4535	71	221	-150	0.8594	0.8636
+pfalciparum	fragments_mixed_t2	3prime_partial	full_l2	1319	1303	1226	8	4	4	0.9295	
+pfalciparum	fragments_mixed_t2	5prime_partial	full_l2	1320	1299	1009	34	105	-71	0.7644	
+pfalciparum	fragments_mixed_t2	complete	full_l2	1321	1307	1238	3	0	3	0.9372	
+pfalciparum	fragments_mixed_t2	internal	full_l2	1317	1308	1062	26	112	-86	0.8064	
+pfalciparum	fragments_mixed_t2	all	short_l1	5277	5217	4688	5	2	3	0.8884	0.8927
+pfalciparum	fragments_mixed_t2	3prime_partial	short_l1	1319	1303	1220	0	2	-2	0.9249	
+pfalciparum	fragments_mixed_t2	5prime_partial	short_l1	1320	1299	1083	3	0	3	0.8205	
+pfalciparum	fragments_mixed_t2	complete	short_l1	1321	1307	1235	0	0	0	0.9349	
+pfalciparum	fragments_mixed_t2	internal	short_l1	1317	1308	1150	2	0	2	0.8732	
+pfalciparum	fragments_mixed_t3	all	release	5278	5228	4717	0	0	0	0.8937	0.8976
+pfalciparum	fragments_mixed_t3	3prime_partial	release	1319	1308	1232	0	0	0	0.934	
+pfalciparum	fragments_mixed_t3	5prime_partial	release	1320	1310	1114	0	0	0	0.8439	
+pfalciparum	fragments_mixed_t3	complete	release	1321	1303	1235	0	0	0	0.9349	
+pfalciparum	fragments_mixed_t3	internal	release	1318	1307	1136	0	0	0	0.8619	
+pfalciparum	fragments_mixed_t3	all	full_l0.5	5278	5228	4683	25	59	-34	0.8873	0.8912
+pfalciparum	fragments_mixed_t3	3prime_partial	full_l0.5	1319	1308	1234	3	1	2	0.9356	
+pfalciparum	fragments_mixed_t3	5prime_partial	full_l0.5	1320	1310	1096	11	29	-18	0.8303	
+pfalciparum	fragments_mixed_t3	complete	full_l0.5	1321	1303	1235	1	1	0	0.9349	
+pfalciparum	fragments_mixed_t3	internal	full_l0.5	1318	1307	1118	10	28	-18	0.8483	
+pfalciparum	fragments_mixed_t3	all	full_l1	5278	5228	4642	47	122	-75	0.8795	0.8833
+pfalciparum	fragments_mixed_t3	3prime_partial	full_l1	1319	1308	1235	5	2	3	0.9363	
+pfalciparum	fragments_mixed_t3	5prime_partial	full_l1	1320	1310	1073	22	63	-41	0.8129	
+pfalciparum	fragments_mixed_t3	complete	full_l1	1321	1303	1235	2	2	0	0.9349	
+pfalciparum	fragments_mixed_t3	internal	full_l1	1318	1307	1099	18	55	-37	0.8338	
+pfalciparum	fragments_mixed_t3	all	full_l2	5278	5228	4532	68	253	-185	0.8587	0.8624
+pfalciparum	fragments_mixed_t3	3prime_partial	full_l2	1319	1308	1234	5	3	2	0.9356	
+pfalciparum	fragments_mixed_t3	5prime_partial	full_l2	1320	1310	1023	38	129	-91	0.775	
+pfalciparum	fragments_mixed_t3	complete	full_l2	1321	1303	1236	3	2	1	0.9357	
+pfalciparum	fragments_mixed_t3	internal	full_l2	1318	1307	1039	22	119	-97	0.7883	
+pfalciparum	fragments_mixed_t3	all	short_l1	5278	5228	4725	10	2	8	0.8952	0.8991
+pfalciparum	fragments_mixed_t3	3prime_partial	short_l1	1319	1308	1231	0	1	-1	0.9333	
+pfalciparum	fragments_mixed_t3	5prime_partial	short_l1	1320	1310	1120	6	0	6	0.8485	
+pfalciparum	fragments_mixed_t3	complete	short_l1	1321	1303	1234	0	1	-1	0.9341	
+pfalciparum	fragments_mixed_t3	internal	short_l1	1318	1307	1140	4	0	4	0.8649	
+creinhardtii	complete	all	release	17621	16818	12891	0	0	0	0.7316	0.7469
+creinhardtii	complete	complete	release	17621	16818	12891	0	0	0	0.7316	
+creinhardtii	complete	all	full_l0.5	17621	16818	12896	40	35	5	0.7319	0.7472
+creinhardtii	complete	complete	full_l0.5	17621	16818	12896	40	35	5	0.7319	
+creinhardtii	complete	all	full_l1	17621	16818	12894	74	71	3	0.7317	0.7471
+creinhardtii	complete	complete	full_l1	17621	16818	12894	74	71	3	0.7317	
+creinhardtii	complete	all	full_l2	17621	16818	12893	145	143	2	0.7317	0.7471
+creinhardtii	complete	complete	full_l2	17621	16818	12893	145	143	2	0.7317	
+creinhardtii	complete	all	short_l1	17621	16818	12891	0	0	0	0.7316	0.7469
+creinhardtii	complete	complete	short_l1	17621	16818	12891	0	0	0	0.7316	
+creinhardtii	complete_fullutr	all	release	17621	16647	12597	0	0	0	0.7149	0.7325
+creinhardtii	complete_fullutr	complete	release	17621	16647	12597	0	0	0	0.7149	
+creinhardtii	complete_fullutr	all	full_l0.5	17621	16647	12621	36	12	24	0.7162	0.7339
+creinhardtii	complete_fullutr	complete	full_l0.5	17621	16647	12621	36	12	24	0.7162	
+creinhardtii	complete_fullutr	all	full_l1	17621	16647	12651	80	26	54	0.718	0.7356
+creinhardtii	complete_fullutr	complete	full_l1	17621	16647	12651	80	26	54	0.718	
+creinhardtii	complete_fullutr	all	full_l2	17621	16647	12684	141	54	87	0.7198	0.7375
+creinhardtii	complete_fullutr	complete	full_l2	17621	16647	12684	141	54	87	0.7198	
+creinhardtii	complete_fullutr	all	short_l1	17621	16647	12597	0	0	0	0.7149	0.7325
+creinhardtii	complete_fullutr	complete	short_l1	17621	16647	12597	0	0	0	0.7149	
+creinhardtii	fragments	all	release	17621	15387	12888	0	0	0	0.7314	0.7783
+creinhardtii	fragments	3prime_partial	release	8892	7591	5809	0	0	0	0.6533	
+creinhardtii	fragments	5prime_partial	release	8729	7796	7079	0	0	0	0.811	
+creinhardtii	fragments	all	full_l0.5	17621	15387	12837	69	120	-51	0.7285	0.7752
+creinhardtii	fragments	3prime_partial	full_l0.5	8892	7591	5818	27	18	9	0.6543	
+creinhardtii	fragments	5prime_partial	full_l0.5	8729	7796	7019	42	102	-60	0.8041	
+creinhardtii	fragments	all	full_l1	17621	15387	12764	116	240	-124	0.7244	0.7708
+creinhardtii	fragments	3prime_partial	full_l1	8892	7591	5819	38	28	10	0.6544	
+creinhardtii	fragments	5prime_partial	full_l1	8729	7796	6945	78	212	-134	0.7956	
+creinhardtii	fragments	all	full_l2	17621	15387	12524	203	567	-364	0.7107	0.7563
+creinhardtii	fragments	3prime_partial	full_l2	8892	7591	5815	67	61	6	0.654	
+creinhardtii	fragments	5prime_partial	full_l2	8729	7796	6709	136	506	-370	0.7686	
+creinhardtii	fragments	all	short_l1	17621	15387	12900	14	2	12	0.7321	0.779
+creinhardtii	fragments	3prime_partial	short_l1	8892	7591	5807	0	2	-2	0.6531	
+creinhardtii	fragments	5prime_partial	short_l1	8729	7796	7093	14	0	14	0.8126	
+creinhardtii	fragments_mixed_t1	all	release	17621	16653	13760	0	0	0	0.7809	0.8018
+creinhardtii	fragments_mixed_t1	3prime_partial	release	4405	4113	3173	0	0	0	0.7203	
+creinhardtii	fragments_mixed_t1	5prime_partial	release	4405	4199	3724	0	0	0	0.8454	
+creinhardtii	fragments_mixed_t1	complete	release	4406	4158	3175	0	0	0	0.7206	
+creinhardtii	fragments_mixed_t1	internal	release	4405	4183	3688	0	0	0	0.8372	
+creinhardtii	fragments_mixed_t1	all	full_l0.5	17621	16653	13714	81	127	-46	0.7783	0.7991
+creinhardtii	fragments_mixed_t1	3prime_partial	full_l0.5	4405	4113	3169	5	9	-4	0.7194	
+creinhardtii	fragments_mixed_t1	5prime_partial	full_l0.5	4405	4199	3708	36	52	-16	0.8418	
+creinhardtii	fragments_mixed_t1	complete	full_l0.5	4406	4158	3170	7	12	-5	0.7195	
+creinhardtii	fragments_mixed_t1	internal	full_l0.5	4405	4183	3667	33	54	-21	0.8325	
+creinhardtii	fragments_mixed_t1	all	full_l1	17621	16653	13627	148	281	-133	0.7733	0.794
+creinhardtii	fragments_mixed_t1	3prime_partial	full_l1	4405	4113	3173	16	16	0	0.7203	
+creinhardtii	fragments_mixed_t1	5prime_partial	full_l1	4405	4199	3669	61	116	-55	0.8329	
+creinhardtii	fragments_mixed_t1	complete	full_l1	4406	4158	3169	13	19	-6	0.7192	
+creinhardtii	fragments_mixed_t1	internal	full_l1	4405	4183	3616	58	130	-72	0.8209	
+creinhardtii	fragments_mixed_t1	all	full_l2	17621	16653	13428	275	607	-332	0.762	0.7824
+creinhardtii	fragments_mixed_t1	3prime_partial	full_l2	4405	4113	3175	37	35	2	0.7208	
+creinhardtii	fragments_mixed_t1	5prime_partial	full_l2	4405	4199	3563	104	265	-161	0.8089	
+creinhardtii	fragments_mixed_t1	complete	full_l2	4406	4158	3165	27	37	-10	0.7183	
+creinhardtii	fragments_mixed_t1	internal	full_l2	4405	4183	3525	107	270	-163	0.8002	
+creinhardtii	fragments_mixed_t1	all	short_l1	17621	16653	13772	13	1	12	0.7816	0.8025
+creinhardtii	fragments_mixed_t1	3prime_partial	short_l1	4405	4113	3173	0	0	0	0.7203	
+creinhardtii	fragments_mixed_t1	5prime_partial	short_l1	4405	4199	3730	6	0	6	0.8468	
+creinhardtii	fragments_mixed_t1	complete	short_l1	4406	4158	3174	0	1	-1	0.7204	
+creinhardtii	fragments_mixed_t1	internal	short_l1	4405	4183	3695	7	0	7	0.8388	
+creinhardtii	fragments_mixed_t2	all	release	17621	16667	13855	0	0	0	0.7863	0.8068
+creinhardtii	fragments_mixed_t2	3prime_partial	release	4405	4084	3154	0	0	0	0.716	
+creinhardtii	fragments_mixed_t2	5prime_partial	release	4405	4206	3770	0	0	0	0.8558	
+creinhardtii	fragments_mixed_t2	complete	release	4406	4191	3191	0	0	0	0.7242	
+creinhardtii	fragments_mixed_t2	internal	release	4405	4186	3740	0	0	0	0.849	
+creinhardtii	fragments_mixed_t2	all	full_l0.5	17621	16667	13814	77	118	-41	0.784	0.8044
+creinhardtii	fragments_mixed_t2	3prime_partial	full_l0.5	4405	4084	3157	13	10	3	0.7167	
+creinhardtii	fragments_mixed_t2	5prime_partial	full_l0.5	4405	4206	3756	34	48	-14	0.8527	
+creinhardtii	fragments_mixed_t2	complete	full_l0.5	4406	4191	3187	4	8	-4	0.7233	
+creinhardtii	fragments_mixed_t2	internal	full_l0.5	4405	4186	3714	26	52	-26	0.8431	
+creinhardtii	fragments_mixed_t2	all	full_l1	17621	16667	13759	146	242	-96	0.7808	0.8012
+creinhardtii	fragments_mixed_t2	3prime_partial	full_l1	4405	4084	3162	24	16	8	0.7178	
+creinhardtii	fragments_mixed_t2	5prime_partial	full_l1	4405	4206	3720	50	100	-50	0.8445	
+creinhardtii	fragments_mixed_t2	complete	full_l1	4406	4191	3186	13	18	-5	0.7231	
+creinhardtii	fragments_mixed_t2	internal	full_l1	4405	4186	3691	59	108	-49	0.8379	
+creinhardtii	fragments_mixed_t2	all	full_l2	17621	16667	13548	244	551	-307	0.7689	0.789
+creinhardtii	fragments_mixed_t2	3prime_partial	full_l2	4405	4084	3157	37	34	3	0.7167	
+creinhardtii	fragments_mixed_t2	5prime_partial	full_l2	4405	4206	3608	86	248	-162	0.8191	
+creinhardtii	fragments_mixed_t2	complete	full_l2	4406	4191	3184	28	35	-7	0.7227	
+creinhardtii	fragments_mixed_t2	internal	full_l2	4405	4186	3599	93	234	-141	0.817	
+creinhardtii	fragments_mixed_t2	all	short_l1	17621	16667	13868	14	1	13	0.787	0.8076
+creinhardtii	fragments_mixed_t2	3prime_partial	short_l1	4405	4084	3153	0	1	-1	0.7158	
+creinhardtii	fragments_mixed_t2	5prime_partial	short_l1	4405	4206	3778	8	0	8	0.8577	
+creinhardtii	fragments_mixed_t2	complete	short_l1	4406	4191	3191	0	0	0	0.7242	
+creinhardtii	fragments_mixed_t2	internal	short_l1	4405	4186	3746	6	0	6	0.8504	
+creinhardtii	fragments_mixed_t3	all	release	17621	16648	13723	0	0	0	0.7788	0.7997
+creinhardtii	fragments_mixed_t3	3prime_partial	release	4405	4093	3123	0	0	0	0.709	
+creinhardtii	fragments_mixed_t3	5prime_partial	release	4405	4197	3737	0	0	0	0.8484	
+creinhardtii	fragments_mixed_t3	complete	release	4406	4183	3203	0	0	0	0.727	
+creinhardtii	fragments_mixed_t3	internal	release	4405	4175	3660	0	0	0	0.8309	
+creinhardtii	fragments_mixed_t3	all	full_l0.5	17621	16648	13716	87	94	-7	0.7784	0.7993
+creinhardtii	fragments_mixed_t3	3prime_partial	full_l0.5	4405	4093	3129	10	4	6	0.7103	
+creinhardtii	fragments_mixed_t3	5prime_partial	full_l0.5	4405	4197	3727	29	39	-10	0.8461	
+creinhardtii	fragments_mixed_t3	complete	full_l0.5	4406	4183	3211	17	9	8	0.7288	
+creinhardtii	fragments_mixed_t3	internal	full_l0.5	4405	4175	3649	31	42	-11	0.8284	
+creinhardtii	fragments_mixed_t3	all	full_l1	17621	16648	13658	168	233	-65	0.7751	0.7959
+creinhardtii	fragments_mixed_t3	3prime_partial	full_l1	4405	4093	3119	17	21	-4	0.7081	
+creinhardtii	fragments_mixed_t3	5prime_partial	full_l1	4405	4197	3695	61	103	-42	0.8388	
+creinhardtii	fragments_mixed_t3	complete	full_l1	4406	4183	3211	29	21	8	0.7288	
+creinhardtii	fragments_mixed_t3	internal	full_l1	4405	4175	3633	61	88	-27	0.8247	
+creinhardtii	fragments_mixed_t3	all	full_l2	17621	16648	13463	284	544	-260	0.764	0.7845
+creinhardtii	fragments_mixed_t3	3prime_partial	full_l2	4405	4093	3117	34	40	-6	0.7076	
+creinhardtii	fragments_mixed_t3	5prime_partial	full_l2	4405	4197	3594	99	242	-143	0.8159	
+creinhardtii	fragments_mixed_t3	complete	full_l2	4406	4183	3207	47	43	4	0.7279	
+creinhardtii	fragments_mixed_t3	internal	full_l2	4405	4175	3545	104	219	-115	0.8048	
+creinhardtii	fragments_mixed_t3	all	short_l1	17621	16648	13743	20	0	20	0.7799	0.8009
+creinhardtii	fragments_mixed_t3	3prime_partial	short_l1	4405	4093	3123	0	0	0	0.709	
+creinhardtii	fragments_mixed_t3	5prime_partial	short_l1	4405	4197	3747	10	0	10	0.8506	
+creinhardtii	fragments_mixed_t3	complete	short_l1	4406	4183	3203	0	0	0	0.727	
+creinhardtii	fragments_mixed_t3	internal	short_l1	4405	4175	3670	10	0	10	0.8331	

@@ -1,0 +1,129 @@
+org	input	ref_type	n_ref	n_stop	exact	trim_trunc	open_utr	trim_upstream	atg_other	other	trim_trunc_median_d	trim_trunc_frac_d_lt20	trim_trunc_frac_d_lt50	trim_trunc_median_trimmed_frac	open_utr_median_true_utr	open_utr_frac_true_utr_lt20
+human	complete	complete	19167	18672	17423	0	946	99	204	0					65.0	0.0962
+human	complete_fullutr	complete	19167	18462	17227	0	922	91	222	0					62.5	0.102
+human	fragments	3prime_partial	9684	8709	8093	0	488	41	86	1					67.0	0.0922
+human	fragments	5prime_partial	9483	8289	6852	1437	0	0	0	0	59.0	0.1879	0.4384	0.0929		
+human	fragments_mixed_t1	3prime_partial	4784	4522	4216	0	241	26	38	1					68.0	0.0871
+human	fragments_mixed_t1	5prime_partial	4778	4429	3596	833	0	0	0	0	63.0	0.1837	0.4202	0.0756		
+human	fragments_mixed_t1	complete	4792	4633	4332	0	235	19	47	0					62.0	0.1362
+human	fragments_mixed_t1	internal	4773	4478	3655	819	0	0	0	4	69.0	0.1587	0.3993	0.09		
+human	fragments_mixed_t2	3prime_partial	4784	4464	4192	0	203	22	46	1					67.0	0.1576
+human	fragments_mixed_t2	5prime_partial	4781	4387	3641	746	0	0	0	0	59.0	0.1716	0.445	0.066		
+human	fragments_mixed_t2	complete	4792	4627	4325	0	235	26	41	0					62.0	0.0851
+human	fragments_mixed_t2	internal	4780	4484	3631	853	0	0	0	0	67.0	0.1723	0.4091	0.0859		
+human	fragments_mixed_t3	3prime_partial	4785	4536	4216	0	242	23	53	2					70.0	0.0826
+human	fragments_mixed_t3	5prime_partial	4779	4430	3644	786	0	0	0	0	65.0	0.1768	0.4148	0.0709		
+human	fragments_mixed_t3	complete	4792	4634	4327	0	236	27	44	0					62.0	0.072
+human	fragments_mixed_t3	internal	4775	4484	3705	778	0	0	0	1	67.0	0.1928	0.4139	0.0903		
+mouse	complete	complete	21409	20764	19163	0	791	192	618	0					82.0	0.1024
+mouse	complete_fullutr	complete	21409	20449	18839	0	736	187	687	0					67.5	0.1073
+mouse	fragments	3prime_partial	10837	9475	8754	0	346	80	295	0					82.5	0.0665
+mouse	fragments	5prime_partial	10572	9171	7675	1496	0	0	0	0	60.0	0.1932	0.4385	0.0942		
+mouse	fragments_mixed_t1	3prime_partial	5341	4990	4623	0	185	42	139	1					85.0	0.1081
+mouse	fragments_mixed_t1	5prime_partial	5337	4896	3948	948	0	0	0	0	63.5	0.1804	0.4114	0.0793		
+mouse	fragments_mixed_t1	complete	5353	5133	4713	0	209	52	159	0					86.0	0.0909
+mouse	fragments_mixed_t1	internal	5336	4987	3978	1005	0	0	0	4	63.0	0.21	0.4398	0.0922		
+mouse	fragments_mixed_t2	3prime_partial	5330	4940	4547	0	205	41	147	0					101.0	0.078
+mouse	fragments_mixed_t2	5prime_partial	5339	4858	3916	942	0	0	0	0	62.0	0.1985	0.4225	0.0689		
+mouse	fragments_mixed_t2	complete	5353	5143	4746	0	216	37	144	0					72.5	0.0926
+mouse	fragments_mixed_t2	internal	5335	4958	4075	877	0	0	0	6	62.0	0.1916	0.4356	0.0855		
+mouse	fragments_mixed_t3	3prime_partial	5339	4952	4570	0	182	44	156	0					79.5	0.0714
+mouse	fragments_mixed_t3	5prime_partial	5334	4876	3939	937	0	0	0	0	65.0	0.1804	0.4152	0.0773		
+mouse	fragments_mixed_t3	complete	5353	5141	4746	0	187	44	164	0					86.0	0.0963
+mouse	fragments_mixed_t3	internal	5336	4922	3986	926	0	0	0	10	68.0	0.1523	0.3877	0.0989		
+dmel	complete	complete	13884	13331	12647	0	344	56	284	0					41.5	0.2297
+dmel	complete_fullutr	complete	13884	13092	12454	0	304	53	281	0					37.0	0.2566
+dmel	fragments	3prime_partial	7006	6156	5827	0	170	26	133	0					36.0	0.2471
+dmel	fragments	5prime_partial	6878	5976	5142	834	0	0	0	0	48.0	0.2386	0.5156	0.0731		
+dmel	fragments_mixed_t1	3prime_partial	3445	3264	3092	0	87	17	68	0					44.0	0.1379
+dmel	fragments_mixed_t1	5prime_partial	3433	3267	2767	500	0	0	0	0	58.5	0.19	0.446	0.0817		
+dmel	fragments_mixed_t1	complete	3471	3326	3129	0	104	13	80	0					29.5	0.3173
+dmel	fragments_mixed_t1	internal	3440	3284	2760	524	0	0	0	0	53.0	0.2252	0.479	0.0821		
+dmel	fragments_mixed_t2	3prime_partial	3439	3285	3115	0	90	9	71	0					31.0	0.2889
+dmel	fragments_mixed_t2	5prime_partial	3443	3252	2768	484	0	0	0	0	56.0	0.2397	0.4463	0.0752		
+dmel	fragments_mixed_t2	complete	3471	3327	3146	0	96	13	72	0					38.5	0.2396
+dmel	fragments_mixed_t2	internal	3436	3273	2757	514	0	0	0	2	55.0	0.2023	0.4689	0.0852		
+dmel	fragments_mixed_t3	3prime_partial	3440	3285	3102	0	90	13	80	0					41.0	0.2222
+dmel	fragments_mixed_t3	5prime_partial	3426	3257	2705	552	0	0	0	0	52.5	0.2192	0.4819	0.0709		
+dmel	fragments_mixed_t3	complete	3471	3326	3156	0	78	14	78	0					41.0	0.2821
+dmel	fragments_mixed_t3	internal	3441	3262	2769	492	0	0	0	1	53.5	0.2256	0.4756	0.0881		
+athal	complete	complete	26867	25695	23655	0	1796	40	204	0					43.0	0.2311
+athal	complete_fullutr	complete	26867	25468	23487	0	1732	35	214	0					41.5	0.2385
+athal	fragments	3prime_partial	13541	10876	10048	0	743	15	68	2					45.0	0.2261
+athal	fragments	5prime_partial	13326	10648	8214	2434	0	0	0	0	63.0	0.1804	0.4215	0.1139		
+athal	fragments_mixed_t1	3prime_partial	6685	5984	5515	0	406	8	55	0					46.5	0.2192
+athal	fragments_mixed_t1	5prime_partial	6695	5912	4521	1391	0	0	0	0	60.0	0.1826	0.4328	0.0884		
+athal	fragments_mixed_t1	complete	6717	6236	5787	0	393	14	42	0					43.0	0.2061
+athal	fragments_mixed_t1	internal	6690	5833	4453	1380	0	0	0	0	69.0	0.1732	0.387	0.1116		
+athal	fragments_mixed_t2	3prime_partial	6687	5938	5452	0	424	12	49	1					50.0	0.184
+athal	fragments_mixed_t2	5prime_partial	6677	5885	4570	1315	0	0	0	0	62.0	0.181	0.4213	0.0941		
+athal	fragments_mixed_t2	complete	6717	6282	5790	0	435	9	48	0					47.0	0.223
+athal	fragments_mixed_t2	internal	6683	5808	4531	1277	0	0	0	0	70.0	0.1785	0.3978	0.1159		
+athal	fragments_mixed_t3	3prime_partial	6703	6039	5551	0	413	11	62	2					50.0	0.1792
+athal	fragments_mixed_t3	5prime_partial	6685	5954	4559	1395	0	0	0	0	67.0	0.1735	0.395	0.1023		
+athal	fragments_mixed_t3	complete	6717	6266	5802	0	410	7	47	0					45.0	0.222
+athal	fragments_mixed_t3	internal	6672	5854	4533	1321	0	0	0	0	67.0	0.1764	0.3997	0.1135		
+spombe	complete	complete	5100	4969	4613	0	307	3	46	0					24.0	0.3876
+spombe	complete_fullutr	complete	5100	4921	4574	0	298	3	46	0					24.0	0.3826
+spombe	fragments	3prime_partial	2572	2283	2119	0	141	1	21	1					23.0	0.4113
+spombe	fragments	5prime_partial	2528	2256	1881	375	0	0	0	0	46.0	0.2187	0.512	0.0879		
+spombe	fragments_mixed_t1	3prime_partial	1271	1212	1133	0	69	0	10	0					29.0	0.3768
+spombe	fragments_mixed_t1	5prime_partial	1270	1212	1001	211	0	0	0	0	63.0	0.2085	0.4313	0.0775		
+spombe	fragments_mixed_t1	complete	1275	1230	1144	0	73	1	12	0					28.0	0.3973
+spombe	fragments_mixed_t1	internal	1270	1179	1005	174	0	0	0	0	54.0	0.2069	0.4713	0.0848		
+spombe	fragments_mixed_t2	3prime_partial	1270	1234	1148	0	70	0	16	0					27.0	0.3429
+spombe	fragments_mixed_t2	5prime_partial	1270	1214	1016	198	0	0	0	0	51.0	0.1919	0.4798	0.0787		
+spombe	fragments_mixed_t2	complete	1275	1230	1157	0	64	3	6	0					24.0	0.375
+spombe	fragments_mixed_t2	internal	1269	1199	1010	189	0	0	0	0	67.0	0.1693	0.4021	0.1087		
+spombe	fragments_mixed_t3	3prime_partial	1269	1220	1141	0	67	0	12	0					26.0	0.3582
+spombe	fragments_mixed_t3	5prime_partial	1270	1219	1017	202	0	0	0	0	44.0	0.2525	0.5297	0.0726		
+spombe	fragments_mixed_t3	complete	1275	1233	1159	0	62	1	11	0					29.0	0.3065
+spombe	fragments_mixed_t3	internal	1270	1203	1024	179	0	0	0	0	53.0	0.2011	0.4637	0.1		
+tthermophila	complete	complete	26456	23541	21016	0	1829	372	324	0					100.0	0.0798
+tthermophila	complete_fullutr	complete	26456	23343	20908	0	1623	389	423	0					90.0	0.0856
+tthermophila	fragments	3prime_partial	13331	10811	9516	0	922	188	185	0					106.0	0.0889
+tthermophila	fragments	5prime_partial	13125	10471	8697	1774	0	0	0	0	56.0	0.1798	0.4487	0.063		
+tthermophila	fragments_mixed_t1	3prime_partial	6592	5725	4989	0	500	128	107	1					105.5	0.056
+tthermophila	fragments_mixed_t1	5prime_partial	6588	5546	4578	968	0	0	0	0	60.0	0.1942	0.4442	0.0508		
+tthermophila	fragments_mixed_t1	complete	6614	5789	5201	0	411	103	74	0					105.0	0.073
+tthermophila	fragments_mixed_t1	internal	6583	5679	4686	991	0	0	0	2	55.0	0.2008	0.4632	0.0551		
+tthermophila	fragments_mixed_t2	3prime_partial	6581	5659	4968	0	509	91	90	1					100.0	0.0806
+tthermophila	fragments_mixed_t2	5prime_partial	6588	5594	4621	973	0	0	0	0	53.0	0.1994	0.4645	0.0485		
+tthermophila	fragments_mixed_t2	complete	6614	5848	5237	0	436	103	72	0					100.5	0.078
+tthermophila	fragments_mixed_t2	internal	6579	5674	4622	1051	0	0	0	1	57.0	0.2036	0.4548	0.0635		
+tthermophila	fragments_mixed_t3	3prime_partial	6584	5661	4952	0	511	104	94	0					103.0	0.0724
+tthermophila	fragments_mixed_t3	5prime_partial	6581	5541	4557	984	0	0	0	0	51.0	0.2033	0.4848	0.0467		
+tthermophila	fragments_mixed_t3	complete	6614	5837	5202	0	479	95	61	0					92.0	0.1023
+tthermophila	fragments_mixed_t3	internal	6593	5696	4713	982	0	0	0	1	54.0	0.1884	0.4756	0.0601		
+pfalciparum	complete	complete	5281	5251	4954	0	45	12	240	0					36.0	0.3556
+pfalciparum	complete_fullutr	complete	5281	5220	4929	0	39	10	242	0					32.0	0.3846
+pfalciparum	fragments	3prime_partial	2672	2510	2343	0	23	4	140	0					43.0	0.2609
+pfalciparum	fragments	5prime_partial	2609	2432	2102	330	0	0	0	0	55.0	0.2212	0.4606	0.0849		
+pfalciparum	fragments_mixed_t1	3prime_partial	1319	1304	1232	0	11	1	60	0					44.0	0.2727
+pfalciparum	fragments_mixed_t1	5prime_partial	1319	1304	1115	189	0	0	0	0	49.0	0.2169	0.5026	0.0728		
+pfalciparum	fragments_mixed_t1	complete	1321	1310	1216	0	14	3	77	0					25.5	0.4286
+pfalciparum	fragments_mixed_t1	internal	1316	1305	1130	175	0	0	0	0	49.0	0.2457	0.5143	0.0631		
+pfalciparum	fragments_mixed_t2	3prime_partial	1319	1303	1222	0	11	4	66	0					19.0	0.6364
+pfalciparum	fragments_mixed_t2	5prime_partial	1320	1299	1080	219	0	0	0	0	60.0	0.1598	0.3973	0.0762		
+pfalciparum	fragments_mixed_t2	complete	1321	1307	1235	0	14	5	53	0					38.0	0.3571
+pfalciparum	fragments_mixed_t2	internal	1317	1308	1148	160	0	0	0	0	60.5	0.1938	0.4375	0.0792		
+pfalciparum	fragments_mixed_t3	3prime_partial	1319	1308	1232	0	10	4	62	0					37.5	0.4
+pfalciparum	fragments_mixed_t3	5prime_partial	1320	1310	1114	196	0	0	0	0	56.0	0.1786	0.4388	0.0779		
+pfalciparum	fragments_mixed_t3	complete	1321	1303	1235	0	7	4	57	0					36.0	0.1429
+pfalciparum	fragments_mixed_t3	internal	1318	1307	1136	171	0	0	0	0	56.0	0.1988	0.4269	0.0714		
+creinhardtii	complete	complete	17621	16818	12891	0	1002	872	2053	0					128.5	0.021
+creinhardtii	complete_fullutr	complete	17621	16647	12597	0	689	696	2665	0					82.0	0.029
+creinhardtii	fragments	3prime_partial	8892	7591	5809	0	476	393	912	1					124.0	0.0147
+creinhardtii	fragments	5prime_partial	8729	7796	7079	717	0	0	0	0	54.0	0.2469	0.4798	0.0594		
+creinhardtii	fragments_mixed_t1	3prime_partial	4405	4113	3173	0	245	214	481	0					121.0	0.0449
+creinhardtii	fragments_mixed_t1	5prime_partial	4405	4199	3724	475	0	0	0	0	66.0	0.1789	0.4211	0.073		
+creinhardtii	fragments_mixed_t1	complete	4406	4158	3175	0	240	227	516	0					138.5	0.0208
+creinhardtii	fragments_mixed_t1	internal	4405	4183	3688	493	0	0	0	2	73.0	0.1927	0.3793	0.0842		
+creinhardtii	fragments_mixed_t2	3prime_partial	4405	4084	3154	0	244	202	484	0					142.5	0.0287
+creinhardtii	fragments_mixed_t2	5prime_partial	4405	4206	3770	436	0	0	0	0	71.0	0.1995	0.3945	0.0672		
+creinhardtii	fragments_mixed_t2	complete	4406	4191	3191	0	263	200	537	0					137.0	0.0152
+creinhardtii	fragments_mixed_t2	internal	4405	4186	3740	445	0	0	0	1	73.0	0.1663	0.4045	0.0964		
+creinhardtii	fragments_mixed_t3	3prime_partial	4405	4093	3123	0	234	212	524	0					124.0	0.0214
+creinhardtii	fragments_mixed_t3	5prime_partial	4405	4197	3737	460	0	0	0	0	67.0	0.2109	0.4261	0.0665		
+creinhardtii	fragments_mixed_t3	complete	4406	4183	3203	0	241	205	534	0					112.0	0.0249
+creinhardtii	fragments_mixed_t3	internal	4405	4175	3660	515	0	0	0	0	66.0	0.167	0.4	0.0809		
