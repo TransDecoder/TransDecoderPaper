@@ -34,10 +34,19 @@ Runs: fresh, `benchmark_v2/scripts/frames_run.sh` (same settings as `run_tool.sh
 - **Mechanism of the largest loss**: in stranded T. thermophila fragments, requiring S1 > all reverse frames removes 18% of candidates before the q-value test (eligible candidates with C > 0: 23,448 vs 28,726; `predict.log`). Coding fragments in this AT-rich genome with a single stop codon (TGA) often have a reverse-strand frame that scores higher than their own frame.
 - **Run time**: all-frames takes a median 1.41× the release run time (both frames sets are scored for every target and decoy ORF).
 
-Conclusion: no reason to restore the reverse frames. On the full benchmark with the q-value test, they lower sensitivity at the same q, are at best equal at matched negative rates (slightly better only on unstranded complete transcripts), cost ~1 point on stranded fragments and up to 7.7 points in T. thermophila, and add 40% run time. This replaces the v5 rationale in Methods.
+Conclusion (benchmark and GM12878): no reason to restore the reverse frames. On the full benchmark with the q-value test, they lower sensitivity at the same q, are at best equal at matched negative rates (slightly better only on unstranded complete transcripts), cost ~1 point on stranded fragments and up to 7.7 points in T. thermophila, and add 40% run time. This replaces the v5 rationale in Methods.
 
-## GM12878
-Pending: `genome_annotation/scripts/gm12878_frames.sh` (LRAA, StringTie, Trinity ab initio; LRAA and StringTie `--sensitive`), launcher `work/gm12878_td/launch_frames.sh`.
+## GM12878 (ab initio, q 0.05; all-frames vs release E25 `final_v7_abinitio`)
+`genome_annotation/scripts/gm12878_frames.sh`, launcher `results_v3/frames/launch_gm12878_frames.sh`. Eval `eval_genome_cds.py`; proteins `score_protein_matches.py` (GENCODE v50 translations; `gm12878_frames_protein_matches.tsv`); catalogue `match_riboseq.py` (stop matches, counted as in E25).
+
+| assembly | distinct CDSs | MANE exact (given assembled) | no GENCODE CDS overlap (all preds) | matching / non-matching proteins | catalogued Ribo-seq ORF stop matches |
+|---|---|---|---|---|---|
+| LRAA | 22,559 vs 22,769 | 5,810 vs 5,848 (0.923 vs 0.929) | 1.54% vs 1.50% | 32,445 / 280 vs 32,751 / 277 | 99 vs 101 |
+| StringTie | 30,173 vs 30,846 | 8,124 vs 8,160 (0.911 vs 0.915) | 5.07% vs 5.47% | 34,709 / 1,017 vs 35,294 / 1,185 | 97 vs 95 |
+| Trinity | 57,553 vs 59,514 | 6,814 vs 6,857 (0.888 vs 0.893) | 3.94% vs 4.25% | 75,955 / 2,317 vs 78,181 / 2,616 | 184 vs 186 |
+
+All-frames loses matching proteins in every assembly (−306, −585, −2,226) and MANE exact models (−38, −36, −43). Non-matching proteins: +3 (LRAA), −168 (StringTie), −299 (Trinity). Lost matching per non-matching removed: StringTie 3.5, Trinity 7.4, against 3.4 for moving the release rule from q 0.05 to q 0.01 on StringTie (−1,647 / −487, E25), i.e. no better than tightening q. Catalogued Ribo-seq ORFs unchanged.
+`--sensitive` all-frames runs (LRAA, StringTie) still running at writing.
 
 ## Files
 `benchmark_v2/results_v3/frames/`: `all_scores.tsv` (score_predictions.py, release rows from E25 plus `all`), `negatives_scores.tsv`, `negatives_curve.tsv` (score_negatives.py), `score_all.sh`, launchers and job lists.

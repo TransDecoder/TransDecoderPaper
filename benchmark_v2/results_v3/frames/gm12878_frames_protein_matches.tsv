@@ -1,0 +1,4 @@
+label	n_pred	complete	match30	true_positives	nonmatching	distinct_pred_proteins	distinct_tp_proteins	distinct_ref_complete
+lraa.frames_all	32725	20138	12307	32445	280	22489	22256	11708
+stringtie.frames_all	35726	17332	17377	34709	1017	30009	29167	13282
+trinity.frames_all	78272	16613	59342	75955	2317	60273	58400	11146
