@@ -1,0 +1,403 @@
+---
+title: "GM12878: Ribo-seq and mass-spectrometry support of predicted CDSs"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    code_folding: hide
+    self_contained: true
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, fig.align = "center")
+source(file.path("R", "common.R"))
+library(knitr)
+```
+
+This notebook supports two manuscript sections:
+
+- Methods, "Ribosome profiling support" and "Mass-spectrometry support"
+  ([`../manuscript/sections/methods_experimental_evidence.tex`](../manuscript/sections/methods_experimental_evidence.tex));
+- Results, "Translation and protein evidence for predicted ORFs in GM12878"
+  ([`../manuscript/sections/results_gm12878_evidence.tex`](../manuscript/sections/results_gm12878_evidence.tex)).
+
+The numbers in these paragraphs are also shown in Fig. 6c-e, which is drawn in
+[`06_gm12878_application`](06_gm12878_application.html). This notebook draws no figure. The
+supplementary plot `figures/gm12878/gm12878_evidence` (from `figures/gm12878/make_gm12878_figures.py`)
+is not cited in the manuscript (`figures_main.tex`, `supplement.tex`), so it is not ported here.
+
+Provenance: `r evidence("E01")` (Ribo-seq processing and scoring), `r evidence("E02")` (MS peptide
+matching) and `r evidence("E25")` (final release runs, PyTD main 3a793ff, ab initio, release
+defaults; also `--precise` and `--sensitive` for LRAA and StringTie).
+
+**Which data.** All numbers below use the final release runs (E25). The manuscript text was written
+from the earlier development runs (`final_abinitio`, fixed short-ORF test; E01, E02). The same
+statistics are also computed from the earlier tables, so the check table at the end shows which
+differences come from the change of runs.
+
+Data:
+
+- Final release (E25): `data/benchmark/final_v7/gm12878_v7_riboseq_calibration.tsv`,
+  `gm12878_v7_riboseq_support.tsv`, `gm12878_v7_ms_peptide_support.tsv`; and, derived by
+  `pipeline/derive/07_gm12878_evidence_v7.sh` from `$P/work/gm12878_td/final_v7_scoring/` and the
+  Ribo-seq logs, `data/gm12878/final_v7/gm12878_v7_riboseq_read_processing.tsv`,
+  `gm12878_v7_riboseq_stringtie_by_expression.tsv`, `gm12878_v7_ms_peptide_counts.tsv`,
+  `gm12878_v7_ms_novel_with_peptides.tsv`, `gm12878_v7_ms_novel_peptide_loci{,.summary}.tsv` and
+  `gm12878_v7_ms_novel_specific_hits_unannotated.tsv`.
+- Earlier runs (E01, E02): `data/gm12878/gm12878_riboseq_*.tsv`, `data/gm12878/gm12878_ms_*.tsv`.
+
+```{r data}
+ASM <- c("lraa", "stringtie", "trinity")
+CLASSES <- c("exact", "compatible", "other_overlap", "novel")
+CLASS_LABEL <- c(exact = "GENCODE exact", compatible = "GENCODE compatible",
+                 other_overlap = "other CDS overlap", novel = "unannotated")
+
+# Ribo-seq support: split "class:size" into class and size (all / long / short)
+split_ribo <- function(d) d %>%
+  separate(class, c("class", "size"), sep = ":", fill = "right") %>%
+  mutate(size = coalesce(size, "all"))
+ribo7 <- read_tab("benchmark", "final_v7", "gm12878_v7_riboseq_support.tsv") %>% split_ribo()
+ribo0 <- read_tab("gm12878", "gm12878_riboseq_support.tsv") %>% split_ribo()
+calib7 <- readr::read_tsv(data_path("benchmark", "final_v7", "gm12878_v7_riboseq_calibration.tsv"),
+                          comment = "#", show_col_types = FALSE)
+calib0 <- readr::read_tsv(data_path("gm12878", "gm12878_riboseq_calibration.tsv"),
+                          comment = "#", show_col_types = FALSE)
+strand_line <- readLines(data_path("benchmark", "final_v7", "gm12878_v7_riboseq_calibration.tsv"), n = 1)
+readproc <- read_tab("gm12878", "final_v7", "gm12878_v7_riboseq_read_processing.tsv")
+expr7 <- read_tab("gm12878", "final_v7", "gm12878_v7_riboseq_stringtie_by_expression.tsv")
+expr0 <- read_tab("gm12878", "gm12878_riboseq_stringtie_by_expression.tsv")
+
+ms7 <- read_tab("benchmark", "final_v7", "gm12878_v7_ms_peptide_support.tsv")
+ms0 <- read_tab("gm12878", "gm12878_ms_peptide_support.tsv")
+kv <- function(path) { x <- read_tsv(path, col_names = c("key", "value"), show_col_types = FALSE)
+                       setNames(x$value, x$key) }
+pepc7 <- kv(data_path("gm12878", "final_v7", "gm12878_v7_ms_peptide_counts.tsv"))
+pepc0 <- kv(data_path("gm12878", "gm12878_ms_peptide_counts.tsv"))
+nwp7 <- read_tab("gm12878", "final_v7", "gm12878_v7_ms_novel_with_peptides.tsv")
+nwp0 <- read_tab("gm12878", "gm12878_ms_novel_with_peptides.tsv")
+loci7 <- read_tab("gm12878", "final_v7", "gm12878_v7_ms_novel_peptide_loci.tsv")
+loci_sum7 <- read_tab("gm12878", "final_v7", "gm12878_v7_ms_novel_peptide_loci.summary.tsv")
+loci_sum0 <- read_tab("gm12878", "gm12878_ms_novel_peptide_loci.summary.tsv")
+nsh7 <- read_tab("gm12878", "final_v7", "gm12878_v7_ms_novel_specific_hits_unannotated.tsv")
+
+# helpers: percent with d decimals, and "a-b%" ranges over the three assemblies
+p <- function(x, d = 0) round(100 * x, d)
+rng <- function(x, d = 0) sprintf("%s-%s%%", formatC(min(p(x, d)), format = "f", digits = d),
+                                  formatC(max(p(x, d)), format = "f", digits = d))
+asm_lab <- function(x) factor(ASM_LABEL[x], levels = ASM_LABEL)
+```
+
+# Methods
+
+## Ribosome profiling support
+
+Ribo-seq: Cenik et al. 2015, GEO GSE65912, runs SRR1803147 and SRR1803148 (E01). Read counts at each
+processing step:
+
+```{r ribo-reads}
+kable(readproc %>% mutate(across(-run, num)),
+      col.names = c("Run", "Reads", "Trimmed, 25-34 nt", "Too short", "Too long",
+                    "Not rRNA/tRNA", "Uniquely mapped"), align = "lrrrrrr")
+footprints <- sum(readproc$unique_mapped)
+```
+
+Uniquely mapped footprints, both runs: **`r num(footprints)`** (`r f1(footprints / 1e6)` million).
+`r p(readproc$unique_mapped[1] / footprints, 1)`% come from SRR1803147, because most of its reads
+were outside 25-34 nt after trimming. Strand check on MANE CDSs (calibration header):
+`r sub("^# MANE CDS reads: ", "", strand_line)` footprints.
+
+P-site calibration on MANE Select CDSs (final release scoring; identical to the earlier calibration:
+`r identical(as.data.frame(calib7), as.data.frame(calib0))`):
+
+```{r ribo-calib}
+kable(calib7, col.names = c("Read length", "Reads", "Best 5' offset", "P-sites in CDS", "Frame 0",
+                            "Frame 1", "Frame 2", "Frame-0 fraction", "Used"))
+used <- calib7 %>% filter(used == 1)
+fr0_used <- sum(used$frame0) / sum(used$psites_in_cds)
+```
+
+Lengths used (frame-0 fraction $\ge$ 0.5): **`r paste(used$read_len, collapse = ", ")` nt**, with
+frame-0 fractions `r paste(used$frame0_frac, collapse = ", ")`; pooled over these lengths
+`r f3(fr0_used)`. Scoring rule (from E01): $\ge$ 10 P-sites, frame 0 the most frequent frame and
+binomial $P(X \ge k \mid n, 1/3) < 0.01$, first and last codons excluded.
+
+## Mass-spectrometry support
+
+MaxQuant `peptides.txt` from Sinitcyn et al. 2023 (MassIVE MSV000086944), 1% PSM and protein FDR (E02).
+
+```{r ms-counts}
+pc_rows <- c(rows = "Rows in peptides.txt", reverse = "Reverse removed",
+             contaminant = "Contaminants removed", kept_rows = "Kept",
+             distinct_IL_normalised = "Distinct after I/L normalisation",
+             peptides_in_ref = "In GENCODE v50 or UniProt",
+             peptides_not_in_ref = "In neither (non-reference)",
+             peptides_not_in_ref_mutated = "... flagged 'Mutated' by MaxQuant")
+kable(tibble(Step = pc_rows, `Final release scoring` = num(pepc7[names(pc_rows)]),
+             `Earlier scoring` = num(pepc0[names(pc_rows)])))
+stopifnot(all(pepc7[names(pc_rows)] == pepc0[names(pc_rows)][!is.na(pepc0[names(pc_rows)])]))
+```
+
+Peptides kept: **`r num(pepc7[["kept_rows"]])`**. The peptide set does not depend on the predictions,
+so these counts are the same in both scorings.
+
+# Results
+
+## Translation and protein evidence for predicted ORFs in GM12878
+
+Distinct predicted CDSs per class (final release, ab initio, default settings):
+
+```{r class-n}
+ribo7 %>% filter(assembly %in% ASM, size == "all", class %in% CLASSES) %>%
+  select(assembly, class, n) %>% pivot_wider(names_from = class, values_from = n) %>%
+  mutate(assembly = ASM_LABEL[assembly]) %>% select(assembly, all_of(CLASSES)) %>%
+  kable(col.names = c("Assembly", CLASS_LABEL[CLASSES]), format.args = list(big.mark = ","))
+```
+
+## Ribosome footprints
+
+```{r ribo-results}
+rtab <- function(d) d %>% filter(assembly %in% ASM, size == "all", class %in% CLASSES) %>%
+  mutate(covered = with_min_psites / n)
+r7 <- rtab(ribo7); r0 <- rtab(ribo0)
+get <- function(d, cls, col) setNames(d[[col]][d$class == cls], d$assembly[d$class == cls])[ASM]
+ex_cov <- get(r7, "exact", "covered"); ex_sup <- get(r7, "exact", "supported_frac")
+nv_cov <- get(r7, "novel", "covered"); nv_sup <- get(r7, "novel", "supported_frac")
+nv_n_cov <- get(r7, "novel", "with_min_psites")
+ex_cov0 <- get(r0, "exact", "covered"); ex_sup0 <- get(r0, "exact", "supported_frac")
+nv_cov0 <- get(r0, "novel", "covered"); nv_sup0 <- get(r0, "novel", "supported_frac")
+
+r7 %>% mutate(Assembly = asm_lab(assembly), Class = factor(CLASS_LABEL[class], CLASS_LABEL)) %>%
+  arrange(Assembly, Class) %>%
+  transmute(Assembly, Class, n = num(n), `>=10 P-sites` = num(with_min_psites),
+            `% covered` = p(covered, 1), Supported = num(supported),
+            `% supported` = p(supported_frac, 1),
+            `Supported / covered` = f3(supported_frac_of_covered)) %>%
+  kable(align = "llrrrrrr")
+```
+
+Exact-match predictions: **`r rng(ex_cov)`** had at least ten P-sites
+(LRAA `r p(ex_cov[1], 1)`%, StringTie `r p(ex_cov[2], 1)`%, Trinity `r p(ex_cov[3], 1)`%), and
+**`r rng(ex_sup)`** passed the frame-0 test. Frame-0 fraction for the read lengths used:
+`r paste(used$frame0_frac, collapse = ", ")` (about `r round(fr0_used, 2)`).
+
+Unannotated predictions covered: **`r f1(p(nv_cov[1], 1))`%, `r f1(p(nv_cov[2], 1))`% and `r f1(p(nv_cov[3], 1))`%**
+(LRAA, StringTie, Trinity; `r paste(nv_n_cov, collapse = " / ")` CDSs), with **`r rng(nv_sup, 1)`**
+passing the frame test.
+
+Earlier runs (E01): exact covered `r rng(ex_cov0)`, supported `r rng(ex_sup0)`; unannotated covered
+`r f1(p(nv_cov0[1], 1))`%, `r f1(p(nv_cov0[2], 1))`%, `r f1(p(nv_cov0[3], 1))`%, supported `r rng(nv_sup0, 1)`.
+The final runs have far fewer unannotated CDSs (`r paste(num(get(r7, "novel", "n")), collapse = " / ")`
+against `r paste(num(get(r0, "novel", "n")), collapse = " / ")`), so the covered fraction of the
+remaining ones is higher, while the number covered stays small.
+
+Supported fraction by size (<100 aa short, otherwise long):
+
+<details><summary>Ribo-seq support by class and size, all runs</summary>
+
+```{r ribo-size}
+ribo7 %>% filter(size != "all") %>%
+  transmute(run = assembly, class, size, n, with_min_psites, supported,
+            covered = f3(with_min_psites / n), supported_frac = f3(supported_frac)) %>% kable()
+```
+</details>
+
+## Expression-matched comparison
+
+StringTie predictions, by TPM of the source transcript (StringTie's estimate):
+
+```{r ribo-expr}
+BINS <- c(`a<1` = "<1", `b1-5` = "1-5", `c5-20` = "5-20", `d20-100` = "20-100", `e>=100` = ">=100")
+expr7 %>% filter(class %in% CLASSES) %>%
+  mutate(Class = factor(CLASS_LABEL[class], CLASS_LABEL), TPM = factor(BINS[tpm_bin], BINS)) %>%
+  arrange(Class, TPM) %>%
+  transmute(Class, TPM, n = num(n), `>=10 P-sites` = f3(frac_ge10_psites),
+            `frame-supported` = f3(frac_supported)) %>% kable(align = "llrrr")
+e7 <- expr7 %>% filter(tpm_bin == "c5-20"); e0 <- expr0 %>% filter(tpm_bin == "c5-20")
+ex_5_20 <- e7$frac_ge10_psites[e7$class == "exact"]; nv_5_20 <- e7$frac_ge10_psites[e7$class == "novel"]
+nv_5_20_n <- e7$n[e7$class == "novel"]
+ex_5_20_0 <- e0$frac_ge10_psites[e0$class == "exact"]; nv_5_20_0 <- e0$frac_ge10_psites[e0$class == "novel"]
+```
+
+At 5-20 TPM, **`r p(ex_5_20, 1)`%** of exact-match predictions were covered against
+**`r p(nv_5_20, 1)`%** of unannotated ones (n = `r nv_5_20_n`). Earlier runs:
+`r p(ex_5_20_0, 1)`% and `r p(nv_5_20_0, 1)`%. The table rounds to three decimals, so these
+percentages carry that rounding.
+
+## Mass-spectrometry peptides
+
+```{r ms-results}
+mtab <- function(d) d %>% filter(assembly %in% ASM, class %in% CLASSES)
+m7 <- mtab(ms7); m0 <- mtab(ms0)
+mget <- function(d, cls, sz, col) { x <- d %>% filter(class == cls, size == sz)
+  setNames(x[[col]], x$assembly)[ASM] }
+ex_long <- mget(m7, "exact", "long", "frac_ge1")
+ex_long_ge2_of_ge1 <- mget(m7, "exact", "long", "n_ge2_peptides") / mget(m7, "exact", "long", "n_ge1_peptide")
+ex_short <- mget(m7, "exact", "short", "frac_ge1")
+nv_all <- mget(m7, "novel", "all", "frac_ge1")
+ex_long0 <- mget(m0, "exact", "long", "frac_ge1"); ex_short0 <- mget(m0, "exact", "short", "frac_ge1")
+nv_all0 <- mget(m0, "novel", "all", "frac_ge1")
+ex_long_ge2_of_ge1_0 <- mget(m0, "exact", "long", "n_ge2_peptides") / mget(m0, "exact", "long", "n_ge1_peptide")
+
+m7 %>% mutate(Assembly = asm_lab(assembly), Class = factor(CLASS_LABEL[class], CLASS_LABEL),
+              size = factor(size, c("long", "short", "all"))) %>% arrange(Assembly, Class, size) %>%
+  transmute(Assembly, Class, Size = size, n = num(n), `>=1 peptide` = num(n_ge1_peptide),
+            `>=2 peptides` = num(n_ge2_peptides), `% >=1` = p(frac_ge1, 1), `% >=2` = p(frac_ge2, 1),
+            `with non-ref. peptide` = n_ge1_novel_specific) %>% kable(align = "lllrrrrrr")
+```
+
+Of `r num(pepc7[["kept_rows"]])` peptides:
+
+- exact-match predictions of at least 100 aa with at least one peptide: **`r rng(ex_long)`**; of these,
+  `r rng(ex_long_ge2_of_ge1, 1)` had two or more;
+- short exact-match predictions (<100 aa): **`r rng(ex_short)`**
+  (LRAA `r p(ex_short[1], 1)`%, StringTie `r p(ex_short[2], 1)`%, Trinity `r p(ex_short[3], 1)`%);
+- unannotated predictions sharing any peptide: **`r rng(nv_all)`**
+  (`r paste(sprintf("%s of %s", num(mget(m7, "novel", "all", "n_ge1_peptide")), num(mget(m7, "novel", "all", "n"))), collapse = "; ")`).
+
+Earlier runs (E02): `r rng(ex_long0)`, `r rng(ex_short0)` and `r rng(nv_all0)`. The rise for
+unannotated predictions comes from the smaller denominator: the q-value test removed many short
+unannotated ORFs without peptides (E25).
+
+Trinity's exact, compatible and other-overlap classes carry non-reference peptides (column
+"with non-ref. peptide") because Trinity assembles GM12878 alleles from reads; LRAA and StringTie take
+sequence from the reference genome (E02 consistency check).
+
+## Unannotated predictions with peptides: paralogs and pseudogenes
+
+For each unannotated CDS with peptides, the parent gene is the gene of its best-matching reference
+protein; location relative to that gene and overlap with GENCODE pseudogenes are from
+`novel_peptide_loci.py` (E02).
+
+```{r ms-paralogs}
+par7 <- nwp7 %>% filter(assembly %in% ASM) %>% group_by(assembly) %>%
+  summarise(n = n(), ge2_one_ref = sum(n_peptides_shared_with_best >= 2),
+            contained = sum(orf_contained_in_ref != "no"), .groups = "drop")
+ls7 <- loci_sum7 %>% filter(assembly %in% ASM) %>%
+  select(assembly, location_class, n, overlaps_pseudogene)
+pseudo7 <- ls7 %>% filter(location_class == "all") %>% mutate(frac = overlaps_pseudogene / n)
+tab <- par7 %>% left_join(pseudo7 %>% select(assembly, overlaps_pseudogene), by = "assembly") %>%
+  left_join(ls7 %>% filter(location_class != "all") %>% select(-overlaps_pseudogene) %>%
+              pivot_wider(names_from = location_class, values_from = n), by = "assembly")
+tab %>% mutate(assembly = ASM_LABEL[assembly]) %>%
+  transmute(Assembly = assembly, `With peptides` = n, `>=2 peptides from one ref. protein` = ge2_one_ref,
+            `Contained in a ref. protein` = contained,
+            `Overlaps a GENCODE pseudogene` = sprintf("%d (%.0f%%)", overlaps_pseudogene, 100 * overlaps_pseudogene / n),
+            `Overlaps parent gene` = parent_overlap, `Same chr. <=2 Mb` = near_le2Mb,
+            `Same chr. >2 Mb` = same_chr_far, `Other chr.` = other_chr,
+            `Parent not in GENCODE` = parent_not_found) %>% kable()
+pseudo_frac <- setNames(pseudo7$overlaps_pseudogene / pseudo7$n, pseudo7$assembly)[ASM]
+```
+
+Unannotated CDSs with peptides that overlap a GENCODE pseudogene: `r rng(pseudo_frac)`
+(earlier runs: `r with(loci_sum0 %>% filter(location_class == "all"), rng(overlaps_pseudogene / n))`).
+
+Examples named in the text, final release default runs:
+
+```{r ms-examples}
+EX <- c("NCF1B", "NCF1C", "HERC2P3", "NAPSB", "PWP2", "C3orf86P")
+loci7 %>% filter(assembly %in% ASM) %>%
+  mutate(hit = sapply(paste(parent_genes, overlapping_pseudogenes),
+                      function(s) paste(EX[sapply(EX, grepl, s, fixed = TRUE)], collapse = ","))) %>%
+  filter(hit != "") %>% count(hit, assembly) %>%
+  pivot_wider(names_from = assembly, values_from = n, values_fill = 0) %>%
+  kable(col.names = c("Gene / pseudogene", ASM_LABEL[intersect(ASM, names(.)[-1])]))
+```
+
+## Non-reference peptides on unannotated predictions
+
+Peptides absent from GENCODE v50 and UniProt, on unannotated CDSs. `maxquant_mutated` = "yes"
+marks GM12878 variant-allele peptides from the original search database.
+
+```{r ms-nonref}
+nr <- nsh7 %>% left_join(loci7 %>% select(assembly, model_id, parent_genes, orf_locus,
+                                          overlapping_pseudogenes), by = c("assembly", "model_id"))
+nr_models <- nr %>% group_by(assembly) %>%
+  summarise(models = n_distinct(model_id), peptides = n_distinct(peptide_IL),
+            loci = n_distinct(orf_locus),
+            non_variant_peptides = n_distinct(peptide_IL[maxquant_mutated == "no"]), .groups = "drop")
+kable(nr_models %>% mutate(assembly = factor(assembly, unique(ms7$assembly))) %>% arrange(assembly),
+      col.names = c("Run", "CDSs", "Distinct peptides", "Loci", "Non-variant peptides"))
+nr_default <- setNames(nr_models$models, nr_models$assembly)[ASM]
+```
+
+Unannotated CDSs with a non-reference peptide (final release defaults): LRAA `r nr_default[1]`,
+StringTie `r nr_default[2]`, Trinity `r nr_default[3]`.
+
+<details><summary>Non-reference peptides, release default runs</summary>
+
+```{r ms-nonref-list}
+nr %>% filter(assembly %in% ASM) %>% mutate(best_PEP = formatC(best_PEP, format = "e", digits = 1)) %>%
+  select(assembly, model_id, aa, peptide_seqs, msms_count, best_PEP, maxquant_mutated, experiments,
+         parent_genes, orf_locus, overlapping_pseudogenes) %>% kable()
+```
+</details>
+
+**C3orf86P.** The text describes C3orf86P, supported by three peptides from three proteases. In the
+earlier runs this ORF was predicted by StringTie (STRG.10275.2.p1) and Trinity
+(TRINITY_GG_18087_c0_g1_i3.p1, 101 aa). In the final release runs:
+
+```{r c3orf86}
+c3 <- nr %>% filter(grepl("C3orf86P", overlapping_pseudogenes))
+c3_runs <- unique(c3$assembly)
+kable(c3 %>% mutate(best_PEP = formatC(best_PEP, format = "e", digits = 1)) %>% select(assembly, model_id, aa, peptide_seqs, msms_count, best_PEP, experiments, orf_locus))
+c3_in_default <- any(c3_runs %in% ASM)
+```
+
+It is predicted only in **`r paste(c3_runs, collapse = ", ")`**, not in any default run
+(`c3_in_default` = `r c3_in_default`): the 101-aa ORF is kept with the looser `--sensitive` q-value
+setting but not with the release default. The sentence on C3orf86P holds for the `--sensitive`
+setting only.
+
+## Interpretation
+
+The interpretation paragraph quotes no numbers. Its claims rest on the tables above: low footprint
+coverage of unannotated CDSs at matched expression, and peptides on unannotated CDSs that come mostly
+from pseudogene or paralogous copies.
+
+# Checks against the manuscript
+
+Rows labelled "(final)" compare the final release values to the current text; rows labelled
+"(earlier)" compare the earlier-run tables, to show whether the text matched the data it was written
+from. Ranges are checked at their ends.
+
+```{r checks}
+chk_rng <- function(label, x, lo, hi, d = 0) {
+  check_text(paste(label, "min"), min(p(x, d)), lo)
+  check_text(paste(label, "max"), max(p(x, d)), hi)
+}
+# Methods
+check_text("footprints, million (final = same BAM)", round(footprints / 1e6, 1), 11.5)
+check_text("used read lengths 27, 29, 30 (all three present)",
+           as.numeric(identical(as.numeric(used$read_len), c(27, 29, 30))), 1)
+check_text("frame-0 fraction, used lengths, about 0.55", round(fr0_used, 2), 0.55, tol = 0.01)
+check_text("MS peptides kept (758,603)", pepc7[["kept_rows"]], 758603)
+# Results: Ribo-seq
+for (v in list(list("final", ex_cov, ex_sup, nv_cov, nv_sup, ex_5_20, nv_5_20),
+               list("earlier", ex_cov0, ex_sup0, nv_cov0, nv_sup0, ex_5_20_0, nv_5_20_0))) {
+  s <- v[[1]]
+  chk_rng(sprintf("Ribo exact >=10 P-sites %% (83-89) (%s)", s), v[[2]], 83, 89)
+  chk_rng(sprintf("Ribo exact frame-supported %% (53-59) (%s)", s), v[[3]], 53, 59)
+  check_text(sprintf("Ribo unannotated covered %%, LRAA (4.3) (%s)", s), p(v[[4]][1], 1), 4.3)
+  check_text(sprintf("Ribo unannotated covered %%, StringTie (1.0) (%s)", s), p(v[[4]][2], 1), 1.0)
+  check_text(sprintf("Ribo unannotated covered %%, Trinity (0.6) (%s)", s), p(v[[4]][3], 1), 0.6)
+  chk_rng(sprintf("Ribo unannotated frame-supported %% (0.2-1.5) (%s)", s), v[[5]], 0.2, 1.5, d = 1)
+  check_text(sprintf("Ribo 5-20 TPM exact covered %% (89) (%s)", s), p(v[[6]]), 89)
+  check_text(sprintf("Ribo 5-20 TPM unannotated covered %% (3.4) (%s)", s), p(v[[7]], 1), 3.4)
+}
+# Results: MS
+for (v in list(list("final", ex_long, ex_short, nv_all, ex_long_ge2_of_ge1),
+               list("earlier", ex_long0, ex_short0, nv_all0, ex_long_ge2_of_ge1_0))) {
+  s <- v[[1]]
+  chk_rng(sprintf("MS exact >=100 aa with >=1 peptide %% (93-94) (%s)", s), v[[2]], 93, 94)
+  check_text(sprintf("MS exact >=100 aa: >=2 of >=1 peptide, 'nearly all' (>=97%%) (%s)", s),
+             as.numeric(min(v[[5]]) >= 0.97), 1)
+  chk_rng(sprintf("MS exact <100 aa with >=1 peptide %% (81-87) (%s)", s), v[[3]], 81, 87)
+  chk_rng(sprintf("MS unannotated with >=1 peptide %% (9-24) (%s)", s), v[[4]], 9, 24)
+}
+check_text("C3orf86P predicted in a default run (final)", as.numeric(c3_in_default), 1)
+check_report()
+```
+
+```{r session, echo = FALSE}
+cat("R", R.version$major, ".", R.version$minor, "; knitted", format(Sys.time(), "%Y-%m-%d"), "\n")
+```
