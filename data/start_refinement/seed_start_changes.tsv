@@ -1,0 +1,9 @@
+dataset	seed	n_orfs	n_orfs_seed1	same_stop_diff_start	stop_not_shared
+pasa	2	792	792	53	0
+pasa	3	792	792	30	0
+pasa	4	792	792	61	0
+pasa	5	792	792	29	0
+stringtie	2	3037	3037	144	0
+stringtie	3	3037	3037	47	0
+stringtie	4	3037	3037	111	0
+stringtie	5	3037	3037	54	0
