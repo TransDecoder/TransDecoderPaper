@@ -1,0 +1,11 @@
+assembly	run	n_complete	complete_gencode_exact	complete_gencode_compatible
+lraa	final_abinitio	18807	12018	14249
+lraa	final_v7_abinitio	17806	11828	13941
+lraa	final_v7_abinitio_precise	17123	11467	13486
+lraa	final_v7_abinitio_sensitive	18388	12038	14230
+stringtie	final_abinitio	27034	13805	17601
+stringtie	final_v7_abinitio	24077	13395	16951
+stringtie	final_v7_abinitio_precise	23060	13067	16475
+stringtie	final_v7_abinitio_sensitive	25711	13757	17529
+trinity	final_abinitio	52123	13826	23816
+trinity	final_v7_abinitio	44494	13380	22793
