@@ -46,7 +46,7 @@ Conclusion (benchmark and GM12878): no reason to restore the reverse frames. On 
 | Trinity | 57,553 vs 59,514 | 6,814 vs 6,857 (0.888 vs 0.893) | 3.94% vs 4.25% | 75,955 / 2,317 vs 78,181 / 2,616 | 184 vs 186 |
 
 All-frames loses matching proteins in every assembly (−306, −585, −2,226) and MANE exact models (−38, −36, −43). Non-matching proteins: +3 (LRAA), −168 (StringTie), −299 (Trinity). Lost matching per non-matching removed: StringTie 3.5, Trinity 7.4, against 3.4 for moving the release rule from q 0.05 to q 0.01 on StringTie (−1,647 / −487, E25), i.e. no better than tightening q. Catalogued Ribo-seq ORFs unchanged.
-`--sensitive` all-frames runs (LRAA, StringTie) still running at writing.
+`--sensitive` (q 0.2) all-frames: LRAA 23,232 distinct CDSs, MANE exact 5,866 (0.932), no overlap 2.18%, proteins 33,176 / 492, catalogue 132; StringTie 32,750, 8,232 (0.923), 8.24%, 36,298 / 2,267, catalogue 139 (release `--sensitive`: LRAA 33,443 / 560, catalogue 144; StringTie 36,903 / 2,879, catalogue 165). At matched non-matching counts (linear interpolation between release default and `--sensitive`), the release rule gives LRAA 33,277 vs 33,176 matching proteins at 492 non-matching, and StringTie 36,322 vs 36,298 at 2,267: equal or slightly better.
 
 ## Files
 `benchmark_v2/results_v3/frames/`: `all_scores.tsv` (score_predictions.py, release rows from E25 plus `all`), `negatives_scores.tsv`, `negatives_curve.tsv` (score_negatives.py), `score_all.sh`, launchers and job lists.
