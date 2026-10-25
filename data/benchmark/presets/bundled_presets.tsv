@@ -1,0 +1,8 @@
+name	source	genetic_code	gc_pct	auto_accept_nt	n_q_levels	q_min	q_max	n_strata	n_threshold_rows	n_training_orfs	n_files	perl_py_identical
+mammal	human benchmark annotation (TransDecoder paper 2026): complete coding transcripts + their fragments + GENCODE lncRNAs	Universal	49.81	726	10	0.001	0.5	425	4250	500	5	True
+insect	dmel benchmark annotation (TransDecoder paper 2026): complete coding transcripts + their fragments	Universal	50.84	804	10	0.001	0.5	249	2490	500	5	True
+plant	athal benchmark annotation (TransDecoder paper 2026): complete coding transcripts + their fragments	Universal	42.1	663	10	0.001	0.5	224	2240	500	5	True
+fungus	spombe benchmark annotation (TransDecoder paper 2026): complete coding transcripts + their fragments	Universal	37.84	615	10	0.001	0.5	187	1870	500	5	True
+apicomplexan	pfalciparum benchmark annotation (TransDecoder paper 2026): complete coding transcripts + their fragments	Universal	22.0	519	10	0.001	0.5	220	2200	500	5	True
+ciliate	tthermophila benchmark annotation (TransDecoder paper 2026): complete coding transcripts + their fragments	Tetrahymena	25.85	none	10	0.001	0.5	308	3080	500	5	True
+green_alga	creinhardtii benchmark annotation (TransDecoder paper 2026): complete coding transcripts + their fragments	Universal	68.17	1347	10	0.001	0.5	282	2820	500	5	True

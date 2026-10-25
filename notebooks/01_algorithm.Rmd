@@ -1,0 +1,644 @@
+---
+title: "01. The TransDecoder algorithm"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    code_folding: hide
+    self_contained: true
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, fig.align = "center")
+source(file.path("R", "common.R"))
+library(knitr)
+library(kableExtra)
+```
+
+This notebook supports two manuscript sections:
+
+- Methods, the algorithm: [`methods_algorithm.tex`](../manuscript/sections/methods_algorithm.tex)
+- Results, the algorithm: [`results_algorithm.tex`](../manuscript/sections/results_algorithm.tex)
+
+It draws Fig. 1 (`figures/fig1_algorithm.{pdf,png}`), and computes the bundled-presets table
+(Table `tab:presets`), the G+C long-ORF length table (Supplementary Table S1), the Perl/Python
+concordance and run-time numbers, and the frame-contrast retest in Methods.
+
+Data are the final release runs (Perl 41fc5ee, PyTransDecoder 3a793ff; `r evidence("E25")`) wherever a
+final table exists. Exceptions are stated in each section. The checks at the end compare the
+computed values with what the manuscript says now; mismatches show where the text must change.
+
+```{r data}
+thr <- read_tab("long_orf_threshold", "final_thresholds.tsv")
+thr2017 <- read_tab("long_orf_threshold", "table_2017.tsv")
+presets <- read_tab("benchmark", "presets", "bundled_presets.tsv")
+ident <- read_tab("benchmark", "final_v7", "perl_pytd_identity.tsv")
+scores_v7 <- read_tab("benchmark", "final_v7", "all_scores.tsv")
+frames <- read_tab("benchmark", "frames", "all_scores.tsv")
+frames_curve <- read_tab("benchmark", "frames", "negatives_curve.tsv")
+frames_gm <- read_tab("benchmark", "frames", "gm12878_frames_protein_matches.tsv")
+v7_gm <- read_tab("benchmark", "final_v7", "gm12878_v7_protein_matches.tsv")
+sens_len <- read_tab("benchmark", "rules", "sens_by_length.decoy.tsv")
+parity <- read_tab("benchmark", "release", "parity_perl_pytd.tsv")
+reg_v6 <- read_tab("regression", "baseline_v6.0.0.summary.tsv")
+reg_final <- read_tab("regression", "kozak_bits_44e417a_ab38ca6.summary.tsv")
+
+# L*(GC) as the code looks it up: G+C rounded up to the next 5% step, the 25% value below 25%,
+# no length rule above 80% (methods_algorithm.tex, GC-calibrated long-ORF rule).
+lstar_lookup <- function(gc) {
+  step <- pmax(25, 5 * ceiling(gc / 5 - 1e-9))
+  ifelse(step > 80, NA, thr$`q0.999`[match(step, thr$gc)])
+}
+```
+
+## Figure 1: the TransDecoder algorithm
+
+Fig. 1 is a port of `figures/fig1_algorithm/make_fig1.py` (see its `NOTES.md`). Panel a is a
+schematic with no data; panel b is drawn from `data/long_orf_threshold/final_thresholds.tsv`
+(`r evidence("E10")`); panel c is the worked example of the start rule in Methods
+(`r evidence("E09")`).
+
+### Panel a: workflow
+
+The box texts follow the current Methods text. One change from `make_fig1.py`: its "Keep if any
+rule holds" box still gave the short-ORF rule of earlier development versions (rule 3: "if < 100
+codons, also C ≥ 200 μ"). The release rule is the target-decoy q-value test (q ≤ 0.05), so the box
+and the "Score each ORF" box now say so (`r evidence("E24")`).
+
+```{r fig1a}
+BOX_FC <- c(stage = "#e8eef6", model = "#eef6ea", select = "#fbf1e3", out = "#f2f2f2")
+BOX_EC <- c(stage = "#5b7fae", model = "#5f9c4e", select = "#c8892d", out = "#888888")
+INK <- "#222222"; MUTED <- "#666666"; ARROW <- "#444444"
+pt <- function(x) x / .pt   # font size in points -> ggplot size
+
+bw <- 0.226; bh <- 0.40; gap <- 0.032
+bx <- (0:3) * (bw + gap)
+y1 <- 0.56; y2 <- 0.04
+boxes <- tribble(
+  ~row, ~col, ~kind, ~title, ~body,
+  1, 1, "out", "Transcripts",
+  "assembled transcripts (FASTA),\nor genome + transcript GTF\n-S: strand-specific data\n(forward strand only)",
+  1, 2, "stage", "LongOrfs",
+  "each stop paired with the most\nupstream in-frame ATG, both strands\nORFs may run off either end:\ncomplete, 5' or 3' partial, internal\nkeep ORFs of \u2265 50 codons (m)",
+  1, 3, "model", "Training set",
+  "candidates: 10T longest ORFs\n(T = 500), CDS \u2264 5 kb\ndrop low-complexity and\nnear-identical proteins\nkeep the T longest",
+  1, 4, "model", "Self-trained models",
+  "coding: 3-periodic, 5th-order\nMarkov chain vs. background\n\u03bc: median frame contrast per\nbase of the training ORFs\nKozak: start vs. internal ATGs",
+  2, 1, "select", "Score each ORF",
+  "S\u2081: own frame; S\u2082, S\u2083: +1, +2 nt\nS\u2084\u2013S\u2086: reverse complement\nframe contrast C = S\u2081 \u2212 max(S\u2082, S\u2083)\nq-value: C against decoy ORFs\nfrom shuffled copies of the input",
+  2, 2, "select", "Keep if any rule holds",
+  "1  homology hit (optional)\n2  CDS \u2265 L*(GC)  (b)\n3  S\u2081 > 0, C > 0 and q \u2264 0.05\n    (--precise 0.01, --sensitive 0.2)\nsmall inputs: preset models",
+  2, 3, "select", "Rank",
+  "by homology hits, then S\u2081,\nthen length\nreport the top ORF per\ntranscript (or several non-\noverlapping ORFs, optional)",
+  2, 4, "stage", "Refine starts (c), output",
+  "open 5' end: trim to the first\nin-frame ATG if UTR > coding\nGFF3, BED, CDS and protein\noptional: project CDS onto\nthe genome through the exons"
+) %>% mutate(x0 = bx[col], x1 = x0 + bw, y0 = ifelse(row == 1, y1, y2), y1 = y0 + bh)
+
+arrows_h <- bind_rows(lapply(c(y1, y2), function(yr) {
+  ymid <- yr + bh / 2
+  tibble(x = bx[1:3] + bw, xend = bx[2:4], y = ymid, yend = ymid)
+}))
+ym <- y1 - 0.035
+xr <- bx[4] + bw / 2; xl <- bx[1] + bw / 2
+
+pa <- ggplot() +
+  geom_rect(data = boxes, aes(xmin = x0, xmax = x1, ymin = y0, ymax = y1, fill = kind, colour = kind),
+            linewidth = 0.35) +
+  scale_fill_manual(values = BOX_FC, guide = "none") +
+  scale_colour_manual(values = BOX_EC, guide = "none") +
+  geom_text(data = boxes, aes(x = x0 + 0.008, y = y1 - 0.025, label = title), hjust = 0, vjust = 1,
+            size = pt(6.5), fontface = "bold", colour = INK) +
+  geom_text(data = boxes, aes(x = x0 + 0.008, y = y1 - 0.095, label = body), hjust = 0, vjust = 1,
+            size = pt(5.4), colour = INK, lineheight = 1.05) +
+  geom_segment(data = arrows_h, aes(x = x, xend = xend, y = y, yend = yend), colour = ARROW,
+               linewidth = 0.35, arrow = arrow(length = unit(1.3, "mm"), type = "closed")) +
+  annotate("path", x = c(xr, xr, xl), y = c(y1, ym, ym), colour = ARROW, linewidth = 0.35) +
+  annotate("segment", x = xl, xend = xl, y = ym, yend = y2 + bh, colour = ARROW, linewidth = 0.35,
+           arrow = arrow(length = unit(1.3, "mm"), type = "closed")) +
+  annotate("text", x = bx[2] + bw / 2, y = y2 + bh + 0.012, vjust = 0, size = pt(5.8),
+           colour = MUTED, fontface = "italic",
+           label = "optional: DIAMOND/BLASTP vs. proteins, hmmsearch vs. Pfam") +
+  annotate("text", x = 0.5, y = -0.04, vjust = 1, size = pt(6.3), colour = MUTED,
+           label = paste("Perl TransDecoder v7.0.0 and PyTransDecoder v0.2.0 implement the same",
+                         "algorithm and give identical predictions")) +
+  scale_x_continuous(limits = c(0, 1), expand = c(0, 0)) +
+  scale_y_continuous(limits = c(-0.1, 1), expand = c(0, 0)) +
+  theme_void() + labs(tag = "a") +
+  theme(plot.tag = element_text(size = 9, face = "bold"))
+```
+
+```{r fig1a-table}
+boxes %>% transmute(row, column = col, kind, title, text = gsub("\n", " / ", body)) %>%
+  kable(caption = "Panel a: box contents") %>% kable_styling(full_width = FALSE, font_size = 12)
+```
+
+### Panel b: GC-calibrated long-ORF length
+
+```{r fig1b}
+step_df <- tibble(gc = c(15, thr$gc), lstar = c(thr$`q0.999`[1], thr$`q0.999`))
+orgs_b <- tibble(org = ORGS, gc = ORG_GC[ORGS]) %>%
+  mutate(lstar = ifelse(org == "tthermophila", NA, lstar_lookup(gc)),
+         label = ORG_LABEL[org])
+lab_b <- tribble(
+  ~key, ~anchor, ~dx, ~dy, ~hjust, ~text, ~face,
+  "pfalciparum", "pfalciparum", 3, -260, 0.5, "P. falciparum", "italic",
+  "spombe", "spombe", -2, 330, 1, "S. pombe", "italic",
+  "athal", "athal", 1, -330, 0, "A. thaliana", "italic",
+  "human", "dmel", -3, 540, 1, "human, mouse,", "plain",
+  "creinhardtii", "creinhardtii", -2, 330, 1, "C. reinhardtii", "italic") %>%
+  mutate(gc = ORG_GC[anchor], y = lstar_lookup(gc), tx = gc + dx, ty = y + dy,
+         vjust = ifelse(dy > 0, 0, 1))
+# geom_step(direction = "vh") reproduces matplotlib step(where = "pre")
+pb <- ggplot() +
+  annotate("rect", xmin = 80, xmax = 90, ymin = -Inf, ymax = Inf, fill = "#eeeeee") +
+  annotate("text", x = 85, y = 1800, label = "> 80%\nG+C:\nno length\nrule", size = pt(5.2),
+           colour = MUTED, lineheight = 0.95) +
+  geom_step(data = step_df, aes(gc, lstar), direction = "vh", colour = TD_C, linewidth = 0.55) +
+  geom_segment(data = lab_b, aes(x = tx, y = ty, xend = gc, yend = y), colour = MUTED,
+               linewidth = 0.2) +
+  geom_point(data = filter(orgs_b, !is.na(lstar)), aes(gc, lstar, fill = org), shape = 21,
+             colour = "white", stroke = 0.25, size = 1.6) +
+  scale_fill_manual(values = ORG_COLOR, guide = "none") +
+  geom_text(data = lab_b, aes(x = tx, y = ty, label = text, hjust = hjust, vjust = vjust,
+                              fontface = face), size = pt(5.8), colour = INK) +
+  annotate("text", x = ORG_GC[["dmel"]] - 3, y = lstar_lookup(ORG_GC[["dmel"]]) + 420,
+           label = "D. melanogaster", fontface = "italic", hjust = 1, vjust = 0, size = pt(5.8),
+           colour = INK) +
+  annotate("text", x = 16, y = 2350, hjust = 0, vjust = 1, size = pt(5.8), colour = MUTED,
+           parse = TRUE, label = "italic('T. thermophila')~'(26% G+C): rule off'") +
+  annotate("text", x = 16, y = 2215, hjust = 0, vjust = 1, size = pt(5.8), colour = MUTED,
+           label = "(ciliate code: TGA is the only stop)") +
+  scale_x_continuous(limits = c(15, 90), breaks = seq(20, 90, 10), expand = c(0, 0)) +
+  scale_y_continuous(limits = c(0, 2600), expand = c(0, 0)) +
+  labs(x = "transcriptome G+C (%)",
+       y = expression(atop(italic(L)^"*" * ", CDS length kept", "without a coding test (nt)")),
+       tag = "b") +
+  theme(plot.tag = element_text(size = 9, face = "bold"))
+```
+
+```{r fig1b-table}
+orgs_b %>% transmute(organism = label, `G+C of complete input (%)` = gc,
+                     `L* (nt)` = ifelse(is.na(lstar), "rule off (ciliate code)", num(lstar))) %>%
+  kable(caption = "Panel b: benchmark organisms placed on the lookup (step line = Supplementary Table S1)") %>%
+  kable_styling(full_width = FALSE, font_size = 12)
+```
+
+### Panel c: start-codon refinement, worked example
+
+```{r fig1c}
+alpha <- 0.4; w <- 17; ulen <- 90; coding_u <- 45
+base <- alpha * ulen
+ex <- tibble(case = c("K = +1", "K = 0", "K = -1"), K = c(1, 0, -1), x = 0:2) %>%
+  mutate(bonus = w * K, utr = base + bonus, trim = utr > coding_u,
+         decision = ifelse(trim, "trim", "keep\npartial"))
+bwid <- 0.55
+# hatch for the negative Kozak term: diagonal lines clipped to the rectangle
+hatch <- function(x0, x1, y0, y1, s = 40, step = 7) {
+  cs <- seq(y0 - s * x1, y1 - s * x0, by = step)
+  bind_rows(lapply(cs, function(c) {
+    xa <- max(x0, (y0 - c) / s); xb <- min(x1, (y1 - c) / s)
+    if (xa >= xb) return(NULL)
+    tibble(x = xa, xend = xb, y = c + s * xa, yend = c + s * xb)
+  }))
+}
+neg <- filter(ex, bonus < 0)
+hat <- hatch(neg$x - bwid / 2, neg$x + bwid / 2, neg$utr, base)
+
+pc_bot <- ggplot(ex) +
+  geom_rect(aes(xmin = x - bwid / 2, xmax = x + bwid / 2, ymin = 0, ymax = pmin(base, utr)),
+            fill = "#fbe3c6", colour = "#c8892d", linewidth = 0.3) +
+  geom_rect(data = filter(ex, bonus > 0), aes(xmin = x - bwid / 2, xmax = x + bwid / 2,
+            ymin = base, ymax = utr), fill = "#c8892d") +
+  geom_rect(data = neg, aes(xmin = x - bwid / 2, xmax = x + bwid / 2, ymin = utr, ymax = base),
+            fill = "white", colour = "#c8892d", linewidth = 0.3) +
+  geom_segment(data = hat, aes(x = x, xend = xend, y = y, yend = yend), colour = "#c8892d",
+               linewidth = 0.25) +
+  geom_hline(yintercept = coding_u, colour = TD_C, linewidth = 0.45, linetype = "dashed") +
+  geom_text(aes(x = x, y = pmax(utr, base) + 2, label = utr), vjust = 0, size = pt(6.3)) +
+  geom_text(aes(x = x, y = -9, label = decision, colour = trim), vjust = 1, size = pt(6),
+            fontface = "bold", lineheight = 0.9) +
+  scale_colour_manual(values = c(`TRUE` = TD_C, `FALSE` = MUTED), guide = "none") +
+  annotate("text", x = 2.9, y = coding_u + 1.5, label = "coding(u) = 45", colour = TD_C,
+           hjust = 1, vjust = 0, size = pt(6)) +
+  annotate("text", x = 2.33, y = base / 2, label = "\u03b1|u| = 36", hjust = 0, size = pt(5.8),
+           colour = MUTED) +
+  annotate("text", x = 0, y = base + w / 2 - 2, label = "+wK", colour = "white", size = pt(5.8),
+           fontface = "italic") +
+  annotate("text", x = 2.33, y = base - w / 2, label = "wK < 0", hjust = 0, size = pt(5.8),
+           colour = MUTED) +
+  scale_x_continuous(breaks = ex$x, labels = ex$case, expand = c(0, 0)) +
+  scale_y_continuous(expand = c(0, 0)) +
+  coord_cartesian(xlim = c(-0.5, 2.9), ylim = c(0, 62), clip = "off") +
+  labs(x = NULL, y = "UTR(u)\n(bases of coding signal)",
+       title = "example: |u| = 90, coding(u) = 45;  \u03b1 = 0.4, w = 17 bases per bit") +
+  theme(axis.ticks.x = element_blank(), plot.margin = margin(2, 2, 22, 2),
+        plot.title = element_text(size = 5.8, colour = MUTED, hjust = 0.5))
+
+yy <- 4.2
+pc_top <- ggplot() +
+  annotate("segment", x = 2, xend = 6, y = yy, yend = yy, colour = "#888888", linewidth = 0.55,
+           linetype = "11") +
+  annotate("rect", xmin = 6, xmax = 32, ymin = yy - 1.6, ymax = yy + 1.6, fill = "#fbe3c6",
+           colour = "#c8892d", linewidth = 0.3) +
+  annotate("rect", xmin = 32, xmax = 92, ymin = yy - 1.6, ymax = yy + 1.6, fill = "#c6d8ee",
+           colour = TD_C, linewidth = 0.3) +
+  annotate("segment", x = 92, xend = 98, y = yy, yend = yy, colour = "#888888", linewidth = 0.55) +
+  annotate("segment", x = 32, xend = 32, y = yy - 1.6, yend = yy + 2.0, colour = INK,
+           linewidth = 0.35) +
+  annotate("text", x = 19, y = yy, label = "u  (90 nt)", size = pt(6.3)) +
+  annotate("text", x = 62, y = yy, label = "ORF continues to the stop codon", size = pt(6)) +
+  annotate("text", x = 32, y = yy + 2.2, label = "first in-frame ATG", vjust = 0, size = pt(6)) +
+  annotate("text", x = 4, y = yy + 2.2, label = "open 5' end", vjust = 0, size = pt(6),
+           colour = MUTED) +
+  annotate("text", x = 50, y = 0.2, vjust = 0, size = pt(6.3),
+           label = "trim to the ATG if  UTR(u) = \u03b1|u| + wK  >  coding(u) = C(u)/\u03bc") +
+  scale_x_continuous(limits = c(0, 100), expand = c(0, 0)) +
+  scale_y_continuous(limits = c(0, 10), expand = c(0, 0)) +
+  coord_cartesian(clip = "off") +
+  theme_void() + labs(tag = "c") +
+  theme(plot.tag = element_text(size = 9, face = "bold"))
+```
+
+```{r fig1c-table}
+ex %>% transmute(Kozak = case, `K (bits)` = K, `alpha|u|` = base, `wK` = bonus, `UTR(u)` = utr,
+                 `coding(u)` = coding_u, decision = gsub("\n", " ", decision)) %>%
+  kable(caption = "Panel c: UTR and coding scores of the 90-nt example") %>%
+  kable_styling(full_width = FALSE, font_size = 12)
+```
+
+### Assembled figure
+
+```{r fig1, fig.width = FULL_W, fig.height = 125 * MM, out.width = "100%"}
+fig1 <- wrap_elements(full = pa) / (pb + (pc_top / pc_bot + plot_layout(heights = c(1, 2.1))) +
+              plot_layout(widths = c(1, 1.05))) +
+  plot_layout(heights = c(1.15, 1))
+save_fig(fig1, "fig1_algorithm", width = FULL_W, height = 125 * MM)
+fig1
+```
+
+## Workflow (Results, first paragraph)
+
+The first Results paragraph and Fig. 1a quote these settings. They are defaults in the code, not
+measured values; they are checked here against the Methods text.
+
+```{r workflow}
+settings <- tibble(
+  setting = c("minimum ORF length m (codons)", "training candidates 10T, T", "max training CDS (nt)",
+              "default q_max", "--precise q_max", "--sensitive q_max", "bundled presets",
+              "start rule alpha", "Kozak weight w (bases per bit)"),
+  value = c(50, 500, 5000, 0.05, 0.01, 0.2, nrow(presets), alpha, w))
+kable(settings) %>% kable_styling(full_width = FALSE, font_size = 12)
+```
+
+Seven presets are distributed (`r nrow(presets)` in the release packages; `r evidence("E24")`).
+
+## GC-calibrated long-ORF rule
+
+$L^\ast$ is the 0.999 quantile of ORF lengths in i.i.d. random sequence, simulated in 5% G+C
+steps (`r evidence("E10")`). It rises from `r num(thr$"q0.999"[thr$gc == 25])` nt at 25% G+C to
+`r num(thr$"q0.999"[thr$gc == 80])` nt at 80%. Each level has at least
+`r num(min(thr$n_orfs))` random ORFs. The table below is Supplementary Table S1, with the 2017
+table it replaces.
+
+```{r long-orf-table}
+lt <- thr %>% left_join(thr2017 %>% select(gc, q2017 = `q0.999`), by = "gc") %>%
+  mutate(diff_pct = 100 * (q2017 - `q0.999`) / `q0.999`)
+lt %>% transmute(`G+C (%)` = gc, `random ORFs` = num(n_orfs), `q0.95` = `q0.95`, `q0.99` = `q0.99`,
+                 `L* = q0.999 (nt)` = `q0.999`, `q0.9999` = `q0.9999`,
+                 `2017 q0.999` = round(q2017), `2017 vs L* (%)` = round(diff_pct, 1)) %>%
+  kable(caption = "Long-ORF length by G+C (Supplementary Table S1)") %>%
+  kable_styling(full_width = FALSE, font_size = 12)
+```
+
+### Effect of the rule on long true CDSs
+
+Methods says that without this rule, stop-level sensitivity for true CDSs of at least 400 codons on
+complete transcripts falls from 0.998 to 0.995 with the q-value test alone. This uses the
+development runs of `r evidence("E20")` (`data/benchmark/rules/sens_by_length.decoy.tsv`, complete
+transcripts with random negatives, pooled over the eight organisms); no equivalent table exists for
+the final runs. "0.998" is the earlier release rule (`cliff_c200`, which has the long-ORF rule) and
+"0.995" the decoy rule without it (`decoy_q0.05`).
+
+```{r long-orf-effect}
+long <- sens_len %>% filter(variant == "complete.wRand", set == "coding", length_bin == ">=400") %>%
+  group_by(label) %>% summarise(n = sum(n), hits = sum(hits), .groups = "drop") %>%
+  mutate(sensitivity = hits / n)
+sens_with <- long$sensitivity[long$label == "cliff_c200"]
+sens_without <- long$sensitivity[long$label == "decoy_q0.05"]
+kable(long, digits = 4) %>% kable_styling(full_width = FALSE, font_size = 12)
+```
+
+With the long-ORF rule `r f3(sens_with)`; q-value test alone `r f3(sens_without)`.
+
+## Start-codon refinement example
+
+For |u| = 90 nt, α = 0.4 and w = 17, the baseline is `r base`. A segment with coding score
+`r coding_u` is trimmed with K = +1 (UTR score `r ex$utr[1]`) and kept partial with K = 0
+(`r ex$utr[2]`) or K = −1 (`r ex$utr[3]`) (`r evidence("E09")`, `r evidence("E13")`).
+
+## Frame contrast: forward frames only or all five frames
+
+Methods retests the contrast against all five other frames, $C=S_1-\max(S_2,\dots,S_6)$, with the
+q-value test (`r evidence("E26")`). Runs: PyTD 83a4806 (`--contrast-frames all`) against the
+release `pytd_v7` on all 84 benchmark inputs (`data/benchmark/frames/`).
+
+### At the same q (0.05)
+
+```{r frames-same-q}
+fr <- frames %>% select(org, variant, tool, f1_stop, f1_exact, sensitivity_stop, precision_stop,
+                        runtime_sec) %>%
+  pivot_wider(names_from = tool, values_from = c(f1_stop, f1_exact, sensitivity_stop,
+                                                 precision_stop, runtime_sec)) %>%
+  mutate(d_exact = 100 * (f1_exact_all - f1_exact_pytd_v7),
+         d_stop = 100 * (f1_stop_all - f1_stop_pytd_v7),
+         type = sub("\\..*", "", variant),
+         stranded = !grepl("unstranded", variant),
+         runtime_ratio = runtime_sec_all / runtime_sec_pytd_v7)
+n_worse <- sum(fr$d_exact < 0); n_better <- sum(fr$d_exact > 0)
+med_d_exact <- median(fr$d_exact)
+frag <- fr %>% filter(type == "fragments")
+med_frag_d <- median(frag$d_exact)
+cls <- fr %>% mutate(cls = paste0(type, ifelse(stranded, " (stranded)", " (unstranded)"))) %>%
+  group_by(cls) %>%
+  summarise(n = n(), across(c(f1_stop_all, f1_stop_pytd_v7, f1_exact_all, f1_exact_pytd_v7),
+                            median), med_d_exact = median(d_exact), .groups = "drop") %>%
+  mutate(d_of_medians = 100 * (f1_exact_all - f1_exact_pytd_v7))
+tth_frag <- fr$d_exact[fr$org == "tthermophila" & fr$variant == "fragments"]
+worst <- fr %>% arrange(d_exact) %>% slice(1:3) %>% select(org, variant, d_exact)
+rt_ratio <- median(fr$runtime_ratio)
+kable(cls, digits = 3, caption = "Medians by input class, all-frames vs release (q 0.05)") %>%
+  kable_styling(full_width = FALSE, font_size = 12)
+kable(worst, digits = 2, caption = "Largest exact-F1 losses (points)") %>%
+  kable_styling(full_width = FALSE, font_size = 12)
+```
+
+All-frames lowered exact-CDS F1 on `r n_worse` of `r nrow(fr)` inputs (raised it on `r n_better`;
+median `r sprintf("%+.2f", med_d_exact)` points). On fragment inputs the median change is
+`r sprintf("%+.2f", med_frag_d)` points; the difference of class medians, which is what the text quotes ("fragments −1.7 points"), is
+`r sprintf("%+.2f", cls$d_of_medians[cls$cls == "fragments (stranded)"])` (stranded) and
+`r sprintf("%+.2f", cls$d_of_medians[cls$cls == "fragments (unstranded)"])` (unstranded) points.
+The largest loss is *T. thermophila* fragments, `r sprintf("%+.1f", tth_frag)` points. All-frames
+took a median `r sprintf("%.2f", rt_ratio)` times the release run time.
+
+<details><summary>Per-input exact F1 (84 inputs)</summary>
+
+```{r frames-per-input}
+fr %>% select(org, variant, f1_exact_pytd_v7, f1_exact_all, d_exact, runtime_ratio) %>%
+  kable(digits = 3) %>% kable_styling(full_width = FALSE, font_size = 11)
+```
+
+</details>
+
+### At equal rates of predictions on negative sequences
+
+Medians over organisms of stop sensitivity and % of negatives with a call, for each q. The release
+curve (q 0.01, 0.05, 0.2) is interpolated linearly at the all-frames points.
+
+```{r frames-matched}
+cm <- frames_curve %>% group_by(variant, label) %>%
+  summarise(sens = median(sens_stop), neg_pct = 100 * median(neg_rate), n = n(), .groups = "drop") %>%
+  mutate(rule = ifelse(grepl("^fwd", label), "release", "all"))
+interp <- cm %>% filter(rule == "all") %>% rowwise() %>%
+  mutate(release_at_same_neg = {
+    r <- cm %>% filter(variant == .env$variant, rule == "release") %>% arrange(neg_pct)
+    if (nrow(r) < 2 || neg_pct < min(r$neg_pct) || neg_pct > max(r$neg_pct)) NA_real_ else
+      approx(r$neg_pct, r$sens, xout = neg_pct, ties = "ordered")$y
+  }) %>% ungroup() %>% mutate(diff_pts = 100 * (release_at_same_neg - sens))
+kable(cm %>% arrange(variant, rule, label), digits = 3,
+      caption = "Medians over organisms") %>% kable_styling(full_width = FALSE, font_size = 12)
+kable(interp %>% select(variant, label, neg_pct, sens, release_at_same_neg, diff_pts), digits = 3,
+      caption = "Release sensitivity at the all-frames negative rate (points: release minus all-frames)") %>%
+  kable_styling(full_width = FALSE, font_size = 12)
+frag_str_gain <- interp %>% filter(variant %in% c("fragments.wRand", "fragments.wLnc"),
+                                   !is.na(diff_pts)) %>% pull(diff_pts)
+cmp_gain <- interp %>% filter(variant %in% c("complete.wRand", "complete.wLnc"), !is.na(diff_pts)) %>%
+  pull(diff_pts)
+```
+
+On stranded fragments the release rule is ahead by `r paste(sprintf("%.1f", frag_str_gain), collapse = ", ")`
+points at the matched all-frames points; on complete transcripts the differences are
+`r paste(sprintf("%.1f", cmp_gain), collapse = ", ")` points. Unstranded inputs have only the
+release default (q 0.05), so they are compared at that point in `r evidence("E26")` only.
+
+### GM12878
+
+```{r frames-gm}
+gm <- bind_rows(
+  frames_gm %>% filter(!grepl("sensitive", label)) %>% mutate(asm = sub("\\..*", "", label), rule = "all"),
+  v7_gm %>% filter(grepl("v7_default", label)) %>% mutate(asm = sub("\\..*", "", label), rule = "release")) %>%
+  select(asm, rule, true_positives, nonmatching) %>%
+  pivot_wider(names_from = rule, values_from = c(true_positives, nonmatching)) %>%
+  mutate(lost_matching = true_positives_release - true_positives_all,
+         removed_nonmatching = nonmatching_release - nonmatching_all)
+kable(gm, caption = "Matching / non-matching proteins (GENCODE v50), all-frames vs release default") %>%
+  kable_styling(full_width = FALSE, font_size = 12)
+```
+
+All-frames removed `r num(min(gm$lost_matching))`–`r num(max(gm$lost_matching))` proteins that
+match GENCODE for at most `r num(max(gm$removed_nonmatching))` non-matching ones.
+
+## Presets for small inputs (Table tab:presets)
+
+The seven bundled presets, read from the release packages by
+`pipeline/derive/01_bundled_presets.py` (`data/benchmark/presets/bundled_presets.tsv`;
+`r evidence("E21")`, `r evidence("E24")`). All files of every preset are byte-identical in the
+Perl and Python packages: `r all(presets$perl_py_identical)`. The last column re-derives $L^\ast$ from
+the preset's G+C with the lookup above.
+
+```{r presets}
+ms_presets <- tibble(  # Table tab:presets as written in methods_algorithm.tex l.224-230
+  name = c("mammal", "insect", "plant", "fungus", "apicomplexan", "ciliate", "green_alga"),
+  ms_gc = c(49.8, 50.8, 42.1, 37.8, 22.0, 25.9, 68.2),
+  ms_lstar = c(726, 804, 663, 615, 519, NA, 1347))
+pt_tab <- presets %>% left_join(ms_presets, by = "name") %>%
+  mutate(lstar_num = suppressWarnings(as.numeric(auto_accept_nt)),
+         lstar_lookup = ifelse(genetic_code == "Universal", lstar_lookup(gc_pct), NA))
+pt_tab %>% transmute(Preset = name, Reference = sub(" benchmark annotation.*", "", source),
+                     `Genetic code` = genetic_code, `G+C (%)` = round(gc_pct, 1),
+                     `L* (nt)` = auto_accept_nt, `L* from lookup` = lstar_lookup,
+                     `q levels` = paste0(n_q_levels, " (", q_min, "-", q_max, ")"),
+                     strata = n_strata, `training ORFs` = n_training_orfs,
+                     `Perl = Python` = perl_py_identical) %>%
+  kable(caption = "Bundled presets (Table tab:presets)") %>%
+  kable_styling(full_width = FALSE, font_size = 12)
+```
+
+Every preset stores `r unique(presets$n_q_levels)` q levels from `r unique(presets$q_min)` to
+`r unique(presets$q_max)`.
+
+## Two implementations with identical output
+
+### Benchmark: 84 inputs at the release commits
+
+`pipeline/derive/01_perl_pytd_identity.py` compares the predictions (transcript, start, end,
+strand) of `perl_td_v7` and `pytd_v7` on every benchmark input (`r evidence("E25")`).
+
+```{r identity}
+n_ident <- sum(ident$identical); n_inputs <- nrow(ident)
+ident <- ident %>% mutate(ratio = perl_runtime_sec / pytd_runtime_sec)
+rt_med <- median(ident$ratio); rt_rng <- range(ident$ratio)
+# all_scores.tsv: the score rows of the two tools must then also agree
+sc_same <- scores_v7 %>% filter(tool %in% c("perl_td_v7", "pytd_v7")) %>%
+  select(org, variant, tool, n_pred, tp_stop, tp_exact, fp) %>%
+  pivot_wider(names_from = tool, values_from = c(n_pred, tp_stop, tp_exact, fp)) %>%
+  summarise(all_same = all(n_pred_perl_td_v7 == n_pred_pytd_v7 & tp_stop_perl_td_v7 == tp_stop_pytd_v7 &
+                           tp_exact_perl_td_v7 == tp_exact_pytd_v7 & fp_perl_td_v7 == fp_pytd_v7))
+# development versions quoted in the current text (E07/E08: pytd_dev_v2 vs perl_td_dev_v2)
+dev_rt <- scores_v7 %>% filter(tool %in% c("perl_td_dev_v2", "pytd_dev_v2")) %>%
+  select(org, variant, tool, runtime_sec) %>% pivot_wider(names_from = tool, values_from = runtime_sec) %>%
+  mutate(ratio = perl_td_dev_v2 / pytd_dev_v2)
+dev_med <- median(dev_rt$ratio); dev_rng <- range(dev_rt$ratio)
+v7_vs_dev <- scores_v7 %>% filter(tool %in% c("pytd_v7", "pytd_dev_v2")) %>%
+  select(org, variant, tool, runtime_sec) %>% pivot_wider(names_from = tool, values_from = runtime_sec) %>%
+  summarise(median_ratio = median(pytd_v7 / pytd_dev_v2))
+```
+
+Predictions are identical on `r n_ident` of `r n_inputs` inputs, with
+`r sum(ident$perl_only) + sum(ident$pytd_only)` implementation-only predictions in total; the
+scores in `all_scores.tsv` agree on every input (`r sc_same$all_same`).
+
+Run time (wall clock on a shared host, single thread): PyTransDecoder was a median
+`r sprintf("%.2f", rt_med)` times faster than Perl (range `r sprintf("%.2f", rt_rng[1])`–`r sprintf("%.2f", rt_rng[2])`).
+The current text quotes the development versions (`pytd_dev_v2` vs `perl_td_dev_v2`): median
+`r sprintf("%.2f", dev_med)` (range `r sprintf("%.2f", dev_rng[1])`–`r sprintf("%.2f", dev_rng[2])`).
+The release PyTD took a median `r sprintf("%.2f", v7_vs_dev$median_ratio)` times as long as the development
+version, mostly for the decoy step.
+
+```{r identity-plot, fig.width = HALF_W * 1.4, fig.height = 2.2}
+rt_long <- bind_rows(ident %>% transmute(org, ratio, version = "release (41fc5ee / 3a793ff)"),
+                     dev_rt %>% transmute(org, ratio, version = "development (de3f57e / 48c870c)"))
+ggplot(rt_long, aes(ratio, org_factor(org), colour = org)) +
+  geom_jitter(height = 0.15, width = 0, size = 0.8) +
+  facet_wrap(~version) + scale_colour_manual(values = ORG_COLOR, guide = "none") +
+  labs(x = "Perl / Python run time", y = NULL) +
+  theme(axis.text.y = element_text(face = "italic"))
+```
+
+<details><summary>Per-input identity and run times (84 inputs)</summary>
+
+```{r identity-table}
+ident %>% kable(digits = 2) %>% kable_styling(full_width = FALSE, font_size = 11)
+```
+
+</details>
+
+### Sample data sets
+
+No regression run on the five sample data sets exists at the release commits. The latest is at
+PyTD 44e417a / Perl ab38ca6 (Kozak score in bits; `r evidence("E08")`), shown here with the v6.0.0
+baseline that the text calls "earlier versions".
+
+```{r regression}
+regw <- function(d) d %>% pivot_wider(names_from = metric, values_from = value)
+rf <- regw(reg_final); r6 <- regw(reg_v6)
+kable(rf %>% select(dataset, perl_orfs, py_orfs, exact_match, same_stop_diff_start, perl_only, py_only),
+      caption = "Perl vs Python, 44e417a / ab38ca6") %>% kable_styling(full_width = FALSE, font_size = 12)
+kable(r6 %>% select(dataset, perl_orfs, py_orfs, exact_match, same_stop_diff_start, perl_only, py_only),
+      caption = "Perl v6.0.0 vs first PyTD port (43f4293)") %>% kable_styling(full_width = FALSE, font_size = 12)
+n_sets_diff_v6 <- sum(r6$perl_only + r6$py_only > 0)
+max_start_v6 <- max(r6$same_stop_diff_start)
+reg_ok <- all(rf$perl_orfs == rf$exact_match & rf$py_orfs == rf$exact_match)
+```
+
+Predictions identical on all five sets: `r reg_ok` (ORFs per set `r paste(num(rf$perl_orfs), collapse = ", ")`).
+Earlier versions selected different ORFs on `r n_sets_diff_v6` of the five sets and chose different
+start codons for up to `r max_start_v6` ORFs per set. The agreement of intermediate files (hexamer
+log-likelihoods within 5×10⁻¹⁵) was checked in `r evidence("E08")` on the 2026-10-17 code; no table
+for it is committed.
+
+### Parity cases with decoys (Methods, Implementations)
+
+```{r parity}
+par_w <- parity %>% filter(check != "exit")
+kable(parity %>% pivot_wider(names_from = check, values_from = c(result, n)),
+      caption = "Perl vs Python, seven parity cases (E24)") %>%
+  kable_styling(full_width = FALSE, font_size = 12)
+n_cases <- n_distinct(parity$case)
+all_identical <- all(par_w$result == "identical")
+max_q <- max(as.numeric(par_w$n[par_w$check == "decoy_qvalues.tsv"]))
+max_pred <- max(as.numeric(par_w$n[par_w$check == "preds"]))
+```
+
+`r n_cases` cases; all identical: `r all_identical`; up to `r num(max_q)` q-values and
+`r num(max_pred)` predictions per case (`r evidence("E24")`). The 42,700 preset threshold look-ups
+and the decoy-step run times (about 3 min in PyTD, 11 min in Perl on 53,000 human transcripts)
+are recorded in `r evidence("E24")` only; no table for them is committed.
+
+## Checks against the manuscript
+
+```{r checks}
+M <- "methods_algorithm.tex"; R <- "results_algorithm.tex"
+# Methods: GC-calibrated long-ORF rule (l.156-166)
+check_text(paste0("L* at 25% G+C, nt (", M, ":158)"), thr$`q0.999`[thr$gc == 25], 519)
+check_text(paste0("L* at 80% G+C, nt (", M, ":158)"), thr$`q0.999`[thr$gc == 80], 2436)
+check_text(paste0("min random ORFs per G+C level >= 85,000 (", M, ":157)"),
+           min(thr$n_orfs) >= 85000, 1)
+check_text(paste0("sens >= 400 codons with long-ORF rule (", M, ":165)"), round(sens_with, 3), 0.998)
+check_text(paste0("sens >= 400 codons, q-value test alone (", M, ":165)"), round(sens_without, 3), 0.995)
+# Methods: start refinement example (l.267-268)
+check_text(paste0("start example baseline (", M, ":267)"), base, 36)
+check_text(paste0("start example UTR score K=+1 (", M, ":268)"), ex$utr[1], 53)
+check_text(paste0("start example UTR score K=0 (", M, ":268)"), ex$utr[2], 36)
+check_text(paste0("start example UTR score K=-1 (", M, ":268)"), ex$utr[3], 19)
+# Methods: frame-contrast retest (l.103-111)
+check_text(paste0("all-frames: inputs with lower exact F1 (", M, ":105)"), n_worse, 75)
+check_text(paste0("all-frames: inputs (", M, ":105)"), nrow(fr), 84)
+check_text(paste0("all-frames: median exact F1 change, points (", M, ":105)"), round(med_d_exact, 1), -0.3)
+check_text(paste0("all-frames: fragments exact F1, difference of class medians, stranded (", M, ":105)"),
+           round(cls$d_of_medians[cls$cls == "fragments (stranded)"], 1), -1.7)
+check_text(paste0("all-frames: stranded fragments, release ahead at matched neg. rate, mean points (", M, ":107)"),
+           round(mean(frag_str_gain)), 1)
+check_text(paste0("all-frames: T. thermophila fragments exact F1, points (", M, ":109)"), round(tth_frag, 1), -7.7)
+check_text(paste0("all-frames: GM12878 matching proteins removed, min (", M, ":110)"), min(gm$lost_matching), 306)
+check_text(paste0("all-frames: GM12878 matching proteins removed, max (", M, ":110)"), max(gm$lost_matching), 2226)
+check_text(paste0("all-frames: GM12878 non-matching removed, max (", M, ":111)"), max(gm$removed_nonmatching), 299)
+check_text(paste0("all-frames: run time ratio (", M, ":111)"), round(rt_ratio, 1), 1.4)
+# Methods: presets (l.199, l.206, Table l.224-230)
+check_text(paste0("presets: q levels per preset (", M, ":199)"), unique(presets$n_q_levels), 10)
+check_text(paste0("presets: lowest q level (", M, ":199)"), unique(presets$q_min), 0.001)
+check_text(paste0("presets: highest q level (", M, ":199)"), unique(presets$q_max), 0.5)
+check_text(paste0("presets: number bundled (", M, ":206)"), nrow(presets), 7)
+for (i in seq_len(nrow(pt_tab))) {
+  check_text(sprintf("tab:presets %s G+C %% (%s:%d)", pt_tab$name[i], M, 223 + i),
+             round(pt_tab$gc_pct[i], 1), pt_tab$ms_gc[i], tol = 0.05)
+  if (!is.na(pt_tab$ms_lstar[i]))
+    check_text(sprintf("tab:presets %s L* nt (%s:%d)", pt_tab$name[i], M, 223 + i),
+               pt_tab$lstar_num[i], pt_tab$ms_lstar[i])
+  else check_text(sprintf("tab:presets %s L* none (%s:%d)", pt_tab$name[i], M, 223 + i),
+                  is.na(pt_tab$lstar_num[i]), 1)
+}
+check_text("tab:presets L* equals lookup at preset G+C (all Universal-code presets)",
+           with(filter(pt_tab, genetic_code == "Universal"), all(lstar_num == lstar_lookup)), 1)
+# Methods: implementations (l.327-341)
+for (d in c("trinity", "pasa", "stringtie", "supertx", "cufflinks"))
+  check_text(sprintf("sample set ORFs, %s (%s:327)", d, M), as.numeric(rf$perl_orfs[rf$dataset == d]),
+             c(trinity = 692, pasa = 777, stringtie = 2681, supertx = 69, cufflinks = 58)[[d]])
+check_text(paste0("parity cases (", M, ":336)"), n_cases, 7)
+check_text(paste0("parity: max q-values per case (", M, ":339)"), max_q, 64936)
+check_text(paste0("parity: max predictions per case (", M, ":339)"), max_pred, 20148)
+# Results: first paragraph (l.12, l.21, l.29, l.31)
+check_text(paste0("minimum ORF length, codons (", R, ":12)"), settings$value[1], 50)
+check_text(paste0("default q (", R, ":21)"), settings$value[4], 0.05)
+check_text(paste0("--precise q (", R, ":29)"), settings$value[5], 0.01)
+check_text(paste0("--sensitive q (", R, ":29)"), settings$value[6], 0.2)
+check_text(paste0("presets distributed (", R, ":31)"), nrow(presets), 7)
+# Results: two implementations (l.42-53)
+check_text(paste0("benchmark inputs with identical predictions (", R, ":43)"), n_ident, 84)
+check_text(paste0("sample sets: smallest ORF count (", R, ":44)"), min(as.numeric(rf$perl_orfs)), 58)
+check_text(paste0("sample sets: largest ORF count (", R, ":44)"), max(as.numeric(rf$perl_orfs)), 2681)
+check_text(paste0("v6.0.0: sample sets with different ORFs (", R, ":49)"), n_sets_diff_v6, 2)
+check_text(paste0("v6.0.0: max start differences per set (", R, ":50)"), max_start_v6, 71)
+check_text(paste0("Perl/Python run time, median, release (", R, ":50)"), round(rt_med, 1), 2.3)
+check_text(paste0("Perl/Python run time, min, release (", R, ":51)"), round(rt_rng[1], 1), 2.0)
+check_text(paste0("Perl/Python run time, max, release (", R, ":51)"), round(rt_rng[2], 1), 2.5)
+check_text(paste0("Perl/Python run time, median, development runs (", R, ":50)"), round(dev_med, 1), 2.3)
+check_text(paste0("Perl/Python run time, min, development runs (", R, ":51)"), round(dev_rng[1], 1), 2.0)
+check_text(paste0("Perl/Python run time, max, development runs (", R, ":51)"), round(dev_rng[2], 1), 2.5)
+check_report()
+```
+
+Mismatches (`ok = FALSE`):
+
+```{r mismatches}
+bind_rows(.checks$rows) %>% filter(!ok) %>% kable() %>% kable_styling(full_width = FALSE, font_size = 12)
+```
