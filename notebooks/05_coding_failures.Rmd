@@ -35,18 +35,17 @@ release rule):
 
 - the matched CDS tables of the 8 benchmark organisms (complete transcripts, UTRs trimmed to 250 nt),
   aggregated: by organism, length, GC3 quintile, chromosome, failure cause, and model;
-- homology flags from the release homology runs (`pytd_v7_homology`) where they had finished
-  (*A. thaliana*, *C. reinhardtii*, *D. melanogaster*, human) and otherwise from
-  `pytd_dev_v2_homology`. Both search the same LongOrfs ORFs ($\ge$ 50 aa) against the same
-  databases; their hits were identical for the three organisms compared. E12 used older runs with a
-  100-aa minimum, so CDSs of 50--99 aa now have homology flags;
+- homology flags from the release homology runs (`pytd_v7_homology`), which search all LongOrfs
+  ORFs ($\ge$ 50 aa) against Swiss-Prot (minus the organism's own entries) and Pfam. E12 used older
+  runs with a 100-aa minimum, so CDSs of 50--99 aa now have homology flags;
 - the truth-trained Markov models of E12 (two folds by gene) now pass an ORF only if it also has a
   q-value $\le 0.05$ computed from decoys scored with the same model. The decoys are regenerated as
   PyTD generates them; with the run's own model this reproduces every q-value in `decoy_qvalues.tsv`
   (checked below);
-- the homology comparison (Fig. 5d,e) uses `data/benchmark/homology_vs_abinitio.tsv`, i.e. the
-  development runs `pytd_dev_v2` and `pytd_dev_v2_homology`. The release homology runs had not
-  finished for all organisms when this notebook was written, so that part is not yet on release data.
+- the homology comparison (Fig. 5d,e) uses `data/benchmark/homology_vs_abinitio.tsv`: release runs
+  `pytd_v7_homology` minus `pytd_v7`, from `benchmark_v2/scripts/compare_homology.py` on
+  `data/benchmark/final_v7/all_scores.tsv`. The development comparison (`pytd_dev_v2_homology` minus
+  `pytd_dev_v2`) is kept as `homology_vs_abinitio.dev_v2.tsv`.
 
 ```{r data}
 V7 <- function(f) read_tab("long_orf_failures", "v7", f)
@@ -311,8 +310,8 @@ is kept). `r evidence("E12")`
 
 ## Homology evidence recovers true coding regions, mostly in fragments
 
-Development runs (`pytd_dev_v2` vs `pytd_dev_v2_homology`, `data/benchmark/homology_vs_abinitio.tsv`);
-the release homology runs were not complete. `r evidence("E07")`
+Release runs (`pytd_v7` vs `pytd_v7_homology`, `data/benchmark/homology_vs_abinitio.tsv`).
+`r evidence("E25")`
 
 ```{r homology}
 hom <- hom %>% mutate(kind = case_when(grepl("wLnc", variant) ~ "lnc",
@@ -332,14 +331,15 @@ kable(hom %>% count(kind), caption = "Inputs per kind.")
 ```
 
 - Complete transcripts (`r nrow(hc)` inputs): stop-level sensitivity
-  +`r f1(100 * min(hc$d_sensitivity_stop))` to +`r f1(100 * max(hc$d_sensitivity_stop))` points;
+  `r sprintf("%+.1f", 100 * min(hc$d_sensitivity_stop))` to `r sprintf("%+.1f", 100 * max(hc$d_sensitivity_stop))` points;
   exact F1 `r f1(100 * min(hc$d_f1_exact))` to +`r f1(100 * max(hc$d_f1_exact))` points.
 - Fragments (`r nrow(hf)` inputs): sensitivity +`r f1(100 * min(hf$d_sensitivity_stop))` to
   +`r f1(100 * max(hf$d_sensitivity_stop))`; exact F1 +`r f1(100 * min(hf$d_f1_exact))` to
   +`r f1(100 * max(hf$d_f1_exact))` points.
 - Stranded fragments, exact F1: human +`r f1(frag_s[["human"]])`, mouse +`r f1(frag_s[["mouse"]])`,
-  *A. thaliana* +`r f1(frag_s[["athal"]])`, *T. thermophila* +`r f1(frag_s[["tthermophila"]])`,
-  *C. reinhardtii* +`r f1(frag_s[["creinhardtii"]])` points.
+  *A. thaliana* +`r f1(frag_s[["athal"]])`; the other five organisms
+  +`r f1(min(frag_s[setdiff(names(frag_s), c("human", "mouse", "athal"))]))` to
+  +`r f1(max(frag_s[setdiff(names(frag_s), c("human", "mouse", "athal"))]))` points.
 - Stop-level precision, all inputs without lncRNAs: `r f1(100 * min(hneg$d_precision_stop))` to
   +`r f1(100 * max(hneg$d_precision_stop))` points. Calls on random sequences rose by
   `r min(rand_other$d_neg)`--`r max(rand_other$d_neg)` per input in seven organisms and
@@ -348,7 +348,7 @@ kable(hom %>% count(kind), caption = "Inputs per kind.")
   `r num(lncv("human", "complete.wLnc", neg_pred_homology))` (mouse
   `r num(lncv("mouse", "complete.wLnc", neg_pred_abinitio))` to `r num(lncv("mouse", "complete.wLnc", neg_pred_homology))`).
   Exact F1 with lncRNA negatives: complete human `r f1(100 * lncv("human", "complete.wLnc", d_f1_exact))`,
-  mouse +`r f1(100 * lncv("mouse", "complete.wLnc", d_f1_exact))`; fragments human
+  mouse `r sprintf("%+.1f", 100 * lncv("mouse", "complete.wLnc", d_f1_exact))`; fragments human
   +`r f1(100 * lncv("human", "fragments.wLnc", d_f1_exact))`, mouse
   +`r f1(100 * lncv("mouse", "fragments.wLnc", d_f1_exact))` points.
 
@@ -485,15 +485,15 @@ where the q-value test replaces the fixed short-ORF test.
 ## Checks against the manuscript
 
 Values quoted in `results_coding_failures.tex` (line numbers in the labels) against the release
-analysis (homology paragraph: development runs, see above).
+analysis.
 
 ```{r checks}
 ok <- function(...) invisible(check_text(...))
 ok("L14 matched CDSs", ALL$n_matched, 135429)
 ok("L15 % failing", round(fail_pct, 1), 4.9, 0.05)
-ok("L19 % failing <300 nt", round(lp[["0-299"]]), 67, 0.5)
-ok("L20 % failing 300-599", round(lp[["300-599"]], 1), 9.4, 0.05)
-ok("L21 % failing 600-999", round(lp[["600-999"]], 1), 2.3, 0.05)
+ok("L19 % failing <300 nt", round(lp[["0-299"]]), 53, 0.5)
+ok("L20 % failing 300-599", round(lp[["300-599"]], 1), 13.5, 0.05)
+ok("L21 % failing 600-999", round(lp[["600-999"]], 1), 2.6, 0.05)
 ok("L22 % failing 1-2 kb", round(lp[["1000-1999"]], 1), 0.6, 0.05)
 ok("L23 % failing 2-5 kb (0.3-0.4)", round(lp[["2000-4999"]], 1), 0.3, 0.05)
 ok("L23 % failing >=5 kb (0.3-0.4)", round(lp[[">=5000"]], 1), 0.4, 0.05)
@@ -506,78 +506,80 @@ ok("L33 length rule only (%)", round(lo_pct), 19, 0.5)
 ok("L38 % not predicted", round(lost_pct, 1), 4.6, 0.05)
 ok("L39 length-only predictions, min %", round(min(lro_b$length_rule_only_pct), 1), 0, 0.05)
 ok("L39 length-only predictions, max %", round(max(lro_b$length_rule_only_pct), 1), 1.4, 0.05)
-ok("L40 length-only on complete, false", lo_false, 4)
-ok("L40 length-only on complete, total", lo_total, 402)
-ok("L41 human lncRNA input, length-only true", h_lnc$lo_is_truth_cds, 47)
-ok("L41 human lncRNA input, length-only on lncRNAs", h_lnc$lo_on_negative_transcript, 99)
-ok("L44 attribution: atypical GC3 %", round(attr_all[["atypical_gc3_composition"]]), 33, 0.5)
-ok("L45 attribution: low complexity %", round(attr_all[["low_complexity_or_repetitive"]]), 32, 0.5)
+ok("L40 length-only on complete, false", lo_false, 5)
+ok("L40 length-only on complete, total", lo_total, 409)
+ok("L41 human lncRNA input, length-only true", h_lnc$lo_is_truth_cds, 49)
+ok("L41 human lncRNA input, length-only on lncRNAs", h_lnc$lo_on_negative_transcript, 159)
+ok("L44 attribution: atypical GC3 %", round(attr_all[["atypical_gc3_composition"]]), 31, 0.5)
+ok("L45 attribution: low complexity %", round(attr_all[["low_complexity_or_repetitive"]]), 29, 0.5)
 ok("L45 attribution: no homology + other frame %",
-   round(attr_all[["no_homology_orphan"]] + attr_all[["stronger_out_of_frame_orf"]]), 33, 0.5)
-ok("L45 attribution: no homology %", round(attr_all[["no_homology_orphan"]]), 26, 0.5)
-ok("L45 attribution: stronger ORF other frame %", round(attr_all[["stronger_out_of_frame_orf"]], 1), 6.5, 0.05)
-ok("L46 attribution: unexplained %", round(attr_all[["unexplained"]], 1), 2.4, 0.05)
-ok("L51 D. mel lowest GC3 quintile failing %", round(dq$fail_score_pct[1], 1), 13.5, 0.05)
+   round(attr_all[["no_homology_orphan"]] + attr_all[["stronger_out_of_frame_orf"]]), 34, 0.5)
+ok("L45 attribution: no homology %", round(attr_all[["no_homology_orphan"]]), 29, 0.5)
+ok("L45 attribution: stronger ORF other frame %", round(attr_all[["stronger_out_of_frame_orf"]], 1), 5.3, 0.05)
+ok("L46 attribution: unexplained %", round(attr_all[["unexplained"]], 1), 4.9, 0.05)
+ok("L51 D. mel lowest GC3 quintile failing %", round(dq$fail_score_pct[1], 1), 13.9, 0.05)
 ok("L52 D. mel other quintiles, max %", round(max(dq$fail_score_pct[-1]), 1), 0.3, 0.05)
 ok("L52 D. mel chr 4 failing", chr4$fail_score, 40)
 ok("L52 D. mel chr 4 n", chr4$n, 80)
 ok("L52 D. mel chr Y failing", chrY$fail_score, 8)
 ok("L53 D. mel chr Y n", chrY$n, 22)
-ok("L56 T. therm ribosomal proteins failing", tt_rp$rp_fail, 21)
+ok("L56 T. therm ribosomal proteins failing", tt_rp$rp_fail, 29)
 ok("L56 T. therm ribosomal proteins n", tt_rp$n_rp, 60)
-ok("L58 GC3 model rescue, all %", round(o_all$gc3match500_rescues_td_scorefail_pct), 25, 0.5)
-ok("L59 GC3 model rescue, D. mel %", round(o_dmel$gc3match500_rescues_td_scorefail_pct), 69, 0.5)
+ok("L58 GC3 model rescue, all %", round(o_all$gc3match500_rescues_td_scorefail_pct), 27, 0.5)
+ok("L59 GC3 model rescue, D. mel %", round(o_dmel$gc3match500_rescues_td_scorefail_pct), 63, 0.5)
 ok("L59 GC3 model rescue, chr 4", chr4$rescued_gc3_model, 39)
-ok("L61 other models fail %, min", round(min(other_models), 2), 2.08, 0.005)
-ok("L61 other models fail %, max", round(max(other_models), 2), 2.49, 0.005)
-ok("L61 TD model fail % (>=300 nt)", round(o_all$td_fail_ge300_pct, 2), 2.38, 0.005)
+ok("L61 other models fail %, min", round(min(other_models), 2), 2.78, 0.005)
+ok("L61 other models fail %, max", round(max(other_models), 2), 3.23, 0.005)
+ok("L61 TD model fail % (>=300 nt)", round(o_all$td_fail_ge300_pct, 2), 3.2, 0.005)
 ok("L61 training ORFs true CDSs, min %", round(100 * min(purity), 1), 99.8, 0.05)
 ok("L62 training ORFs true CDSs, max %", round(100 * max(purity), 1), 100, 0.05)
-ok("L69 human+mouse failures low complexity %", round(lowc_fail), 78, 0.5)
-ok("L70 human+mouse controls low complexity %", round(lowc_ctrl), 13, 0.5)
-ok("L71 human KRTAP failing", if (nrow(krtap)) krtap$n_fail else 0, 52)
+ok("L69 human+mouse failures low complexity %", round(lowc_fail), 61, 0.5)
+ok("L70 human+mouse controls low complexity %", round(lowc_ctrl), 14, 0.5)
+ok("L71 human KRTAP failing", if (nrow(krtap)) krtap$n_fail else 0, 55)
 ok("L71 human KRTAP n", if (nrow(krtap)) krtap$n else NA, 72)
-ok("L74 human failing Cys %", round(100 * cys$fail_mean), 14, 0.5)
-ok("L74 human control Cys %", round(100 * cys$ctrl_mean, 1), 2.5, 0.05)
-ok("L75 low-complexity fraction fold", round(seg$fail_mean / seg$ctrl_mean), 4, 0.5)
-ok("L79 T. therm failures without homology %", round(tt_orph$fail_pct), 97, 0.5)
-ok("L80 T. therm controls without homology %", round(tt_orph$ctrl_pct), 58, 0.5)
-ok("L80 T. therm stronger ORF other frame (a quarter) %", round(tt_alt$fail_pct), 25, 3)
-ok("L81 human failing without Swiss-Prot hit %", round(h_sp$fail_score_pct[h_sp$has_sprot == 0], 1), 14.7, 0.05)
-ok("L82 human failing with Swiss-Prot hit %", round(h_sp$fail_score_pct[h_sp$has_sprot == 1], 1), 0.4, 0.05)
-ok("L89 dropping S1>0: true CDSs gained, min %", round(min(alt_r$pos_gain_pct), 2), 0.06, 0.005)
-ok("L89 dropping S1>0: true CDSs gained, max %", round(max(alt_r$pos_gain_pct)), 2, 0.5)
-ok("L90 dropping S1>0: random fold, min", round(min(alt_r$neg_fold)), 10, 0.5)
-ok("L90 dropping S1>0: random fold, max", round(max(alt_r$neg_fold)), 40, 0.5)
-# homology paragraph (development runs)
-ok("L96 homology inputs", nrow(hom), 84)
-ok("L104 complete inputs", nrow(hc), 48)
-ok("L105 complete: sensitivity gain min", round(100 * min(hc$d_sensitivity_stop), 1), 0.1, 0.05)
-ok("L105 complete: sensitivity gain max", round(100 * max(hc$d_sensitivity_stop), 1), 2.5, 0.05)
-ok("L105 complete: exact F1 min", round(100 * min(hc$d_f1_exact), 1), -0.1, 0.05)
-ok("L105 complete: exact F1 max", round(100 * max(hc$d_f1_exact), 1), 1.8, 0.05)
-ok("L106 fragment inputs", nrow(hf), 32)
-ok("L106 fragments: sensitivity min", 100 * min(hf$d_sensitivity_stop), 1.3, 0.05)  # 1.25: unrounded, R rounds to even
-ok("L106 fragments: sensitivity max", 100 * max(hf$d_sensitivity_stop), 9.9, 0.05)  # 9.85
-ok("L107 fragments: exact F1 min", round(100 * min(hf$d_f1_exact), 1), 0.6, 0.05)
-ok("L107 fragments: exact F1 max", round(100 * max(hf$d_f1_exact), 1), 5.3, 0.05)
-ok("L108 stranded fragments F1, min of human/mouse/athal", round(min(frag_s[c("human", "mouse", "athal")]), 1), 3.8, 0.05)
-ok("L108 stranded fragments F1, max of human/mouse/athal", round(max(frag_s[c("human", "mouse", "athal")]), 1), 4.7, 0.05)
-ok("L109 stranded fragments F1, T. therm", round(frag_s[["tthermophila"]], 1), 0.6, 0.05)
-ok("L110 stranded fragments F1, C. rein", round(frag_s[["creinhardtii"]], 1), 0.6, 0.05)
-ok("L115 precision change min", round(100 * min(hneg$d_precision_stop), 1), -0.6, 0.05)
-ok("L116 precision change max", round(100 * max(hneg$d_precision_stop), 1), 1.8, 0.05)
-ok("L116 random calls added, 7 orgs, min", min(rand_other$d_neg), 0)
-ok("L116 random calls added, 7 orgs, max", max(rand_other$d_neg), 3)
-ok("L117 random calls added, T. therm, min", min(rand_tt$d_neg), 12)
-ok("L117 random calls added, T. therm, max", max(rand_tt$d_neg), 36)
-ok("L118 human lncRNAs predicted, ab initio", lncv("human", "complete.wLnc", neg_pred_abinitio), 6943)
-ok("L118 human lncRNAs predicted, homology", lncv("human", "complete.wLnc", neg_pred_homology), 7827)
-ok("L118 mouse lncRNAs predicted, ab initio", lncv("mouse", "complete.wLnc", neg_pred_abinitio), 5423)
-ok("L118 mouse lncRNAs predicted, homology", lncv("mouse", "complete.wLnc", neg_pred_homology), 5921)
-ok("L119 complete+lnc exact F1, human", round(100 * lncv("human", "complete.wLnc", d_f1_exact), 1), -0.7, 0.05)
-ok("L119 complete+lnc exact F1, mouse", round(100 * lncv("mouse", "complete.wLnc", d_f1_exact), 1), 0.2, 0.05)
-ok("L120 fragments+lnc exact F1, human", round(100 * lncv("human", "fragments.wLnc", d_f1_exact), 1), 2.1, 0.05)
-ok("L121 fragments+lnc exact F1, mouse", round(100 * lncv("mouse", "fragments.wLnc", d_f1_exact), 1), 3.3, 0.05)
+ok("L74 human failing Cys %", round(100 * cys$fail_mean), 10, 0.5)
+ok("L74 human control Cys %", round(100 * cys$ctrl_mean, 1), 2.4, 0.05)
+ok("L75 low-complexity fraction fold", round(seg$fail_mean / seg$ctrl_mean), 3, 0.5)
+ok("L79 T. therm failures without homology %", round(tt_orph$fail_pct), 95, 0.5)
+ok("L80 T. therm controls without homology %", round(tt_orph$ctrl_pct), 52, 0.5)
+ok("L80 T. therm stronger ORF other frame %", round(tt_alt$fail_pct), 19, 0.5)
+ok("L81 human failing without Swiss-Prot hit %", round(h_sp$fail_score_pct[h_sp$has_sprot == 0], 1), 20.5, 0.05)
+ok("L82 human failing with Swiss-Prot hit %", round(h_sp$fail_score_pct[h_sp$has_sprot == 1], 1), 0.9, 0.05)
+ok("L89 dropping S1>0: true CDSs changed, min %", round(min(alt_r$pos_gain_pct), 2), -0.66, 0.005)
+ok("L89 dropping S1>0: true CDSs changed, max %", round(max(alt_r$pos_gain_pct), 2), 0.65, 0.005)
+ok("L90 dropping S1>0: random fold, min", round(min(alt_r$neg_fold), 1), 1.4, 0.05)
+ok("L90 dropping S1>0: random fold, max", round(max(alt_r$neg_fold), 1), 7.9, 0.05)
+ok("L90 dropping S1>0: random fold, median", round(median(alt_r$neg_fold), 1), 2.5, 0.05)
+# homology paragraph (release runs)
+other5 <- frag_s[setdiff(names(frag_s), c("human", "mouse", "athal"))]
+ok("homology inputs", nrow(hom), 84)
+ok("complete inputs", nrow(hc), 48)
+ok("complete: sensitivity change min", round(100 * min(hc$d_sensitivity_stop), 1), -0.3, 0.05)
+ok("complete: sensitivity change max", round(100 * max(hc$d_sensitivity_stop), 1), 3.7, 0.05)
+ok("complete: exact F1 min", 100 * min(hc$d_f1_exact), -0.4, 0.06)  # -0.35
+ok("complete: exact F1 max", round(100 * max(hc$d_f1_exact), 1), 2.1, 0.05)
+ok("fragment inputs", nrow(hf), 32)
+ok("fragments: sensitivity min", round(100 * min(hf$d_sensitivity_stop), 1), 0.4, 0.05)
+ok("fragments: sensitivity max", round(100 * max(hf$d_sensitivity_stop), 1), 9.2, 0.05)
+ok("fragments: exact F1 min", round(100 * min(hf$d_f1_exact), 1), 0.1, 0.05)
+ok("fragments: exact F1 max", 100 * max(hf$d_f1_exact), 4.7, 0.06)  # 4.65
+ok("stranded fragments F1, min of human/mouse/athal", round(min(frag_s[c("human", "mouse", "athal")]), 1), 2.3, 0.05)
+ok("stranded fragments F1, max of human/mouse/athal", round(max(frag_s[c("human", "mouse", "athal")]), 1), 3.1, 0.05)
+ok("stranded fragments F1, other five min", round(min(other5), 1), 0.1, 0.05)
+ok("stranded fragments F1, other five max", round(max(other5), 1), 0.7, 0.06)  # 0.65
+ok("precision change min", round(100 * min(hneg$d_precision_stop), 1), -0.5, 0.05)
+ok("precision change max", round(100 * max(hneg$d_precision_stop), 1), 1.3, 0.05)
+ok("random calls added, 7 orgs, min", min(rand_other$d_neg), 0)
+ok("random calls added, 7 orgs, max", max(rand_other$d_neg), 2)
+ok("random calls added, T. therm, min", min(rand_tt$d_neg), 12)
+ok("random calls added, T. therm, max", max(rand_tt$d_neg), 39)
+ok("human lncRNAs predicted, ab initio", lncv("human", "complete.wLnc", neg_pred_abinitio), 1639)
+ok("human lncRNAs predicted, homology", lncv("human", "complete.wLnc", neg_pred_homology), 3268)
+ok("mouse lncRNAs predicted, ab initio", lncv("mouse", "complete.wLnc", neg_pred_abinitio), 1640)
+ok("mouse lncRNAs predicted, homology", lncv("mouse", "complete.wLnc", neg_pred_homology), 2452)
+ok("complete+lnc exact F1, human", round(100 * lncv("human", "complete.wLnc", d_f1_exact), 1), -2.1, 0.05)
+ok("complete+lnc exact F1, mouse", round(100 * lncv("mouse", "complete.wLnc", d_f1_exact), 1), -0.1, 0.05)
+ok("fragments+lnc exact F1, human", round(100 * lncv("human", "fragments.wLnc", d_f1_exact), 1), 0.2, 0.05)
+ok("fragments+lnc exact F1, mouse", round(100 * lncv("mouse", "fragments.wLnc", d_f1_exact), 1), 2.3, 0.05)
 check_report()
 ```

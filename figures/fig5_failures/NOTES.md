@@ -9,12 +9,10 @@ Scripts (run with `$P/env/td/bin/python`; shared style `figures/style.py`):
 
 Evidence: E12 (panels a–c, f) and E07 (panels d, e).
 
-**Rerun panels d and e after the final rescoring.** `homology_vs_abinitio.tsv` was built from the
-interim rescoring (`summary.interim_20261022.tsv`). After `summary.tsv` is regenerated:
+**Panels d and e** use the release homology comparison (E25), built with
 
-    python benchmark_v2/scripts/compare_homology.py <summary.tsv> $P/data/bench_v3/inputs $P/work/bench_v3/runs \
-        > data/benchmark/homology_vs_abinitio.tsv
-    python figures/fig5_failures/make_fig5.py data/benchmark/homology_vs_abinitio.tsv
+    python benchmark_v2/scripts/compare_homology.py data/benchmark/final_v7/all_scores.tsv $P/data/bench_v3/inputs \
+        $P/work/bench_v3/runs pytd_v7 pytd_v7_homology > data/benchmark/homology_vs_abinitio.tsv
 
 ## Panels and data
 | panel | content | source | computation |
@@ -22,7 +20,7 @@ interim rescoring (`summary.interim_20261022.tsv`). After `summary.tsv` is regen
 | a | % of matched true CDSs failing the coding test, by annotated CDS length (6 bins, log y), one line per organism. Bold: all organisms. Dashed: all organisms, still lost after the length rule. Zeros are not drawn. | `data/long_orf_failures/summary_by_length.tsv` | `fail_coding_pct` (includes the short-ORF rule below 300 nt); `still_lost_pct` for org ALL |
 | b | exclusive attribution of failures ≥300 nt, per organism and all; n at the right | `explanation_flags.tsv`, rows `attr:*` | `fail_pct` |
 | c | *D. melanogaster* CDSs ≥300 nt failing the coding test (grey), and the part rescued by a GC3-matched Markov model (blue), by GC3 quintile and for chromosomes 4 and Y; counts as fail/n | `data/dmel_gc3_rescue.tsv` | fail_score as in `summarize.py`; rescued = `pass_gc3match500 == 1` |
-| d | homology minus ab initio PyTD (48c870c), stop-level sensitivity, stranded `complete` and `fragments` inputs, in percentage points | `data/benchmark/homology_vs_abinitio.tsv` | 100 × `d_sensitivity_stop` |
+| d | homology minus ab initio PyTD (release, 3a793ff; `pytd_v7_homology` − `pytd_v7`), stop-level sensitivity, stranded `complete` and `fragments` inputs, in percentage points | `data/benchmark/homology_vs_abinitio.tsv` | 100 × `d_sensitivity_stop` |
 | e | the same for exact-CDS F1 | same | 100 × `d_f1_exact` |
 | f | failing true CDSs retained by the length rule, split by whether they also have a homology hit; labels give length-only/total. *T. thermophila* is omitted because the rule does not apply there (0 retained). | `length_vs_homology_fallback.tsv` | `also_homology_hit`, `length_only` |
 

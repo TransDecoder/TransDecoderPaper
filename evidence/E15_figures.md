@@ -13,7 +13,7 @@ Plan: Fable review of 2026-10-22 (main session scratchpad, `fable_review/fable_r
 | 3 start refinement | fig3_start/make_fig3.py | data/start_param_sensitivity/*; benchmark summary | E09, E13 | final |
 | S2 start grid | fig3_start/make_fig3.py | same | E13 | final |
 | 4 short ORFs | fig4_short_orfs/make_fig4.py | data/benchmark/{short_orf_summary,lnc_by_era.human}.tsv | E04 | final |
-| 5 coding failures | fig5_failures/make_fig5.py (+ derive_dmel_gc3_rescue.py) | data/long_orf_failures/*; homology_vs_abinitio.tsv | E12, E07 | panels d,e **regenerate** from the final summary |
+| 5 coding failures | fig5_failures/make_fig5.py (+ derive_dmel_gc3_rescue.py) | data/long_orf_failures/v7/*; homology_vs_abinitio.tsv (release) | E12, E25 | panels d,e from the release homology runs (2026-10-26) |
 | 6 GM12878 | fig6_gm12878/make_fig6.py (+ derive_class_by_length.py) | data/gm12878/*; data/pred_class_by_length.tsv from `$P/work/gm12878_td/eval/status/` | E01-E05, E11 | final |
 | 7 parameters | fig7_parameters/make_fig7.py | data/start_param_sensitivity/gm12878.tsv; data/gm12878/{gm12878_minaa_sweep,gm12878_homology_series}.tsv | E13, E04, E06 | final |
 | S1 Kozak logos | kozak/make_kozak_figure.py (existing) | as in E09 | E09 | final (reused) |

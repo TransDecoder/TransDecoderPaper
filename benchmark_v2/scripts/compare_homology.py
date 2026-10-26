@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """Homology-assisted vs ab initio PyTD at the final defaults, per benchmark input.
 
-Compares pytd_dev_v2_homology with pytd_dev_v2 in a summary.tsv from score_all.py. Prints the
+Compares a homology run with its ab initio run (default pytd_dev_v2_homology vs pytd_dev_v2; the
+release runs are pytd_v7_homology vs pytd_v7) in a summary.tsv from score_all.py. Prints the
 number of predictions of each, the change (homology minus ab initio) in sensitivity, precision and
 F1 at the stop and exact levels, and the predictions on negatives: rand_* transcripts for .wRand
 inputs (n_pred_random) and, for .wLnc inputs, transcripts absent from the truth table (lncRNAs),
 counted from preds.tsv.
 
-usage: compare_homology.py <summary.tsv> <inputs_dir> <runs_dir> > homology_vs_abinitio.tsv
+usage: compare_homology.py <summary.tsv> <inputs_dir> <runs_dir> [base_tool homology_tool] > homology_vs_abinitio.tsv
 """
 import csv
 import os
@@ -26,7 +27,10 @@ def lnc_with_pred(inputs, runs, org, variant, tool):
 
 
 def main():
+    global BASE, HOM
     summary, inputs, runs = sys.argv[1:4]
+    if len(sys.argv) > 4:
+        BASE, HOM = sys.argv[4:6]
     with open(summary) as fh:
         rows = {(r["org"], r["variant"], r["tool"]): r for r in csv.DictReader(fh, delimiter="\t")}
     keys = sorted((k for k in rows if k[2] == HOM), key=lambda k: (k[1], k[0]))

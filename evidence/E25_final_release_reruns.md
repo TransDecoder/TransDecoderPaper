@@ -2,7 +2,7 @@
 
 Code: PyTD main 3a793ff (`work/trees/PY_v7`), Perl devel 41fc5ee (`work/trees/TD_v7`). All runs fresh (new run directories; `run_tool.sh` tools `pytd_v7`, `perl_td_v7`, `pytd_v7_precise`, `pytd_v7_sensitive`, `pytd_v7_homology`; GM12878 `genome_annotation/scripts/gm12878_final_v7.sh`). Release defaults: decoy q-value test at q 0.05, GC-table long-ORF accept, 50-codon minimum, start refinement (alpha 0.4, Kozak 17/bit).
 
-Status: phase 1 (pytd_v7, perl_td_v7 on all 84 inputs) and the 7 GM12878 ab initio runs are done and scored here. Phase 2 (`--precise`/`--sensitive`) is done and scored below. Still running: phase 3 (`pytd_v7_homology`, 84 inputs) and the GM12878 Trinity homology run. Add them to this record when done.
+Status: phase 1 (pytd_v7, perl_td_v7 on all 84 inputs) and the 7 GM12878 ab initio runs are done and scored here. Phase 2 (`--precise`/`--sensitive`) is done and scored below. Phase 3 (`pytd_v7_homology`, 84 inputs) finished on 2026-10-26 and is scored below (section "Homology"). The GM12878 Trinity homology run (`trinity_final_v7_homology`) has finished but is not yet used in the manuscript.
 
 ## Claims supported
 - **Perl and Python give identical predictions on all 84 benchmark inputs** at the release commits (`sort preds.tsv | cmp`; 84/84 identical). This extends E24's 7 parity cases to the full benchmark, with the q-value test active.
@@ -32,6 +32,18 @@ Status: phase 1 (pytd_v7, perl_td_v7 on all 84 inputs) and the 7 GM12878 ab init
 
   Exact F1 improved on 61 inputs and fell on 17 (by at most 0.64 points: T. thermophila complete −0.64, mouse complete_fullutr −0.61, human complete_fullutr.unstranded −0.48). Largest gains: human complete.wLnc +9.8, human fragments.wLnc +9.2, mouse complete.wLnc +6.4 points.
 - **Run time** (shared host, single thread; indicative): Perl/PyTD ratio median 2.71 (2.07–3.28) over 84 inputs. PyTD v7 took a median 1.75× the time of `pytd_dev_v2`, mainly the decoy step (LongOrfs + scoring of one shuffled copy of every transcript).
+
+## Homology (phase 3; `pytd_v7_homology` vs `pytd_v7`)
+Swiss-Prot 2026_03 without the organism's own entries (DIAMOND, one target, E ≤ 1e-5) and Pfam-A 38.2 (hmmsearch, gathering thresholds), on all LongOrfs ORFs; otherwise the release defaults. 84/84 runs finished, 0 failed. Scored with `score_v7.sh` (rows appended to `data/benchmark/final_v7/all_scores.tsv`); per-input differences from `compare_homology.py data/benchmark/final_v7/all_scores.tsv $P/data/bench_v3/inputs $P/work/bench_v3/runs pytd_v7 pytd_v7_homology > data/benchmark/homology_vs_abinitio.tsv`. The development comparison it replaces is kept as `homology_vs_abinitio.dev_v2.tsv` (E07).
+
+Claims (Results, "Homology evidence recovers true coding regions, mostly in fragments"; Fig. 5d,e; checked in notebook 05):
+- Complete-type inputs (complete, complete_fullutr, with and without random negatives; 48): stop sensitivity −0.29 to +3.72 points, exact F1 −0.35 to +2.09 points. Largest: human/mouse complete_fullutr(.unstranded); smallest: *P. falciparum* and *C. reinhardtii* complete_fullutr.unstranded.
+- Fragments (32): stop sensitivity +0.42 to +9.20 points, exact F1 +0.11 to +4.65 points (largest: mouse fragments.unstranded(.wRand)).
+- Stranded fragments, exact F1: mouse +3.08, human +2.58, *A. thaliana* +2.34; *T. thermophila* +0.65, *S. pombe* +0.56, *D. melanogaster* +0.39, *C. reinhardtii* +0.22, *P. falciparum* +0.13.
+- Stop precision on inputs without lncRNAs: −0.51 to +1.32 points. Calls on random negatives: +0 to +2 per input in seven organisms, +12 to +39 in *T. thermophila*.
+- lncRNA negatives (complete.wLnc): lncRNAs with a prediction, human 1,639 → 3,268, mouse 1,640 → 2,452 (fragments.wLnc: 1,928 → 3,522 and 1,904 → 2,698). Exact F1: complete.wLnc human −2.11, mouse −0.10; fragments.wLnc human +0.21, mouse +2.30 points.
+
+Comparison with the development runs (E07, `pytd_dev_v2` with the fixed short-ORF test): the fragment gains are smaller at release (stranded fragments, exact F1 +3.8 to +4.7 in human/mouse/*A. thaliana* before, +2.3 to +3.1 now; +0.6 to +5.3 over all fragments before), and the lncRNA cost is larger in relative terms. The ab initio release run predicts on far fewer lncRNAs (1,639 vs 6,943 in human), so the ~1,600 lncRNAs added by homology double the count, whereas at development they added 884 to an already larger number. Homology-supported ORFs bypass the q-value test, so this added share is expected once that test removes most chance ORFs. Which lncRNA ORFs gain a homology hit (e.g. pseudogene-derived or paralogous sequence) was not examined.
 
 ## GM12878 (ab initio, release default; vs the earlier `final_abinitio` runs with the fixed short-ORF test)
 Same transcripts as `final_abinitio`. Eval: `eval_genome_cds.py` (`eval.*.summary.tsv`).
@@ -70,5 +82,4 @@ Earlier fixed short-ORF test: LRAA 33,587 / 1,005; StringTie 36,547 / 4,119.
 - GM12878: `gm12878_final_v7.sh` (predict, genome map, `eval_genome_cds.py`, `match_riboseq.py`); then `riboseq_orf_support.py` and `ms_peptide_support.py` with the E01/E02 arguments on the v7 GFF3/pep files (`work/gm12878_td/final_v7_scoring/`).
 
 ## Caveats
-- Homology runs pending (above).
 - GM12878 MANE exact recovery falls 0.5–1.2 points with the q-value test (exact given assembled: LRAA −0.5, StringTie −1.2, Trinity −1.2 points), the price of 2.4- to 4.4-fold fewer unannotated CDSs.

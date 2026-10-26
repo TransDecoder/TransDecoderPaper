@@ -111,7 +111,7 @@ env/td/bin/python TransDecoderPaper/benchmark_v2/scripts/score_all.py data/bench
 ## Outputs
 - `$T/data/benchmark/summary.tsv`: 1,957 scored runs, long format. Columns: n_truth, n_pred, tp_stop, tp_exact, fp, fp_random, fp_wrong_strand, fp_dup, fn, sensitivity/precision/F1 at stop and exact level, and runtime_sec.
   - It is byte-identical to `$P/work/bench_v3/scores/summary.tsv` (written 2026-10-20 15:37).
-- `$T/data/benchmark/homology_vs_abinitio.tsv`: `pytd_dev_v2_homology` minus `pytd_dev_v2` per input (84 rows), from `compare_homology.py` on the interim rescoring `$P/work/bench_v3/scores/summary.interim_20261022.tsv` (fixed scorer, all runs as of 2026-10-22 11:30; not committed, as CodAn is incomplete).
+- `$T/data/benchmark/homology_vs_abinitio.dev_v2.tsv` (was `homology_vs_abinitio.tsv` until 2026-10-26; the release comparison now under that name is in E25): `pytd_dev_v2_homology` minus `pytd_dev_v2` per input (84 rows), from `compare_homology.py` on the interim rescoring `$P/work/bench_v3/scores/summary.interim_20261022.tsv` (fixed scorer, all runs as of 2026-10-22 11:30; not committed, as CodAn is incomplete).
 - `data/benchmark/by_length.tsv`, `short_orf_summary.tsv` and `lnc_by_era.human.tsv` are covered in E04.
 - Per-run outputs (not in git): `$P/work/bench_v3/runs/<org>/<variant>/<tool>/{preds.tsv,runtime_sec.txt,*.log}`. Logs are in `runs/logs/`.
 
@@ -161,7 +161,7 @@ What can be said without over-reading:
 - **Fragments, stop level:** Prodigal is higher than TransDecoder in 7 of 8 organisms; *T. thermophila* is the exception (0.869 vs 0.896). This is consistent with its lower minimum gene length (90 nt) against the -m 50/100-codon floor; see E04 for length-stratified numbers. No significance testing was done.
 - **Classifier-type tools** (CPAT, RNAsamba, CPC2) have high exact F1 on complete transcripts but low exact F1 on fragments (CPAT median 0.44).
 - **CodAn** stop F1 is 0.710 on *P. falciparum*, which has no clade model (INV used).
-- **Homology** (`pytd_dev_v2_homology` vs `pytd_dev_v2`, `homology_vs_abinitio.tsv`). Swiss-Prot without the organism's own entries plus Pfam, at the final defaults:
+- **Homology** (development runs; superseded in the manuscript by the release runs, E25) (`pytd_dev_v2_homology` vs `pytd_dev_v2`, `homology_vs_abinitio.dev_v2.tsv`). Swiss-Prot without the organism's own entries plus Pfam, at the final defaults:
   - Complete-type inputs (complete and complete_fullutr, 48 inputs): stop sensitivity +0.0008 to +0.0246, exact F1 −0.0013 to +0.0180. Gains are smallest in *T. thermophila* and *C. reinhardtii* (exact F1 ≤ +0.0021).
   - Fragments (32 inputs): stop sensitivity +0.013 to +0.099, exact F1 +0.006 to +0.053. Largest in human, mouse and athal (exact F1 +0.040 to +0.053); smallest in *T. thermophila* and *C. reinhardtii* (+0.006 to +0.008).
   - Precision changes by −0.006 to +0.018 (stop level), so the gains come from recovered true CDSs. Predictions on GC-matched random negatives barely move: +0 to +3 per input in seven organisms, +12 to +36 in *T. thermophila* (e.g. complete.unstranded.wRand 1,059 → 1,095).
