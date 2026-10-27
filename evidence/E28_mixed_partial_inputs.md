@@ -1,6 +1,6 @@
 # E28. Balanced mixed inputs: complete, 5' partial, 3' partial and internal CDSs (2026-10-25)
 
-**Status:** all non-CodAn runs are done and scored (204 of 204). CodAn is running, 2 at a time. It has 21 runs, of which 0 were scored when this record was written. To rescore when CodAn finishes, see Commands.
+**Status:** all 225 runs are done and scored, including CodAn's 21 (finished 2026-10-27; `launch_mixed.out`: `CODAN_LANE_DONE`, 0 failed). CodAn (partial model) has stop / exact F1 0.957 / 0.788 overall; by type, exact F1 complete 0.598, 3' partial 0.590, 5' partial 0.971 (best of all methods), internal 0.960. Its trial range of exact F1 is at most 0.016. Rescoring added rows only: existing rows of `mixed_scores.tsv`, `partial_types.tsv` and `five_prime_by_distance.tsv` are unchanged. Table 1 and Table S9 now include CodAn; the Results text names CodAn as best on 5' partials.
 
 ## Claims supported
 Manuscript (2026-10-25): Methods "Benchmark data" (balanced mixed inputs); Table 1 "mixed" columns;
@@ -106,7 +106,7 @@ Values are the median over organisms (7 for the n/a tools) in each trial, given 
 | RNAsamba (7) | 0.887 | 0.959 | 0.920 | 0.485 | 0.523 | 0.496 |
 | CPC2 (7) | 0.573 | 0.990 | 0.726 | 0.326 | 0.582 | 0.418 |
 | Borf (7) | 0.823 | 0.989 | 0.890 | 0.571 | 0.695 | 0.623 |
-| CodAn (7) | pending | | | | | |
+| CodAn (7) | 0.921 | 0.994 | 0.957 | 0.767 | 0.804 | 0.788 |
 
 **Sensitivity by type**, given as stop / exact (mean over trials of the median over organisms):
 
@@ -121,6 +121,7 @@ Values are the median over organisms (7 for the n/a tools) in each trial, given 
 | RNAsamba | 0.981 / 0.952 | 0.778 / 0.018 | 0.952 / 0.929 | 0.827 / 0.018 |
 | CPC2 | 0.934 / 0.915 | 0.660 / 0.014 | 0.400 / 0.380 | 0.253 / 0.006 |
 | Borf | 0.957 / 0.894 | 0.733 / 0.318 | 0.851 / 0.763 | 0.774 / 0.349 |
+| CodAn | 0.957 / 0.594 | 0.957 / 0.952 | 0.866 / 0.578 | 0.931 / 0.928 |
 
 **5' partials, exact sensitivity (ORF left open), by distance from the fragment start to the first in-frame ATG:**
 
