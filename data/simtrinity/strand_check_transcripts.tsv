@@ -1,0 +1,7 @@
+read	target	orientation	n
+R1	other	forward	145
+R1	other	reverse	3919
+R1	source	reverse	15936
+R2	other	forward	3919
+R2	other	reverse	145
+R2	source	forward	15936

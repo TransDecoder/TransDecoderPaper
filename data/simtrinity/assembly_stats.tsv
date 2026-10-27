@@ -1,0 +1,8 @@
+metric	simulated	real
+star_input_pairs	52753990	97548052
+star_unique_pct	96.84	83.31
+trinity_partitions	28494	77695
+trinity_transcripts	84972	428960
+trinity_genes	46339	319068
+minimap2_primary_mapped	84838	428223
+minimap2_supplementary	500	6588

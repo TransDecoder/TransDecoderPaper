@@ -1,0 +1,15 @@
+all_transcripts	646577
+lncRNA	191362
+protein_coding	278484
+coding_kept	252930
+pc_drop_NF_tag	25227
+pc_NF_tag:cds_end_NF	18922
+pc_NF_tag:mRNA_end_NF	19360
+pc_NF_tag:cds_start_NF	8059
+pc_NF_tag:mRNA_start_NF	8124
+pc_drop_no_stop	13
+pc_drop_no_ATG	201
+pc_drop_internal_stop	100
+pc_drop_internal_stop:selenoprotein	84
+pc_drop_len_not_mult3	13
+pc_drop_no_ATG:selenoprotein	3

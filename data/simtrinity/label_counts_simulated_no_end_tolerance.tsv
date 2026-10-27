@@ -1,0 +1,19 @@
+label	reason	n
+3prime_partial		1390
+5prime_partial		1351
+ambiguous	2_projections	518
+ambiguous	3_projections	28
+complete		28119
+internal		2369
+noncoding		20409
+short_complete		498
+short_partial		1397
+unresolved	chimeric	464
+unresolved	frame_check_failed	24
+unresolved	incompatible	13317
+unresolved	large_softclip	483
+unresolved	lnc_overlaps_cds	91
+unresolved	no_overlap	595
+unresolved	softclip_at_open_cds_end	382
+unresolved	unaligned	134
+unresolved	utr_only	13403

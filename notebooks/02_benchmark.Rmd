@@ -813,6 +813,185 @@ old_better_exact <- names(which(V(TD_OLD, "fragments", "f1_exact") > pr_fe))
 Earlier runs, fragments exact F1 higher than Prodigal in: `r paste(ORG_LABEL[old_better_exact], collapse = ", ")`;
 release: `r paste(ORG_LABEL[td_better_exact], collapse = ", ")`.
 
+## Simulated GM12878 Trinity assembly
+
+A benchmark on assembled transcripts whose true coding regions are known (`r evidence("E30")`;
+scripts `pipeline/simtrinity/`, tables `data/simtrinity/`). Reads were simulated from annotated
+transcripts only, at GM12878 expression levels, and assembled with the pipeline used for the real
+GM12878 Trinity assembly (E11). So the input has the fragment, isoform and chimera structure of a real
+genome-guided Trinity assembly, while every contig can be traced to its source transcript.
+
+- **Transcripts simulated:** GENCODE v50 `protein_coding` transcripts with a complete CDS (no `*_NF`
+  tags; ATG to stop, a whole number of codons, no internal stop) and all `lncRNA` transcripts. Nothing
+  else: no pre-mRNA, retained-intron, NMD or pseudogene transcripts.
+- **Expression:** salmon 1.10.3 counts (`ISR`, `--seqBias --gcBias`, full GENCODE v50 index) from the
+  real reads (ENCSR000AED rep 1); the rounded counts of the kept transcripts are simulated.
+- **Reads:** Polyester 1.38.0, paired 101 nt, `illumina5` errors, fragment length from salmon,
+  stranded with read 1 antisense (dUTP/RF, as the real library).
+- **Assembly:** STAR 2-pass (same index and parameters as the real run; run on methods02 for memory),
+  Trinity 2.15.2 genome-guided (`--SS_lib_type RF --min_kmer_cov 2`), minimap2 `splice:hq` to GRCh38.
+- **Labels** (`label_assembly.py`): a contig is compatible with a simulated transcript when their exons
+  agree over the overlap (same introns; up to 10 nt of terminal overhang tolerated). The source CDS is
+  projected onto compatible contigs, which are labelled complete, 5' partial, 3' partial or internal from
+  the CDS ends they contain; contigs compatible only with lncRNAs and overlapping no GENCODE CDS are
+  negatives. Contigs with conflicting projections (ambiguous), fewer than 50 codons (short) or no
+  resolvable structure (unresolved) stay in the input, but predictions on them are not scored.
+- **Scoring:** as for the other inputs (`score_predictions.py`): stop within 2 nt, exact when the start
+  is also within 2 nt, one credit per truth CDS; every prediction on a negative is a false positive. The
+  input is named `fragments_simtrinity.fa`, so `run_tool.sh` treats it as stranded and as fragments
+  (RNAsamba partial-length weights); CPAT uses the human model. CodAn was not run (too slow) and
+  `perl_td_v7` was not run (identical to `pytd_v7` on all other inputs; E08, E25).
+
+```{r sim-data}
+ST <- function(f) read_tab("simtrinity", f)
+sim_par <- ST("sim_params.tsv") %>% { setNames(.[[2]], .[[1]]) }
+sim_sel <- read_tsv(data_path("simtrinity", "selection_counts.tsv"), col_names = c("step", "n"), show_col_types = FALSE)
+SEL <- setNames(sim_sel$n, sim_sel$step)
+asm <- ST("assembly_stats.tsv")
+ASM <- function(m, w = "simulated") asm[[w]][asm$metric == m]
+LC <- ST("label_counts.tsv")
+lc_n <- function(a, l) sum(LC$n[LC$assembly == a & LC$label %in% l])
+SCORED_TYPES <- c("complete", "5prime_partial", "3prime_partial", "internal")
+lab_tab <- LC %>% mutate(group = case_when(label %in% SCORED_TYPES ~ "coding (truth)", label == "noncoding" ~ "negative",
+                                           TRUE ~ "not scored")) %>%
+  group_by(assembly, group, label) %>% summarise(n = sum(n), .groups = "drop") %>%
+  group_by(assembly) %>% mutate(frac = n / sum(n)) %>% ungroup()
+kable(tibble(step = c("coding transcripts kept (complete CDS)", "lncRNA transcripts", "salmon pairs assigned (real reads)",
+                      "simulated pairs (kept transcripts)", "  of which coding / lncRNA", "fragment length mean / sd",
+                      "STAR uniquely mapped", "Trinity transcripts (simulated / real)", "Trinity 'genes' (simulated / real)",
+                      "contigs with a primary alignment (simulated / real)"),
+             value = c(num(SEL[["coding_kept"]]), num(SEL[["lncRNA"]]), num(as.numeric(sim_par[["salmon_num_mapped"]])),
+                       num(as.numeric(sim_par[["pairs_total"]])),
+                       paste(num(as.numeric(sim_par[["pairs_coding"]])), "/", num(as.numeric(sim_par[["pairs_lncRNA"]]))),
+                       paste(sim_par[["fld_mean"]], "/", sim_par[["fld_sd"]]), paste0(ASM("star_unique_pct"), "%"),
+                       paste(num(ASM("trinity_transcripts")), "/", num(ASM("trinity_transcripts", "real"))),
+                       paste(num(ASM("trinity_genes")), "/", num(ASM("trinity_genes", "real"))),
+                       paste(num(ASM("minimap2_primary_mapped")), "/", num(ASM("minimap2_primary_mapped", "real"))))),
+      caption = "Simulation and assembly")
+sg <- ST("strand_check_genome.tsv") %>% filter(mapping == "unique")
+r1_anti <- sum(sg$n[sg$read == "R1" & sg$alignment_strand_vs_source == "opposite"]) / sum(sg$n[sg$read == "R1"])
+```
+
+**Strand.** In a 1% sample of the STAR alignments, uniquely mapped read 1 lies on the strand opposite
+its source transcript in `r pct(r1_anti, 2)` of `r num(sum(sg$n[sg$read == "R1"]))` reads (RF, as the
+real library).
+
+**Labels.** The real GM12878 Trinity assembly was labelled with the same script against the same
+transcript set, for comparison (its contigs come from all transcripts, pre-mRNA and unannotated
+isoforms, so most are unresolved there).
+
+```{r sim-labels}
+kable(lab_tab %>% select(assembly, group, label, n) %>%
+        pivot_wider(names_from = assembly, values_from = n, values_fill = 0) %>%
+        mutate(simulated_frac = r3(simulated / sum(simulated)), real_frac = r3(real / sum(real))),
+      caption = "Contig labels, simulated vs real Trinity GG assembly")
+details(LC %>% filter(label %in% c("unresolved", "ambiguous")) %>%
+          pivot_wider(names_from = assembly, values_from = n, values_fill = 0), "unresolved and ambiguous by reason")
+details(ST("incompatible_breakdown.tsv"), "simulated: why contigs are structurally incompatible")
+pos_types <- function(a) { d <- LC %>% filter(assembly == a, label %in% SCORED_TYPES); setNames(d$n / sum(d$n), d$label) }
+E29T <- ST("e29_five_prime.tsv")
+n_unres_sim <- lc_n("simulated", "unresolved"); n_sim <- sum(LC$n[LC$assembly == "simulated"])
+```
+
+Of `r num(n_sim)` simulated contigs, `r num(lc_n("simulated", SCORED_TYPES))` carry a scored CDS,
+`r num(lc_n("simulated", "noncoding"))` are negatives and `r num(n_unres_sim)` (`r pct(n_unres_sim / n_sim)`)
+are unresolved. The two largest unresolved groups are contigs compatible with coding transcripts but
+holding only UTR sequence (`r num(LC$n[LC$assembly == "simulated" & LC$reason == "utr_only"])`) and
+contigs whose intron chain matches no single simulated transcript
+(`r num(LC$n[LC$assembly == "simulated" & LC$reason == "incompatible"])`; half of them annotated introns
+joined in new combinations by the assembler). Among the scored contigs, `r pct(pos_types("simulated")[["complete"]])`
+are complete in the simulated assembly against `r pct(pos_types("real")[["complete"]])` in the real one.
+The E29 statistic (contigs carrying a MANE Select stop with the reference structure to their 5' end
+that begin inside the CDS) is `r pct(E29T$frac_5prime_partial[E29T$assembly == "simulated"])` simulated
+vs `r pct(E29T$frac_5prime_partial[E29T$assembly == "real"])` real: the simulated assembly is more
+complete than the real one (uniform coverage, no pre-mRNA, no degradation).
+
+```{r sim-expr}
+TBE <- ST("type_by_expr.tsv"); CBS <- ST("complete_by_source_expr.tsv")
+TPM_BINS <- c("<1", "1-5", "5-20", "20-100", ">100")
+kable(TBE %>% select(-n) %>% mutate(frac = r3(frac), tpm_bin = factor(tpm_bin, TPM_BINS)) %>%
+        pivot_wider(names_from = type, values_from = frac) %>%
+        left_join(TBE %>% group_by(tpm_bin) %>% summarise(contigs = sum(n)), by = "tpm_bin") %>% arrange(tpm_bin),
+      caption = "Scored contigs by salmon TPM of the source transcript(s): fraction of each type")
+kable(CBS %>% mutate(across(starts_with("frac"), r3)),
+      caption = "Simulated coding transcripts by TPM: with >= 1 complete contig, with >= 1 scored contig")
+```
+
+**Accuracy.** Predictions on unresolved, ambiguous and short contigs are removed before scoring
+(counted in `n_pred_excluded`).
+
+```{r sim-scores}
+SIM_TOOLS <- c(pytd_v7 = "TransDecoder", perl_td_v600 = "TransDecoder v6.0.0", longest_orf = "longest ORF",
+               prodigal = "Prodigal", gmst = "GeneMarkS-T", cpat = "CPAT", rnasamba = "RNAsamba", cpc2 = "CPC2",
+               borf = "Borf")
+so <- ST("scores_overall.tsv") %>% mutate(method = factor(SIM_TOOLS[tool], levels = SIM_TOOLS)) %>% arrange(method)
+neg <- ST("negatives.tsv")
+kable(so %>% left_join(neg %>% select(tool, frac_negatives_with_pred), by = "tool") %>%
+        transmute(method, n_truth, n_pred, sensitivity_stop, precision_stop, f1_stop, sensitivity_exact,
+                  precision_exact, f1_exact, negatives_with_pred = frac_negatives_with_pred, n_pred_excluded) %>%
+        mutate(across(where(is.double), r3)),
+      caption = "Simulated Trinity assembly: all scored contigs")
+sbt <- ST("scores_by_type.tsv") %>% mutate(method = factor(SIM_TOOLS[tool], levels = SIM_TOOLS),
+                                          type = factor(TYPE_LABEL[type], levels = TYPE_LABEL))
+kable(sbt %>% transmute(method, type, v = sprintf("%.3f / %.3f", sensitivity_stop, sensitivity_exact)) %>%
+        pivot_wider(names_from = type, values_from = v) %>% arrange(method),
+      caption = "Sensitivity by type, stop / exact")
+sbe <- ST("scores_by_expr.tsv") %>% mutate(method = factor(SIM_TOOLS[tool], levels = SIM_TOOLS),
+                                          tpm_bin = factor(tpm_bin, TPM_BINS))
+kable(sbe %>% transmute(method, tpm_bin, v = sprintf("%.3f / %.3f", sensitivity_stop, sensitivity_exact)) %>%
+        pivot_wider(names_from = tpm_bin, values_from = v) %>% arrange(method),
+      caption = "Sensitivity by TPM of the source transcript(s), stop / exact")
+ex <- ST("excluded_preds.tsv")
+details(ex %>% mutate(frac_with_pred = r3(frac_with_pred)) %>% select(tool, label, n_transcripts, with_pred, frac_with_pred) %>%
+          pivot_wider(id_cols = c(label, n_transcripts), names_from = tool, values_from = frac_with_pred),
+        "fraction of excluded contigs with a prediction, by label / reason")
+pt_sim <- ST("pred_types.tsv")
+details(pt_sim %>% filter(scope == "scored") %>% mutate(method = SIM_TOOLS[tool]) %>%
+          select(method, n_pred, ends_with("_frac")) %>% mutate(across(ends_with("_frac"), r3)),
+        "predicted ORF types (from each prediction's own ends), scored contigs")
+SOV <- function(t, m) so[[m]][so$tool == t]
+NEGV <- function(t) neg$frac_negatives_with_pred[neg$tool == t]
+```
+
+TransDecoder: stop-level F1 `r f3(SOV(TD, "f1_stop"))`, exact F1 `r f3(SOV(TD, "f1_exact"))`, with a
+prediction on `r pct(NEGV(TD))` of the lncRNA-derived negatives. Prodigal finds more stops
+(sensitivity `r f3(SOV("prodigal", "sensitivity_stop"))`) but predicts on `r pct(NEGV("prodigal"))` of
+the negatives (exact F1 `r f3(SOV("prodigal", "f1_exact"))`); the longest-ORF baseline predicts on
+`r pct(NEGV("longest_orf"))` of them. CPAT and RNAsamba reach stop F1 `r f3(SOV("cpat", "f1_stop"))` and
+`r f3(SOV("rnasamba", "f1_stop"))` but cannot leave a 5' end open (exact sensitivity on 5' partials and
+internal fragments below 0.02).
+
+```{r figS-simtrinity, fig.width = FULL_W, fig.height = 85 * MM}
+SIM_TYPE_LAB <- c(complete = "complete", `5prime_partial` = "5' partial", `3prime_partial` = "3' partial",
+                  internal = "internal")
+TYPE_COL <- c(complete = COMPLETE_C, `5' partial` = "#fd8d3c", `3' partial` = "#fdd0a2", internal = FRAG_C)
+pa <- LC %>% filter(label %in% SCORED_TYPES) %>% group_by(assembly) %>% mutate(frac = n / sum(n)) %>% ungroup() %>%
+  mutate(type = factor(SIM_TYPE_LAB[label], levels = rev(SIM_TYPE_LAB)),
+         assembly = factor(assembly, c("simulated", "real"), c("sim.", "real"))) %>%
+  ggplot(aes(assembly, frac, fill = type)) + geom_col(width = 0.7) +
+  scale_fill_manual(values = TYPE_COL, breaks = unname(SIM_TYPE_LAB), name = NULL) +
+  scale_y_continuous(expand = c(0, 0), labels = percent) + labs(x = NULL, y = "scored contigs", title = "CDS type") +
+  guides(fill = guide_legend(ncol = 2))
+pb <- so %>% left_join(neg, by = "tool") %>% select(method, f1_stop, f1_exact, frac_negatives_with_pred) %>%
+  pivot_longer(-method) %>%
+  mutate(name = factor(name, c("f1_stop", "f1_exact", "frac_negatives_with_pred"),
+                       c("stop F1", "exact F1", "negatives\npredicted on")), method = factor(method, rev(SIM_TOOLS))) %>%
+  ggplot(aes(value, method, fill = method == "TransDecoder")) + geom_col(width = 0.7) + facet_wrap(~name, nrow = 1) +
+  scale_fill_manual(values = c(`TRUE` = TD_C, `FALSE` = GREY), guide = "none") +
+  scale_x_continuous(breaks = c(0, 0.5, 1), labels = c("0", "0.5", "1"), limits = c(0, 1)) +
+  labs(x = NULL, y = NULL, title = "all scored contigs")
+pc <- sbe %>% filter(tool %in% c(TD, "prodigal", "gmst", "cpat", "longest_orf")) %>%
+  ggplot(aes(tpm_bin, sensitivity_exact, colour = method, group = method)) + geom_line(linewidth = 0.4) + geom_point(size = 0.8) +
+  scale_colour_manual(values = c(TransDecoder = TD_C, Prodigal = "#d95f02", `GeneMarkS-T` = "#7570b3", CPAT = "#1b9e77",
+                                 `longest ORF` = GREY), name = NULL) +
+  labs(x = "source TPM", y = "exact sensitivity", title = "by expression") +
+  theme(axis.text.x = element_text(angle = 35, hjust = 1)) + guides(colour = guide_legend(ncol = 2))
+figS_sim <- (pa + pb + pc) + plot_layout(widths = c(0.6, 2, 1.5)) + plot_annotation(tag_levels = "a") &
+  theme(legend.position = "bottom")
+save_fig(figS_sim, "figS_simtrinity", FULL_W, 85 * MM)
+figS_sim
+```
+
 ## Checks against the manuscript
 
 Each row compares a value computed here with the value in the text now. Labels give the tex file and

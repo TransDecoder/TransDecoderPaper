@@ -1,0 +1,6 @@
+category	n
+known_introns_new_combination	6033
+introns_ok_exon_diff>10nt(retained/extended_end)	3322
+novel_intron(1)	1644
+terminal_diff_le10nt	818
+novel_intron(2+)	320
