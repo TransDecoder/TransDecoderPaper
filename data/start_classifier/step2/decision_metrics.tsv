@@ -1,0 +1,1101 @@
+dataset	method	n	pi_true	acc	auc	keep_rate
+bench.human.complete	release	7804	0.0000	0.8788		0.1216
+bench.human.complete	perfect	7804	0.0000	0.9906		0.0101
+bench.human.complete	a_u	7804	0.0000	0.9680		0.0334
+bench.human.complete	a_u_noem	7804	0.0000	0.7591		0.2427
+bench.human.complete	a_uc	7804	0.0000	0.9613		0.0409
+bench.human.complete	a_uc_noem	7804	0.0000	0.7550		0.2471
+bench.human.complete	a_uct	7804	0.0000	0.9571		0.0451
+bench.human.complete	a_uct_noem	7804	0.0000	0.7562		0.2460
+bench.human.complete	a_u_match	7804	0.0000	1.0000		0.0000
+bench.human.complete	a_u_match_noem	7804	0.0000	0.8997		0.1020
+bench.human.complete	a_uc_match	7804	0.0000	1.0000		0.0000
+bench.human.complete	a_uc_match_noem	7804	0.0000	0.8990		0.1026
+bench.human.complete	a_uct_match	7804	0.0000	1.0000		0.0000
+bench.human.complete	a_uct_match_noem	7804	0.0000	0.8977		0.1039
+bench.human.complete	a_hgb_uct	7804	0.0000	0.8434		0.1586
+bench.human.complete	b_rule_pi	7804	0.0000	1.0000		0.0000
+bench.human.complete	b_rule_ctx	7804	0.0000	1.0000		0.0000
+bench.human.complete	b_rule_ctx_tx	7804	0.0000	0.8041		0.1977
+bench.human.complete	b_au_ctx	7804	0.0000	0.9546		0.0465
+bench.human.complete	b_au_ctx_tx	7804	0.0000	0.7991		0.2004
+bench.human.complete_fullutr	release	7413	0.0000	0.8756		0.1248
+bench.human.complete_fullutr	perfect	7413	0.0000	0.9893		0.0116
+bench.human.complete_fullutr	a_u	7413	0.0000	0.9981		0.0023
+bench.human.complete_fullutr	a_u_noem	7413	0.0000	0.8068		0.1955
+bench.human.complete_fullutr	a_uc	7413	0.0000	0.9930		0.0093
+bench.human.complete_fullutr	a_uc_noem	7413	0.0000	0.7931		0.2096
+bench.human.complete_fullutr	a_uct	7413	0.0000	0.9937		0.0085
+bench.human.complete_fullutr	a_uct_noem	7413	0.0000	0.7956		0.2071
+bench.human.complete_fullutr	a_u_match	7413	0.0000	1.0000		0.0000
+bench.human.complete_fullutr	a_u_match_noem	7413	0.0000	0.9006		0.1002
+bench.human.complete_fullutr	a_uc_match	7413	0.0000	1.0000		0.0000
+bench.human.complete_fullutr	a_uc_match_noem	7413	0.0000	0.8882		0.1133
+bench.human.complete_fullutr	a_uct_match	7413	0.0000	1.0000		0.0000
+bench.human.complete_fullutr	a_uct_match_noem	7413	0.0000	0.8887		0.1126
+bench.human.complete_fullutr	a_hgb_uct	7413	0.0000	0.9802		0.0223
+bench.human.complete_fullutr	b_rule_pi	7413	0.0000	0.9997		0.0003
+bench.human.complete_fullutr	b_rule_ctx	7413	0.0000	0.9997		0.0003
+bench.human.complete_fullutr	b_rule_ctx_tx	7413	0.0000	0.8079		0.1936
+bench.human.complete_fullutr	b_au_ctx	7413	0.0000	0.9923		0.0078
+bench.human.complete_fullutr	b_au_ctx_tx	7413	0.0000	0.8542		0.1454
+bench.human.fragments	release	11170	0.6778	0.8280	0.9161	0.5921
+bench.human.fragments	perfect	11170	0.6778	0.9969	0.9951	0.6803
+bench.human.fragments	a_u	11170	0.6778	0.7843	0.8647	0.7835
+bench.human.fragments	a_u_noem	11170	0.6778	0.7850	0.8647	0.6375
+bench.human.fragments	a_uc	11170	0.6778	0.7969	0.9853	0.8807
+bench.human.fragments	a_uc_noem	11170	0.6778	0.9073	0.9853	0.7593
+bench.human.fragments	a_uct	11170	0.6778	0.7965	0.9852	0.8811
+bench.human.fragments	a_uct_noem	11170	0.6778	0.9072	0.9852	0.7593
+bench.human.fragments	a_u_match	11170	0.6778	0.8782	0.9421	0.6817
+bench.human.fragments	a_u_match_noem	11170	0.6778	0.8526	0.9421	0.5951
+bench.human.fragments	a_uc_match	11170	0.6778	0.8715	0.9997	0.8067
+bench.human.fragments	a_uc_match_noem	11170	0.6778	0.9653	0.9997	0.7128
+bench.human.fragments	a_uct_match	11170	0.6778	0.8716	0.9997	0.8066
+bench.human.fragments	a_uct_match_noem	11170	0.6778	0.9654	0.9997	0.7127
+bench.human.fragments	a_hgb_uct	11170	0.6778	0.8422	0.9591	0.8351
+bench.human.fragments	b_rule_pi	11170	0.6778	0.8278	0.9161	0.5916
+bench.human.fragments	b_rule_ctx	11170	0.6778	0.9936	0.9995	0.6713
+bench.human.fragments	b_rule_ctx_tx	11170	0.6778	0.9887	0.9996	0.6659
+bench.human.fragments	b_au_ctx	11170	0.6778	0.9807	0.9992	0.6971
+bench.human.fragments	b_au_ctx_tx	11170	0.6778	0.9669	0.9968	0.6988
+bench.human.fragments_mixed_t1	release	12119	0.6781	0.8245	0.9153	0.5808
+bench.human.fragments_mixed_t1	perfect	12119	0.6781	0.9968	0.9950	0.6810
+bench.human.fragments_mixed_t1	a_u	12119	0.6781	0.7996	0.8817	0.7618
+bench.human.fragments_mixed_t1	a_u_noem	12119	0.6781	0.8015	0.8817	0.6272
+bench.human.fragments_mixed_t1	a_uc	12119	0.6781	0.8040	0.8902	0.7640
+bench.human.fragments_mixed_t1	a_uc_noem	12119	0.6781	0.8060	0.8902	0.6361
+bench.human.fragments_mixed_t1	a_uct	12119	0.6781	0.8092	0.8929	0.7586
+bench.human.fragments_mixed_t1	a_uct_noem	12119	0.6781	0.8108	0.8929	0.6347
+bench.human.fragments_mixed_t1	a_u_match	12119	0.6781	0.8761	0.9419	0.6599
+bench.human.fragments_mixed_t1	a_u_match_noem	12119	0.6781	0.8522	0.9419	0.5860
+bench.human.fragments_mixed_t1	a_uc_match	12119	0.6781	0.8709	0.9416	0.7114
+bench.human.fragments_mixed_t1	a_uc_match_noem	12119	0.6781	0.8648	0.9416	0.6176
+bench.human.fragments_mixed_t1	a_uct_match	12119	0.6781	0.8753	0.9427	0.7042
+bench.human.fragments_mixed_t1	a_uct_match_noem	12119	0.6781	0.8636	0.9427	0.6130
+bench.human.fragments_mixed_t1	a_hgb_uct	12119	0.6781	0.8313	0.8770	0.7198
+bench.human.fragments_mixed_t1	b_rule_pi	12119	0.6781	0.8259	0.9153	0.5853
+bench.human.fragments_mixed_t1	b_rule_ctx	12119	0.6781	0.8241	0.9104	0.5996
+bench.human.fragments_mixed_t1	b_rule_ctx_tx	12119	0.6781	0.6872	0.7239	0.6266
+bench.human.fragments_mixed_t1	b_au_ctx	12119	0.6781	0.8079	0.8882	0.7601
+bench.human.fragments_mixed_t1	b_au_ctx_tx	12119	0.6781	0.7466	0.7263	0.7894
+bench.human.fragments_mixed_t2	release	11993	0.6800	0.8304	0.9215	0.5830
+bench.human.fragments_mixed_t2	perfect	11993	0.6800	0.9974	0.9960	0.6825
+bench.human.fragments_mixed_t2	a_u	11993	0.6800	0.8006	0.8798	0.7772
+bench.human.fragments_mixed_t2	a_u_noem	11993	0.6800	0.8030	0.8798	0.6384
+bench.human.fragments_mixed_t2	a_uc	11993	0.6800	0.7995	0.8864	0.7734
+bench.human.fragments_mixed_t2	a_uc_noem	11993	0.6800	0.8120	0.8864	0.6503
+bench.human.fragments_mixed_t2	a_uct	11993	0.6800	0.8024	0.8885	0.7668
+bench.human.fragments_mixed_t2	a_uct_noem	11993	0.6800	0.8141	0.8885	0.6495
+bench.human.fragments_mixed_t2	a_u_match	11993	0.6800	0.8785	0.9422	0.6788
+bench.human.fragments_mixed_t2	a_u_match_noem	11993	0.6800	0.8540	0.9422	0.5945
+bench.human.fragments_mixed_t2	a_uc_match	11993	0.6800	0.8711	0.9394	0.7285
+bench.human.fragments_mixed_t2	a_uc_match_noem	11993	0.6800	0.8627	0.9394	0.6305
+bench.human.fragments_mixed_t2	a_uct_match	11993	0.6800	0.8733	0.9396	0.7226
+bench.human.fragments_mixed_t2	a_uct_match_noem	11993	0.6800	0.8603	0.9396	0.6266
+bench.human.fragments_mixed_t2	a_hgb_uct	11993	0.6800	0.8242	0.8827	0.7333
+bench.human.fragments_mixed_t2	b_rule_pi	11993	0.6800	0.8382	0.9215	0.5993
+bench.human.fragments_mixed_t2	b_rule_ctx	11993	0.6800	0.8360	0.9193	0.6107
+bench.human.fragments_mixed_t2	b_rule_ctx_tx	11993	0.6800	0.6967	0.7302	0.6347
+bench.human.fragments_mixed_t2	b_au_ctx	11993	0.6800	0.8039	0.8849	0.7779
+bench.human.fragments_mixed_t2	b_au_ctx_tx	11993	0.6800	0.7515	0.7304	0.7948
+bench.human.fragments_mixed_t3	release	11976	0.6824	0.8295	0.9178	0.5915
+bench.human.fragments_mixed_t3	perfect	11976	0.6824	0.9962	0.9940	0.6859
+bench.human.fragments_mixed_t3	a_u	11976	0.6824	0.7975	0.8761	0.7735
+bench.human.fragments_mixed_t3	a_u_noem	11976	0.6824	0.7933	0.8761	0.6369
+bench.human.fragments_mixed_t3	a_uc	11976	0.6824	0.7981	0.8824	0.7626
+bench.human.fragments_mixed_t3	a_uc_noem	11976	0.6824	0.8022	0.8824	0.6459
+bench.human.fragments_mixed_t3	a_uct	11976	0.6824	0.7990	0.8846	0.7560
+bench.human.fragments_mixed_t3	a_uct_noem	11976	0.6824	0.8056	0.8846	0.6419
+bench.human.fragments_mixed_t3	a_u_match	11976	0.6824	0.8796	0.9424	0.6721
+bench.human.fragments_mixed_t3	a_u_match_noem	11976	0.6824	0.8514	0.9424	0.5908
+bench.human.fragments_mixed_t3	a_uc_match	11976	0.6824	0.8747	0.9413	0.7209
+bench.human.fragments_mixed_t3	a_uc_match_noem	11976	0.6824	0.8664	0.9413	0.6206
+bench.human.fragments_mixed_t3	a_uct_match	11976	0.6824	0.8768	0.9423	0.7127
+bench.human.fragments_mixed_t3	a_uct_match_noem	11976	0.6824	0.8629	0.9423	0.6169
+bench.human.fragments_mixed_t3	a_hgb_uct	11976	0.6824	0.8234	0.8722	0.7259
+bench.human.fragments_mixed_t3	b_rule_pi	11976	0.6824	0.8350	0.9178	0.6037
+bench.human.fragments_mixed_t3	b_rule_ctx	11976	0.6824	0.8343	0.9141	0.6175
+bench.human.fragments_mixed_t3	b_rule_ctx_tx	11976	0.6824	0.6905	0.7232	0.6266
+bench.human.fragments_mixed_t3	b_au_ctx	11976	0.6824	0.7980	0.8814	0.7730
+bench.human.fragments_mixed_t3	b_au_ctx_tx	11976	0.6824	0.7496	0.7256	0.7870
+bench.mouse.complete	release	5354	0.0000	0.8523		0.1479
+bench.mouse.complete	perfect	5354	0.0000	0.9737		0.0268
+bench.mouse.complete	a_u	5354	0.0000	0.8784		0.1232
+bench.mouse.complete	a_u_noem	5354	0.0000	0.6584		0.3428
+bench.mouse.complete	a_uc	5354	0.0000	0.8879		0.1138
+bench.mouse.complete	a_uc_noem	5354	0.0000	0.6702		0.3311
+bench.mouse.complete	a_uct	5354	0.0000	0.8909		0.1107
+bench.mouse.complete	a_uct_noem	5354	0.0000	0.6765		0.3246
+bench.mouse.complete	a_u_match	5354	0.0000	1.0000		0.0000
+bench.mouse.complete	a_u_match_noem	5354	0.0000	0.8638		0.1375
+bench.mouse.complete	a_uc_match	5354	0.0000	1.0000		0.0000
+bench.mouse.complete	a_uc_match_noem	5354	0.0000	0.8663		0.1351
+bench.mouse.complete	a_uct_match	5354	0.0000	1.0000		0.0000
+bench.mouse.complete	a_uct_match_noem	5354	0.0000	0.8657		0.1356
+bench.mouse.complete	a_hgb_uct	5354	0.0000	0.6533		0.3479
+bench.mouse.complete	b_rule_pi	5354	0.0000	1.0000		0.0000
+bench.mouse.complete	b_rule_ctx	5354	0.0000	1.0000		0.0000
+bench.mouse.complete	b_rule_ctx_tx	5354	0.0000	0.8015		0.2001
+bench.mouse.complete	b_au_ctx	5354	0.0000	0.8523		0.1481
+bench.mouse.complete	b_au_ctx_tx	5354	0.0000	0.6025		0.3965
+bench.mouse.complete_fullutr	release	4628	0.0000	0.8410		0.1595
+bench.mouse.complete_fullutr	perfect	4628	0.0000	0.9717		0.0293
+bench.mouse.complete_fullutr	a_u	4628	0.0000	0.9892		0.0118
+bench.mouse.complete_fullutr	a_u_noem	4628	0.0000	0.7342		0.2672
+bench.mouse.complete_fullutr	a_uc	4628	0.0000	0.9719		0.0297
+bench.mouse.complete_fullutr	a_uc_noem	4628	0.0000	0.7282		0.2736
+bench.mouse.complete_fullutr	a_uct	4628	0.0000	0.9741		0.0276
+bench.mouse.complete_fullutr	a_uct_noem	4628	0.0000	0.7306		0.2713
+bench.mouse.complete_fullutr	a_u_match	4628	0.0000	1.0000		0.0000
+bench.mouse.complete_fullutr	a_u_match_noem	4628	0.0000	0.8466		0.1541
+bench.mouse.complete_fullutr	a_uc_match	4628	0.0000	1.0000		0.0000
+bench.mouse.complete_fullutr	a_uc_match_noem	4628	0.0000	0.8483		0.1531
+bench.mouse.complete_fullutr	a_uct_match	4628	0.0000	1.0000		0.0000
+bench.mouse.complete_fullutr	a_uct_match_noem	4628	0.0000	0.8479		0.1533
+bench.mouse.complete_fullutr	a_hgb_uct	4628	0.0000	0.9538		0.0480
+bench.mouse.complete_fullutr	b_rule_pi	4628	0.0000	1.0000		0.0000
+bench.mouse.complete_fullutr	b_rule_ctx	4628	0.0000	1.0000		0.0000
+bench.mouse.complete_fullutr	b_rule_ctx_tx	4628	0.0000	0.8034		0.1978
+bench.mouse.complete_fullutr	b_au_ctx	4628	0.0000	0.9756		0.0245
+bench.mouse.complete_fullutr	b_au_ctx_tx	4628	0.0000	0.7548		0.2452
+bench.mouse.fragments	release	10821	0.7822	0.8302	0.9174	0.6753
+bench.mouse.fragments	perfect	10821	0.7822	0.9931	0.9841	0.7883
+bench.mouse.fragments	a_u	10821	0.7822	0.8081	0.8380	0.9279
+bench.mouse.fragments	a_u_noem	10821	0.7822	0.7820	0.8380	0.7098
+bench.mouse.fragments	a_uc	10821	0.7822	0.8169	0.9388	0.9614
+bench.mouse.fragments	a_uc_noem	10821	0.7822	0.8873	0.9389	0.8118
+bench.mouse.fragments	a_uct	10821	0.7822	0.8165	0.9397	0.9630
+bench.mouse.fragments	a_uct_noem	10821	0.7822	0.8891	0.9397	0.8136
+bench.mouse.fragments	a_u_match	10821	0.7822	0.8832	0.9225	0.8369
+bench.mouse.fragments	a_u_match_noem	10821	0.7822	0.8398	0.9225	0.6881
+bench.mouse.fragments	a_uc_match	10821	0.7822	0.8684	0.9935	0.9142
+bench.mouse.fragments	a_uc_match_noem	10821	0.7822	0.9641	0.9935	0.8127
+bench.mouse.fragments	a_uct_match	10821	0.7822	0.8683	0.9935	0.9143
+bench.mouse.fragments	a_uct_match_noem	10821	0.7822	0.9641	0.9935	0.8129
+bench.mouse.fragments	a_hgb_uct	10821	0.7822	0.8331	0.8968	0.9474
+bench.mouse.fragments	b_rule_pi	10821	0.7822	0.8693	0.9174	0.7598
+bench.mouse.fragments	b_rule_ctx	10821	0.7822	0.9954	0.9998	0.7779
+bench.mouse.fragments	b_rule_ctx_tx	10821	0.7822	0.9949	0.9998	0.7773
+bench.mouse.fragments	b_au_ctx	10821	0.7822	0.9733	0.9990	0.8094
+bench.mouse.fragments	b_au_ctx_tx	10821	0.7822	0.9713	0.9977	0.8053
+bench.mouse.fragments_mixed_t1	release	11728	0.7792	0.8001	0.9045	0.6459
+bench.mouse.fragments_mixed_t1	perfect	11728	0.7792	0.9931	0.9844	0.7855
+bench.mouse.fragments_mixed_t1	a_u	11728	0.7792	0.7928	0.8221	0.9352
+bench.mouse.fragments_mixed_t1	a_u_noem	11728	0.7792	0.7681	0.8221	0.7072
+bench.mouse.fragments_mixed_t1	a_uc	11728	0.7792	0.7996	0.8355	0.8993
+bench.mouse.fragments_mixed_t1	a_uc_noem	11728	0.7792	0.7774	0.8355	0.7068
+bench.mouse.fragments_mixed_t1	a_uct	11728	0.7792	0.8022	0.8393	0.8921
+bench.mouse.fragments_mixed_t1	a_uct_noem	11728	0.7792	0.7796	0.8393	0.7046
+bench.mouse.fragments_mixed_t1	a_u_match	11728	0.7792	0.8735	0.9141	0.8189
+bench.mouse.fragments_mixed_t1	a_u_match_noem	11728	0.7792	0.8202	0.9141	0.6645
+bench.mouse.fragments_mixed_t1	a_uc_match	11728	0.7792	0.8669	0.9126	0.8551
+bench.mouse.fragments_mixed_t1	a_uc_match_noem	11728	0.7792	0.8331	0.9126	0.6903
+bench.mouse.fragments_mixed_t1	a_uct_match	11728	0.7792	0.8709	0.9154	0.8438
+bench.mouse.fragments_mixed_t1	a_uct_match_noem	11728	0.7792	0.8312	0.9154	0.6844
+bench.mouse.fragments_mixed_t1	a_hgb_uct	11728	0.7792	0.8226	0.8049	0.8709
+bench.mouse.fragments_mixed_t1	b_rule_pi	11728	0.7792	0.8504	0.9045	0.7406
+bench.mouse.fragments_mixed_t1	b_rule_ctx	11728	0.7792	0.8480	0.8973	0.7486
+bench.mouse.fragments_mixed_t1	b_rule_ctx_tx	11728	0.7792	0.7176	0.7212	0.6877
+bench.mouse.fragments_mixed_t1	b_au_ctx	11728	0.7792	0.7954	0.8303	0.9347
+bench.mouse.fragments_mixed_t1	b_au_ctx_tx	11728	0.7792	0.7839	0.7078	0.8800
+bench.mouse.fragments_mixed_t2	release	11776	0.7734	0.8099	0.9035	0.6546
+bench.mouse.fragments_mixed_t2	perfect	11776	0.7734	0.9939	0.9865	0.7792
+bench.mouse.fragments_mixed_t2	a_u	11776	0.7734	0.7926	0.8253	0.9326
+bench.mouse.fragments_mixed_t2	a_u_noem	11776	0.7734	0.7644	0.8253	0.6986
+bench.mouse.fragments_mixed_t2	a_uc	11776	0.7734	0.8019	0.8400	0.8919
+bench.mouse.fragments_mixed_t2	a_uc_noem	11776	0.7734	0.7776	0.8400	0.6999
+bench.mouse.fragments_mixed_t2	a_uct	11776	0.7734	0.8041	0.8455	0.8812
+bench.mouse.fragments_mixed_t2	a_uct_noem	11776	0.7734	0.7812	0.8455	0.6978
+bench.mouse.fragments_mixed_t2	a_u_match	11776	0.7734	0.8739	0.9144	0.8161
+bench.mouse.fragments_mixed_t2	a_u_match_noem	11776	0.7734	0.8203	0.9144	0.6604
+bench.mouse.fragments_mixed_t2	a_uc_match	11776	0.7734	0.8634	0.9140	0.8573
+bench.mouse.fragments_mixed_t2	a_uc_match_noem	11776	0.7734	0.8379	0.9140	0.6942
+bench.mouse.fragments_mixed_t2	a_uct_match	11776	0.7734	0.8688	0.9168	0.8475
+bench.mouse.fragments_mixed_t2	a_uct_match_noem	11776	0.7734	0.8365	0.9168	0.6891
+bench.mouse.fragments_mixed_t2	a_hgb_uct	11776	0.7734	0.8201	0.8071	0.8632
+bench.mouse.fragments_mixed_t2	b_rule_pi	11776	0.7734	0.8547	0.9035	0.7526
+bench.mouse.fragments_mixed_t2	b_rule_ctx	11776	0.7734	0.8459	0.8959	0.7559
+bench.mouse.fragments_mixed_t2	b_rule_ctx_tx	11776	0.7734	0.7176	0.7274	0.6839
+bench.mouse.fragments_mixed_t2	b_au_ctx	11776	0.7734	0.7993	0.8381	0.9283
+bench.mouse.fragments_mixed_t2	b_au_ctx_tx	11776	0.7734	0.7801	0.7095	0.8737
+bench.mouse.fragments_mixed_t3	release	11631	0.7806	0.8084	0.9065	0.6513
+bench.mouse.fragments_mixed_t3	perfect	11631	0.7806	0.9937	0.9857	0.7860
+bench.mouse.fragments_mixed_t3	a_u	11631	0.7806	0.8036	0.8366	0.9268
+bench.mouse.fragments_mixed_t3	a_u_noem	11631	0.7806	0.7759	0.8366	0.7072
+bench.mouse.fragments_mixed_t3	a_uc	11631	0.7806	0.8090	0.8503	0.8890
+bench.mouse.fragments_mixed_t3	a_uc_noem	11631	0.7806	0.7913	0.8503	0.7140
+bench.mouse.fragments_mixed_t3	a_uct	11631	0.7806	0.8124	0.8540	0.8839
+bench.mouse.fragments_mixed_t3	a_uct_noem	11631	0.7806	0.7925	0.8540	0.7116
+bench.mouse.fragments_mixed_t3	a_u_match	11631	0.7806	0.8745	0.9169	0.8183
+bench.mouse.fragments_mixed_t3	a_u_match_noem	11631	0.7806	0.8236	0.9169	0.6688
+bench.mouse.fragments_mixed_t3	a_uc_match	11631	0.7806	0.8682	0.9161	0.8582
+bench.mouse.fragments_mixed_t3	a_uc_match_noem	11631	0.7806	0.8427	0.9161	0.7058
+bench.mouse.fragments_mixed_t3	a_uct_match	11631	0.7806	0.8715	0.9189	0.8514
+bench.mouse.fragments_mixed_t3	a_uct_match_noem	11631	0.7806	0.8440	0.9189	0.7015
+bench.mouse.fragments_mixed_t3	a_hgb_uct	11631	0.7806	0.8311	0.8206	0.8694
+bench.mouse.fragments_mixed_t3	b_rule_pi	11631	0.7806	0.8513	0.9065	0.7393
+bench.mouse.fragments_mixed_t3	b_rule_ctx	11631	0.7806	0.8505	0.9062	0.7432
+bench.mouse.fragments_mixed_t3	b_rule_ctx_tx	11631	0.7806	0.7305	0.7378	0.6937
+bench.mouse.fragments_mixed_t3	b_au_ctx	11631	0.7806	0.8086	0.8494	0.9268
+bench.mouse.fragments_mixed_t3	b_au_ctx_tx	11631	0.7806	0.7876	0.7196	0.8804
+bench.dmel.complete	release	2700	0.0000	0.8726		0.1286
+bench.dmel.complete	perfect	2700	0.0000	0.9859		0.0155
+bench.dmel.complete	a_u	2700	0.0000	0.9652		0.0358
+bench.dmel.complete	a_u_noem	2700	0.0000	0.8041		0.1970
+bench.dmel.complete	a_uc	2700	0.0000	0.9493		0.0521
+bench.dmel.complete	a_uc_noem	2700	0.0000	0.7556		0.2458
+bench.dmel.complete	a_uct	2700	0.0000	0.9493		0.0521
+bench.dmel.complete	a_uct_noem	2700	0.0000	0.7581		0.2435
+bench.dmel.complete	a_u_match	2700	0.0000	0.9989		0.0011
+bench.dmel.complete	a_u_match_noem	2700	0.0000	0.8604		0.1408
+bench.dmel.complete	a_uc_match	2700	0.0000	0.9981		0.0018
+bench.dmel.complete	a_uc_match_noem	2700	0.0000	0.8585		0.1430
+bench.dmel.complete	a_uct_match	2700	0.0000	0.9981		0.0030
+bench.dmel.complete	a_uct_match_noem	2700	0.0000	0.8567		0.1449
+bench.dmel.complete	a_hgb_uct	2700	0.0000	0.8830		0.1186
+bench.dmel.complete	b_rule_pi	2700	0.0000	0.9981		0.0018
+bench.dmel.complete	b_rule_ctx	2700	0.0000	0.9974		0.0026
+bench.dmel.complete	b_rule_ctx_tx	2700	0.0000	0.8141		0.1855
+bench.dmel.complete	b_au_ctx	2700	0.0000	0.9330		0.0676
+bench.dmel.complete	b_au_ctx_tx	2700	0.0000	0.7915		0.2081
+bench.dmel.complete_fullutr	release	2552	0.0000	0.8809		0.1195
+bench.dmel.complete_fullutr	perfect	2552	0.0000	0.9859		0.0152
+bench.dmel.complete_fullutr	a_u	2552	0.0000	1.0000		0.0000
+bench.dmel.complete_fullutr	a_u_noem	2552	0.0000	0.8429		0.1576
+bench.dmel.complete_fullutr	a_uc	2552	0.0000	0.9984		0.0023
+bench.dmel.complete_fullutr	a_uc_noem	2552	0.0000	0.7904		0.2113
+bench.dmel.complete_fullutr	a_uct	2552	0.0000	0.9984		0.0023
+bench.dmel.complete_fullutr	a_uct_noem	2552	0.0000	0.7904		0.2113
+bench.dmel.complete_fullutr	a_u_match	2552	0.0000	1.0000		0.0000
+bench.dmel.complete_fullutr	a_u_match_noem	2552	0.0000	0.8703		0.1311
+bench.dmel.complete_fullutr	a_uc_match	2552	0.0000	1.0000		0.0000
+bench.dmel.complete_fullutr	a_uc_match_noem	2552	0.0000	0.8821		0.1195
+bench.dmel.complete_fullutr	a_uct_match	2552	0.0000	1.0000		0.0000
+bench.dmel.complete_fullutr	a_uct_match_noem	2552	0.0000	0.8781		0.1237
+bench.dmel.complete_fullutr	a_hgb_uct	2552	0.0000	0.9761		0.0245
+bench.dmel.complete_fullutr	b_rule_pi	2552	0.0000	1.0000		0.0000
+bench.dmel.complete_fullutr	b_rule_ctx	2552	0.0000	1.0000		0.0000
+bench.dmel.complete_fullutr	b_rule_ctx_tx	2552	0.0000	0.9236		0.0759
+bench.dmel.complete_fullutr	b_au_ctx	2552	0.0000	0.9941		0.0062
+bench.dmel.complete_fullutr	b_au_ctx_tx	2552	0.0000	0.8080		0.1911
+bench.dmel.fragments	release	6499	0.8095	0.8455	0.9215	0.7072
+bench.dmel.fragments	perfect	6499	0.8095	0.9975	0.9935	0.8115
+bench.dmel.fragments	a_u	6499	0.8095	0.8637	0.9026	0.8802
+bench.dmel.fragments	a_u_noem	6499	0.8095	0.8374	0.9026	0.7214
+bench.dmel.fragments	a_uc	6499	0.8095	0.8289	0.9947	0.9807
+bench.dmel.fragments	a_uc_noem	6499	0.8095	0.9461	0.9947	0.8616
+bench.dmel.fragments	a_uct	6499	0.8095	0.8291	0.9950	0.9805
+bench.dmel.fragments	a_uct_noem	6499	0.8095	0.9463	0.9949	0.8621
+bench.dmel.fragments	a_u_match	6499	0.8095	0.8860	0.9376	0.8770
+bench.dmel.fragments	a_u_match_noem	6499	0.8095	0.8611	0.9376	0.7179
+bench.dmel.fragments	a_uc_match	6499	0.8095	0.8549	0.9998	0.9547
+bench.dmel.fragments	a_uc_match_noem	6499	0.8095	0.9763	0.9998	0.8336
+bench.dmel.fragments	a_uct_match	6499	0.8095	0.8549	0.9997	0.9547
+bench.dmel.fragments	a_uct_match_noem	6499	0.8095	0.9763	0.9997	0.8336
+bench.dmel.fragments	a_hgb_uct	6499	0.8095	0.8324	0.9455	0.9771
+bench.dmel.fragments	b_rule_pi	6499	0.8095	0.8786	0.9215	0.8089
+bench.dmel.fragments	b_rule_ctx	6499	0.8095	0.9911	0.9992	0.8015
+bench.dmel.fragments	b_rule_ctx_tx	6499	0.8095	0.9194	0.9905	0.7351
+bench.dmel.fragments	b_au_ctx	6499	0.8095	0.9862	0.9965	0.8139
+bench.dmel.fragments	b_au_ctx_tx	6499	0.8095	0.9266	0.9328	0.8129
+bench.dmel.fragments_mixed_t1	release	7096	0.8126	0.8288	0.9129	0.6953
+bench.dmel.fragments_mixed_t1	perfect	7096	0.8126	0.9969	0.9917	0.8157
+bench.dmel.fragments_mixed_t1	a_u	7096	0.8126	0.8499	0.9038	0.9123
+bench.dmel.fragments_mixed_t1	a_u_noem	7096	0.8126	0.8451	0.9038	0.7382
+bench.dmel.fragments_mixed_t1	a_uc	7096	0.8126	0.8458	0.9015	0.9169
+bench.dmel.fragments_mixed_t1	a_uc_noem	7096	0.8126	0.8453	0.9015	0.7502
+bench.dmel.fragments_mixed_t1	a_uct	7096	0.8126	0.8471	0.9017	0.9154
+bench.dmel.fragments_mixed_t1	a_uct_noem	7096	0.8126	0.8443	0.9017	0.7487
+bench.dmel.fragments_mixed_t1	a_u_match	7096	0.8126	0.8843	0.9347	0.8726
+bench.dmel.fragments_mixed_t1	a_u_match_noem	7096	0.8126	0.8592	0.9347	0.7161
+bench.dmel.fragments_mixed_t1	a_uc_match	7096	0.8126	0.8723	0.9309	0.9054
+bench.dmel.fragments_mixed_t1	a_uc_match_noem	7096	0.8126	0.8649	0.9309	0.7422
+bench.dmel.fragments_mixed_t1	a_uct_match	7096	0.8126	0.8750	0.9312	0.9010
+bench.dmel.fragments_mixed_t1	a_uct_match_noem	7096	0.8126	0.8649	0.9312	0.7394
+bench.dmel.fragments_mixed_t1	a_hgb_uct	7096	0.8126	0.8556	0.8827	0.9052
+bench.dmel.fragments_mixed_t1	b_rule_pi	7096	0.8126	0.8681	0.9129	0.8208
+bench.dmel.fragments_mixed_t1	b_rule_ctx	7096	0.8126	0.8753	0.9159	0.8170
+bench.dmel.fragments_mixed_t1	b_rule_ctx_tx	7096	0.8126	0.7010	0.6834	0.7633
+bench.dmel.fragments_mixed_t1	b_au_ctx	7096	0.8126	0.8536	0.8989	0.9058
+bench.dmel.fragments_mixed_t1	b_au_ctx_tx	7096	0.8126	0.8010	0.6664	0.8840
+bench.dmel.fragments_mixed_t2	release	7096	0.8092	0.8333	0.9167	0.6945
+bench.dmel.fragments_mixed_t2	perfect	7096	0.8092	0.9973	0.9930	0.8116
+bench.dmel.fragments_mixed_t2	a_u	7096	0.8092	0.8558	0.9025	0.8975
+bench.dmel.fragments_mixed_t2	a_u_noem	7096	0.8092	0.8417	0.9025	0.7326
+bench.dmel.fragments_mixed_t2	a_uc	7096	0.8092	0.8424	0.8971	0.8984
+bench.dmel.fragments_mixed_t2	a_uc_noem	7096	0.8092	0.8424	0.8971	0.7480
+bench.dmel.fragments_mixed_t2	a_uct	7096	0.8092	0.8439	0.8974	0.8922
+bench.dmel.fragments_mixed_t2	a_uct_noem	7096	0.8092	0.8408	0.8974	0.7452
+bench.dmel.fragments_mixed_t2	a_u_match	7096	0.8092	0.8890	0.9346	0.8550
+bench.dmel.fragments_mixed_t2	a_u_match_noem	7096	0.8092	0.8536	0.9346	0.7089
+bench.dmel.fragments_mixed_t2	a_uc_match	7096	0.8092	0.8747	0.9300	0.8919
+bench.dmel.fragments_mixed_t2	a_uc_match_noem	7096	0.8092	0.8619	0.9300	0.7305
+bench.dmel.fragments_mixed_t2	a_uct_match	7096	0.8092	0.8787	0.9298	0.8798
+bench.dmel.fragments_mixed_t2	a_uct_match_noem	7096	0.8092	0.8603	0.9298	0.7284
+bench.dmel.fragments_mixed_t2	a_hgb_uct	7096	0.8092	0.8551	0.8877	0.8810
+bench.dmel.fragments_mixed_t2	b_rule_pi	7096	0.8092	0.8739	0.9167	0.8112
+bench.dmel.fragments_mixed_t2	b_rule_ctx	7096	0.8092	0.8746	0.9179	0.8057
+bench.dmel.fragments_mixed_t2	b_rule_ctx_tx	7096	0.8092	0.7151	0.6542	0.7745
+bench.dmel.fragments_mixed_t2	b_au_ctx	7096	0.8092	0.8577	0.8956	0.8940
+bench.dmel.fragments_mixed_t2	b_au_ctx_tx	7096	0.8092	0.7975	0.6685	0.8855
+bench.dmel.fragments_mixed_t3	release	7154	0.8089	0.8307	0.9173	0.6863
+bench.dmel.fragments_mixed_t3	perfect	7154	0.8089	0.9976	0.9938	0.8110
+bench.dmel.fragments_mixed_t3	a_u	7154	0.8089	0.8676	0.9085	0.8761
+bench.dmel.fragments_mixed_t3	a_u_noem	7154	0.8089	0.8345	0.9085	0.7167
+bench.dmel.fragments_mixed_t3	a_uc	7154	0.8089	0.8576	0.9062	0.8917
+bench.dmel.fragments_mixed_t3	a_uc_noem	7154	0.8089	0.8423	0.9062	0.7368
+bench.dmel.fragments_mixed_t3	a_uct	7154	0.8089	0.8625	0.9072	0.8857
+bench.dmel.fragments_mixed_t3	a_uct_noem	7154	0.8089	0.8433	0.9073	0.7338
+bench.dmel.fragments_mixed_t3	a_u_match	7154	0.8089	0.8936	0.9368	0.8409
+bench.dmel.fragments_mixed_t3	a_u_match_noem	7154	0.8089	0.8504	0.9368	0.7022
+bench.dmel.fragments_mixed_t3	a_uc_match	7154	0.8089	0.8819	0.9356	0.8787
+bench.dmel.fragments_mixed_t3	a_uc_match_noem	7154	0.8089	0.8662	0.9356	0.7298
+bench.dmel.fragments_mixed_t3	a_uct_match	7154	0.8089	0.8861	0.9359	0.8676
+bench.dmel.fragments_mixed_t3	a_uct_match_noem	7154	0.8089	0.8611	0.9359	0.7249
+bench.dmel.fragments_mixed_t3	a_hgb_uct	7154	0.8089	0.8658	0.8871	0.8770
+bench.dmel.fragments_mixed_t3	b_rule_pi	7154	0.8089	0.8725	0.9173	0.7879
+bench.dmel.fragments_mixed_t3	b_rule_ctx	7154	0.8089	0.8710	0.9173	0.7844
+bench.dmel.fragments_mixed_t3	b_rule_ctx_tx	7154	0.8089	0.7118	0.6577	0.7647
+bench.dmel.fragments_mixed_t3	b_au_ctx	7154	0.8089	0.8671	0.9036	0.8716
+bench.dmel.fragments_mixed_t3	b_au_ctx_tx	7154	0.8089	0.7938	0.6690	0.8629
+bench.athal.complete	release	7503	0.0000	0.7606		0.2401
+bench.athal.complete	perfect	7503	0.0000	0.9952		0.0060
+bench.athal.complete	a_u	7503	0.0000	0.8698		0.1313
+bench.athal.complete	a_u_noem	7503	0.0000	0.6627		0.3380
+bench.athal.complete	a_uc	7503	0.0000	0.8641		0.1373
+bench.athal.complete	a_uc_noem	7503	0.0000	0.6607		0.3404
+bench.athal.complete	a_uct	7503	0.0000	0.8609		0.1406
+bench.athal.complete	a_uct_noem	7503	0.0000	0.6611		0.3400
+bench.athal.complete	a_u_match	7503	0.0000	0.9996		0.0005
+bench.athal.complete	a_u_match_noem	7503	0.0000	0.8001		0.2011
+bench.athal.complete	a_uc_match	7503	0.0000	0.9996		0.0005
+bench.athal.complete	a_uc_match_noem	7503	0.0000	0.8005		0.2007
+bench.athal.complete	a_uct_match	7503	0.0000	0.9996		0.0005
+bench.athal.complete	a_uct_match_noem	7503	0.0000	0.7985		0.2029
+bench.athal.complete	a_hgb_uct	7503	0.0000	0.8375		0.1636
+bench.athal.complete	b_rule_pi	7503	0.0000	0.9995		0.0007
+bench.athal.complete	b_rule_ctx	7503	0.0000	0.9995		0.0008
+bench.athal.complete	b_rule_ctx_tx	7503	0.0000	0.7916		0.2081
+bench.athal.complete	b_au_ctx	7503	0.0000	0.8497		0.1514
+bench.athal.complete	b_au_ctx_tx	7503	0.0000	0.7858		0.2139
+bench.athal.complete_fullutr	release	7371	0.0000	0.7650		0.2358
+bench.athal.complete_fullutr	perfect	7371	0.0000	0.9955		0.0058
+bench.athal.complete_fullutr	a_u	7371	0.0000	0.9056		0.0958
+bench.athal.complete_fullutr	a_u_noem	7371	0.0000	0.6686		0.3324
+bench.athal.complete_fullutr	a_uc	7371	0.0000	0.8916		0.1098
+bench.athal.complete_fullutr	a_uc_noem	7371	0.0000	0.6652		0.3358
+bench.athal.complete_fullutr	a_uct	7371	0.0000	0.8911		0.1103
+bench.athal.complete_fullutr	a_uct_noem	7371	0.0000	0.6646		0.3363
+bench.athal.complete_fullutr	a_u_match	7371	0.0000	1.0000		0.0000
+bench.athal.complete_fullutr	a_u_match_noem	7371	0.0000	0.8021		0.1985
+bench.athal.complete_fullutr	a_uc_match	7371	0.0000	1.0000		0.0000
+bench.athal.complete_fullutr	a_uc_match_noem	7371	0.0000	0.8052		0.1961
+bench.athal.complete_fullutr	a_uct_match	7371	0.0000	1.0000		0.0000
+bench.athal.complete_fullutr	a_uct_match_noem	7371	0.0000	0.8049		0.1964
+bench.athal.complete_fullutr	a_hgb_uct	7371	0.0000	0.8581		0.1429
+bench.athal.complete_fullutr	b_rule_pi	7371	0.0000	1.0000		0.0001
+bench.athal.complete_fullutr	b_rule_ctx	7371	0.0000	1.0000		0.0001
+bench.athal.complete_fullutr	b_rule_ctx_tx	7371	0.0000	0.7927		0.2071
+bench.athal.complete_fullutr	b_au_ctx	7371	0.0000	0.8818		0.1196
+bench.athal.complete_fullutr	b_au_ctx_tx	7371	0.0000	0.6787		0.3212
+bench.athal.fragments	release	13090	0.7549	0.7578	0.8402	0.6251
+bench.athal.fragments	perfect	13090	0.7549	0.9992	0.9984	0.7549
+bench.athal.fragments	a_u	13090	0.7549	0.7673	0.8098	0.9391
+bench.athal.fragments	a_u_noem	13090	0.7549	0.7586	0.8098	0.6919
+bench.athal.fragments	a_uc	13090	0.7549	0.7736	0.9971	0.9814
+bench.athal.fragments	a_uc_noem	13090	0.7549	0.9125	0.9971	0.8430
+bench.athal.fragments	a_uct	13090	0.7549	0.7736	0.9973	0.9814
+bench.athal.fragments	a_uct_noem	13090	0.7549	0.9125	0.9973	0.8430
+bench.athal.fragments	a_u_match	13090	0.7549	0.8337	0.8743	0.8646
+bench.athal.fragments	a_u_match_noem	13090	0.7549	0.7837	0.8743	0.6257
+bench.athal.fragments	a_uc_match	13090	0.7549	0.7553	0.9995	0.9996
+bench.athal.fragments	a_uc_match_noem	13090	0.7549	0.9506	0.9996	0.8049
+bench.athal.fragments	a_uct_match	13090	0.7549	0.7553	0.9995	0.9996
+bench.athal.fragments	a_uct_match_noem	13090	0.7549	0.9506	0.9995	0.8049
+bench.athal.fragments	a_hgb_uct	13090	0.7549	0.7843	0.9542	0.9707
+bench.athal.fragments	b_rule_pi	13090	0.7549	0.8033	0.8402	0.7831
+bench.athal.fragments	b_rule_ctx	13090	0.7549	0.9966	0.9995	0.7526
+bench.athal.fragments	b_rule_ctx_tx	13090	0.7549	0.6668	0.6670	0.6045
+bench.athal.fragments	b_au_ctx	13090	0.7549	0.9506	0.9878	0.7994
+bench.athal.fragments	b_au_ctx_tx	13090	0.7549	0.8435	0.7698	0.8173
+bench.athal.fragments_mixed_t1	release	14474	0.7512	0.7536	0.8386	0.6142
+bench.athal.fragments_mixed_t1	perfect	14474	0.7512	0.9988	0.9975	0.7516
+bench.athal.fragments_mixed_t1	a_u	14474	0.7512	0.7630	0.8370	0.9493
+bench.athal.fragments_mixed_t1	a_u_noem	14474	0.7512	0.7817	0.8370	0.7049
+bench.athal.fragments_mixed_t1	a_uc	14474	0.7512	0.7844	0.8527	0.9054
+bench.athal.fragments_mixed_t1	a_uc_noem	14474	0.7512	0.7938	0.8526	0.7185
+bench.athal.fragments_mixed_t1	a_uct	14474	0.7512	0.7849	0.8541	0.9023
+bench.athal.fragments_mixed_t1	a_uct_noem	14474	0.7512	0.7950	0.8541	0.7185
+bench.athal.fragments_mixed_t1	a_u_match	14474	0.7512	0.8387	0.8828	0.8417
+bench.athal.fragments_mixed_t1	a_u_match_noem	14474	0.7512	0.7834	0.8828	0.6211
+bench.athal.fragments_mixed_t1	a_uc_match	14474	0.7512	0.8081	0.8811	0.9139
+bench.athal.fragments_mixed_t1	a_uc_match_noem	14474	0.7512	0.8109	0.8811	0.6740
+bench.athal.fragments_mixed_t1	a_uct_match	14474	0.7512	0.8162	0.8809	0.9000
+bench.athal.fragments_mixed_t1	a_uct_match_noem	14474	0.7512	0.8077	0.8809	0.6674
+bench.athal.fragments_mixed_t1	a_hgb_uct	14474	0.7512	0.8075	0.8555	0.8663
+bench.athal.fragments_mixed_t1	b_rule_pi	14474	0.7512	0.7964	0.8386	0.7603
+bench.athal.fragments_mixed_t1	b_rule_ctx	14474	0.7512	0.8010	0.8444	0.7608
+bench.athal.fragments_mixed_t1	b_rule_ctx_tx	14474	0.7512	0.6842	0.6615	0.6818
+bench.athal.fragments_mixed_t1	b_au_ctx	14474	0.7512	0.7658	0.8410	0.9460
+bench.athal.fragments_mixed_t1	b_au_ctx_tx	14474	0.7512	0.7706	0.6798	0.8827
+bench.athal.fragments_mixed_t2	release	14426	0.7475	0.7611	0.8415	0.6269
+bench.athal.fragments_mixed_t2	perfect	14426	0.7475	0.9991	0.9982	0.7481
+bench.athal.fragments_mixed_t2	a_u	14426	0.7475	0.7637	0.8355	0.9492
+bench.athal.fragments_mixed_t2	a_u_noem	14426	0.7475	0.7783	0.8355	0.7026
+bench.athal.fragments_mixed_t2	a_uc	14426	0.7475	0.7830	0.8516	0.9014
+bench.athal.fragments_mixed_t2	a_uc_noem	14426	0.7475	0.7921	0.8516	0.7136
+bench.athal.fragments_mixed_t2	a_uct	14426	0.7475	0.7851	0.8532	0.8979
+bench.athal.fragments_mixed_t2	a_uct_noem	14426	0.7475	0.7951	0.8532	0.7124
+bench.athal.fragments_mixed_t2	a_u_match	14426	0.7475	0.8410	0.8866	0.8376
+bench.athal.fragments_mixed_t2	a_u_match_noem	14426	0.7475	0.7923	0.8866	0.6224
+bench.athal.fragments_mixed_t2	a_uc_match	14426	0.7475	0.8062	0.8859	0.9152
+bench.athal.fragments_mixed_t2	a_uc_match_noem	14426	0.7475	0.8157	0.8859	0.6743
+bench.athal.fragments_mixed_t2	a_uct_match	14426	0.7475	0.8150	0.8859	0.9024
+bench.athal.fragments_mixed_t2	a_uct_match_noem	14426	0.7475	0.8108	0.8859	0.6663
+bench.athal.fragments_mixed_t2	a_hgb_uct	14426	0.7475	0.8096	0.8552	0.8641
+bench.athal.fragments_mixed_t2	b_rule_pi	14426	0.7475	0.7975	0.8415	0.7499
+bench.athal.fragments_mixed_t2	b_rule_ctx	14426	0.7475	0.8046	0.8496	0.7521
+bench.athal.fragments_mixed_t2	b_rule_ctx_tx	14426	0.7475	0.6782	0.6588	0.6796
+bench.athal.fragments_mixed_t2	b_au_ctx	14426	0.7475	0.7670	0.8424	0.9447
+bench.athal.fragments_mixed_t2	b_au_ctx_tx	14426	0.7475	0.7671	0.6790	0.8828
+bench.athal.fragments_mixed_t3	release	14506	0.7511	0.7563	0.8363	0.6199
+bench.athal.fragments_mixed_t3	perfect	14506	0.7511	0.9987	0.9974	0.7516
+bench.athal.fragments_mixed_t3	a_u	14506	0.7511	0.7702	0.8313	0.9361
+bench.athal.fragments_mixed_t3	a_u_noem	14506	0.7511	0.7774	0.8313	0.7062
+bench.athal.fragments_mixed_t3	a_uc	14506	0.7511	0.7868	0.8490	0.8915
+bench.athal.fragments_mixed_t3	a_uc_noem	14506	0.7511	0.7898	0.8490	0.7119
+bench.athal.fragments_mixed_t3	a_uct	14506	0.7511	0.7877	0.8504	0.8875
+bench.athal.fragments_mixed_t3	a_uct_noem	14506	0.7511	0.7910	0.8504	0.7108
+bench.athal.fragments_mixed_t3	a_u_match	14506	0.7511	0.8426	0.8861	0.8208
+bench.athal.fragments_mixed_t3	a_u_match_noem	14506	0.7511	0.7934	0.8861	0.6262
+bench.athal.fragments_mixed_t3	a_uc_match	14506	0.7511	0.8314	0.8894	0.8784
+bench.athal.fragments_mixed_t3	a_uc_match_noem	14506	0.7511	0.8149	0.8894	0.6699
+bench.athal.fragments_mixed_t3	a_uct_match	14506	0.7511	0.8336	0.8899	0.8690
+bench.athal.fragments_mixed_t3	a_uct_match_noem	14506	0.7511	0.8125	0.8899	0.6642
+bench.athal.fragments_mixed_t3	a_hgb_uct	14506	0.7511	0.8136	0.8568	0.8466
+bench.athal.fragments_mixed_t3	b_rule_pi	14506	0.7511	0.7888	0.8363	0.7193
+bench.athal.fragments_mixed_t3	b_rule_ctx	14506	0.7511	0.7940	0.8428	0.7213
+bench.athal.fragments_mixed_t3	b_rule_ctx_tx	14506	0.7511	0.6799	0.6662	0.6735
+bench.athal.fragments_mixed_t3	b_au_ctx	14506	0.7511	0.7726	0.8373	0.9333
+bench.athal.fragments_mixed_t3	b_au_ctx_tx	14506	0.7511	0.7718	0.6843	0.8810
+bench.spombe.complete	release	1294	0.0000	0.7628		0.2372
+bench.spombe.complete	perfect	1294	0.0000	0.9985		0.0015
+bench.spombe.complete	a_u	1294	0.0000	0.9900		0.0100
+bench.spombe.complete	a_u_noem	1294	0.0000	0.7790		0.2210
+bench.spombe.complete	a_uc	1294	0.0000	0.9815		0.0185
+bench.spombe.complete	a_uc_noem	1294	0.0000	0.7512		0.2488
+bench.spombe.complete	a_uct	1294	0.0000	0.9784		0.0216
+bench.spombe.complete	a_uct_noem	1294	0.0000	0.7512		0.2488
+bench.spombe.complete	a_u_match	1294	0.0000	0.9335		0.0665
+bench.spombe.complete	a_u_match_noem	1294	0.0000	0.6453		0.3547
+bench.spombe.complete	a_uc_match	1294	0.0000	0.9343		0.0657
+bench.spombe.complete	a_uc_match_noem	1294	0.0000	0.6453		0.3547
+bench.spombe.complete	a_uct_match	1294	0.0000	0.9343		0.0657
+bench.spombe.complete	a_uct_match_noem	1294	0.0000	0.6445		0.3555
+bench.spombe.complete	a_hgb_uct	1294	0.0000	0.8825		0.1175
+bench.spombe.complete	b_rule_pi	1294	0.0000	0.9992		0.0008
+bench.spombe.complete	b_rule_ctx	1294	0.0000	0.9992		0.0008
+bench.spombe.complete	b_rule_ctx_tx	1294	0.0000	0.8060		0.1940
+bench.spombe.complete	b_au_ctx	1294	0.0000	0.9760		0.0240
+bench.spombe.complete	b_au_ctx_tx	1294	0.0000	0.7937		0.2063
+bench.spombe.complete_fullutr	release	1277	0.0000	0.7666		0.2358
+bench.spombe.complete_fullutr	perfect	1277	0.0000	0.9984		0.0047
+bench.spombe.complete_fullutr	a_u	1277	0.0000	0.9930		0.0086
+bench.spombe.complete_fullutr	a_u_noem	1277	0.0000	0.7807		0.2217
+bench.spombe.complete_fullutr	a_uc	1277	0.0000	0.9828		0.0195
+bench.spombe.complete_fullutr	a_uc_noem	1277	0.0000	0.7502		0.2521
+bench.spombe.complete_fullutr	a_uct	1277	0.0000	0.9820		0.0203
+bench.spombe.complete_fullutr	a_uct_noem	1277	0.0000	0.7510		0.2514
+bench.spombe.complete_fullutr	a_u_match	1277	0.0000	0.8990		0.1030
+bench.spombe.complete_fullutr	a_u_match_noem	1277	0.0000	0.6304		0.3716
+bench.spombe.complete_fullutr	a_uc_match	1277	0.0000	0.9084		0.0937
+bench.spombe.complete_fullutr	a_uc_match_noem	1277	0.0000	0.6492		0.3528
+bench.spombe.complete_fullutr	a_uct_match	1277	0.0000	0.8958		0.1069
+bench.spombe.complete_fullutr	a_uct_match_noem	1277	0.0000	0.6460		0.3560
+bench.spombe.complete_fullutr	a_hgb_uct	1277	0.0000	0.8731		0.1296
+bench.spombe.complete_fullutr	b_rule_pi	1277	0.0000	1.0000		0.0008
+bench.spombe.complete_fullutr	b_rule_ctx	1277	0.0000	1.0000		0.0008
+bench.spombe.complete_fullutr	b_rule_ctx_tx	1277	0.0000	0.8645		0.1351
+bench.spombe.complete_fullutr	b_au_ctx	1277	0.0000	0.9851		0.0164
+bench.spombe.complete_fullutr	b_au_ctx_tx	1277	0.0000	0.7753		0.2248
+bench.spombe.fragments	release	2594	0.7729	0.8011	0.8744	0.6826
+bench.spombe.fragments	perfect	2594	0.7729	1.0000	1.0000	0.7727
+bench.spombe.fragments	a_u	2594	0.7729	0.8015	0.8873	0.8929
+bench.spombe.fragments	a_u_noem	2594	0.7729	0.8223	0.8873	0.7026
+bench.spombe.fragments	a_uc	2594	0.7729	0.7976	0.9997	0.9753
+bench.spombe.fragments	a_uc_noem	2594	0.7729	0.9333	0.9997	0.8398
+bench.spombe.fragments	a_uct	2594	0.7729	0.7976	0.9998	0.9753
+bench.spombe.fragments	a_uct_noem	2594	0.7729	0.9333	0.9998	0.8398
+bench.spombe.fragments	a_u_match	2594	0.7729	0.8049	0.8497	0.9206
+bench.spombe.fragments	a_u_match_noem	2594	0.7729	0.7922	0.8497	0.7015
+bench.spombe.fragments	a_uc_match	2594	0.7729	0.7756	1.0000	0.9973
+bench.spombe.fragments	a_uc_match_noem	2594	0.7729	0.9306	1.0000	0.8424
+bench.spombe.fragments	a_uct_match	2594	0.7729	0.7753	1.0000	0.9977
+bench.spombe.fragments	a_uct_match_noem	2594	0.7729	0.9310	1.0000	0.8421
+bench.spombe.fragments	a_hgb_uct	2594	0.7729	0.8184	0.9692	0.9545
+bench.spombe.fragments	b_rule_pi	2594	0.7729	0.8238	0.8744	0.7554
+bench.spombe.fragments	b_rule_ctx	2594	0.7729	0.9884	1.0000	0.7612
+bench.spombe.fragments	b_rule_ctx_tx	2594	0.7729	0.9622	0.9996	0.7350
+bench.spombe.fragments	b_au_ctx	2594	0.7729	0.9857	0.9993	0.7673
+bench.spombe.fragments	b_au_ctx_tx	2594	0.7729	0.9588	0.9913	0.7893
+bench.spombe.fragments_mixed_t1	release	2784	0.7741	0.8107	0.8802	0.6868
+bench.spombe.fragments_mixed_t1	perfect	2784	0.7741	1.0000	1.0000	0.7741
+bench.spombe.fragments_mixed_t1	a_u	2784	0.7741	0.7989	0.9057	0.9335
+bench.spombe.fragments_mixed_t1	a_u_noem	2784	0.7741	0.8545	0.9058	0.7284
+bench.spombe.fragments_mixed_t1	a_uc	2784	0.7741	0.8147	0.9113	0.9098
+bench.spombe.fragments_mixed_t1	a_uc_noem	2784	0.7741	0.8517	0.9113	0.7335
+bench.spombe.fragments_mixed_t1	a_uct	2784	0.7741	0.8186	0.9132	0.9023
+bench.spombe.fragments_mixed_t1	a_uct_noem	2784	0.7741	0.8509	0.9132	0.7335
+bench.spombe.fragments_mixed_t1	a_u_match	2784	0.7741	0.8071	0.8733	0.9418
+bench.spombe.fragments_mixed_t1	a_u_match_noem	2784	0.7741	0.8129	0.8733	0.7170
+bench.spombe.fragments_mixed_t1	a_uc_match	2784	0.7741	0.7927	0.8771	0.9634
+bench.spombe.fragments_mixed_t1	a_uc_match_noem	2784	0.7741	0.8172	0.8771	0.7435
+bench.spombe.fragments_mixed_t1	a_uct_match	2784	0.7741	0.7981	0.8800	0.9508
+bench.spombe.fragments_mixed_t1	a_uct_match_noem	2784	0.7741	0.8215	0.8800	0.7392
+bench.spombe.fragments_mixed_t1	a_hgb_uct	2784	0.7741	0.8179	0.9044	0.9030
+bench.spombe.fragments_mixed_t1	b_rule_pi	2784	0.7741	0.8272	0.8802	0.7960
+bench.spombe.fragments_mixed_t1	b_rule_ctx	2784	0.7741	0.8265	0.8810	0.7967
+bench.spombe.fragments_mixed_t1	b_rule_ctx_tx	2784	0.7741	0.6685	0.6032	0.7565
+bench.spombe.fragments_mixed_t1	b_au_ctx	2784	0.7741	0.7960	0.9008	0.9278
+bench.spombe.fragments_mixed_t1	b_au_ctx_tx	2784	0.7741	0.7694	0.6815	0.9048
+bench.spombe.fragments_mixed_t2	release	2780	0.7676	0.8126	0.8853	0.6766
+bench.spombe.fragments_mixed_t2	perfect	2780	0.7676	0.9996	0.9992	0.7680
+bench.spombe.fragments_mixed_t2	a_u	2780	0.7676	0.8094	0.9037	0.9050
+bench.spombe.fragments_mixed_t2	a_u_noem	2780	0.7676	0.8403	0.9037	0.7101
+bench.spombe.fragments_mixed_t2	a_uc	2780	0.7676	0.8234	0.9115	0.8831
+bench.spombe.fragments_mixed_t2	a_uc_noem	2780	0.7676	0.8475	0.9115	0.7273
+bench.spombe.fragments_mixed_t2	a_uct	2780	0.7676	0.8245	0.9120	0.8791
+bench.spombe.fragments_mixed_t2	a_uct_noem	2780	0.7676	0.8453	0.9120	0.7266
+bench.spombe.fragments_mixed_t2	a_u_match	2780	0.7676	0.8201	0.8813	0.9043
+bench.spombe.fragments_mixed_t2	a_u_match_noem	2780	0.7676	0.8180	0.8813	0.7086
+bench.spombe.fragments_mixed_t2	a_uc_match	2780	0.7676	0.8126	0.8896	0.9335
+bench.spombe.fragments_mixed_t2	a_uc_match_noem	2780	0.7676	0.8259	0.8896	0.7331
+bench.spombe.fragments_mixed_t2	a_uct_match	2780	0.7676	0.8155	0.8907	0.9270
+bench.spombe.fragments_mixed_t2	a_uct_match_noem	2780	0.7676	0.8266	0.8907	0.7302
+bench.spombe.fragments_mixed_t2	a_hgb_uct	2780	0.7676	0.8266	0.9054	0.8719
+bench.spombe.fragments_mixed_t2	b_rule_pi	2780	0.7676	0.8248	0.8853	0.7601
+bench.spombe.fragments_mixed_t2	b_rule_ctx	2780	0.7676	0.8187	0.8808	0.7583
+bench.spombe.fragments_mixed_t2	b_rule_ctx_tx	2780	0.7676	0.6601	0.6135	0.7406
+bench.spombe.fragments_mixed_t2	b_au_ctx	2780	0.7676	0.8108	0.9001	0.9007
+bench.spombe.fragments_mixed_t2	b_au_ctx_tx	2780	0.7676	0.7691	0.6946	0.8906
+bench.spombe.fragments_mixed_t3	release	2795	0.7750	0.8175	0.8905	0.6845
+bench.spombe.fragments_mixed_t3	perfect	2795	0.7750	1.0000	1.0000	0.7747
+bench.spombe.fragments_mixed_t3	a_u	2795	0.7750	0.8018	0.8980	0.9002
+bench.spombe.fragments_mixed_t3	a_u_noem	2795	0.7750	0.8329	0.8980	0.7031
+bench.spombe.fragments_mixed_t3	a_uc	2795	0.7750	0.8179	0.9085	0.8870
+bench.spombe.fragments_mixed_t3	a_uc_noem	2795	0.7750	0.8411	0.9085	0.7278
+bench.spombe.fragments_mixed_t3	a_uct	2795	0.7750	0.8182	0.9090	0.8838
+bench.spombe.fragments_mixed_t3	a_uct_noem	2795	0.7750	0.8426	0.9090	0.7264
+bench.spombe.fragments_mixed_t3	a_u_match	2795	0.7750	0.8111	0.8871	0.9274
+bench.spombe.fragments_mixed_t3	a_u_match_noem	2795	0.7750	0.8179	0.8871	0.7192
+bench.spombe.fragments_mixed_t3	a_uc_match	2795	0.7750	0.8036	0.8930	0.9499
+bench.spombe.fragments_mixed_t3	a_uc_match_noem	2795	0.7750	0.8301	0.8930	0.7461
+bench.spombe.fragments_mixed_t3	a_uct_match	2795	0.7750	0.8064	0.8955	0.9464
+bench.spombe.fragments_mixed_t3	a_uct_match_noem	2795	0.7750	0.8318	0.8955	0.7407
+bench.spombe.fragments_mixed_t3	a_hgb_uct	2795	0.7750	0.8168	0.9003	0.8809
+bench.spombe.fragments_mixed_t3	b_rule_pi	2795	0.7750	0.8268	0.8905	0.7804
+bench.spombe.fragments_mixed_t3	b_rule_ctx	2795	0.7750	0.8301	0.8904	0.7843
+bench.spombe.fragments_mixed_t3	b_rule_ctx_tx	2795	0.7750	0.6823	0.6127	0.7303
+bench.spombe.fragments_mixed_t3	b_au_ctx	2795	0.7750	0.8011	0.8951	0.9016
+bench.spombe.fragments_mixed_t3	b_au_ctx_tx	2795	0.7750	0.7753	0.6893	0.8923
+bench.tthermophila.complete	release	11957	0.0000	0.8470		0.1609
+bench.tthermophila.complete	perfect	11957	0.0000	0.9858		0.0251
+bench.tthermophila.complete	a_u	11957	0.0000	0.9605		0.0472
+bench.tthermophila.complete	a_u_noem	11957	0.0000	0.7817		0.2265
+bench.tthermophila.complete	a_uc	11957	0.0000	0.9575		0.0518
+bench.tthermophila.complete	a_uc_noem	11957	0.0000	0.7789		0.2314
+bench.tthermophila.complete	a_uct	11957	0.0000	0.9554		0.0540
+bench.tthermophila.complete	a_uct_noem	11957	0.0000	0.7755		0.2355
+bench.tthermophila.complete	a_u_match	11957	0.0000	0.9927		0.0106
+bench.tthermophila.complete	a_u_match_noem	11957	0.0000	0.9030		0.1062
+bench.tthermophila.complete	a_uc_match	11957	0.0000	0.9926		0.0092
+bench.tthermophila.complete	a_uc_match_noem	11957	0.0000	0.8993		0.1083
+bench.tthermophila.complete	a_uct_match	11957	0.0000	0.9921		0.0097
+bench.tthermophila.complete	a_uct_match_noem	11957	0.0000	0.8986		0.1090
+bench.tthermophila.complete	a_hgb_uct	11957	0.0000	0.8924		0.1159
+bench.tthermophila.complete	b_rule_pi	11957	0.0000	0.9921		0.0110
+bench.tthermophila.complete	b_rule_ctx	11957	0.0000	0.9944		0.0169
+bench.tthermophila.complete	b_rule_ctx_tx	11957	0.0000	0.8189		0.1955
+bench.tthermophila.complete	b_au_ctx	11957	0.0000	0.9593		0.0527
+bench.tthermophila.complete	b_au_ctx_tx	11957	0.0000	0.7916		0.2053
+bench.tthermophila.complete_fullutr	release	11406	0.0000	0.8577		0.1456
+bench.tthermophila.complete_fullutr	perfect	11406	0.0000	0.9851		0.0204
+bench.tthermophila.complete_fullutr	a_u	11406	0.0000	0.9947		0.0067
+bench.tthermophila.complete_fullutr	a_u_noem	11406	0.0000	0.8497		0.1548
+bench.tthermophila.complete_fullutr	a_uc	11406	0.0000	0.9947		0.0071
+bench.tthermophila.complete_fullutr	a_uc_noem	11406	0.0000	0.8288		0.1768
+bench.tthermophila.complete_fullutr	a_uct	11406	0.0000	0.9947		0.0074
+bench.tthermophila.complete_fullutr	a_uct_noem	11406	0.0000	0.8296		0.1763
+bench.tthermophila.complete_fullutr	a_u_match	11406	0.0000	0.9994		0.0009
+bench.tthermophila.complete_fullutr	a_u_match_noem	11406	0.0000	0.9199		0.0835
+bench.tthermophila.complete_fullutr	a_uc_match	11406	0.0000	0.9994		0.0009
+bench.tthermophila.complete_fullutr	a_uc_match_noem	11406	0.0000	0.9180		0.0845
+bench.tthermophila.complete_fullutr	a_uct_match	11406	0.0000	0.9994		0.0009
+bench.tthermophila.complete_fullutr	a_uct_match_noem	11406	0.0000	0.9182		0.0846
+bench.tthermophila.complete_fullutr	a_hgb_uct	11406	0.0000	0.9926		0.0090
+bench.tthermophila.complete_fullutr	b_rule_pi	11406	0.0000	0.9965		0.0049
+bench.tthermophila.complete_fullutr	b_rule_ctx	11406	0.0000	0.9965		0.0060
+bench.tthermophila.complete_fullutr	b_rule_ctx_tx	11406	0.0000	0.8003		0.1983
+bench.tthermophila.complete_fullutr	b_au_ctx	11406	0.0000	0.9935		0.0102
+bench.tthermophila.complete_fullutr	b_au_ctx_tx	11406	0.0000	0.7931		0.2053
+bench.tthermophila.fragments	release	15000	0.6327	0.8242	0.9065	0.5729
+bench.tthermophila.fragments	perfect	15000	0.6327	0.9943	0.9922	0.6384
+bench.tthermophila.fragments	a_u	15000	0.6327	0.7444	0.8754	0.8218
+bench.tthermophila.fragments	a_u_noem	15000	0.6327	0.8015	0.8754	0.6255
+bench.tthermophila.fragments	a_uc	15000	0.6327	0.7435	0.9874	0.8902
+bench.tthermophila.fragments	a_uc_noem	15000	0.6327	0.8995	0.9874	0.7281
+bench.tthermophila.fragments	a_uct	15000	0.6327	0.7439	0.9875	0.8898
+bench.tthermophila.fragments	a_uct_noem	15000	0.6327	0.9001	0.9876	0.7281
+bench.tthermophila.fragments	a_u_match	15000	0.6327	0.8903	0.9421	0.6517
+bench.tthermophila.fragments	a_u_match_noem	15000	0.6327	0.8751	0.9421	0.5808
+bench.tthermophila.fragments	a_uc_match	15000	0.6327	0.8705	0.9965	0.7638
+bench.tthermophila.fragments	a_uc_match_noem	15000	0.6327	0.9623	0.9965	0.6716
+bench.tthermophila.fragments	a_uct_match	15000	0.6327	0.8703	0.9966	0.7640
+bench.tthermophila.fragments	a_uct_match_noem	15000	0.6327	0.9623	0.9966	0.6719
+bench.tthermophila.fragments	a_hgb_uct	15000	0.6327	0.8559	0.9522	0.7791
+bench.tthermophila.fragments	b_rule_pi	15000	0.6327	0.8329	0.9065	0.6083
+bench.tthermophila.fragments	b_rule_ctx	15000	0.6327	0.9950	0.9995	0.6322
+bench.tthermophila.fragments	b_rule_ctx_tx	15000	0.6327	0.9954	0.9997	0.6324
+bench.tthermophila.fragments	b_au_ctx	15000	0.6327	0.9803	0.9981	0.6527
+bench.tthermophila.fragments	b_au_ctx_tx	15000	0.6327	0.9748	0.9976	0.6566
+bench.tthermophila.fragments_mixed_t1	release	16170	0.6359	0.8245	0.9077	0.5691
+bench.tthermophila.fragments_mixed_t1	perfect	16170	0.6359	0.9959	0.9943	0.6393
+bench.tthermophila.fragments_mixed_t1	a_u	16170	0.6359	0.7782	0.8785	0.7475
+bench.tthermophila.fragments_mixed_t1	a_u_noem	16170	0.6359	0.8082	0.8785	0.6003
+bench.tthermophila.fragments_mixed_t1	a_uc	16170	0.6359	0.7938	0.8856	0.7101
+bench.tthermophila.fragments_mixed_t1	a_uc_noem	16170	0.6359	0.8130	0.8856	0.5981
+bench.tthermophila.fragments_mixed_t1	a_uct	16170	0.6359	0.7964	0.8864	0.7076
+bench.tthermophila.fragments_mixed_t1	a_uct_noem	16170	0.6359	0.8138	0.8864	0.5973
+bench.tthermophila.fragments_mixed_t1	a_u_match	16170	0.6359	0.8860	0.9401	0.6256
+bench.tthermophila.fragments_mixed_t1	a_u_match_noem	16170	0.6359	0.8710	0.9401	0.5677
+bench.tthermophila.fragments_mixed_t1	a_uc_match	16170	0.6359	0.8846	0.9409	0.6494
+bench.tthermophila.fragments_mixed_t1	a_uc_match_noem	16170	0.6359	0.8784	0.9409	0.5846
+bench.tthermophila.fragments_mixed_t1	a_uct_match	16170	0.6359	0.8825	0.9412	0.6461
+bench.tthermophila.fragments_mixed_t1	a_uct_match_noem	16170	0.6359	0.8768	0.9412	0.5828
+bench.tthermophila.fragments_mixed_t1	a_hgb_uct	16170	0.6359	0.8402	0.8969	0.6567
+bench.tthermophila.fragments_mixed_t1	b_rule_pi	16170	0.6359	0.8236	0.9077	0.5660
+bench.tthermophila.fragments_mixed_t1	b_rule_ctx	16170	0.6359	0.8265	0.9098	0.5743
+bench.tthermophila.fragments_mixed_t1	b_rule_ctx_tx	16170	0.6359	0.7155	0.7564	0.6195
+bench.tthermophila.fragments_mixed_t1	b_au_ctx	16170	0.6359	0.7839	0.8843	0.7463
+bench.tthermophila.fragments_mixed_t1	b_au_ctx_tx	16170	0.6359	0.7203	0.7059	0.7543
+bench.tthermophila.fragments_mixed_t2	release	16110	0.6357	0.8178	0.9018	0.5671
+bench.tthermophila.fragments_mixed_t2	perfect	16110	0.6357	0.9945	0.9924	0.6408
+bench.tthermophila.fragments_mixed_t2	a_u	16110	0.6357	0.7868	0.8823	0.7383
+bench.tthermophila.fragments_mixed_t2	a_u_noem	16110	0.6357	0.8170	0.8823	0.6013
+bench.tthermophila.fragments_mixed_t2	a_uc	16110	0.6357	0.8025	0.8913	0.7097
+bench.tthermophila.fragments_mixed_t2	a_uc_noem	16110	0.6357	0.8241	0.8913	0.6013
+bench.tthermophila.fragments_mixed_t2	a_uct	16110	0.6357	0.8060	0.8922	0.7050
+bench.tthermophila.fragments_mixed_t2	a_uct_noem	16110	0.6357	0.8251	0.8922	0.5998
+bench.tthermophila.fragments_mixed_t2	a_u_match	16110	0.6357	0.8841	0.9385	0.6263
+bench.tthermophila.fragments_mixed_t2	a_u_match_noem	16110	0.6357	0.8716	0.9385	0.5730
+bench.tthermophila.fragments_mixed_t2	a_uc_match	16110	0.6357	0.8836	0.9397	0.6550
+bench.tthermophila.fragments_mixed_t2	a_uc_match_noem	16110	0.6357	0.8769	0.9397	0.5886
+bench.tthermophila.fragments_mixed_t2	a_uct_match	16110	0.6357	0.8845	0.9405	0.6511
+bench.tthermophila.fragments_mixed_t2	a_uct_match_noem	16110	0.6357	0.8773	0.9405	0.5872
+bench.tthermophila.fragments_mixed_t2	a_hgb_uct	16110	0.6357	0.8505	0.9147	0.6498
+bench.tthermophila.fragments_mixed_t2	b_rule_pi	16110	0.6357	0.8159	0.9018	0.5619
+bench.tthermophila.fragments_mixed_t2	b_rule_ctx	16110	0.6357	0.8247	0.9059	0.5724
+bench.tthermophila.fragments_mixed_t2	b_rule_ctx_tx	16110	0.6357	0.7145	0.7547	0.6083
+bench.tthermophila.fragments_mixed_t2	b_au_ctx	16110	0.6357	0.7945	0.8889	0.7340
+bench.tthermophila.fragments_mixed_t2	b_au_ctx_tx	16110	0.6357	0.7256	0.7089	0.7507
+bench.tthermophila.fragments_mixed_t3	release	16200	0.6340	0.8192	0.9023	0.5728
+bench.tthermophila.fragments_mixed_t3	perfect	16200	0.6340	0.9947	0.9927	0.6392
+bench.tthermophila.fragments_mixed_t3	a_u	16200	0.6340	0.7808	0.8768	0.7413
+bench.tthermophila.fragments_mixed_t3	a_u_noem	16200	0.6340	0.8040	0.8768	0.6045
+bench.tthermophila.fragments_mixed_t3	a_uc	16200	0.6340	0.7973	0.8860	0.7068
+bench.tthermophila.fragments_mixed_t3	a_uc_noem	16200	0.6340	0.8136	0.8860	0.5986
+bench.tthermophila.fragments_mixed_t3	a_uct	16200	0.6340	0.7984	0.8864	0.7053
+bench.tthermophila.fragments_mixed_t3	a_uct_noem	16200	0.6340	0.8138	0.8864	0.5976
+bench.tthermophila.fragments_mixed_t3	a_u_match	16200	0.6340	0.8831	0.9385	0.6302
+bench.tthermophila.fragments_mixed_t3	a_u_match_noem	16200	0.6340	0.8712	0.9385	0.5725
+bench.tthermophila.fragments_mixed_t3	a_uc_match	16200	0.6340	0.8814	0.9388	0.6522
+bench.tthermophila.fragments_mixed_t3	a_uc_match_noem	16200	0.6340	0.8754	0.9388	0.5856
+bench.tthermophila.fragments_mixed_t3	a_uct_match	16200	0.6340	0.8823	0.9391	0.6483
+bench.tthermophila.fragments_mixed_t3	a_uct_match_noem	16200	0.6340	0.8746	0.9391	0.5847
+bench.tthermophila.fragments_mixed_t3	a_hgb_uct	16200	0.6340	0.8458	0.9063	0.6482
+bench.tthermophila.fragments_mixed_t3	b_rule_pi	16200	0.6340	0.8177	0.9023	0.5674
+bench.tthermophila.fragments_mixed_t3	b_rule_ctx	16200	0.6340	0.8243	0.9069	0.5759
+bench.tthermophila.fragments_mixed_t3	b_rule_ctx_tx	16200	0.6340	0.7184	0.7592	0.6181
+bench.tthermophila.fragments_mixed_t3	b_au_ctx	16200	0.6340	0.7864	0.8838	0.7400
+bench.tthermophila.fragments_mixed_t3	b_au_ctx_tx	16200	0.6340	0.7240	0.7061	0.7596
+bench.pfalciparum.complete	release	217	0.0000	0.7926		0.2074
+bench.pfalciparum.complete	perfect	217	0.0000	0.9724		0.0276
+bench.pfalciparum.complete	a_u	217	0.0000	0.9770		0.0230
+bench.pfalciparum.complete	a_u_noem	217	0.0000	0.8065		0.1935
+bench.pfalciparum.complete	a_uc	217	0.0000	0.9770		0.0230
+bench.pfalciparum.complete	a_uc_noem	217	0.0000	0.7972		0.2028
+bench.pfalciparum.complete	a_uct	217	0.0000	0.9770		0.0230
+bench.pfalciparum.complete	a_uct_noem	217	0.0000	0.8111		0.1889
+bench.pfalciparum.complete	a_u_match	217	0.0000	0.9908		0.0092
+bench.pfalciparum.complete	a_u_match_noem	217	0.0000	0.8341		0.1659
+bench.pfalciparum.complete	a_uc_match	217	0.0000	0.9908		0.0092
+bench.pfalciparum.complete	a_uc_match_noem	217	0.0000	0.8341		0.1659
+bench.pfalciparum.complete	a_uct_match	217	0.0000	0.9908		0.0092
+bench.pfalciparum.complete	a_uct_match_noem	217	0.0000	0.8341		0.1659
+bench.pfalciparum.complete	a_hgb_uct	217	0.0000	0.9816		0.0184
+bench.pfalciparum.complete	b_rule_pi	217	0.0000	0.9908		0.0092
+bench.pfalciparum.complete	b_rule_ctx	217	0.0000	0.9908		0.0092
+bench.pfalciparum.complete	b_rule_ctx_tx	217	0.0000	0.9908		0.0092
+bench.pfalciparum.complete	b_au_ctx	217	0.0000	0.9770		0.0230
+bench.pfalciparum.complete	b_au_ctx_tx	217	0.0000	0.8710		0.1290
+bench.pfalciparum.complete_fullutr	release	198	0.0000	0.8030		0.2308
+bench.pfalciparum.complete_fullutr	perfect	198	0.0000	0.9697		0.0721
+bench.pfalciparum.complete_fullutr	a_u	198	0.0000	0.9949		0.0337
+bench.pfalciparum.complete_fullutr	a_u_noem	198	0.0000	0.8687		0.1683
+bench.pfalciparum.complete_fullutr	a_uc	198	0.0000	0.9848		0.0481
+bench.pfalciparum.complete_fullutr	a_uc_noem	198	0.0000	0.8737		0.1635
+bench.pfalciparum.complete_fullutr	a_uct	198	0.0000	0.9848		0.0481
+bench.pfalciparum.complete_fullutr	a_uct_noem	198	0.0000	0.8838		0.1538
+bench.pfalciparum.complete_fullutr	a_u_match	198	0.0000	1.0000		0.0144
+bench.pfalciparum.complete_fullutr	a_u_match_noem	198	0.0000	0.8333		0.2019
+bench.pfalciparum.complete_fullutr	a_uc_match	198	0.0000	0.9949		0.0337
+bench.pfalciparum.complete_fullutr	a_uc_match_noem	198	0.0000	0.8485		0.1875
+bench.pfalciparum.complete_fullutr	a_uct_match	198	0.0000	0.9949		0.0337
+bench.pfalciparum.complete_fullutr	a_uct_match_noem	198	0.0000	0.8434		0.1923
+bench.pfalciparum.complete_fullutr	a_hgb_uct	198	0.0000	0.9848		0.0433
+bench.pfalciparum.complete_fullutr	b_rule_pi	198	0.0000	1.0000		0.0048
+bench.pfalciparum.complete_fullutr	b_rule_ctx	198	0.0000	1.0000		0.0096
+bench.pfalciparum.complete_fullutr	b_rule_ctx_tx	198	0.0000	1.0000		0.0144
+bench.pfalciparum.complete_fullutr	b_au_ctx	198	0.0000	0.9949		0.0337
+bench.pfalciparum.complete_fullutr	b_au_ctx_tx	198	0.0000	0.9848		0.0433
+bench.pfalciparum.fragments	release	2326	0.9544	0.8482	0.9058	0.8219
+bench.pfalciparum.fragments	perfect	2326	0.9544	0.9987	0.9858	0.9549
+bench.pfalciparum.fragments	a_u	2326	0.9544	0.9480	0.9171	0.9790
+bench.pfalciparum.fragments	a_u_noem	2326	0.9544	0.8706	0.9182	0.8416
+bench.pfalciparum.fragments	a_uc	2326	0.9544	0.9557	0.9953	0.9987
+bench.pfalciparum.fragments	a_uc_noem	2326	0.9544	0.9905	0.9998	0.9639
+bench.pfalciparum.fragments	a_uct	2326	0.9544	0.9557	0.9953	0.9987
+bench.pfalciparum.fragments	a_uct_noem	2326	0.9544	0.9905	0.9998	0.9639
+bench.pfalciparum.fragments	a_u_match	2326	0.9544	0.9604	0.9476	0.9837
+bench.pfalciparum.fragments	a_u_match_noem	2326	0.9544	0.8822	0.9476	0.8468
+bench.pfalciparum.fragments	a_uc_match	2326	0.9544	0.9553	0.9998	0.9991
+bench.pfalciparum.fragments	a_uc_match_noem	2326	0.9544	0.9948	0.9997	0.9597
+bench.pfalciparum.fragments	a_uct_match	2326	0.9544	0.9553	0.9997	0.9991
+bench.pfalciparum.fragments	a_uct_match_noem	2326	0.9544	0.9948	0.9997	0.9597
+bench.pfalciparum.fragments	a_hgb_uct	2326	0.9544	0.9549	0.9852	0.9996
+bench.pfalciparum.fragments	b_rule_pi	2326	0.9544	0.9501	0.9058	0.9644
+bench.pfalciparum.fragments	b_rule_ctx	2326	0.9544	0.9897	1.0000	0.9442
+bench.pfalciparum.fragments	b_rule_ctx_tx	2326	0.9544	0.7915	0.7617	0.7961
+bench.pfalciparum.fragments	b_au_ctx	2326	0.9544	0.9944	0.9966	0.9498
+bench.pfalciparum.fragments	b_au_ctx_tx	2326	0.9544	0.9931	0.9958	0.9519
+bench.pfalciparum.fragments_mixed_t1	release	2519	0.9551	0.8456	0.8993	0.8206
+bench.pfalciparum.fragments_mixed_t1	perfect	2519	0.9551	0.9984	0.9823	0.9567
+bench.pfalciparum.fragments_mixed_t1	a_u	2519	0.9551	0.9532	0.9071	0.9825
+bench.pfalciparum.fragments_mixed_t1	a_u_noem	2519	0.9551	0.8698	0.9086	0.8444
+bench.pfalciparum.fragments_mixed_t1	a_uc	2519	0.9551	0.9524	0.9142	0.9782
+bench.pfalciparum.fragments_mixed_t1	a_uc_noem	2519	0.9551	0.8761	0.9150	0.8476
+bench.pfalciparum.fragments_mixed_t1	a_uct	2519	0.9551	0.9524	0.9162	0.9758
+bench.pfalciparum.fragments_mixed_t1	a_uct_noem	2519	0.9551	0.8805	0.9169	0.8528
+bench.pfalciparum.fragments_mixed_t1	a_u_match	2519	0.9551	0.9611	0.9335	0.9857
+bench.pfalciparum.fragments_mixed_t1	a_u_match_noem	2519	0.9551	0.8773	0.9334	0.8464
+bench.pfalciparum.fragments_mixed_t1	a_uc_match	2519	0.9551	0.9583	0.9357	0.9873
+bench.pfalciparum.fragments_mixed_t1	a_uc_match_noem	2519	0.9551	0.8932	0.9356	0.8623
+bench.pfalciparum.fragments_mixed_t1	a_uct_match	2519	0.9551	0.9587	0.9374	0.9877
+bench.pfalciparum.fragments_mixed_t1	a_uct_match_noem	2519	0.9551	0.8920	0.9372	0.8619
+bench.pfalciparum.fragments_mixed_t1	a_hgb_uct	2519	0.9551	0.9524	0.9224	0.9774
+bench.pfalciparum.fragments_mixed_t1	b_rule_pi	2519	0.9551	0.9528	0.8993	0.9675
+bench.pfalciparum.fragments_mixed_t1	b_rule_ctx	2519	0.9551	0.9476	0.8750	0.9591
+bench.pfalciparum.fragments_mixed_t1	b_rule_ctx_tx	2519	0.9551	0.8134	0.6718	0.8365
+bench.pfalciparum.fragments_mixed_t1	b_au_ctx	2519	0.9551	0.9528	0.8970	0.9806
+bench.pfalciparum.fragments_mixed_t1	b_au_ctx_tx	2519	0.9551	0.9289	0.7495	0.9544
+bench.pfalciparum.fragments_mixed_t2	release	2505	0.9521	0.8387	0.9014	0.8108
+bench.pfalciparum.fragments_mixed_t2	perfect	2505	0.9521	0.9988	0.9875	0.9533
+bench.pfalciparum.fragments_mixed_t2	a_u	2505	0.9521	0.9521	0.9130	0.9896
+bench.pfalciparum.fragments_mixed_t2	a_u_noem	2505	0.9521	0.8719	0.9137	0.8431
+bench.pfalciparum.fragments_mixed_t2	a_uc	2505	0.9521	0.9485	0.9201	0.9764
+bench.pfalciparum.fragments_mixed_t2	a_uc_noem	2505	0.9521	0.8806	0.9212	0.8511
+bench.pfalciparum.fragments_mixed_t2	a_uct	2505	0.9521	0.9481	0.9215	0.9760
+bench.pfalciparum.fragments_mixed_t2	a_uct_noem	2505	0.9521	0.8802	0.9227	0.8491
+bench.pfalciparum.fragments_mixed_t2	a_u_match	2505	0.9521	0.9561	0.9353	0.9792
+bench.pfalciparum.fragments_mixed_t2	a_u_match_noem	2505	0.9521	0.8778	0.9364	0.8459
+bench.pfalciparum.fragments_mixed_t2	a_uc_match	2505	0.9521	0.9545	0.9384	0.9864
+bench.pfalciparum.fragments_mixed_t2	a_uc_match_noem	2505	0.9521	0.8934	0.9393	0.8631
+bench.pfalciparum.fragments_mixed_t2	a_uct_match	2505	0.9521	0.9557	0.9396	0.9860
+bench.pfalciparum.fragments_mixed_t2	a_uct_match_noem	2505	0.9521	0.8942	0.9409	0.8639
+bench.pfalciparum.fragments_mixed_t2	a_hgb_uct	2505	0.9521	0.9605	0.9377	0.9780
+bench.pfalciparum.fragments_mixed_t2	b_rule_pi	2505	0.9521	0.9413	0.9014	0.9541
+bench.pfalciparum.fragments_mixed_t2	b_rule_ctx	2505	0.9521	0.9369	0.8868	0.9521
+bench.pfalciparum.fragments_mixed_t2	b_rule_ctx_tx	2505	0.9521	0.7988	0.6528	0.8244
+bench.pfalciparum.fragments_mixed_t2	b_au_ctx	2505	0.9521	0.9517	0.9087	0.9868
+bench.pfalciparum.fragments_mixed_t2	b_au_ctx_tx	2505	0.9521	0.9281	0.7624	0.9625
+bench.pfalciparum.fragments_mixed_t3	release	2512	0.9522	0.8471	0.9082	0.8126
+bench.pfalciparum.fragments_mixed_t3	perfect	2512	0.9522	0.9988	0.9875	0.9530
+bench.pfalciparum.fragments_mixed_t3	a_u	2512	0.9522	0.9498	0.9142	0.9904
+bench.pfalciparum.fragments_mixed_t3	a_u_noem	2512	0.9522	0.8694	0.9150	0.8396
+bench.pfalciparum.fragments_mixed_t3	a_uc	2512	0.9522	0.9522	0.9241	0.9769
+bench.pfalciparum.fragments_mixed_t3	a_uc_noem	2512	0.9522	0.8814	0.9254	0.8488
+bench.pfalciparum.fragments_mixed_t3	a_uct	2512	0.9522	0.9526	0.9266	0.9765
+bench.pfalciparum.fragments_mixed_t3	a_uct_noem	2512	0.9522	0.8830	0.9266	0.8512
+bench.pfalciparum.fragments_mixed_t3	a_u_match	2512	0.9522	0.9550	0.9406	0.9932
+bench.pfalciparum.fragments_mixed_t3	a_u_match_noem	2512	0.9522	0.8786	0.9412	0.8400
+bench.pfalciparum.fragments_mixed_t3	a_uc_match	2512	0.9522	0.9538	0.9463	0.9968
+bench.pfalciparum.fragments_mixed_t3	a_uc_match_noem	2512	0.9522	0.8897	0.9467	0.8528
+bench.pfalciparum.fragments_mixed_t3	a_uct_match	2512	0.9522	0.9550	0.9471	0.9956
+bench.pfalciparum.fragments_mixed_t3	a_uct_match_noem	2512	0.9522	0.8917	0.9476	0.8559
+bench.pfalciparum.fragments_mixed_t3	a_hgb_uct	2512	0.9522	0.9570	0.9311	0.9825
+bench.pfalciparum.fragments_mixed_t3	b_rule_pi	2512	0.9522	0.9463	0.9082	0.9773
+bench.pfalciparum.fragments_mixed_t3	b_rule_ctx	2512	0.9522	0.9379	0.8701	0.9713
+bench.pfalciparum.fragments_mixed_t3	b_rule_ctx_tx	2512	0.9522	0.7994	0.6243	0.8285
+bench.pfalciparum.fragments_mixed_t3	b_au_ctx	2512	0.9522	0.9498	0.9139	0.9897
+bench.pfalciparum.fragments_mixed_t3	b_au_ctx_tx	2512	0.9522	0.9415	0.8263	0.9733
+bench.creinhardtii.complete	release	4085	0.0000	0.7547		0.2468
+bench.creinhardtii.complete	perfect	4085	0.0000	0.9200		0.0823
+bench.creinhardtii.complete	a_u	4085	0.0000	0.7506		0.2519
+bench.creinhardtii.complete	a_u_noem	4085	0.0000	0.6725		0.3298
+bench.creinhardtii.complete	a_uc	4085	0.0000	0.7420		0.2614
+bench.creinhardtii.complete	a_uc_noem	4085	0.0000	0.6602		0.3428
+bench.creinhardtii.complete	a_uct	4085	0.0000	0.7412		0.2621
+bench.creinhardtii.complete	a_uct_noem	4085	0.0000	0.6590		0.3440
+bench.creinhardtii.complete	a_u_match	4085	0.0000	0.9638		0.0375
+bench.creinhardtii.complete	a_u_match_noem	4085	0.0000	0.8037		0.1990
+bench.creinhardtii.complete	a_uc_match	4085	0.0000	0.9638		0.0375
+bench.creinhardtii.complete	a_uc_match_noem	4085	0.0000	0.8029		0.2000
+bench.creinhardtii.complete	a_uct_match	4085	0.0000	0.9652		0.0358
+bench.creinhardtii.complete	a_uct_match_noem	4085	0.0000	0.8039		0.1985
+bench.creinhardtii.complete	a_hgb_uct	4085	0.0000	0.7258		0.2770
+bench.creinhardtii.complete	b_rule_pi	4085	0.0000	0.9870		0.0134
+bench.creinhardtii.complete	b_rule_ctx	4085	0.0000	0.9860		0.0149
+bench.creinhardtii.complete	b_rule_ctx_tx	4085	0.0000	0.7998		0.1993
+bench.creinhardtii.complete	b_au_ctx	4085	0.0000	0.7515		0.2504
+bench.creinhardtii.complete	b_au_ctx_tx	4085	0.0000	0.6942		0.3062
+bench.creinhardtii.complete_fullutr	release	3314	0.0000	0.7921		0.2088
+bench.creinhardtii.complete_fullutr	perfect	3314	0.0000	0.9378		0.0639
+bench.creinhardtii.complete_fullutr	a_u	3314	0.0000	0.9258		0.0750
+bench.creinhardtii.complete_fullutr	a_u_noem	3314	0.0000	0.7849		0.2172
+bench.creinhardtii.complete_fullutr	a_uc	3314	0.0000	0.9137		0.0879
+bench.creinhardtii.complete_fullutr	a_uc_noem	3314	0.0000	0.7722		0.2301
+bench.creinhardtii.complete_fullutr	a_uct	3314	0.0000	0.9119		0.0900
+bench.creinhardtii.complete_fullutr	a_uct_noem	3314	0.0000	0.7728		0.2301
+bench.creinhardtii.complete_fullutr	a_u_match	3314	0.0000	0.9967		0.0033
+bench.creinhardtii.complete_fullutr	a_u_match_noem	3314	0.0000	0.8561		0.1446
+bench.creinhardtii.complete_fullutr	a_uc_match	3314	0.0000	0.9937		0.0063
+bench.creinhardtii.complete_fullutr	a_uc_match_noem	3314	0.0000	0.8533		0.1479
+bench.creinhardtii.complete_fullutr	a_uct_match	3314	0.0000	0.9888		0.0111
+bench.creinhardtii.complete_fullutr	a_uct_match_noem	3314	0.0000	0.8524		0.1491
+bench.creinhardtii.complete_fullutr	a_hgb_uct	3314	0.0000	0.8923		0.1107
+bench.creinhardtii.complete_fullutr	b_rule_pi	3314	0.0000	0.9964		0.0036
+bench.creinhardtii.complete_fullutr	b_rule_ctx	3314	0.0000	0.9964		0.0036
+bench.creinhardtii.complete_fullutr	b_rule_ctx_tx	3314	0.0000	0.9532		0.0477
+bench.creinhardtii.complete_fullutr	b_au_ctx	3314	0.0000	0.9261		0.0750
+bench.creinhardtii.complete_fullutr	b_au_ctx_tx	3314	0.0000	0.8546		0.1455
+bench.creinhardtii.fragments	release	8928	0.7957	0.8675	0.9093	0.7653
+bench.creinhardtii.fragments	perfect	8928	0.7957	0.9828	0.9578	0.8104
+bench.creinhardtii.fragments	a_u	8928	0.7957	0.8430	0.8590	0.9286
+bench.creinhardtii.fragments	a_u_noem	8928	0.7957	0.8271	0.8590	0.7741
+bench.creinhardtii.fragments	a_uc	8928	0.7957	0.8341	0.9661	0.9619
+bench.creinhardtii.fragments	a_uc_noem	8928	0.7957	0.9203	0.9664	0.8710
+bench.creinhardtii.fragments	a_uct	8928	0.7957	0.8341	0.9673	0.9619
+bench.creinhardtii.fragments	a_uct_noem	8928	0.7957	0.9204	0.9675	0.8713
+bench.creinhardtii.fragments	a_u_match	8928	0.7957	0.8817	0.9322	0.9018
+bench.creinhardtii.fragments	a_u_match_noem	8928	0.7957	0.8945	0.9322	0.7772
+bench.creinhardtii.fragments	a_uc_match	8928	0.7957	0.8663	0.9997	0.9294
+bench.creinhardtii.fragments	a_uc_match_noem	8928	0.7957	0.9541	0.9997	0.8412
+bench.creinhardtii.fragments	a_uct_match	8928	0.7957	0.8666	0.9997	0.9290
+bench.creinhardtii.fragments	a_uct_match_noem	8928	0.7957	0.9541	0.9997	0.8412
+bench.creinhardtii.fragments	a_hgb_uct	8928	0.7957	0.8516	0.9356	0.9443
+bench.creinhardtii.fragments	b_rule_pi	8928	0.7957	0.8806	0.9093	0.8599
+bench.creinhardtii.fragments	b_rule_ctx	8928	0.7957	0.9953	0.9994	0.7960
+bench.creinhardtii.fragments	b_rule_ctx_tx	8928	0.7957	0.9951	0.9995	0.7954
+bench.creinhardtii.fragments	b_au_ctx	8928	0.7957	0.9392	0.9967	0.8562
+bench.creinhardtii.fragments	b_au_ctx_tx	8928	0.7957	0.9356	0.9914	0.8589
+bench.creinhardtii.fragments_mixed_t1	release	9545	0.7944	0.8480	0.8998	0.7429
+bench.creinhardtii.fragments_mixed_t1	perfect	9545	0.7944	0.9848	0.9630	0.8088
+bench.creinhardtii.fragments_mixed_t1	a_u	9545	0.7944	0.8549	0.8654	0.9072
+bench.creinhardtii.fragments_mixed_t1	a_u_noem	9545	0.7944	0.8316	0.8655	0.7709
+bench.creinhardtii.fragments_mixed_t1	a_uc	9545	0.7944	0.8544	0.8727	0.8997
+bench.creinhardtii.fragments_mixed_t1	a_uc_noem	9545	0.7944	0.8422	0.8728	0.7780
+bench.creinhardtii.fragments_mixed_t1	a_uct	9545	0.7944	0.8549	0.8757	0.8996
+bench.creinhardtii.fragments_mixed_t1	a_uct_noem	9545	0.7944	0.8434	0.8757	0.7799
+bench.creinhardtii.fragments_mixed_t1	a_u_match	9545	0.7944	0.8952	0.9218	0.8612
+bench.creinhardtii.fragments_mixed_t1	a_u_match_noem	9545	0.7944	0.8719	0.9218	0.7480
+bench.creinhardtii.fragments_mixed_t1	a_uc_match	9545	0.7944	0.8906	0.9227	0.8722
+bench.creinhardtii.fragments_mixed_t1	a_uc_match_noem	9545	0.7944	0.8816	0.9227	0.7647
+bench.creinhardtii.fragments_mixed_t1	a_uct_match	9545	0.7944	0.8914	0.9247	0.8731
+bench.creinhardtii.fragments_mixed_t1	a_uct_match_noem	9545	0.7944	0.8791	0.9247	0.7638
+bench.creinhardtii.fragments_mixed_t1	a_hgb_uct	9545	0.7944	0.8710	0.8918	0.8763
+bench.creinhardtii.fragments_mixed_t1	b_rule_pi	9545	0.7944	0.8764	0.8998	0.8267
+bench.creinhardtii.fragments_mixed_t1	b_rule_ctx	9545	0.7944	0.8772	0.9028	0.8266
+bench.creinhardtii.fragments_mixed_t1	b_rule_ctx_tx	9545	0.7944	0.8129	0.7890	0.8072
+bench.creinhardtii.fragments_mixed_t1	b_au_ctx	9545	0.7944	0.8550	0.8662	0.9064
+bench.creinhardtii.fragments_mixed_t1	b_au_ctx_tx	9545	0.7944	0.8357	0.7332	0.9016
+bench.creinhardtii.fragments_mixed_t2	release	9540	0.7901	0.8549	0.9014	0.7498
+bench.creinhardtii.fragments_mixed_t2	perfect	9540	0.7901	0.9834	0.9605	0.8058
+bench.creinhardtii.fragments_mixed_t2	a_u	9540	0.7901	0.8557	0.8736	0.8959
+bench.creinhardtii.fragments_mixed_t2	a_u_noem	9540	0.7901	0.8384	0.8736	0.7675
+bench.creinhardtii.fragments_mixed_t2	a_uc	9540	0.7901	0.8556	0.8791	0.8964
+bench.creinhardtii.fragments_mixed_t2	a_uc_noem	9540	0.7901	0.8459	0.8792	0.7789
+bench.creinhardtii.fragments_mixed_t2	a_uct	9540	0.7901	0.8545	0.8812	0.8973
+bench.creinhardtii.fragments_mixed_t2	a_uct_noem	9540	0.7901	0.8470	0.8813	0.7796
+bench.creinhardtii.fragments_mixed_t2	a_u_match	9540	0.7901	0.8973	0.9232	0.8523
+bench.creinhardtii.fragments_mixed_t2	a_u_match_noem	9540	0.7901	0.8765	0.9232	0.7454
+bench.creinhardtii.fragments_mixed_t2	a_uc_match	9540	0.7901	0.8950	0.9259	0.8668
+bench.creinhardtii.fragments_mixed_t2	a_uc_match_noem	9540	0.7901	0.8844	0.9259	0.7593
+bench.creinhardtii.fragments_mixed_t2	a_uct_match	9540	0.7901	0.8938	0.9272	0.8680
+bench.creinhardtii.fragments_mixed_t2	a_uct_match_noem	9540	0.7901	0.8858	0.9272	0.7632
+bench.creinhardtii.fragments_mixed_t2	a_hgb_uct	9540	0.7901	0.8701	0.8696	0.8742
+bench.creinhardtii.fragments_mixed_t2	b_rule_pi	9540	0.7901	0.8762	0.9014	0.8210
+bench.creinhardtii.fragments_mixed_t2	b_rule_ctx	9540	0.7901	0.8784	0.9036	0.8221
+bench.creinhardtii.fragments_mixed_t2	b_rule_ctx_tx	9540	0.7901	0.8097	0.7885	0.8007
+bench.creinhardtii.fragments_mixed_t2	b_au_ctx	9540	0.7901	0.8548	0.8740	0.8959
+bench.creinhardtii.fragments_mixed_t2	b_au_ctx_tx	9540	0.7901	0.8369	0.7881	0.9072
+bench.creinhardtii.fragments_mixed_t3	release	9550	0.7889	0.8486	0.9069	0.7357
+bench.creinhardtii.fragments_mixed_t3	perfect	9550	0.7889	0.9853	0.9653	0.8030
+bench.creinhardtii.fragments_mixed_t3	a_u	9550	0.7889	0.8486	0.8734	0.8976
+bench.creinhardtii.fragments_mixed_t3	a_u_noem	9550	0.7889	0.8353	0.8734	0.7632
+bench.creinhardtii.fragments_mixed_t3	a_uc	9550	0.7889	0.8508	0.8798	0.8975
+bench.creinhardtii.fragments_mixed_t3	a_uc_noem	9550	0.7889	0.8381	0.8798	0.7710
+bench.creinhardtii.fragments_mixed_t3	a_uct	9550	0.7889	0.8497	0.8824	0.8960
+bench.creinhardtii.fragments_mixed_t3	a_uct_noem	9550	0.7889	0.8419	0.8824	0.7706
+bench.creinhardtii.fragments_mixed_t3	a_u_match	9550	0.7889	0.8968	0.9311	0.8529
+bench.creinhardtii.fragments_mixed_t3	a_u_match_noem	9550	0.7889	0.8739	0.9311	0.7394
+bench.creinhardtii.fragments_mixed_t3	a_uc_match	9550	0.7889	0.8894	0.9320	0.8714
+bench.creinhardtii.fragments_mixed_t3	a_uc_match_noem	9550	0.7889	0.8852	0.9320	0.7576
+bench.creinhardtii.fragments_mixed_t3	a_uct_match	9550	0.7889	0.8917	0.9338	0.8700
+bench.creinhardtii.fragments_mixed_t3	a_uct_match_noem	9550	0.7889	0.8851	0.9338	0.7577
+bench.creinhardtii.fragments_mixed_t3	a_hgb_uct	9550	0.7889	0.8670	0.8822	0.8683
+bench.creinhardtii.fragments_mixed_t3	b_rule_pi	9550	0.7889	0.8745	0.9069	0.8141
+bench.creinhardtii.fragments_mixed_t3	b_rule_ctx	9550	0.7889	0.8748	0.9094	0.8158
+bench.creinhardtii.fragments_mixed_t3	b_rule_ctx_tx	9550	0.7889	0.7818	0.7565	0.7850
+bench.creinhardtii.fragments_mixed_t3	b_au_ctx	9550	0.7889	0.8480	0.8730	0.8989
+bench.creinhardtii.fragments_mixed_t3	b_au_ctx_tx	9550	0.7889	0.8261	0.7234	0.8943
+sim.human.d1	release	10097	0.2726	0.8677	0.9297	0.3236
+sim.human.d1	perfect	10097	0.2726	0.9869	0.9910	0.3097
+sim.human.d1	a_u	10097	0.2726	0.8342	0.8741	0.3169
+sim.human.d1	a_u_noem	10097	0.2726	0.7921	0.8741	0.4004
+sim.human.d1	a_uc	10097	0.2726	0.8530	0.9023	0.3376
+sim.human.d1	a_uc_noem	10097	0.2726	0.8131	0.9023	0.4045
+sim.human.d1	a_uct	10097	0.2726	0.8527	0.8994	0.3287
+sim.human.d1	a_uct_noem	10097	0.2726	0.8153	0.8994	0.3992
+sim.human.d1	a_u_match	10097	0.2726	0.7516	0.9473	0.0285
+sim.human.d1	a_u_match_noem	10097	0.2726	0.9031	0.9473	0.2802
+sim.human.d1	a_uc_match	10097	0.2726	0.8163	0.9347	0.1033
+sim.human.d1	a_uc_match_noem	10097	0.2726	0.8863	0.9347	0.3011
+sim.human.d1	a_uct_match	10097	0.2726	0.7853	0.9286	0.0704
+sim.human.d1	a_uct_match_noem	10097	0.2726	0.8804	0.9286	0.2931
+sim.human.d1	a_hgb_uct	10097	0.2726	0.8796	0.9352	0.3185
+sim.human.d1	b_rule_pi	10097	0.2726	0.8113	0.9297	0.1001
+sim.human.d1	b_rule_ctx	10097	0.2726	0.9045	0.9450	0.2473
+sim.human.d1	b_rule_ctx_tx	10097	0.2726	0.8812	0.8983	0.2652
+sim.human.d1	b_au_ctx	10097	0.2726	0.8930	0.9417	0.3178
+sim.human.d1	b_au_ctx_tx	10097	0.2726	0.8089	0.8772	0.3610
+sim.human.d2	release	9417	0.2947	0.8623	0.9230	0.3310
+sim.human.d2	perfect	9417	0.2947	0.9903	0.9931	0.3262
+sim.human.d2	a_u	9417	0.2947	0.8351	0.8786	0.3348
+sim.human.d2	a_u_noem	9417	0.2947	0.8008	0.8786	0.4066
+sim.human.d2	a_uc	9417	0.2947	0.8554	0.9063	0.3498
+sim.human.d2	a_uc_noem	9417	0.2947	0.8206	0.9063	0.4090
+sim.human.d2	a_uct	9417	0.2947	0.8518	0.9027	0.3421
+sim.human.d2	a_uct_noem	9417	0.2947	0.8212	0.9027	0.4051
+sim.human.d2	a_u_match	9417	0.2947	0.7402	0.9446	0.0383
+sim.human.d2	a_u_match_noem	9417	0.2947	0.8915	0.9446	0.2949
+sim.human.d2	a_uc_match	9417	0.2947	0.7915	0.9383	0.0999
+sim.human.d2	a_uc_match_noem	9417	0.2947	0.8893	0.9383	0.3087
+sim.human.d2	a_uct_match	9417	0.2947	0.7541	0.9320	0.0589
+sim.human.d2	a_uct_match_noem	9417	0.2947	0.8779	0.9320	0.2956
+sim.human.d2	a_hgb_uct	9417	0.2947	0.8799	0.9380	0.3336
+sim.human.d2	b_rule_pi	9417	0.2947	0.7953	0.9230	0.1090
+sim.human.d2	b_rule_ctx	9417	0.2947	0.8920	0.9365	0.2715
+sim.human.d2	b_rule_ctx_tx	9417	0.2947	0.8606	0.8941	0.3065
+sim.human.d2	b_au_ctx	9417	0.2947	0.8793	0.9356	0.3341
+sim.human.d2	b_au_ctx_tx	9417	0.2947	0.7854	0.8664	0.3875
+sim.human.d4	release	9130	0.3673	0.8541	0.9167	0.3827
+sim.human.d4	perfect	9130	0.3673	0.9912	0.9931	0.3915
+sim.human.d4	a_u	9130	0.3673	0.8202	0.8799	0.3980
+sim.human.d4	a_u_noem	9130	0.3673	0.8024	0.8799	0.4350
+sim.human.d4	a_uc	9130	0.3673	0.8317	0.8999	0.4239
+sim.human.d4	a_uc_noem	9130	0.3673	0.8221	0.8999	0.4483
+sim.human.d4	a_uct	9130	0.3673	0.8319	0.8970	0.4136
+sim.human.d4	a_uct_noem	9130	0.3673	0.8230	0.8970	0.4423
+sim.human.d4	a_u_match	9130	0.3673	0.7797	0.9430	0.1650
+sim.human.d4	a_u_match_noem	9130	0.3673	0.8803	0.9430	0.3535
+sim.human.d4	a_uc_match	9130	0.3673	0.8120	0.9320	0.2152
+sim.human.d4	a_uc_match_noem	9130	0.3673	0.8647	0.9320	0.3666
+sim.human.d4	a_uct_match	9130	0.3673	0.7821	0.9268	0.1826
+sim.human.d4	a_uct_match_noem	9130	0.3673	0.8558	0.9268	0.3565
+sim.human.d4	a_hgb_uct	9130	0.3673	0.8673	0.9324	0.3988
+sim.human.d4	b_rule_pi	9130	0.3673	0.7716	0.9167	0.1622
+sim.human.d4	b_rule_ctx	9130	0.3673	0.8715	0.9330	0.3290
+sim.human.d4	b_rule_ctx_tx	9130	0.3673	0.8024	0.8774	0.3829
+sim.human.d4	b_au_ctx	9130	0.3673	0.8724	0.9370	0.4138
+sim.human.d4	b_au_ctx_tx	9130	0.3673	0.7905	0.8606	0.4185
+sim.human.d8	release	9357	0.5029	0.8364	0.9149	0.4680
+sim.human.d8	perfect	9357	0.5029	0.9950	0.9949	0.5090
+sim.human.d8	a_u	9357	0.5029	0.8087	0.8944	0.5630
+sim.human.d8	a_u_noem	9357	0.5029	0.8180	0.8944	0.5187
+sim.human.d8	a_uc	9357	0.5029	0.8238	0.9136	0.5762
+sim.human.d8	a_uc_noem	9357	0.5029	0.8335	0.9136	0.5341
+sim.human.d8	a_uct	9357	0.5029	0.8248	0.9110	0.5630
+sim.human.d8	a_uct_noem	9357	0.5029	0.8309	0.9110	0.5264
+sim.human.d8	a_u_match	9357	0.5029	0.8120	0.9413	0.3570
+sim.human.d8	a_u_match_noem	9357	0.5029	0.8626	0.9413	0.4544
+sim.human.d8	a_uc_match	9357	0.5029	0.8341	0.9340	0.4102
+sim.human.d8	a_uc_match_noem	9357	0.5029	0.8583	0.9340	0.4679
+sim.human.d8	a_uct_match	9357	0.5029	0.8041	0.9288	0.3695
+sim.human.d8	a_uct_match_noem	9357	0.5029	0.8470	0.9288	0.4548
+sim.human.d8	a_hgb_uct	9357	0.5029	0.8590	0.9368	0.5475
+sim.human.d8	b_rule_pi	9357	0.5029	0.7707	0.9149	0.3087
+sim.human.d8	b_rule_ctx	9357	0.5029	0.8544	0.9332	0.4594
+sim.human.d8	b_rule_ctx_tx	9357	0.5029	0.8028	0.8837	0.4630
+sim.human.d8	b_au_ctx	9357	0.5029	0.8669	0.9402	0.5549
+sim.human.d8	b_au_ctx_tx	9357	0.5029	0.8041	0.8651	0.5136
+sim.human.d16	release	9727	0.6463	0.8331	0.9163	0.5699
+sim.human.d16	perfect	9727	0.6463	0.9966	0.9952	0.6433
+sim.human.d16	a_u	9727	0.6463	0.8007	0.8950	0.7449
+sim.human.d16	a_u_noem	9727	0.6463	0.8219	0.8950	0.6126
+sim.human.d16	a_uc	9727	0.6463	0.8158	0.9086	0.7398
+sim.human.d16	a_uc_noem	9727	0.6463	0.8294	0.9086	0.6263
+sim.human.d16	a_uct	9727	0.6463	0.8224	0.9064	0.7186
+sim.human.d16	a_uct_noem	9727	0.6463	0.8277	0.9064	0.6192
+sim.human.d16	a_u_match	9727	0.6463	0.8676	0.9430	0.5992
+sim.human.d16	a_u_match_noem	9727	0.6463	0.8490	0.9430	0.5582
+sim.human.d16	a_uc_match	9727	0.6463	0.8597	0.9295	0.6335
+sim.human.d16	a_uc_match_noem	9727	0.6463	0.8409	0.9295	0.5723
+sim.human.d16	a_uct_match	9727	0.6463	0.8506	0.9263	0.6093
+sim.human.d16	a_uct_match_noem	9727	0.6463	0.8319	0.9263	0.5609
+sim.human.d16	a_hgb_uct	9727	0.6463	0.8729	0.9352	0.6807
+sim.human.d16	b_rule_pi	9727	0.6463	0.8086	0.9163	0.5239
+sim.human.d16	b_rule_ctx	9727	0.6463	0.8494	0.9230	0.6117
+sim.human.d16	b_rule_ctx_tx	9727	0.6463	0.7879	0.8700	0.5843
+sim.human.d16	b_au_ctx	9727	0.6463	0.8631	0.9339	0.7180
+sim.human.d16	b_au_ctx_tx	9727	0.6463	0.7956	0.8674	0.6516
+sim.human.d32	release	8416	0.7246	0.8219	0.9108	0.6238
+sim.human.d32	perfect	8416	0.7246	0.9973	0.9950	0.7163
+sim.human.d32	a_u	8416	0.7246	0.8309	0.9043	0.8168
+sim.human.d32	a_u_noem	8416	0.7246	0.8310	0.9043	0.6645
+sim.human.d32	a_uc	8416	0.7246	0.8365	0.9139	0.8252
+sim.human.d32	a_uc_noem	8416	0.7246	0.8371	0.9139	0.6859
+sim.human.d32	a_uct	8416	0.7246	0.8399	0.9129	0.8156
+sim.human.d32	a_uct_noem	8416	0.7246	0.8359	0.9129	0.6813
+sim.human.d32	a_u_match	8416	0.7246	0.8838	0.9358	0.7429
+sim.human.d32	a_u_match_noem	8416	0.7246	0.8468	0.9358	0.6380
+sim.human.d32	a_uc_match	8416	0.7246	0.8743	0.9258	0.7709
+sim.human.d32	a_uc_match_noem	8416	0.7246	0.8414	0.9258	0.6548
+sim.human.d32	a_uct_match	8416	0.7246	0.8744	0.9251	0.7647
+sim.human.d32	a_uct_match_noem	8416	0.7246	0.8394	0.9251	0.6497
+sim.human.d32	a_hgb_uct	8416	0.7246	0.8790	0.9286	0.7743
+sim.human.d32	b_rule_pi	8416	0.7246	0.8399	0.9108	0.6721
+sim.human.d32	b_rule_ctx	8416	0.7246	0.8654	0.9173	0.7185
+sim.human.d32	b_rule_ctx_tx	8416	0.7246	0.7899	0.8652	0.6650
+sim.human.d32	b_au_ctx	8416	0.7246	0.8727	0.9333	0.8004
+sim.human.d32	b_au_ctx_tx	8416	0.7246	0.8365	0.8791	0.7432
+sim.athal.d1	release	7549	0.3292	0.7629	0.8171	0.3822
+sim.athal.d1	perfect	7549	0.3292	0.9993	0.9995	0.3381
+sim.athal.d1	a_u	7549	0.3292	0.6935	0.8252	0.5135
+sim.athal.d1	a_u_noem	7549	0.3292	0.7114	0.8252	0.4899
+sim.athal.d1	a_uc	7549	0.3292	0.7318	0.8664	0.5000
+sim.athal.d1	a_uc_noem	7549	0.3292	0.7384	0.8664	0.4885
+sim.athal.d1	a_uct	7549	0.3292	0.7378	0.8588	0.4816
+sim.athal.d1	a_uct_noem	7549	0.3292	0.7392	0.8588	0.4799
+sim.athal.d1	a_u_match	7549	0.3292	0.7593	0.8427	0.1441
+sim.athal.d1	a_u_match_noem	7549	0.3292	0.7784	0.8427	0.3738
+sim.athal.d1	a_uc_match	7549	0.3292	0.7658	0.8159	0.2118
+sim.athal.d1	a_uc_match_noem	7549	0.3292	0.7454	0.8159	0.3940
+sim.athal.d1	a_uct_match	7549	0.3292	0.7367	0.7810	0.1488
+sim.athal.d1	a_uct_match_noem	7549	0.3292	0.7259	0.7810	0.3648
+sim.athal.d1	a_hgb_uct	7549	0.3292	0.7616	0.8851	0.4809
+sim.athal.d1	b_rule_pi	7549	0.3292	0.7484	0.8171	0.0922
+sim.athal.d1	b_rule_ctx	7549	0.3292	0.8828	0.9150	0.2682
+sim.athal.d1	b_rule_ctx_tx	7549	0.3292	0.8510	0.8674	0.2612
+sim.athal.d1	b_au_ctx	7549	0.3292	0.8629	0.9372	0.4063
+sim.athal.d1	b_au_ctx_tx	7549	0.3292	0.8295	0.8978	0.3811

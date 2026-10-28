@@ -66,3 +66,4 @@ Rules:
 | E29 | [Start placement on 5'-open ORFs; UTR-length prior (not adopted)](E29_five_prime_open_starts.md) | in paper (Start-codon refinement) |
 | E30 | [Simulated GM12878 Trinity assembly benchmark](E30_simulated_trinity_benchmark.md) | in paper (Results, Benchmark; Methods; Supp. Fig. S5) |
 | E31 | [Read-depth ablation of the simulated Trinity benchmark](E31_simtrinity_depth_ablation.md) | in paper (Results, Benchmark; Methods; Supp. Figs. S5-S6) |
+| E33 | [Keep-open vs trim decision for 5'-open ORFs: classifier ceiling (oracle labels), decoy null, self-trained prototypes](E33_start_decision_classifier.md) | not in paper (negative result; see notes/EXPERIMENT_LOG.md) |
