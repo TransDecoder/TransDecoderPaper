@@ -1110,6 +1110,108 @@ save_fig(figS_depth_sens, "figS_simtrinity_depth_sens", FULL_W, 110 * MM)
 figS_depth_sens
 ```
 
+## Simulated Arabidopsis Trinity assembly
+
+The E30/E31 design repeated for *A. thaliana* (`r evidence("E32")`; scripts `pipeline/simtrinity_athal/`, tables
+`data/simtrinity_athal/`). Transcripts: TAIR12 (the annotation of the main benchmark) protein-coding transcripts
+with a complete CDS, plus lncRNA and antisense_RNA transcripts that overlap no same-strand CDS as negatives.
+Expression: salmon on a stranded (dUTP) Col-0 leaf library (ENA ERR4140056, 2 x 100 nt). Reads: Polyester,
+as E30. Assembly: STAR two-pass on a TAIR12 index, genome-guided Trinity 2.15.2 and minimap2 with the E30
+parameters. Labels, tools (organism `athal`: TransDecoder `-G Universal`; CPAT, CPC2 and RNAsamba with their
+human models) and scoring as E30/E31, at full depth (d1) and at 1/2 ... of the read pairs.
+
+```{r at-data}
+AT <- function(...) read_tab("simtrinity_athal", ...)
+at_sel <- read_tsv(data_path("simtrinity_athal", "selection_counts.tsv"), col_names = c("step", "n"), show_col_types = FALSE)
+ATSEL <- setNames(at_sel$n, at_sel$step)
+at_par <- AT("sim_params.tsv") %>% { setNames(.[[2]], .[[1]]) }
+alev <- AT("depth", "levels.tsv") %>% mutate(fraction = as.numeric(fraction))
+ALEV_LAB <- setNames(ifelse(alev$fraction == 1, "1", paste0("1/", round(1 / alev$fraction))), alev$level)
+atc <- AT("depth", "truth_counts.tsv") %>% mutate(reads = ALEV_LAB[level])
+kable(tibble(step = c("coding transcripts kept (complete CDS)", "negatives kept (lncRNA / antisense_RNA)",
+                      "salmon pairs assigned (real reads)", "simulated pairs (coding / negatives)",
+                      "fragment length mean / sd"),
+             value = c(num(ATSEL[["coding_kept"]]),
+                       paste(num(ATSEL[["neg_kept:lncRNA"]]), "/", num(ATSEL[["neg_kept:antisense_RNA"]])),
+                       num(as.numeric(at_par[["salmon_num_mapped"]])),
+                       paste(num(as.numeric(at_par[["pairs_coding"]])), "/", num(as.numeric(at_par[["pairs_lncRNA"]]))),
+                       paste(at_par[["fld_mean"]], "/", at_par[["fld_sd"]]))),
+      caption = "Arabidopsis: transcript set and simulation")
+ash <- atc %>% transmute(reads, s_c = complete / truth_total, s_5 = `5prime_partial` / truth_total,
+                         s_3 = `3prime_partial` / truth_total, s_i = internal / truth_total)
+kable(alev %>% transmute(level, `read pairs` = num(as.numeric(pairs)), `Trinity transcripts` = num(trinity_transcripts)) %>%
+        left_join(atc %>% select(level, complete, `5' partial` = `5prime_partial`, `3' partial` = `3prime_partial`, internal,
+                                 truth = truth_total, negatives, unresolved), by = "level") %>%
+        left_join(ash %>% transmute(level = names(ALEV_LAB)[match(reads, ALEV_LAB)],
+                                    `complete / 5' / 3' / internal (%)` = paste(f1(100 * s_c), f1(100 * s_5), f1(100 * s_3), f1(100 * s_i), sep = " / ")),
+                  by = "level"),
+      caption = "Arabidopsis: assembly size and labels by depth level")
+details(AT("depth", "label_counts.tsv") %>% pivot_wider(names_from = level, values_from = n, values_fill = 0),
+        "Arabidopsis: all labels and reasons by level")
+abt <- AT("depth", "scores_by_type.tsv") %>% mutate(method = factor(SIM_TOOLS[tool], levels = SIM_TOOLS),
+                                                   type = factor(SIM_TYPE_LAB[type], levels = SIM_TYPE_LAB),
+                                                   reads = factor(ALEV_LAB[level], levels = ALEV_LAB))
+aov <- AT("depth", "scores_overall.tsv") %>%
+  left_join(AT("depth", "negatives.tsv") %>% select(level, tool, frac_negatives_with_pred), by = c("level", "tool")) %>%
+  mutate(method = factor(SIM_TOOLS[tool], levels = SIM_TOOLS), reads = factor(ALEV_LAB[level], levels = ALEV_LAB))
+kable(aov %>% filter(level == "d1") %>% arrange(method) %>%
+        transmute(method, n_truth, sensitivity_stop, precision_stop, f1_stop, sensitivity_exact, precision_exact, f1_exact,
+                  negatives_with_pred = frac_negatives_with_pred, n_pred_excluded) %>% mutate(across(where(is.double), r3)),
+      caption = "Arabidopsis, full depth: all scored contigs")
+anc <- AT("depth", "negatives_by_class.tsv") %>% filter(level == "d1") %>% mutate(method = SIM_TOOLS[tool])
+kable(anc %>% select(class, n_negatives, method, frac_with_pred) %>% mutate(frac_with_pred = r3(frac_with_pred)) %>%
+        pivot_wider(names_from = method, values_from = frac_with_pred),
+      caption = "Arabidopsis, full depth: negatives with a prediction, by source class ('both': compatible with transcripts of both classes)")
+details(AT("depth", "negatives_by_class.tsv") %>% mutate(frac_with_pred = r3(frac_with_pred)),
+        "Arabidopsis: negatives by class, all levels")
+abest <- function(col) abt %>% filter(tool != TD) %>% group_by(reads, type) %>%
+  slice_max(.data[[col]], n = 1, with_ties = FALSE) %>% ungroup() %>%
+  transmute(reads, type, v = sprintf("%.3f (%s)", .data[[col]], method))
+kable(abt %>% filter(tool == TD) %>% transmute(reads, type, n_truth, `TransDecoder, with negatives` = r3(f1_exact_wneg)) %>%
+        left_join(abest("f1_exact_wneg") %>% rename(`best other, with negatives` = v), by = c("reads", "type")) %>%
+        arrange(type, reads),
+      caption = "Arabidopsis: exact F1 by CDS type (negatives counted), TransDecoder vs the best other method")
+details(aov %>% transmute(reads, method, f1_stop = r3(f1_stop), f1_exact = r3(f1_exact),
+                          negatives_with_pred = r3(frac_negatives_with_pred)) %>% arrange(reads, method),
+        "Arabidopsis: overall F1 and negatives with a prediction, by level and method")
+details(abt %>% transmute(reads, method, type, n_truth, sensitivity_exact = r3(sensitivity_exact),
+                          f1_exact = r3(f1_exact), f1_exact_wneg = r3(f1_exact_wneg)) %>% arrange(type, reads, method),
+        "Arabidopsis: by type, by level and method")
+```
+
+**What this assembly tests.** The expression levels are those of the real leaf library (Brian, 2026-10-28: the
+noncoding RNAs were not boosted). The lncRNA and antisense_RNA transcripts carry only
+`r pct(as.numeric(at_par[["pairs_lncRNA"]]) / as.numeric(at_par[["pairs_total"]]))` of the simulated reads, so few
+negative contigs assemble (`r num(atc$negatives[1])` at full depth, falling with depth). This simulation is therefore
+mainly a test of frame and end placement on assembled coding transcripts, not of rejecting noncoding sequence; the
+noncoding test is the human simulation (E30/E31) and the lncRNA inputs of the main benchmark (E04).
+
+
+**Human vs Arabidopsis.** Exact F1 per CDS type (negatives counted) and overall, by depth level, for both
+simulations (human: E30/E31, above).
+
+```{r figS-athal, fig.width = FULL_W, fig.height = 120 * MM}
+both <- bind_rows(
+  dbt %>% transmute(species = "human", fraction = lev_frac(level), method, panel = as.character(type), value = f1_exact_wneg),
+  dov %>% transmute(species = "human", fraction = lev_frac(level), method, panel = "all", value = f1_exact),
+  abt %>% transmute(species = "A. thaliana", fraction = alev$fraction[match(level, alev$level)], method,
+                    panel = as.character(type), value = f1_exact_wneg),
+  aov %>% transmute(species = "A. thaliana", fraction = alev$fraction[match(level, alev$level)], method, panel = "all",
+                    value = f1_exact)) %>%
+  mutate(panel = factor(panel, c(SIM_TYPE_LAB, "all"), c(SIM_TYPE_LAB, "all contigs")),
+         species = factor(species, c("human", "A. thaliana")))
+figS_athal <- ggplot(both, aes(fraction, value, colour = method)) + geom_line(linewidth = 0.4) + geom_point(size = 0.6) +
+  facet_grid(species ~ panel) +
+  scale_x_continuous(trans = "log2", breaks = c(1, 1/4, 1/16), labels = c("1", "1/4", "1/16")) +
+  scale_colour_manual(values = DEPTH_COL, name = NULL) + scale_y_continuous(limits = c(0, 1)) +
+  labs(x = "fraction of simulated read pairs", y = "exact F1 (per type: negatives counted)") +
+  theme(legend.position = "bottom",
+        panel.grid.major.y = element_line(linewidth = 0.2, colour = "#e5e5e5")) +
+  guides(colour = guide_legend(nrow = 2))
+save_fig(figS_athal, "figS_simtrinity_athal", FULL_W, 120 * MM)
+figS_athal
+```
+
 ## Checks against the manuscript
 
 Each row compares a value computed here with the value in the text now. Labels give the tex file and

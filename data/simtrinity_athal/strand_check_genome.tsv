@@ -1,0 +1,7 @@
+read	mapping	alignment_strand_vs_source	n
+R1	multi	opposite	2842
+R1	multi	same_as_transcript	297
+R1	unique	opposite	285249
+R2	multi	opposite	297
+R2	multi	same_as_transcript	2842
+R2	unique	same_as_transcript	285249
