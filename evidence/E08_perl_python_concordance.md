@@ -144,3 +144,23 @@ longer says the implementations "differ only in start codons". `results_algorith
 implementations with identical output") states identical predictions on all 84 benchmark inputs and
 the five sample sets. Still open: that sample-set comparison is from PyTD 44e417a / Perl ab38ca6, not
 the release commits (todo in `results_algorithm.tex`).
+
+## Addendum (2026-10-28): sample-set regression at the release commits
+Command (local, methods01):
+```
+PYTHON=$P/env/td/bin/python bash $T/regression/run_regression.sh $P/work/trees/TD_v7 $P/work/trees/PY_v7 \
+  $P/work/regression/release_3a793ff_41fc5ee > $P/work/regression/release_3a793ff_41fc5ee.log 2>&1
+```
+Perl 41fc5ee (TD_v7), PyTD 3a793ff (PY_v7). Summary copied to `data/regression/release_3a793ff_41fc5ee.summary.tsv`.
+
+| set | ORFs (Perl = Python = exact match) | Perl s | Python s |
+|---|---|---|---|
+| trinity | 737 | see summary | see summary |
+| pasa | 786 | | |
+| stringtie | 2,584 | 285 | 95 |
+| supertx | 69 | 153 | 48 |
+| cufflinks | 60 | 52 | 20 |
+
+All five sets: 0 Perl-only, 0 Python-only, 0 same stop with different start; Jaccard 1.0 (exact and stop).
+The manuscript counts (Results "60 to 2,584 ORFs"; Methods §Implementations "737, 786, 2,584, 69 and 60")
+and notebook 01 now use this run. Earlier counts (692/777/2,681/69/58) were from PyTD 44e417a / Perl ab38ca6.

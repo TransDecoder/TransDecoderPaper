@@ -41,7 +41,7 @@ v7_gm <- read_tab("benchmark", "final_v7", "gm12878_v7_protein_matches.tsv")
 sens_len <- read_tab("benchmark", "rules", "sens_by_length.decoy.tsv")
 parity <- read_tab("benchmark", "release", "parity_perl_pytd.tsv")
 reg_v6 <- read_tab("regression", "baseline_v6.0.0.summary.tsv")
-reg_final <- read_tab("regression", "kozak_bits_44e417a_ab38ca6.summary.tsv")
+reg_final <- read_tab("regression", "release_3a793ff_41fc5ee.summary.tsv")
 
 # L*(GC) as the code looks it up: G+C rounded up to the next 5% step, the 25% value below 25%,
 # no length rule above 80% (methods_algorithm.tex, GC-calibrated long-ORF rule).
@@ -524,15 +524,15 @@ ident %>% kable(digits = 2) %>% kable_styling(full_width = FALSE, font_size = 11
 
 ### Sample data sets
 
-No regression run on the five sample data sets exists at the release commits. The latest is at
-PyTD 44e417a / Perl ab38ca6 (Kozak score in bits; `r evidence("E08")`), shown here with the v6.0.0
-baseline that the text calls "earlier versions".
+The five sample data sets were rerun at the release commits, PyTD 3a793ff / Perl 41fc5ee
+(2026-10-28; `r evidence("E08")`), shown here with the v6.0.0 baseline that the text calls
+"earlier versions".
 
 ```{r regression}
 regw <- function(d) d %>% pivot_wider(names_from = metric, values_from = value)
 rf <- regw(reg_final); r6 <- regw(reg_v6)
 kable(rf %>% select(dataset, perl_orfs, py_orfs, exact_match, same_stop_diff_start, perl_only, py_only),
-      caption = "Perl vs Python, 44e417a / ab38ca6") %>% kable_styling(full_width = FALSE, font_size = 12)
+      caption = "Perl vs Python, release 3a793ff / 41fc5ee") %>% kable_styling(full_width = FALSE, font_size = 12)
 kable(r6 %>% select(dataset, perl_orfs, py_orfs, exact_match, same_stop_diff_start, perl_only, py_only),
       caption = "Perl v6.0.0 vs first PyTD port (43f4293)") %>% kable_styling(full_width = FALSE, font_size = 12)
 n_sets_diff_v6 <- sum(r6$perl_only + r6$py_only > 0)
@@ -612,10 +612,10 @@ check_text("tab:presets L* equals lookup at preset G+C (all Universal-code prese
 # Methods: implementations (l.327-341)
 for (d in c("trinity", "pasa", "stringtie", "supertx", "cufflinks"))
   check_text(sprintf("sample set ORFs, %s (%s:327)", d, M), as.numeric(rf$perl_orfs[rf$dataset == d]),
-             c(trinity = 692, pasa = 777, stringtie = 2681, supertx = 69, cufflinks = 58)[[d]])
+             c(trinity = 737, pasa = 786, stringtie = 2584, supertx = 69, cufflinks = 60)[[d]])
 check_text(paste0("parity cases (", M, ":336)"), n_cases, 7)
 check_text(paste0("parity: max q-values per case (", M, ":339)"), max_q, 64936)
-check_text(paste0("parity: max predictions per case (", M, ":339)"), max_pred, 20148)
+check_text(paste0("parity: max predictions per case (", M, ":339)"), max_pred, 21424)
 # Results: first paragraph (l.12, l.21, l.29, l.31)
 check_text(paste0("minimum ORF length, codons (", R, ":12)"), settings$value[1], 50)
 check_text(paste0("default q (", R, ":21)"), settings$value[4], 0.05)
@@ -624,13 +624,13 @@ check_text(paste0("--sensitive q (", R, ":29)"), settings$value[6], 0.2)
 check_text(paste0("presets distributed (", R, ":31)"), nrow(presets), 7)
 # Results: two implementations (l.42-53)
 check_text(paste0("benchmark inputs with identical predictions (", R, ":43)"), n_ident, 84)
-check_text(paste0("sample sets: smallest ORF count (", R, ":44)"), min(as.numeric(rf$perl_orfs)), 58)
-check_text(paste0("sample sets: largest ORF count (", R, ":44)"), max(as.numeric(rf$perl_orfs)), 2681)
+check_text(paste0("sample sets: smallest ORF count (", R, ":44)"), min(as.numeric(rf$perl_orfs)), 60)
+check_text(paste0("sample sets: largest ORF count (", R, ":44)"), max(as.numeric(rf$perl_orfs)), 2584)
 check_text(paste0("v6.0.0: sample sets with different ORFs (", R, ":49)"), n_sets_diff_v6, 2)
 check_text(paste0("v6.0.0: max start differences per set (", R, ":50)"), max_start_v6, 71)
-check_text(paste0("Perl/Python run time, median, release (", R, ":50)"), round(rt_med, 1), 2.3)
-check_text(paste0("Perl/Python run time, min, release (", R, ":51)"), round(rt_rng[1], 1), 2.0)
-check_text(paste0("Perl/Python run time, max, release (", R, ":51)"), round(rt_rng[2], 1), 2.5)
+check_text(paste0("Perl/Python run time, median, release (", R, ":50)"), round(rt_med, 1), 2.7)
+check_text(paste0("Perl/Python run time, min, release (", R, ":51)"), round(rt_rng[1], 1), 2.1)
+check_text(paste0("Perl/Python run time, max, release (", R, ":51)"), round(rt_rng[2], 1), 3.3)
 check_text(paste0("Perl/Python run time, median, development runs (", R, ":50)"), round(dev_med, 1), 2.3)
 check_text(paste0("Perl/Python run time, min, development runs (", R, ":51)"), round(dev_rng[1], 1), 2.0)
 check_text(paste0("Perl/Python run time, max, development runs (", R, ":51)"), round(dev_rng[2], 1), 2.5)
