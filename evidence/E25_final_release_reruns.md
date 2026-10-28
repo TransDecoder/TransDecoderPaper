@@ -103,3 +103,47 @@ at least L* long are accepted on length alone, so these calls are not controlled
 - Reproduces the one-off tally of 2026-10-28 exactly.
 - Some of these ORFs would also pass the q-value test, so the counts are an upper bound on calls
   accepted by length only.
+
+## Addendum 2026-10-28: homology table for the released homology mode (a5b24c3, `pytd_v7h_homology`)
+The release (PyTD v0.2.0, a5b24c3) adds a homology-assisted start refinement: with BLASTP/Pfam hits,
+the hits can override the keep-open/trim decision for 5'-open ORFs (E33, "Adoption in PyTD"). Ab
+initio output is byte-identical to 3a793ff, so `pytd_v7` is unchanged. The 84 fresh homology runs
+(`$P/work/bench_v3/runs/<org>/<variant>/pytd_v7h_homology/`, `pytd_version.txt` = a5b24c3 in all
+84, checked by the script) replace `pytd_v7_homology` for the homology Results paragraph and Fig. 5d,e.
+- Script: `pipeline/derive/05_homology_v7h_table.sh` (new; nothing edited in place). It scores the
+  84 runs with the same `data/benchmark/final_v7/score_v7.sh` (`score_predictions.py`), writes
+  `data/benchmark/final_v7/v7h_homology_scores.tsv` (the `pytd_v7` rows of `all_scores.tsv` plus the
+  `pytd_v7h_homology` rows), and runs the same `compare_homology.py ... pytd_v7 pytd_v7h_homology`
+  pairing, giving `data/benchmark/homology_v7h_vs_abinitio.tsv`. `homology_vs_abinitio.tsv`
+  (3a793ff) is kept.
+- Checks: per-run exact scores equal E33's `data/start_classifier/adoption/bench_scores.tsv`
+  (84/84). All stop-level columns (`n_pred_*`, `d_sensitivity_stop`, `d_precision_stop`,
+  `d_f1_stop`, `neg_pred_*`) and `f1_exact_abinitio` are identical to `homology_vs_abinitio.tsv` on
+  all 84 inputs; only the exact-level columns differ (84/84). Notebook 05 asserts the identity.
+- Numbers of the homology paragraph (homology minus ab initio, points; 3a793ff -> a5b24c3):
+
+  | quantity | 3a793ff | a5b24c3 |
+  |---|---|---|
+  | complete (48): stop sensitivity | -0.29 to +3.72 | unchanged |
+  | complete (48): exact F1 | -0.35 to +2.09 | -0.44 to +4.78 |
+  | fragments (32): stop sensitivity | +0.42 to +9.20 | unchanged |
+  | fragments (32): exact F1 | +0.11 to +4.65 | +0.52 to +12.90 |
+  | stranded fragments exact F1, human / mouse / *A. thaliana* | +2.58 / +3.08 / +2.34 | +11.77 / +10.87 / +9.44 |
+  | stranded fragments exact F1, other five | +0.13 to +0.65 | +0.52 (*C. reinhardtii*) to +6.49 (*S. pombe*); *P. falciparum* +2.55, *T. thermophila* +1.91, *D. melanogaster* +3.84 |
+  | stop precision, inputs without lncRNAs | -0.51 to +1.32 | unchanged |
+  | calls on random negatives added | 0-2 (seven organisms), 12-39 (*T. thermophila*) | unchanged |
+  | lncRNAs with a prediction, complete.wLnc human / mouse | 1,639 -> 3,268 / 1,640 -> 2,452 | unchanged |
+  | exact F1, complete.wLnc human / mouse | -2.11 / -0.10 | +0.61 / +1.37 |
+  | exact F1, fragments.wLnc human / mouse | +0.21 / +2.30 | +8.78 / +9.64 |
+  | median exact F1, complete-type (48) / fragments (32) / lncRNA inputs (4) | +0.50 / +0.71 / +0.06 | +0.63 / +5.33 / +5.08 |
+  | median exact F1 by family: complete (34, incl. wRand/wLnc/unstranded) / complete_fullutr (16) / fragments (34) | +0.36 / +0.59 / +0.71 | +0.68 / +0.69 / +6.53 |
+  | median 5'-partial exact F1, fragment inputs (34) | +0.68 | +11.66 |
+
+  (Family medians use the rounded table values; E33's `bench_summary.tsv` gives 0.674 / 0.681 /
+  6.522 and 11.663 from unrounded scores.) The lncRNA exact-F1 cost on complete.wLnc becomes a
+  gain because the start assist improves the exact starts of true CDSs, while the lncRNA calls
+  (stop level) are unchanged. The paragraph's contrast "2.3-3.1 points in human, mouse and
+  *A. thaliana* vs 0.1-0.7 in the other five" no longer holds as a clean split (*S. pombe* +6.5).
+- Fig. 5d,e and the notebook 05 checks now use `homology_v7h_vs_abinitio.tsv` (the panel y-limit
+  extends to the data maximum, 12 points); the notebook also tabulates the 3a793ff comparison. The
+  manuscript text (results_coding_failures.tex) still quotes the 3a793ff values and must be updated.

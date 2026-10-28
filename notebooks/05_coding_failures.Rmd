@@ -42,10 +42,14 @@ release rule):
   q-value $\le 0.05$ computed from decoys scored with the same model. The decoys are regenerated as
   PyTD generates them; with the run's own model this reproduces every q-value in `decoy_qvalues.tsv`
   (checked below);
-- the homology comparison (Fig. 5d,e) uses `data/benchmark/homology_vs_abinitio.tsv`: release runs
-  `pytd_v7_homology` minus `pytd_v7`, from `benchmark_v2/scripts/compare_homology.py` on
-  `data/benchmark/final_v7/all_scores.tsv`. The development comparison (`pytd_dev_v2_homology` minus
-  `pytd_dev_v2`) is kept as `homology_vs_abinitio.dev_v2.tsv`.
+- the homology comparison (Fig. 5d,e) uses `data/benchmark/homology_v7h_vs_abinitio.tsv`: the
+  released homology mode (PyTD a5b24c3, homology-assisted start refinement; runs `pytd_v7h_homology`)
+  minus the ab initio release runs (`pytd_v7`), from `benchmark_v2/scripts/compare_homology.py` on
+  `data/benchmark/final_v7/v7h_homology_scores.tsv` (`pipeline/derive/05_homology_v7h_table.sh`; E25
+  addendum of 2026-10-28, E33). Selection and stops equal the earlier 3a793ff homology runs
+  (`pytd_v7_homology`, `homology_vs_abinitio.tsv`, kept and compared below); only start codons differ.
+  The development comparison (`pytd_dev_v2_homology` minus `pytd_dev_v2`) is kept as
+  `homology_vs_abinitio.dev_v2.tsv`.
 
 ```{r data}
 V7 <- function(f) read_tab("long_orf_failures", "v7", f)
@@ -67,7 +71,8 @@ alt <- V7("alt_rules_negatives.tsv")
 dmel_c <- V7("dmel_gc3_rescue.tsv")
 long_fail <- V7("failing_ge1kb.tsv")
 reasons <- V7("reasons_by_length.tsv")
-hom <- read_tab("benchmark", "homology_vs_abinitio.tsv")
+hom <- read_tab("benchmark", "homology_v7h_vs_abinitio.tsv")
+hom_3a7 <- read_tab("benchmark", "homology_vs_abinitio.tsv")  # 3a793ff homology runs (no start assist)
 # development-rule tables of E12, for comparison
 dev_by_org <- read_tab("long_orf_failures", "summary_by_org.tsv")
 dev_by_len <- read_tab("long_orf_failures", "summary_by_length.tsv")
@@ -310,8 +315,8 @@ is kept). `r evidence("E12")`
 
 ## Homology evidence recovers true coding regions, mostly in fragments
 
-Release runs (`pytd_v7` vs `pytd_v7_homology`, `data/benchmark/homology_vs_abinitio.tsv`).
-`r evidence("E25")`
+Release runs (`pytd_v7` vs `pytd_v7h_homology`, PyTD a5b24c3 with the homology-assisted start
+refinement; `data/benchmark/homology_v7h_vs_abinitio.tsv`). `r evidence("E25")` `r evidence("E33")`
 
 ```{r homology}
 hom <- hom %>% mutate(kind = case_when(grepl("wLnc", variant) ~ "lnc",
@@ -328,6 +333,20 @@ rand_tt <- rand %>% filter(org == "tthermophila")
 lnc <- hom %>% filter(kind == "lnc")
 lncv <- function(o, v, col) lnc %>% filter(org == o, variant == v) %>% pull({{ col }})
 kable(hom %>% count(kind), caption = "Inputs per kind.")
+# the start assist changes start codons only: stop-level columns must equal the 3a793ff homology table
+STOP_COLS <- c("n_pred_abinitio", "n_pred_homology", "d_sensitivity_stop", "d_precision_stop", "d_f1_stop",
+               "f1_exact_abinitio", "neg_pred_abinitio", "neg_pred_homology")
+same_stop <- hom %>% select(org, variant, all_of(STOP_COLS)) %>%
+  inner_join(hom_3a7 %>% select(org, variant, all_of(STOP_COLS)), by = c("org", "variant"), suffix = c("", ".old"))
+stopifnot(nrow(same_stop) == 84,
+          all(sapply(STOP_COLS, function(c) identical(as.character(same_stop[[c]]), as.character(same_stop[[paste0(c, ".old")]])))))
+cmp_3a7 <- hom %>% select(org, variant, d_f1_exact) %>%
+  inner_join(hom_3a7 %>% select(org, variant, d_f1_exact_3a793ff = d_f1_exact), by = c("org", "variant")) %>%
+  mutate(kind = case_when(grepl("wLnc", variant) ~ "lnc", startsWith(variant, "complete") ~ "complete", TRUE ~ "fragments"))
+kable(cmp_3a7 %>% group_by(kind) %>%
+        summarise(n = n(), median_d_f1_exact_a5b24c3 = 100 * median(d_f1_exact),
+                  median_d_f1_exact_3a793ff = 100 * median(d_f1_exact_3a793ff)), digits = 2,
+      caption = "Exact F1 change (points), homology minus ab initio: released homology mode (a5b24c3) vs 3a793ff homology runs. Stop-level columns are identical (checked).")
 ```
 
 - Complete transcripts (`r nrow(hc)` inputs): stop-level sensitivity
@@ -347,7 +366,7 @@ kable(hom %>% count(kind), caption = "Inputs per kind.")
 - Human lncRNAs with a prediction: `r num(lncv("human", "complete.wLnc", neg_pred_abinitio))` to
   `r num(lncv("human", "complete.wLnc", neg_pred_homology))` (mouse
   `r num(lncv("mouse", "complete.wLnc", neg_pred_abinitio))` to `r num(lncv("mouse", "complete.wLnc", neg_pred_homology))`).
-  Exact F1 with lncRNA negatives: complete human `r f1(100 * lncv("human", "complete.wLnc", d_f1_exact))`,
+  Exact F1 with lncRNA negatives: complete human `r sprintf("%+.1f", 100 * lncv("human", "complete.wLnc", d_f1_exact))`,
   mouse `r sprintf("%+.1f", 100 * lncv("mouse", "complete.wLnc", d_f1_exact))`; fragments human
   +`r f1(100 * lncv("human", "fragments.wLnc", d_f1_exact))`, mouse
   +`r f1(100 * lncv("mouse", "fragments.wLnc", d_f1_exact))` points.
@@ -424,7 +443,7 @@ hom_panel <- function(col, ylab) {
     geom_col(position = position_dodge(width = 0.55), width = 0.5) +
     geom_hline(yintercept = 0, linewidth = 0.3) +
     scale_fill_manual(values = c(complete = COMPLETE_C, fragments = FRAG_C), name = NULL) +
-    coord_cartesian(ylim = c(-0.5, 10)) + labs(x = NULL, y = ylab) + ital_x
+    coord_cartesian(ylim = c(-0.5, max(10, ceiling(max(pde$sens, pde$f1x))))) + labs(x = NULL, y = ylab) + ital_x
 }
 pD <- hom_panel("sens", "homology − ab initio:\nstop-level sensitivity (points)") + theme(legend.position = "top")
 pE <- hom_panel("f1x", "homology − ab initio:\nexact-CDS F1 (points)") + theme(legend.position = "none")
@@ -550,23 +569,24 @@ ok("L89 dropping S1>0: true CDSs changed, max %", round(max(alt_r$pos_gain_pct),
 ok("L90 dropping S1>0: random fold, min", round(min(alt_r$neg_fold), 1), 1.4, 0.05)
 ok("L90 dropping S1>0: random fold, max", round(max(alt_r$neg_fold), 1), 7.9, 0.05)
 ok("L90 dropping S1>0: random fold, median", round(median(alt_r$neg_fold), 1), 2.5, 0.05)
-# homology paragraph (release runs)
+# homology paragraph (released homology mode, a5b24c3 pytd_v7h_homology; values updated 2026-10-28 from
+# the 3a793ff runs: stop-level values unchanged, exact-F1 values new; manuscript text to follow)
 other5 <- frag_s[setdiff(names(frag_s), c("human", "mouse", "athal"))]
 ok("homology inputs", nrow(hom), 84)
 ok("complete inputs", nrow(hc), 48)
 ok("complete: sensitivity change min", round(100 * min(hc$d_sensitivity_stop), 1), -0.3, 0.05)
 ok("complete: sensitivity change max", round(100 * max(hc$d_sensitivity_stop), 1), 3.7, 0.05)
-ok("complete: exact F1 min", 100 * min(hc$d_f1_exact), -0.4, 0.06)  # -0.35
-ok("complete: exact F1 max", round(100 * max(hc$d_f1_exact), 1), 2.1, 0.05)
+ok("complete: exact F1 min", round(100 * min(hc$d_f1_exact), 1), -0.4, 0.05)  # -0.44 (3a793ff -0.35)
+ok("complete: exact F1 max", round(100 * max(hc$d_f1_exact), 1), 4.8, 0.05)  # 3a793ff 2.1
 ok("fragment inputs", nrow(hf), 32)
 ok("fragments: sensitivity min", round(100 * min(hf$d_sensitivity_stop), 1), 0.4, 0.05)
 ok("fragments: sensitivity max", round(100 * max(hf$d_sensitivity_stop), 1), 9.2, 0.05)
-ok("fragments: exact F1 min", round(100 * min(hf$d_f1_exact), 1), 0.1, 0.05)
-ok("fragments: exact F1 max", 100 * max(hf$d_f1_exact), 4.7, 0.06)  # 4.65
-ok("stranded fragments F1, min of human/mouse/athal", round(min(frag_s[c("human", "mouse", "athal")]), 1), 2.3, 0.05)
-ok("stranded fragments F1, max of human/mouse/athal", round(max(frag_s[c("human", "mouse", "athal")]), 1), 3.1, 0.05)
-ok("stranded fragments F1, other five min", round(min(other5), 1), 0.1, 0.05)
-ok("stranded fragments F1, other five max", round(max(other5), 1), 0.7, 0.06)  # 0.65
+ok("fragments: exact F1 min", round(100 * min(hf$d_f1_exact), 1), 0.5, 0.05)  # 3a793ff 0.1
+ok("fragments: exact F1 max", round(100 * max(hf$d_f1_exact), 1), 12.9, 0.05)  # 3a793ff 4.65
+ok("stranded fragments F1, min of human/mouse/athal", round(min(frag_s[c("human", "mouse", "athal")]), 1), 9.4, 0.05)  # 3a793ff 2.3
+ok("stranded fragments F1, max of human/mouse/athal", round(max(frag_s[c("human", "mouse", "athal")]), 1), 11.8, 0.05)  # 3a793ff 3.1
+ok("stranded fragments F1, other five min", round(min(other5), 1), 0.5, 0.05)  # 3a793ff 0.1
+ok("stranded fragments F1, other five max", round(max(other5), 1), 6.5, 0.05)  # 3a793ff 0.65
 ok("precision change min", round(100 * min(hneg$d_precision_stop), 1), -0.5, 0.05)
 ok("precision change max", round(100 * max(hneg$d_precision_stop), 1), 1.3, 0.05)
 ok("random calls added, 7 orgs, min", min(rand_other$d_neg), 0)
@@ -577,9 +597,9 @@ ok("human lncRNAs predicted, ab initio", lncv("human", "complete.wLnc", neg_pred
 ok("human lncRNAs predicted, homology", lncv("human", "complete.wLnc", neg_pred_homology), 3268)
 ok("mouse lncRNAs predicted, ab initio", lncv("mouse", "complete.wLnc", neg_pred_abinitio), 1640)
 ok("mouse lncRNAs predicted, homology", lncv("mouse", "complete.wLnc", neg_pred_homology), 2452)
-ok("complete+lnc exact F1, human", round(100 * lncv("human", "complete.wLnc", d_f1_exact), 1), -2.1, 0.05)
-ok("complete+lnc exact F1, mouse", round(100 * lncv("mouse", "complete.wLnc", d_f1_exact), 1), -0.1, 0.05)
-ok("fragments+lnc exact F1, human", round(100 * lncv("human", "fragments.wLnc", d_f1_exact), 1), 0.2, 0.05)
-ok("fragments+lnc exact F1, mouse", round(100 * lncv("mouse", "fragments.wLnc", d_f1_exact), 1), 2.3, 0.05)
+ok("complete+lnc exact F1, human", round(100 * lncv("human", "complete.wLnc", d_f1_exact), 1), 0.6, 0.05)  # 3a793ff -2.1
+ok("complete+lnc exact F1, mouse", round(100 * lncv("mouse", "complete.wLnc", d_f1_exact), 1), 1.4, 0.05)  # 3a793ff -0.1
+ok("fragments+lnc exact F1, human", round(100 * lncv("human", "fragments.wLnc", d_f1_exact), 1), 8.8, 0.05)  # 3a793ff 0.2
+ok("fragments+lnc exact F1, mouse", round(100 * lncv("mouse", "fragments.wLnc", d_f1_exact), 1), 9.6, 0.05)  # 3a793ff 2.3
 check_report()
 ```
