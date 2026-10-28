@@ -217,3 +217,46 @@ Checked against the run directories, the committed tables and the manuscript (re
     the bench_v3 annotations, complete_fullutr, GeneMarkS-T and CPC2, and gives the GC values
     (22.1%, 68.3%).
   - One `\todo{ref}` (annotation sources table) remains.
+
+## Addendum (2026-10-28): first-ATG longest-ORF baseline at the release
+Brian approved one sentence in the manuscript on this baseline. It was recomputed against the release
+so that both sides use the same LongOrfs output.
+
+**Build**
+- `pipeline/derive/02_first_atg_baseline.py` runs `benchmark_v2/scripts/longest_orf_with_start.py`
+  unchanged on `longest_orfs.cds` of each `pytd_v7` run.
+- Same definition as `longest_orf_atg` above: 5'-open ORFs are trimmed to the first in-frame ATG
+  (dropped if none), and the longest ORF per transcript is kept.
+- The difference from the 2026-10-23 version is the LongOrfs minimum: 50 aa (release) instead of 100 aa
+  (`pytd`, 27bfb5e).
+- Predictions: `$P/work/bench_v3/first_atg_v7/<org>/<variant>/longest_orf_atg.preds.tsv`. Run
+  directories were only read.
+
+**Scoring**
+- Counts are those of `score_predictions.py` (via `bootstrap_ci.per_seq_counts` / `metrics`).
+- Medians are over the 8 organisms, as in Table 1. Mixed inputs: median over organisms per trial, then
+  the mean over the 3 trials.
+- Paired bootstrap of the median as in `bootstrap_ci.py`: B = 1,000, seed 1.
+- Output: `data/benchmark/final_v7/first_atg_baseline.tsv`. Run on 2026-10-28, 1 process, 2 min.
+
+**Check:** the `pytd_v7` values reproduce Table 1 (complete stop / exact F1 0.980 / 0.912; fragments
+0.930 / 0.822; mixed 0.970 / 0.843; complete + random precision 0.994).
+
+**Results** (median over 8 organisms; release default vs first-ATG baseline):
+
+| input | measure | release | first ATG | difference (95% CI) |
+|---|---|---|---|---|
+| complete | exact F1 | 0.912 | 0.956 | +0.045 (0.042 to 0.050) |
+| complete | stop F1 | 0.980 | 0.995 | +0.015 (0.013 to 0.016) |
+| fragments | exact F1 | 0.822 | 0.484 | -0.338 (-0.343 to -0.330) |
+| fragments | stop F1 | 0.930 | 0.901 | -0.029 (-0.034 to -0.026) |
+| complete + random | stop precision | 0.994 | 0.550 | -0.444 (-0.447 to -0.440) |
+| complete + random | random sequences with a call | 0.28% | 80.8% | |
+| mixed (mean of 3 trial medians) | exact F1 | 0.843 | 0.497 | |
+| mixed | stop F1 | 0.970 | 0.952 | |
+
+- Per organism, the baseline's exact F1 is higher on complete inputs in all 8 organisms (+1.0 points in
+  P. falciparum to +10.7 in T. thermophila) and lower on fragments in all 8.
+- Compared with the 2026-10-23 version (100-aa LongOrfs): complete exact F1 0.956 vs 0.942 and
+  fragments 0.484 vs 0.433. The values on complete + random equal the `longest_orf_atg` row of
+  `data/benchmark/qmodes/qmodes.medians.tsv` (built from the same 50-aa LongOrfs).

@@ -45,7 +45,7 @@ disagrees with its E-record, the E-record wins; fix the log.
 | S6 | Kozak term: multiplicative vs additive | ADOPTED (additive) | Additive helps fragments more; complete inputs barely change |
 | S7 | alpha x w grid, leave-one-organism-out | ADOPTED | alpha trades complete vs fragment accuracy; default is a 50/50 compromise |
 | S8 | Kozak in bits (w = 17/bit) | ADOPTED | Rounding the weight changes at most 0.13% of predictions |
-| S9 | First-ATG-of-longest-ORF baseline | OPEN | Beats TD on complete exact F1 (0.942 vs 0.910); loses badly on fragments |
+| S9 | First-ATG-of-longest-ORF baseline | ADOPTED (reported) | Beats TD on complete exact F1 (0.956 vs 0.912 at release); fails on fragments and random sequence |
 | S10 | UTR-length prior for keep-open vs trim | NOT ADOPTED | Short open UTRs are common in real annotation; the prior just shifts alpha's trade-off |
 | S11 | Keep-open vs trim classifier (E33) | NOT ADOPTED | "ORF lacks a stop" separates classes perfectly in benchmark fragments; benchmark-trained context models do not transfer |
 | S12 | Later annotated ATGs (C. reinhardtii) | OPEN | 19.6% of C. reinhardtii starts are later ATGs; no tested rule recovers them |
@@ -370,12 +370,20 @@ Outcome counts: see the end of this file.
 
 ### S9. First ATG of the longest ORF as a start rule (2026-10-23)
 - **Tried:** baseline `longest_orf_atg`: trim each 5'-open longest ORF to its first ATG.
-- **Outcome: OPEN.** E07 says it is "not yet in the manuscript"; no decision is recorded.
+- **Outcome: ADOPTED as a reported baseline.** On 2026-10-28 Brian approved one sentence in Results
+  (benchmark). It was first OPEN: E07 said "not yet in the manuscript".
 - **Numbers:** complete exact F1 median 0.942 (final defaults 0.910; higher in all 8 organisms; bootstrap
   diff +0.032, CI 0.028-0.037); fragments exact F1 0.433 (final 0.789).
 - **Lesson:** on complete transcripts this simple rule wins; TransDecoder's case rests on fragments and
   noncoding sequence. That is why the manuscript presents the noncoding test first.
-- **Pointers:** E07 Caveats, E17; `benchmark_v2/scripts/longest_orf_with_start.py`.
+- **Release recompute (2026-10-28):** same definition, on the `pytd_v7` LongOrfs output (50-aa minimum).
+  Medians over 8 organisms, release vs baseline:
+  - complete exact F1 0.912 vs 0.956 (difference +0.045, 95% CI 0.042-0.050; higher in all 8 organisms);
+  - fragments exact F1 0.822 vs 0.484 (lower in all 8);
+  - complete + random stop precision 0.994 vs 0.550, with 80.8% of random sequences called (release 0.28%);
+  - mixed inputs exact F1 0.843 vs 0.497.
+- **Pointers:** E07 Caveats and Addendum (2026-10-28), E17; `benchmark_v2/scripts/longest_orf_with_start.py`;
+  `pipeline/derive/02_first_atg_baseline.py`; `data/benchmark/final_v7/first_atg_baseline.tsv`.
 
 ### S10. UTR-length prior for keep-open vs trim (2026-10-25)
 - **Question (Brian):** a very short implied 5' UTR may signal truncation; does a prior on UTR length help?
@@ -570,7 +578,7 @@ Outcome counts: see the end of this file.
 
 ### B5. Baselines (2026-10-18 / 10-23)
 - **Outcome: PARTIAL.** The longest-ORF baseline is reported. The all-ORFs (>= 100 codons) baseline was
-  scored but not reported (Brian, 2026-10-23). The first-ATG baseline is S9 (OPEN).
+  scored but not reported (Brian, 2026-10-23). The first-ATG baseline is S9 (reported; release recompute 2026-10-28).
 - **Lesson:** on mixed inputs and simulated assemblies the longest-ORF baseline comes from `pytd_v7`
   LongOrfs, not the older `pytd` run.
 - **Pointers:** E07, E22, E28.
@@ -853,7 +861,7 @@ or note describes the incident; details are unknown.
 4. **Calibration on lncRNAs.** E20 calls the lncRNA calibration "roughly nominal" (development runs).
    `results_short_orfs.tex` reports observed FDR above nominal at release (0.080 / 0.102 at q 0.05) and
    carries a todo about the wording.
-   *Open (manuscript): investigated 2026-10-28. 19-29% of release lncRNA calls are long enough to be accepted on length alone (>= L\* = 726 nt), so 1 - precision is not a q-value calibration.*
+   *Open (manuscript): investigated 2026-10-28. 19-29% of release lncRNA calls are long enough to be accepted on length alone (>= L\* = 726 nt), so 1 - precision is not a q-value calibration.* **Update 2026-10-28:** the Results now say this; the tally is reproducible with `pipeline/derive/04_lnc_calls_by_autoaccept_length.py` -> `final_v7/lnc_calls_by_autoaccept_length.tsv` (E25).
 5. **Stale caveats about outdated Methods text.** E08, E09 and E10 Caveats say the Methods still describe
    the PWM procedure, "differ only in start codons" and GC = 2q(C). None of these phrases is in the
    current `methods_algorithm.tex`; the caveats appear out of date.
@@ -875,17 +883,17 @@ or note describes the incident; details are unknown.
    **Resolved 2026-10-28:** notes/06 now carries a dated correction citing E02.
 11. **First-ATG baseline.** E07 says the `longest_orf_atg` result (exact F1 0.942 vs 0.910) is "not yet in
     the manuscript". It is still absent (no "0.942" in the sections). Whether to report it is undecided.
-   *Open (manuscript decision): numbers and options sent to the coordinator 2026-10-28.*
+   **Resolved 2026-10-28:** Brian approved one sentence. The baseline was recomputed at the release (E07 Addendum; `first_atg_baseline.tsv`): complete exact F1 0.956 vs 0.912, fragments 0.484 vs 0.822.
 
 ## Outcome counts
 Entries: 54 (A1-A13, S1-S12, O1-O4, H1-H4, B1-B10, T1-T5, G1-G6).
 
 | Outcome | Count | Entries |
 |---|---|---|
-| ADOPTED | 30 | A1-A4, A9-A12, S4, S6-S8, O1, H1, H2, B1-B4, B8, B10, T1-T3, G1-G6 |
+| ADOPTED | 31 | A1-A4, A9-A12, S4, S6-S9, O1, H1, H2, B1-B4, B8, B10, T1-T3, G1-G6 |
 | NOT ADOPTED | 12 | A5, A7, A8, A13, S2, S3, S5, S10, S11, O3, O4, H3 |
 | PARTIAL | 4 | S1, O2, B5, B7 |
-| OPEN | 6 | A6, S9, S12, H4, B9, T4 |
+| OPEN | 5 | A6, S12, H4, B9, T4 |
 | ABANDONED | 2 | B6, T5 |
 
 Rejected variants inside ADOPTED entries: the decoy-derived long-ORF length (A10) and the multiplicative

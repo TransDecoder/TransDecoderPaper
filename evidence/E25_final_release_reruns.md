@@ -83,3 +83,23 @@ Earlier fixed short-ORF test: LRAA 33,587 / 1,005; StringTie 36,547 / 4,119.
 
 ## Caveats
 - GM12878 MANE exact recovery falls 0.5–1.2 points with the q-value test (exact given assembled: LRAA −0.5, StringTie −1.2, Trinity −1.2 points), the price of 2.4- to 4.4-fold fewer unannotated CDSs.
+
+## lncRNA calls at or above the long-ORF auto-accept length (2026-10-28)
+For the Results sentence on the observed false fraction on lncRNA inputs (results_short_orfs.tex): ORFs
+at least L* long are accepted on length alone, so these calls are not controlled by the q-value test.
+- Script: `pipeline/derive/04_lnc_calls_by_autoaccept_length.py`.
+  - It reads L* from each release run's `predict.log` (726 nt in all four runs).
+  - It counts the predictions in `preds.tsv` on `lnc_*` sequences, and those of length
+    (end - start + 1, stop included) >= L*.
+- Output: `data/benchmark/final_v7/lnc_calls_by_autoaccept_length.tsv`.
+
+| input | lncRNA calls | >= L* | share |
+|---|---|---|---|
+| human complete.wLnc | 1,639 | 482 | 29.4% |
+| human fragments.wLnc | 1,928 | 475 | 24.6% |
+| mouse complete.wLnc | 1,640 | 362 | 22.1% |
+| mouse fragments.wLnc | 1,904 | 356 | 18.7% |
+
+- Reproduces the one-off tally of 2026-10-28 exactly.
+- Some of these ORFs would also pass the q-value test, so the counts are an upper bound on calls
+  accepted by length only.

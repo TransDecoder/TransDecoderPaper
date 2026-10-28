@@ -1,0 +1,5 @@
+org	variant	L_star_nt	lnc_calls	lnc_calls_ge_L_star	frac_ge_L_star
+human	complete.wLnc	726	1639	482	0.2941
+human	fragments.wLnc	726	1928	475	0.2464
+mouse	complete.wLnc	726	1640	362	0.2207
+mouse	fragments.wLnc	726	1904	356	0.1870
