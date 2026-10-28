@@ -1,0 +1,235 @@
+dataset	type	cls	reason	needed	rules	n
+sim.athal.d1	3prime_partial	hit_no_rule	blast_ss11_50	trim	.	8
+sim.athal.d1	3prime_partial	hit_no_rule	blast_ss4_10	trim	.	2
+sim.athal.d1	3prime_partial	hit_no_rule	blast_ss_gt50	trim	.	7
+sim.athal.d1	3prime_partial	hit_no_rule	pfam_only_down	trim	.	16
+sim.athal.d1	3prime_partial	no_hit		trim	.	19
+sim.athal.d1	3prime_partial	not_5open				3
+sim.athal.d1	3prime_partial	rule_wrong		trim	R1,R3	3
+sim.athal.d1	3prime_partial	rule_wrong		trim	R3	6
+sim.athal.d1	3prime_partial	selection	no_prediction			84
+sim.athal.d1	3prime_partial	selection	wrong_stop_or_orf			7
+sim.athal.d1	3prime_partial	start_elsewhere		downstream_atg	.	1
+sim.athal.d1	3prime_partial	start_elsewhere		downstream_atg	R2	1
+sim.athal.d1	5prime_partial	hit_no_rule	blast_nterm_off	keep	.	4
+sim.athal.d1	5prime_partial	hit_no_rule	blast_ss11_50	keep	.	20
+sim.athal.d1	5prime_partial	hit_no_rule	blast_ss4_10	keep	.	8
+sim.athal.d1	5prime_partial	hit_no_rule	blast_ss_gt50	keep	.	49
+sim.athal.d1	5prime_partial	hit_no_rule	pfam_only_down	keep	.	47
+sim.athal.d1	5prime_partial	no_hit		keep	.	39
+sim.athal.d1	5prime_partial	rule_wrong		keep	R2	4
+sim.athal.d1	5prime_partial	selection	no_prediction			124
+sim.athal.d1	5prime_partial	selection	wrong_stop_or_orf			4
+sim.athal.d1	complete	conflict		trim	R2,R3	6
+sim.athal.d1	complete	hit_no_rule	blast_nterm_off	trim	.	37
+sim.athal.d1	complete	hit_no_rule	blast_ss11_50	trim	.	202
+sim.athal.d1	complete	hit_no_rule	blast_ss4_10	trim	.	116
+sim.athal.d1	complete	hit_no_rule	blast_ss_gt50	trim	.	189
+sim.athal.d1	complete	hit_no_rule	blast_up_sstart1	trim	.	1
+sim.athal.d1	complete	hit_no_rule	pfam_only_down	trim	.	239
+sim.athal.d1	complete	no_hit		trim	.	96
+sim.athal.d1	complete	not_5open				57
+sim.athal.d1	complete	rule_wrong		trim	R1	26
+sim.athal.d1	complete	rule_wrong		trim	R1,R3	5
+sim.athal.d1	complete	rule_wrong		trim	R3	57
+sim.athal.d1	complete	selection	no_prediction			549
+sim.athal.d1	complete	selection	wrong_stop_or_orf			37
+sim.athal.d1	complete	start_elsewhere		downstream_atg	.	14
+sim.athal.d1	complete	start_elsewhere		downstream_atg	R2	1
+sim.athal.d1	internal	hit_no_rule	blast_ss11_50	keep	.	5
+sim.athal.d1	internal	hit_no_rule	blast_ss_gt50	keep	.	30
+sim.athal.d1	internal	hit_no_rule	pfam_only_down	keep	.	37
+sim.athal.d1	internal	no_hit		keep	.	90
+sim.athal.d1	internal	rule_wrong		keep	R2	1
+sim.athal.d1	internal	selection	no_prediction			220
+sim.athal.d1	internal	selection	wrong_stop_or_orf			1
+sim.athal.d1.B	3prime_partial	hit_no_rule	blast_ss11_50	trim	.	8
+sim.athal.d1.B	3prime_partial	hit_no_rule	blast_ss4_10	trim	.	2
+sim.athal.d1.B	3prime_partial	hit_no_rule	blast_ss_gt50	trim	.	7
+sim.athal.d1.B	3prime_partial	hit_no_rule	pfam_only_down	trim	.	16
+sim.athal.d1.B	3prime_partial	no_hit		trim	.	19
+sim.athal.d1.B	3prime_partial	not_5open				5
+sim.athal.d1.B	3prime_partial	rule_wrong		trim	R1,R3	3
+sim.athal.d1.B	3prime_partial	rule_wrong		trim	R3	6
+sim.athal.d1.B	3prime_partial	selection	no_prediction			55
+sim.athal.d1.B	3prime_partial	selection	wrong_stop_or_orf			7
+sim.athal.d1.B	3prime_partial	start_elsewhere		downstream_atg	.	1
+sim.athal.d1.B	3prime_partial	start_elsewhere		downstream_atg	R2	1
+sim.athal.d1.B	5prime_partial	hit_no_rule	blast_nterm_off	keep	.	4
+sim.athal.d1.B	5prime_partial	hit_no_rule	blast_ss11_50	keep	.	20
+sim.athal.d1.B	5prime_partial	hit_no_rule	blast_ss4_10	keep	.	8
+sim.athal.d1.B	5prime_partial	hit_no_rule	blast_ss_gt50	keep	.	49
+sim.athal.d1.B	5prime_partial	hit_no_rule	pfam_only_down	keep	.	47
+sim.athal.d1.B	5prime_partial	no_hit		keep	.	38
+sim.athal.d1.B	5prime_partial	rule_wrong		keep	R2	4
+sim.athal.d1.B	5prime_partial	selection	no_prediction			65
+sim.athal.d1.B	5prime_partial	selection	wrong_stop_or_orf			10
+sim.athal.d1.B	complete	conflict		trim	R2,R3	6
+sim.athal.d1.B	complete	hit_no_rule	blast_nterm_off	trim	.	37
+sim.athal.d1.B	complete	hit_no_rule	blast_ss11_50	trim	.	202
+sim.athal.d1.B	complete	hit_no_rule	blast_ss4_10	trim	.	117
+sim.athal.d1.B	complete	hit_no_rule	blast_ss_gt50	trim	.	189
+sim.athal.d1.B	complete	hit_no_rule	blast_up_sstart1	trim	.	1
+sim.athal.d1.B	complete	hit_no_rule	pfam_only_down	trim	.	243
+sim.athal.d1.B	complete	no_hit		trim	.	95
+sim.athal.d1.B	complete	not_5open				59
+sim.athal.d1.B	complete	rule_wrong		trim	R1	27
+sim.athal.d1.B	complete	rule_wrong		trim	R1,R3	5
+sim.athal.d1.B	complete	rule_wrong		trim	R3	62
+sim.athal.d1.B	complete	selection	no_prediction			215
+sim.athal.d1.B	complete	selection	wrong_stop_or_orf			59
+sim.athal.d1.B	complete	start_elsewhere		downstream_atg	.	14
+sim.athal.d1.B	complete	start_elsewhere		downstream_atg	R2	2
+sim.athal.d1.B	internal	hit_no_rule	blast_ss11_50	keep	.	5
+sim.athal.d1.B	internal	hit_no_rule	blast_ss_gt50	keep	.	32
+sim.athal.d1.B	internal	hit_no_rule	pfam_only_down	keep	.	42
+sim.athal.d1.B	internal	no_hit		keep	.	90
+sim.athal.d1.B	internal	rule_wrong		keep	R2	1
+sim.athal.d1.B	internal	selection	no_prediction			84
+sim.athal.d1.B	internal	selection	wrong_stop_or_orf			1
+sim.human.d1	3prime_partial	conflict		trim	R2,R3	2
+sim.human.d1	3prime_partial	hit_no_rule	blast_nterm_off	trim	.	1
+sim.human.d1	3prime_partial	hit_no_rule	blast_ss11_50	trim	.	1
+sim.human.d1	3prime_partial	hit_no_rule	blast_ss4_10	trim	.	2
+sim.human.d1	3prime_partial	hit_no_rule	blast_ss_gt50	trim	.	3
+sim.human.d1	3prime_partial	hit_no_rule	pfam_only_down	trim	.	2
+sim.human.d1	3prime_partial	no_hit		trim	.	1
+sim.human.d1	3prime_partial	not_5open				52
+sim.human.d1	3prime_partial	rule_wrong		trim	R1	4
+sim.human.d1	3prime_partial	rule_wrong		trim	R1,R3	10
+sim.human.d1	3prime_partial	rule_wrong		trim	R3	2
+sim.human.d1	3prime_partial	selection	no_prediction			275
+sim.human.d1	3prime_partial	selection	wrong_stop_or_orf			11
+sim.human.d1	3prime_partial	start_elsewhere		downstream_atg	.	9
+sim.human.d1	5prime_partial	hit_no_rule	blast_ss11_50	keep	.	8
+sim.human.d1	5prime_partial	hit_no_rule	blast_ss4_10	keep	.	1
+sim.human.d1	5prime_partial	hit_no_rule	blast_ss_gt50	keep	.	36
+sim.human.d1	5prime_partial	hit_no_rule	blast_up_sstart1	keep	.	1
+sim.human.d1	5prime_partial	hit_no_rule	pfam_only_down	keep	.	4
+sim.human.d1	5prime_partial	no_hit		keep	.	12
+sim.human.d1	5prime_partial	rule_wrong		keep	R2	12
+sim.human.d1	5prime_partial	selection	no_prediction			391
+sim.human.d1	5prime_partial	selection	wrong_stop_or_orf			21
+sim.human.d1	complete	conflict		trim	R2,R3	3
+sim.human.d1	complete	hit_no_rule	blast_nterm_off	trim	.	30
+sim.human.d1	complete	hit_no_rule	blast_ss11_50	trim	.	41
+sim.human.d1	complete	hit_no_rule	blast_ss4_10	trim	.	28
+sim.human.d1	complete	hit_no_rule	blast_ss_gt50	trim	.	21
+sim.human.d1	complete	hit_no_rule	blast_up_sstart1	trim	.	2
+sim.human.d1	complete	hit_no_rule	pfam_only_down	trim	.	5
+sim.human.d1	complete	no_hit		trim	.	6
+sim.human.d1	complete	not_5open				760
+sim.human.d1	complete	rule_wrong		trim	R1	91
+sim.human.d1	complete	rule_wrong		trim	R1,R3	114
+sim.human.d1	complete	rule_wrong		trim	R3	25
+sim.human.d1	complete	selection	no_prediction			1753
+sim.human.d1	complete	selection	wrong_stop_or_orf			435
+sim.human.d1	complete	start_elsewhere		downstream_atg	.	340
+sim.human.d1	complete	start_elsewhere		downstream_atg	R1	1
+sim.human.d1	complete	start_elsewhere		downstream_atg	R2	37
+sim.human.d1	internal	hit_no_rule	blast_ss11_50	keep	.	3
+sim.human.d1	internal	hit_no_rule	blast_ss4_10	keep	.	1
+sim.human.d1	internal	hit_no_rule	blast_ss_gt50	keep	.	24
+sim.human.d1	internal	hit_no_rule	pfam_only_down	keep	.	6
+sim.human.d1	internal	no_hit		keep	.	25
+sim.human.d1	internal	rule_wrong		keep	R2	6
+sim.human.d1	internal	selection	no_prediction			544
+sim.human.d32	3prime_partial	conflict		trim	R2,R3	1
+sim.human.d32	3prime_partial	hit_no_rule	blast_nterm_off	trim	.	1
+sim.human.d32	3prime_partial	hit_no_rule	blast_ss11_50	trim	.	3
+sim.human.d32	3prime_partial	hit_no_rule	blast_ss_gt50	trim	.	3
+sim.human.d32	3prime_partial	hit_no_rule	blast_up_sstart1	trim	.	1
+sim.human.d32	3prime_partial	hit_no_rule	pfam_only_down	trim	.	1
+sim.human.d32	3prime_partial	no_hit		trim	.	1
+sim.human.d32	3prime_partial	not_5open				6
+sim.human.d32	3prime_partial	rule_wrong		trim	R1	8
+sim.human.d32	3prime_partial	rule_wrong		trim	R1,R3	8
+sim.human.d32	3prime_partial	rule_wrong		trim	R3	2
+sim.human.d32	3prime_partial	selection	no_prediction			196
+sim.human.d32	3prime_partial	selection	wrong_stop_or_orf			2
+sim.human.d32	3prime_partial	start_elsewhere		downstream_atg	.	7
+sim.human.d32	3prime_partial	start_elsewhere		downstream_atg	R2	1
+sim.human.d32	3prime_partial	start_elsewhere		downstream_atg	R3	1
+sim.human.d32	5prime_partial	hit_no_rule	blast_ss11_50	keep	.	3
+sim.human.d32	5prime_partial	hit_no_rule	blast_ss4_10	keep	.	3
+sim.human.d32	5prime_partial	hit_no_rule	blast_ss_gt50	keep	.	22
+sim.human.d32	5prime_partial	hit_no_rule	blast_up_sstart1	keep	.	1
+sim.human.d32	5prime_partial	hit_no_rule	pfam_only_down	keep	.	4
+sim.human.d32	5prime_partial	no_hit		keep	.	3
+sim.human.d32	5prime_partial	rule_wrong		keep	R2	7
+sim.human.d32	5prime_partial	selection	no_prediction			320
+sim.human.d32	5prime_partial	selection	wrong_stop_or_orf			13
+sim.human.d32	complete	conflict		trim	R2,R3	4
+sim.human.d32	complete	hit_no_rule	blast_nterm_off	trim	.	6
+sim.human.d32	complete	hit_no_rule	blast_ss11_50	trim	.	9
+sim.human.d32	complete	hit_no_rule	blast_ss4_10	trim	.	5
+sim.human.d32	complete	hit_no_rule	blast_ss_gt50	trim	.	6
+sim.human.d32	complete	hit_no_rule	blast_up_sstart1	trim	.	1
+sim.human.d32	complete	hit_no_rule	pfam_only_down	trim	.	1
+sim.human.d32	complete	not_5open				35
+sim.human.d32	complete	rule_wrong		trim	R1	21
+sim.human.d32	complete	rule_wrong		trim	R1,R3	17
+sim.human.d32	complete	rule_wrong		trim	R3	9
+sim.human.d32	complete	selection	no_prediction			205
+sim.human.d32	complete	selection	wrong_stop_or_orf			16
+sim.human.d32	complete	start_elsewhere		downstream_atg	.	33
+sim.human.d32	complete	start_elsewhere		downstream_atg	R2	5
+sim.human.d32	internal	hit_no_rule	blast_ss11_50	keep	.	7
+sim.human.d32	internal	hit_no_rule	blast_ss4_10	keep	.	2
+sim.human.d32	internal	hit_no_rule	blast_ss_gt50	keep	.	81
+sim.human.d32	internal	hit_no_rule	pfam_only_down	keep	.	7
+sim.human.d32	internal	no_hit		keep	.	39
+sim.human.d32	internal	rule_wrong		keep	R2	5
+sim.human.d32	internal	selection	no_prediction			916
+sim.human.d32	internal	selection	wrong_stop_or_orf			3
+sim.human.d8	3prime_partial	conflict		trim	R2,R3	2
+sim.human.d8	3prime_partial	hit_no_rule	blast_nterm_off	trim	.	1
+sim.human.d8	3prime_partial	hit_no_rule	blast_ss11_50	trim	.	5
+sim.human.d8	3prime_partial	hit_no_rule	blast_ss4_10	trim	.	3
+sim.human.d8	3prime_partial	hit_no_rule	blast_ss_gt50	trim	.	4
+sim.human.d8	3prime_partial	no_hit		trim	.	3
+sim.human.d8	3prime_partial	not_5open				13
+sim.human.d8	3prime_partial	rule_wrong		trim	R1	8
+sim.human.d8	3prime_partial	rule_wrong		trim	R1,R3	9
+sim.human.d8	3prime_partial	rule_wrong		trim	R3	3
+sim.human.d8	3prime_partial	selection	no_prediction			231
+sim.human.d8	3prime_partial	selection	wrong_stop_or_orf			8
+sim.human.d8	3prime_partial	start_elsewhere		downstream_atg	.	11
+sim.human.d8	3prime_partial	start_elsewhere		downstream_atg	R1	1
+sim.human.d8	3prime_partial	start_elsewhere		downstream_atg	R2	1
+sim.human.d8	3prime_partial	start_elsewhere		downstream_atg	R3	1
+sim.human.d8	5prime_partial	conflict		keep	R2,R3	1
+sim.human.d8	5prime_partial	hit_no_rule	blast_ss11_50	keep	.	2
+sim.human.d8	5prime_partial	hit_no_rule	blast_ss_gt50	keep	.	26
+sim.human.d8	5prime_partial	hit_no_rule	pfam_only_down	keep	.	3
+sim.human.d8	5prime_partial	no_hit		keep	.	9
+sim.human.d8	5prime_partial	rule_wrong		keep	R2	10
+sim.human.d8	5prime_partial	selection	no_prediction			422
+sim.human.d8	5prime_partial	selection	wrong_stop_or_orf			18
+sim.human.d8	complete	conflict		trim	R2,R3	12
+sim.human.d8	complete	hit_no_rule	blast_nterm_off	trim	.	9
+sim.human.d8	complete	hit_no_rule	blast_ss11_50	trim	.	30
+sim.human.d8	complete	hit_no_rule	blast_ss4_10	trim	.	12
+sim.human.d8	complete	hit_no_rule	blast_ss_gt50	trim	.	13
+sim.human.d8	complete	hit_no_rule	pfam_only_down	trim	.	2
+sim.human.d8	complete	no_hit		trim	.	1
+sim.human.d8	complete	not_5open				175
+sim.human.d8	complete	rule_wrong		trim	R1	48
+sim.human.d8	complete	rule_wrong		trim	R1,R3	47
+sim.human.d8	complete	rule_wrong		trim	R3	17
+sim.human.d8	complete	selection	no_prediction			633
+sim.human.d8	complete	selection	wrong_stop_or_orf			100
+sim.human.d8	complete	start_elsewhere		downstream_atg	.	98
+sim.human.d8	complete	start_elsewhere		downstream_atg	R2	21
+sim.human.d8	complete	start_elsewhere		downstream_atg	R3	3
+sim.human.d8	internal	conflict		keep	R2,R3	1
+sim.human.d8	internal	hit_no_rule	blast_nterm_off	keep	.	2
+sim.human.d8	internal	hit_no_rule	blast_ss11_50	keep	.	11
+sim.human.d8	internal	hit_no_rule	blast_ss4_10	keep	.	2
+sim.human.d8	internal	hit_no_rule	blast_ss_gt50	keep	.	58
+sim.human.d8	internal	hit_no_rule	blast_up_sstart1	keep	.	1
+sim.human.d8	internal	hit_no_rule	pfam_only_down	keep	.	9
+sim.human.d8	internal	no_hit		keep	.	47
+sim.human.d8	internal	not_5open				1
+sim.human.d8	internal	rule_wrong		keep	R2	11
+sim.human.d8	internal	selection	no_prediction			715

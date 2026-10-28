@@ -477,7 +477,31 @@ Outcome counts: see the end of this file.
   - Best overall method at every level.
   - Ab initio reproduces E32's TransDecoder row exactly.
   - Pointers: E33 "Arabidopsis depth series"; `data/start_classifier/adoption/athal_depth_scores.tsv`.
-- **Pointers:** E33; `pipeline/start_classifier/`; `data/start_classifier/{step1,step2,step3}/`; large
+- **Step 4, hit depth and e-value (2026-10-28; NOT ADOPTED, a5b24c3 settings kept):**
+  - Question (Brian): is the top DIAMOND hit at 1e-5 (first HSP) too stringent, and what does the assist still get wrong?
+  - Error anatomy of the assist-on runs (human d1 / d8 / d32, athal d1, and athal depth-series B d1):
+    - 85-90% of the non-exact 5' partials and 83-89% of internal CDSs in human have no prediction with the true stop (nearly always none on the transcript), so starts cannot fix them;
+    - the remaining decision errors are mostly a hit that fires no rule, because the alignment starts inside the subject (sstart > 3);
+    - wrong R2 trims: 4-12 per assembly;
+    - 3' partials are candidates only when the 5' UTR has no in-frame stop (28-43% of them); their errors are keep calls;
+    - complete CDSs left open: R1 / R3 on homologs with longer N-termini (human), non-firing hits (athal 784 of 974).
+  - Deep searches of the 5'-open candidates (DIAMOND `-k 25 --max-hsps 0 --evalue 10`, default and `--more-sensitive`; hmmsearch `--domE 1` with `-Z 1 --domZ 1`):
+    - 4 assemblies and 16 benchmark inputs (complete + fragments, 8 organisms).
+  - 3,030 offline rule variants per dataset: e-value 1e-10..10 x mode; top 1 vs top 3-25 with majority / unanimous / bitscore / any-upstream-unless-trim / first-firing; best vs all HSPs; Pfam GA vs domE thresholds.
+    - Chosen on human d1 + d8 only.
+  - Numbers (exact F1 points vs a5b24c3):
+    - best on tuning (more-sensitive, e <= 10, all HSPs, top-3 bitscore-weighted): +0.09 tuning, +0.15 to +0.17 d32, +0.10 to +0.18 athal, +0.17 to +0.18 bench fragments (median), but complete inputs 4 of 8 down (tthermophila -0.24 with GA, -1.17 with domE);
+    - top 3-5 hits on the default search: <= +0.04; top 10-25: negative;
+    - e-value 1e-5 -> 10 in default mode: no change; 1e-10: -0.01 to -0.03;
+    - all HSPs: no change;
+    - Pfam looser than GA: down to -8.9 on complete inputs;
+    - oracle ceiling +1.6 to +6.6.
+  - Deeper hits give uncontested right-call support to only 4-22% of the wrong decisions, and contradict 6-20% of the right ones.
+  - Lessons:
+    - the remaining ceiling is in selection (missed CDSs) and in homologs that do not reach the subject N-terminus, not in hit depth;
+    - more hits add more conflict than signal.
+  - Pointers: E33 "Step 4"; `data/start_classifier/step4/`; scripts `pipeline/start_classifier/step4_*`; searches in `$P/data/start_classifier/step4/searches/`.
+- **Pointers:** E33; `pipeline/start_classifier/`; `data/start_classifier/{step1,step2,step3,step4}/`; large
   intermediates in `$P/data/start_classifier/`; env `$P/env/startclf`.
 
 ### S12. Later annotated ATGs; other open start issues

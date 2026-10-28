@@ -666,3 +666,218 @@ Other levels are in the table file. The best other method per type is the same a
 ### Caveats
 - Swiss-Prot without Arabidopsis entries (as E25/E32): BLAST coverage of plant CDSs is lower than for human (step 3: 48-65% of candidates). With the species' own proteins included, B would gain more.
 - Simulated reads; one replicate per level.
+
+## Step 4: hit depth and e-value (2026-10-28)
+
+### Question
+Brian asked which 5'-partial and 3'-partial CDSs the homology start assist (PyTD a5b24c3) still gets wrong.
+He also asked whether using only the top DIAMOND hit (`-k 1`, first HSP) at e-value 1e-5 is too stringent
+to collect useful evidence. The alternatives are the top n hits checked for consistency, looser e-values,
+all HSPs, more-sensitive DIAMOND, or a Pfam E-value threshold instead of `--cut_ga`.
+
+### Data and searches
+- **Error anatomy:** the assist-on runs, read only.
+  - Simulated human d1 / d8 / d32 and athal d1: `$P/work/start_classifier/hstart_runs/<ds>/on`, with the step-3 candidate searches. Homology there does not change selection.
+  - Athal d1, full homology mode: condition B of the Arabidopsis depth series, `$P/work/start_classifier/athal_depth/B/depth/d1/runs/pytd_v7`. It is another agent's output and was only read. Its searches ran on all LongOrfs, so selection changes too.
+  - Truth, excluded contigs and scoring are as in `16_score_adoption.py`. Per-type non-exact counts equal `adoption/sim_scores.tsv` (e.g. human d1 complete 3,692, 5' partial 486).
+- **Deep searches** (`pipeline/start_classifier/step4_01_deep_search_v3.sh`; outputs `$P/data/start_classifier/step4/searches/<dataset>/`; log copied to `data/start_classifier/step4/deep_search_v3.log`; 16:36-19:19).
+  - Queries: the longest-ORF peptides of the 5'-open candidates (`01_features.py` tables), i.e. the step-3 candidate peptides.
+    - Simulated: human d1 / d8 / d32 and athal d1.
+    - Benchmark: complete and fragments inputs of all 8 organisms. The task asked for at least human, athal, dmel and tthermophila; there are 2,596-15,222 candidates per input.
+  - DIAMOND 2.2.8 against the same `sprot_minus_<taxid>.dmnd` with `--max-target-seqs 25 --max-hsps 0 --evalue 10`, default (fast) mode and `--more-sensitive`; 8 threads, `nice -n 19`, one search at a time.
+  - hmmsearch 3.4 `--domE 1 -Z 1 --domZ 1 --noali` against Pfam-A.
+    - With `-Z 1 --domZ 1` every E-value is a P-value. The results then do not depend on the query set or on chunking, and `--domE 1` reports every domain that passes the filter pipeline.
+    - The search ran as 7 serial chunks (`--cpu 0`, 7 threads in all).
+    - Step 4 applies "domE" thresholds as i-Evalue at a reference domZ of 10,000. In the step-3 `--cut_ga` searches the i-Evalue / P ratio was 4,267-4,546, the number of sequences per chunk.
+    - So `dE1` = P <= 1e-4, `dE1e-1` = 1e-5, `dE1e-3` = 1e-7, `dE1e-5` = 1e-9. For comparison, 90% of GA domains have P <= 1.1e-8.
+  - Two earlier versions were stopped by me:
+    - v1: a single `hmmsearch --cpu 7` used under 2 CPUs, because the master thread re-reads the targets for every HMM;
+    - v2: `--cpu 1` chunks are 2 threads each.
+    - Their partial outputs are in `$P/_trash/e33_step4_hmmsearch_v1_killed/`. The DIAMOND results of v1 (sim.human.d1) were kept, because the commands are identical.
+- **Check:** the deep fast search's top hit at 1e-5 against the a5b24c3 `-k 1` hit (`top1_vs_k1.tsv`).
+  - The same queries have hits, plus 0-20 extra per input.
+  - Same subject: 96-100%.
+  - Same keep/trim call on 99.9-100% of candidates.
+
+### Method
+- **Error anatomy** (`step4_02_error_anatomy_v1.py`). Every truth CDS that is not exact (stop and start within 2 nt) gets one class:
+  - `selection`: no prediction with the true stop. Split into "no prediction on the transcript" and "wrong ORF / stop".
+  - `outside`: right stop, but the predicted ORF is not a 5'-open candidate with an in-frame ATG, or the true start is neither the open end nor the first ATG. Neither keep nor trim can be exact.
+  - `no hit`: wrong keep/trim decision and the ORF has no DIAMOND hit and no Pfam domain.
+  - `hit, no rule`: wrong decision, a hit exists but no rule fired, so the ab initio rule decided. The reason is recorded (a = peptide position of the first ATG):
+    - BLAST alignment starts at sstart > 3 (bins 4-10, 11-50, > 50) without reaching >= 5 aa upstream of the ATG;
+    - sstart <= 3 but the subject N-terminus maps > 5 aa from the ATG, or sstart = 1 with qstart <= a-5 (R1 needs sstart > 1);
+    - Pfam only, with the envelope starting at or after the ATG.
+  - `rule wrong`: a homology rule (R1, R2, R3) made the wrong call.
+  - `conflict`: R2 + R3 conflict, and the ab initio fallback was wrong.
+- **Offline variants** (`step4_03_rule_variants_v1.py`). The a5b24c3 rules R1 / R2 / R3, with R2 + R3 conflict and no call both falling back to the release decision, are applied with:
+  - search: `k1` (the a5b24c3 inputs), `fast`, `msens`;
+  - HSP e-value cutoff: 1e-10, 1e-5, 1e-3, 1e-1, 1, 10;
+  - HSP per subject: `best` (highest bitscore) or `all` (the HSP reaching furthest to the subject N-terminus);
+  - depth: `top1`, or the top n = 3, 5, 10, 25 subjects (by best-HSP bitscore) combined by one of five schemes:
+    - `maj`: majority of the firing hits;
+    - `unan`: all firing hits agree;
+    - `bits`: larger summed bitscore of trim vs keep hits;
+    - `anyup`: any R2 hit trims, otherwise any R1 hit keeps;
+    - `first`: the best-ranked firing hit decides;
+  - Pfam R3: `ga`, `dE1`, `dE1e-1`, `dE1e-3`, `dE1e-5`, or `none`.
+  - This gives 3,030 variants per dataset.
+  - Scoring: the release run's predictions with each candidate's decision substituted, as `05_evaluate.py`. Exact F1 = 2 tp / (n_truth + n_pred), overall and per type with negatives, as `16_score_adoption.py`.
+  - The baseline `k1|1e-05|best|top1|ga` reproduces the adoption runs: human d1 / d8 / d32 0.8641 / 0.8859 / 0.8963, athal d1 0.9017. It also reproduces the step-3 `H` column.
+- **Selection** (`step4_04_summarize_v1.py`):
+  - tuning score = mean change in exact F1 over simulated human d1 and d8 only;
+  - held out: human d32, athal d1, the 8 benchmark fragments inputs and the 8 benchmark complete inputs.
+- **Evidence check** (`step4_05_evidence_v1.py`):
+  - For labelled candidates, i.e. truncated (keep is right) and UTR extensions with the true start at the first ATG (trim is right), whether any of the 25 hits supports the right call or the wrong call. Every HSP is tested with R1 / R2; R3 uses Pfam P <= 1e-4.
+  - The counts are split by whether a5b24c3 decides the candidate correctly.
+
+### Commands
+```bash
+P=/broad/hptmp/bhaas/TRANSDECODER_PAPER; T=$P/TransDecoderPaper; B=$P/data/start_classifier/step4; S=$T/data/start_classifier/step4; cd $T
+nohup bash pipeline/start_classifier/step4_01_deep_search_v3.sh > $B/deep_search_v3.log 2>&1 &
+PY=$P/env/startclf/bin/python
+$PY pipeline/start_classifier/step4_02_error_anatomy_v1.py $B/anatomy
+$PY pipeline/start_classifier/step4_03_rule_variants_v1.py $S/step4_manifest.tsv $B/variants
+$PY pipeline/start_classifier/step4_05_evidence_v1.py $S/step4_manifest.tsv $B/evidence.tsv
+$PY pipeline/start_classifier/step4_04_summarize_v1.py $B/variants/variants_f1.tsv.gz $S
+$PY pipeline/start_classifier/step4_06_tables_v1.py $B $S
+```
+Outputs:
+- in `data/start_classifier/step4/`:
+  - `anatomy_summary.tsv`, `anatomy_counts.tsv`, `anatomy_complete_left_open.tsv`;
+  - `evidence_summary.tsv`;
+  - `tuning_ranking.tsv` (all variants), `selected_variants.tsv`, `family_by_dataset.tsv`, `family_marginals.tsv`;
+  - `top1_vs_k1.tsv`;
+- large files in `$B`: `anatomy/anatomy_per_cds.tsv.gz`, `variants/variants_f1.tsv.gz` (every dataset x variant, overall and per type).
+
+### Results: error anatomy (`anatomy_summary.tsv`)
+CDSs that are not exact with the assist on, by class. "athal B" = depth-series condition B (full homology mode).
+- sel: selection error, given as no prediction / wrong stop or ORF.
+- outside: right stop but no keep/trim choice can be exact.
+- hit, no rule: given as total (BLAST sstart > 3 / subject N-terminus mismatch / Pfam only downstream).
+
+| type | dataset | not exact | sel: none / wrong | outside | no hit | hit, no rule (sstart>3 / N-term / Pfam-down) | rule wrong | conflict |
+|---|---|---|---|---|---|---|---|---|
+| 5' partial | human d1 | 486 | 391 / 21 | 0 | 12 | 50 (45 / 1 / 4) | 12 (R2) | 0 |
+| | human d8 | 491 | 422 / 18 | 0 | 9 | 31 (28 / 0 / 3) | 10 (R2) | 1 |
+| | human d32 | 376 | 320 / 13 | 0 | 3 | 33 (28 / 1 / 4) | 7 (R2) | 0 |
+| | athal d1 | 299 | 124 / 4 | 0 | 39 | 128 (77 / 4 / 47) | 4 (R2) | 0 |
+| | athal B d1 | 245 | 65 / 10 | 0 | 38 | 128 (77 / 4 / 47) | 4 (R2) | 0 |
+| 3' partial | human d1 | 375 | 275 / 11 | 61 | 1 | 9 (6 / 1 / 2) | 16 (R1, R1+R3, R3) | 2 |
+| | human d8 | 304 | 231 / 8 | 27 | 3 | 13 (12 / 1 / 0) | 20 | 2 |
+| | human d32 | 242 | 196 / 2 | 15 | 1 | 9 (6 / 2 / 1) | 18 | 1 |
+| | athal d1 | 157 | 84 / 7 | 5 | 19 | 33 (17 / 0 / 16) | 9 | 0 |
+| | athal B d1 | 130 | 55 / 7 | 7 | 19 | 33 (17 / 0 / 16) | 9 | 0 |
+| internal | human d1 | 609 | 544 / 0 | 0 | 25 | 34 (28 / 0 / 6) | 6 (R2) | 0 |
+| | human d8 | 858 | 715 / 0 | 1 | 47 | 83 (71 / 3 / 9) | 11 | 1 |
+| | human d32 | 1,060 | 916 / 3 | 0 | 39 | 97 (90 / 0 / 7) | 5 | 0 |
+| | athal d1 | 384 | 220 / 1 | 0 | 90 | 72 (35 / 0 / 37) | 1 | 0 |
+| | athal B d1 | 255 | 84 / 1 | 0 | 90 | 79 (37 / 0 / 42) | 1 | 0 |
+| complete | human d1 | 3,692 | 1,753 / 435 | 1,138 | 6 | 127 (90 / 32 / 5) | 230 (R1, R1+R3, R3) | 3 |
+| | human d8 | 1,221 | 633 / 100 | 297 | 1 | 66 (55 / 9 / 2) | 112 | 12 |
+| | human d32 | 373 | 205 / 16 | 73 | 0 | 28 (20 / 7 / 1) | 47 | 4 |
+| | athal d1 | 1,632 | 549 / 37 | 72 | 96 | 784 (507 / 38 / 239) | 88 | 6 |
+| | athal B d1 | 1,333 | 215 / 59 | 75 | 95 | 789 (508 / 38 / 243) | 94 | 6 |
+
+- **5' partials and internal CDSs: most remaining errors are selection errors, nearly all "no prediction on the transcript".** Human: 85-90% of 5' partials and 83-89% of internal CDSs. Start decisions cannot fix these.
+  - The decision errors that remain are mostly "hit, no rule": the best hit aligns from deep inside the subject (sstart > 50 for most internal ones), so neither "N-terminus at the ATG" (R2) nor "alignment >= 5 aa upstream of the ATG" (R1) holds, and the ab initio rule trims wrongly.
+  - Wrong R2 trims are rare: 4-12 per assembly.
+  - Athal has more `no hit` (38-90) and Pfam-only cases, because Swiss-Prot minus Arabidopsis is sparse.
+- **3' partials enter the start decision only through their 5' end.** By definition a 3' partial has no stop, so its ORF is 3'-open. It becomes a 5'-open candidate only when its 5' UTR has no in-frame stop: the longest ORF then runs open at both ends, and the right decision is to trim to the ATG.
+  - This holds for 449 of 1,579 3' partials in human d1, 741 / 1,973 (d8), 657 / 1,531 (d32) and 188 / 593 (athal); the others are 5'-complete ORFs that the assist never sees.
+  - Their decision errors are "kept open when the trim was right": R1 / R3 firing on a homolog whose alignment starts upstream of the annotated ATG (9-20), or the ab initio rule keeping it with a non-firing hit (9-33).
+  - `outside` (5-61) are predicted ORFs whose start is not a keep/trim choice, or whose true start is a later ATG.
+  - Most 3'-partial errors (73-81% in human) are again "no prediction".
+- **Complete CDSs wrongly left open** (right stop, trim needed, kept open; `anatomy_complete_left_open.tsv`):
+
+  | dataset | rule wrong | hit, no rule | no hit | conflict |
+  |---|---|---|---|---|
+  | human d1 | 230 | 127 | 6 | 3 |
+  | human d8 | 112 | 66 | 1 | 12 |
+  | human d32 | 47 | 28 | 0 | 4 |
+  | athal d1 | 88 | 784 | 96 | 6 |
+  | athal B d1 | 94 | 789 | 95 | 6 |
+
+  - In human, R1 or R3 firing wrongly dominates, i.e. homologs with a longer N-terminus.
+  - In athal, the dominant case is a hit that does not fire, with the ab initio rule keeping the end open: the alignment starts at subject position > 3 (507), or there is only a Pfam domain downstream of the ATG (239).
+  - A deeper search cannot change these: the subject does not align to the region that the decision is about.
+- Hit-no-rule reasons over all types:
+  - human d1: sstart 4-10 / 11-50 / > 50 = 32 / 53 / 84; N-terminus mismatch 34; Pfam only 17;
+  - athal d1: 126 / 235 / 275, 42, 339.
+
+### Results: is the evidence there in deeper hits? (`evidence_summary.tsv`)
+Labelled candidates, split by whether a5b24c3 decides them right or wrong. Counts are those with support (from any of the 25 hits, every HSP, e <= 10, more-sensitive, Pfam P <= 1e-4) for the right call only, the wrong call only, or both.
+
+| dataset | a5b24c3 wrong: n / right only / both | a5b24c3 right: n / wrong only / both |
+|---|---|---|
+| human d1 | 533 / 37 / 44 | 9,177 / 69 / 1,174 |
+| human d8 | 422 / 73 / 42 | 8,799 / 50 / 776 |
+| human d32 | 292 / 51 / 28 | 8,077 / 16 / 460 |
+| athal d1 | 1,369 / 178 / 36 | 6,163 / 373 / 250 |
+| bench fragments (8) | 6,642 / 1,446 / 127 | 62,693 / 2,529 / 1,664 |
+| bench complete (8) | 5,572 / 226 / 229 | 32,903 / 3,675 / 2,824 |
+
+- Only 7-17% of the wrong decisions on the assemblies, 22% on the benchmark fragments and 4% on the complete inputs gain uncontested support for the right call from deeper hits.
+- Deeper hits put contradicting evidence on many more of the right decisions: 6-14% on the assemblies, 7% on the fragments and 20% on the complete inputs.
+- With the top hit at 1e-5 this is 0.1-0.8% (all of it "both").
+- The `-k 1` hit and `-k 25` at 1e-5 give nearly the same picture as e <= 10 (the table file has every source). Looser e-values add few hits, because Swiss-Prot hits of these ORFs are either strong or absent.
+
+### Results: variants (`family_by_dataset.tsv`, `selected_variants.tsv`)
+Change in exact F1 (points) vs a5b24c3.
+- Tuning = mean of human d1 and d8.
+- Benchmark columns: median over 8 inputs, with (min, number down) for complete.
+
+| variant | tuning | d32 | athal d1 | bench fragments | bench complete (min, n down) |
+|---|---|---|---|---|---|
+| **best on tuning:** msens, e<=10, all HSPs, top3 bitscore-weighted, Pfam dE1e-5 | +0.093 | +0.167 | +0.097 | +0.183 (2 down, min -0.35) | -0.027 (-1.17, 4/8 down) |
+| best with Pfam GA: msens, e<=10, all HSPs, top3 bits, GA | +0.087 | +0.152 | +0.175 | +0.167 (1 down) | -0.019 (-0.24, 4/8 down) |
+| best e-value x mode (top1, best HSP, GA): msens, e<=10 | +0.039 | +0.106 | +0.136 | +0.128 (0 down) | -0.015 (-0.20, 4/8 down) |
+| msens, e<=1e-5 (top1) | +0.025 | +0.068 | +0.083 | +0.084 | +0.007 (-0.017, 1/8 down) |
+| fast, e<=10 (top1) | -0.001 | +0.008 | +0.005 | +0.046 | 0.000 (-0.036, 3/8 down) |
+| fast, e<=1e-10 (top1) | -0.014 | -0.023 | -0.019 | -0.032 | -0.004 (-0.012, 4/8 down) |
+| best depth/scheme (fast, 1e-5, best HSP, GA): top5 anyup | +0.042 | 0.000 | +0.029 | +0.010 (3 down) | +0.021 (-0.066, 2/8 down) |
+| top25 maj / unan (fast, 1e-5) | -0.097 / -0.133 | -0.015 / +0.008 | +0.044 / +0.039 | -0.008 / 0.000 | -0.065 / -0.050 |
+| all HSPs instead of best (fast, 1e-5, top1) | +0.007 | +0.008 | 0.000 | 0.000 | 0.000 (-0.008, 3/8 down) |
+| Pfam dE1e-5 instead of GA (k1) | -0.003 | +0.008 | -0.087 | +0.011 | -0.027 (-0.95, 7/8 down) |
+| Pfam dE1 instead of GA (k1) | -0.216 | -0.038 | -1.257 | -0.309 | -1.613 (-8.86, 8/8 down) |
+| no R3 (k1) | -0.135 | -0.296 | -0.534 | -1.009 | +0.190 (0/8 down) |
+| oracle on all candidates (ceiling) | +1.60 / +2.16 | +2.22 | +6.64 | +4.79 | +3.29 |
+
+- **Top hit vs top n.**
+  - Taking the top 3-5 hits gains at most +0.04 (tuning) on the a5b24c3 search. Every scheme loses at n = 10-25: majority and unanimity are diluted by weaker hits that start elsewhere in the subject.
+  - The best consistency scheme is "R2 from any hit trims, otherwise any R1 keeps" (`anyup`). It is still neutral on the held-out sets: +0.00 on d32, +0.03 athal, +0.01 bench fragments, +0.02 complete.
+- **E-value.**
+  - With the default (fast) DIAMOND mode, loosening from 1e-5 to 10 changes nothing measurable (|change| <= 0.05 points), because the top hit is the same.
+  - 1e-10 is slightly worse everywhere (-0.01 to -0.03).
+  - More-sensitive mode adds hits for athal and the benchmark fragments: +0.08 to +0.14 points at the top hit. It costs on complete inputs at e <= 10 (tthermophila -0.20, creinhardtii -0.08), less at e <= 1 (min -0.06) and little at 1e-5 (min -0.017).
+- **All HSPs** instead of the best HSP of the top hit: no effect (<= 0.01 points difference).
+- **Pfam.**
+  - Any E-value threshold looser than about GA hurts, sharply on complete inputs: dE1 -1.6 median, -8.9 tthermophila. R3 then keeps UTR extensions open on weak domain hits.
+  - dE1e-5 (P <= 1e-9, about as strict as GA) is about neutral on the assemblies, but 7 of 8 complete inputs go down (to -0.95).
+  - GA is the best Pfam setting. Dropping R3 costs 0.3-1.0 points on the assemblies and fragments, while gaining +0.19 on complete inputs (the step-3 trade-off).
+- **The best variant chosen on the tuning sets** (more-sensitive, e <= 10, all HSPs, top 3 bitscore-weighted) is consistently positive on the held-out assemblies and fragments: +0.10 to +0.18. Per type it mostly helps 5' partials and internal CDSs, e.g. athal internal +1.4 to +1.6, 5' partial +0.9 to +1.4.
+  - It lowers 4 of the 8 complete inputs: tthermophila -0.24 (GA) or -1.17 (dE1e-5), creinhardtii -0.18, dmel -0.06, athal -0.06.
+  - 3'-partial F1 on the fragments falls in 5 of 8 inputs (to -0.63, tthermophila; GA version).
+  - It needs a more-sensitive search with 25 targets and all HSPs: 2-5x the DIAMOND time of default mode at the same `-k 25` (113 s vs 58 s on human d1, 82 s vs 17 s on tthermophila fragments, 8 threads), and ~17x the output lines of `-k 1`.
+
+### Conclusion (step 4)
+- **Most of what the assist still gets wrong is not a start decision.**
+  - On the human assemblies, 83-90% of the non-exact 5'-partial and internal CDSs, and 76-82% of 3' partials, have no prediction with the true stop (nearly always no prediction on the transcript at all).
+  - Of the decision errors that remain, the main class is "hit, no rule": the best homolog aligns from inside the subject (sstart > 3), so it says nothing about the 5' end.
+  - Complete CDSs wrongly left open come mainly from R1 / R3 in human (homologs with longer N-termini) and from non-firing hits in athal.
+- **3' partials** are 5'-open candidates only when the 5' UTR has no in-frame stop (28-43% of them). There the right call is always "trim", and errors come from keep calls.
+- **The top hit at 1e-5 is not too stringent.**
+  - Deeper or looser hits rarely supply new uncontested evidence for the wrong decisions (4-22%).
+  - They add contradicting evidence to 6-20% of the right ones.
+  - Varying the e-value (1e-10 to 10), the number of hits (1-25, five consistency schemes), the HSPs used, and Pfam GA vs E-value thresholds changes exact F1 by at most +0.18 points on the held-out assemblies and fragments.
+  - Every variant that gains there lowers some complete benchmark inputs, by up to 0.24 points (Pfam GA) or more (looser Pfam).
+- **Recommendation: keep the a5b24c3 settings** (DIAMOND `-k 1 --evalue 1e-5`, first HSP; hmmsearch `--cut_ga`). No variant beats them on the held-out sets without making complete inputs worse.
+  - The available gain is about +0.1 to +0.2 exact-F1 points: 20-36 CDSs per held-out assembly, out of an oracle ceiling of +1.6 to +6.6. It needs a 2-5x slower search.
+  - The remaining ceiling sits in hits that do not reach the subject's N-terminus and in selection, not in hit depth.
+
+### Caveats (step 4)
+- Pfam "domE" thresholds are defined at a reference domZ of 10,000. A user's `hmmsearch --domE x` on all LongOrfs has a domZ set by the number of significant sequences, so their `--domE 1` is not exactly `dE1` here. The result (looser than GA hurts; dE1 is far looser than GA) does not depend on this.
+- Variant selection used human d1 + d8 only. The held-out human d32 shares genes with them.
+- The benchmark scoring substitutes decisions in the `pytd_v7` ab initio predictions, as step 3. Selection with homology hits is not re-run, so these are start-decision effects only.
+- Swiss-Prot without the organism's own entries, as before.
+- Rule geometry (R2 window sstart <= 3, R1 offset 5) was not varied here. Step 3's grid covers it.

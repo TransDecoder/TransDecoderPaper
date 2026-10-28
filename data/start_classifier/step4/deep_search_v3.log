@@ -1,0 +1,79 @@
+16:42:53 sim.human.d1: 13205 peptides
+16:52:41 sim.human.d1: hmmsearch rc=0
+16:52:41 sim.human.d8: 11230 peptides
+16:53:22 sim.human.d8: diamond fast rc=0
+16:55:54 sim.human.d8: diamond msens rc=0
+17:03:18 sim.human.d8: hmmsearch rc=0
+17:03:18 sim.human.d32: 9710 peptides
+17:04:00 sim.human.d32: diamond fast rc=0
+17:06:07 sim.human.d32: diamond msens rc=0
+17:10:31 sim.human.d32: hmmsearch rc=0
+17:10:31 sim.athal.d1: 7898 peptides
+17:11:00 sim.athal.d1: diamond fast rc=0
+17:13:00 sim.athal.d1: diamond msens rc=0
+17:17:57 sim.athal.d1: hmmsearch rc=0
+17:17:58 bench.human.complete: 7826 peptides
+17:19:05 bench.human.complete: diamond fast rc=0
+17:22:44 bench.human.complete: diamond msens rc=0
+17:31:13 bench.human.complete: hmmsearch rc=0
+17:31:14 bench.human.fragments: 11207 peptides
+17:34:06 bench.human.fragments: diamond fast rc=0
+17:38:21 bench.human.fragments: diamond msens rc=0
+17:44:35 bench.human.fragments: hmmsearch rc=0
+17:44:35 bench.athal.complete: 7517 peptides
+17:45:01 bench.athal.complete: diamond fast rc=0
+17:46:46 bench.athal.complete: diamond msens rc=0
+17:52:13 bench.athal.complete: hmmsearch rc=0
+17:52:13 bench.athal.fragments: 13151 peptides
+17:52:41 bench.athal.fragments: diamond fast rc=0
+17:54:35 bench.athal.fragments: diamond msens rc=0
+17:59:29 bench.athal.fragments: hmmsearch rc=0
+17:59:29 bench.dmel.complete: 2706 peptides
+17:59:59 bench.dmel.complete: diamond fast rc=0
+18:01:46 bench.dmel.complete: diamond msens rc=0
+18:04:19 bench.dmel.complete: hmmsearch rc=0
+18:04:20 bench.dmel.fragments: 6519 peptides
+18:07:47 bench.dmel.fragments: diamond fast rc=0
+18:08:58 bench.dmel.fragments: diamond msens rc=0
+18:12:01 bench.dmel.fragments: hmmsearch rc=0
+18:12:01 bench.tthermophila.complete: 12210 peptides
+18:12:29 bench.tthermophila.complete: diamond fast rc=0
+18:14:08 bench.tthermophila.complete: diamond msens rc=0
+18:28:15 bench.tthermophila.complete: hmmsearch rc=0
+18:28:15 bench.tthermophila.fragments: 15222 peptides
+18:28:32 bench.tthermophila.fragments: diamond fast rc=0
+18:29:55 bench.tthermophila.fragments: diamond msens rc=0
+18:38:53 bench.tthermophila.fragments: hmmsearch rc=0
+18:38:54 bench.mouse.complete: 5367 peptides
+18:41:41 bench.mouse.complete: diamond fast rc=0
+18:43:44 bench.mouse.complete: diamond msens rc=0
+18:48:26 bench.mouse.complete: hmmsearch rc=0
+18:48:26 bench.mouse.fragments: 10880 peptides
+18:49:23 bench.mouse.fragments: diamond fast rc=0
+18:50:54 bench.mouse.fragments: diamond msens rc=0
+18:55:41 bench.mouse.fragments: hmmsearch rc=0
+18:55:41 bench.spombe.complete: 1294 peptides
+18:55:53 bench.spombe.complete: diamond fast rc=0
+18:56:48 bench.spombe.complete: diamond msens rc=0
+18:58:26 bench.spombe.complete: hmmsearch rc=0
+18:58:26 bench.spombe.fragments: 2596 peptides
+18:58:38 bench.spombe.fragments: diamond fast rc=0
+18:59:34 bench.spombe.fragments: diamond msens rc=0
+19:01:05 bench.spombe.fragments: hmmsearch rc=0
+19:01:05 bench.pfalciparum.complete: 217 peptides
+19:01:17 bench.pfalciparum.complete: diamond fast rc=0
+19:02:07 bench.pfalciparum.complete: diamond msens rc=0
+19:03:15 bench.pfalciparum.complete: hmmsearch rc=0
+19:03:15 bench.pfalciparum.fragments: 2330 peptides
+19:03:27 bench.pfalciparum.fragments: diamond fast rc=0
+19:04:19 bench.pfalciparum.fragments: diamond msens rc=0
+19:06:43 bench.pfalciparum.fragments: hmmsearch rc=0
+19:06:44 bench.creinhardtii.complete: 4105 peptides
+19:06:59 bench.creinhardtii.complete: diamond fast rc=0
+19:08:03 bench.creinhardtii.complete: diamond msens rc=0
+19:12:35 bench.creinhardtii.complete: hmmsearch rc=0
+19:12:35 bench.creinhardtii.fragments: 8991 peptides
+19:12:50 bench.creinhardtii.fragments: diamond fast rc=0
+19:13:57 bench.creinhardtii.fragments: diamond msens rc=0
+19:19:05 bench.creinhardtii.fragments: hmmsearch rc=0
+19:19:05 ALLDONE

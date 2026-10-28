@@ -1,0 +1,6 @@
+dataset	conflict	hit_no_rule	no_hit	rule_wrong
+sim.athal.d1	6	784	96	88
+sim.athal.d1.B	6	789	95	94
+sim.human.d1	3	127	6	230
+sim.human.d32	4	28	0	47
+sim.human.d8	12	66	1	112
