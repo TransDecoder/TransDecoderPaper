@@ -89,3 +89,8 @@ All ORFs score 0.65 / 0.61 (Ribo-seq) and 0.63 / 0.64 (MS).
 - Dropped ORFs have about half the Ribo-seq support rate of kept ORFs, so some are real.
 - The Perl implementation does not yet have the rule.
 - Whether to change the default is Brian's decision.
+
+## Status update (2026-10-28)
+Superseded, not adopted. The target-decoy q-value rule (E20) replaced both the 100-codon cliff and these
+smooth shapes. The experimental `--short-orf-rule` options were removed when the decoy rule became the
+release default (PyTD be23241; E24).

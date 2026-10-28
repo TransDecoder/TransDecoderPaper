@@ -211,7 +211,7 @@ kfold picks (19,10) in athal and (20,9) in creinhardtii. This line was supersede
   Partial check (2026-10-21, E07): rerunning `pytd_dev_v2` and `perl_td_dev_v2` at the committed trees (PY_dev 48c870c, TD_fix de3f57e) on spombe/complete and creinhardtii/complete gave byte-identical `preds.tsv`. The other 82 inputs per tool were not rerun.
 
 ## Caveats
-- **The manuscript Methods (`methods_algorithm.tex` §Start-codon refinement) still describes the PWM procedure**: noise depletion, (u,d) AUC search, F1 threshold, choice among ATGs within max(30 nt, 15%). It needs rewriting for frame contrast + additive Kozak.
+- *(Status update 2026-10-28: out of date; see the end of this record.)* **The manuscript Methods (`methods_algorithm.tex` §Start-codon refinement) still describes the PWM procedure**: noise depletion, (u,d) AUC search, F1 threshold, choice among ATGs within max(30 nt, 15%). It needs rewriting for frame contrast + additive Kozak.
   - §Implementations still says Perl/Python "differ only in start codons chosen by the randomised PWM training". This is no longer true; they are identical (E08).
 - **The headline gain is confounded.** Most of the gain from `pytd_norefine` to `pytd_dev` comes from trimming open 5′ ends into UTRs (frame contrast). The Kozak term adds about 1% exact TP on complete transcripts and more on fragments.
 - **The `pytd_dev_kozak` label also includes the single-best-ORF default** (8412016). The `pytd_dev_v2` label also includes `-m 50`, the short-ORF guard and the GC/tie fixes.
@@ -242,3 +242,9 @@ Checked in `notebooks/03_start_refinement.Rmd` against the release runs (`pytd_v
   change -1.4 to +1.3 points (-0.7 to +0.8); fragments exact gain 6.0-13.8 points (1.8-14.1) and
   stop F1 gain 1.1-10.1 points (1.7-5.0), the latter mostly from the q-value test, not the lower minimum.
 - **C. reinhardtii** exact F1 on complete inputs: 0.747 (development 0.742).
+
+## Status update (2026-10-28)
+The Caveats about the Methods text no longer apply. `methods_algorithm.tex` §Start-codon refinement
+now describes the coding score C(u)/mu against the UTR score alpha|u| + wK (alpha 0.4, Kozak in bits).
+It mentions the PWM only as the method of releases up to v6.0.0. §Implementations no longer says
+the implementations differ in start codons (E08).

@@ -1,6 +1,6 @@
 # E07. Cross-species benchmark (bench_v3)
 
-**Status: complete except CodAn scores.** CodAn has 71/80 runs finished as of 2026-10-22 11:40. Nine are still running: 6 *T. thermophila* variants (complete.unstranded, complete_fullutr.unstranded, complete.wRand, complete.unstranded.wRand, fragments.wRand, fragments.unstranded.wRand), athal and mouse `complete.unstranded.wRand`, and mouse `fragments.unstranded.wRand`. The committed `summary.tsv` holds 62 CodAn rows. The homology-assisted final-default runs (`pytd_dev_v2_homology`, 84/84) were added on 2026-10-22; see Results.
+**Status: complete except CodAn scores** (as of 2026-10-22; status update 2026-10-28: out of date, see the end of this record). CodAn has 71/80 runs finished as of 2026-10-22 11:40. Nine are still running: 6 *T. thermophila* variants (complete.unstranded, complete_fullutr.unstranded, complete.wRand, complete.unstranded.wRand, fragments.wRand, fragments.unstranded.wRand), athal and mouse `complete.unstranded.wRand`, and mouse `fragments.unstranded.wRand`. The committed `summary.tsv` holds 62 CodAn rows. The homology-assisted final-default runs (`pytd_dev_v2_homology`, 84/84) were added on 2026-10-22; see Results.
 
 ## Claims supported
 Manuscript: Methods, "Benchmark data", "Compared methods", "Accuracy measures" (`manuscript/sections/methods_benchmark.tex`); Results, benchmark (not yet drafted).
@@ -193,7 +193,27 @@ What can be said without over-reading:
 - **`fp` column bug:** `score_predictions.py` counts each non-duplicate FP twice in `fp` (`c[call] += 1` with `call == "FP"`, then `c["FP"] += 1`). For example, tthermophila CodAn has n_pred 3,665, tp_stop 229 and fp 6,872 = 2 × 3,436. `fp_random`, `fp_dup`, sensitivity, precision and F1 are unaffected (precision uses `n_pred`). **Fixed 2026-10-21** in `score_predictions.py`; a toy case (2 TP, 1 dup, 1 random FP, 2 other FPs) gives fp = 4 = n_pred − tp_stop. `summary.tsv` will be regenerated with the fixed scorer when CodAn finishes; until then do not quote `fp` from the committed table.
 - **GeneMarkS-T on *T. thermophila*:** it supports only codes 1/4/11, so it was run with code 1; TAA/TAG (Gln in ciliates) are read as stops. The same applies to CPC2, Borf, RNAsamba and CodAn. Their *T. thermophila* scores reflect the code, not the method.
 - **Runtimes** are wall clock with 6–16 concurrent jobs on a 28-core host (load ~40). They are indicative only.
-- **Manuscript out of date:** `methods_benchmark.tex` still describes the superseded RefSeq `rna.gbff` truth (NM_/XM_ records, "longest CDS per gene") and four input types. It also omits complete_fullutr, CPAT/CPC2/Borf/RNAsamba and GeneMarkS-T (a `\todo`), and the GC values are `\todo` (22.1% and 68.3% here).
+- *(Status update 2026-10-28: out of date; see the end of this record.)* **Manuscript out of date:** `methods_benchmark.tex` still describes the superseded RefSeq `rna.gbff` truth (NM_/XM_ records, "longest CDS per gene") and four input types. It also omits complete_fullutr, CPAT/CPC2/Borf/RNAsamba and GeneMarkS-T (a `\todo`), and the GC values are `\todo` (22.1% and 68.3% here).
 - **Why the random negatives matter (2026-10-23):** on stranded complete transcripts the longest-ORF baseline has a stop-level F1 of 0.954-0.984 (median 0.976, against 0.978 for the final defaults), so stop-level accuracy on complete coding transcripts alone does not separate methods. With random negatives added, its stop precision falls to a median of 0.803 (0.499 *T. thermophila*, 0.567 *C. reinhardtii*), against 0.993 for the final defaults. Its median exact F1 on complete inputs is 0.689. Source: `$P/work/bench_v3/scores/summary.interim_20261022.tsv` (these cells are final; only CodAn cells are pending). The manuscript (results_benchmark.tex) now presents the noncoding test before start codons for this reason.
 - **Start-required longest-ORF baseline (`longest_orf_atg`, 2026-10-23, Brian's suggestion):** `benchmark_v2/scripts/longest_orf_with_start.py` on each `pytd` run's `longest_orfs.cds`; 5'-open ORFs are trimmed to their first in-frame ATG (dropped if none), then the longest per transcript is kept. Checked: every prediction on human complete.unstranded and fragments begins with ATG and is a whole number of codons. Scores (fixed scorer): `$P/work/bench_v3/scores/longest_orf_atg.tsv` (80 inputs). Medians, stranded: complete stop F1 0.976, **exact F1 0.942 (final defaults 0.910; higher than the final defaults in all 8 organisms)**; complete +rand precision 0.809; fragments stop F1 0.832, **exact F1 0.433** (final defaults 0.789; open-ended longest ORF 0.713). So on complete transcripts the first ATG of the longest ORF is the better start rule, and the case for TransDecoder rests on fragments and on noncoding sequence. Not yet in the manuscript.
 - *C. reinhardtii* v5.5 transcripts all have annotated UTRs (0 added). v6.1 is only available through JGI login.
+
+## Status update (2026-10-28)
+Checked against the run directories, the committed tables and the manuscript (read only).
+- **CodAn, main benchmark:** 79 of 80 runs have a `preds.tsv`. The missing one is *T. thermophila*
+  `complete.unstranded.wRand` (`$P/work/bench_v3/runs/tthermophila/complete.unstranded.wRand/codan/`):
+  its files date from 2026-10-25 03:41, `codan.log` is empty, and no CodAn process is running, so the run
+  stopped without output. Notebook 02 still describes it as "still running".
+  CodAn is not applicable to *T. thermophila* (standard code only; E27), and this input is not used
+  in Fig. 2 or Table 1.
+- **Tables:**
+  - `data/benchmark/summary.interim_20261025.tsv`, the table notebook 02 reads, has 79 CodAn rows.
+  - The committed `data/benchmark/summary.tsv` was not regenerated and still has 62.
+  - CodAn on the balanced mixed inputs: 21 of 21 applicable runs done (E28).
+- **Manuscript:**
+  - Table 1 (`results_benchmark.tex`) and Fig. 2 (`manuscript/figures/fig2_benchmark.pdf`, whose text
+    layer contains the CodAn labels) include CodAn.
+  - The "Manuscript out of date" caveat above no longer applies. `methods_benchmark.tex` now describes
+    the bench_v3 annotations, complete_fullutr, GeneMarkS-T and CPC2, and gives the GC values
+    (22.1%, 68.3%).
+  - One `\todo{ref}` (annotation sources table) remains.

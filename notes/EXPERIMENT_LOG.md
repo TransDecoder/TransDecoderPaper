@@ -842,30 +842,40 @@ or note describes the incident; details are unknown.
      after CodAn", but `results_benchmark.tex` Table 1 has CodAn values and `discussion.tex` has a
      todo "CodAn is now in Table".
    - E07 itself does not record when all 80 main-benchmark CodAn runs finished.
+   **Resolved 2026-10-28:** the E07, E15, E18-E21 index rows and records now carry dated status updates. CodAn is 79/80 in the main benchmark; the missing *T. thermophila* complete.unstranded.wRand run stopped without output and is not applicable. Fig. 2 includes CodAn.
 2. **E28 contradicts itself.** Its Status says all CodAn runs are done and scored (2026-10-27), but its
    Caveats still say "CodAn results are pending".
+   **Resolved 2026-10-28:** the E28 caveat is annotated as resolved.
 3. **E25 says the loss of catalogued Ribo-seq ORFs** (101/95/186 vs 178/217/455) "must be stated in
    Results/Discussion". No such statement was found in `manuscript/sections/*.tex`: "catalog" appears
    only for lncRNA predictions in `results_short_orfs.tex` and `discussion.tex`.
+   *Open (manuscript): investigated 2026-10-28; proposed fix sent to the coordinator.*
 4. **Calibration on lncRNAs.** E20 calls the lncRNA calibration "roughly nominal" (development runs).
    `results_short_orfs.tex` reports observed FDR above nominal at release (0.080 / 0.102 at q 0.05) and
    carries a todo about the wording.
+   *Open (manuscript): investigated 2026-10-28. 19-29% of release lncRNA calls are long enough to be accepted on length alone (>= L\* = 726 nt), so 1 - precision is not a q-value calibration.*
 5. **Stale caveats about outdated Methods text.** E08, E09 and E10 Caveats say the Methods still describe
    the PWM procedure, "differ only in start codons" and GC = 2q(C). None of these phrases is in the
    current `methods_algorithm.tex`; the caveats appear out of date.
+   **Resolved 2026-10-28:** E08, E09 and E10 (and E07's methods_benchmark caveat) are annotated as out of date, with status updates.
 6. **E12 Release update** says Fig. 5d,e still use the development homology runs; E15 says panels d,e
    come from the release homology runs (2026-10-26). E12 appears out of date.
+   **Resolved 2026-10-28:** E12 was wrong. `org_meta.tsv` gives `homology_source = pytd_v7_homology` for all 8 organisms, and Fig. 5d,e use the release comparison. E12 now has a status update.
 7. **Mixed-input trial agreement.** `results_benchmark.tex` says no median exact F1 differed by more than
    0.025 between trials. E28 Results gives at most 0.008 (before CodAn), and E28 Status gives at most
    0.016 for CodAn. The text is a looser bound, not a contradiction, but the source of "0.025" is unclear.
+   *Investigated 2026-10-28: 0.025 is the largest per-type `f1_exact_trial_range` in `final_v7/mixed_medians.tsv` (0.0248, TransDecoder v6.0.0 internal fragments). Over whole inputs the maximum is 0.0084. Manuscript wording open.*
 8. **E32 has no record.** The Arabidopsis simulation is called "E32" in script headers and in E33, but
    there is no `evidence/E32*.md`, no index row, and `data/simtrinity_athal/` is empty.
 9. **Regression at release commits.** `results_algorithm.tex` has a todo: the sample-set comparison is
    from PyTD 44e417a / Perl ab38ca6, not rerun at the release commits (E08).
+   *Open: no release-commit regression run exists (`data/regression/` ends at kozak_bits_44e417a_ab38ca6).*
 10. **notes/06 values superseded by records.** notes/06 still says 10-25% of unannotated predictions share
     a peptide; E02 corrects this to 9-24%. Its "26-38%" figure was corrected in notes/06 itself.
+   **Resolved 2026-10-28:** notes/06 now carries a dated correction citing E02.
 11. **First-ATG baseline.** E07 says the `longest_orf_atg` result (exact F1 0.942 vs 0.910) is "not yet in
     the manuscript". It is still absent (no "0.942" in the sections). Whether to report it is undecided.
+   *Open (manuscript decision): numbers and options sent to the coordinator 2026-10-28.*
 
 ## Outcome counts
 Entries: 54 (A1-A13, S1-S12, O1-O4, H1-H4, B1-B10, T1-T5, G1-G6).

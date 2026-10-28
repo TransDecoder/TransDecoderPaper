@@ -250,7 +250,7 @@ read from the run's `decoy_qvalues.tsv`.
 - Homology flags: release homology runs (`pytd_v7_homology`) where finished (A. thaliana,
   C. reinhardtii, D. melanogaster, human), otherwise `pytd_dev_v2_homology` (same LongOrfs ORFs >= 50 aa,
   same databases). Truth-trained models now also require q <= 0.05 against decoys scored with the same
-  model.
+  model. *(Status update 2026-10-28: out of date; see the end of this record.)*
 
 Release values (development values of this record in brackets):
 
@@ -283,4 +283,15 @@ not predicted, length-only predictions 0-1.4% of all.
 Consequence for the text: dropping S1 > 0 no longer floods random sequence (1.4-7.9-fold, not 10-40-fold)
 and gains essentially no true CDSs; the Implications sentence was rewritten accordingly. The homology
 comparison (Fig. 5d,e) still uses the development runs (`data/benchmark/homology_vs_abinitio.tsv`) until
-`pytd_v7_homology` finishes.
+`pytd_v7_homology` finishes. *(Status update 2026-10-28: out of date; see the end of this record.)*
+
+## Status update (2026-10-28)
+Both statements above about development homology runs are out of date. They were written on
+2026-10-25, before `pytd_v7_homology` finished (84/84 on 2026-10-26; E25).
+- **Homology flags:** `data/long_orf_failures/v7/org_meta.tsv` lists `homology_source =
+  pytd_v7_homology` for all 8 organisms. Commit 3985f33 (2026-10-26) reran the failure analysis with
+  the release homology flags for all organisms; its message says the tables were unchanged.
+- **Fig. 5d,e:** these panels use `data/benchmark/homology_vs_abinitio.tsv`, which is now the release
+  comparison (`pytd_v7_homology` minus `pytd_v7`; e.g. athal complete exact F1 0.8992 -> 0.9074, equal
+  to `data/benchmark/final_v7/all_scores.tsv`). The development comparison is kept as
+  `homology_vs_abinitio.dev_v2.tsv` (E07, E25). E15 was right.

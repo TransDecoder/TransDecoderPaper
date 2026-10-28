@@ -68,3 +68,7 @@ On real data, sall_c200 cuts nonmatching predictions by 70% (LRAA) and 72% (Stri
 The GM12878 Ribo-seq and MS support for the ORFs that a precise rule would drop is in `work/bench_v3/stringency/gm12878_orf_features_support.tsv`. Using the total-contrast ≥ 200·mu rule on the 48c870c final_abinitio runs, among ORFs with at least 10 P-sites:
 - dropped ORFs have frame-supported Ribo-seq at a rate of about 0.33–0.36, against 0.62–0.66 for kept ORFs;
 - some dropped ORFs are real.
+
+## Status update (2026-10-28)
+Superseded, not adopted. Brian asked for no `--precise` flag of this kind (E19). The released
+`--precise` is the q-value setting q = 0.01 of the target-decoy rule (E22, E24, E25).

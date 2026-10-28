@@ -63,3 +63,7 @@ Coding-only sets (stop sensitivity / exact sensitivity / stop precision):
 - Document `build-preset` for users with a related-species transcriptome.
 - Warn below about 1,000 transcripts. The exact criterion could be based on how many usable training ORFs there are.
 - The earlier subsets (`work/bench_v3/subsets`, drawn from the full sets, not held out) are superseded by this held-out test.
+
+## Status update (2026-10-28)
+Adopted. Presets are released in both implementations (`--preset`, `build-preset`), with seven bundled
+presets built from complete transcripts plus fragments, and a warning below 1,000 transcripts (E24).

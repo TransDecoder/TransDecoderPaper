@@ -135,6 +135,7 @@ Annotated classes (positive control):
 
 Novel class (no GENCODE CDS overlap):
 - 10–25% share peptides with known proteins: 208 / 849 / 1,018 ORFs for LRAA / StringTie / Trinity.
+  - *Correction (2026-10-28): 9–24%, not 10–25% (evidence/E02, Release (v7) update, claim 2 correction). The counts are unchanged; release runs give 30–49% on a smaller denominator (E02, E25).*
 - These lie at pseudogene, segmental-duplication or processed-pseudogene copies of the parent gene (e.g. NCF1B/C, HERC2P3, RPS/RPL copies). MS cannot tell copy from parent.
 - Peptides absent from GENCODE v50 and UniProt that land on novel ORFs are nearly all GM12878 variant-allele peptides of parent genes, mapping to duplicated copies (e.g. a PWP2 copy on 21p, NAPSB, AMZ2P1).
 - One credible non-reference case: C3orf86P (protein-coding in the authors' Ensembl release, now a transcribed unitary pseudogene in GENCODE v50). It has 3 independent peptides from 3 proteases.

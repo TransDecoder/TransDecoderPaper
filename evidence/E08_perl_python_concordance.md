@@ -109,7 +109,7 @@ Before fixes (`baseline_v6.0.0.summary.tsv`):
 - **Wall-clock timing.** Regression runs were sequential per dataset. Benchmark runs ran 6–16 at a time on a shared host (load ~40). Ratios are more reliable than absolute times.
 - **Different modes.** The regression runs Perl via `util/TransDecoder.LongOrfs`/`Predict`, not the v6 wrapper. The benchmark runs either `TD/TransDecoder.LongOrfs` or `TD/util/...`, as `run_tool.sh` resolves them.
 - **Code location.** 48c870c is on PyTransDecoder origin/main and de3f57e on TransDecoder origin/devel (verified 2026-10-21 with git rev-list against the fetched remotes).
-- **Manuscript out of date.** `methods_algorithm.tex` §Implementations still says the two implementations "differ only in start codons chosen by the randomised PWM training". At the final defaults they do not differ at all on the benchmark.
+- *(Status update 2026-10-28: out of date; see the end of this record.)* **Manuscript out of date.** `methods_algorithm.tex` §Implementations still says the two implementations "differ only in start codons chosen by the randomised PWM training". At the final defaults they do not differ at all on the benchmark.
 
 ## Rerun at the final commits (2026-10-21)
 ```bash
@@ -137,3 +137,10 @@ Run on the working trees that were then committed unchanged as PyTD 44e417a and 
 identical on all five sample sets (Trinity 692, PASA 777, StringTie 2,681, SuperTranscripts 69, Cufflinks 58 ORFs;
 no start differences, no implementation-only ORFs). Against the previous final commits, 4 of 4,277 ORFs change
 (PASA asmbl_234/639 and asmbl_235/640, two duplicated pairs on the decision boundary; 17 vs 17.33 bases per bit).
+
+## Status update (2026-10-28)
+The "Manuscript out of date" caveat no longer applies. `methods_algorithm.tex` §Implementations no
+longer says the implementations "differ only in start codons". `results_algorithm.tex` ("Two
+implementations with identical output") states identical predictions on all 84 benchmark inputs and
+the five sample sets. Still open: that sample-set comparison is from PyTD 44e417a / Perl ab38ca6, not
+the release commits (todo in `results_algorithm.tex`).

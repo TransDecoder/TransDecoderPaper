@@ -75,3 +75,8 @@ ORFs dropped relative to cliff_c200 have a Ribo-seq frame-support rate of 0.32â€
 - The GM12878 long-ORF variants (q0.1_longgc / longdecoy) are run but not yet scored.
 - The Perl port is not yet done.
 - Presets for small inputs are planned. In the history smoke test, a 300-transcript input gave devel 31 of 100 random sequences with calls; to be checked.
+
+## Status update (2026-10-28)
+Adopted. The decoy-FDR rule (q <= 0.05 with the GC-table long-ORF accept, `decoy_q0.05_longgc` here) is
+the release ORF acceptance rule in Perl 41fc5ee and PyTD 3a793ff (E24). Release reruns reproduce the
+development medians (E25). The Perl port mentioned in Caveats is done (E24).

@@ -128,7 +128,7 @@ In the final runs:
 - 48c870c is on PyTransDecoder origin/main and de3f57e on TransDecoder origin/devel (verified 2026-10-21 with git rev-list against the fetched remotes).
 
 ## Caveats
-- **The manuscript is out of date** (`methods_algorithm.tex`):
+- *(Status update 2026-10-28: out of date; see the end of this record.)* **The manuscript is out of date** (`methods_algorithm.tex`):
   - "Background composition" says G+C = 2q(C). Since `de3f57e`/`48c870c` it is (G+C)/(A+C+G+T) from counts. 2q(C) is wrong for stranded data, where q(C) ≠ q(G) (athal 39.4% vs 42.2%).
   - It does not say that the rule is skipped for genetic codes whose stops are not TAA/TAG/TGA, nor how the 5% table is looked up (round up to the next step).
 - **What the threshold models:** a single i.i.d. sequence model with universal stops, 5 kb sequences and a 300-nt LongOrfs minimum. It is a per-ORF 0.999 quantile, not a transcriptome-wide FDR; the old usage text said "1% FDR".
@@ -138,3 +138,9 @@ In the final runs:
   - notes/03 says "10 kb sequences give the same values". The files show up to +3.1% at 80% GC (2,511 vs 2,436).
   - notes/03 gives "2–10% lower" for the 2017 table at ≤45% GC, but against the adopted table the difference is 2.8–10.3%. Against the 5 kb single run (`regenerated_thresholds.tsv`) it is 1.2–10.4%, at 40% GC 590 vs 597.
   - The 2017 value at 80% GC is written as 2423 in notes/03 and as 2422 in notes/04; the file has 2422.656.
+
+## Status update (2026-10-28)
+The "manuscript is out of date" caveat no longer applies. `methods_algorithm.tex` "Background
+composition" now gives G+C as (G+C)/(A+C+G+T) from base counts, and the long-ORF section states the
+rounding up to the next 5% step, the 25% value below 25% GC, no length rule above 80% GC, and that the
+rule is skipped when the code's stops are not exactly TAA/TAG/TGA.

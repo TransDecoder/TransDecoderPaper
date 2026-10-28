@@ -9,7 +9,7 @@ Plan: Fable review of 2026-10-22 (main session scratchpad, `fable_review/fable_r
 | Figure | Script (`figures/`) | Data | Evidence | State |
 |---|---|---|---|---|
 | 1 algorithm | fig1_algorithm/make_fig1.py | methods_algorithm.tex; data/long_orf_threshold/final_thresholds.tsv | E10, E09, E13 | final |
-| 2 benchmark | fig2_benchmark/make_fig2.py `<summary.tsv>` | `$P/work/bench_v3/scores/summary.interim_20261022.tsv` (fixed scorer) | E07 | **redraw** from the final summary.tsv when CodAn finishes (1 cell pending) |
+| 2 benchmark | fig2_benchmark/make_fig2.py `<summary.tsv>` | `$P/work/bench_v3/scores/summary.interim_20261022.tsv` (fixed scorer) | E07 | **redraw** from the final summary.tsv when CodAn finishes (1 cell pending) — superseded, see Status update (2026-10-28) |
 | 3 start refinement | fig3_start/make_fig3.py | data/start_param_sensitivity/*; benchmark summary | E09, E13 | final |
 | S2 start grid | fig3_start/make_fig3.py | same | E13 | final |
 | 4 short ORFs | fig4_short_orfs/make_fig4.py | data/benchmark/{short_orf_summary,lnc_by_era.human}.tsv | E04 | final |
@@ -36,3 +36,15 @@ each directory's `NOTES.md`. Shared style: `figures/style.py`.
 - Fonts: DejaVu Sans (Arial is not installed on this host). Colour-blind check not run (no node).
 - Cosmetic to-dos: Fig. 1a LongOrfs box text touches the border; Fig. 2f ANGEL label overlaps its marker;
   Fig. 5c legend crowds the y axis.
+
+## Status update (2026-10-28)
+- **Fig. 2:** the figure in the manuscript is now drawn by `notebooks/02_benchmark.Rmd` from
+  `data/benchmark/summary.interim_20261025.tsv`, not by `fig2_benchmark/make_fig2.py`.
+  - The current `figures/fig2_benchmark.pdf` and `manuscript/figures/fig2_benchmark.pdf` contain the
+    CodAn series (checked with `pdftotext`; their text layers are identical).
+  - The inputs plotted have CodAn rows for every applicable organism (E07 Status update).
+  - The "redraw when CodAn finishes" item is resolved. The only missing CodAn run (*T. thermophila*
+    complete.unstranded.wRand) is not applicable and not plotted.
+- **Fig. 5d,e:** these panels use the release homology comparison (`pytd_v7_homology` minus `pytd_v7`,
+  `data/benchmark/homology_vs_abinitio.tsv`; checked: athal complete exact F1 0.8992 / 0.9074 equals
+  `final_v7/all_scores.tsv`), as the table above says. E12's Release update was corrected accordingly.

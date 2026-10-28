@@ -38,7 +38,7 @@ Quick map of decisions and lessons across these records (what was tried, adopted
 | [E04](E04_min_orf_length.md) | Minimum ORF length sweep (benchmark lncRNA/random negatives; GM12878 post-hoc) | Results: short ORFs | complete |
 | [E05](E05_expressed_sensitivity.md) | Expressed-gene sensitivity (GM12878) | Results: application | complete |
 | [E06](E06_gm12878_homology_series.md) | Homology restriction series (clade-excluded Swiss-Prot); Alu-in-UTY_PANTR retention artifact | Results: homology | complete |
-| [E07](E07_benchmark_v3.md) | Cross-species benchmark (bench_v3): data, truth sets, tools, scoring | Methods/Results: benchmark | complete except CodAn scores (71/80 runs); homology at final defaults added 2026-10-22 |
+| [E07](E07_benchmark_v3.md) | Cross-species benchmark (bench_v3): data, truth sets, tools, scoring | Methods/Results: benchmark | complete except CodAn scores (71/80 runs); homology at final defaults added 2026-10-22. Status update 2026-10-28: CodAn 79/80 done, only the non-applicable *T. thermophila* complete.unstranded.wRand run missing; CodAn is in Table 1 and Fig. 2 |
 | [E08](E08_perl_python_concordance.md) | Perl/Python concordance and runtime | Methods: implementations | complete (rerun at final commits 2026-10-21 and after Kozak-in-bits 2026-10-22) |
 | [E09](E09_start_refinement_kozak.md) | Start-codon refinement and Kozak | Methods/Results | complete (gaps listed) |
 | [E10](E10_long_orf_rule_gc.md) | Long-ORF retention rule and GC | Methods/Results | complete (gaps listed) |
@@ -46,7 +46,7 @@ Quick map of decisions and lessons across these records (what was tried, adopted
 | [E12](E12_long_orf_failures.md) | True CDSs that fail the coding criteria; long-ORF rule rescues; causes (composition, low complexity, unconserved models); GM12878 MANE | Methods: long-ORF rule (E10 gap); Results: coding-test failures | complete |
 | [E13](E13_start_param_sensitivity.md) | Start-refinement parameter sensitivity: alpha x Kozak weight grid, leave-one-organism-out, GM12878 sub-grid | Methods: start-codon refinement | complete |
 | [E14](E14_references.md) | Literature references added via paperclip/Crossref: TGD and genome, *Drosophila* chr4/Y codon bias, Kozak, assembly and alignment tools | Methods, Results: coding-test failures | complete (Singh2014 not read in full) |
-| [E15](E15_figures.md) | Main Figs. 1-7 and Supplementary Figs. S1-S2: scripts, sources, checks | All Results figures | Fig. 2 and Fig. 5d,e to redraw after CodAn |
+| [E15](E15_figures.md) | Main Figs. 1-7 and Supplementary Figs. S1-S2: scripts, sources, checks | All Results figures | Fig. 2 and Fig. 5d,e to redraw after CodAn. Status update 2026-10-28: done; Fig. 2 includes CodAn, Fig. 5d,e use the release homology runs |
 
 ## Large files (decision, Brian 2026-10-21)
 - Until the paper's analyses are final, large outputs stay in the project work area (`$P/work`, `$P/data`). Each record lists their paths.
@@ -54,10 +54,10 @@ Quick map of decisions and lessons across these records (what was tried, adopted
 - A subset chosen as the paper's supplementary material is also deposited separately on Zenodo, for a DOI.
 | E16 | [Comparator and third-party benchmarks (literature)](E16_comparator_benchmarks.md) | background; not yet cited |
 | E17 | [Earlier critiques old vs new; bootstrap CIs](E17_critiques_and_uncertainty.md) | planned supplement |
-| E18 | [Stringency sweep for a --precise mode; TD2-preprint benchmarks revisited](E18_stringency_precise_mode.md) | planned (supplement / --precise option) |
-| E19 | [Short-ORF threshold shape: removing the 100-codon cliff](E19_short_orf_rule_shape.md) | planned (default-rule decision) |
-| E20 | [Target-decoy FDR rule (shuffled-transcript decoys)](E20_decoy_fdr_rule.md) | planned (default-rule decision) |
-| E21 | [Presets for small/partial inputs](E21_presets_small_inputs.md) | planned (in paper) |
+| E18 | [Stringency sweep for a --precise mode; TD2-preprint benchmarks revisited](E18_stringency_precise_mode.md) | planned (supplement / --precise option). Status update 2026-10-28: superseded, not adopted (`--precise` is q 0.01; E22) |
+| E19 | [Short-ORF threshold shape: removing the 100-codon cliff](E19_short_orf_rule_shape.md) | planned (default-rule decision). Status update 2026-10-28: superseded by E20, not adopted |
+| E20 | [Target-decoy FDR rule (shuffled-transcript decoys)](E20_decoy_fdr_rule.md) | planned (default-rule decision). Status update 2026-10-28: adopted as the release rule (E24, E25) |
+| E21 | [Presets for small/partial inputs](E21_presets_small_inputs.md) | planned (in paper). Status update 2026-10-28: adopted and released (E24) |
 | E22 | [q-value cutoff modes: default, --precise, --sensitive](E22_qvalue_modes.md) | in paper |
 | E23 | [Version history on the current benchmark](E23_version_history.md) | supplement |
 | E24 | [Release implementation: decoy rule and presets, Perl = PyTD](E24_release_decoy_rule_presets.md) | in paper (Methods) |

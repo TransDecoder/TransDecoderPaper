@@ -148,7 +148,7 @@ Stop-level sensitivity of TransDecoder in the same bins is 0.931 / 0.945 / 0.943
 - After the knit, the notebook's checks section shows 0 of 133 values differing from the manuscript.
 
 ## Caveats
-- CodAn results are pending (see Status).
+- CodAn results are pending (see Status). *(Status update 2026-10-28: resolved; all 21 CodAn runs finished and were scored on 2026-10-27, as the Status line at the top says.)*
 - Superseded inputs from earlier in the same session remain on disk. They are not part of this record and are not scored. `fragments_internal` and `fragments_5p` were made before the plan changed to mixed inputs. Their files are `$P/data/bench_v3/inputs/<org>/fragments_internal.*` and `fragments_5p.*`.
   - Run directories: `fragments_internal/pytd_v7` for 6 organisms (finished), and killed CodAn directories for athal on both inputs (no `preds.tsv`).
   - Their generator scripts were moved out of the repo to the session scratchpad.
