@@ -28,6 +28,8 @@ Rules:
 
 ## Index
 
+Quick map of decisions and lessons across these records (what was tried, adopted or not, and why): [`notes/EXPERIMENT_LOG.md`](../notes/EXPERIMENT_LOG.md).
+
 | Record | Topic | Manuscript | Status |
 |---|---|---|---|
 | [E01](E01_gm12878_riboseq.md) | GM12878 Ribo-seq support of predicted ORFs | Results: GM12878 evidence; Methods: Ribo-seq support | complete |
