@@ -175,6 +175,19 @@ The simulated assembly is more complete than the real one. It has uniform fragme
 | CPC2 | 0.889 / 0.849 | 0.472 / 0.010 | 0.286 / 0.272 | 0.052 / 0.001 |
 | Borf | 0.924 / 0.806 | 0.565 / 0.252 | 0.744 / 0.612 | 0.480 / 0.265 |
 
+**Per-type precision and F1 (added 2026-10-27, E31).** E31 scores these at full depth too (level d1 in `data/simtrinity/depth/scores_by_type.tsv`), in two versions:
+- precision over the predictions on truth transcripts of each type;
+- the same, but also counting predictions on negatives whose own ORF is of that type (`*_wneg` columns).
+
+TransDecoder's exact F1 with negatives counted, vs the best other method:
+
+| type | TransDecoder | best other method |
+|---|---|---|
+| complete | 0.869 | CPAT 0.888 |
+| 5' partial | 0.599 | GeneMarkS-T 0.455 |
+| 3' partial | 0.776 | CPAT 0.796 |
+| internal | 0.747 | Prodigal 0.872 |
+
 **Sensitivity by source TPM**, stop / exact (`scores_by_expr.tsv`; 16,562 / 9,856 / 4,697 / 2,175 / 649 truth CDSs):
 
 | method | < 1 | 1–5 | 5–20 | 20–100 | > 100 |

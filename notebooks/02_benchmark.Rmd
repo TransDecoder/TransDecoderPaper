@@ -992,6 +992,124 @@ save_fig(figS_sim, "figS_simtrinity", FULL_W, 85 * MM)
 figS_sim
 ```
 
+### Read-depth ablation
+
+At full depth the simulated assembly is mostly complete CDSs (above), so partial CDSs are few. To get
+more partial contigs, the E30 STAR alignments were subsampled by read pair to 1/2, 1/4, ... of the
+pairs (`samtools view --subsample`, one seed, so the levels are nested), and each level was assembled,
+labelled, run and scored exactly as at full depth (`r evidence("E31")`; scripts `11_depth_subsample.sh`,
+`08b_trinity_gg_level.sh`, `12_depth_label_and_run.sh`, `13_depth_collect.py`; tables
+`data/simtrinity/depth/`). STAR was not re-run, so the two-pass junctions come from the full read set
+(they are annotated junctions anyway).
+
+```{r depth-data}
+DP <- function(f) read_tab("simtrinity", "depth", f)
+dlev <- DP("levels.tsv") %>% mutate(fraction = as.numeric(fraction))
+LEV_LAB <- setNames(ifelse(dlev$fraction == 1, "1", paste0("1/", round(1 / dlev$fraction))), dlev$level)
+dtc <- DP("truth_counts.tsv") %>% mutate(reads = LEV_LAB[level])
+kable(dlev %>% transmute(level, `read pairs` = num(as.numeric(pairs)), `observed fraction` = observed_fraction,
+                         `Trinity transcripts` = num(trinity_transcripts)) %>%
+        left_join(dtc %>% select(level, complete, `5' partial` = `5prime_partial`, `3' partial` = `3prime_partial`, internal,
+                                 truth = truth_total, negatives, unresolved), by = "level"),
+      caption = "Depth levels: read pairs, assembly size and labels")
+# shares from the counts (not from the rounded share_* columns), rounded once for display
+dsh <- dtc %>% transmute(reads, s_c = complete / truth_total, s_5 = `5prime_partial` / truth_total,
+                         s_3 = `3prime_partial` / truth_total, s_i = internal / truth_total)
+kable(dsh %>% transmute(reads, complete = pct(s_c), `5' partial` = pct(s_5), `3' partial` = pct(s_3), internal = pct(s_i),
+                        `largest change from previous level (points)` =
+                          c(NA, f1(100 * apply(abs(diff(as.matrix(select(dsh, -reads)))), 1, max)))),
+      caption = "Share of each CDS type among the scored truth, by level (stop rule: every share changes by < 3 points)")
+de29 <- DP("e29_five_prime.tsv")
+details(de29 %>% mutate(frac_5prime_partial = r3(frac_5prime_partial)), "E29 statistic by level")
+details(DP("label_counts.tsv") %>% pivot_wider(names_from = level, values_from = n, values_fill = 0),
+        "all labels and reasons by level")
+dbt <- DP("scores_by_type.tsv") %>% mutate(method = factor(SIM_TOOLS[tool], levels = SIM_TOOLS),
+                                          type = factor(SIM_TYPE_LAB[type], levels = SIM_TYPE_LAB),
+                                          reads = factor(LEV_LAB[level], levels = LEV_LAB))
+dov <- DP("scores_overall.tsv") %>% left_join(DP("negatives.tsv") %>% select(level, tool, frac_negatives_with_pred),
+                                              by = c("level", "tool")) %>%
+  mutate(method = factor(SIM_TOOLS[tool], levels = SIM_TOOLS), reads = factor(LEV_LAB[level], levels = LEV_LAB))
+best_of <- function(col) dbt %>% filter(tool != TD) %>% group_by(reads, type) %>%
+  slice_max(.data[[col]], n = 1, with_ties = FALSE) %>% ungroup() %>%
+  transmute(reads, type, v = sprintf("%.3f (%s)", .data[[col]], method))
+kable(dbt %>% filter(tool == TD) %>% transmute(reads, type, n_truth, `TransDecoder, with negatives` = r3(f1_exact_wneg)) %>%
+        left_join(best_of("f1_exact_wneg") %>% rename(`best other, with negatives` = v), by = c("reads", "type")) %>%
+        left_join(dbt %>% filter(tool == TD) %>% transmute(reads, type, `TransDecoder, truth only` = r3(f1_exact)),
+                  by = c("reads", "type")) %>%
+        left_join(best_of("f1_exact") %>% rename(`best other, truth only` = v), by = c("reads", "type")) %>%
+        arrange(type, reads),
+      caption = "Exact F1 by CDS type: TransDecoder vs the best other method. Precision counts the predictions on contigs of that type; 'with negatives' also counts predictions on negatives whose own ORF is of that type")
+details(DP("neg_pred_types.tsv") %>% mutate(reads = LEV_LAB[level], method = SIM_TOOLS[tool]) %>%
+          select(reads, method, n_pred_on_negatives, all_of(SCORED_TYPES)), "predictions on negatives by their own ORF type")
+details(dov %>% transmute(reads, method, n_truth, f1_stop = r3(f1_stop), f1_exact = r3(f1_exact),
+                          negatives_with_pred = r3(frac_negatives_with_pred)) %>% arrange(reads, method),
+        "overall stop / exact F1 and negatives with a prediction, by level and method")
+details(dbt %>% transmute(reads, method, type, n_truth, sensitivity_stop = r3(sensitivity_stop),
+                          sensitivity_exact = r3(sensitivity_exact), f1_exact = r3(f1_exact),
+                          f1_exact_wneg = r3(f1_exact_wneg)) %>% arrange(type, reads, method),
+        "by type: sensitivity and exact F1, by level and method")
+```
+
+```{r depth-text}
+DTV <- function(lev, tool, type, m) dbt[[m]][dbt$level == lev & dbt$tool == tool & dbt$type == SIM_TYPE_LAB[[type]]]
+DOV <- function(lev, tool, m) dov[[m]][dov$level == lev & dov$tool == tool]
+LAST <- tail(dlev$level, 1)
+```
+
+Halving the reads down to `r LEV_LAB[[LAST]]` of the pairs shifts the scored truth from
+`r pct(dsh$s_c[1])` complete to `r pct(dsh$s_c[nrow(dsh)])` complete, and internal fragments from
+`r pct(dsh$s_i[1])` to `r pct(dsh$s_i[nrow(dsh)])`. The ablation was stopped at `r LEV_LAB[[LAST]]` (Brian,
+2026-10-27); the type shares had not stabilised (largest change at the last step
+`r f1(100 * max(abs(unlist(dsh[nrow(dsh), -1]) - unlist(dsh[nrow(dsh) - 1, -1]))))` points), and the 5' and 3'
+partial counts had begun to fall with the total. TransDecoder's exact F1 (with negatives) on 5' partials rises from
+`r f3(DTV("d1", TD, "5prime_partial", "f1_exact_wneg"))` at full depth to
+`r f3(DTV(LAST, TD, "5prime_partial", "f1_exact_wneg"))`, and on internal fragments from
+`r f3(DTV("d1", TD, "internal", "f1_exact_wneg"))` to `r f3(DTV(LAST, TD, "internal", "f1_exact_wneg"))`; its
+overall exact F1 is `r f3(DOV("d1", TD, "f1_exact"))` and `r f3(DOV(LAST, TD, "f1_exact"))`, with predictions on
+`r pct(DOV("d1", TD, "frac_negatives_with_pred"))` and `r pct(DOV(LAST, TD, "frac_negatives_with_pred"))` of the
+negatives (Prodigal `r pct(DOV(LAST, "prodigal", "frac_negatives_with_pred"))`, longest ORF
+`r pct(DOV(LAST, "longest_orf", "frac_negatives_with_pred"))` at `r LEV_LAB[[LAST]]`).
+
+Fig. S (`figS_simtrinity_depth`): one line per method across depth. The four per-type panels show exact F1
+with predictions on negatives counted toward that type's precision (`f1_exact_wneg`; each prediction on a
+negative is typed by its own ORF). Overall exact F1 and the fraction of negatives with a prediction are also shown.
+Per-type exact sensitivity, which ignores the negatives, is in the second figure (`figS_simtrinity_depth_sens`).
+
+```{r figS-depth, fig.width = FULL_W, fig.height = 110 * MM}
+DEPTH_COL <- c(TransDecoder = TD_C, `TransDecoder v6.0.0` = "#6baed6", `longest ORF` = GREY, Prodigal = "#d95f02",
+               `GeneMarkS-T` = "#7570b3", CPAT = "#1b9e77", RNAsamba = "#e7298a", CPC2 = "#e6ab02", Borf = "#222222")
+lev_frac <- function(l) dlev$fraction[match(l, dlev$level)]
+depth_plot <- function(d) {
+  ggplot(d, aes(fraction, value, colour = method)) + geom_line(linewidth = 0.4) + geom_point(size = 0.7) +
+    facet_wrap(~panel, nrow = 2) +
+    scale_x_continuous(trans = "log2", breaks = dlev$fraction, labels = LEV_LAB[dlev$level]) +
+    scale_colour_manual(values = DEPTH_COL, name = NULL) + scale_y_continuous(limits = c(0, 1)) +
+    labs(x = "fraction of simulated read pairs", y = NULL) +
+    theme(legend.position = "bottom", panel.grid.major.y = element_line(linewidth = 0.2, colour = "#e5e5e5")) +
+    guides(colour = guide_legend(nrow = 2))
+}
+F1_PANELS <- c(paste0(SIM_TYPE_LAB, ": exact F1 (with negatives)"), "all: exact F1", "negatives with a prediction")
+dpanel <- bind_rows(
+  dbt %>% transmute(fraction = lev_frac(level), method, panel = paste0(type, ": exact F1 (with negatives)"), value = f1_exact_wneg),
+  dov %>% transmute(fraction = lev_frac(level), method, panel = "all: exact F1", value = f1_exact),
+  dov %>% transmute(fraction = lev_frac(level), method, panel = "negatives with a prediction", value = frac_negatives_with_pred)) %>%
+  mutate(panel = factor(panel, F1_PANELS))
+figS_depth <- depth_plot(dpanel)
+save_fig(figS_depth, "figS_simtrinity_depth", FULL_W, 110 * MM)
+figS_depth
+```
+
+```{r figS-depth-sens, fig.width = FULL_W, fig.height = 110 * MM}
+SENS_PANELS <- c(paste0(SIM_TYPE_LAB, ": exact sens."), paste0(SIM_TYPE_LAB, ": stop sens."))
+dsens <- bind_rows(
+  dbt %>% transmute(fraction = lev_frac(level), method, panel = paste0(type, ": exact sens."), value = sensitivity_exact),
+  dbt %>% transmute(fraction = lev_frac(level), method, panel = paste0(type, ": stop sens."), value = sensitivity_stop)) %>%
+  mutate(panel = factor(panel, SENS_PANELS))
+figS_depth_sens <- depth_plot(dsens) + facet_wrap(~panel, nrow = 2, ncol = 4)
+save_fig(figS_depth_sens, "figS_simtrinity_depth_sens", FULL_W, 110 * MM)
+figS_depth_sens
+```
+
 ## Checks against the manuscript
 
 Each row compares a value computed here with the value in the text now. Labels give the tex file and
