@@ -68,4 +68,4 @@ Quick map of decisions and lessons across these records (what was tried, adopted
 | E29 | [Start placement on 5'-open ORFs; UTR-length prior (not adopted)](E29_five_prime_open_starts.md) | in paper (Start-codon refinement) |
 | E30 | [Simulated GM12878 Trinity assembly benchmark](E30_simulated_trinity_benchmark.md) | in paper (Results, Benchmark; Methods; Supp. Fig. S5) |
 | E31 | [Read-depth ablation of the simulated Trinity benchmark](E31_simtrinity_depth_ablation.md) | in paper (Results, Benchmark; Methods; Supp. Figs. S5-S6) |
-| E33 | [Keep-open vs trim decision for 5'-open ORFs: classifier ceiling (oracle labels), decoy null, self-trained prototypes](E33_start_decision_classifier.md) | not in paper (negative result; see notes/EXPERIMENT_LOG.md) |
+| E33 | [Keep-open vs trim decision for 5'-open ORFs: classifier ceiling, self-trained prototypes (not adopted); homology-assisted start refinement (adopted in PyTD a5b24c3)](E33_start_decision_classifier.md) | homology start assist: manuscript update pending (Methods, homology Results); classifier parts not in paper |

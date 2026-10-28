@@ -1,0 +1,11 @@
+PY_v7 3a793ff; PY_hstart 3a793ff 9 uncommitted paths
+sample:trinity	files_compared=6	differing=0
+sample:pasa	files_compared=6	differing=0
+sample:stringtie	files_compared=6	differing=0
+sample:supertx	files_compared=6	differing=0
+sample:cufflinks	files_compared=6	differing=0
+bench:spombe.complete	files_compared=6	differing=0
+bench:spombe.fragments	files_compared=6	differing=0
+bench:dmel.complete	files_compared=6	differing=0
+bench:pfalciparum.fragments_mixed_t1	files_compared=6	differing=0
+ALLDONE

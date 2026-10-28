@@ -1,0 +1,5 @@
+dataset	offline_candidates	inprogram_candidates	compared	decision_mismatches	ab_initio_mismatches	homology_decided	conflicts
+sim.human.d1	13205	13205	13205	0	0	10258	88
+sim.human.d8	11230	11230	11230	0	0	9403	74
+sim.human.d32	9710	9710	9710	0	0	8601	35
+sim.athal.d1	7898	7898	7898	0	0	2282	22

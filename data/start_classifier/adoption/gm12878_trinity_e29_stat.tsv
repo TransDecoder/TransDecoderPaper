@@ -1,0 +1,7 @@
+label	ref_type	n_ref	n_stop	exact	five_prime_downstream	five_prime_upstream	exact_given_stop
+abinitio_v7	5prime_partial	1915	1188	940	248	0	0.7912
+abinitio_v7	complete	12172	11439	10599	22	818	0.9266
+homology_v7	5prime_partial	1915	1471	1143	328	0	0.7770
+homology_v7	complete	12172	11799	10950	20	829	0.9280
+homology_v7h	5prime_partial	1915	1471	1419	52	0	0.9646
+homology_v7h	complete	12172	11799	11140	17	642	0.9441

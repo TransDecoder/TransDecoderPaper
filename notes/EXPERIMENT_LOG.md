@@ -47,7 +47,7 @@ disagrees with its E-record, the E-record wins; fix the log.
 | S8 | Kozak in bits (w = 17/bit) | ADOPTED | Rounding the weight changes at most 0.13% of predictions |
 | S9 | First-ATG-of-longest-ORF baseline | ADOPTED (reported) | Beats TD on complete exact F1 (0.956 vs 0.912 at release); fails on fragments and random sequence |
 | S10 | UTR-length prior for keep-open vs trim | NOT ADOPTED | Short open UTRs are common in real annotation; the prior just shifts alpha's trade-off |
-| S11 | Keep-open vs trim classifier (E33) | NOT ADOPTED (classifier); OPEN (homology override, step 3) | "ORF lacks a stop" separates classes perfectly in benchmark fragments; benchmark-trained context models do not transfer; homology (subject N-terminus at the ATG -> trim; alignment upstream -> keep) gives +2 to +9 exact F1 points on simulated assemblies |
+| S11 | Keep-open vs trim for 5'-open ORFs (E33) | ADOPTED (PyTD only, homology mode; classifiers not adopted) | Self-trained classifiers fail (benchmark artefact "ORF lacks a stop"; context does not transfer). Homology hits (subject N-terminus at the ATG -> trim; alignment or Pfam domain upstream -> keep) give +2 to +9 exact F1 points on simulated assemblies; in PyTD a5b24c3 |
 | S12 | Later annotated ATGs (C. reinhardtii) | OPEN | 19.6% of C. reinhardtii starts are later ATGs; no tested rule recovers them |
 | O1 | Minimum ORF length 100 -> 50 codons | ADOPTED | Needs a coding test below 100 codons, else lncRNA calls triple |
 | O2 | Fixed short-ORF guard (C = 200 below 100 codons) | PARTIAL | Kept short-protein gain at -m 100 noise; replaced at release by A9 |
@@ -414,7 +414,8 @@ Outcome counts: see the end of this file.
   - Step 2: self-trained variants without labels: synthetic cuts of confident ORFs, with |u| x
     transcript-length matching; Saerens EM prior adjustment; an unsupervised mixture over context.
   - No TransDecoder code was changed.
-- **Outcome: NOT ADOPTED;** Brian decided it stays out of the manuscript.
+- **Outcome:** classifiers (steps 1-2) NOT ADOPTED and kept out of the manuscript; the homology rules
+  (step 3) ADOPTED in PyTransDecoder only, in homology mode (Brian, 2026-10-28; PyTD a5b24c3, v0.2.0).
 - **Numbers:**
   - With u-intrinsic features only, fitted models do not beat the rule outside their training domain
     (bench -> sim AUC 0.92-0.94 vs 0.93).
@@ -436,7 +437,7 @@ Outcome counts: see the end of this file.
   - Prior adaptation through miscalibrated synthetic models is unreliable.
   - Decoys approximate the UTR null at |u| < 200 nt but understate its tail.
   - Untested next idea: the u-only matched model combined with the mixture's pi estimate.
-- **Step 3, homology override (2026-10-28; outcome OPEN, needs Brian's decision):**
+- **Step 3, homology override (2026-10-28; ADOPTED in PyTD a5b24c3, see below):**
   - Rules on the longest-ORF DIAMOND (Swiss-Prot minus own organism, -k 1) / Pfam hits:
     - trim when the subject's N-terminus (sstart <= 3) aligns within 5 aa of the first ATG (R2);
     - keep open when the alignment starts >= 5 aa upstream of the ATG with sstart > 1 (R1);
@@ -454,6 +455,21 @@ Outcome counts: see the end of this file.
     - validate on GM12878 with full Swiss-Prot;
     - test a stricter keep rule (k = 20).
   - Pointers: E33 step 3; `data/start_classifier/step3/`; searches in `$P/work/start_classifier/homology/`.
+- **Adoption (2026-10-28):**
+  - PyTD main a5b24c3 adds the step-3 policy H to start refinement:
+    - BLAST rules only with `--retain-blastp-hits`, the Pfam rule only with `--retain-pfam-hits`;
+    - on by default whenever hits are supplied; opt-out `--no-homology-start-assist`;
+    - per-ORF table `start_refinement.homology.tsv`.
+  - Checks:
+    - ab initio output byte-identical to 3a793ff (5 sample sets + 4 benchmark inputs);
+    - in-program decisions = offline H on 150,356 benchmark and 42,043 simulated ORFs (0 mismatches).
+  - Fresh runs with reused searches. Exact F1 vs homology for selection only:
+    - simulated human d1 / d8 / d32 / athal +2.0 / +5.4 / +9.0 / +2.0, every type up;
+    - benchmark fragments +5.9 (median, 34 inputs, none down);
+    - benchmark complete inputs median ~0, range -0.58..+2.92;
+    - GM12878 Trinity: MANE exact 7,063 -> 7,190; 5' partials kept open given the stop 0.78 -> 0.96.
+  - Stops and selection are unchanged. Perl is unchanged, so Perl = PyTD now holds for ab initio runs only.
+  - Pointers: E33 "Adoption in PyTD"; `data/start_classifier/adoption/`.
 - **Pointers:** E33; `pipeline/start_classifier/`; `data/start_classifier/{step1,step2,step3}/`; large
   intermediates in `$P/data/start_classifier/`; env `$P/env/startclf`.
 
@@ -908,12 +924,12 @@ Entries: 54 (A1-A13, S1-S12, O1-O4, H1-H4, B1-B10, T1-T5, G1-G6).
 
 | Outcome | Count | Entries |
 |---|---|---|
-| ADOPTED | 31 | A1-A4, A9-A12, S4, S6-S9, O1, H1, H2, B1-B4, B8, B10, T1-T3, G1-G6 |
-| NOT ADOPTED | 12 | A5, A7, A8, A13, S2, S3, S5, S10, S11, O3, O4, H3 |
+| ADOPTED | 32 | A1-A4, A9-A12, S4, S6-S9, S11, O1, H1, H2, B1-B4, B8, B10, T1-T3, G1-G6 |
+| NOT ADOPTED | 11 | A5, A7, A8, A13, S2, S3, S5, S10, O3, O4, H3 |
 | PARTIAL | 4 | S1, O2, B5, B7 |
 | OPEN | 5 | A6, S12, H4, B9, T4 |
 | ABANDONED | 2 | B6, T5 |
 
-Rejected variants inside ADOPTED entries: the decoy-derived long-ORF length (A10) and the multiplicative
-Kozak form (S6). Open sub-questions inside other entries: which lncRNA ORFs gain homology hits (H1);
+Rejected variants inside ADOPTED entries: the decoy-derived long-ORF length (A10), the multiplicative
+Kozak form (S6), and the self-trained keep/trim classifiers (S11, steps 1-2). Open sub-questions inside other entries: which lncRNA ORFs gain homology hits (H1);
 stating the catalogued Ribo-seq cost in the manuscript (G6).

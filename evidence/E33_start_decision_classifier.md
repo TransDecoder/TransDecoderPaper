@@ -1,7 +1,7 @@
 # E33. Keep-open vs trim for 5'-open ORFs: how much better can a classifier decide? (2026-10-28)
 
-Status: **exploratory, not in the paper.** Step 1 (oracle-label ceiling test) and step 2 (self-trained
-prototypes, approved by Brian 2026-10-28) done. No TransDecoder/PyTD code was changed.
+Status: steps 1-2 exploratory, not adopted. Step 3 (homology evidence) ADOPTED in PyTransDecoder only
+(homology mode, a5b24c3, 2026-10-28; see "Adoption in PyTD"). Perl TransDecoder unchanged.
 
 ## Question
 The release start refinement (methods_algorithm.tex "Start-codon refinement"; E09, E13, E29) takes an
@@ -287,7 +287,7 @@ calibrated prior), evaluated on the assemblies and GM12878.
 The large intermediate outputs were moved out of the repository after the analysis: `data/start_classifier/features/` (33 MB) and `data/start_classifier/selftrain/` (144 MB) now live at `$P/data/start_classifier/features/` and `$P/data/start_classifier/selftrain/`. Paths in the commands above refer to the original location in `$T`. The summary tables (`step1/`, `step2/`, `*.stdout.txt`) remain in the repository.
 
 ## Outcome
-Not adopted; Brian decided (2026-10-28) that this stays out of the manuscript and is recorded in `notes/EXPERIMENT_LOG.md`. Step 3 (homology override, below) was added afterwards at Brian's request; its outcome is open (a method change needs his decision).
+Not adopted; Brian decided (2026-10-28) that this stays out of the manuscript and is recorded in `notes/EXPERIMENT_LOG.md`. Step 3 (homology override) was added afterwards at Brian's request and was ADOPTED in PyTransDecoder only (homology mode; commit a5b24c3, section "Adoption in PyTD").
 
 ## Step 3: homology (BLAST / Pfam) evidence for keep-open vs trim (2026-10-28)
 
@@ -444,3 +444,142 @@ the larger assembly gain. It needs Brian's decision and fresh runs. Before adopt
   evaluation. Simulated human assemblies at different depths share genes, so they are not
   independent tests.
 - Benchmark mixed inputs were not evaluated (no homology runs).
+
+## Adoption in PyTD: homology-assisted start refinement (2026-10-28)
+
+### Decision
+Brian (2026-10-28) chose to implement policy H from step 3 in PyTransDecoder only, not in Perl:
+- the BLAST rules (R1, R2) apply only if `--retain-blastp-hits` is given;
+- the Pfam rule (R3) applies only if `--retain-pfam-hits` is given;
+- the feature is on by default whenever hits are supplied, with the opt-out `--no-homology-start-assist`.
+
+### Code
+**Commit:** PyTD `main` **a5b24c3**, "Homology-assisted start refinement when BLASTP/Pfam hits are supplied (v0.2.0)".
+- Parent 3a793ff, which was `origin/main` before the push.
+- Pushed to `git@github.com:TransDecoder/PyTransDecoder.git` as `main`; not tagged.
+- Worktree: `$P/work/trees/PY_hstart`.
+
+**Rules** (`pytransdecoder/core/homology_starts.py`), with a = peptide position of the first in-frame ATG:
+
+| rule | call | fires when |
+|---|---|---|
+| R2 | trim | sstart <= 3 and \|qstart - (sstart-1) - a\| <= 5 |
+| R1 | keep open | qstart <= a - 5 and sstart > 1 |
+| R3 | keep open | Pfam env_from <= a - 1 |
+
+- A trim call together with a keep call (a conflict), or no call at all, falls back to the ab initio rule.
+- R1 and R2 cannot fire together on one hit, so conflicts are always R2 + R3.
+
+**Changes in `predict.py`:**
+- The hit parsers are refactored into `_read_blastp_first_hits` and `_read_pfam_domains`. The existing selection parsers `_parse_blastp_hits` and `_parse_pfam_hits` are built on them, with unchanged output.
+- `_homology_start_evidence` reads the best hit's qstart and sstart, and each ORF's smallest envelope start.
+- `_revise_start_sites` applies the rules. It writes `start_refinement.homology.tsv` (orf id, ATG offset in nt and aa, BLAST qstart and sstart, Pfam env_from, rules fired, coding and UTR scores, ab initio decision, final decision, source), logs the counts of R1/R2/R3 firings, homology trims and keeps, conflicts and changed decisions, and tags R2 trims with `start_homology=R2`.
+
+**CLI and documentation:**
+- `--no-homology-start-assist` added to `predict` and to the `pyTransdecoder` pipeline.
+- README (start refinement and options), `docs/start_codon_refinement.md` (new section and comparison-table row), new `CHANGELOG.md` (v0.2.0); version set to 0.2.0.
+
+### Tests
+- **Unit tests:** `tests/test_homology_starts.py`, 9 tests: each rule and its boundaries, the conflict fallback, Pfam-only and opt-out behaviour, and the per-ORF table. All 76 PyTD tests pass at a5b24c3.
+- **Ab initio regression** (`pipeline/start_classifier/09_pytd_hstart_abinitio_regression_v1.sh`; output `$P/work/start_classifier/hstart_regression/`, summary `data/start_classifier/adoption/abinitio_regression.txt`):
+  - Run on the working tree that was then committed unchanged as a5b24c3.
+  - Five sample datasets (trinity, pasa, stringtie, supertx, cufflinks, as in `regression/run_regression.sh`): PY_v7 (3a793ff) and PY_hstart run fresh.
+  - Four benchmark inputs (spombe complete and fragments, dmel complete, pfalciparum fragments_mixed_t1): PY_hstart run fresh, compared with the existing 3a793ff `pytd_v7` runs.
+  - Files compared: final gff3/bed/cds/pep, `best_candidates.gff3` and its `revised_starts`. All 54 files are byte-identical.
+- **In-program vs offline decisions** (`12_check_inprogram_vs_offline.py`; `adoption/inprogram_vs_offline_{bench,sim}.tsv`):
+  - Scope: on the 24 benchmark homology inputs (complete, complete_fullutr and fragments of 8 organisms; the new `pytd_v7h_homology` runs), every 5'-open ORF that both the program and the offline step-3 policy H evaluate.
+  - Benchmark: **150,356 ORFs compared, 0 decision mismatches**, and 0 ab initio-decision mismatches. Homology selection adds some ORFs that the ab initio selection lacks; those are not compared.
+  - Simulated assemblies: 42,043 compared, 0 mismatches.
+  - Rule counts in the simulated runs' logs equal the step-3 offline counts. Human d1, for example: R1 3,199, R2 6,793, R3 2,308, 1,317 changed decisions.
+
+### Evaluation runs (fresh, with the pushed code a5b24c3)
+- **Driver:** `pipeline/start_classifier/15_eval_jobs_v1.sh` runs `11_run_pytd_v7h_homology_v1.sh` and `13_gm12878_trinity_v7h_v1.sh`, 3 at a time, 11:19-14:36. Log `$P/work/start_classifier/eval_jobs_v1.log`: 92 jobs, 0 failed.
+- **Each run:** a new run directory, a fresh LongOrfs (`-S` for stranded inputs, the organism's genetic code), then Predict with `--retain-blastp-hits` / `--retain-pfam-hits`.
+- **Hits are reused, as a user would supply them:**
+  - benchmark: the existing release homology run `pytd_v7_homology` (3a793ff; DIAMOND to Swiss-Prot minus own organism, Pfam-A, on all LongOrfs peptides). Its LongOrfs is identical to the fresh one.
+  - simulated assemblies: the step-3 candidate searches.
+  - GM12878 Trinity: the release run `trinity/final_v7_homology`. Its `longest_orfs.pep` was checked identical (`cmp`).
+- **Not run:** GM12878 LRAA and StringTie have no homology searches on the v7 LongOrfs. Their homology runs predate v7 and have different LongOrfs, so they were skipped.
+- **Scoring:** `16_score_adoption.py` (as `score_predictions.py` / E25; per type as `02_partial_types.py`) writes `adoption/{bench_scores,bench_summary,sim_scores}.tsv`. GM12878 uses `eval_genome_cds.py` (as E03/E25; `adoption/gm12878_trinity_summary.tsv`) and the E29 statistic (`14_gm12878_e29_stat.py`; `adoption/gm12878_trinity_e29_stat.tsv`).
+
+### Results
+**Benchmark, 84 homology inputs.** The new code is `pytd_v7h_homology`; the comparison is with `pytd_v7_homology`, i.e. the same hits used for selection only.
+- Predictions and stop-level matches are identical on all 84 inputs; only start codons change.
+
+Change in exact F1 (points; median, range, number of inputs down):
+
+| inputs | vs pytd_v7_homology | vs ab initio pytd_v7 |
+|---|---|---|
+| all 84 | +1.25 (-0.58..+9.18; 24 down) | +1.65 (-0.44..+12.90; 13 down) |
+| fragments* (34) | +5.92 (+0.29..+9.18; 0 down) | +6.52 (+0.53..+12.90; 0 down) |
+| complete* (34) | +0.02 (-0.58..+2.92; 16 down) | +0.67 (-0.44..+4.21; 8 down) |
+| complete_fullutr* (16) | -0.01 (-0.54..+2.85; 8 down) | +0.68 (-0.42..+4.78; 5 down) |
+
+Change in exact F1 by truth type in the fragments inputs, vs `pytd_v7_homology`:
+- 5' partial: median +11.4 points (+0.9..+15.7);
+- 3' partial: median +0.02 (-0.51..+3.25).
+
+Per organism, the complete inputs are unchanged across the stranded, unstranded and wRand variants:
+
+| organism | complete | complete_fullutr |
+|---|---|---|
+| human | +2.9 | +2.85 |
+| mouse | +1.5 | +1.45 |
+| spombe | +0.7 | +0.7 |
+| pfalciparum | +0.02 | +0.02 |
+| athal | -0.08 | -0.04 |
+| dmel | -0.07 | -0.09 |
+| creinhardtii | -0.35 | -0.26 |
+| tthermophila | -0.58 | -0.54 |
+
+The per-organism changes are the step-3 offline values. The losses come from the keep rules on transcripts whose homolog's alignment starts upstream of the annotated ATG.
+
+**Simulated Trinity assemblies** (`sim_scores.tsv`; excluded contigs removed):
+- Arms: ab initio `pytd_v7`; assist off (the same hits used for selection only); assist on.
+- Assist off is identical to ab initio here, because the candidate hits do not change selection.
+- Predictions and stops are identical in all three arms.
+
+| assembly | exact F1 off -> on | complete | 5' partial | 3' partial | internal |
+|---|---|---|---|---|---|
+| human d1 | 0.8440 -> 0.8641 (+2.0) | 0.887 -> 0.897 | 0.663 -> 0.769 | 0.823 -> 0.835 | 0.765 -> 0.862 |
+| human d8 | 0.8315 -> 0.8859 (+5.4) | 0.901 -> 0.920 | 0.706 -> 0.837 | 0.862 -> 0.899 | 0.754 -> 0.883 |
+| human d32 | 0.8063 -> 0.8963 (+9.0) | 0.900 -> 0.929 | 0.745 -> 0.871 | 0.849 -> 0.900 | 0.773 -> 0.902 |
+| athal d1 | 0.8815 -> 0.9017 (+2.0) | 0.919 -> 0.920 | 0.622 -> 0.764 | 0.784 -> 0.791 | 0.738 -> 0.861 |
+
+**GM12878 Trinity GG** (MANE / GENCODE evaluation as E03/E25, `gm12878_trinity_summary.tsv`):
+
+| metric | ab initio v7 | homology v7 (3a793ff) | homology v7h (a5b24c3) |
+|---|---|---|---|
+| MANE exact | 6,857 | 7,063 | 7,190 |
+| MANE exact given assembled | 0.8933 | 0.9201 | 0.9367 |
+| MANE compatible | 10,261 | 10,960 | 10,941 |
+| GENCODE complete exact | 51,807 | 54,537 | 54,889 |
+| GENCODE complete exact given assembled | 0.8563 | 0.9014 | 0.9072 |
+| predicted CDS models | 77,481 | 96,969 | 96,421 |
+| distinct predicted complete | 44,494 | 54,116 | 51,351 |
+| distinct predicted 5' partial | 5,931 | 9,206 | 11,717 |
+
+E29 statistic: transcripts carrying a MANE stop with the reference structure to their 5' end; `gm12878_trinity_e29_stat.tsv`.
+
+5'-partial references (1,915):
+- stop predicted: 1,188 (ab initio) and 1,471 (homology);
+- left open (exact) given the stop: 0.791 (ab initio), 0.777 (homology v7), **0.965 (v7h)**;
+- trimmed to an internal ATG: 248 / 328 / **52**.
+
+Complete references (12,172):
+- exact given the stop: 0.927 / 0.928 / **0.944**;
+- 5' end upstream of the true start: 818 / 829 / 642.
+
+### Conclusion
+- The homology start assist is in PyTD main (a5b24c3, v0.2.0). Ab initio output is unchanged.
+- With homology hits:
+  - the simulated Trinity assemblies gain 2-9 exact-F1 points, every CDS type improving;
+  - benchmark fragments gain +5.9 points (median);
+  - GM12878 Trinity gains +127 MANE exact CDSs, and its 5' partials kept open given the stop rise from 78% to 96%.
+- Cost on complete benchmark inputs: up to -0.58 points (tthermophila), with a median of about 0.
+- Perl and Python now agree only on ab initio runs. Homology runs differ in start codons only; selection and stops are identical.
+
+### Caveats (adoption)
+- GM12878 LRAA and StringTie are not evaluated: there are no homology searches on the v7 LongOrfs.
+- The simulated-assembly searches cover only the 5'-open candidate ORFs, so selection there is unaffected by homology. The comparison isolates the start assist.
+- Swiss-Prot excludes the organism's own entries, as in E25. With the species included, rule coverage would rise.
