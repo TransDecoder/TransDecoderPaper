@@ -287,4 +287,160 @@ calibrated prior), evaluated on the assemblies and GM12878.
 The large intermediate outputs were moved out of the repository after the analysis: `data/start_classifier/features/` (33 MB) and `data/start_classifier/selftrain/` (144 MB) now live at `$P/data/start_classifier/features/` and `$P/data/start_classifier/selftrain/`. Paths in the commands above refer to the original location in `$T`. The summary tables (`step1/`, `step2/`, `*.stdout.txt`) remain in the repository.
 
 ## Outcome
-Not adopted; Brian decided (2026-10-28) that this stays out of the manuscript and is recorded in `notes/EXPERIMENT_LOG.md`.
+Not adopted; Brian decided (2026-10-28) that this stays out of the manuscript and is recorded in `notes/EXPERIMENT_LOG.md`. Step 3 (homology override, below) was added afterwards at Brian's request; its outcome is open (a method change needs his decision).
+
+## Step 3: homology (BLAST / Pfam) evidence for keep-open vs trim (2026-10-28)
+
+### Question
+PyTD uses homology only for ORF selection, never in start refinement. Can a DIAMOND/Swiss-Prot or
+Pfam hit of the 5'-open ORF (the longest-ORF peptide, before trimming) decide keep-open vs trim?
+
+### Data and searches
+- Benchmark: the existing `pytd_v7_homology` runs (`$P/work/bench_v3/runs/<org>/<input>/pytd_v7_homology/`)
+  for complete, complete_fullutr and fragments of the 8 organisms (24 inputs). Their `longest_orfs.gff3`
+  is byte-identical to the `pytd_v7` runs' (checked with `cmp` for all 24), so ORF ids join directly to
+  the step-1 candidates (release `pytd_v7` decisions). There are no homology runs for the mixed inputs;
+  they were skipped.
+- Simulated assemblies human d1, d8, d32 and athal d1: new searches
+  (`pipeline/start_classifier/07_homology_candidates_v2.sh`, driver `07_homology_all_v2.sh`;
+  outputs `$P/work/start_classifier/homology/<dataset>/`; log `$P/work/start_classifier/homology_v2.log`,
+  09:27-10:25, one dataset at a time). The parameters are those of `run_tool.sh` `pytd_v7_homology`:
+  `diamond blastp --max-target-seqs 1 --evalue 1e-5 --outfmt 6 --threads 3` against
+  `$P/data/homology/sprot_minus_<taxid>.dmnd` (human 9606, athal 3702), and `hmmsearch --cpu 1 --cut_ga
+  --noali` against `$P/data/homology/Pfam-A.hmm` in 3 chunks run in parallel. DIAMOND 2.2.8 and
+  HMMER 3.4 from `$P/env/td`.
+  - Queries are the longest-ORF peptides of the 5'-open candidates only (13,205 / 11,230 / 9,710 /
+    7,898), not all longest ORFs. Per-query results do not depend on the other queries (`-k 1`; GA
+    thresholds are bit scores). Check: the same subset search on bench.human.fragments reproduced
+    the full `pytd_v7_homology` run exactly for those ORFs: 10,682 / 10,682 best hits identical
+    (subject, identity, qstart..send) and 19,267 / 19,267 Pfam domains identical.
+  - v1 of the driver failed at once because the feature tables had been moved to
+    `$P/data/start_classifier/features/`. Its empty output was moved to
+    `$P/_trash/e33_homology_v1_failed_20261028/`; v2 differs only in that path.
+
+### Method (`pipeline/start_classifier/08_homology_rules.py`, then `05_evaluate.py`)
+- For each candidate:
+  - a = peptide position of the first in-frame ATG (seg/3 + 1);
+  - BLAST: the first (best) line of the query, giving qstart and sstart;
+  - Pfam: the smallest envelope start (env_from) over the ORF's domains.
+- Rules:
+
+  | rule | call | fires when |
+  |---|---|---|
+  | R1_k[_s] | keep open | qstart <= a - k (k = 1, 5, 10, 20); `_s` also requires sstart > 1 |
+  | R2_s_d | trim | sstart <= s and \|qstart - (sstart-1) - a\| <= d (s = 1, 3, 5, 10; d = 2, 5, 10) |
+  | R3_k | keep open | a Pfam envelope starts at <= a - k (k = 1, 5) |
+
+- Policies: the homology call where the rule fires, otherwise the release decision.
+  - Each rule alone.
+  - The combination chosen before evaluation: `H` = R2_3_5 (trim) + R1_5_s (keep) + R3_1 (keep).
+  - `H_noR3` = the same without R3.
+  - Conflicting calls fall back to the release decision.
+  - `oracle_on_H` = the true decision wherever H fires, i.e. the ceiling for H's coverage.
+- Scoring as in step 2.
+
+### Commands
+```bash
+P=/broad/hptmp/bhaas/TRANSDECODER_PAPER; T=$P/TransDecoderPaper; cd $T
+nohup bash pipeline/start_classifier/07_homology_all_v2.sh > $P/work/start_classifier/homology_v2.log 2>&1 &
+OMP_NUM_THREADS=3 $P/env/startclf/bin/python pipeline/start_classifier/08_homology_rules.py $P/data/start_classifier/features data/start_classifier/step3_manifest.tsv $P/data/start_classifier/step3
+$P/env/startclf/bin/python pipeline/start_classifier/05_evaluate.py $P/data/start_classifier/features $P/data/start_classifier/step3/decisions data/start_classifier/step3_manifest.tsv data/start_classifier/step3
+cp $P/data/start_classifier/step3/rule_metrics.tsv data/start_classifier/step3/
+```
+Outputs:
+- `data/start_classifier/step3/{rule_metrics,exact_f1,decision_metrics}.tsv`;
+  `selftrain_log.tsv` there is only a placeholder.
+- Decision columns are in `$P/data/start_classifier/step3/decisions/`.
+
+### Results
+**Coverage** (`rule_metrics.tsv`, rows `(coverage)`). A BLAST hit exists for:
+- human assemblies: 92-96% of truncated and 99% of UTR-extension candidates;
+- athal d1: 48% / 65%.
+
+A Pfam hit exists for:
+- human: 64-71% / 90-93%;
+- athal: 73% / 89%.
+
+**Rules on the simulated assemblies** (precision of the call on labelled candidates where the rule fires; recall of its class):
+
+| rule | human d1 | human d8 | human d32 | athal d1 |
+|---|---|---|---|---|
+| R1_5_s keep: prec / recall | 0.909 / 0.795 | 0.972 / 0.824 | 0.990 / 0.858 | 0.961 / 0.339 |
+| R1_5_s: changed release decisions, exact fixed / broken | 638, 323 / 113 | 969, 719 / 56 | 1141, 956 / 30 | 262, 226 / 22 |
+| R2_3_5 trim: prec / recall | 0.997 / 0.776 | 0.994 / 0.821 | 0.994 / 0.866 | 0.993 / 0.132 |
+| R2_3_5: changed, fixed / broken | 558, 438 / 4 | 417, 369 / 7 | 266, 226 / 7 | 107, 104 / 2 |
+| R3_1 keep: prec / recall | 0.863 / 0.519 | 0.938 / 0.474 | 0.978 / 0.485 | 0.930 / 0.493 |
+
+- Larger k raises R1's precision and lowers its recall: R1_20_s reaches 0.93-0.99.
+- R2's precision is 0.99-1.00 for every s and d.
+- On the benchmark complete inputs every 5'-open end is a UTR extension:
+  - R2_3_5 trims 23,063 candidates (16 inputs), fixing 2,508 exact ORFs and breaking none;
+  - the keep rules fire wrongly by construction: R1_5_s 682 times (415 exact broken), R3_1 1,597 (1,026 broken).
+  - These are candidates where the homolog's alignment begins upstream of the annotated ATG: an
+    N-terminal extension in the homolog or a later annotated start.
+
+**Exact F1, change in points vs release** (`exact_f1.tsv`):
+
+| policy | human d1 | human d8 | human d32 | athal d1 | bench complete (16) | bench fragments (8) * |
+|---|---|---|---|---|---|---|
+| H | +2.02 | +5.44 | +9.00 | +2.02 | mean +0.53 (-0.57..+2.94; 8/16 down) | +4.30 (+0.31..+8.53) |
+| H_noR3 | +1.93 | +5.25 | +8.70 | +1.49 | mean +0.75 (-0.15..+3.08; 3/16 down) | +3.18 |
+| R2_3_5 alone | +1.30 | +1.86 | +1.66 | +0.50 | mean +0.89 (+0.02..+3.41; 0/16 down) | +0.43 |
+| R1_5_s alone | +0.63 | +3.40 | +7.04 | +0.99 | mean -0.14 (14/16 down, to -0.32) | +2.75 |
+| oracle_on_H | +2.82 | +6.31 | +9.62 | +2.54 | +1.06 | +4.56 |
+| perfect (all candidates) | +3.62 | +7.61 | +11.22 | +8.66 | +4.05 | +9.27 |
+
+Release exact F1 for comparison: d1 0.844, d8 0.832, d32 0.806, athal 0.882.
+
+\* The homology rules do not use the "ORF lacks a stop" flag, so the step-2 benchmark artefact does
+not apply to them. The benchmark fragments are still synthetic cuts.
+
+- Per type on the assemblies, H improves every type:
+  - complete +1.0 / +1.9 / +2.9 / +0.2;
+  - 5' partial +10.6 / +13.1 / +12.7 / +14.2;
+  - 3' partial +1.2 / +3.7 / +5.1 / +0.7;
+  - internal +9.7 / +12.9 / +12.9 / +12.3 (human d1 / d8 / d32 / athal).
+- H_noR3 also improves every type (5' partial +8.0 to +12.1).
+- H recovers 56% (d1), 72% (d8), 80% (d32) and 23% (athal) of the gap to perfect decisions, and
+  71-94% of what perfect decisions on its own firings would give (`oracle_on_H`).
+- Athal recovers less because BLAST coverage is lower (Swiss-Prot minus Arabidopsis is sparser for
+  plants). R3 matters more there (H +2.02 vs H_noR3 +1.49).
+- The complete inputs that lose under H are athal, creinhardtii, dmel and tthermophila, at most
+  -0.57 (tthermophila): R3 keeps the end open when a Pfam envelope reaches upstream of the annotated
+  start. Under H_noR3 the losses are creinhardtii -0.15 / -0.09 and tthermophila -0.003.
+
+### Conclusion (step 3)
+Homology evidence decides keep-open vs trim far better than any self-trained classifier (step 2), and
+it improves every CDS type on the simulated assemblies.
+- **Trimming when the subject's N-terminus aligns to the first ATG (R2) is almost never wrong**
+  (precision >= 0.99). It never lowers exact F1 on any input (0 of 16 complete inputs down, +0.02 to
+  +3.41).
+- **Keeping the end open when the alignment starts upstream of the ATG (R1, R3)** gives most of the
+  assembly gain: R1_5_s alone adds +0.6 to +7.0. It costs up to 0.3 points (R1) or 0.6 (R3) on
+  complete inputs.
+- **Policies:**
+  - `H` gives +2.0 / +5.4 / +9.0 (human d1 / d8 / d32) and +2.0 (athal), with a mean +0.5 on complete
+    inputs but 8 of 16 slightly down.
+  - `H_noR3` gives +1.9 / +5.3 / +8.7 / +1.5, with a mean +0.75 on complete inputs and 3 of 16 down
+    by at most 0.15.
+- **A rule with no loss on any complete input** would need a stricter keep rule. The R1_20_s results
+  above (precision 0.93-0.99; -0.03 on complete) suggest one, but no combination with it was tested,
+  and choosing one now would be post hoc.
+
+**Recommendation:** a homology override for start refinement is worth implementing as an option used
+when homology results are supplied (`--retain-blastp-hits` / `--retain-pfam-hits` are already
+inputs). Candidates are R2 (trim) alone as the zero-risk version, or R2 + R1 (k = 5, sstart > 1) for
+the larger assembly gain. It needs Brian's decision and fresh runs. Before adoption:
+- validate on GM12878 with MANE truth;
+- validate with the full Swiss-Prot, i.e. without excluding the organism's own entries, as users
+  would run it;
+- test a stricter R1 (k = 20) on complete inputs.
+
+### Caveats (step 3)
+- Swiss-Prot minus the organism's own entries (as in the benchmark homology runs). With the own
+  species included, coverage and agreement would be higher, especially for human.
+- Only the best DIAMOND hit (`-k 1`) and its first HSP are used, as in the TransDecoder wrapper.
+- The rule parameter grids are reported in full, but the combined policy was fixed before
+  evaluation. Simulated human assemblies at different depths share genes, so they are not
+  independent tests.
+- Benchmark mixed inputs were not evaluated (no homology runs).

@@ -1,0 +1,673 @@
+dataset	rule	n_cand	n_truncated	n_utr	blast_truncated	blast_utr	pfam_truncated	pfam_utr	call	fires	fires_labelled	precision	recall	changed	fixes_exact	breaks_exact	conflicts
+bench.human.complete	(coverage)	7826.0000	0.0000	7804.0000	0.0000	0.9769	0.0000	0.9755									
+bench.human.complete	R1_1								keep	170.0000	169.0000	0.0000		131.0000	0.0000	131.0000	
+bench.human.complete	R1_1_s								keep	142.0000	142.0000	0.0000		106.0000	0.0000	106.0000	
+bench.human.complete	R1_5								keep	101.0000	100.0000	0.0000		72.0000	0.0000	72.0000	
+bench.human.complete	R1_5_s								keep	89.0000	89.0000	0.0000		61.0000	0.0000	61.0000	
+bench.human.complete	R1_10								keep	76.0000	75.0000	0.0000		49.0000	0.0000	49.0000	
+bench.human.complete	R1_10_s								keep	68.0000	68.0000	0.0000		42.0000	0.0000	42.0000	
+bench.human.complete	R1_20								keep	42.0000	41.0000	0.0000		25.0000	0.0000	25.0000	
+bench.human.complete	R1_20_s								keep	39.0000	39.0000	0.0000		23.0000	0.0000	23.0000	
+bench.human.complete	R2_1_2								trim	6097.0000	6097.0000	1.0000	0.7813	629.0000	627.0000	0.0000	
+bench.human.complete	R2_1_5								trim	6147.0000	6147.0000	1.0000	0.7877	643.0000	635.0000	0.0000	
+bench.human.complete	R2_1_10								trim	6197.0000	6197.0000	1.0000	0.7941	660.0000	647.0000	0.0000	
+bench.human.complete	R2_3_2								trim	6176.0000	6176.0000	1.0000	0.7914	638.0000	636.0000	0.0000	
+bench.human.complete	R2_3_5								trim	6263.0000	6263.0000	1.0000	0.8025	654.0000	645.0000	0.0000	
+bench.human.complete	R2_3_10								trim	6342.0000	6342.0000	1.0000	0.8127	676.0000	661.0000	0.0000	
+bench.human.complete	R2_5_2								trim	6240.0000	6240.0000	1.0000	0.7996	643.0000	641.0000	0.0000	
+bench.human.complete	R2_5_5								trim	6343.0000	6343.0000	1.0000	0.8128	662.0000	652.0000	0.0000	
+bench.human.complete	R2_5_10								trim	6439.0000	6439.0000	1.0000	0.8251	689.0000	672.0000	0.0000	
+bench.human.complete	R2_10_2								trim	6340.0000	6340.0000	1.0000	0.8124	657.0000	655.0000	0.0000	
+bench.human.complete	R2_10_5								trim	6475.0000	6475.0000	1.0000	0.8297	680.0000	669.0000	0.0000	
+bench.human.complete	R2_10_10								trim	6612.0000	6612.0000	1.0000	0.8473	716.0000	697.0000	0.0000	
+bench.human.complete	R3_1								keep	114.0000	113.0000	0.0000		88.0000	0.0000	88.0000	
+bench.human.complete	R3_5								keep	51.0000	50.0000	0.0000		33.0000	0.0000	33.0000	
+bench.human.complete	H								mixed	6363.0000	6362.0000			708.0000			87.0000
+bench.human.complete_fullutr	(coverage)	7442.0000	0.0000	7413.0000	0.0000	0.9769	0.0000	0.9750									
+bench.human.complete_fullutr	R1_1								keep	157.0000	156.0000	0.0000		122.0000	0.0000	122.0000	
+bench.human.complete_fullutr	R1_1_s								keep	128.0000	128.0000	0.0000		98.0000	0.0000	98.0000	
+bench.human.complete_fullutr	R1_5								keep	89.0000	88.0000	0.0000		64.0000	0.0000	64.0000	
+bench.human.complete_fullutr	R1_5_s								keep	76.0000	76.0000	0.0000		54.0000	0.0000	54.0000	
+bench.human.complete_fullutr	R1_10								keep	64.0000	63.0000	0.0000		41.0000	0.0000	41.0000	
+bench.human.complete_fullutr	R1_10_s								keep	55.0000	55.0000	0.0000		35.0000	0.0000	35.0000	
+bench.human.complete_fullutr	R1_20								keep	32.0000	31.0000	0.0000		19.0000	0.0000	19.0000	
+bench.human.complete_fullutr	R1_20_s								keep	28.0000	28.0000	0.0000		18.0000	0.0000	18.0000	
+bench.human.complete_fullutr	R2_1_2								trim	5800.0000	5800.0000	1.0000	0.7824	604.0000	603.0000	0.0000	
+bench.human.complete_fullutr	R2_1_5								trim	5847.0000	5847.0000	1.0000	0.7887	618.0000	611.0000	0.0000	
+bench.human.complete_fullutr	R2_1_10								trim	5898.0000	5898.0000	1.0000	0.7956	635.0000	621.0000	0.0000	
+bench.human.complete_fullutr	R2_3_2								trim	5874.0000	5874.0000	1.0000	0.7924	613.0000	612.0000	0.0000	
+bench.human.complete_fullutr	R2_3_5								trim	5957.0000	5957.0000	1.0000	0.8036	628.0000	621.0000	0.0000	
+bench.human.complete_fullutr	R2_3_10								trim	6036.0000	6036.0000	1.0000	0.8142	650.0000	635.0000	0.0000	
+bench.human.complete_fullutr	R2_5_2								trim	5937.0000	5937.0000	1.0000	0.8009	618.0000	617.0000	0.0000	
+bench.human.complete_fullutr	R2_5_5								trim	6034.0000	6034.0000	1.0000	0.8140	637.0000	629.0000	0.0000	
+bench.human.complete_fullutr	R2_5_10								trim	6130.0000	6130.0000	1.0000	0.8269	664.0000	647.0000	0.0000	
+bench.human.complete_fullutr	R2_10_2								trim	6031.0000	6031.0000	1.0000	0.8136	632.0000	631.0000	0.0000	
+bench.human.complete_fullutr	R2_10_5								trim	6158.0000	6158.0000	1.0000	0.8307	655.0000	646.0000	0.0000	
+bench.human.complete_fullutr	R2_10_10								trim	6293.0000	6293.0000	1.0000	0.8489	692.0000	673.0000	0.0000	
+bench.human.complete_fullutr	R3_1								keep	106.0000	105.0000	0.0000		84.0000	0.0000	84.0000	
+bench.human.complete_fullutr	R3_5								keep	43.0000	42.0000	0.0000		30.0000	0.0000	30.0000	
+bench.human.complete_fullutr	H								mixed	6045.0000	6044.0000			676.0000			82.0000
+bench.human.fragments	(coverage)	11207.0000	7571.0000	3599.0000	0.9526	0.9628	0.8101	0.7858									
+bench.human.fragments	R1_1								keep	7068.0000	7064.0000	0.9874	0.9213	1334.0000	1261.0000	70.0000	
+bench.human.fragments	R1_1_s								keep	7054.0000	7050.0000	0.9889	0.9209	1324.0000	1261.0000	60.0000	
+bench.human.fragments	R1_5								keep	6426.0000	6422.0000	0.9913	0.8408	1113.0000	1070.0000	40.0000	
+bench.human.fragments	R1_5_s								keep	6421.0000	6417.0000	0.9916	0.8404	1111.0000	1070.0000	38.0000	
+bench.human.fragments	R1_10								keep	5712.0000	5708.0000	0.9928	0.7485	905.0000	877.0000	25.0000	
+bench.human.fragments	R1_10_s								keep	5708.0000	5704.0000	0.9930	0.7481	904.0000	877.0000	24.0000	
+bench.human.fragments	R1_20								keep	4453.0000	4451.0000	0.9946	0.5847	603.0000	590.0000	12.0000	
+bench.human.fragments	R1_20_s								keep	4452.0000	4450.0000	0.9946	0.5846	603.0000	590.0000	12.0000	
+bench.human.fragments	R2_1_2								trim	2830.0000	2830.0000	0.9996	0.7861	325.0000	324.0000	0.0000	
+bench.human.fragments	R2_1_5								trim	2851.0000	2851.0000	0.9996	0.7919	332.0000	328.0000	0.0000	
+bench.human.fragments	R2_1_10								trim	2867.0000	2867.0000	0.9997	0.7963	336.0000	331.0000	0.0000	
+bench.human.fragments	R2_3_2								trim	2868.0000	2868.0000	0.9997	0.7966	331.0000	330.0000	0.0000	
+bench.human.fragments	R2_3_5								trim	2904.0000	2904.0000	0.9997	0.8066	339.0000	335.0000	0.0000	
+bench.human.fragments	R2_3_10								trim	2934.0000	2934.0000	0.9993	0.8147	346.0000	340.0000	1.0000	
+bench.human.fragments	R2_5_2								trim	2903.0000	2903.0000	0.9997	0.8063	333.0000	332.0000	0.0000	
+bench.human.fragments	R2_5_5								trim	2948.0000	2948.0000	0.9997	0.8188	343.0000	338.0000	0.0000	
+bench.human.fragments	R2_5_10								trim	2990.0000	2990.0000	0.9993	0.8302	353.0000	346.0000	1.0000	
+bench.human.fragments	R2_10_2								trim	2949.0000	2949.0000	0.9997	0.8191	339.0000	338.0000	0.0000	
+bench.human.fragments	R2_10_5								trim	3005.0000	3005.0000	0.9997	0.8347	350.0000	345.0000	0.0000	
+bench.human.fragments	R2_10_10								trim	3066.0000	3066.0000	0.9993	0.8513	362.0000	355.0000	1.0000	
+bench.human.fragments	R3_1								keep	4692.0000	4691.0000	0.9889	0.6127	827.0000	787.0000	40.0000	
+bench.human.fragments	R3_5								keep	4240.0000	4239.0000	0.9939	0.5565	676.0000	659.0000	17.0000	
+bench.human.fragments	H								mixed	9943.0000	9939.0000			1636.0000			38.0000
+bench.mouse.complete	(coverage)	5367.0000	0.0000	5354.0000	0.0000	0.9576	0.0000	0.9654									
+bench.mouse.complete	R1_1								keep	144.0000	141.0000	0.0000		106.0000	0.0000	99.0000	
+bench.mouse.complete	R1_1_s								keep	131.0000	128.0000	0.0000		96.0000	0.0000	90.0000	
+bench.mouse.complete	R1_5								keep	97.0000	94.0000	0.0000		68.0000	0.0000	61.0000	
+bench.mouse.complete	R1_5_s								keep	90.0000	87.0000	0.0000		62.0000	0.0000	56.0000	
+bench.mouse.complete	R1_10								keep	62.0000	59.0000	0.0000		37.0000	0.0000	32.0000	
+bench.mouse.complete	R1_10_s								keep	59.0000	56.0000	0.0000		34.0000	0.0000	29.0000	
+bench.mouse.complete	R1_20								keep	41.0000	39.0000	0.0000		20.0000	0.0000	18.0000	
+bench.mouse.complete	R1_20_s								keep	39.0000	37.0000	0.0000		18.0000	0.0000	16.0000	
+bench.mouse.complete	R2_1_2								trim	3880.0000	3878.0000	1.0000	0.7243	393.0000	385.0000	0.0000	
+bench.mouse.complete	R2_1_5								trim	3926.0000	3924.0000	1.0000	0.7329	404.0000	392.0000	0.0000	
+bench.mouse.complete	R2_1_10								trim	3979.0000	3977.0000	1.0000	0.7428	419.0000	397.0000	0.0000	
+bench.mouse.complete	R2_3_2								trim	3927.0000	3925.0000	1.0000	0.7331	400.0000	392.0000	0.0000	
+bench.mouse.complete	R2_3_5								trim	3985.0000	3983.0000	1.0000	0.7439	412.0000	400.0000	0.0000	
+bench.mouse.complete	R2_3_10								trim	4051.0000	4049.0000	1.0000	0.7563	429.0000	407.0000	0.0000	
+bench.mouse.complete	R2_5_2								trim	3973.0000	3971.0000	1.0000	0.7417	405.0000	397.0000	0.0000	
+bench.mouse.complete	R2_5_5								trim	4044.0000	4042.0000	1.0000	0.7549	419.0000	406.0000	0.0000	
+bench.mouse.complete	R2_5_10								trim	4115.0000	4113.0000	1.0000	0.7682	438.0000	414.0000	0.0000	
+bench.mouse.complete	R2_10_2								trim	4034.0000	4032.0000	1.0000	0.7531	415.0000	407.0000	0.0000	
+bench.mouse.complete	R2_10_5								trim	4120.0000	4118.0000	1.0000	0.7691	430.0000	417.0000	0.0000	
+bench.mouse.complete	R2_10_10								trim	4224.0000	4222.0000	1.0000	0.7886	460.0000	436.0000	0.0000	
+bench.mouse.complete	R3_1								keep	86.0000	84.0000	0.0000		67.0000	0.0000	65.0000	
+bench.mouse.complete	R3_5								keep	42.0000	40.0000	0.0000		28.0000	0.0000	26.0000	
+bench.mouse.complete	H								mixed	4090.0000	4085.0000			482.0000			53.0000
+bench.mouse.complete_fullutr	(coverage)	4645.0000	0.0000	4628.0000	0.0000	0.9512	0.0000	0.9624									
+bench.mouse.complete_fullutr	R1_1								keep	104.0000	101.0000	0.0000		88.0000	0.0000	82.0000	
+bench.mouse.complete_fullutr	R1_1_s								keep	95.0000	92.0000	0.0000		82.0000	0.0000	77.0000	
+bench.mouse.complete_fullutr	R1_5								keep	60.0000	57.0000	0.0000		52.0000	0.0000	46.0000	
+bench.mouse.complete_fullutr	R1_5_s								keep	56.0000	53.0000	0.0000		49.0000	0.0000	44.0000	
+bench.mouse.complete_fullutr	R1_10								keep	29.0000	27.0000	0.0000		24.0000	0.0000	20.0000	
+bench.mouse.complete_fullutr	R1_10_s								keep	28.0000	26.0000	0.0000		23.0000	0.0000	19.0000	
+bench.mouse.complete_fullutr	R1_20								keep	14.0000	12.0000	0.0000		12.0000	0.0000	9.0000	
+bench.mouse.complete_fullutr	R1_20_s								keep	14.0000	12.0000	0.0000		12.0000	0.0000	9.0000	
+bench.mouse.complete_fullutr	R2_1_2								trim	3283.0000	3279.0000	1.0000	0.7085	370.0000	362.0000	0.0000	
+bench.mouse.complete_fullutr	R2_1_5								trim	3327.0000	3323.0000	1.0000	0.7180	386.0000	369.0000	0.0000	
+bench.mouse.complete_fullutr	R2_1_10								trim	3376.0000	3372.0000	1.0000	0.7286	402.0000	375.0000	0.0000	
+bench.mouse.complete_fullutr	R2_3_2								trim	3328.0000	3324.0000	1.0000	0.7182	377.0000	369.0000	0.0000	
+bench.mouse.complete_fullutr	R2_3_5								trim	3385.0000	3381.0000	1.0000	0.7306	394.0000	377.0000	0.0000	
+bench.mouse.complete_fullutr	R2_3_10								trim	3446.0000	3442.0000	1.0000	0.7437	411.0000	384.0000	0.0000	
+bench.mouse.complete_fullutr	R2_5_2								trim	3370.0000	3366.0000	1.0000	0.7273	383.0000	375.0000	0.0000	
+bench.mouse.complete_fullutr	R2_5_5								trim	3437.0000	3433.0000	1.0000	0.7418	401.0000	384.0000	0.0000	
+bench.mouse.complete_fullutr	R2_5_10								trim	3503.0000	3499.0000	1.0000	0.7561	420.0000	392.0000	0.0000	
+bench.mouse.complete_fullutr	R2_10_2								trim	3424.0000	3420.0000	1.0000	0.7390	393.0000	385.0000	0.0000	
+bench.mouse.complete_fullutr	R2_10_5								trim	3506.0000	3502.0000	1.0000	0.7567	412.0000	395.0000	0.0000	
+bench.mouse.complete_fullutr	R2_10_10								trim	3601.0000	3597.0000	1.0000	0.7772	440.0000	412.0000	0.0000	
+bench.mouse.complete_fullutr	R3_1								keep	70.0000	68.0000	0.0000		61.0000	0.0000	57.0000	
+bench.mouse.complete_fullutr	R3_5								keep	34.0000	32.0000	0.0000		28.0000	0.0000	24.0000	
+bench.mouse.complete_fullutr	H								mixed	3457.0000	3450.0000			454.0000			46.0000
+bench.mouse.fragments	(coverage)	10880.0000	8464.0000	2357.0000	0.9539	0.9495	0.8073	0.7853									
+bench.mouse.fragments	R1_1								keep	7931.0000	7927.0000	0.9910	0.9282	1368.0000	1313.0000	48.0000	
+bench.mouse.fragments	R1_1_s								keep	7917.0000	7913.0000	0.9922	0.9276	1360.0000	1313.0000	41.0000	
+bench.mouse.fragments	R1_5								keep	7153.0000	7150.0000	0.9934	0.8392	1164.0000	1132.0000	26.0000	
+bench.mouse.fragments	R1_5_s								keep	7143.0000	7140.0000	0.9941	0.8386	1159.0000	1132.0000	22.0000	
+bench.mouse.fragments	R1_10								keep	6366.0000	6363.0000	0.9951	0.7481	943.0000	924.0000	15.0000	
+bench.mouse.fragments	R1_10_s								keep	6358.0000	6355.0000	0.9956	0.7475	940.0000	924.0000	12.0000	
+bench.mouse.fragments	R1_20								keep	5060.0000	5057.0000	0.9962	0.5952	648.0000	638.0000	8.0000	
+bench.mouse.fragments	R1_20_s								keep	5056.0000	5053.0000	0.9966	0.5950	646.0000	638.0000	6.0000	
+bench.mouse.fragments	R2_1_2								trim	1728.0000	1727.0000	0.9994	0.7323	153.0000	148.0000	1.0000	
+bench.mouse.fragments	R2_1_5								trim	1750.0000	1749.0000	0.9994	0.7416	159.0000	149.0000	1.0000	
+bench.mouse.fragments	R2_1_10								trim	1776.0000	1775.0000	0.9994	0.7527	167.0000	152.0000	1.0000	
+bench.mouse.fragments	R2_3_2								trim	1750.0000	1749.0000	0.9994	0.7416	159.0000	154.0000	1.0000	
+bench.mouse.fragments	R2_3_5								trim	1779.0000	1778.0000	0.9994	0.7539	166.0000	156.0000	1.0000	
+bench.mouse.fragments	R2_3_10								trim	1811.0000	1810.0000	0.9994	0.7675	175.0000	160.0000	1.0000	
+bench.mouse.fragments	R2_5_2								trim	1768.0000	1767.0000	0.9989	0.7488	161.0000	155.0000	2.0000	
+bench.mouse.fragments	R2_5_5								trim	1801.0000	1800.0000	0.9989	0.7628	169.0000	158.0000	2.0000	
+bench.mouse.fragments	R2_5_10								trim	1836.0000	1835.0000	0.9984	0.7773	180.0000	162.0000	3.0000	
+bench.mouse.fragments	R2_10_2								trim	1795.0000	1794.0000	0.9989	0.7603	166.0000	160.0000	2.0000	
+bench.mouse.fragments	R2_10_5								trim	1833.0000	1832.0000	0.9989	0.7764	174.0000	163.0000	2.0000	
+bench.mouse.fragments	R2_10_10								trim	1879.0000	1878.0000	0.9984	0.7955	186.0000	168.0000	3.0000	
+bench.mouse.fragments	R3_1								keep	5336.0000	5335.0000	0.9938	0.6264	824.0000	802.0000	22.0000	
+bench.mouse.fragments	R3_5								keep	4816.0000	4815.0000	0.9963	0.5668	673.0000	664.0000	9.0000	
+bench.mouse.fragments	H								mixed	9617.0000	9613.0000			1504.0000			18.0000
+bench.dmel.complete	(coverage)	2706.0000	0.0000	2700.0000	0.0000	0.5407	0.0000	0.7604									
+bench.dmel.complete	R1_1								keep	44.0000	44.0000	0.0000		37.0000	0.0000	37.0000	
+bench.dmel.complete	R1_1_s								keep	40.0000	40.0000	0.0000		34.0000	0.0000	34.0000	
+bench.dmel.complete	R1_5								keep	19.0000	19.0000	0.0000		12.0000	0.0000	12.0000	
+bench.dmel.complete	R1_5_s								keep	17.0000	17.0000	0.0000		11.0000	0.0000	11.0000	
+bench.dmel.complete	R1_10								keep	14.0000	14.0000	0.0000		8.0000	0.0000	8.0000	
+bench.dmel.complete	R1_10_s								keep	13.0000	13.0000	0.0000		8.0000	0.0000	8.0000	
+bench.dmel.complete	R1_20								keep	3.0000	3.0000	0.0000		0.0000	0.0000	0.0000	
+bench.dmel.complete	R1_20_s								keep	2.0000	2.0000	0.0000		0.0000	0.0000	0.0000	
+bench.dmel.complete	R2_1_2								trim	221.0000	221.0000	1.0000	0.0819	20.0000	19.0000	0.0000	
+bench.dmel.complete	R2_1_5								trim	231.0000	231.0000	1.0000	0.0856	20.0000	19.0000	0.0000	
+bench.dmel.complete	R2_1_10								trim	235.0000	235.0000	1.0000	0.0870	21.0000	19.0000	0.0000	
+bench.dmel.complete	R2_3_2								trim	268.0000	268.0000	1.0000	0.0993	27.0000	26.0000	0.0000	
+bench.dmel.complete	R2_3_5								trim	293.0000	293.0000	1.0000	0.1085	27.0000	26.0000	0.0000	
+bench.dmel.complete	R2_3_10								trim	305.0000	305.0000	1.0000	0.1130	29.0000	27.0000	0.0000	
+bench.dmel.complete	R2_5_2								trim	303.0000	303.0000	1.0000	0.1122	31.0000	30.0000	0.0000	
+bench.dmel.complete	R2_5_5								trim	349.0000	349.0000	1.0000	0.1293	31.0000	30.0000	0.0000	
+bench.dmel.complete	R2_5_10								trim	372.0000	372.0000	1.0000	0.1378	35.0000	32.0000	0.0000	
+bench.dmel.complete	R2_10_2								trim	350.0000	349.0000	1.0000	0.1293	35.0000	33.0000	0.0000	
+bench.dmel.complete	R2_10_5								trim	430.0000	429.0000	1.0000	0.1589	36.0000	34.0000	0.0000	
+bench.dmel.complete	R2_10_10								trim	474.0000	473.0000	1.0000	0.1752	42.0000	37.0000	0.0000	
+bench.dmel.complete	R3_1								keep	43.0000	42.0000	0.0000		32.0000	0.0000	32.0000	
+bench.dmel.complete	R3_5								keep	27.0000	26.0000	0.0000		17.0000	0.0000	17.0000	
+bench.dmel.complete	H								mixed	340.0000	339.0000			61.0000			8.0000
+bench.dmel.complete_fullutr	(coverage)	2570.0000	0.0000	2552.0000	0.0000	0.5372	0.0000	0.7586									
+bench.dmel.complete_fullutr	R1_1								keep	39.0000	39.0000	0.0000		35.0000	0.0000	35.0000	
+bench.dmel.complete_fullutr	R1_1_s								keep	36.0000	36.0000	0.0000		32.0000	0.0000	32.0000	
+bench.dmel.complete_fullutr	R1_5								keep	14.0000	14.0000	0.0000		10.0000	0.0000	10.0000	
+bench.dmel.complete_fullutr	R1_5_s								keep	13.0000	13.0000	0.0000		9.0000	0.0000	9.0000	
+bench.dmel.complete_fullutr	R1_10								keep	10.0000	10.0000	0.0000		7.0000	0.0000	7.0000	
+bench.dmel.complete_fullutr	R1_10_s								keep	10.0000	10.0000	0.0000		7.0000	0.0000	7.0000	
+bench.dmel.complete_fullutr	R1_20								keep	0.0000	0.0000			0.0000	0.0000	0.0000	
+bench.dmel.complete_fullutr	R1_20_s								keep	0.0000	0.0000			0.0000	0.0000	0.0000	
+bench.dmel.complete_fullutr	R2_1_2								trim	213.0000	211.0000	1.0000	0.0827	18.0000	15.0000	0.0000	
+bench.dmel.complete_fullutr	R2_1_5								trim	224.0000	221.0000	1.0000	0.0866	18.0000	15.0000	0.0000	
+bench.dmel.complete_fullutr	R2_1_10								trim	228.0000	225.0000	1.0000	0.0882	19.0000	15.0000	0.0000	
+bench.dmel.complete_fullutr	R2_3_2								trim	256.0000	254.0000	1.0000	0.0995	23.0000	20.0000	0.0000	
+bench.dmel.complete_fullutr	R2_3_5								trim	282.0000	279.0000	1.0000	0.1093	23.0000	20.0000	0.0000	
+bench.dmel.complete_fullutr	R2_3_10								trim	294.0000	291.0000	1.0000	0.1140	25.0000	21.0000	0.0000	
+bench.dmel.complete_fullutr	R2_5_2								trim	290.0000	288.0000	1.0000	0.1129	27.0000	24.0000	0.0000	
+bench.dmel.complete_fullutr	R2_5_5								trim	337.0000	334.0000	1.0000	0.1309	27.0000	24.0000	0.0000	
+bench.dmel.complete_fullutr	R2_5_10								trim	360.0000	357.0000	1.0000	0.1399	31.0000	26.0000	0.0000	
+bench.dmel.complete_fullutr	R2_10_2								trim	336.0000	333.0000	1.0000	0.1305	30.0000	27.0000	0.0000	
+bench.dmel.complete_fullutr	R2_10_5								trim	416.0000	412.0000	1.0000	0.1614	31.0000	28.0000	0.0000	
+bench.dmel.complete_fullutr	R2_10_10								trim	459.0000	455.0000	1.0000	0.1783	37.0000	31.0000	0.0000	
+bench.dmel.complete_fullutr	R3_1								keep	37.0000	36.0000	0.0000		32.0000	0.0000	31.0000	
+bench.dmel.complete_fullutr	R3_5								keep	22.0000	22.0000	0.0000		17.0000	0.0000	17.0000	
+bench.dmel.complete_fullutr	H								mixed	320.0000	317.0000			54.0000			9.0000
+bench.dmel.fragments	(coverage)	6519.0000	5261.0000	1238.0000	0.5339	0.4225	0.6622	0.5687									
+bench.dmel.fragments	R1_1								keep	2336.0000	2335.0000	0.9936	0.4410	290.0000	277.0000	13.0000	
+bench.dmel.fragments	R1_1_s								keep	2335.0000	2334.0000	0.9940	0.4410	289.0000	277.0000	12.0000	
+bench.dmel.fragments	R1_5								keep	2096.0000	2095.0000	0.9962	0.3967	226.0000	220.0000	6.0000	
+bench.dmel.fragments	R1_5_s								keep	2096.0000	2095.0000	0.9962	0.3967	226.0000	220.0000	6.0000	
+bench.dmel.fragments	R1_10								keep	1825.0000	1824.0000	0.9973	0.3458	163.0000	160.0000	3.0000	
+bench.dmel.fragments	R1_10_s								keep	1825.0000	1824.0000	0.9973	0.3458	163.0000	160.0000	3.0000	
+bench.dmel.fragments	R1_20								keep	1362.0000	1361.0000	0.9993	0.2585	97.0000	97.0000	0.0000	
+bench.dmel.fragments	R1_20_s								keep	1362.0000	1361.0000	0.9993	0.2585	97.0000	97.0000	0.0000	
+bench.dmel.fragments	R2_1_2								trim	92.0000	92.0000	1.0000	0.0743	8.0000	8.0000	0.0000	
+bench.dmel.fragments	R2_1_5								trim	94.0000	94.0000	1.0000	0.0759	8.0000	8.0000	0.0000	
+bench.dmel.fragments	R2_1_10								trim	96.0000	96.0000	1.0000	0.0775	9.0000	8.0000	0.0000	
+bench.dmel.fragments	R2_3_2								trim	108.0000	108.0000	1.0000	0.0872	12.0000	12.0000	0.0000	
+bench.dmel.fragments	R2_3_5								trim	119.0000	119.0000	1.0000	0.0961	12.0000	12.0000	0.0000	
+bench.dmel.fragments	R2_3_10								trim	125.0000	125.0000	1.0000	0.1010	13.0000	12.0000	0.0000	
+bench.dmel.fragments	R2_5_2								trim	127.0000	127.0000	1.0000	0.1026	14.0000	14.0000	0.0000	
+bench.dmel.fragments	R2_5_5								trim	148.0000	148.0000	1.0000	0.1195	14.0000	14.0000	0.0000	
+bench.dmel.fragments	R2_5_10								trim	156.0000	156.0000	1.0000	0.1260	15.0000	14.0000	0.0000	
+bench.dmel.fragments	R2_10_2								trim	142.0000	142.0000	1.0000	0.1147	15.0000	15.0000	0.0000	
+bench.dmel.fragments	R2_10_5								trim	183.0000	183.0000	0.9945	0.1470	16.0000	16.0000	0.0000	
+bench.dmel.fragments	R2_10_10								trim	196.0000	196.0000	0.9949	0.1575	18.0000	17.0000	0.0000	
+bench.dmel.fragments	R3_1								keep	2592.0000	2590.0000	0.9950	0.4898	338.0000	330.0000	8.0000	
+bench.dmel.fragments	R3_5								keep	2308.0000	2306.0000	0.9974	0.4372	256.0000	255.0000	1.0000	
+bench.dmel.fragments	H								mixed	3215.0000	3213.0000			426.0000			3.0000
+bench.athal.complete	(coverage)	7517.0000	0.0000	7503.0000	0.0000	0.5830	0.0000	0.8671									
+bench.athal.complete	R1_1								keep	153.0000	151.0000	0.0000		104.0000	0.0000	101.0000	
+bench.athal.complete	R1_1_s								keep	141.0000	139.0000	0.0000		92.0000	0.0000	90.0000	
+bench.athal.complete	R1_5								keep	77.0000	75.0000	0.0000		42.0000	0.0000	40.0000	
+bench.athal.complete	R1_5_s								keep	74.0000	72.0000	0.0000		39.0000	0.0000	37.0000	
+bench.athal.complete	R1_10								keep	54.0000	52.0000	0.0000		24.0000	0.0000	23.0000	
+bench.athal.complete	R1_10_s								keep	53.0000	51.0000	0.0000		23.0000	0.0000	22.0000	
+bench.athal.complete	R1_20								keep	36.0000	36.0000	0.0000		14.0000	0.0000	14.0000	
+bench.athal.complete	R1_20_s								keep	35.0000	35.0000	0.0000		13.0000	0.0000	13.0000	
+bench.athal.complete	R2_1_2								trim	618.0000	618.0000	1.0000	0.0824	94.0000	93.0000	0.0000	
+bench.athal.complete	R2_1_5								trim	635.0000	635.0000	1.0000	0.0846	95.0000	94.0000	0.0000	
+bench.athal.complete	R2_1_10								trim	650.0000	650.0000	1.0000	0.0866	99.0000	98.0000	0.0000	
+bench.athal.complete	R2_3_2								trim	707.0000	707.0000	1.0000	0.0942	116.0000	115.0000	0.0000	
+bench.athal.complete	R2_3_5								trim	772.0000	772.0000	1.0000	0.1029	124.0000	123.0000	0.0000	
+bench.athal.complete	R2_3_10								trim	810.0000	810.0000	1.0000	0.1080	133.0000	132.0000	0.0000	
+bench.athal.complete	R2_5_2								trim	792.0000	792.0000	1.0000	0.1056	128.0000	127.0000	0.0000	
+bench.athal.complete	R2_5_5								trim	894.0000	894.0000	1.0000	0.1192	142.0000	141.0000	0.0000	
+bench.athal.complete	R2_5_10								trim	963.0000	963.0000	1.0000	0.1283	156.0000	155.0000	0.0000	
+bench.athal.complete	R2_10_2								trim	909.0000	909.0000	1.0000	0.1212	138.0000	137.0000	0.0000	
+bench.athal.complete	R2_10_5								trim	1119.0000	1119.0000	1.0000	0.1491	172.0000	171.0000	0.0000	
+bench.athal.complete	R2_10_10								trim	1265.0000	1265.0000	1.0000	0.1686	200.0000	199.0000	0.0000	
+bench.athal.complete	R3_1								keep	218.0000	215.0000	0.0000		128.0000	0.0000	122.0000	
+bench.athal.complete	R3_5								keep	148.0000	145.0000	0.0000		81.0000	0.0000	78.0000	
+bench.athal.complete	H								mixed	1011.0000	1008.0000			258.0000			21.0000
+bench.athal.complete_fullutr	(coverage)	7389.0000	0.0000	7371.0000	0.0000	0.5862	0.0000	0.8689									
+bench.athal.complete_fullutr	R1_1								keep	133.0000	133.0000	0.0000		97.0000	0.0000	96.0000	
+bench.athal.complete_fullutr	R1_1_s								keep	121.0000	121.0000	0.0000		85.0000	0.0000	85.0000	
+bench.athal.complete_fullutr	R1_5								keep	58.0000	58.0000	0.0000		36.0000	0.0000	36.0000	
+bench.athal.complete_fullutr	R1_5_s								keep	55.0000	55.0000	0.0000		33.0000	0.0000	33.0000	
+bench.athal.complete_fullutr	R1_10								keep	36.0000	36.0000	0.0000		19.0000	0.0000	19.0000	
+bench.athal.complete_fullutr	R1_10_s								keep	35.0000	35.0000	0.0000		18.0000	0.0000	18.0000	
+bench.athal.complete_fullutr	R1_20								keep	21.0000	21.0000	0.0000		11.0000	0.0000	11.0000	
+bench.athal.complete_fullutr	R1_20_s								keep	20.0000	20.0000	0.0000		10.0000	0.0000	10.0000	
+bench.athal.complete_fullutr	R2_1_2								trim	616.0000	616.0000	1.0000	0.0836	95.0000	94.0000	0.0000	
+bench.athal.complete_fullutr	R2_1_5								trim	633.0000	633.0000	1.0000	0.0859	95.0000	94.0000	0.0000	
+bench.athal.complete_fullutr	R2_1_10								trim	648.0000	648.0000	1.0000	0.0879	99.0000	98.0000	0.0000	
+bench.athal.complete_fullutr	R2_3_2								trim	703.0000	703.0000	1.0000	0.0954	115.0000	114.0000	0.0000	
+bench.athal.complete_fullutr	R2_3_5								trim	767.0000	767.0000	1.0000	0.1041	122.0000	121.0000	0.0000	
+bench.athal.complete_fullutr	R2_3_10								trim	805.0000	805.0000	1.0000	0.1092	132.0000	131.0000	0.0000	
+bench.athal.complete_fullutr	R2_5_2								trim	787.0000	787.0000	1.0000	0.1068	127.0000	126.0000	0.0000	
+bench.athal.complete_fullutr	R2_5_5								trim	888.0000	888.0000	1.0000	0.1205	140.0000	139.0000	0.0000	
+bench.athal.complete_fullutr	R2_5_10								trim	957.0000	957.0000	1.0000	0.1298	155.0000	154.0000	0.0000	
+bench.athal.complete_fullutr	R2_10_2								trim	903.0000	903.0000	1.0000	0.1225	135.0000	134.0000	0.0000	
+bench.athal.complete_fullutr	R2_10_5								trim	1112.0000	1112.0000	1.0000	0.1509	168.0000	167.0000	0.0000	
+bench.athal.complete_fullutr	R2_10_10								trim	1258.0000	1258.0000	1.0000	0.1707	197.0000	196.0000	0.0000	
+bench.athal.complete_fullutr	R3_1								keep	184.0000	181.0000	0.0000		113.0000	0.0000	109.0000	
+bench.athal.complete_fullutr	R3_5								keep	116.0000	113.0000	0.0000		68.0000	0.0000	66.0000	
+bench.athal.complete_fullutr	H								mixed	967.0000	964.0000			239.0000			21.0000
+bench.athal.fragments	(coverage)	13151.0000	9882.0000	3208.0000	0.5065	0.4638	0.7182	0.6521									
+bench.athal.fragments	R1_1								keep	4515.0000	4514.0000	0.9867	0.4507	1101.0000	1058.0000	42.0000	
+bench.athal.fragments	R1_1_s								keep	4505.0000	4504.0000	0.9885	0.4505	1093.0000	1057.0000	36.0000	
+bench.athal.fragments	R1_5								keep	4044.0000	4043.0000	0.9938	0.4066	917.0000	903.0000	14.0000	
+bench.athal.fragments	R1_5_s								keep	4040.0000	4039.0000	0.9943	0.4064	914.0000	902.0000	12.0000	
+bench.athal.fragments	R1_10								keep	3537.0000	3536.0000	0.9952	0.3561	759.0000	751.0000	8.0000	
+bench.athal.fragments	R1_10_s								keep	3534.0000	3533.0000	0.9955	0.3559	757.0000	750.0000	7.0000	
+bench.athal.fragments	R1_20								keep	2732.0000	2732.0000	0.9960	0.2753	526.0000	521.0000	5.0000	
+bench.athal.fragments	R1_20_s								keep	2730.0000	2730.0000	0.9963	0.2752	524.0000	520.0000	4.0000	
+bench.athal.fragments	R2_1_2								trim	263.0000	262.0000	0.9962	0.0814	36.0000	36.0000	0.0000	
+bench.athal.fragments	R2_1_5								trim	271.0000	270.0000	0.9963	0.0839	37.0000	37.0000	0.0000	
+bench.athal.fragments	R2_1_10								trim	276.0000	275.0000	0.9964	0.0854	39.0000	39.0000	0.0000	
+bench.athal.fragments	R2_3_2								trim	300.0000	299.0000	0.9967	0.0929	41.0000	41.0000	0.0000	
+bench.athal.fragments	R2_3_5								trim	330.0000	329.0000	0.9970	0.1022	48.0000	48.0000	0.0000	
+bench.athal.fragments	R2_3_10								trim	345.0000	344.0000	0.9942	0.1066	51.0000	51.0000	0.0000	
+bench.athal.fragments	R2_5_2								trim	339.0000	338.0000	0.9941	0.1047	45.0000	45.0000	0.0000	
+bench.athal.fragments	R2_5_5								trim	384.0000	383.0000	0.9948	0.1188	56.0000	56.0000	0.0000	
+bench.athal.fragments	R2_5_10								trim	409.0000	408.0000	0.9926	0.1262	60.0000	60.0000	0.0000	
+bench.athal.fragments	R2_10_2								trim	387.0000	386.0000	0.9922	0.1194	53.0000	53.0000	0.0000	
+bench.athal.fragments	R2_10_5								trim	478.0000	477.0000	0.9937	0.1478	71.0000	71.0000	0.0000	
+bench.athal.fragments	R2_10_10								trim	535.0000	534.0000	0.9925	0.1652	80.0000	80.0000	0.0000	
+bench.athal.fragments	R3_1								keep	5669.0000	5664.0000	0.9864	0.5654	1400.0000	1352.0000	47.0000	
+bench.athal.fragments	R3_5								keep	5109.0000	5104.0000	0.9892	0.5109	1232.0000	1198.0000	33.0000	
+bench.athal.fragments	H								mixed	6846.0000	6840.0000			1640.0000			8.0000
+bench.spombe.complete	(coverage)	1294.0000	0.0000	1294.0000	0.0000	0.7713	0.0000	0.9335									
+bench.spombe.complete	R1_1								keep	36.0000	36.0000	0.0000		27.0000	0.0000	27.0000	
+bench.spombe.complete	R1_1_s								keep	31.0000	31.0000	0.0000		22.0000	0.0000	22.0000	
+bench.spombe.complete	R1_5								keep	11.0000	11.0000	0.0000		8.0000	0.0000	8.0000	
+bench.spombe.complete	R1_5_s								keep	10.0000	10.0000	0.0000		7.0000	0.0000	7.0000	
+bench.spombe.complete	R1_10								keep	4.0000	4.0000	0.0000		3.0000	0.0000	3.0000	
+bench.spombe.complete	R1_10_s								keep	3.0000	3.0000	0.0000		2.0000	0.0000	2.0000	
+bench.spombe.complete	R1_20								keep	0.0000	0.0000			0.0000	0.0000	0.0000	
+bench.spombe.complete	R1_20_s								keep	0.0000	0.0000			0.0000	0.0000	0.0000	
+bench.spombe.complete	R2_1_2								trim	228.0000	228.0000	1.0000	0.1762	47.0000	47.0000	0.0000	
+bench.spombe.complete	R2_1_5								trim	230.0000	230.0000	1.0000	0.1777	47.0000	47.0000	0.0000	
+bench.spombe.complete	R2_1_10								trim	232.0000	232.0000	1.0000	0.1793	47.0000	47.0000	0.0000	
+bench.spombe.complete	R2_3_2								trim	265.0000	265.0000	1.0000	0.2048	52.0000	52.0000	0.0000	
+bench.spombe.complete	R2_3_5								trim	284.0000	284.0000	1.0000	0.2195	60.0000	60.0000	0.0000	
+bench.spombe.complete	R2_3_10								trim	292.0000	292.0000	1.0000	0.2257	61.0000	61.0000	0.0000	
+bench.spombe.complete	R2_5_2								trim	301.0000	301.0000	1.0000	0.2326	56.0000	56.0000	0.0000	
+bench.spombe.complete	R2_5_5								trim	346.0000	346.0000	1.0000	0.2674	69.0000	69.0000	0.0000	
+bench.spombe.complete	R2_5_10								trim	358.0000	358.0000	1.0000	0.2767	71.0000	71.0000	0.0000	
+bench.spombe.complete	R2_10_2								trim	341.0000	341.0000	1.0000	0.2635	65.0000	65.0000	0.0000	
+bench.spombe.complete	R2_10_5								trim	416.0000	416.0000	1.0000	0.3215	82.0000	82.0000	0.0000	
+bench.spombe.complete	R2_10_10								trim	445.0000	445.0000	1.0000	0.3439	85.0000	85.0000	0.0000	
+bench.spombe.complete	R3_1								keep	32.0000	32.0000	0.0000		22.0000	0.0000	22.0000	
+bench.spombe.complete	R3_5								keep	8.0000	8.0000	0.0000		4.0000	0.0000	4.0000	
+bench.spombe.complete	H								mixed	315.0000	315.0000			78.0000			11.0000
+bench.spombe.complete_fullutr	(coverage)	1281.0000	0.0000	1277.0000	0.0000	0.7760	0.0000	0.9358									
+bench.spombe.complete_fullutr	R1_1								keep	37.0000	36.0000	0.0000		27.0000	0.0000	27.0000	
+bench.spombe.complete_fullutr	R1_1_s								keep	32.0000	31.0000	0.0000		22.0000	0.0000	22.0000	
+bench.spombe.complete_fullutr	R1_5								keep	12.0000	11.0000	0.0000		8.0000	0.0000	8.0000	
+bench.spombe.complete_fullutr	R1_5_s								keep	11.0000	10.0000	0.0000		7.0000	0.0000	7.0000	
+bench.spombe.complete_fullutr	R1_10								keep	5.0000	4.0000	0.0000		3.0000	0.0000	3.0000	
+bench.spombe.complete_fullutr	R1_10_s								keep	4.0000	3.0000	0.0000		2.0000	0.0000	2.0000	
+bench.spombe.complete_fullutr	R1_20								keep	0.0000	0.0000			0.0000	0.0000	0.0000	
+bench.spombe.complete_fullutr	R1_20_s								keep	0.0000	0.0000			0.0000	0.0000	0.0000	
+bench.spombe.complete_fullutr	R2_1_2								trim	229.0000	229.0000	1.0000	0.1793	47.0000	47.0000	0.0000	
+bench.spombe.complete_fullutr	R2_1_5								trim	231.0000	231.0000	1.0000	0.1809	47.0000	47.0000	0.0000	
+bench.spombe.complete_fullutr	R2_1_10								trim	233.0000	233.0000	1.0000	0.1825	47.0000	47.0000	0.0000	
+bench.spombe.complete_fullutr	R2_3_2								trim	266.0000	266.0000	1.0000	0.2083	52.0000	52.0000	0.0000	
+bench.spombe.complete_fullutr	R2_3_5								trim	285.0000	285.0000	1.0000	0.2232	60.0000	60.0000	0.0000	
+bench.spombe.complete_fullutr	R2_3_10								trim	293.0000	293.0000	1.0000	0.2294	61.0000	61.0000	0.0000	
+bench.spombe.complete_fullutr	R2_5_2								trim	302.0000	302.0000	1.0000	0.2365	56.0000	56.0000	0.0000	
+bench.spombe.complete_fullutr	R2_5_5								trim	347.0000	347.0000	1.0000	0.2717	68.0000	68.0000	0.0000	
+bench.spombe.complete_fullutr	R2_5_10								trim	359.0000	359.0000	1.0000	0.2811	70.0000	70.0000	0.0000	
+bench.spombe.complete_fullutr	R2_10_2								trim	342.0000	342.0000	1.0000	0.2678	65.0000	65.0000	0.0000	
+bench.spombe.complete_fullutr	R2_10_5								trim	417.0000	417.0000	1.0000	0.3265	81.0000	81.0000	0.0000	
+bench.spombe.complete_fullutr	R2_10_10								trim	445.0000	445.0000	1.0000	0.3485	84.0000	84.0000	0.0000	
+bench.spombe.complete_fullutr	R3_1								keep	35.0000	31.0000	0.0000		21.0000	0.0000	21.0000	
+bench.spombe.complete_fullutr	R3_5								keep	11.0000	7.0000	0.0000		3.0000	0.0000	3.0000	
+bench.spombe.complete_fullutr	H								mixed	319.0000	315.0000			77.0000			11.0000
+bench.spombe.fragments	(coverage)	2596.0000	2005.0000	589.0000	0.6000	0.6265	0.7337	0.7470									
+bench.spombe.fragments	R1_1								keep	1103.0000	1103.0000	0.9855	0.5421	217.0000	204.0000	13.0000	
+bench.spombe.fragments	R1_1_s								keep	1101.0000	1101.0000	0.9873	0.5421	215.0000	204.0000	11.0000	
+bench.spombe.fragments	R1_5								keep	991.0000	991.0000	0.9990	0.4938	174.0000	173.0000	1.0000	
+bench.spombe.fragments	R1_5_s								keep	991.0000	991.0000	0.9990	0.4938	174.0000	173.0000	1.0000	
+bench.spombe.fragments	R1_10								keep	887.0000	887.0000	1.0000	0.4424	135.0000	135.0000	0.0000	
+bench.spombe.fragments	R1_10_s								keep	887.0000	887.0000	1.0000	0.4424	135.0000	135.0000	0.0000	
+bench.spombe.fragments	R1_20								keep	689.0000	689.0000	1.0000	0.3436	77.0000	77.0000	0.0000	
+bench.spombe.fragments	R1_20_s								keep	689.0000	689.0000	1.0000	0.3436	77.0000	77.0000	0.0000	
+bench.spombe.fragments	R2_1_2								trim	90.0000	90.0000	1.0000	0.1528	20.0000	20.0000	0.0000	
+bench.spombe.fragments	R2_1_5								trim	93.0000	93.0000	1.0000	0.1579	20.0000	20.0000	0.0000	
+bench.spombe.fragments	R2_1_10								trim	94.0000	94.0000	1.0000	0.1596	20.0000	20.0000	0.0000	
+bench.spombe.fragments	R2_3_2								trim	105.0000	105.0000	1.0000	0.1783	21.0000	21.0000	0.0000	
+bench.spombe.fragments	R2_3_5								trim	119.0000	119.0000	1.0000	0.2020	23.0000	23.0000	0.0000	
+bench.spombe.fragments	R2_3_10								trim	121.0000	121.0000	1.0000	0.2054	23.0000	23.0000	0.0000	
+bench.spombe.fragments	R2_5_2								trim	118.0000	118.0000	1.0000	0.2003	22.0000	22.0000	0.0000	
+bench.spombe.fragments	R2_5_5								trim	142.0000	142.0000	1.0000	0.2411	26.0000	26.0000	0.0000	
+bench.spombe.fragments	R2_5_10								trim	149.0000	149.0000	0.9933	0.2513	28.0000	27.0000	1.0000	
+bench.spombe.fragments	R2_10_2								trim	136.0000	136.0000	1.0000	0.2309	26.0000	26.0000	0.0000	
+bench.spombe.fragments	R2_10_5								trim	176.0000	176.0000	1.0000	0.2988	34.0000	34.0000	0.0000	
+bench.spombe.fragments	R2_10_10								trim	193.0000	193.0000	0.9948	0.3260	37.0000	36.0000	1.0000	
+bench.spombe.fragments	R3_1								keep	1194.0000	1194.0000	0.9874	0.5880	219.0000	210.0000	9.0000	
+bench.spombe.fragments	R3_5								keep	1072.0000	1072.0000	0.9963	0.5327	182.0000	179.0000	3.0000	
+bench.spombe.fragments	H								mixed	1548.0000	1548.0000			290.0000			3.0000
+bench.tthermophila.complete	(coverage)	12210.0000	0.0000	11957.0000	0.0000	0.2753	0.0000	0.4975									
+bench.tthermophila.complete	R1_1								keep	76.0000	68.0000	0.0000		57.0000	0.0000	56.0000	
+bench.tthermophila.complete	R1_1_s								keep	72.0000	64.0000	0.0000		53.0000	0.0000	52.0000	
+bench.tthermophila.complete	R1_5								keep	41.0000	34.0000	0.0000		24.0000	0.0000	23.0000	
+bench.tthermophila.complete	R1_5_s								keep	39.0000	32.0000	0.0000		22.0000	0.0000	21.0000	
+bench.tthermophila.complete	R1_10								keep	27.0000	20.0000	0.0000		12.0000	0.0000	11.0000	
+bench.tthermophila.complete	R1_10_s								keep	26.0000	19.0000	0.0000		11.0000	0.0000	10.0000	
+bench.tthermophila.complete	R1_20								keep	16.0000	10.0000	0.0000		3.0000	0.0000	2.0000	
+bench.tthermophila.complete	R1_20_s								keep	16.0000	10.0000	0.0000		3.0000	0.0000	2.0000	
+bench.tthermophila.complete	R2_1_2								trim	152.0000	149.0000	1.0000	0.0125	16.0000	16.0000	0.0000	
+bench.tthermophila.complete	R2_1_5								trim	165.0000	162.0000	1.0000	0.0135	17.0000	17.0000	0.0000	
+bench.tthermophila.complete	R2_1_10								trim	174.0000	171.0000	1.0000	0.0143	19.0000	19.0000	0.0000	
+bench.tthermophila.complete	R2_3_2								trim	191.0000	188.0000	1.0000	0.0157	17.0000	17.0000	0.0000	
+bench.tthermophila.complete	R2_3_5								trim	235.0000	231.0000	1.0000	0.0193	21.0000	21.0000	0.0000	
+bench.tthermophila.complete	R2_3_10								trim	261.0000	256.0000	1.0000	0.0214	26.0000	26.0000	0.0000	
+bench.tthermophila.complete	R2_5_2								trim	241.0000	238.0000	1.0000	0.0199	23.0000	23.0000	0.0000	
+bench.tthermophila.complete	R2_5_5								trim	308.0000	303.0000	1.0000	0.0253	29.0000	29.0000	0.0000	
+bench.tthermophila.complete	R2_5_10								trim	359.0000	353.0000	1.0000	0.0295	41.0000	41.0000	0.0000	
+bench.tthermophila.complete	R2_10_2								trim	308.0000	305.0000	1.0000	0.0255	30.0000	30.0000	0.0000	
+bench.tthermophila.complete	R2_10_5								trim	435.0000	430.0000	1.0000	0.0360	41.0000	41.0000	0.0000	
+bench.tthermophila.complete	R2_10_10								trim	520.0000	514.0000	1.0000	0.0430	54.0000	54.0000	0.0000	
+bench.tthermophila.complete	R3_1								keep	231.0000	212.0000	0.0000		162.0000	0.0000	159.0000	
+bench.tthermophila.complete	R3_5								keep	164.0000	146.0000	0.0000		102.0000	0.0000	99.0000	
+bench.tthermophila.complete	H								mixed	471.0000	448.0000			185.0000			15.0000
+bench.tthermophila.complete_fullutr	(coverage)	11611.0000	0.0000	11406.0000	0.0000	0.2761	0.0000	0.4996									
+bench.tthermophila.complete_fullutr	R1_1								keep	63.0000	62.0000	0.0000		56.0000	0.0000	56.0000	
+bench.tthermophila.complete_fullutr	R1_1_s								keep	59.0000	58.0000	0.0000		52.0000	0.0000	52.0000	
+bench.tthermophila.complete_fullutr	R1_5								keep	30.0000	29.0000	0.0000		25.0000	0.0000	25.0000	
+bench.tthermophila.complete_fullutr	R1_5_s								keep	28.0000	27.0000	0.0000		23.0000	0.0000	23.0000	
+bench.tthermophila.complete_fullutr	R1_10								keep	17.0000	16.0000	0.0000		12.0000	0.0000	12.0000	
+bench.tthermophila.complete_fullutr	R1_10_s								keep	16.0000	15.0000	0.0000		11.0000	0.0000	11.0000	
+bench.tthermophila.complete_fullutr	R1_20								keep	7.0000	6.0000	0.0000		3.0000	0.0000	3.0000	
+bench.tthermophila.complete_fullutr	R1_20_s								keep	7.0000	6.0000	0.0000		3.0000	0.0000	3.0000	
+bench.tthermophila.complete_fullutr	R2_1_2								trim	150.0000	146.0000	1.0000	0.0128	16.0000	16.0000	0.0000	
+bench.tthermophila.complete_fullutr	R2_1_5								trim	163.0000	159.0000	1.0000	0.0139	18.0000	18.0000	0.0000	
+bench.tthermophila.complete_fullutr	R2_1_10								trim	172.0000	168.0000	1.0000	0.0147	20.0000	20.0000	0.0000	
+bench.tthermophila.complete_fullutr	R2_3_2								trim	188.0000	184.0000	1.0000	0.0161	17.0000	17.0000	0.0000	
+bench.tthermophila.complete_fullutr	R2_3_5								trim	232.0000	227.0000	1.0000	0.0199	22.0000	22.0000	0.0000	
+bench.tthermophila.complete_fullutr	R2_3_10								trim	258.0000	252.0000	1.0000	0.0221	27.0000	27.0000	0.0000	
+bench.tthermophila.complete_fullutr	R2_5_2								trim	238.0000	234.0000	1.0000	0.0205	23.0000	23.0000	0.0000	
+bench.tthermophila.complete_fullutr	R2_5_5								trim	305.0000	299.0000	1.0000	0.0262	31.0000	31.0000	0.0000	
+bench.tthermophila.complete_fullutr	R2_5_10								trim	356.0000	349.0000	1.0000	0.0306	41.0000	41.0000	0.0000	
+bench.tthermophila.complete_fullutr	R2_10_2								trim	300.0000	296.0000	1.0000	0.0260	29.0000	29.0000	0.0000	
+bench.tthermophila.complete_fullutr	R2_10_5								trim	426.0000	420.0000	1.0000	0.0368	42.0000	42.0000	0.0000	
+bench.tthermophila.complete_fullutr	R2_10_10								trim	510.0000	503.0000	1.0000	0.0441	53.0000	53.0000	0.0000	
+bench.tthermophila.complete_fullutr	R3_1								keep	191.0000	178.0000	0.0000		152.0000	0.0000	149.0000	
+bench.tthermophila.complete_fullutr	R3_5								keep	129.0000	116.0000	0.0000		95.0000	0.0000	92.0000	
+bench.tthermophila.complete_fullutr	H								mixed	426.0000	409.0000			177.0000			15.0000
+bench.tthermophila.fragments	(coverage)	15222.0000	9490.0000	5510.0000	0.1881	0.1782	0.3346	0.3434									
+bench.tthermophila.fragments	R1_1								keep	1355.0000	1352.0000	0.9763	0.1391	192.0000	166.0000	26.0000	
+bench.tthermophila.fragments	R1_1_s								keep	1353.0000	1350.0000	0.9770	0.1390	191.0000	166.0000	25.0000	
+bench.tthermophila.fragments	R1_5								keep	1229.0000	1226.0000	0.9902	0.1279	139.0000	131.0000	8.0000	
+bench.tthermophila.fragments	R1_5_s								keep	1228.0000	1225.0000	0.9902	0.1278	139.0000	131.0000	8.0000	
+bench.tthermophila.fragments	R1_10								keep	1083.0000	1080.0000	0.9954	0.1133	96.0000	94.0000	2.0000	
+bench.tthermophila.fragments	R1_10_s								keep	1082.0000	1079.0000	0.9954	0.1132	96.0000	94.0000	2.0000	
+bench.tthermophila.fragments	R1_20								keep	881.0000	880.0000	0.9955	0.0923	55.0000	54.0000	1.0000	
+bench.tthermophila.fragments	R1_20_s								keep	880.0000	879.0000	0.9954	0.0922	55.0000	54.0000	1.0000	
+bench.tthermophila.fragments	R2_1_2								trim	72.0000	70.0000	0.9857	0.0125	7.0000	6.0000	1.0000	
+bench.tthermophila.fragments	R2_1_5								trim	79.0000	77.0000	0.9870	0.0138	7.0000	6.0000	1.0000	
+bench.tthermophila.fragments	R2_1_10								trim	82.0000	80.0000	0.9875	0.0143	8.0000	7.0000	1.0000	
+bench.tthermophila.fragments	R2_3_2								trim	87.0000	85.0000	0.9882	0.0152	8.0000	7.0000	1.0000	
+bench.tthermophila.fragments	R2_3_5								trim	104.0000	102.0000	0.9902	0.0183	11.0000	10.0000	1.0000	
+bench.tthermophila.fragments	R2_3_10								trim	119.0000	117.0000	0.9915	0.0211	14.0000	13.0000	1.0000	
+bench.tthermophila.fragments	R2_5_2								trim	110.0000	108.0000	0.9815	0.0192	10.0000	9.0000	1.0000	
+bench.tthermophila.fragments	R2_5_5								trim	141.0000	139.0000	0.9856	0.0249	18.0000	17.0000	1.0000	
+bench.tthermophila.fragments	R2_5_10								trim	162.0000	160.0000	0.9875	0.0287	23.0000	22.0000	1.0000	
+bench.tthermophila.fragments	R2_10_2								trim	138.0000	136.0000	0.9853	0.0243	11.0000	10.0000	1.0000	
+bench.tthermophila.fragments	R2_10_5								trim	200.0000	198.0000	0.9899	0.0356	22.0000	21.0000	1.0000	
+bench.tthermophila.fragments	R2_10_10								trim	237.0000	235.0000	0.9915	0.0423	28.0000	27.0000	1.0000	
+bench.tthermophila.fragments	R3_1								keep	2255.0000	2244.0000	0.9563	0.2261	320.0000	246.0000	72.0000	
+bench.tthermophila.fragments	R3_5								keep	2077.0000	2067.0000	0.9734	0.2120	244.0000	207.0000	36.0000	
+bench.tthermophila.fragments	H								mixed	2618.0000	2606.0000			377.0000			8.0000
+bench.pfalciparum.complete	(coverage)	217.0000	0.0000	217.0000	0.0000	0.3687	0.0000	0.5991									
+bench.pfalciparum.complete	R1_1								keep	1.0000	1.0000	0.0000		1.0000	0.0000	1.0000	
+bench.pfalciparum.complete	R1_1_s								keep	1.0000	1.0000	0.0000		1.0000	0.0000	1.0000	
+bench.pfalciparum.complete	R1_5								keep	0.0000	0.0000			0.0000	0.0000	0.0000	
+bench.pfalciparum.complete	R1_5_s								keep	0.0000	0.0000			0.0000	0.0000	0.0000	
+bench.pfalciparum.complete	R1_10								keep	0.0000	0.0000			0.0000	0.0000	0.0000	
+bench.pfalciparum.complete	R1_10_s								keep	0.0000	0.0000			0.0000	0.0000	0.0000	
+bench.pfalciparum.complete	R1_20								keep	0.0000	0.0000			0.0000	0.0000	0.0000	
+bench.pfalciparum.complete	R1_20_s								keep	0.0000	0.0000			0.0000	0.0000	0.0000	
+bench.pfalciparum.complete	R2_1_2								trim	8.0000	8.0000	1.0000	0.0369	0.0000	0.0000	0.0000	
+bench.pfalciparum.complete	R2_1_5								trim	8.0000	8.0000	1.0000	0.0369	0.0000	0.0000	0.0000	
+bench.pfalciparum.complete	R2_1_10								trim	8.0000	8.0000	1.0000	0.0369	0.0000	0.0000	0.0000	
+bench.pfalciparum.complete	R2_3_2								trim	11.0000	11.0000	1.0000	0.0507	1.0000	1.0000	0.0000	
+bench.pfalciparum.complete	R2_3_5								trim	13.0000	13.0000	1.0000	0.0599	1.0000	1.0000	0.0000	
+bench.pfalciparum.complete	R2_3_10								trim	14.0000	14.0000	1.0000	0.0645	1.0000	1.0000	0.0000	
+bench.pfalciparum.complete	R2_5_2								trim	11.0000	11.0000	1.0000	0.0507	1.0000	1.0000	0.0000	
+bench.pfalciparum.complete	R2_5_5								trim	13.0000	13.0000	1.0000	0.0599	1.0000	1.0000	0.0000	
+bench.pfalciparum.complete	R2_5_10								trim	14.0000	14.0000	1.0000	0.0645	1.0000	1.0000	0.0000	
+bench.pfalciparum.complete	R2_10_2								trim	13.0000	13.0000	1.0000	0.0599	1.0000	1.0000	0.0000	
+bench.pfalciparum.complete	R2_10_5								trim	16.0000	16.0000	1.0000	0.0737	2.0000	2.0000	0.0000	
+bench.pfalciparum.complete	R2_10_10								trim	19.0000	19.0000	1.0000	0.0876	2.0000	2.0000	0.0000	
+bench.pfalciparum.complete	R3_1								keep	2.0000	2.0000	0.0000		2.0000	0.0000	1.0000	
+bench.pfalciparum.complete	R3_5								keep	1.0000	1.0000	0.0000		1.0000	0.0000	0.0000	
+bench.pfalciparum.complete	H								mixed	14.0000	14.0000			2.0000			1.0000
+bench.pfalciparum.complete_fullutr	(coverage)	208.0000	0.0000	198.0000	0.0000	0.3687	0.0000	0.6061									
+bench.pfalciparum.complete_fullutr	R1_1								keep	3.0000	1.0000	0.0000		1.0000	0.0000	1.0000	
+bench.pfalciparum.complete_fullutr	R1_1_s								keep	3.0000	1.0000	0.0000		1.0000	0.0000	1.0000	
+bench.pfalciparum.complete_fullutr	R1_5								keep	2.0000	0.0000			0.0000	0.0000	0.0000	
+bench.pfalciparum.complete_fullutr	R1_5_s								keep	2.0000	0.0000			0.0000	0.0000	0.0000	
+bench.pfalciparum.complete_fullutr	R1_10								keep	2.0000	0.0000			0.0000	0.0000	0.0000	
+bench.pfalciparum.complete_fullutr	R1_10_s								keep	2.0000	0.0000			0.0000	0.0000	0.0000	
+bench.pfalciparum.complete_fullutr	R1_20								keep	2.0000	0.0000			0.0000	0.0000	0.0000	
+bench.pfalciparum.complete_fullutr	R1_20_s								keep	2.0000	0.0000			0.0000	0.0000	0.0000	
+bench.pfalciparum.complete_fullutr	R2_1_2								trim	6.0000	6.0000	1.0000	0.0303	0.0000	0.0000	0.0000	
+bench.pfalciparum.complete_fullutr	R2_1_5								trim	6.0000	6.0000	1.0000	0.0303	0.0000	0.0000	0.0000	
+bench.pfalciparum.complete_fullutr	R2_1_10								trim	6.0000	6.0000	1.0000	0.0303	0.0000	0.0000	0.0000	
+bench.pfalciparum.complete_fullutr	R2_3_2								trim	9.0000	9.0000	1.0000	0.0455	1.0000	1.0000	0.0000	
+bench.pfalciparum.complete_fullutr	R2_3_5								trim	11.0000	11.0000	1.0000	0.0556	1.0000	1.0000	0.0000	
+bench.pfalciparum.complete_fullutr	R2_3_10								trim	12.0000	12.0000	1.0000	0.0606	1.0000	1.0000	0.0000	
+bench.pfalciparum.complete_fullutr	R2_5_2								trim	9.0000	9.0000	1.0000	0.0455	1.0000	1.0000	0.0000	
+bench.pfalciparum.complete_fullutr	R2_5_5								trim	11.0000	11.0000	1.0000	0.0556	1.0000	1.0000	0.0000	
+bench.pfalciparum.complete_fullutr	R2_5_10								trim	12.0000	12.0000	1.0000	0.0606	1.0000	1.0000	0.0000	
+bench.pfalciparum.complete_fullutr	R2_10_2								trim	11.0000	11.0000	1.0000	0.0556	1.0000	1.0000	0.0000	
+bench.pfalciparum.complete_fullutr	R2_10_5								trim	14.0000	14.0000	1.0000	0.0707	2.0000	2.0000	0.0000	
+bench.pfalciparum.complete_fullutr	R2_10_10								trim	16.0000	16.0000	1.0000	0.0808	2.0000	2.0000	0.0000	
+bench.pfalciparum.complete_fullutr	R3_1								keep	3.0000	2.0000	0.0000		2.0000	0.0000	1.0000	
+bench.pfalciparum.complete_fullutr	R3_5								keep	2.0000	1.0000	0.0000		1.0000	0.0000	0.0000	
+bench.pfalciparum.complete_fullutr	H								mixed	14.0000	12.0000			2.0000			1.0000
+bench.pfalciparum.fragments	(coverage)	2330.0000	2220.0000	106.0000	0.2986	0.1981	0.4977	0.3868									
+bench.pfalciparum.fragments	R1_1								keep	485.0000	485.0000	1.0000	0.2185	76.0000	76.0000	0.0000	
+bench.pfalciparum.fragments	R1_1_s								keep	485.0000	485.0000	1.0000	0.2185	76.0000	76.0000	0.0000	
+bench.pfalciparum.fragments	R1_5								keep	449.0000	449.0000	1.0000	0.2023	64.0000	64.0000	0.0000	
+bench.pfalciparum.fragments	R1_5_s								keep	449.0000	449.0000	1.0000	0.2023	64.0000	64.0000	0.0000	
+bench.pfalciparum.fragments	R1_10								keep	403.0000	403.0000	1.0000	0.1815	51.0000	51.0000	0.0000	
+bench.pfalciparum.fragments	R1_10_s								keep	403.0000	403.0000	1.0000	0.1815	51.0000	51.0000	0.0000	
+bench.pfalciparum.fragments	R1_20								keep	338.0000	338.0000	1.0000	0.1523	36.0000	36.0000	0.0000	
+bench.pfalciparum.fragments	R1_20_s								keep	338.0000	338.0000	1.0000	0.1523	36.0000	36.0000	0.0000	
+bench.pfalciparum.fragments	R2_1_2								trim	4.0000	4.0000	0.7500	0.0283	1.0000	0.0000	1.0000	
+bench.pfalciparum.fragments	R2_1_5								trim	4.0000	4.0000	0.7500	0.0283	1.0000	0.0000	1.0000	
+bench.pfalciparum.fragments	R2_1_10								trim	4.0000	4.0000	0.7500	0.0283	1.0000	0.0000	1.0000	
+bench.pfalciparum.fragments	R2_3_2								trim	5.0000	5.0000	0.8000	0.0377	2.0000	1.0000	1.0000	
+bench.pfalciparum.fragments	R2_3_5								trim	6.0000	6.0000	0.8333	0.0472	2.0000	1.0000	1.0000	
+bench.pfalciparum.fragments	R2_3_10								trim	8.0000	8.0000	0.6250	0.0472	3.0000	1.0000	2.0000	
+bench.pfalciparum.fragments	R2_5_2								trim	5.0000	5.0000	0.8000	0.0377	2.0000	1.0000	1.0000	
+bench.pfalciparum.fragments	R2_5_5								trim	6.0000	6.0000	0.8333	0.0472	2.0000	1.0000	1.0000	
+bench.pfalciparum.fragments	R2_5_10								trim	8.0000	8.0000	0.6250	0.0472	3.0000	1.0000	2.0000	
+bench.pfalciparum.fragments	R2_10_2								trim	6.0000	6.0000	0.6667	0.0377	3.0000	1.0000	2.0000	
+bench.pfalciparum.fragments	R2_10_5								trim	8.0000	8.0000	0.7500	0.0566	3.0000	1.0000	2.0000	
+bench.pfalciparum.fragments	R2_10_10								trim	10.0000	10.0000	0.6000	0.0566	4.0000	1.0000	3.0000	
+bench.pfalciparum.fragments	R3_1								keep	767.0000	767.0000	1.0000	0.3455	108.0000	108.0000	0.0000	
+bench.pfalciparum.fragments	R3_5								keep	711.0000	711.0000	1.0000	0.3203	95.0000	95.0000	0.0000	
+bench.pfalciparum.fragments	H								mixed	851.0000	851.0000			119.0000			0.0000
+bench.creinhardtii.complete	(coverage)	4105.0000	0.0000	4085.0000	0.0000	0.3718	0.0000	0.5525									
+bench.creinhardtii.complete	R1_1								keep	104.0000	103.0000	0.0000		57.0000	0.0000	51.0000	
+bench.creinhardtii.complete	R1_1_s								keep	104.0000	103.0000	0.0000		57.0000	0.0000	51.0000	
+bench.creinhardtii.complete	R1_5								keep	75.0000	74.0000	0.0000		32.0000	0.0000	31.0000	
+bench.creinhardtii.complete	R1_5_s								keep	75.0000	74.0000	0.0000		32.0000	0.0000	31.0000	
+bench.creinhardtii.complete	R1_10								keep	56.0000	55.0000	0.0000		20.0000	0.0000	19.0000	
+bench.creinhardtii.complete	R1_10_s								keep	56.0000	55.0000	0.0000		20.0000	0.0000	19.0000	
+bench.creinhardtii.complete	R1_20								keep	34.0000	33.0000	0.0000		9.0000	0.0000	8.0000	
+bench.creinhardtii.complete	R1_20_s								keep	34.0000	33.0000	0.0000		9.0000	0.0000	8.0000	
+bench.creinhardtii.complete	R2_1_2								trim	129.0000	129.0000	1.0000	0.0316	3.0000	3.0000	0.0000	
+bench.creinhardtii.complete	R2_1_5								trim	131.0000	131.0000	1.0000	0.0321	3.0000	3.0000	0.0000	
+bench.creinhardtii.complete	R2_1_10								trim	132.0000	132.0000	1.0000	0.0323	3.0000	3.0000	0.0000	
+bench.creinhardtii.complete	R2_3_2								trim	143.0000	143.0000	1.0000	0.0350	4.0000	4.0000	0.0000	
+bench.creinhardtii.complete	R2_3_5								trim	152.0000	152.0000	1.0000	0.0372	5.0000	5.0000	0.0000	
+bench.creinhardtii.complete	R2_3_10								trim	159.0000	159.0000	1.0000	0.0389	6.0000	6.0000	0.0000	
+bench.creinhardtii.complete	R2_5_2								trim	156.0000	156.0000	1.0000	0.0382	4.0000	4.0000	0.0000	
+bench.creinhardtii.complete	R2_5_5								trim	169.0000	169.0000	1.0000	0.0414	6.0000	6.0000	0.0000	
+bench.creinhardtii.complete	R2_5_10								trim	183.0000	183.0000	1.0000	0.0448	7.0000	7.0000	0.0000	
+bench.creinhardtii.complete	R2_10_2								trim	174.0000	174.0000	1.0000	0.0426	5.0000	4.0000	0.0000	
+bench.creinhardtii.complete	R2_10_5								trim	196.0000	196.0000	1.0000	0.0480	8.0000	6.0000	0.0000	
+bench.creinhardtii.complete	R2_10_10								trim	218.0000	218.0000	1.0000	0.0534	10.0000	8.0000	0.0000	
+bench.creinhardtii.complete	R3_1								keep	143.0000	142.0000	0.0000		52.0000	0.0000	48.0000	
+bench.creinhardtii.complete	R3_5								keep	125.0000	124.0000	0.0000		40.0000	0.0000	36.0000	
+bench.creinhardtii.complete	H								mixed	326.0000	324.0000			74.0000			3.0000
+bench.creinhardtii.complete_fullutr	(coverage)	3333.0000	0.0000	3314.0000	0.0000	0.3787	0.0000	0.5625									
+bench.creinhardtii.complete_fullutr	R1_1								keep	71.0000	71.0000	0.0000		43.0000	0.0000	38.0000	
+bench.creinhardtii.complete_fullutr	R1_1_s								keep	71.0000	71.0000	0.0000		43.0000	0.0000	38.0000	
+bench.creinhardtii.complete_fullutr	R1_5								keep	47.0000	47.0000	0.0000		22.0000	0.0000	21.0000	
+bench.creinhardtii.complete_fullutr	R1_5_s								keep	47.0000	47.0000	0.0000		22.0000	0.0000	21.0000	
+bench.creinhardtii.complete_fullutr	R1_10								keep	31.0000	31.0000	0.0000		13.0000	0.0000	12.0000	
+bench.creinhardtii.complete_fullutr	R1_10_s								keep	31.0000	31.0000	0.0000		13.0000	0.0000	12.0000	
+bench.creinhardtii.complete_fullutr	R1_20								keep	18.0000	18.0000	0.0000		5.0000	0.0000	4.0000	
+bench.creinhardtii.complete_fullutr	R1_20_s								keep	18.0000	18.0000	0.0000		5.0000	0.0000	4.0000	
+bench.creinhardtii.complete_fullutr	R2_1_2								trim	124.0000	124.0000	1.0000	0.0374	3.0000	3.0000	0.0000	
+bench.creinhardtii.complete_fullutr	R2_1_5								trim	126.0000	126.0000	1.0000	0.0380	3.0000	3.0000	0.0000	
+bench.creinhardtii.complete_fullutr	R2_1_10								trim	126.0000	126.0000	1.0000	0.0380	3.0000	3.0000	0.0000	
+bench.creinhardtii.complete_fullutr	R2_3_2								trim	138.0000	138.0000	1.0000	0.0416	4.0000	4.0000	0.0000	
+bench.creinhardtii.complete_fullutr	R2_3_5								trim	147.0000	147.0000	1.0000	0.0444	5.0000	5.0000	0.0000	
+bench.creinhardtii.complete_fullutr	R2_3_10								trim	152.0000	152.0000	1.0000	0.0459	5.0000	5.0000	0.0000	
+bench.creinhardtii.complete_fullutr	R2_5_2								trim	152.0000	152.0000	1.0000	0.0459	4.0000	4.0000	0.0000	
+bench.creinhardtii.complete_fullutr	R2_5_5								trim	165.0000	165.0000	1.0000	0.0498	6.0000	6.0000	0.0000	
+bench.creinhardtii.complete_fullutr	R2_5_10								trim	176.0000	176.0000	1.0000	0.0531	6.0000	6.0000	0.0000	
+bench.creinhardtii.complete_fullutr	R2_10_2								trim	168.0000	168.0000	1.0000	0.0507	4.0000	4.0000	0.0000	
+bench.creinhardtii.complete_fullutr	R2_10_5								trim	190.0000	190.0000	1.0000	0.0573	7.0000	6.0000	0.0000	
+bench.creinhardtii.complete_fullutr	R2_10_10								trim	209.0000	209.0000	1.0000	0.0631	8.0000	7.0000	0.0000	
+bench.creinhardtii.complete_fullutr	R3_1								keep	102.0000	102.0000	0.0000		41.0000	0.0000	37.0000	
+bench.creinhardtii.complete_fullutr	R3_5								keep	85.0000	85.0000	0.0000		30.0000	0.0000	26.0000	
+bench.creinhardtii.complete_fullutr	H								mixed	267.0000	267.0000			58.0000			2.0000
+bench.creinhardtii.fragments	(coverage)	8991.0000	7104.0000	1824.0000	0.3000	0.2632	0.4202	0.3383									
+bench.creinhardtii.fragments	R1_1								keep	1603.0000	1603.0000	0.9663	0.2180	68.0000	47.0000	16.0000	
+bench.creinhardtii.fragments	R1_1_s								keep	1602.0000	1602.0000	0.9663	0.2179	68.0000	47.0000	16.0000	
+bench.creinhardtii.fragments	R1_5								keep	1433.0000	1433.0000	0.9756	0.1968	33.0000	26.0000	6.0000	
+bench.creinhardtii.fragments	R1_5_s								keep	1432.0000	1432.0000	0.9756	0.1966	33.0000	26.0000	6.0000	
+bench.creinhardtii.fragments	R1_10								keep	1258.0000	1258.0000	0.9769	0.1730	20.0000	14.0000	5.0000	
+bench.creinhardtii.fragments	R1_10_s								keep	1257.0000	1257.0000	0.9769	0.1729	20.0000	14.0000	5.0000	
+bench.creinhardtii.fragments	R1_20								keep	963.0000	963.0000	0.9782	0.1326	8.0000	5.0000	2.0000	
+bench.creinhardtii.fragments	R1_20_s								keep	963.0000	963.0000	0.9782	0.1326	8.0000	5.0000	2.0000	
+bench.creinhardtii.fragments	R2_1_2								trim	51.0000	50.0000	1.0000	0.0274	2.0000	1.0000	0.0000	
+bench.creinhardtii.fragments	R2_1_5								trim	52.0000	51.0000	0.9804	0.0274	3.0000	1.0000	1.0000	
+bench.creinhardtii.fragments	R2_1_10								trim	53.0000	52.0000	0.9808	0.0280	3.0000	1.0000	1.0000	
+bench.creinhardtii.fragments	R2_3_2								trim	57.0000	56.0000	1.0000	0.0307	2.0000	1.0000	0.0000	
+bench.creinhardtii.fragments	R2_3_5								trim	61.0000	60.0000	0.9833	0.0323	4.0000	2.0000	1.0000	
+bench.creinhardtii.fragments	R2_3_10								trim	66.0000	65.0000	0.9692	0.0345	5.0000	2.0000	2.0000	
+bench.creinhardtii.fragments	R2_5_2								trim	62.0000	61.0000	1.0000	0.0334	2.0000	1.0000	0.0000	
+bench.creinhardtii.fragments	R2_5_5								trim	67.0000	66.0000	0.9848	0.0356	4.0000	2.0000	1.0000	
+bench.creinhardtii.fragments	R2_5_10								trim	75.0000	74.0000	0.9730	0.0395	5.0000	2.0000	2.0000	
+bench.creinhardtii.fragments	R2_10_2								trim	70.0000	69.0000	1.0000	0.0378	4.0000	2.0000	0.0000	
+bench.creinhardtii.fragments	R2_10_5								trim	79.0000	78.0000	0.9872	0.0422	7.0000	3.0000	1.0000	
+bench.creinhardtii.fragments	R2_10_10								trim	95.0000	94.0000	0.9787	0.0504	9.0000	4.0000	2.0000	
+bench.creinhardtii.fragments	R3_1								keep	1954.0000	1953.0000	0.9672	0.2659	90.0000	63.0000	20.0000	
+bench.creinhardtii.fragments	R3_5								keep	1770.0000	1769.0000	0.9700	0.2416	59.0000	41.0000	14.0000	
+bench.creinhardtii.fragments	H								mixed	2346.0000	2344.0000			104.0000			3.0000
+sim.human.d1	(coverage)	13205.0000	2752.0000	7345.0000	0.9211	0.9856	0.7064	0.9333									
+sim.human.d1	R1_1								keep	3578.0000	2678.0000	0.8910	0.8670	799.0000	382.0000	175.0000	
+sim.human.d1	R1_1_s								keep	3521.0000	2640.0000	0.9030	0.8663	760.0000	381.0000	144.0000	
+sim.human.d1	R1_5								keep	3238.0000	2433.0000	0.9001	0.7958	662.0000	324.0000	131.0000	
+sim.human.d1	R1_5_s								keep	3199.0000	2409.0000	0.9087	0.7954	638.0000	323.0000	113.0000	
+sim.human.d1	R1_10								keep	2892.0000	2158.0000	0.9096	0.7133	533.0000	256.0000	97.0000	
+sim.human.d1	R1_10_s								keep	2868.0000	2148.0000	0.9139	0.7133	524.0000	256.0000	92.0000	
+sim.human.d1	R1_20								keep	2302.0000	1718.0000	0.9249	0.5774	360.0000	185.0000	49.0000	
+sim.human.d1	R1_20_s								keep	2281.0000	1709.0000	0.9298	0.5774	353.0000	185.0000	45.0000	
+sim.human.d1	R2_1_2								trim	6588.0000	5548.0000	0.9973	0.7533	538.0000	429.0000	3.0000	
+sim.human.d1	R2_1_5								trim	6633.0000	5585.0000	0.9973	0.7583	549.0000	433.0000	3.0000	
+sim.human.d1	R2_1_10								trim	6711.0000	5650.0000	0.9972	0.7671	582.0000	441.0000	3.0000	
+sim.human.d1	R2_3_2								trim	6687.0000	5627.0000	0.9972	0.7639	544.0000	432.0000	3.0000	
+sim.human.d1	R2_3_5								trim	6793.0000	5716.0000	0.9969	0.7758	558.0000	438.0000	4.0000	
+sim.human.d1	R2_3_10								trim	6895.0000	5804.0000	0.9964	0.7873	594.0000	449.0000	4.0000	
+sim.human.d1	R2_5_2								trim	6731.0000	5667.0000	0.9972	0.7694	544.0000	432.0000	3.0000	
+sim.human.d1	R2_5_5								trim	6851.0000	5767.0000	0.9965	0.7824	561.0000	439.0000	5.0000	
+sim.human.d1	R2_5_10								trim	6969.0000	5867.0000	0.9954	0.7951	602.0000	451.0000	9.0000	
+sim.human.d1	R2_10_2								trim	6861.0000	5774.0000	0.9972	0.7839	558.0000	441.0000	3.0000	
+sim.human.d1	R2_10_5								trim	7010.0000	5899.0000	0.9966	0.8004	581.0000	453.0000	5.0000	
+sim.human.d1	R2_10_10								trim	7167.0000	6029.0000	0.9952	0.8169	628.0000	469.0000	10.0000	
+sim.human.d1	R3_1								keep	2308.0000	1655.0000	0.8628	0.5189	537.0000	211.0000	149.0000	
+sim.human.d1	R3_5								keep	2068.0000	1485.0000	0.8923	0.4815	410.0000	179.0000	87.0000	
+sim.human.d1	H								mixed	10346.0000	8318.0000			1317.0000			88.0000
+sim.human.d8	(coverage)	11230.0000	4706.0000	4651.0000	0.9303	0.9880	0.6547	0.9301									
+sim.human.d8	R1_1								keep	5325.0000	4415.0000	0.9599	0.9006	1163.0000	823.0000	115.0000	
+sim.human.d8	R1_1_s								keep	5285.0000	4384.0000	0.9665	0.9003	1130.0000	822.0000	86.0000	
+sim.human.d8	R1_5								keep	4853.0000	4009.0000	0.9678	0.8245	986.0000	720.0000	71.0000	
+sim.human.d8	R1_5_s								keep	4829.0000	3992.0000	0.9717	0.8243	969.0000	719.0000	56.0000	
+sim.human.d8	R1_10								keep	4394.0000	3648.0000	0.9698	0.7518	832.0000	623.0000	54.0000	
+sim.human.d8	R1_10_s								keep	4378.0000	3639.0000	0.9720	0.7516	823.0000	622.0000	47.0000	
+sim.human.d8	R1_20								keep	3510.0000	2931.0000	0.9778	0.6090	586.0000	454.0000	27.0000	
+sim.human.d8	R1_20_s								keep	3498.0000	2926.0000	0.9792	0.6088	581.0000	453.0000	24.0000	
+sim.human.d8	R2_1_2								trim	4173.0000	3767.0000	0.9942	0.8052	411.0000	366.0000	6.0000	
+sim.human.d8	R2_1_5								trim	4192.0000	3784.0000	0.9942	0.8089	415.0000	368.0000	6.0000	
+sim.human.d8	R2_1_10								trim	4229.0000	3813.0000	0.9942	0.8151	429.0000	370.0000	6.0000	
+sim.human.d8	R2_3_2								trim	4220.0000	3809.0000	0.9942	0.8142	411.0000	366.0000	6.0000	
+sim.human.d8	R2_3_5								trim	4255.0000	3842.0000	0.9938	0.8209	417.0000	369.0000	7.0000	
+sim.human.d8	R2_3_10								trim	4317.0000	3893.0000	0.9926	0.8308	433.0000	372.0000	8.0000	
+sim.human.d8	R2_5_2								trim	4243.0000	3831.0000	0.9943	0.8190	413.0000	368.0000	6.0000	
+sim.human.d8	R2_5_5								trim	4286.0000	3872.0000	0.9935	0.8271	421.0000	372.0000	8.0000	
+sim.human.d8	R2_5_10								trim	4357.0000	3932.0000	0.9908	0.8377	440.0000	376.0000	11.0000	
+sim.human.d8	R2_10_2								trim	4305.0000	3882.0000	0.9943	0.8299	420.0000	371.0000	6.0000	
+sim.human.d8	R2_10_5								trim	4364.0000	3937.0000	0.9936	0.8411	430.0000	376.0000	8.0000	
+sim.human.d8	R2_10_10								trim	4452.0000	4012.0000	0.9903	0.8542	452.0000	380.0000	14.0000	
+sim.human.d8	R3_1								keep	2974.0000	2381.0000	0.9378	0.4745	616.0000	384.0000	97.0000	
+sim.human.d8	R3_5								keep	2664.0000	2120.0000	0.9599	0.4324	504.0000	341.0000	48.0000	
+sim.human.d8	H								mixed	9477.0000	8125.0000			1492.0000			74.0000
+sim.human.d32	(coverage)	9710.0000	6098.0000	2318.0000	0.9569	0.9927	0.6405	0.8995									
+sim.human.d32	R1_1								keep	6649.0000	5792.0000	0.9872	0.9377	1307.0000	1085.0000	44.0000	
+sim.human.d32	R1_1_s								keep	6636.0000	5782.0000	0.9882	0.9370	1299.0000	1082.0000	40.0000	
+sim.human.d32	R1_5								keep	6084.0000	5291.0000	0.9894	0.8585	1144.0000	959.0000	30.0000	
+sim.human.d32	R1_5_s								keep	6077.0000	5285.0000	0.9898	0.8578	1141.0000	956.0000	30.0000	
+sim.human.d32	R1_10								keep	5437.0000	4741.0000	0.9907	0.7703	966.0000	816.0000	24.0000	
+sim.human.d32	R1_10_s								keep	5432.0000	4737.0000	0.9909	0.7698	964.0000	814.0000	24.0000	
+sim.human.d32	R1_20								keep	4340.0000	3777.0000	0.9936	0.6154	726.0000	621.0000	11.0000	
+sim.human.d32	R1_20_s								keep	4336.0000	3774.0000	0.9936	0.6150	724.0000	619.0000	11.0000	
+sim.human.d32	R2_1_2								trim	2156.0000	1980.0000	0.9944	0.8494	256.0000	220.0000	7.0000	
+sim.human.d32	R2_1_5								trim	2167.0000	1989.0000	0.9940	0.8529	260.0000	221.0000	7.0000	
+sim.human.d32	R2_1_10								trim	2179.0000	2000.0000	0.9940	0.8576	265.0000	223.0000	7.0000	
+sim.human.d32	R2_3_2								trim	2180.0000	2004.0000	0.9945	0.8598	258.0000	222.0000	7.0000	
+sim.human.d32	R2_3_5								trim	2200.0000	2020.0000	0.9936	0.8658	266.0000	226.0000	7.0000	
+sim.human.d32	R2_3_10								trim	2220.0000	2039.0000	0.9922	0.8727	273.0000	229.0000	8.0000	
+sim.human.d32	R2_5_2								trim	2192.0000	2016.0000	0.9945	0.8650	258.0000	222.0000	7.0000	
+sim.human.d32	R2_5_5								trim	2213.0000	2033.0000	0.9936	0.8714	266.0000	226.0000	7.0000	
+sim.human.d32	R2_5_10								trim	2243.0000	2062.0000	0.9898	0.8805	273.0000	229.0000	8.0000	
+sim.human.d32	R2_10_2								trim	2203.0000	2027.0000	0.9946	0.8697	260.0000	224.0000	7.0000	
+sim.human.d32	R2_10_5								trim	2234.0000	2054.0000	0.9927	0.8796	269.0000	228.0000	8.0000	
+sim.human.d32	R2_10_10								trim	2287.0000	2104.0000	0.9857	0.8947	284.0000	234.0000	14.0000	
+sim.human.d32	R3_1								keep	3561.0000	3026.0000	0.9779	0.4852	604.0000	454.0000	45.0000	
+sim.human.d32	R3_5								keep	3227.0000	2740.0000	0.9850	0.4426	519.0000	407.0000	24.0000	
+sim.human.d32	H								mixed	8636.0000	7598.0000			1488.0000			35.0000
+sim.athal.d1	(coverage)	7898.0000	2485.0000	5064.0000	0.4817	0.6524	0.7292	0.8894									
+sim.athal.d1	R1_1								keep	1070.0000	1016.0000	0.9124	0.3730	340.0000	259.0000	67.0000	
+sim.athal.d1	R1_1_s								keep	1064.0000	1010.0000	0.9168	0.3726	336.0000	259.0000	63.0000	
+sim.athal.d1	R1_5								keep	930.0000	878.0000	0.9601	0.3392	262.0000	226.0000	22.0000	
+sim.athal.d1	R1_5_s								keep	928.0000	876.0000	0.9612	0.3388	262.0000	226.0000	22.0000	
+sim.athal.d1	R1_10								keep	831.0000	786.0000	0.9720	0.3074	219.0000	196.0000	12.0000	
+sim.athal.d1	R1_10_s								keep	830.0000	785.0000	0.9732	0.3074	219.0000	196.0000	12.0000	
+sim.athal.d1	R1_20								keep	657.0000	621.0000	0.9758	0.2439	156.0000	139.0000	7.0000	
+sim.athal.d1	R1_20_s								keep	656.0000	620.0000	0.9774	0.2439	156.0000	139.0000	7.0000	
+sim.athal.d1	R2_1_2								trim	549.0000	538.0000	0.9963	0.1058	83.0000	82.0000	0.0000	
+sim.athal.d1	R2_1_5								trim	560.0000	549.0000	0.9945	0.1078	85.0000	83.0000	1.0000	
+sim.athal.d1	R2_1_10								trim	575.0000	562.0000	0.9947	0.1104	86.0000	84.0000	1.0000	
+sim.athal.d1	R2_3_2								trim	628.0000	617.0000	0.9951	0.1212	97.0000	95.0000	1.0000	
+sim.athal.d1	R2_3_5								trim	686.0000	673.0000	0.9926	0.1319	107.0000	104.0000	2.0000	
+sim.athal.d1	R2_3_10								trim	721.0000	703.0000	0.9929	0.1378	112.0000	109.0000	2.0000	
+sim.athal.d1	R2_5_2								trim	699.0000	685.0000	0.9942	0.1345	106.0000	103.0000	1.0000	
+sim.athal.d1	R2_5_5								trim	784.0000	768.0000	0.9909	0.1503	122.0000	118.0000	2.0000	
+sim.athal.d1	R2_5_10								trim	840.0000	819.0000	0.9915	0.1603	130.0000	126.0000	2.0000	
+sim.athal.d1	R2_10_2								trim	800.0000	780.0000	0.9910	0.1526	117.0000	112.0000	2.0000	
+sim.athal.d1	R2_10_5								trim	972.0000	949.0000	0.9884	0.1852	144.0000	138.0000	3.0000	
+sim.athal.d1	R2_10_10								trim	1088.0000	1060.0000	0.9887	0.2070	169.0000	162.0000	4.0000	
+sim.athal.d1	R3_1								keep	1397.0000	1316.0000	0.9301	0.4926	414.0000	333.0000	62.0000	
+sim.athal.d1	R3_5								keep	1234.0000	1157.0000	0.9654	0.4495	339.0000	299.0000	24.0000	
+sim.athal.d1	H								mixed	2304.0000	2200.0000			575.0000			22.0000

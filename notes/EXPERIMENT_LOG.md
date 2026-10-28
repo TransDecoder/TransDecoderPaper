@@ -47,7 +47,7 @@ disagrees with its E-record, the E-record wins; fix the log.
 | S8 | Kozak in bits (w = 17/bit) | ADOPTED | Rounding the weight changes at most 0.13% of predictions |
 | S9 | First-ATG-of-longest-ORF baseline | ADOPTED (reported) | Beats TD on complete exact F1 (0.956 vs 0.912 at release); fails on fragments and random sequence |
 | S10 | UTR-length prior for keep-open vs trim | NOT ADOPTED | Short open UTRs are common in real annotation; the prior just shifts alpha's trade-off |
-| S11 | Keep-open vs trim classifier (E33) | NOT ADOPTED | "ORF lacks a stop" separates classes perfectly in benchmark fragments; benchmark-trained context models do not transfer |
+| S11 | Keep-open vs trim classifier (E33) | NOT ADOPTED (classifier); OPEN (homology override, step 3) | "ORF lacks a stop" separates classes perfectly in benchmark fragments; benchmark-trained context models do not transfer; homology (subject N-terminus at the ATG -> trim; alignment upstream -> keep) gives +2 to +9 exact F1 points on simulated assemblies |
 | S12 | Later annotated ATGs (C. reinhardtii) | OPEN | 19.6% of C. reinhardtii starts are later ATGs; no tested rule recovers them |
 | O1 | Minimum ORF length 100 -> 50 codons | ADOPTED | Needs a coding test below 100 codons, else lncRNA calls triple |
 | O2 | Fixed short-ORF guard (C = 200 below 100 codons) | PARTIAL | Kept short-protein gain at -m 100 noise; replaced at release by A9 |
@@ -436,7 +436,25 @@ Outcome counts: see the end of this file.
   - Prior adaptation through miscalibrated synthetic models is unreliable.
   - Decoys approximate the UTR null at |u| < 200 nt but understate its tail.
   - Untested next idea: the u-only matched model combined with the mixture's pi estimate.
-- **Pointers:** E33; `pipeline/start_classifier/`; `data/start_classifier/{step1,step2}/`; large
+- **Step 3, homology override (2026-10-28; outcome OPEN, needs Brian's decision):**
+  - Rules on the longest-ORF DIAMOND (Swiss-Prot minus own organism, -k 1) / Pfam hits:
+    - trim when the subject's N-terminus (sstart <= 3) aligns within 5 aa of the first ATG (R2);
+    - keep open when the alignment starts >= 5 aa upstream of the ATG with sstart > 1 (R1);
+    - keep open when a Pfam envelope starts upstream (R3);
+    - otherwise the release rule decides.
+  - Exact F1 vs release:
+    - R2 + R1 + R3: human d1 / d8 / d32 +2.0 / +5.4 / +9.0, athal +2.0; every CDS type improves;
+      5' partials +11 to +14.
+    - R2 + R1: +1.9 / +5.3 / +8.7 / +1.5.
+    - R2 alone: +1.3 / +1.9 / +1.7 / +0.5, and never negative on the 16 complete benchmark inputs
+      (+0.02 to +3.4; precision >= 0.99).
+    - The keep rules cost up to 0.3 (R1) or 0.6 (R3) points on complete inputs.
+  - Lesson: homology does what self-training could not.
+  - Next steps:
+    - validate on GM12878 with full Swiss-Prot;
+    - test a stricter keep rule (k = 20).
+  - Pointers: E33 step 3; `data/start_classifier/step3/`; searches in `$P/work/start_classifier/homology/`.
+- **Pointers:** E33; `pipeline/start_classifier/`; `data/start_classifier/{step1,step2,step3}/`; large
   intermediates in `$P/data/start_classifier/`; env `$P/env/startclf`.
 
 ### S12. Later annotated ATGs; other open start issues
