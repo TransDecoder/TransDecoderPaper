@@ -64,5 +64,5 @@ Rules:
 | E27 | [How the compared methods work](E27_comparator_algorithms.md) | in paper (Background, Table S7) |
 | E28 | [Balanced mixed inputs: complete, 5', 3' and internal partial CDSs](E28_mixed_partial_inputs.md) | in paper (Table 1, Table S9) |
 | E29 | [Start placement on 5'-open ORFs; UTR-length prior (not adopted)](E29_five_prime_open_starts.md) | in paper (Start-codon refinement) |
-| E30 | [Simulated GM12878 Trinity assembly benchmark](E30_simulated_trinity_benchmark.md) | not yet in paper (awaiting BH review) |
-| E31 | [Read-depth ablation of the simulated Trinity benchmark](E31_simtrinity_depth_ablation.md) | not yet in paper (awaiting BH review) |
+| E30 | [Simulated GM12878 Trinity assembly benchmark](E30_simulated_trinity_benchmark.md) | in paper (Results, Benchmark; Methods; Supp. Fig. S5) |
+| E31 | [Read-depth ablation of the simulated Trinity benchmark](E31_simtrinity_depth_ablation.md) | in paper (Results, Benchmark; Methods; Supp. Figs. S5-S6) |
