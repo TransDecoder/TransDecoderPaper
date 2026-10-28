@@ -470,6 +470,13 @@ Outcome counts: see the end of this file.
     - GM12878 Trinity: MANE exact 7,063 -> 7,190; 5' partials kept open given the stop 0.78 -> 0.96.
   - Stops and selection are unchanged. Perl is unchanged, so Perl = PyTD now holds for ab initio runs only.
   - Pointers: E33 "Adoption in PyTD"; `data/start_classifier/adoption/`.
+- **Arabidopsis depth series (E32 levels d1-d32, 2026-10-28):**
+  - Full homology mode (DIAMOND vs Swiss-Prot without Arabidopsis, Pfam, on all LongOrfs peptides) vs ab initio:
+    - exact F1 +3.2 (d1) to +8.0 (d32) points: 0.914 / 0.915 / 0.909 / 0.901 / 0.899 / 0.908;
+    - of this, retention alone (assist off) gives +0.8 to +1.0, and the start assist gives +2.3 to +7.2.
+  - Best overall method at every level.
+  - Ab initio reproduces E32's TransDecoder row exactly.
+  - Pointers: E33 "Arabidopsis depth series"; `data/start_classifier/adoption/athal_depth_scores.tsv`.
 - **Pointers:** E33; `pipeline/start_classifier/`; `data/start_classifier/{step1,step2,step3}/`; large
   intermediates in `$P/data/start_classifier/`; env `$P/env/startclf`.
 

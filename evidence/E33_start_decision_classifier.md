@@ -583,3 +583,86 @@ Complete references (12,172):
 - GM12878 LRAA and StringTie are not evaluated: there are no homology searches on the v7 LongOrfs.
 - The simulated-assembly searches cover only the 5'-open candidate ORFs, so selection there is unaffected by homology. The comparison isolates the start assist.
 - Swiss-Prot excludes the organism's own entries, as in E25. With the species included, rule coverage would rise.
+
+## Arabidopsis depth series (E32) with the homology start assist (2026-10-28)
+
+### Question
+Brian asked how the homology start assist performs on the simulated Arabidopsis Trinity depth series (E32,
+levels d1-d32), run as a user would, and how it separates from homology-based retention.
+
+### Data and runs
+- **E32 inputs (read only):** the assembly and labels of each level, `$P/data/simtrinity_athal/depth/<level>/{inputs,labels}`.
+  - Levels d1-d16 had finished.
+  - d32 was started only after E32's own d32 label/run/score had finished: `d32: LEVEL_DONE` in its `d32.run.log` and `scores/scores_overall.tsv` present, at 18:14. My lane started d32 at 18:15.
+- **Code:** PyTD a5b24c3 (`$P/work/trees/PY_hstart`).
+- **Scripts:** `pipeline/start_classifier/17_athal_depth_level_v1.sh` (one level) and `18_athal_depth_lane_v1.sh` (the lane, 15:54-18:28, 0 failures; log `$P/work/start_classifier/athal_depth/lane_v1.log`).
+- **One LongOrfs per level:** a fresh `-S -G Universal` run. Its work directory is copied into each condition before a fresh Predict, so all three conditions start from the same LongOrfs.
+- **Conditions:**
+  - A: ab initio;
+  - B: full homology mode, start assist on (the default);
+  - C: the same hits as B with `--no-homology-start-assist`, i.e. homology for retention only.
+- **Searches for B and C** run on all LongOrfs peptides with `run_tool.sh pytd_v7_homology`'s commands:
+  - DIAMOND 2.2.8 `--max-target-seqs 1 --evalue 1e-5` against `sprot_minus_3702.dmnd`;
+  - hmmsearch 3.4 `--cut_ga --noali` against Pfam-A, in 3 chunks;
+  - 3 threads; outputs in `$P/work/start_classifier/athal_depth/searches/<level>/`.
+- **The step-3 d1 searches** covered only the 5'-open candidates (step 3, "Adoption"). They were not reused for B and C here; d1 was rerun fully like the other levels.
+- **Scoring with E32's scorer and labels:**
+  - each condition's run sits at `$P/work/start_classifier/athal_depth/<A|B|C>/depth/<level>/runs/pytd_v7/`;
+  - scored with `pipeline/simtrinity/score_simtrinity.py`, then collected with E32's `13b_depth_collect.py --data-root $P/data/simtrinity_athal`;
+  - `19_athal_depth_summary.py` runs the same collector over E32's own runs and writes `data/start_classifier/adoption/athal_depth_scores.tsv` (stdout `athal_depth_scores.stdout.txt`).
+  - The collected E32 table is identical to E32's committed `data/simtrinity_athal/depth/scores_by_type.tsv`.
+  - "best_other" is the best E32 method other than TransDecoder (pytd_v7, perl_td_v600) and longest ORF: overall by exact F1, and per type by exact F1 with negatives.
+
+### Checks
+- Condition A reproduces E32's TransDecoder (pytd_v7, 3a793ff) at every level:
+  - `preds.tsv` byte-identical;
+  - `longest_orf.preds.tsv` identical at d1;
+  - overall and per-type score rows identical.
+- B and C have identical predictions and stops; only start codons differ.
+
+Start-assist rule counts in B (from the Predict logs):
+
+| level | R1 | R2 | R3 | homology trims | homology keeps | conflicts | changed vs ab initio |
+|---|---|---|---|---|---|---|---|
+| d1 | 999 | 708 | 1,525 | 685 | 1,769 | 23 | 648 |
+| d32 | 3,746 | 442 | 4,612 | 421 | 5,604 | 21 | 1,132 |
+
+### Results (`athal_depth_scores.tsv`)
+Exact F1 overall. Stop F1 is in parentheses where the column holds both.
+
+| level | A ab initio | C homology, no assist | B homology + assist | best other method | longest ORF |
+|---|---|---|---|---|---|
+| d1 | 0.8815 (0.9719) | 0.8910 (0.9841) | **0.9138** (0.9841) | 0.8798 (borf) | 0.7308 |
+| d2 | 0.8727 (0.9699) | 0.8822 (0.9841) | **0.9148** (0.9841) | 0.8432 (borf) | 0.7473 |
+| d4 | 0.8589 (0.9731) | 0.8683 (0.9863) | **0.9091** (0.9863) | 0.7878 (borf) | 0.7733 |
+| d8 | 0.8379 (0.9684) | 0.8480 (0.9834) | **0.9008** (0.9834) | 0.7794 (prodigal) | 0.8152 |
+| d16 | 0.8218 (0.9693) | 0.8321 (0.9845) | **0.8989** (0.9845) | 0.8235 (prodigal) | 0.8515 |
+| d32 | 0.8281 (0.9710) | 0.8364 (0.9862) | **0.9083** (0.9862) | 0.8540 (prodigal) | 0.8760 |
+
+Per-type exact F1 with negatives, B / C / A:
+
+| level | complete | 5' partial | 3' partial | internal |
+|---|---|---|---|---|
+| d1 | 0.928 / 0.926 / 0.918 | 0.787 / 0.634 / 0.617 | 0.808 / 0.801 / 0.774 | 0.893 / 0.750 / 0.736 |
+| d8 | 0.929 / 0.926 / 0.916 | 0.836 / 0.706 / 0.688 | 0.868 / 0.870 / 0.852 | 0.893 / 0.791 / 0.784 |
+| d32 | 0.929 / 0.919 / 0.907 | 0.869 / 0.756 / 0.743 | 0.872 / 0.865 / 0.847 | 0.914 / 0.819 / 0.815 |
+
+Other levels are in the table file. The best other method per type is the same at every level: RNAsamba for complete and 3' partial, Prodigal for 5' partial and internal.
+
+| level | RNAsamba complete | Prodigal 5' partial | RNAsamba 3' partial | Prodigal internal |
+|---|---|---|---|---|
+| d1 | 0.973 | 0.893 | 0.858 | 0.975 |
+| d32 | 0.988 | 0.950 | 0.944 | 0.987 |
+
+### Summary
+- Homology for retention (C vs A) adds +0.8 to +1.0 exact-F1 points at every level, and +1.2 to +1.5 points stop F1.
+- The start assist (B vs C) adds a further +2.3 (d1), +3.3, +4.1, +5.3, +6.7 and +7.2 (d32) points.
+- So B's gain over ab initio grows from +3.2 (d1) to +8.0 (d32) points. B's exact F1 stays at 0.899-0.915 across depths, while A falls from 0.882 to 0.822-0.828.
+- Most of the gain is in 5' partials (+11 to +16 points vs C) and internal CDSs (+9 to +15). Complete and 3'-partial CDSs change by -0.2 to +0.9 points.
+- B has the best overall exact F1 of all methods at every level: +3.4 (d1) to +12.1 (d8) points over the best non-TransDecoder method, and +3.2 to +18.3 over longest ORF.
+  - Per type, the specialist methods still lead: RNAsamba on complete (0.97-0.99) and Prodigal on 5' partial and internal.
+  - These per-type F1 values count only predictions on transcripts of that type, so a method that predicts few ORFs on other types is not penalised here. E32 discusses how to read them.
+
+### Caveats
+- Swiss-Prot without Arabidopsis entries (as E25/E32): BLAST coverage of plant CDSs is lower than for human (step 3: 48-65% of candidates). With the species' own proteins included, B would gain more.
+- Simulated reads; one replicate per level.
