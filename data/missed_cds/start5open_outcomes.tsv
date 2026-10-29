@@ -1,0 +1,17 @@
+dataset	type	n_5open_candidates	no_inframe_atg	true_is_first_atg	true_is_later_atg	exact	kept_open	trimmed_other_atg	missed
+human.d1	3prime_partial	474	10	450	14	363	48	4	59
+human.d1	complete	7363	0	6960	403	5870	775	251	467
+human.d8	3prime_partial	756	16	720	20	578	104	8	66
+human.d8	complete	4100	0	3971	129	3382	448	80	190
+human.d32	3prime_partial	687	18	653	16	518	102	2	65
+human.d32	complete	1718	0	1677	41	1435	204	21	58
+athal.d1.A	3prime_partial	201	0	199	2	111	63	2	25
+athal.d1.A	complete	4996	0	4980	16	3859	1007	10	120
+athal.d1.B	3prime_partial	201	0	199	2	127	59	2	13
+athal.d1.B	complete	4996	0	4980	16	3937	989	11	59
+athal.d16.A	3prime_partial	525	3	517	5	372	114	2	37
+athal.d16.A	complete	2181	0	2177	4	1794	347	2	38
+athal.d16.B	3prime_partial	525	3	517	5	383	114	2	26
+athal.d16.B	complete	2181	0	2177	4	1841	326	3	11
+gm12878.trinity.mane	3prime_partial	0	0	0	0	0	0	0	0
+gm12878.trinity.mane	complete	3242	21	3034	187	2660	293	129	160

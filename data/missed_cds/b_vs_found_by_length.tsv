@@ -1,0 +1,481 @@
+dataset	type	codons	group	n	contrast_pb_median	true_contrast_pb_median	true_s0_pb_median	gc3_outside_train	tpm_lt1	found_rate
+human.d1	complete	<50	missed_b	0						
+human.d1	complete	<50	found	0						
+human.d1	complete	50-99	missed_b	1230	0.0308	0.035	0.0542	0.081	0.388	0.314
+human.d1	complete	50-99	found	571	0.075	0.0821	0.0835	0.145	0.368	0.314
+human.d1	complete	100-149	missed_b	580	0.0265	0.0286	0.0468	0.09	0.374	0.726
+human.d1	complete	100-149	found	1654	0.0664	0.0689	0.077	0.146	0.314	0.726
+human.d1	complete	150-199	missed_b	154	0.016	0.0173	0.0435	0.058	0.37	0.919
+human.d1	complete	150-199	found	2257	0.0623	0.0681	0.0737	0.119	0.358	0.919
+human.d1	complete	200-299	missed_b	26	0.0005	-0.0007	0.0373	0.0	0.538	0.982
+human.d1	complete	200-299	found	4189	0.063	0.0651	0.0775	0.118	0.382	0.982
+human.d1	complete	>=300	missed_b	0						0.998
+human.d1	complete	>=300	found	17328	0.0674	0.0677	0.0776	0.118	0.442	0.998
+human.d1	5prime_partial	<50	missed_b	0						
+human.d1	5prime_partial	<50	found	0						
+human.d1	5prime_partial	50-99	missed_b	321	0.0249	0.0249	0.049	0.09	0.863	0.302
+human.d1	5prime_partial	50-99	found	140	0.0846	0.0891	0.1045	0.257	0.893	0.302
+human.d1	5prime_partial	100-149	missed_b	67	0.0254	0.0254	0.0473	0.075	0.866	0.724
+human.d1	5prime_partial	100-149	found	184	0.071	0.0798	0.0976	0.163	0.821	0.724
+human.d1	5prime_partial	150-199	missed_b	12	0.0061	0.0061	0.0377	0.0	0.75	0.912
+human.d1	5prime_partial	150-199	found	134	0.0628	0.0622	0.0899	0.112	0.836	0.912
+human.d1	5prime_partial	200-299	missed_b	4	0.0094	0.0095	0.0185	0.5	0.5	0.981
+human.d1	5prime_partial	200-299	found	208	0.0647	0.059	0.0712	0.226	0.755	0.981
+human.d1	5prime_partial	>=300	missed_b	0						0.995
+human.d1	5prime_partial	>=300	found	376	0.0643	0.0698	0.082	0.146	0.745	0.995
+human.d1	3prime_partial	<50	missed_b	0						
+human.d1	3prime_partial	<50	found	0						
+human.d1	3prime_partial	50-99	missed_b	224	0.027	0.034	0.0606	0.134	0.821	0.482
+human.d1	3prime_partial	50-99	found	211	0.0667	0.0815	0.0946	0.299	0.773	0.482
+human.d1	3prime_partial	100-149	missed_b	51	0.0232	0.0232	0.0494	0.02	0.765	0.817
+human.d1	3prime_partial	100-149	found	237	0.0615	0.0686	0.0753	0.194	0.789	0.817
+human.d1	3prime_partial	150-199	missed_b	4	0.0216	0.0216	0.0436	0.0	1.0	0.978
+human.d1	3prime_partial	150-199	found	176	0.0577	0.0602	0.0744	0.165	0.807	0.978
+human.d1	3prime_partial	200-299	missed_b	0						0.991
+human.d1	3prime_partial	200-299	found	218	0.0572	0.0591	0.0791	0.147	0.83	0.991
+human.d1	3prime_partial	>=300	missed_b	0						1.0
+human.d1	3prime_partial	>=300	found	451	0.059	0.0634	0.0707	0.126	0.772	1.0
+human.d1	internal	<50	missed_b	0						
+human.d1	internal	<50	found	0						
+human.d1	internal	50-99	missed_b	442	0.0311	0.0322	0.0555	0.158	0.907	0.624
+human.d1	internal	50-99	found	735	0.0735	0.081	0.0955	0.282	0.903	0.624
+human.d1	internal	100-149	missed_b	96	0.0167	0.0185	0.0432	0.177	0.917	0.885
+human.d1	internal	100-149	found	741	0.0653	0.0711	0.0854	0.254	0.923	0.885
+human.d1	internal	150-199	missed_b	6	0.0043	0.0064	0.0364	0.333	1.0	0.981
+human.d1	internal	150-199	found	305	0.0589	0.0645	0.0825	0.197	0.915	0.981
+human.d1	internal	200-299	missed_b	0						1.0
+human.d1	internal	200-299	found	228	0.0646	0.0576	0.0732	0.171	0.943	1.0
+human.d1	internal	>=300	missed_b	0						1.0
+human.d1	internal	>=300	found	166	0.0599	0.06	0.0831	0.169	0.873	1.0
+human.d1	all	<50	missed_b	0						
+human.d1	all	<50	found	0						
+human.d1	all	50-99	missed_b	2217	0.03	0.0329	0.0542	0.103	0.604	0.425
+human.d1	all	50-99	found	1657	0.0747	0.0817	0.0912	0.235	0.701	0.425
+human.d1	all	100-149	missed_b	794	0.0248	0.0266	0.0466	0.094	0.506	0.77
+human.d1	all	100-149	found	2816	0.066	0.0693	0.078	0.179	0.548	0.77
+human.d1	all	150-199	missed_b	176	0.0142	0.0148	0.0412	0.062	0.432	0.929
+human.d1	all	150-199	found	2872	0.0621	0.0653	0.0749	0.13	0.467	0.929
+human.d1	all	200-299	missed_b	30	0.0026	0.0005	0.0349	0.067	0.533	0.984
+human.d1	all	200-299	found	4843	0.0627	0.0644	0.0771	0.126	0.444	0.984
+human.d1	all	>=300	missed_b	0						0.998
+human.d1	all	>=300	found	18321	0.067	0.0676	0.0778	0.12	0.46	0.998
+human.d8	complete	<50	missed_b	0						
+human.d8	complete	<50	found	0						
+human.d8	complete	50-99	missed_b	411	0.0318	0.0365	0.0548	0.1	0.102	0.414
+human.d8	complete	50-99	found	293	0.0735	0.0777	0.0718	0.116	0.106	0.414
+human.d8	complete	100-149	missed_b	204	0.0253	0.0277	0.0403	0.093	0.103	0.802
+human.d8	complete	100-149	found	894	0.0732	0.0776	0.0828	0.128	0.082	0.802
+human.d8	complete	150-199	missed_b	69	0.0228	0.0243	0.0397	0.0	0.174	0.932
+human.d8	complete	150-199	found	1058	0.0695	0.0715	0.0765	0.117	0.117	0.932
+human.d8	complete	200-299	missed_b	8	0.0053	0.0047	0.0626	0.0	0.0	0.991
+human.d8	complete	200-299	found	1917	0.0718	0.0739	0.0835	0.115	0.127	0.991
+human.d8	complete	>=300	missed_b	0						0.999
+human.d8	complete	>=300	found	6720	0.0748	0.0745	0.0821	0.12	0.168	0.999
+human.d8	5prime_partial	<50	missed_b	0						
+human.d8	5prime_partial	<50	found	0						
+human.d8	5prime_partial	50-99	missed_b	339	0.0305	0.0305	0.051	0.127	0.124	0.395
+human.d8	5prime_partial	50-99	found	222	0.0828	0.0749	0.0795	0.216	0.153	0.395
+human.d8	5prime_partial	100-149	missed_b	82	0.0171	0.0171	0.0403	0.073	0.11	0.758
+human.d8	5prime_partial	100-149	found	260	0.0677	0.0766	0.0954	0.177	0.112	0.758
+human.d8	5prime_partial	150-199	missed_b	13	0.0017	0.0017	0.0168	0.308	0.0	0.932
+human.d8	5prime_partial	150-199	found	192	0.0639	0.0502	0.0588	0.177	0.12	0.932
+human.d8	5prime_partial	200-299	missed_b	3	0.0028	0.0028	0.0296	0.0	0.0	0.99
+human.d8	5prime_partial	200-299	found	285	0.0663	0.0643	0.0791	0.13	0.105	0.99
+human.d8	5prime_partial	>=300	missed_b	0						1.0
+human.d8	5prime_partial	>=300	found	527	0.0695	0.0662	0.0726	0.121	0.131	1.0
+human.d8	3prime_partial	<50	missed_b	0						
+human.d8	3prime_partial	<50	found	0						
+human.d8	3prime_partial	50-99	missed_b	221	0.0285	0.0344	0.0602	0.163	0.158	0.544
+human.d8	3prime_partial	50-99	found	265	0.066	0.0817	0.1036	0.219	0.223	0.544
+human.d8	3prime_partial	100-149	missed_b	14	0.0036	0.0056	0.033	0.286	0.286	0.956
+human.d8	3prime_partial	100-149	found	305	0.0553	0.063	0.0684	0.184	0.2	0.956
+human.d8	3prime_partial	150-199	missed_b	2	-0.0295	0.0587	0.0292	0.5	0.5	0.992
+human.d8	3prime_partial	150-199	found	246	0.0598	0.0666	0.0759	0.134	0.195	0.992
+human.d8	3prime_partial	200-299	missed_b	0						0.997
+human.d8	3prime_partial	200-299	found	318	0.0592	0.0657	0.0806	0.138	0.208	0.997
+human.d8	3prime_partial	>=300	missed_b	0						1.0
+human.d8	3prime_partial	>=300	found	600	0.062	0.0642	0.0726	0.13	0.193	1.0
+human.d8	internal	<50	missed_b	0						
+human.d8	internal	<50	found	0						
+human.d8	internal	50-99	missed_b	593	0.027	0.029	0.0466	0.255	0.088	0.651
+human.d8	internal	50-99	found	1105	0.0709	0.075	0.0833	0.279	0.204	0.651
+human.d8	internal	100-149	missed_b	109	0.0109	0.0117	0.0404	0.275	0.147	0.923
+human.d8	internal	100-149	found	1302	0.0585	0.0616	0.073	0.223	0.118	0.923
+human.d8	internal	150-199	missed_b	12	-0.0055	-0.0055	0.0294	0.333	0.0	0.98
+human.d8	internal	150-199	found	592	0.0556	0.0623	0.0769	0.196	0.091	0.98
+human.d8	internal	200-299	missed_b	1	0.0529	-0.009	0.0157	0.0	0.0	0.998
+human.d8	internal	200-299	found	495	0.0586	0.0622	0.0685	0.228	0.075	0.998
+human.d8	internal	>=300	missed_b	0						1.0
+human.d8	internal	>=300	found	437	0.0627	0.0623	0.0711	0.185	0.064	1.0
+human.d8	all	<50	missed_b	0						
+human.d8	all	<50	found	0						
+human.d8	all	50-99	missed_b	1564	0.0294	0.0312	0.0512	0.173	0.109	0.546
+human.d8	all	50-99	found	1885	0.072	0.0761	0.0832	0.238	0.185	0.546
+human.d8	all	100-149	missed_b	409	0.0171	0.0178	0.0403	0.144	0.122	0.866
+human.d8	all	100-149	found	2761	0.0633	0.0696	0.0773	0.183	0.114	0.866
+human.d8	all	150-199	missed_b	96	0.0145	0.0155	0.0393	0.094	0.135	0.952
+human.d8	all	150-199	found	2088	0.0638	0.0682	0.0748	0.147	0.119	0.952
+human.d8	all	200-299	missed_b	12	0.0056	0.0018	0.0419	0.0	0.0	0.993
+human.d8	all	200-299	found	3015	0.0679	0.0683	0.0796	0.138	0.125	0.993
+human.d8	all	>=300	missed_b	0						1.0
+human.d8	all	>=300	found	8284	0.0726	0.072	0.0804	0.124	0.162	1.0
+human.d32	complete	<50	missed_b	0						
+human.d32	complete	<50	found	0						
+human.d32	complete	50-99	missed_b	131	0.0395	0.0414	0.0461	0.13	0.046	0.569
+human.d32	complete	50-99	found	174	0.082	0.0842	0.0712	0.103	0.046	0.569
+human.d32	complete	100-149	missed_b	67	0.028	0.028	0.035	0.119	0.09	0.87
+human.d32	complete	100-149	found	467	0.0853	0.0814	0.0784	0.105	0.034	0.87
+human.d32	complete	150-199	missed_b	14	0.0141	0.0141	0.0272	0.0	0.0	0.971
+human.d32	complete	150-199	found	503	0.0807	0.0803	0.0738	0.082	0.06	0.971
+human.d32	complete	200-299	missed_b	4	0.0048	0.0048	0.028	0.75	0.0	0.995
+human.d32	complete	200-299	found	750	0.0874	0.0816	0.0846	0.113	0.061	0.995
+human.d32	complete	>=300	missed_b	0						1.0
+human.d32	complete	>=300	found	1774	0.0915	0.0933	0.09	0.121	0.076	1.0
+human.d32	5prime_partial	<50	missed_b	0						
+human.d32	5prime_partial	<50	found	0						
+human.d32	5prime_partial	50-99	missed_b	275	0.0313	0.0313	0.0435	0.247	0.051	0.529
+human.d32	5prime_partial	50-99	found	310	0.0931	0.0978	0.1103	0.165	0.01	0.529
+human.d32	5prime_partial	100-149	missed_b	49	0.0228	0.0228	0.0296	0.306	0.0	0.857
+human.d32	5prime_partial	100-149	found	294	0.0795	0.0809	0.0765	0.173	0.02	0.857
+human.d32	5prime_partial	150-199	missed_b	6	0.012	0.012	0.0355	0.0	0.0	0.976
+human.d32	5prime_partial	150-199	found	241	0.0728	0.0775	0.0755	0.154	0.025	0.976
+human.d32	5prime_partial	200-299	missed_b	2	0.0026	0.0026	0.0122	0.0	0.0	0.992
+human.d32	5prime_partial	200-299	found	261	0.085	0.0982	0.0912	0.13	0.019	0.992
+human.d32	5prime_partial	>=300	missed_b	0						1.0
+human.d32	5prime_partial	>=300	found	400	0.0899	0.0865	0.0904	0.15	0.035	1.0
+human.d32	3prime_partial	<50	missed_b	0						
+human.d32	3prime_partial	<50	found	0						
+human.d32	3prime_partial	50-99	missed_b	172	0.0238	0.0293	0.0493	0.244	0.035	0.67
+human.d32	3prime_partial	50-99	found	349	0.0737	0.0801	0.0802	0.246	0.072	0.67
+human.d32	3prime_partial	100-149	missed_b	18	0.0135	0.0125	0.016	0.167	0.111	0.941
+human.d32	3prime_partial	100-149	found	287	0.0687	0.0659	0.0739	0.199	0.049	0.941
+human.d32	3prime_partial	150-199	missed_b	7	0.0068	0.0068	-0.0008	0.571	0.0	0.965
+human.d32	3prime_partial	150-199	found	191	0.0685	0.077	0.0826	0.183	0.073	0.965
+human.d32	3prime_partial	200-299	missed_b	1	-0.0093	-0.0093	0.0023	0.0	0.0	0.996
+human.d32	3prime_partial	200-299	found	227	0.071	0.0764	0.0611	0.15	0.048	0.996
+human.d32	3prime_partial	>=300	missed_b	0						1.0
+human.d32	3prime_partial	>=300	found	279	0.0776	0.0781	0.0743	0.14	0.043	1.0
+human.d32	internal	<50	missed_b	0						
+human.d32	internal	<50	found	0						
+human.d32	internal	50-99	missed_b	780	0.0213	0.0234	0.0353	0.349	0.018	0.713
+human.d32	internal	50-99	found	1942	0.0745	0.0793	0.0812	0.242	0.013	0.713
+human.d32	internal	100-149	missed_b	118	0.0061	0.0065	0.017	0.534	0.017	0.941
+human.d32	internal	100-149	found	1897	0.0658	0.0677	0.0725	0.239	0.012	0.941
+human.d32	internal	150-199	missed_b	15	-0.0	-0.0	-0.0028	0.6	0.0	0.981
+human.d32	internal	150-199	found	782	0.0647	0.0712	0.0761	0.206	0.006	0.981
+human.d32	internal	200-299	missed_b	6	0.0017	0.0017	0.0125	0.5	0.0	0.991
+human.d32	internal	200-299	found	658	0.0683	0.0729	0.0747	0.231	0.018	0.991
+human.d32	internal	>=300	missed_b	0						1.0
+human.d32	internal	>=300	found	389	0.0739	0.0789	0.0725	0.185	0.013	1.0
+human.d32	all	<50	missed_b	0						
+human.d32	all	<50	found	0						
+human.d32	all	50-99	missed_b	1358	0.0252	0.0267	0.0394	0.294	0.029	0.671
+human.d32	all	50-99	found	2775	0.0777	0.0814	0.0812	0.225	0.022	0.671
+human.d32	all	100-149	missed_b	252	0.0139	0.0138	0.0222	0.353	0.04	0.92
+human.d32	all	100-149	found	2945	0.0714	0.0717	0.0749	0.207	0.02	0.92
+human.d32	all	150-199	missed_b	42	0.013	0.013	0.0181	0.31	0.0	0.976
+human.d32	all	150-199	found	1717	0.0714	0.0751	0.0761	0.16	0.032	0.976
+human.d32	all	200-299	missed_b	13	0.0004	0.0004	0.0257	0.462	0.0	0.993
+human.d32	all	200-299	found	1896	0.0778	0.078	0.0798	0.161	0.039	0.993
+human.d32	all	>=300	missed_b	0						1.0
+human.d32	all	>=300	found	2842	0.0873	0.0888	0.0874	0.136	0.058	1.0
+athal.d1.A	complete	<50	missed_b	0						
+athal.d1.A	complete	<50	found	0						
+athal.d1.A	complete	50-99	missed_b	388	0.0261	0.0269	0.0457	0.683	0.023	0.334
+athal.d1.A	complete	50-99	found	195	0.0554	0.0611	0.0724	0.554	0.0	0.334
+athal.d1.A	complete	100-149	missed_b	140	0.0195	0.0198	0.0356	0.571	0.036	0.868
+athal.d1.A	complete	100-149	found	947	0.0487	0.0501	0.0591	0.534	0.012	0.868
+athal.d1.A	complete	150-199	missed_b	30	0.015	0.015	0.0168	0.567	0.067	0.974
+athal.d1.A	complete	150-199	found	1285	0.0498	0.0507	0.0575	0.486	0.014	0.974
+athal.d1.A	complete	200-299	missed_b	2	0.0006	0.0006	-0.01	0.5	0.0	0.996
+athal.d1.A	complete	200-299	found	2948	0.0508	0.0512	0.0582	0.371	0.019	0.996
+athal.d1.A	complete	>=300	missed_b	0						0.999
+athal.d1.A	complete	>=300	found	11356	0.0565	0.0576	0.058	0.212	0.026	0.999
+athal.d1.A	5prime_partial	<50	missed_b	0						
+athal.d1.A	5prime_partial	<50	found	0						
+athal.d1.A	5prime_partial	50-99	missed_b	105	0.0228	0.0228	0.0377	0.581	0.419	0.531
+athal.d1.A	5prime_partial	50-99	found	120	0.0496	0.0476	0.0514	0.475	0.517	0.531
+athal.d1.A	5prime_partial	100-149	missed_b	18	0.0172	0.0172	0.0318	0.611	0.333	0.858
+athal.d1.A	5prime_partial	100-149	found	109	0.0469	0.0521	0.0548	0.385	0.33	0.858
+athal.d1.A	5prime_partial	150-199	missed_b	3	0.0054	0.0054	0.022	0.667	0.0	0.967
+athal.d1.A	5prime_partial	150-199	found	89	0.0468	0.039	0.0521	0.382	0.337	0.967
+athal.d1.A	5prime_partial	200-299	missed_b	0						0.995
+athal.d1.A	5prime_partial	200-299	found	189	0.0451	0.0464	0.0502	0.365	0.159	0.995
+athal.d1.A	5prime_partial	>=300	missed_b	0						1.0
+athal.d1.A	5prime_partial	>=300	found	430	0.0497	0.0504	0.0531	0.212	0.077	1.0
+athal.d1.A	3prime_partial	<50	missed_b	0						
+athal.d1.A	3prime_partial	<50	found	0						
+athal.d1.A	3prime_partial	50-99	missed_b	80	0.0148	0.0162	0.0353	0.625	0.388	0.569
+athal.d1.A	3prime_partial	50-99	found	107	0.0443	0.0555	0.0623	0.533	0.467	0.569
+athal.d1.A	3prime_partial	100-149	missed_b	5	0.0029	0.0041	0.0336	0.8	0.0	0.936
+athal.d1.A	3prime_partial	100-149	found	73	0.0454	0.0387	0.0478	0.411	0.384	0.936
+athal.d1.A	3prime_partial	150-199	missed_b	2	-0.0089	-0.009	0.0026	1.0	0.0	0.933
+athal.d1.A	3prime_partial	150-199	found	56	0.0484	0.055	0.0715	0.357	0.429	0.933
+athal.d1.A	3prime_partial	200-299	missed_b	0						0.987
+athal.d1.A	3prime_partial	200-299	found	78	0.048	0.051	0.0543	0.333	0.205	0.987
+athal.d1.A	3prime_partial	>=300	missed_b	0						1.0
+athal.d1.A	3prime_partial	>=300	found	188	0.0501	0.0493	0.0521	0.239	0.117	1.0
+athal.d1.A	internal	<50	missed_b	0						
+athal.d1.A	internal	<50	found	0						
+athal.d1.A	internal	50-99	missed_b	202	0.0121	0.0123	0.0247	0.629	0.861	0.791
+athal.d1.A	internal	50-99	found	766	0.05	0.052	0.058	0.427	0.858	0.791
+athal.d1.A	internal	100-149	missed_b	14	0.0007	0.0007	-0.0071	0.857	0.929	0.97
+athal.d1.A	internal	100-149	found	457	0.0456	0.0427	0.0483	0.396	0.794	0.97
+athal.d1.A	internal	150-199	missed_b	4	-0.0041	-0.0041	-0.0023	0.5	0.5	0.983
+athal.d1.A	internal	150-199	found	235	0.0446	0.0434	0.0455	0.362	0.689	0.983
+athal.d1.A	internal	200-299	missed_b	1	0.0187	0.0187	-0.0053	1.0	1.0	0.995
+athal.d1.A	internal	200-299	found	211	0.0495	0.0424	0.052	0.327	0.545	0.995
+athal.d1.A	internal	>=300	missed_b	0						1.0
+athal.d1.A	internal	>=300	found	188	0.0506	0.054	0.0563	0.239	0.298	1.0
+athal.d1.A	all	<50	missed_b	0						
+athal.d1.A	all	<50	found	0						
+athal.d1.A	all	50-99	missed_b	775	0.0202	0.0207	0.0377	0.649	0.333	0.605
+athal.d1.A	all	50-99	found	1188	0.0504	0.0538	0.06	0.462	0.647	0.605
+athal.d1.A	all	100-149	missed_b	177	0.0185	0.019	0.0329	0.605	0.136	0.898
+athal.d1.A	all	100-149	found	1586	0.0476	0.0468	0.0546	0.479	0.276	0.898
+athal.d1.A	all	150-199	missed_b	39	0.0076	0.0076	0.0136	0.59	0.103	0.974
+athal.d1.A	all	150-199	found	1665	0.0489	0.0505	0.056	0.458	0.141	0.974
+athal.d1.A	all	200-299	missed_b	3	0.0071	0.0071	-0.0078	0.667	0.333	0.996
+athal.d1.A	all	200-299	found	3426	0.0505	0.0506	0.057	0.367	0.064	0.996
+athal.d1.A	all	>=300	missed_b	0						0.999
+athal.d1.A	all	>=300	found	12162	0.0561	0.0572	0.0577	0.213	0.033	0.999
+athal.d1.B	complete	<50	missed_b	0						
+athal.d1.B	complete	<50	found	0						
+athal.d1.B	complete	50-99	missed_b	182	0.0236	0.0226	0.045	0.681	0.033	0.684
+athal.d1.B	complete	50-99	found	399	0.0426	0.0432	0.0528	0.622	0.008	0.684
+athal.d1.B	complete	100-149	missed_b	46	0.0209	0.0199	0.0387	0.5	0.043	0.953
+athal.d1.B	complete	100-149	found	1040	0.0463	0.0459	0.0589	0.542	0.012	0.953
+athal.d1.B	complete	150-199	missed_b	5	0.0007	-0.0019	0.026	1.0	0.0	0.992
+athal.d1.B	complete	150-199	found	1308	0.0491	0.0508	0.056	0.487	0.015	0.992
+athal.d1.B	complete	200-299	missed_b	0						0.996
+athal.d1.B	complete	200-299	found	2947	0.0508	0.0506	0.0572	0.371	0.019	0.996
+athal.d1.B	complete	>=300	missed_b	0						0.999
+athal.d1.B	complete	>=300	found	11349	0.0565	0.0572	0.0579	0.212	0.025	0.999
+athal.d1.B	5prime_partial	<50	missed_b	0						
+athal.d1.B	5prime_partial	<50	found	0						
+athal.d1.B	5prime_partial	50-99	missed_b	54	0.0205	0.0205	0.0376	0.648	0.37	0.748
+athal.d1.B	5prime_partial	50-99	found	169	0.0439	0.0396	0.0548	0.491	0.503	0.748
+athal.d1.B	5prime_partial	100-149	missed_b	11	0.0165	0.0165	0.0414	0.545	0.0	0.913
+athal.d1.B	5prime_partial	100-149	found	116	0.0456	0.0698	0.0689	0.405	0.362	0.913
+athal.d1.B	5prime_partial	150-199	missed_b	2	0.0007	0.0007	0.0278	0.5	0.0	0.978
+athal.d1.B	5prime_partial	150-199	found	90	0.0465	0.0523	0.0467	0.389	0.333	0.978
+athal.d1.B	5prime_partial	200-299	missed_b	0						0.984
+athal.d1.B	5prime_partial	200-299	found	187	0.0453	0.0464	0.0549	0.369	0.16	0.984
+athal.d1.B	5prime_partial	>=300	missed_b	0						0.995
+athal.d1.B	5prime_partial	>=300	found	428	0.0497	0.052	0.0548	0.213	0.077	0.995
+athal.d1.B	3prime_partial	<50	missed_b	0						
+athal.d1.B	3prime_partial	<50	found	0						
+athal.d1.B	3prime_partial	50-99	missed_b	55	0.0167	0.0198	0.0406	0.582	0.327	0.702
+athal.d1.B	3prime_partial	50-99	found	132	0.0369	0.045	0.0489	0.568	0.477	0.702
+athal.d1.B	3prime_partial	100-149	missed_b	1	-0.0147	-0.0147	0.0432	1.0	0.0	0.974
+athal.d1.B	3prime_partial	100-149	found	76	0.0438	0.0435	0.0498	0.434	0.368	0.974
+athal.d1.B	3prime_partial	150-199	missed_b	1	-0.0069	-0.0069	0.0024	1.0	0.0	0.95
+athal.d1.B	3prime_partial	150-199	found	57	0.0483	0.0354	0.0516	0.368	0.421	0.95
+athal.d1.B	3prime_partial	200-299	missed_b	0						0.987
+athal.d1.B	3prime_partial	200-299	found	78	0.048	0.0544	0.0472	0.333	0.205	0.987
+athal.d1.B	3prime_partial	>=300	missed_b	0						1.0
+athal.d1.B	3prime_partial	>=300	found	188	0.0501	0.0473	0.0486	0.239	0.117	1.0
+athal.d1.B	internal	<50	missed_b	0						
+athal.d1.B	internal	<50	found	0						
+athal.d1.B	internal	50-99	missed_b	83	0.0108	0.0108	0.0282	0.578	0.843	0.914
+athal.d1.B	internal	50-99	found	885	0.0467	0.0498	0.0541	0.459	0.86	0.914
+athal.d1.B	internal	100-149	missed_b	2	0.0007	0.0007	0.009	0.5	0.5	0.996
+athal.d1.B	internal	100-149	found	469	0.0454	0.0453	0.0534	0.409	0.8	0.996
+athal.d1.B	internal	150-199	missed_b	0						1.0
+athal.d1.B	internal	150-199	found	239	0.0442	0.0497	0.0452	0.364	0.686	1.0
+athal.d1.B	internal	200-299	missed_b	0						1.0
+athal.d1.B	internal	200-299	found	212	0.0494	0.0466	0.045	0.33	0.547	1.0
+athal.d1.B	internal	>=300	missed_b	0						1.0
+athal.d1.B	internal	>=300	found	188	0.0506	0.0564	0.054	0.239	0.298	1.0
+athal.d1.B	all	<50	missed_b	0						
+athal.d1.B	all	<50	found	0						
+athal.d1.B	all	50-99	missed_b	374	0.0194	0.0195	0.0401	0.639	0.305	0.807
+athal.d1.B	all	50-99	found	1585	0.0446	0.0465	0.0532	0.512	0.575	0.807
+athal.d1.B	all	100-149	missed_b	60	0.0199	0.0195	0.0387	0.517	0.05	0.963
+athal.d1.B	all	100-149	found	1701	0.0457	0.0464	0.058	0.491	0.269	0.963
+athal.d1.B	all	150-199	missed_b	8	-0.0016	-0.0029	0.024	0.875	0.0	0.991
+athal.d1.B	all	150-199	found	1694	0.0485	0.0504	0.0538	0.46	0.14	0.991
+athal.d1.B	all	200-299	missed_b	0						0.995
+athal.d1.B	all	200-299	found	3424	0.0504	0.0498	0.0559	0.368	0.064	0.995
+athal.d1.B	all	>=300	missed_b	0						0.999
+athal.d1.B	all	>=300	found	12153	0.0561	0.0569	0.0576	0.213	0.033	0.999
+athal.d16.A	complete	<50	missed_b	0						
+athal.d16.A	complete	<50	found	0						
+athal.d16.A	complete	50-99	missed_b	151	0.0352	0.0365	0.0517	0.715	0.007	0.417
+athal.d16.A	complete	50-99	found	108	0.0672	0.0753	0.0745	0.574	0.0	0.417
+athal.d16.A	complete	100-149	missed_b	46	0.0228	0.0228	0.0282	0.587	0.0	0.921
+athal.d16.A	complete	100-149	found	545	0.0627	0.0667	0.071	0.547	0.004	0.921
+athal.d16.A	complete	150-199	missed_b	6	-0.0071	-0.0071	0.0077	0.5	0.0	0.989
+athal.d16.A	complete	150-199	found	653	0.0614	0.0622	0.0575	0.443	0.002	0.989
+athal.d16.A	complete	200-299	missed_b	0						1.0
+athal.d16.A	complete	200-299	found	1269	0.0643	0.0656	0.0637	0.325	0.001	1.0
+athal.d16.A	complete	>=300	missed_b	0						0.999
+athal.d16.A	complete	>=300	found	2998	0.0695	0.0713	0.0645	0.212	0.002	0.999
+athal.d16.A	5prime_partial	<50	missed_b	0						
+athal.d16.A	5prime_partial	<50	found	0						
+athal.d16.A	5prime_partial	50-99	missed_b	260	0.032	0.032	0.0466	0.462	0.008	0.548
+athal.d16.A	5prime_partial	50-99	found	316	0.0588	0.0636	0.0593	0.386	0.003	0.548
+athal.d16.A	5prime_partial	100-149	missed_b	16	0.0191	0.0191	0.0258	0.5	0.0	0.946
+athal.d16.A	5prime_partial	100-149	found	283	0.0563	0.0559	0.0551	0.343	0.0	0.946
+athal.d16.A	5prime_partial	150-199	missed_b	3	0.0003	0.0003	-0.005	0.667	0.0	0.991
+athal.d16.A	5prime_partial	150-199	found	314	0.0571	0.0543	0.059	0.315	0.0	0.991
+athal.d16.A	5prime_partial	200-299	missed_b	0						0.998
+athal.d16.A	5prime_partial	200-299	found	522	0.0595	0.0585	0.0561	0.192	0.0	0.998
+athal.d16.A	5prime_partial	>=300	missed_b	0						1.0
+athal.d16.A	5prime_partial	>=300	found	768	0.0666	0.0676	0.0595	0.176	0.001	1.0
+athal.d16.A	3prime_partial	<50	missed_b	0						
+athal.d16.A	3prime_partial	<50	found	0						
+athal.d16.A	3prime_partial	50-99	missed_b	158	0.0288	0.0315	0.0438	0.506	0.0	0.685
+athal.d16.A	3prime_partial	50-99	found	343	0.0556	0.0587	0.0599	0.501	0.0	0.685
+athal.d16.A	3prime_partial	100-149	missed_b	12	0.014	0.0213	0.0221	0.5	0.0	0.934
+athal.d16.A	3prime_partial	100-149	found	197	0.0602	0.0626	0.0636	0.33	0.0	0.934
+athal.d16.A	3prime_partial	150-199	missed_b	1	-0.0	0.034	-0.0087	1.0	0.0	0.994
+athal.d16.A	3prime_partial	150-199	found	172	0.0603	0.0655	0.0602	0.314	0.0	0.994
+athal.d16.A	3prime_partial	200-299	missed_b	0						1.0
+athal.d16.A	3prime_partial	200-299	found	244	0.0595	0.0671	0.0588	0.283	0.0	1.0
+athal.d16.A	3prime_partial	>=300	missed_b	0						1.0
+athal.d16.A	3prime_partial	>=300	found	387	0.0655	0.0694	0.0576	0.189	0.003	1.0
+athal.d16.A	internal	<50	missed_b	0						
+athal.d16.A	internal	<50	found	0						
+athal.d16.A	internal	50-99	missed_b	419	0.0148	0.0155	0.0286	0.525	0.002	0.906
+athal.d16.A	internal	50-99	found	4017	0.0592	0.0603	0.057	0.415	0.002	0.906
+athal.d16.A	internal	100-149	missed_b	33	0.0018	-0.0006	-0.0002	0.576	0.0	0.985
+athal.d16.A	internal	100-149	found	2253	0.057	0.0615	0.0586	0.359	0.001	0.985
+athal.d16.A	internal	150-199	missed_b	6	-0.0032	-0.0032	0.0157	0.833	0.0	0.994
+athal.d16.A	internal	150-199	found	1045	0.0616	0.0605	0.0552	0.298	0.001	0.994
+athal.d16.A	internal	200-299	missed_b	0						0.999
+athal.d16.A	internal	200-299	found	962	0.061	0.0603	0.0549	0.286	0.0	0.999
+athal.d16.A	internal	>=300	missed_b	0						1.0
+athal.d16.A	internal	>=300	found	688	0.0646	0.0648	0.0568	0.227	0.0	1.0
+athal.d16.A	all	<50	missed_b	0						
+athal.d16.A	all	<50	found	0						
+athal.d16.A	all	50-99	missed_b	988	0.0229	0.0237	0.0374	0.534	0.004	0.829
+athal.d16.A	all	50-99	found	4784	0.0592	0.0609	0.0581	0.423	0.002	0.829
+athal.d16.A	all	100-149	missed_b	107	0.0196	0.0196	0.024	0.561	0.0	0.967
+athal.d16.A	all	100-149	found	3278	0.0584	0.0619	0.0598	0.387	0.001	0.967
+athal.d16.A	all	150-199	missed_b	16	-0.0032	-0.0032	0.0026	0.688	0.0	0.992
+athal.d16.A	all	150-199	found	2184	0.061	0.0608	0.057	0.345	0.001	0.992
+athal.d16.A	all	200-299	missed_b	0						0.999
+athal.d16.A	all	200-299	found	2997	0.0622	0.0632	0.059	0.286	0.0	0.999
+athal.d16.A	all	>=300	missed_b	0						1.0
+athal.d16.A	all	>=300	found	4841	0.068	0.0697	0.0627	0.207	0.002	1.0
+athal.d16.B	complete	<50	missed_b	0						
+athal.d16.B	complete	<50	found	0						
+athal.d16.B	complete	50-99	missed_b	60	0.0372	0.0372	0.0517	0.683	0.017	0.768
+athal.d16.B	complete	50-99	found	199	0.0521	0.0534	0.0586	0.648	0.0	0.768
+athal.d16.B	complete	100-149	missed_b	7	0.0225	0.0226	0.0376	0.571	0.0	0.986
+athal.d16.B	complete	100-149	found	584	0.0606	0.0619	0.0667	0.55	0.003	0.986
+athal.d16.B	complete	150-199	missed_b	1	-0.0064	-0.0064	0.0113	0.0	0.0	0.997
+athal.d16.B	complete	150-199	found	658	0.0613	0.0601	0.058	0.442	0.002	0.997
+athal.d16.B	complete	200-299	missed_b	0						1.0
+athal.d16.B	complete	200-299	found	1269	0.0643	0.0652	0.0624	0.325	0.001	1.0
+athal.d16.B	complete	>=300	missed_b	0						1.0
+athal.d16.B	complete	>=300	found	2999	0.0695	0.0727	0.0667	0.213	0.002	1.0
+athal.d16.B	5prime_partial	<50	missed_b	0						
+athal.d16.B	5prime_partial	<50	found	0						
+athal.d16.B	5prime_partial	50-99	missed_b	145	0.0327	0.0327	0.0507	0.448	0.014	0.747
+athal.d16.B	5prime_partial	50-99	found	431	0.052	0.0516	0.0584	0.411	0.002	0.747
+athal.d16.B	5prime_partial	100-149	missed_b	6	0.0099	0.0099	0.0248	0.333	0.0	0.98
+athal.d16.B	5prime_partial	100-149	found	293	0.0559	0.0626	0.0709	0.352	0.0	0.98
+athal.d16.B	5prime_partial	150-199	missed_b	1	-0.0372	-0.0372	-0.0307	1.0	0.0	0.997
+athal.d16.B	5prime_partial	150-199	found	316	0.057	0.0543	0.0543	0.316	0.0	0.997
+athal.d16.B	5prime_partial	200-299	missed_b	0						0.998
+athal.d16.B	5prime_partial	200-299	found	522	0.0595	0.0587	0.057	0.192	0.0	0.998
+athal.d16.B	5prime_partial	>=300	missed_b	0						1.0
+athal.d16.B	5prime_partial	>=300	found	768	0.0666	0.0652	0.0598	0.176	0.001	1.0
+athal.d16.B	3prime_partial	<50	missed_b	0						
+athal.d16.B	3prime_partial	<50	found	0						
+athal.d16.B	3prime_partial	50-99	missed_b	109	0.027	0.0294	0.0465	0.55	0.0	0.782
+athal.d16.B	3prime_partial	50-99	found	392	0.0539	0.0606	0.0601	0.49	0.0	0.782
+athal.d16.B	3prime_partial	100-149	missed_b	8	0.0222	0.0222	0.0347	0.5	0.0	0.957
+athal.d16.B	3prime_partial	100-149	found	202	0.0597	0.0633	0.0635	0.332	0.0	0.957
+athal.d16.B	3prime_partial	150-199	missed_b	0						1.0
+athal.d16.B	3prime_partial	150-199	found	173	0.0603	0.0689	0.0588	0.318	0.0	1.0
+athal.d16.B	3prime_partial	200-299	missed_b	0						1.0
+athal.d16.B	3prime_partial	200-299	found	244	0.0595	0.0669	0.0576	0.283	0.0	1.0
+athal.d16.B	3prime_partial	>=300	missed_b	0						1.0
+athal.d16.B	3prime_partial	>=300	found	387	0.0655	0.0696	0.0604	0.189	0.003	1.0
+athal.d16.B	internal	<50	missed_b	0						
+athal.d16.B	internal	<50	found	0						
+athal.d16.B	internal	50-99	missed_b	217	0.0157	0.0163	0.0293	0.479	0.005	0.951
+athal.d16.B	internal	50-99	found	4219	0.0578	0.059	0.0569	0.423	0.002	0.951
+athal.d16.B	internal	100-149	missed_b	11	0.0019	0.0019	-0.0009	0.636	0.0	0.995
+athal.d16.B	internal	100-149	found	2277	0.0566	0.0592	0.0575	0.361	0.001	0.995
+athal.d16.B	internal	150-199	missed_b	1	-0.0039	-0.0039	0.0214	1.0	0.0	0.999
+athal.d16.B	internal	150-199	found	1050	0.0615	0.0649	0.0572	0.3	0.001	0.999
+athal.d16.B	internal	200-299	missed_b	0						1.0
+athal.d16.B	internal	200-299	found	963	0.0609	0.0603	0.055	0.286	0.0	1.0
+athal.d16.B	internal	>=300	missed_b	0						1.0
+athal.d16.B	internal	>=300	found	688	0.0646	0.0663	0.0578	0.227	0.0	1.0
+athal.d16.B	all	<50	missed_b	0						
+athal.d16.B	all	<50	found	0						
+athal.d16.B	all	50-99	missed_b	531	0.0242	0.0249	0.0405	0.508	0.008	0.908
+athal.d16.B	all	50-99	found	5241	0.0567	0.0586	0.0575	0.436	0.002	0.908
+athal.d16.B	all	100-149	missed_b	32	0.014	0.014	0.0209	0.531	0.0	0.99
+athal.d16.B	all	100-149	found	3356	0.0575	0.0608	0.0595	0.392	0.001	0.99
+athal.d16.B	all	150-199	missed_b	3	-0.0064	-0.0064	0.0113	0.667	0.0	0.998
+athal.d16.B	all	150-199	found	2197	0.0607	0.0632	0.0575	0.346	0.001	0.998
+athal.d16.B	all	200-299	missed_b	0						1.0
+athal.d16.B	all	200-299	found	2998	0.0622	0.0621	0.0585	0.286	0.0	1.0
+athal.d16.B	all	>=300	missed_b	0						1.0
+athal.d16.B	all	>=300	found	4842	0.068	0.0701	0.0631	0.207	0.002	1.0
+gm12878.trinity.mane	complete	<50	missed_b	28	0.0269	0.0663	0.031	0.25	0.0	0.012
+gm12878.trinity.mane	complete	<50	found	1	0.033			0.0	0.0	0.012
+gm12878.trinity.mane	complete	50-99	missed_b	284	0.0359	0.0412	0.0574	0.116	0.0	0.388
+gm12878.trinity.mane	complete	50-99	found	191	0.0801	0.0869	0.1015	0.204	0.0	0.388
+gm12878.trinity.mane	complete	100-149	missed_b	122	0.0313	0.0326	0.0396	0.041	0.0	0.831
+gm12878.trinity.mane	complete	100-149	found	691	0.0717	0.0768	0.0751	0.156	0.0	0.831
+gm12878.trinity.mane	complete	150-199	missed_b	30	0.0078	0.0078	0.0239	0.0	0.0	0.933
+gm12878.trinity.mane	complete	150-199	found	949	0.0674	0.0726	0.0778	0.155	0.0	0.933
+gm12878.trinity.mane	complete	200-299	missed_b	7	0.0682	0.0682	-0.0072	0.0	0.0	0.957
+gm12878.trinity.mane	complete	200-299	found	1983	0.0645	0.0685	0.0747	0.138	0.0	0.957
+gm12878.trinity.mane	complete	>=300	missed_b	1	0.0129	0.0289	0.0448	0.0	0.0	0.993
+gm12878.trinity.mane	complete	>=300	found	7624	0.0675	0.0702	0.0773	0.112	0.0	0.993
+gm12878.trinity.mane	5prime_partial	<50	missed_b	7	0.0482	0.0482	0.0584	0.286	0.0	0.0
+gm12878.trinity.mane	5prime_partial	<50	found	0						0.0
+gm12878.trinity.mane	5prime_partial	50-99	missed_b	225	0.0411	0.0411	0.0627	0.142	0.0	0.341
+gm12878.trinity.mane	5prime_partial	50-99	found	122	0.0893	0.0908	0.0892	0.303	0.0	0.341
+gm12878.trinity.mane	5prime_partial	100-149	missed_b	67	0.024	0.024	0.0466	0.119	0.0	0.692
+gm12878.trinity.mane	5prime_partial	100-149	found	157	0.0691	0.0641	0.0771	0.223	0.0	0.692
+gm12878.trinity.mane	5prime_partial	150-199	missed_b	14	0.009	0.009	0.0473	0.143	0.0	0.913
+gm12878.trinity.mane	5prime_partial	150-199	found	157	0.0701	0.0606	0.0724	0.28	0.0	0.913
+gm12878.trinity.mane	5prime_partial	200-299	missed_b	1	-0.0133	-0.0133	0.0221	0.0	0.0	0.968
+gm12878.trinity.mane	5prime_partial	200-299	found	243	0.0681	0.0657	0.0809	0.198	0.0	0.968
+gm12878.trinity.mane	5prime_partial	>=300	missed_b	0						0.996
+gm12878.trinity.mane	5prime_partial	>=300	found	509	0.0657	0.0686	0.0789	0.169	0.0	0.996
+gm12878.trinity.mane	3prime_partial	<50	missed_b	0						
+gm12878.trinity.mane	3prime_partial	<50	found	0						
+gm12878.trinity.mane	3prime_partial	50-99	missed_b	0						
+gm12878.trinity.mane	3prime_partial	50-99	found	0						
+gm12878.trinity.mane	3prime_partial	100-149	missed_b	0						
+gm12878.trinity.mane	3prime_partial	100-149	found	0						
+gm12878.trinity.mane	3prime_partial	150-199	missed_b	0						
+gm12878.trinity.mane	3prime_partial	150-199	found	0						
+gm12878.trinity.mane	3prime_partial	200-299	missed_b	0						
+gm12878.trinity.mane	3prime_partial	200-299	found	0						
+gm12878.trinity.mane	3prime_partial	>=300	missed_b	0						
+gm12878.trinity.mane	3prime_partial	>=300	found	0						
+gm12878.trinity.mane	internal	<50	missed_b	0						
+gm12878.trinity.mane	internal	<50	found	0						
+gm12878.trinity.mane	internal	50-99	missed_b	0						
+gm12878.trinity.mane	internal	50-99	found	0						
+gm12878.trinity.mane	internal	100-149	missed_b	0						
+gm12878.trinity.mane	internal	100-149	found	0						
+gm12878.trinity.mane	internal	150-199	missed_b	0						
+gm12878.trinity.mane	internal	150-199	found	0						
+gm12878.trinity.mane	internal	200-299	missed_b	0						
+gm12878.trinity.mane	internal	200-299	found	0						
+gm12878.trinity.mane	internal	>=300	missed_b	0						
+gm12878.trinity.mane	internal	>=300	found	0						
+gm12878.trinity.mane	all	<50	missed_b	35	0.0342	0.0652	0.031	0.257	0.0	0.002
+gm12878.trinity.mane	all	<50	found	1	0.033			0.0	0.0	0.002
+gm12878.trinity.mane	all	50-99	missed_b	509	0.0374	0.0412	0.0583	0.128	0.0	0.368
+gm12878.trinity.mane	all	50-99	found	313	0.0817	0.0874	0.1005	0.243	0.0	0.368
+gm12878.trinity.mane	all	100-149	missed_b	189	0.0288	0.0305	0.0409	0.069	0.0	0.801
+gm12878.trinity.mane	all	100-149	found	848	0.0712	0.0745	0.0755	0.169	0.0	0.801
+gm12878.trinity.mane	all	150-199	missed_b	44	0.0078	0.0078	0.0239	0.045	0.0	0.93
+gm12878.trinity.mane	all	150-199	found	1106	0.0675	0.0717	0.0761	0.173	0.0	0.93
+gm12878.trinity.mane	all	200-299	missed_b	8	0.0343	0.0343	-0.0043	0.0	0.0	0.958
+gm12878.trinity.mane	all	200-299	found	2226	0.0651	0.068	0.0752	0.145	0.0	0.958
+gm12878.trinity.mane	all	>=300	missed_b	1	0.0129	0.0289	0.0448	0.0	0.0	0.994
+gm12878.trinity.mane	all	>=300	found	8133	0.0675	0.0702	0.0774	0.115	0.0	0.994

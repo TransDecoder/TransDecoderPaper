@@ -72,6 +72,7 @@ disagrees with its E-record, the E-record wins; fix the log.
 | T3 | Read-depth ablation | ADOPTED | Depth controls fragmentation; d4-d8 match the real Trinity assembly |
 | T4 | Simulated Arabidopsis Trinity assembly (E32) | OPEN | In progress; no evidence record yet |
 | T5 | Trinity de novo on GM12878 | ABANDONED | Projected to take weeks on this host |
+| T6 | Anatomy of missed CDSs; keep/trim errors on 5'-open 3' partials (E34) | OPEN (diagnostic) | Misses are short, weakly coding CDSs failing the q test; relaxing it costs ~1 lncRNA call per CDS; kept-open UTRs score coding, not a first-ATG issue |
 | G1 | Three GM12878 assemblies vs MANE/GENCODE | ADOPTED | Sensitivity is limited by assembly, not CDS calling |
 | G2 | Ribo-seq support (Cenik 2015) | ADOPTED | A+T1 data: weak periodicity, so "covered" is more informative than the frame test |
 | G3 | MS peptide support (Sinitcyn 2023) | ADOPTED | Peptides on "novel" ORFs mostly come from paralog/pseudogene copies |
@@ -759,6 +760,35 @@ Outcome counts: see the end of this file.
   `$P/data/gm12878/trinity_denovo_killed/` and is not used.
 - **Pointers:** E11 Caveats.
 
+### T6. Anatomy of missed CDSs and of the 5' UTR-vs-coding decision (E34, 2026-10-29)
+- **Question:** where are the truth CDSs with no prediction carrying their stop lost in the PyTD pipeline, what
+  would relaxations recover and cost, and why are open 5' ends of true 3' partial / complete CDSs kept open?
+- **Tried:** every truth CDS of simulated human d1/d8/d32, athal d1/d16 (ab initio A, homology B) and the GM12878
+  Trinity MANE contigs traced through the release runs' own intermediates (selection and refinement re-run offline
+  with PyTD's code: 0 differences from the runs); offline q 0.1/0.2/0.5/1.0 and top-candidate fills; fresh runs with
+  LongOrfs `-m 30` and Predict `--sensitive` (equal to the offline q 0.2). No code changed.
+- **Outcome: OPEN (diagnostic; no method change proposed).**
+- **Numbers:**
+  - Misses on the simulations are 89-99.6% "candidate fails the coding test" (class b), 0.4-11% "lost to another ORF
+    on the contig"; none below the LongOrfs minimum (the labeller drops < 50-codon CDSs). GM12878: 30% of MANE misses
+    are fragments < 50 aa, 54% class b, 12% class c, 2% contigs with a premature in-frame stop.
+  - Class (b): median 68-83 codons (69-94% < 100 codons vs 5-28% of found CDSs), ~40% of the per-base frame contrast
+    of found CDSs of the same length; human ones are mostly short alternative-isoform CDSs (median 45% of the gene's
+    longest protein), Arabidopsis ones short main proteins with GC3 outside the training range (51-64% vs 30-33%).
+  - q 0.2 recovers 31-47% of misses; on human d1 it costs 1.3 lncRNA-contig calls per recovered CDS (exact F1 -0.6),
+    elsewhere F1 rises because negatives are few. Top candidate everywhere: 62-93% recovered, 42-71% of negatives
+    called. `-m 30`: 0 recovered on the simulations, 5 of 1,460 on GM12878.
+  - 5'-open candidates of 3' partials / complete CDSs are kept open in 10-16% (human) / 15-36% (athal) of trim-needed
+    cases: 56-70% of those keeps are UTRs scoring >= 0.4 of typical coding per base (only 15-18% / 0-4% coding in
+    another isoform), 13-42% short UTRs (< ~40 nt) vetoed by a negative Kozak score, and 2-5% (human) / < 0.5% (athal)
+    of candidates have a true start that is not the first ATG.
+- **Lessons:**
+  - The remaining sensitivity gap is short, weakly coding CDSs; any acceptance relaxation pays in noncoding calls at
+    about 1:1 on a realistic lncRNA load. Which way F1 moves on a simulated assembly depends on its negative count.
+  - The keep/trim errors come from the UTR coding-score distribution overlapping coding (model / short-segment
+    noise) and from the Kozak term on short UTRs, not from the first-ATG rule.
+- **Pointers:** E34; `data/missed_cds/`; `pipeline/missed_cds/`; `$P/data/missed_cds/`.
+
 ## 7. GM12878 application
 
 ### G1. Three assemblies vs MANE/GENCODE (2026-10-20/21; release 2026-10-24)
@@ -951,14 +981,14 @@ or note describes the incident; details are unknown.
    **Resolved 2026-10-28:** Brian approved one sentence. The baseline was recomputed at the release (E07 Addendum; `first_atg_baseline.tsv`): complete exact F1 0.956 vs 0.912, fragments 0.484 vs 0.822.
 
 ## Outcome counts
-Entries: 54 (A1-A13, S1-S12, O1-O4, H1-H4, B1-B10, T1-T5, G1-G6).
+Entries: 55 (A1-A13, S1-S12, O1-O4, H1-H4, B1-B10, T1-T6, G1-G6).
 
 | Outcome | Count | Entries |
 |---|---|---|
 | ADOPTED | 32 | A1-A4, A9-A12, S4, S6-S9, S11, O1, H1, H2, B1-B4, B8, B10, T1-T3, G1-G6 |
 | NOT ADOPTED | 11 | A5, A7, A8, A13, S2, S3, S5, S10, O3, O4, H3 |
 | PARTIAL | 4 | S1, O2, B5, B7 |
-| OPEN | 5 | A6, S12, H4, B9, T4 |
+| OPEN | 6 | A6, S12, H4, B9, T4, T6 |
 | ABANDONED | 2 | B6, T5 |
 
 Rejected variants inside ADOPTED entries: the decoy-derived long-ORF length (A10), the multiplicative

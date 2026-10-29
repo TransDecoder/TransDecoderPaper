@@ -1,0 +1,71 @@
+dataset	type	group	n	frac_of_main_median	rel_main	rel_shared_frame	rel_novel	n_50_99	rel_novel_50_99	rel_main_50_99	tag_MANE_Select	tag_Ensembl_canonical	tag_basic	tag_other
+athal.d1.A	complete	missed_b	560	1.0	0.898	0.095	0.007	388	0.01	0.902				
+athal.d1.A	complete	found	16731	1.0	0.888	0.112	0.0	195	0.005	0.944				
+athal.d1.A	5prime_partial	missed_b	126	1.0	0.913	0.087	0.0	105	0.0	0.914				
+athal.d1.A	5prime_partial	found	937	1.0	0.917	0.083	0.0	120	0.0	0.925				
+athal.d1.A	3prime_partial	missed_b	87	1.0	0.931	0.069	0.0	80	0.0	0.925				
+athal.d1.A	3prime_partial	found	502	1.0	0.898	0.102	0.0	107	0.0	0.935				
+athal.d1.A	internal	missed_b	221	1.0	0.946	0.054	0.0	202	0.0	0.941				
+athal.d1.A	internal	found	1857	1.0	0.923	0.076	0.001	766	0.001	0.919				
+athal.d1.A	all	missed_b	994	1.0	0.913	0.082	0.004	775	0.005	0.916				
+athal.d1.A	all	found	20027	1.0	0.893	0.107	0.0	1188	0.002	0.925				
+athal.d1.B	complete	missed_b	233	1.0	0.863	0.12	0.017	182	0.022	0.852				
+athal.d1.B	complete	found	17043	1.0	0.889	0.111	0.0	399	0.003	0.947				
+athal.d1.B	5prime_partial	missed_b	67	1.0	0.896	0.104	0.0	54	0.0	0.907				
+athal.d1.B	5prime_partial	found	990	1.0	0.919	0.081	0.0	169	0.0	0.923				
+athal.d1.B	3prime_partial	missed_b	57	1.0	0.912	0.088	0.0	55	0.0	0.909				
+athal.d1.B	3prime_partial	found	531	1.0	0.902	0.098	0.0	132	0.0	0.939				
+athal.d1.B	internal	missed_b	85	1.0	0.906	0.094	0.0	83	0.0	0.904				
+athal.d1.B	internal	found	1993	1.0	0.926	0.073	0.001	885	0.001	0.925				
+athal.d1.B	all	missed_b	442	1.0	0.882	0.109	0.009	374	0.011	0.88				
+athal.d1.B	all	found	20557	1.0	0.894	0.106	0.0	1585	0.001	0.932				
+athal.d16.A	complete	missed_b	203	1.0	0.921	0.079	0.0	151	0.0	0.934				
+athal.d16.A	complete	found	5573	1.0	0.912	0.088	0.0	108	0.0	0.954				
+athal.d16.A	5prime_partial	missed_b	279	1.0	0.903	0.097	0.0	260	0.0	0.904				
+athal.d16.A	5prime_partial	found	2203	1.0	0.916	0.084	0.0	316	0.0	0.905				
+athal.d16.A	3prime_partial	missed_b	171	1.0	0.895	0.105	0.0	158	0.0	0.899				
+athal.d16.A	3prime_partial	found	1343	1.0	0.908	0.092	0.0	343	0.0	0.924				
+athal.d16.A	internal	missed_b	458	1.0	0.904	0.096	0.0	419	0.0	0.905				
+athal.d16.A	internal	found	8965	1.0	0.906	0.094	0.0	4017	0.0	0.906				
+athal.d16.A	all	missed_b	1111	1.0	0.905	0.095	0.0	988	0.0	0.908				
+athal.d16.A	all	found	18084	1.0	0.909	0.091	0.0	4784	0.0	0.908				
+athal.d16.B	complete	missed_b	68	1.0	0.853	0.147	0.0	60	0.0	0.883				
+athal.d16.B	complete	found	5709	1.0	0.913	0.087	0.0	199	0.0	0.96				
+athal.d16.B	5prime_partial	missed_b	152	1.0	0.882	0.118	0.0	145	0.0	0.883				
+athal.d16.B	5prime_partial	found	2330	1.0	0.917	0.083	0.0	431	0.0	0.912				
+athal.d16.B	3prime_partial	missed_b	117	1.0	0.932	0.068	0.0	109	0.0	0.927				
+athal.d16.B	3prime_partial	found	1398	1.0	0.905	0.095	0.0	392	0.0	0.913				
+athal.d16.B	internal	missed_b	229	1.0	0.904	0.096	0.0	217	0.0	0.903				
+athal.d16.B	internal	found	9197	1.0	0.906	0.094	0.0	4219	0.0	0.906				
+athal.d16.B	all	missed_b	566	1.0	0.898	0.102	0.0	531	0.0	0.9				
+athal.d16.B	all	found	18634	1.0	0.909	0.091	0.0	5241	0.0	0.909				
+human.d1	complete	missed_b	1990	0.446	0.182	0.775	0.043	1230	0.05	0.181	0.126	0.005	0.869	0.0
+human.d1	complete	found	25999	0.94	0.297	0.702	0.001	571	0.012	0.292	0.32	0.002	0.678	0.0
+human.d1	5prime_partial	missed_b	404	0.906	0.374	0.616	0.01	321	0.012	0.349	0.317	0.005	0.678	0.0
+human.d1	5prime_partial	found	1042	0.986	0.449	0.55	0.001	140	0.0	0.436	0.446	0.004	0.55	0.0
+human.d1	3prime_partial	missed_b	279	0.947	0.427	0.548	0.025	224	0.027	0.411	0.283	0.007	0.71	0.0
+human.d1	3prime_partial	found	1293	0.966	0.383	0.617	0.0	211	0.0	0.365	0.33	0.002	0.667	0.0
+human.d1	internal	missed_b	544	0.998	0.511	0.489	0.0	442	0.0	0.491	0.522	0.022	0.456	0.0
+human.d1	internal	found	2175	0.997	0.492	0.508	0.0	735	0.0	0.495	0.598	0.01	0.392	0.0
+human.d1	all	missed_b	3217	0.696	0.283	0.687	0.03	2217	0.032	0.29	0.231	0.008	0.761	0.0
+human.d1	all	found	30509	0.948	0.32	0.68	0.001	1657	0.004	0.404	0.345	0.002	0.653	0.0
+human.d8	complete	missed_b	692	0.616	0.212	0.754	0.033	411	0.034	0.187	0.228	0.006	0.766	0.0
+human.d8	complete	found	10882	0.946	0.299	0.699	0.001	293	0.024	0.304	0.485	0.001	0.514	0.0
+human.d8	5prime_partial	missed_b	437	0.977	0.432	0.561	0.007	339	0.006	0.404	0.497	0.007	0.497	0.0
+human.d8	5prime_partial	found	1486	0.982	0.418	0.581	0.001	222	0.0	0.414	0.584	0.004	0.412	0.0
+human.d8	3prime_partial	missed_b	237	0.985	0.426	0.561	0.013	221	0.014	0.425	0.523	0.004	0.473	0.0
+human.d8	3prime_partial	found	1734	0.979	0.393	0.607	0.0	265	0.0	0.464	0.519	0.002	0.479	0.0
+human.d8	internal	missed_b	715	0.995	0.476	0.522	0.003	593	0.003	0.455	0.603	0.017	0.38	0.0
+human.d8	internal	found	3931	0.995	0.466	0.534	0.001	1105	0.0	0.45	0.623	0.004	0.374	0.0
+human.d8	all	missed_b	2081	0.961	0.373	0.612	0.015	1564	0.013	0.37	0.447	0.01	0.543	0.0
+human.d8	all	found	18033	0.968	0.354	0.645	0.001	1885	0.004	0.425	0.526	0.002	0.472	0.0
+human.d32	complete	missed_b	216	0.688	0.185	0.815	0.0	131	0.0	0.13	0.352	0.005	0.644	0.0
+human.d32	complete	found	3668	0.938	0.272	0.727	0.002	174	0.023	0.264	0.622	0.004	0.374	0.0
+human.d32	5prime_partial	missed_b	332	0.978	0.431	0.566	0.003	275	0.0	0.425	0.548	0.006	0.446	0.0
+human.d32	5prime_partial	found	1506	0.976	0.379	0.62	0.001	310	0.003	0.394	0.664	0.005	0.331	0.0
+human.d32	3prime_partial	missed_b	198	0.98	0.404	0.586	0.01	172	0.012	0.413	0.561	0.005	0.434	0.0
+human.d32	3prime_partial	found	1333	0.975	0.371	0.628	0.002	349	0.003	0.372	0.635	0.001	0.364	0.0
+human.d32	internal	missed_b	919	0.994	0.441	0.557	0.002	780	0.001	0.433	0.641	0.001	0.358	0.0
+human.d32	internal	found	5668	0.989	0.4	0.6	0.0	1942	0.001	0.425	0.66	0.004	0.336	0.0
+human.d32	all	missed_b	1665	0.985	0.401	0.596	0.003	1358	0.002	0.4	0.575	0.003	0.422	0.0
+human.d32	all	found	12175	0.976	0.355	0.644	0.001	2775	0.003	0.405	0.647	0.003	0.35	0.0

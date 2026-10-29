@@ -1,0 +1,2 @@
+dataset	species	level	condition	run_dir	labels_prefix	blast	pfam
+gm12878.trinity.mane	human_real	real	A	/broad/hptmp/bhaas/TRANSDECODER_PAPER/work/missed_cds/minlen30/gm12878.trinity.mane/runs/pytd_v7	/broad/hptmp/bhaas/TRANSDECODER_PAPER/data/missed_cds/gm12878_inputs/labels/mane	-	-

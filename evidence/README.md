@@ -70,3 +70,4 @@ Quick map of decisions and lessons across these records (what was tried, adopted
 | E31 | [Read-depth ablation of the simulated Trinity benchmark](E31_simtrinity_depth_ablation.md) | in paper (Results, Benchmark; Methods; Supp. Figs. S5-S6) |
 | E32 | [Simulated Arabidopsis Trinity assembly and depth ablation](E32_simtrinity_arabidopsis.md) | not yet in paper (awaiting BH review) |
 | E33 | [Keep-open vs trim decision for 5'-open ORFs: classifier ceiling, self-trained prototypes (not adopted); homology-assisted start refinement (adopted in PyTD a5b24c3)](E33_start_decision_classifier.md) | homology start assist: manuscript update pending (Methods, homology Results); classifier parts not in paper |
+| E34 | [Anatomy of missed CDSs (no prediction with the true stop) and of the 5' UTR-vs-coding decision on 5'-open candidates; relaxation counterfactuals](E34_missed_cds_anatomy.md) | not in paper (diagnostic) |
