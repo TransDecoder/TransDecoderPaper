@@ -47,7 +47,7 @@ disagrees with its E-record, the E-record wins; fix the log.
 | S8 | Kozak in bits (w = 17/bit) | ADOPTED | Rounding the weight changes at most 0.13% of predictions |
 | S9 | First-ATG-of-longest-ORF baseline | ADOPTED (reported) | Beats TD on complete exact F1 (0.956 vs 0.912 at release); fails on fragments and random sequence |
 | S10 | UTR-length prior for keep-open vs trim | NOT ADOPTED | Short open UTRs are common in real annotation; the prior just shifts alpha's trade-off |
-| S11 | Keep-open vs trim for 5'-open ORFs (E33) | ADOPTED (PyTD only, homology mode; classifiers not adopted) | Self-trained classifiers fail (benchmark artefact "ORF lacks a stop"; context does not transfer). Homology hits (subject N-terminus at the ATG -> trim; alignment or Pfam domain upstream -> keep) give +2 to +9 exact F1 points on simulated assemblies; in PyTD a5b24c3 |
+| S11 | Keep-open vs trim for 5'-open ORFs (E33) | ADOPTED (PyTD only, homology mode; classifiers not adopted) | Self-trained classifiers fail (benchmark artefact "ORF lacks a stop"; context does not transfer). Homology hits (subject N-terminus at the ATG -> trim; alignment or Pfam domain upstream -> keep) give +2 to +9 exact F1 points on simulated assemblies; in PyTD a5b24c3. Top-n hits, looser e-values (step 4) and UniRef50 (step 5) did not improve on top-1 Swiss-Prot at 1e-5 |
 | S12 | Later annotated ATGs (C. reinhardtii) | OPEN | 19.6% of C. reinhardtii starts are later ATGs; no tested rule recovers them |
 | O1 | Minimum ORF length 100 -> 50 codons | ADOPTED | Needs a coding test below 100 codons, else lncRNA calls triple |
 | O2 | Fixed short-ORF guard (C = 200 below 100 codons) | PARTIAL | Kept short-protein gain at -m 100 noise; replaced at release by A9 |
@@ -56,7 +56,8 @@ disagrees with its E-record, the E-record wins; fix the log.
 | H1 | Homology retention on the benchmark | ADOPTED (optional mode) | Gains mostly on fragments; at release it doubles lncRNA calls |
 | H2 | Clade-excluded homology series (GM12878) | ADOPTED (design) | Exclude the organism's own clade; Pfam is not distance-controlled |
 | H3 | Exclude TE/Alu-derived homology hits | NOT ADOPTED | One Alu-containing protein (UTY_PANTR) drove thousands of retained ORFs |
-| H4 | DIAMOND `--more-sensitive` | OPEN | Not tested |
+| H4 | DIAMOND `--more-sensitive`, top-n hits, looser e-value (E33 step 4) | NOT ADOPTED | Best variant +0.1-0.2 exact F1 points held out, 2-5x slower, and lowers some complete inputs |
+| H5 | UniRef50 instead of Swiss-Prot (E33 step 5) | NOT ADOPTED | Helps poorly covered clades (athal d16 +5 points) but human lncRNA calls 3,268 -> 8,220 and unreviewed orthologs keep UTR extensions open; 21x slower |
 | B1 | bench_v2 (RefSeq) -> bench_v3 (current annotations) | ADOPTED | Do not quote bench_v2 numbers |
 | B2 | GC-matched random and GENCODE lncRNA negatives | ADOPTED | Stop F1 on complete coding transcripts alone does not separate methods |
 | B3 | Balanced mixed inputs (complete/5'/3'/internal) | ADOPTED | Single-type fragment inputs favour one start behaviour |
@@ -70,7 +71,7 @@ disagrees with its E-record, the E-record wins; fix the log.
 | T1 | Simulated GM12878 Trinity assembly | ADOPTED | Real-assembly truth is mostly unresolvable (91%); simulate instead |
 | T2 | Labeller end tolerance (10 nt) | ADOPTED | Decided after a strict pass; report both passes |
 | T3 | Read-depth ablation | ADOPTED | Depth controls fragmentation; d4-d8 match the real Trinity assembly |
-| T4 | Simulated Arabidopsis Trinity assembly (E32) | OPEN | In progress; no evidence record yet |
+| T4 | Simulated Arabidopsis Trinity assembly (E32) | ADOPTED (done; manuscript placement awaiting BH) | Few expressed noncoding transcripts (0.4% of reads): a frame/end-placement test. Ab initio TD leads to d8, longest ORF passes it at d16-d32; homology + start assist leads at every depth (0.899-0.915) |
 | T5 | Trinity de novo on GM12878 | ABANDONED | Projected to take weeks on this host |
 | T6 | Anatomy of missed CDSs; keep/trim errors on 5'-open 3' partials (E34) | OPEN (diagnostic) | Misses are short, weakly coding CDSs failing the q test; relaxing it costs ~1 lncRNA call per CDS; kept-open UTRs score coding, not a first-ATG issue |
 | G1 | Three GM12878 assemblies vs MANE/GENCODE | ADOPTED | Sensitivity is limited by assembly, not CDS calling |
@@ -634,8 +635,20 @@ Outcome counts: see the end of this file.
   best-hit concentration whenever homology adds many unannotated ORFs.
 - **Pointers:** E06; `data/gm12878/gm12878_homology_primate_retention.txt`.
 
-### H4. DIAMOND sensitivity
-- **Outcome: OPEN.** Default sensitivity may miss distant homologs; `--more-sensitive` was not tested (E06).
+### H4. DIAMOND sensitivity, hit depth and e-value
+- **Outcome: NOT ADOPTED (2026-10-28).** Tested for the start assist in E33 step 4 (see S11): `--more-sensitive`,
+  top 3-25 hits with voting schemes, all HSPs, e-values 1e-10 to 10. The best variant gained +0.1-0.2 exact F1
+  points held out, was 2-5x slower, and lowered some complete benchmark inputs. Loosening the e-value in default
+  mode changed nothing. Pfam below GA thresholds hurt (-1.6 median on complete inputs). Not tested for
+  retention alone (E06 series used default mode).
+
+### H5. UniRef50 instead of Swiss-Prot
+- **Outcome: NOT ADOPTED (2026-10-29).** E33 step 5 (see S11). UniRef50 raises 5'-open candidates with a hit
+  from 49-59% to 98-99% in athal and helps clades Swiss-Prot covers poorly (athal d16 full mode 0.899 -> 0.950),
+  but in human and mouse it is worse: unreviewed mammalian orthologs with longer N-termini keep UTR extensions
+  open, and human lncRNAs with a prediction rise 3,268 -> 8,220 (1,639 ab initio). DIAMOND is 21x slower
+  (13 min vs 37 s per benchmark input). Swiss-Prot stays the recommended database; UniRef90 not tested. The
+  UniRef50 database was deleted in the 2026-10-29 disk cleanup (rebuild: `pipeline/start_classifier/step5_*`).
 
 ## 5. Benchmark design
 
@@ -1024,16 +1037,16 @@ or note describes the incident; details are unknown.
    **Resolved 2026-10-28:** Brian approved one sentence. The baseline was recomputed at the release (E07 Addendum; `first_atg_baseline.tsv`): complete exact F1 0.956 vs 0.912, fragments 0.484 vs 0.822.
 
 ## Outcome counts
-Entries: 55 (A1-A13, S1-S12, O1-O4, H1-H4, B1-B10, T1-T6, G1-G6).
+Entries: 56 (A1-A13, S1-S12, O1-O4, H1-H5, B1-B10, T1-T6, G1-G6).
 
 | Outcome | Count | Entries |
 |---|---|---|
-| ADOPTED | 32 | A1-A4, A9-A12, S4, S6-S9, S11, O1, H1, H2, B1-B4, B8, B10, T1-T3, G1-G6 |
-| NOT ADOPTED | 11 | A5, A7, A8, A13, S2, S3, S5, S10, O3, O4, H3 |
+| ADOPTED | 33 | A1-A4, A9-A12, S4, S6-S9, S11, O1, H1, H2, B1-B4, B8, B10, T1-T4, G1-G6 |
+| NOT ADOPTED | 13 | A5, A7, A8, A13, S2, S3, S5, S10, O3, O4, H3, H4, H5 |
 | PARTIAL | 4 | S1, O2, B5, B7 |
-| OPEN | 6 | A6, S12, H4, B9, T4, T6 |
+| OPEN | 4 | A6, S12, B9, T6 |
 | ABANDONED | 2 | B6, T5 |
 
 Rejected variants inside ADOPTED entries: the decoy-derived long-ORF length (A10), the multiplicative
-Kozak form (S6), and the self-trained keep/trim classifiers (S11, steps 1-2). Open sub-questions inside other entries: which lncRNA ORFs gain homology hits (H1);
+Kozak form (S6), the self-trained keep/trim classifiers (S11, steps 1-2), and top-n / looser-e-value / UniRef50 evidence for the start assist (S11 steps 4-5; also H4, H5). Open sub-questions inside other entries: which lncRNA ORFs gain homology hits (H1);
 stating the catalogued Ribo-seq cost in the manuscript (G6).
