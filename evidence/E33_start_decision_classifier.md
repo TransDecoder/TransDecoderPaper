@@ -1276,5 +1276,7 @@ covers the organism's clade.**
 - Hybrid and the selected top-25 variant were defined after seeing the UniRef50 results (hybrid) or tuned on
   human d1 + d8 (top 25). The held-out sets are as in step 4.
 - The machine was heavily loaded (load 28-50 on 28 cores), so the run times are indicative.
-- Footprint: 16.1 GB in all (UniRef50 db 13.9 GB, tables 1.1 GB, queries / searches / hits 0.5 GB,
-  taxonomy 0.17 GB, full-mode runs 0.59 GB, `_trash` 0.23 GB).
+- Footprint: 16.7 GiB in all (`du`, 2026-10-29 16:00): `$P/data/start_classifier/step5` 16 GiB (UniRef50 db
+  13.9 GB, tables 1.1 GB, queries / searches / hits 0.5 GB, taxonomy 0.17 GB); full-mode runs (UniRef50 + hybrid
+  + human d8 Swiss-Prot) 1.2 GiB; `_trash/e33_step5_*` 0.23 GiB; repo files 0.7 MB. Quota went from 3,103 GB
+  (before the download) to 3,142 GB (other agents also write).
