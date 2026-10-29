@@ -1,0 +1,109 @@
+org	rep_species	n	frac
+human	Macaca mulatta	252	0.050
+human	Equus caballus	218	0.044
+human	Callithrix jacchus	205	0.041
+human	Canis lupus familiaris	192	0.038
+human	Macaca fascicularis	191	0.038
+human	Oryctolagus cuniculus	170	0.034
+human	Pongo abelii	163	0.033
+human	Pygathrix nigripes	141	0.028
+human	Papio anubis	134	0.027
+human	Equus asinus	113	0.023
+human	Sciurus carolinensis	105	0.021
+human	Saguinus oedipus	102	0.020
+human	Bos taurus	97	0.019
+human	Felis catus	91	0.018
+human	Rattus norvegicus	85	0.017
+athal	Arabidopsis arenosa	309	0.158
+athal	Brassica napus	210	0.107
+athal	Arabidopsis suecica	198	0.101
+athal	Arabidopsis thaliana x Arabidopsis arenosa	149	0.076
+athal	Brassica rapa subsp. trilocularis	133	0.068
+athal	Capsella rubella	95	0.049
+athal	Thlaspi arvense	87	0.044
+athal	Arabidopsis lyrata subsp. lyrata	86	0.044
+athal	Microthlaspi erraticum	78	0.040
+athal	Brassica oleracea var. oleracea	65	0.033
+athal	Eutrema salsugineum	65	0.033
+athal	Camelina sativa	51	0.026
+athal	Brassica rapa	49	0.025
+athal	Raphanus sativus	33	0.017
+athal	Brassica carinata	30	0.015
+mouse	Rattus norvegicus	113	0.119
+mouse	Homo sapiens	66	0.070
+mouse	Myodes glareolus	58	0.061
+mouse	Mus spicilegus	36	0.038
+mouse	Apodemus sylvaticus	34	0.036
+mouse	Neotoma lepida	32	0.034
+mouse	Equus caballus	30	0.032
+mouse	Canis lupus familiaris	24	0.025
+mouse	Oryctolagus cuniculus	21	0.022
+mouse	Mesocricetus auratus	21	0.022
+mouse	Sigmodon hispidus	21	0.022
+mouse	Sciurus carolinensis	19	0.020
+mouse	Bos taurus	18	0.019
+mouse	Sus scrofa	17	0.018
+mouse	Mus caroli	13	0.014
+dmel	Drosophila yakuba	61	0.229
+dmel	Drosophila gunungcola	34	0.128
+dmel	Drosophila erecta	26	0.098
+dmel	Drosophila suzukii	24	0.090
+dmel	Drosophila simulans	17	0.064
+dmel	Drosophila sechellia	17	0.064
+dmel	Drosophila ananassae	10	0.038
+dmel	Drosophila pseudoobscura pseudoobscura	9	0.034
+dmel	Drosophila mauritiana	8	0.030
+dmel	Drosophila ficusphila	6	0.023
+dmel	Drosophila kikkawai	6	0.023
+dmel	Drosophila willistoni	5	0.019
+dmel	Drosophila rhopaloa	4	0.015
+dmel	Drosophila navojoa	4	0.015
+dmel	Drosophila guanche	3	0.011
+spombe	Schizosaccharomyces cryophilus OY26	6	0.150
+spombe	Schizosaccharomyces octosporus yFS286	4	0.100
+spombe	Pneumocystis murina B123	4	0.100
+spombe	Saitoella complicata NRRL Y-17804	3	0.075
+spombe	Schizosaccharomyces osmophilus	2	0.050
+spombe	Puccinia coronata f. sp. avenae	2	0.050
+spombe	Neolecta irregularis DAH-3	2	0.050
+spombe	Taphrina deformans PYCC 5710	2	0.050
+spombe	Pneumocystis wakefieldiae	1	0.025
+spombe	Remersonia thermophila	1	0.025
+spombe	Alternaria panax	1	0.025
+spombe	Stemphylium lycopersici	1	0.025
+spombe	Beauveria asiatica	1	0.025
+spombe	Schizosaccharomyces japonicus yFS275	1	0.025
+spombe	Puccinia graminis f. sp. tritici CRL 75-36-700-3	1	0.025
+tthermophila	Tetrahymena malaccensis	447	0.539
+tthermophila	Tetrahymena utriculariae	297	0.358
+tthermophila	Ichthyophthirius multifiliis	38	0.046
+tthermophila	Pseudocohnilembus persalinus	22	0.027
+tthermophila	Paramecium octaurelia	3	0.004
+tthermophila	Paramecium sonneborni	3	0.004
+tthermophila	Paramecium tetraurelia	3	0.004
+tthermophila	Aphis gossypii	2	0.002
+tthermophila	Philasterides dicentrarchi	2	0.002
+tthermophila	Adineta steineri	1	0.001
+tthermophila	Nosema bombycis CQ1	1	0.001
+tthermophila	Arabidopsis suecica	1	0.001
+tthermophila	Powellomyces hirtus	1	0.001
+tthermophila	Populus deltoides	1	0.001
+tthermophila	Blepharisma stoltei	1	0.001
+pfalciparum	Plasmodium reichenowi	1	0.333
+pfalciparum	Plasmodium vinckei petteri	1	0.333
+pfalciparum	Plasmodium brasilianum	1	0.333
+creinhardtii	Chlamydomonas incerta	170	0.267
+creinhardtii	Chlamydomonas schloesseri	152	0.239
+creinhardtii	Pleodorina starrii	75	0.118
+creinhardtii	Edaphochlamys debaryana	44	0.069
+creinhardtii	Tetrabaena socialis	32	0.050
+creinhardtii	Volvox africanus	29	0.046
+creinhardtii	Astrephomene gubernaculifera	25	0.039
+creinhardtii	Volvox carteri f. nagariensis	22	0.035
+creinhardtii	Gonium pectorale	22	0.035
+creinhardtii	Volvox reticuliferus	17	0.027
+creinhardtii	Pelagomonas calceolata	5	0.008
+creinhardtii	Salvia divinorum	4	0.006
+creinhardtii	Aegilops tauschii subsp. strangulata	4	0.006
+creinhardtii	Haematococcus lacustris	4	0.006
+creinhardtii	Chlorella vulgaris	3	0.005

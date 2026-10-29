@@ -1,0 +1,17 @@
+search	org	n_hit_lines	n_rep_taxid_in_excluded_taxa	n_staxids_in_excluded_taxa
+k25	human	1209244	0	0
+k25	mouse	383167	0	0
+k25	athal	900260	0	0
+k25	dmel	173001	0	0
+k25	spombe	72538	0	0
+k25	creinhardtii	185550	0	0
+k25	pfalciparum	29631	0	0
+k25	tthermophila	286223	0	0
+k1	human	104769	0	0
+k1	mouse	16058	0	0
+k1	athal	78499	0	0
+k1	dmel	26400	0	0
+k1	spombe	3514	0	0
+k1	creinhardtii	11510	0	0
+k1	pfalciparum	2414	0	0
+k1	tthermophila	37227	0	0

@@ -2,6 +2,7 @@
 
 Status: steps 1-2 exploratory, not adopted. Step 3 (homology evidence) ADOPTED in PyTransDecoder only
 (homology mode, a5b24c3, 2026-10-28; see "Adoption in PyTD"). Perl TransDecoder unchanged.
+Step 5 (UniRef50 instead of Swiss-Prot, 2026-10-29): not adopted; Swiss-Prot stays the recommended database.
 
 ## Question
 The release start refinement (methods_algorithm.tex "Start-codon refinement"; E09, E13, E29) takes an
@@ -881,3 +882,399 @@ Change in exact F1 (points) vs a5b24c3.
 - The benchmark scoring substitutes decisions in the `pytd_v7` ab initio predictions, as step 3. Selection with homology hits is not re-run, so these are start-decision effects only.
 - Swiss-Prot without the organism's own entries, as before.
 - Rule geometry (R2 window sstart <= 3, R1 offset 5) was not varied here. Step 3's grid covers it.
+
+## Step 5: UniRef50 vs Swiss-Prot (2026-10-29)
+
+### Question
+Brian asked whether UniRef50 (and possibly UniRef90) works better than Swiss-Prot as the DIAMOND database of
+homology mode, in particular for the homology start assist. UniRef50 has ~67x more sequences and more diversity, so
+more 5'-open ORFs may get evidence; but its unreviewed and fragmentary entries may bring false positives and
+unreliable N-termini.
+
+### Database (UniRef50 release 2026_03, 38,840,027 clusters)
+- **Build** (`pipeline/start_classifier/step5_01_uniref50_build_v3.sh`, log `data/start_classifier/step5/build_v3.log`):
+  streamed from the UniProt FTP, no FASTA or XML on disk.
+  - Pass 1, `uniref50.xml.gz`: per cluster the representative's NCBI taxid and the benchmark organisms among
+    all members (`step5_01_uniref50_xml_v2.awk`). 38,840,027 rows, as the release note.
+  - Pass 2, `uniref50.fasta.gz`: headers cut to the cluster id, piped into `diamond makedb` with
+    `--taxonmap` (representative taxid) and NCBI taxdump `nodes.dmp` / `names.dmp` (downloaded 2026-10-29);
+    each sequence's length, first residue, `n=` and `TaxID=` recorded on the way.
+  - DB: 12,182,780,325 letters, all 38,840,027 sequences mapped to a taxid, 13.9 GB.
+- **Why pass 1:** the FASTA header's `TaxID=` is the cluster's lowest common taxon, not the representative's
+  (e.g. `UniRef50_Q8WZ42`, titin, `n=1909 TaxID=7742`, representative human). Excluding by it would keep
+  clusters whose representative is the query organism's own protein.
+- **Versions:**
+  - v1 (regex awk) was stopped for speed; same output.
+  - v2 left 55,666 representative taxids that NCBI has merged unknown to `nodes.dmp`. DIAMOND
+    `--taxon-exclude` silently drops sequences with unknown taxids: 55,666 extra sequences (0.14%) in every
+    search. Found in a pilot ("Filtered database contains 38,732,414 sequences" for human).
+  - v3 resolves them through `merged.dmp` (55,657; 4 more get the common taxid, 5 the root) and overwrote the
+    v2 db. With v3 the human filter removes exactly the 51,947 human-represented clusters.
+- **Exclusion, mirroring `sprot_minus_<taxid>`:** those databases (no builder saved, E07 Gaps) remove exactly
+  the entries with the organism's own `OX=` taxid. The Swiss-Prot counts match: 575,748 entries; minus 9606
+  leaves 555,317 (20,431 `OX=9606`); 3702 and 7227 likewise exact. Descendant taxa were kept, e.g. one
+  Neanderthal entry.
+  - `diamond --taxon-exclude <taxid>` removes the taxon and its NCBI descendants (`step5_00_own_taxsets_v1.py`).
+    Human has 2 descendant taxa, mouse 17 subspecies, C. reinhardtii 1, the others none.
+  - It works on the representative's taxid. `hits/uniref50/subject_check.tsv`: 0 hits with an excluded
+    representative taxid in all 16 searches.
+- **Clusters removed** (`own_cluster_stats.tsv`):
+
+  | organism | clusters removed | their members | clusters with a member of the organism, kept (other representative) |
+  |---|---|---|---|
+  | human | 51,947 | 7,236,815 | 44,111 |
+  | mouse | 25,138 | 2,694,683 | 26,379 |
+  | athal | 19,677 | 2,106,696 | 9,898 |
+  | dmel | 12,139 | 845,641 | 6,602 |
+  | tthermophila | 18,790 | 48,632 | 5,044 |
+  | creinhardtii | 9,547 | 73,569 | 7,093 |
+  | spombe | 4,796 | 178,025 | 205 |
+  | pfalciparum | 2,145 | 51,318 | 2,997 |
+
+  - **This is not the same experiment as Swiss-Prot minus taxon.** Removing a human-represented cluster
+    removes every member within 50% identity of it, i.e. the human protein's orthologs in other mammals.
+  - What remains near a human query is:
+    - clusters with a non-human representative (some contain human members);
+    - and, because UniRef requires 80% overlap with the cluster seed, separate clusters of length variants
+      of the same protein, e.g. N-terminally extended gene models.
+  - Swiss-Prot minus human, in contrast, keeps the reviewed chimp or mouse ortholog.
+  - **Near-identical representatives:** as with sprot_minus (chimp kept for human), representatives from
+    other taxa can be near-identical to the organism's own protein. That is realistic for a user.
+  - **How often the top -k 1 hit is >= 95% identical** (5'-open candidates, `hit_stats.tsv`):
+
+    | input | Swiss-Prot | UniRef50 |
+    |---|---|---|
+    | human simulated assemblies | 0.33-0.46 | 0.30-0.49 |
+    | human benchmark | 0.33-0.37 | 0.25-0.38 |
+    | mouse benchmark | 0.32-0.35 | 0.22-0.28 |
+    | athal | 0.011-0.014 | 0.08-0.16 |
+    | dmel | 0.02-0.04 | 0.08-0.16 |
+    | other organisms | 0.005-0.07 | 0.007-0.17 |
+
+  - The UniRef50 top hit's cluster contains a member of the query organism for:
+    - human 21-27%, mouse 24-34%;
+    - athal 9-15%, dmel 27-34%, tthermophila 31-33%, pfalciparum 42-46%, creinhardtii 29-30%, spombe ~1%.
+  - Top hit >= 95% identical and own member in its cluster: human 10-15%, athal 1-2%.
+
+### Searches
+- **Queries** (`step5_02_queries_v2.py`): identical peptides were searched once per organism; ORF ids were
+  mapped back afterwards (`step5_05_expand_hits_v1.py`).
+  - Candidates: the 5'-open candidate peptides of 21 inputs: simulated human d1 / d8 / d32, athal d1 / d16,
+    and the benchmark complete and fragments inputs of the 8 organisms. 167,190 peptides, 162,709 unique.
+    - These are the step-4 `cand.pep` files.
+    - Athal d16 is new: candidates from `01_features.py` on E32's d16 `pytd_v7` run
+      (`$P/data/start_classifier/step5/features/`, 14,242 5'-open, rule re-derivation 0 mismatches).
+  - Full mode: all LongOrfs peptides of athal d1 / d16 and human d8 (the a5b24c3 LongOrfs; checked `cmp`
+    identical to the release runs'), and of bench human / athal / dmel / tthermophila complete, fragments,
+    `.wRand`, plus human `.wLnc`. The `pytd_v7_homology` LongOrfs, which are identical to `pytd_v7h_homology`.
+  - 2,142,066 peptides, 1,167,893 unique per organism.
+- **UniRef50 searches** (`step5_04_uniref50_searches_v2.sh`; log `uniref50_searches_v2.log`; 12:16-14:22):
+  - DIAMOND 2.2.8, default (fast) mode, `--taxon-exclude <taxid>`, 8 threads, nice 19, one search at a time;
+  - `-k 25 --max-hsps 0 --evalue 1e-5` on the candidates, and `-k 1 --evalue 1e-5` (as `run_tool.sh`) on
+    full-mode LongOrfs plus all candidates;
+  - v1 of the driver looked for the wrong query file name and was stopped at once.
+- **Swiss-Prot additions** (`step5_03_sprot_searches_v2.sh`):
+  - athal d16 candidates: fast `-k 25 --max-hsps 0 --evalue 10`, as step 4;
+  - human d8 full mode: `-k 1 1e-5` on all 100,141 LongOrfs peptides, and hmmsearch `--cut_ga` (4 chunks);
+  - v1 was stopped before its first search ended, to keep within 8 threads while the db was being built.
+- **Check, query-set independence:** the pooled human search ran DIAMOND's double-indexed mode; a single-input
+  search of bench.human.complete (query-indexed) gave 56 of ~25,850 lines different, nearly all weak hits.
+  28 extra queries had a hit, with e-values 1e-6 to 1e-15.
+
+### Method
+- **Start-decision isolate** (`step5_06_rule_variants_v1.py`; `step5_07_summarize_v1.py`): as step 4.
+  - The release run's predictions, with each candidate's keep/trim decision substituted.
+  - Exact F1 overall and per type with negatives.
+  - Same Pfam GA hits for both databases.
+  - Baseline: a5b24c3 rules on the Swiss-Prot `-k 1` hits. It reproduces the adoption values, e.g. human d1
+    0.8641, R1 3,199 / R2 6,793.
+  - Variants per database (Swiss-Prot `-k 25` = the step-4 fast search filtered to 1e-5):
+    - a5b24c3 rules on the top hit (`k1`, and `k25` top1);
+    - top-n R1/R2 schemes (n = 3, 5, 10, 25; maj / unan / bits / anyup / first, as step 4);
+    - **consensus N-terminus:**
+      - each hit projects subject residue 1 to p = qstart - (sstart - 1);
+      - class trim if |p - a| <= 5, keep if p < a - 5 (p = a - 5 counts as trim);
+      - bitscore-weighted majority of the top n (1-25), denominator all hits or firing hits;
+      - optionally only hits with sstart <= 30;
+    - **M filter:**
+      - `r2`: a trim class needs a subject beginning with M;
+      - `all`: non-M subjects dropped.
+      - The first residue was recorded while streaming the FASTA (Swiss-Prot from `uniprot_sprot.fasta.gz`).
+  - Selection on simulated human d1 + d8 only. Held out: d32, athal d1 / d16, bench fragments and complete.
+- **Full homology mode** (`step5_08_full_predict_v1.sh`; driver `step5_08_full_predict_all_v1.sh`, 14:23-14:57, 21/21 rc 0):
+  - fresh PyTD a5b24c3 Predict with the UniRef50 `-k 1` hits on all LongOrfs plus the same Pfam hits;
+  - the LongOrfs files are linked, not copied (Predict only reads them);
+  - Swiss-Prot arm: the existing `pytd_v7h_homology` (bench) and athal depth-series B runs; human d8 was run
+    fresh with the new Swiss-Prot full searches;
+  - scored with `step5_09_full_scores_v2.py`:
+    - as `16_score_adoption.py`, excluded contigs removed on the assemblies;
+    - stop sensitivity = tp_stop / n_truth, stop precision = tp_stop / n_pred;
+    - negatives: `rand_*` / `lnc_*` transcripts, or the assemblies' lncRNA-only contigs.
+  - The athal Swiss-Prot runs reproduce the depth-series exact F1 (d1 0.91383, d16 0.89887).
+- **Post hoc (after seeing the results, not tuned):** the "hybrid" input, Swiss-Prot hits plus UniRef50 hits for
+  ORFs with no Swiss-Prot hit. A user gets it by concatenating the two outfmt6 files, Swiss-Prot first, because
+  PyTD reads the first line per query.
+  - Isolate: `step5_13_hybrid_v1.py`.
+  - Full mode: `step5_08_full_predict_v2.sh` / `_all_v2.sh`, 15:18-15:48, 21/21 rc 0.
+- **Diagnosis:** `step5_10_diagnose_v1.py`, the candidates whose a5b24c3 call differs between databases.
+- **Tables:** `step5_12_tables_v2.py` writes `isolate_compact.tsv` and `full_mode_compact.tsv`.
+
+### Commands
+```bash
+P=/broad/hptmp/bhaas/TRANSDECODER_PAPER; T=$P/TransDecoderPaper; B=$P/data/start_classifier/step5; S=$T/data/start_classifier/step5; D=$T/pipeline/start_classifier; PY=$P/env/startclf/bin/python
+bash $D/step5_01_uniref50_build_v3.sh > $B/build_v3.log 2>&1      # pass 1 reused from v2 (same output)
+PYTHONPATH=$P/work/trees/PY_v7 $PY $D/01_features.py $P/work/simtrinity_athal/depth/d16/runs/pytd_v7 Universal \
+  $P/data/simtrinity_athal/depth/d16/inputs/fragments_simtrinity.truth.tsv sim.athal.d16 $B/features/sim.athal.d16.tsv.gz
+python3 -I $D/step5_02_queries_v2.py $B/queries
+bash $D/step5_03_sprot_searches_v2.sh 4 > $B/sprot_searches_v2.log 2>&1
+bash $D/step5_04_uniref50_searches_v2.sh human athal dmel mouse spombe pfalciparum creinhardtii tthermophila > $B/uniref50_searches_v2.log 2>&1
+$PY -I $D/step5_05_expand_hits_v1.py $B
+$PY $D/step5_06_rule_variants_v1.py $S/step5_manifest.tsv $B/variants
+$PY $D/step5_07_summarize_v1.py $B/variants/variants_f1.tsv.gz $B/variants/hit_stats.tsv $S > $S/summary.stdout.txt
+bash $D/step5_08_full_predict_v1.sh sim.human.d8 sprot; bash $D/step5_08_full_predict_all_v1.sh; bash $D/step5_08_full_predict_all_v2.sh
+$PY $D/step5_10_diagnose_v1.py $S/step5_manifest.tsv $B/taxonomy/names.dmp $S   # names.dmp now gzipped
+$PY $D/step5_13_hybrid_v1.py $S/step5_manifest.tsv $S
+$PY $D/step5_09_full_scores_v2.py $S; $PY $D/step5_12_tables_v2.py $S > $S/tables.stdout.txt
+bash $D/step5_11_timing_v1.sh > $B/timing_v1.log 2>&1
+```
+- **Outputs in the repo** (`data/start_classifier/step5/`):
+  - isolate: `main_by_dataset.tsv`, `tuning_ranking.tsv`, `selected_variants.tsv`, `selected_by_dataset.tsv`,
+    `hit_stats.tsv`, `hybrid_f1.tsv`, `isolate_compact.tsv`;
+  - full mode: `full_scores.tsv`, `full_mode_compact.tsv`;
+  - diagnosis: `diag_*.tsv`;
+  - logs.
+- **Large files** in `$B`:
+  - `db/`: the dmnd, taxonmap, seqinfo, XML table;
+  - `queries/`, `searches/`, `hits/` (per-dataset hit files, gzipped after use; the `hits_used.tsv` of the
+    runs names the plain paths), `variants/variants_f1.tsv.gz`.
+- **Runs:** `$P/work/start_classifier/step5_full/{uniref50,hybrid,sprot}/<dataset>/`.
+
+### Results: coverage and rule firings (start-decision isolate, `hit_stats.tsv`, `main_by_dataset.tsv`)
+**5'-open candidates with any hit at 1e-5, Swiss-Prot -> UniRef50:**
+- human 0.93-0.97 -> 0.98-1.00;
+- mouse 0.95 -> 0.99;
+- athal 0.49-0.59 -> 0.98-0.99;
+- dmel 0.51-0.54 -> 0.98;
+- spombe 0.61-0.77 -> 0.88-0.96;
+- tthermophila 0.18-0.27 -> 0.72-0.81;
+- pfalciparum 0.29-0.37 -> 0.94-0.99;
+- creinhardtii 0.29-0.37 -> 0.87-0.91.
+
+**What the top hit looks like:**
+- The top hit's subject begins at residue <= 3 less often with UniRef50 in human (d1 0.61 -> 0.44), and more often
+  where Swiss-Prot was sparse (athal d1 0.19 -> 0.37).
+- The top hit's subject begins with M in 0.86-0.98 of UniRef50 hits, against 0.97-1.00 for Swiss-Prot.
+
+**Rule firings, a5b24c3 rules on the `-k 1` hit, Swiss-Prot -> UniRef50:**
+
+| dataset | R1 keep | R2 trim | wrong keeps | wrong trims |
+|---|---|---|---|---|
+| human d1 | 3,199 -> 5,080 | 6,793 -> 4,960 | 394 -> 1,659 | 139 -> 107 |
+| human d8 | 4,829 -> 6,087 | 4,255 -> 3,089 | 229 -> 1,068 | 193 -> 155 |
+| human d32 | 6,077 -> 6,844 | 2,200 -> 1,556 | 108 -> 587 | 184 -> 161 |
+| athal d1 | 928 -> 2,664 | 686 -> 2,531 | 1,035 -> 1,034 | 334 -> 184 |
+| athal d16 | 3,708 -> 9,111 | 533 -> 1,491 | 434 -> 494 | 1,148 -> 378 |
+| bench human complete | 89 -> 1,408 | 6,263 -> 4,525 | 316 -> 1,622 | 0 -> 0 |
+| bench athal fragments | 4,040 -> 8,761 | 330 -> 1,802 | 729 -> 643 | 891 -> 344 |
+| bench tthermophila fragments | 1,228 -> 5,838 | 104 -> 1,741 | 839 -> 734 | 1,480 -> 813 |
+
+- Wrong keep = kept open where the truth is a UTR extension with the true start at the first ATG.
+- Wrong trim = trimmed where the truth is truncated.
+- R3 (Pfam) is identical by design.
+
+### Results: start-decision isolate, exact F1 (`isolate_compact.tsv`)
+Change in points vs the a5b24c3 baseline (Swiss-Prot `-k 1`).
+- **UniRef50 a5b24c3**: the a5b24c3 rules on the UniRef50 `-k 1` hit.
+- **best UniRef50 variant**: `uniref50|k25|top25_maj|all`, the top 25 hits with non-M subjects dropped, majority
+  of R1/R2 calls; chosen on human d1 + d8.
+- **hybrid** (post hoc): Swiss-Prot hit if any, else the UniRef50 hit.
+
+| dataset | UniRef50 a5b24c3 | best UniRef50 variant | hybrid | hybrid, fallback top25 maj | perfect decisions |
+|---|---|---|---|---|---|
+| sim human d1 (tune) | -3.70 | -0.31 | +0.08 | +0.09 | +1.60 |
+| sim human d8 (tune) | -4.11 | -0.32 | +0.22 | +0.23 | +2.16 |
+| sim human d32 | -3.46 | -0.30 | +0.27 | +0.30 | +2.22 |
+| sim athal d1 | +0.73 | +2.90 | +0.87 | +1.64 | +6.64 |
+| sim athal d16 | +3.81 | +4.83 | +3.68 | +3.85 | +8.48 |
+| bench human complete / fragments | -6.90 / -3.52 | -0.67 / -0.26 | -0.11 / +0.18 | +0.03 / +0.25 | +1.67 / +1.88 |
+| bench mouse | -2.26 / -1.10 | -0.32 / -0.13 | +0.08 / +0.32 | +0.16 / +0.36 | +1.51 / +1.62 |
+| bench dmel | -0.01 / +1.69 | +0.63 / +2.25 | +0.04 / +1.50 | +0.46 / +1.96 | +2.32 / +4.48 |
+| bench athal | +0.16 / +2.61 | +2.37 / +3.39 | +0.34 / +2.36 | +1.18 / +2.84 | +6.75 / +6.68 |
+| bench spombe | +0.85 / +1.10 | +0.91 / +1.27 | +0.48 / +1.10 | +0.54 / +1.16 | +5.34 / +5.02 |
+| bench tthermophila | +0.59 / +3.22 | +0.26 / +3.34 | +0.38 / +2.96 | +0.31 / +3.18 | +7.15 / +9.67 |
+| bench pfalciparum | +0.25 / +2.54 | +0.40 / +2.58 | +0.19 / +2.48 | +0.32 / +2.52 | +0.72 / +4.55 |
+| bench creinhardtii | -0.66 / +0.83 | -1.33 / +0.71 | -0.57 / +0.74 | -0.91 / +0.69 | +4.26 / +5.91 |
+
+Benchmark rows give complete / fragments.
+
+**Per type, UniRef50 a5b24c3 vs Swiss-Prot** (`selected_variants.tsv`):
+- human: complete -4.3 / -6.4 / -9.3, 3' partial -7.0 / -6.1 / -8.9, 5' partial +0.1..+0.6 and internal
+  +0.4..+1.0 (d1 / d8 / d32). The losses are trims that became keeps.
+- athal: 5' partial +6.1 / +6.3, internal +4.5 / +6.8, 3' partial +2.9 / +1.7, complete -0.1 / -1.5 (d1 / d16).
+
+**Top-n and the other variants on UniRef50** (`tuning_ranking.tsv`; tuning = mean of human d1 + d8):
+- No UniRef50 variant reaches the Swiss-Prot baseline on the human tuning sets; the best is -0.31.
+- Majority over the top 25 hits dilutes the extended-N-terminus hits. The best variant, chosen on human, is
+  then the best UniRef50 variant elsewhere too:
+  - held out: d32 -0.30, athal +2.90 / +4.83;
+  - bench fragments median +1.76 (2 of 8 down, min -0.26);
+  - bench complete median +0.33 (3 of 8 down: creinhardtii -1.33, human -0.67, mouse -0.32).
+- Other variants:
+  - top-5 anyup -0.47;
+  - top-25 unanimous -1.34;
+  - top-25 majority without the M filter -0.38; with `r2` -0.44.
+- **Consensus N-terminus rule: worse.**
+  - Top 1: -6.2 on tuning. Projecting subject residue 1 through an unaligned subject N-terminus is unreliable.
+  - The best form (top 25, firing hits, sstart <= 30): tuning -1.37, human d32 -4.26, athal +2.57 / +0.88,
+    bench fragments median -0.95 (6 of 8 down), complete median +0.37.
+  - It trims truncated ORFs (human d32: 743 wrong trims vs 184).
+  - With Swiss-Prot hits it also loses: best `sprot|k25|cons1_all` tuning -0.17, bench complete median -1.76.
+- **M filter: almost no effect.**
+  - On the top hit: human d1 -3.70 -> -3.74 (`r2`) / -3.52 (`all`); bench complete median +0.08 -> +0.07 / +0.15.
+  - The misleading UniRef50 subjects mostly do begin with M (diagnosis below). They are full-length entries
+    with longer N-termini, not fragments.
+- **Swiss-Prot top-n**, for reference: the best Swiss-Prot variant is top-5 anyup, +0.04 on tuning and within
+  +-0.2 elsewhere, as step 4.
+
+### Diagnosis: why UniRef50 loses on human and mouse (`diag_r1_wrong.tsv`, `diag_r1_species.tsv`, `diag_flips.tsv`)
+**UTR extensions that UniRef50 keeps open by R1** (true start at the first ATG):
+
+| dataset | n | Swiss-Prot called R2 (trim, right) on the same candidate | median identity | subject begins with M | median cluster size | subject's residue 1 maps upstream of the ATG (median) | own member in cluster |
+|---|---|---|---|---|---|---|---|
+| human d1 | 1,456 | 78% | 90% | 91% | 11 | 101 aa | 19% |
+| human d8 | 915 | 80% | 91% | 90% | 11 | 101 aa | 18% |
+| human d32 | 518 | 86% | 93% | 89% | 9 | 93 aa | 18% |
+| bench human complete | 1,382 | 81% | 90% | 92% | 9 | 115 aa | 14% |
+
+- Only 10-14% of these clusters are singletons.
+- Their representatives are unreviewed mammalian entries: macaque, horse, marmoset, dog, crab-eating macaque,
+  rabbit, orangutan and others, each 2-5%.
+- These are orthologs with N-terminal extensions of about 100 aa: alternative upstream starts in other species'
+  gene models, or isoforms. UniRef keeps them out of the human ortholog's cluster because of the 80%-overlap
+  rule, so excluding human-represented clusters leaves them as the best hit.
+- **Candidates flipped from right (Swiss-Prot) to the opposite call (UniRef50):** 1,141 in human d1, 1,122 in
+  bench human complete, against 31 the other way.
+- **Athal and the sparse organisms:**
+  - Most changes are candidates that had no Swiss-Prot hit and now get a call: 2,860-5,980 per input
+    (athal, dmel, tthermophila, pfalciparum, creinhardtii).
+  - Right-to-wrong flips are 0-104 per input.
+- **The cost on complete inputs where it remains** (creinhardtii -0.66, dmel -0.01): more R1 keeps.
+
+### Results: full homology mode (`full_scores.tsv`, `full_mode_compact.tsv`)
+Fresh a5b24c3 Predict, all LongOrfs searched, same Pfam hits. Differences UniRef50 minus Swiss-Prot.
+
+| input | exact F1 Swiss-Prot -> UniRef50 (hybrid) | stop sens. | stop prec. | predictions on negatives (ab initio / Swiss-Prot / UniRef50 / hybrid) |
+|---|---|---|---|---|
+| bench human complete | 0.9591 -> 0.8883 (0.9580) | 0.9947 -> 0.9973 | 0.9986 -> 0.9984 | - |
+| bench human fragments | 0.9428 -> 0.9013 (0.9424) | 0.9474 -> 0.9540 | 0.9977 -> 0.9920 | - |
+| bench human complete.wRand | 0.9563 -> 0.8858 (0.9552) | same as complete | 0.9928 -> 0.9926 | 113 / 113 / 113 / 113 of 19,167 |
+| bench human complete.wLnc | 0.8832 -> **0.7310** (0.7884) | 0.9943 -> 0.9972 | 0.8527 -> **0.6985** | 1,639 / 3,268 / **8,220** / 8,231 of 33,668 |
+| bench human fragments.wLnc | 0.8612 -> **0.7366** (0.7699) | 0.9460 -> 0.9534 | 0.8360 -> 0.6814 | 1,928 / 3,522 / **8,389** / 8,400 |
+| sim human d8 | 0.9209 -> 0.8614 (0.9055) | 0.9808 -> 0.9884 | 0.9397 -> 0.9006 | 704 / 1,129 / 2,026 / 2,028 of 5,885 lncRNA contigs |
+| bench athal complete / fragments | 0.9066 -> 0.9135 (0.9156) / 0.8475 -> 0.8963 (0.8945) | 0.974 -> 0.987 / 0.853 -> 0.902 | -0.1 / -0.2 pt | wRand: 39 / 58 unchanged |
+| bench dmel complete / fragments | 0.9310 -> 0.9385 (0.9394) / 0.8794 -> 0.9056 (0.9037) | 0.969 -> 0.986 / 0.888 -> 0.909 | -0.01 / -0.1 pt | wRand: 44 / 53 unchanged |
+| bench tthermophila complete / fragments | 0.8290 -> 0.8359 (0.8338) / 0.7785 -> 0.8233 (0.8208) | 0.894 -> 0.900 / 0.820 -> 0.848 | -0.5 / -0.4 pt | wRand: 61 / 126 unchanged |
+| sim athal d1 | 0.9138 -> 0.9249 (0.9267) | 0.9764 -> 0.9935 | 0.9918 -> 0.9836 | 83 / 93 / 265 / 265 of 1,372 |
+| sim athal d16 | 0.8989 -> 0.9496 (0.9483) | 0.9702 -> 0.9966 | 0.9992 -> 0.9983 | 4 / 4 / 18 / 18 of 154 |
+
+**Per type, exact F1 with negatives, UniRef50 - Swiss-Prot:**
+- human d8: complete -6.8, 5' partial +0.5, 3' partial -6.4, internal +1.3;
+- athal d1 / d16: 5' partial +8.3 / +8.9, 3' partial +7.0 / +5.2, internal +6.3 / +7.9, complete +0.3 / -1.0.
+
+**Wall time for 21 Predict runs:** about the same with either database (114-1,005 s each).
+
+**Retention:**
+- UniRef50 hits retain more ORFs: stop sensitivity rises everywhere, +0.3 to +4.8 points.
+- But lncRNA ORFs also gain hits, from unreviewed predicted proteins of other species:
+  - lncRNA calls rise 2.5x on the human benchmark (3,268 -> 8,220);
+  - 1.8x on the human d8 assembly's lncRNA contigs (1,129 -> 2,026);
+  - 2.8x on athal d1 (93 -> 265; 1,372 lncRNA-only contigs).
+- Random GC-matched negatives (`.wRand`) gain no calls at all.
+- The hybrid keeps the start decisions of Swiss-Prot where Swiss-Prot has a hit, but it adds the same UniRef50
+  hits for retention. So it removes the human start-decision loss (bench complete -0.11 instead of -7.08) but
+  not the lncRNA false positives (8,231 lncRNA calls; wLnc exact F1 -9.5 / -9.1; human d8 -1.5).
+
+### DIAMOND run time and disk
+**Same input, as a user would run it:** bench.human.complete, 63,551 LongOrfs peptides, `-k 1 --evalue 1e-5`,
+8 threads, back to back on the shared machine (load ~30-50 on 28 cores) (`step5_11_timing_v1.sh`, `timing_v1.log`):
+
+| database | wall | CPU | peak RAM |
+|---|---|---|---|
+| Swiss-Prot minus human | 37.5 s | 125 s | 0.85 GB |
+| UniRef50 minus human | 13 min 22 s (21x) | 2,757 s (22x) | 6.9 GB |
+
+- About 3 min of each UniRef50 search is fixed cost: opening the 13.9 GB db and building the reference seed
+  index for its 7 blocks. A 2,000-peptide pilot took 3 min.
+- Pooled per-organism searches: 3-20 min each; 2 h 06 min for all 16 (167k + 1.17M unique peptides).
+
+**Disk:**
+- UniRef50 db 13.9 GB, plus 1.1 GB of tables (taxon map, per-sequence first residue and length, XML-derived
+  representative taxids).
+- Swiss-Prot db: 0.28 GB.
+
+### Conclusion (step 5)
+**UniRef50 minus taxon is not uniformly better than Swiss-Prot minus taxon. It depends on how well Swiss-Prot
+covers the organism's clade.**
+- **Sparse in Swiss-Prot** (Arabidopsis, Drosophila, Tetrahymena, Plasmodium, S. pombe fragments):
+  - UniRef50 lifts the candidates with a hit from 18-77% to 72-99%;
+  - start-decision exact F1 rises by +0.7 to +3.8 points on the assemblies and fragments with the a5b24c3 rules;
+  - full homology mode gains +0.7 to +5.1 points, every type except complete CDSs improving.
+- **Human and mouse:**
+  - UniRef50 is clearly worse: start-decision exact F1 -1.1 to -6.9; full mode (human only) -4 to -7 points;
+  - on lncRNA-containing inputs exact F1 falls 12-15 points, because the lncRNA calls rise 2.5x.
+  - Two mechanisms, both from unreviewed entries:
+    - **N-terminally extended homologs:** mammalian orthologs with ~100 aa longer N-termini become the top
+      hit and fire R1 (keep open) where the true start is the first ATG;
+    - **lncRNA ORFs** gain hits to predicted proteins and are retained.
+- **Fragments are not the problem**, so requiring an M at the subject's start does nothing.
+- **Top-n consensus** (majority of 25) reduces the start-decision loss on human to -0.3 and raises the gain
+  elsewhere, but needs `-k 25` hits and still leaves human below Swiss-Prot.
+- **The consensus N-terminus projection is worse** than the a5b24c3 rules with either database.
+- **Caveat on the exclusion:** removing human-represented clusters also removes their mammalian orthologs.
+  This makes the human UniRef50 test harsher than Swiss-Prot minus human, which keeps reviewed orthologs.
+  - The lncRNA effect and the extended-N-terminus effect are, however, properties of UniRef50's unreviewed
+    content.
+  - A human user with the full UniRef50 would mostly hit the human-represented cluster.
+- **Post hoc hybrid** (Swiss-Prot first, UniRef50 fallback), isolate:
+  - no loss on human (+0.1 to +0.3; bench complete -0.11);
+  - most of the UniRef50 gain elsewhere: athal +0.9 / +3.7, bench fragments +0.2 to +3.0.
+  - Worst complete input creinhardtii -0.57.
+  - In full mode its UniRef50 hits still retain lncRNA ORFs.
+
+### Recommendation
+- **Do not replace Swiss-Prot with UniRef50 as the default or recommended database.**
+- **Docs:** UniRef50 may be mentioned as an option for organisms far from well-curated model organisms
+  (plants, protists, many invertebrates), with two warnings:
+  - it raises lncRNA / non-coding false positives about 2-3x;
+  - for mammals it worsens start decisions.
+  - The practical variant is to supply Swiss-Prot hits first and UniRef50 hits only for ORFs without a
+    Swiss-Prot hit (concatenated outfmt6). That keeps Swiss-Prot's start decisions but not its retention
+    specificity.
+- **A clean option needs a code change, not tested here:** separate hit files for retention (Swiss-Prot) and
+  for the start assist (Swiss-Prot + UniRef50 fallback).
+- **UniRef90 is not worth testing now.**
+  - Size: 121,494,192 clusters (3.1x); FASTA 32.1 GB gz (3.66x UniRef50's 8.78 GB); XML 46.6 GB gz.
+  - Expected db about 45 G letters and **about 51 GB dmnd**, plus about 3.5 GB of tables. The build streams
+    ~79 GB from the FTP (about 2-2.5 h).
+  - Expected search time about 3.7x UniRef50 in default mode: about **50 min per benchmark-size input** (vs
+    13 min, and 0.6 min for Swiss-Prot), and about 8 h for this step's searches at 8 threads.
+  - It would not raise coverage much: UniRef50 already gives hits to 98-99% of the athal / dmel candidates.
+  - It would add more of the unreviewed redundancy that causes both failure modes. UniRef90 clusters are
+    tighter, so even closer length-variant entries would become top hits.
+  - The quota does not allow it at present.
+
+### Caveats (step 5)
+- Exclusion by the representative's taxid (and its descendants) is the closest analogue of `sprot_minus` but
+  not equivalent (see "Clusters removed").
+- Cluster-member flags for organisms count NCBI-merged member taxids only under their old ids. Four merged
+  ids map to the 8 organisms (C. reinhardtii 2, mouse 1, dmel 1), so the own-member fractions may be slightly
+  low.
+- The UniRef50 searches pooled the queries per organism (double-indexed mode); single-input searches differ in
+  about 0.2% of lines, all weak hits.
+- The benchmark Swiss-Prot full-mode arm reuses existing runs (`pytd_v7h_homology`, searched with 3 threads).
+  Their outputs do not depend on the thread count.
+- Hybrid and the selected top-25 variant were defined after seeing the UniRef50 results (hybrid) or tuned on
+  human d1 + d8 (top 25). The held-out sets are as in step 4.
+- The machine was heavily loaded (load 28-50 on 28 cores), so the run times are indicative.
+- Footprint: 16.1 GB in all (UniRef50 db 13.9 GB, tables 1.1 GB, queries / searches / hits 0.5 GB,
+  taxonomy 0.17 GB, full-mode runs 0.59 GB, `_trash` 0.23 GB).

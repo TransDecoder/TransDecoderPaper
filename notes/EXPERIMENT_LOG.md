@@ -502,7 +502,50 @@ Outcome counts: see the end of this file.
     - the remaining ceiling is in selection (missed CDSs) and in homologs that do not reach the subject N-terminus, not in hit depth;
     - more hits add more conflict than signal.
   - Pointers: E33 "Step 4"; `data/start_classifier/step4/`; scripts `pipeline/start_classifier/step4_*`; searches in `$P/data/start_classifier/step4/searches/`.
-- **Pointers:** E33; `pipeline/start_classifier/`; `data/start_classifier/{step1,step2,step3,step4}/`; large
+- **Step 5, UniRef50 instead of Swiss-Prot (2026-10-29; NOT ADOPTED, Swiss-Prot stays recommended):**
+  - Question (Brian): would UniRef50 (or UniRef90) work better than Swiss-Prot for homology mode, especially for
+    the start assist?
+  - Setup:
+    - UniRef50 2026_03 DIAMOND db with the representative's taxid. The FASTA `TaxID=` is the cluster's LCA, so
+      the representative's taxid was taken from the XML; NCBI-merged taxids had to be resolved, or
+      `--taxon-exclude` silently drops their clusters.
+    - Organism taxon and its descendants excluded.
+    - Searches: `-k 1` and `-k 25` at 1e-5 of the 5'-open candidates of 21 inputs; `-k 1` on all LongOrfs of 21
+      full-mode inputs, including `.wRand` and `.wLnc`.
+    - Offline rule variants (top-n, consensus N-terminus, subject-begins-with-M), chosen on human d1 + d8;
+      fresh a5b24c3 Predict runs in full mode.
+  - Numbers:
+    - candidates with a hit: athal / dmel 49-59% -> 98-99%, tthermophila 18-27% -> 72-81%, human 93-97% -> 98-100%;
+    - start decisions with the a5b24c3 rules (exact F1 vs Swiss-Prot):
+      - human / mouse -1.1 to -6.9;
+      - athal +0.7 / +3.8 (d1 / d16);
+      - benchmark fragments of the sparse organisms +0.8 to +3.2;
+    - full mode:
+      - human -4 to -7, and -12 to -15 with lncRNA negatives (lncRNA calls 3,268 -> 8,220);
+      - athal, dmel, tthermophila +0.7 to +5.1;
+      - random negatives unchanged.
+  - Mechanisms:
+    - unreviewed mammalian orthologs with ~100 aa longer N-termini become the top hit and keep UTR extensions
+      open (wrong keeps 394 -> 1,659 in human d1);
+    - lncRNA ORFs gain hits to predicted proteins.
+    - Not fragments: an M filter changes nothing.
+  - Variants:
+    - top-25 majority cuts the human loss to -0.3 and gives +2.9 / +4.8 on athal;
+    - the consensus N-terminus projection is worse.
+    - Post hoc hybrid (Swiss-Prot hit first, UniRef50 only when Swiss-Prot has none): isolate +0.1..+0.3 on
+      human and most of the UniRef50 gain elsewhere, but in full mode it still adds the lncRNA false positives.
+  - Cost:
+    - DIAMOND 21x slower per input (13.4 min vs 37.5 s, 8 threads); db 13.9 GB.
+    - UniRef90 estimated at ~51 GB and ~50 min per input; not worth testing now.
+  - Lessons:
+    - more sequences give coverage where Swiss-Prot is sparse, but unreviewed N-termini and predicted proteins
+      cost start accuracy and specificity where it is not;
+    - excluding UniRef clusters by taxon also removes the organism's orthologs (a harsher test than
+      sprot_minus);
+    - retention and the start assist would need separate hit files to use UniRef50 safely.
+  - Pointers: E33 "Step 5"; `data/start_classifier/step5/`; scripts `pipeline/start_classifier/step5_*`; db and
+    searches in `$P/data/start_classifier/step5/`.
+- **Pointers:** E33; `pipeline/start_classifier/`; `data/start_classifier/{step1,step2,step3,step4,step5}/`; large
   intermediates in `$P/data/start_classifier/`; env `$P/env/startclf`.
 
 ### S12. Later annotated ATGs; other open start issues

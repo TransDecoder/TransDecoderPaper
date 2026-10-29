@@ -1,0 +1,316 @@
+selection	variant	dataset	d_f1_exact	d_f1_complete	d_f1_5prime_partial	d_f1_3prime_partial	d_f1_internal	d_tp_exact	f1_exact	wrong_trim	wrong_keep	n_changed_vs_release
+sprot a5b24c3 (baseline)	sprot|k1|top1|none	sim.human.d1	0.0000	0.0000	0.0000	0.0000	0.0000	0	0.8641	139.0000	394.0000	1317
+sprot a5b24c3 (baseline)	sprot|k1|top1|none	sim.human.d8	0.0000	0.0000	0.0000	0.0000	0.0000	0	0.8859	193.0000	229.0000	1492
+sprot a5b24c3 (baseline)	sprot|k1|top1|none	sim.human.d32	0.0000	0.0000	0.0000	0.0000	0.0000	0	0.8963	184.0000	108.0000	1488
+sprot a5b24c3 (baseline)	sprot|k1|top1|none	sim.athal.d1	0.0000	0.0000	0.0000	0.0000	0.0000	0	0.9017	334.0000	1035.0000	575
+sprot a5b24c3 (baseline)	sprot|k1|top1|none	sim.athal.d16	0.0000	0.0000	0.0000	0.0000	0.0000	0	0.8836	1148.0000	434.0000	1306
+sprot a5b24c3 (baseline)	sprot|k1|top1|none	bench.human.complete	0.0000	0.0000				0	0.9493	0.0000	316.0000	708
+sprot a5b24c3 (baseline)	sprot|k1|top1|none	bench.human.fragments	0.0000		0.0000	0.0000		0	0.9104	178.0000	163.0000	1636
+sprot a5b24c3 (baseline)	sprot|k1|top1|none	bench.mouse.complete	0.0000	0.0000				0	0.9226	0.0000	320.0000	482
+sprot a5b24c3 (baseline)	sprot|k1|top1|none	bench.mouse.fragments	0.0000		0.0000	0.0000		0	0.8895	187.0000	138.0000	1504
+sprot a5b24c3 (baseline)	sprot|k1|top1|none	bench.dmel.complete	0.0000	0.0000				0	0.9271	0.0000	316.0000	61
+sprot a5b24c3 (baseline)	sprot|k1|top1|none	bench.dmel.fragments	0.0000		0.0000	0.0000		0	0.8721	431.0000	153.0000	426
+sprot a5b24c3 (baseline)	sprot|k1|top1|none	bench.athal.complete	0.0000	0.0000				0	0.8986	0.0000	1776.0000	258
+sprot a5b24c3 (baseline)	sprot|k1|top1|none	bench.athal.fragments	0.0000		0.0000	0.0000		0	0.8167	891.0000	729.0000	1640
+sprot a5b24c3 (baseline)	sprot|k1|top1|none	bench.spombe.complete	0.0000	0.0000				0	0.9234	0.0000	269.0000	78
+sprot a5b24c3 (baseline)	sprot|k1|top1|none	bench.spombe.fragments	0.0000		0.0000	0.0000		0	0.8864	115.0000	127.0000	290
+sprot a5b24c3 (baseline)	sprot|k1|top1|none	bench.tthermophila.complete	0.0000	0.0000				0	0.8277	0.0000	1802.0000	185
+sprot a5b24c3 (baseline)	sprot|k1|top1|none	bench.tthermophila.fragments	0.0000		0.0000	0.0000		0	0.7691	1480.0000	839.0000	377
+sprot a5b24c3 (baseline)	sprot|k1|top1|none	bench.pfalciparum.complete	0.0000	0.0000				0	0.9406	0.0000	38.0000	2
+sprot a5b24c3 (baseline)	sprot|k1|top1|none	bench.pfalciparum.fragments	0.0000		0.0000	0.0000		0	0.8911	214.0000	19.0000	119
+sprot a5b24c3 (baseline)	sprot|k1|top1|none	bench.creinhardtii.complete	0.0000	0.0000				0	0.7435	0.0000	735.0000	74
+sprot a5b24c3 (baseline)	sprot|k1|top1|none	bench.creinhardtii.fragments	0.0000		0.0000	0.0000		0	0.7813	645.0000	333.0000	104
+uniref50 a5b24c3 rules (k1 top1)	uniref50|k1|top1|none	sim.human.d1	-3.7025	-4.2621	0.6356	-7.0066	0.9808	-1233	0.8271	107.0000	1659.0000	2726
+uniref50 a5b24c3 rules (k1 top1)	uniref50|k1|top1|none	sim.human.d8	-4.1053	-6.4256	0.2915	-6.0835	0.7695	-801	0.8449	155.0000	1068.0000	2307
+uniref50 a5b24c3 rules (k1 top1)	uniref50|k1|top1|none	sim.human.d32	-3.4652	-9.2962	0.0596	-8.8626	0.3590	-456	0.8617	161.0000	587.0000	1947
+uniref50 a5b24c3 rules (k1 top1)	uniref50|k1|top1|none	sim.athal.d1	0.7328	-0.0880	6.0817	2.9038	4.5224	151	0.9091	184.0000	1034.0000	1488
+uniref50 a5b24c3 rules (k1 top1)	uniref50|k1|top1|none	sim.athal.d16	3.8057	-1.4790	6.3086	1.6772	6.7627	710	0.9217	378.0000	494.0000	2538
+uniref50 a5b24c3 rules (k1 top1)	uniref50|k1|top1|none	bench.human.complete	-6.8957	-6.8957				-1306	0.8804	0.0000	1622.0000	1717
+uniref50 a5b24c3 rules (k1 top1)	uniref50|k1|top1|none	bench.human.fragments	-3.5223		0.2244	-7.1495		-638	0.8752	158.0000	821.0000	2209
+uniref50 a5b24c3 rules (k1 top1)	uniref50|k1|top1|none	bench.mouse.complete	-2.2577	-2.2577				-477	0.9001	0.0000	797.0000	956
+uniref50 a5b24c3 rules (k1 top1)	uniref50|k1|top1|none	bench.mouse.fragments	-1.1004		0.4236	-2.5862		-221	0.8785	145.0000	401.0000	1816
+uniref50 a5b24c3 rules (k1 top1)	uniref50|k1|top1|none	bench.dmel.complete	-0.0073	-0.0073				-1	0.9271	0.0000	317.0000	324
+uniref50 a5b24c3 rules (k1 top1)	uniref50|k1|top1|none	bench.dmel.fragments	1.6946		3.4734	-0.0455		221	0.8890	207.0000	156.0000	847
+uniref50 a5b24c3 rules (k1 top1)	uniref50|k1|top1|none	bench.athal.complete	0.1597	0.1597				42	0.9002	0.0000	1734.0000	1274
+uniref50 a5b24c3 rules (k1 top1)	uniref50|k1|top1|none	bench.athal.fragments	2.6104		4.5515	0.7031		633	0.8428	344.0000	643.0000	2703
+uniref50 a5b24c3 rules (k1 top1)	uniref50|k1|top1|none	bench.spombe.complete	0.8541	0.8541				43	0.9320	0.0000	226.0000	137
+uniref50 a5b24c3 rules (k1 top1)	uniref50|k1|top1|none	bench.spombe.fragments	1.0991		1.5455	0.6590		53	0.8973	78.0000	111.0000	363
+uniref50 a5b24c3 rules (k1 top1)	uniref50|k1|top1|none	bench.tthermophila.complete	0.5948	0.5948				150	0.8337	0.0000	1652.0000	748
+uniref50 a5b24c3 rules (k1 top1)	uniref50|k1|top1|none	bench.tthermophila.fragments	3.2188		5.6137	0.8676		772	0.8012	813.0000	734.0000	1340
+uniref50 a5b24c3 rules (k1 top1)	uniref50|k1|top1|none	bench.pfalciparum.complete	0.2467	0.2467				13	0.9431	0.0000	25.0000	19
+uniref50 a5b24c3 rules (k1 top1)	uniref50|k1|top1|none	bench.pfalciparum.fragments	2.5393		4.9138	0.2311		130	0.9165	90.0000	13.0000	272
+uniref50 a5b24c3 rules (k1 top1)	uniref50|k1|top1|none	bench.creinhardtii.complete	-0.6548	-0.6548				-113	0.7369	0.0000	848.0000	311
+uniref50 a5b24c3 rules (k1 top1)	uniref50|k1|top1|none	bench.creinhardtii.fragments	0.8333		2.1316	-0.4723		138	0.7897	468.0000	372.0000	426
+uniref50 k25 top1	uniref50|k25|top1|none	sim.human.d1	-4.0388	-4.6502	0.7151	-7.4922	0.9808	-1345	0.8237	106.0000	1772.0000	2825
+uniref50 k25 top1	uniref50|k25|top1|none	sim.human.d8	-4.4794	-6.9301	0.2915	-7.2140	0.8860	-874	0.8411	150.0000	1146.0000	2374
+uniref50 k25 top1	uniref50|k25|top1|none	sim.human.d32	-3.9060	-10.3790	0.1191	-10.3280	0.4079	-514	0.8573	157.0000	649.0000	1996
+uniref50 k25 top1	uniref50|k25|top1|none	sim.athal.d1	0.4464	-0.4459	6.1814	2.3593	4.7256	92	0.9062	179.0000	1098.0000	1517
+uniref50 k25 top1	uniref50|k25|top1|none	sim.athal.d16	3.6449	-2.0777	6.6496	0.4892	6.9041	680	0.9201	357.0000	545.0000	2542
+uniref50 k25 top1	uniref50|k25|top1|none	bench.human.complete	-7.5240	-7.5240				-1425	0.8741	0.0000	1741.0000	1797
+uniref50 k25 top1	uniref50|k25|top1|none	bench.human.fragments	-4.0965		0.2693	-8.3230		-742	0.8694	154.0000	929.0000	2296
+uniref50 k25 top1	uniref50|k25|top1|none	bench.mouse.complete	-2.6553	-2.6553				-561	0.8961	0.0000	881.0000	1024
+uniref50 k25 top1	uniref50|k25|top1|none	bench.mouse.fragments	-1.3443		0.4639	-3.1073		-270	0.8761	141.0000	454.0000	1857
+uniref50 k25 top1	uniref50|k25|top1|none	bench.dmel.complete	-0.0587	-0.0587				-8	0.9266	0.0000	324.0000	327
+uniref50 k25 top1	uniref50|k25|top1|none	bench.dmel.fragments	1.6563		3.5510	-0.1972		216	0.8887	202.0000	166.0000	854
+uniref50 k25 top1	uniref50|k25|top1|none	bench.athal.complete	-0.1368	-0.1368				-36	0.8972	0.0000	1812.0000	1298
+uniref50 k25 top1	uniref50|k25|top1|none	bench.athal.fragments	2.3960		4.6846	0.1471		581	0.8406	328.0000	711.0000	2735
+uniref50 k25 top1	uniref50|k25|top1|none	bench.spombe.complete	0.6158	0.6158				31	0.9296	0.0000	238.0000	139
+uniref50 k25 top1	uniref50|k25|top1|none	bench.spombe.fragments	1.0369		1.6291	0.4530		50	0.8967	76.0000	116.0000	372
+uniref50 k25 top1	uniref50|k25|top1|none	bench.tthermophila.complete	0.5472	0.5472				138	0.8332	0.0000	1664.0000	762
+uniref50 k25 top1	uniref50|k25|top1|none	bench.tthermophila.fragments	3.1855		5.6053	0.8097		764	0.8009	814.0000	741.0000	1340
+uniref50 k25 top1	uniref50|k25|top1|none	bench.pfalciparum.complete	0.2467	0.2467				13	0.9431	0.0000	25.0000	19
+uniref50 k25 top1	uniref50|k25|top1|none	bench.pfalciparum.fragments	2.5588		4.9138	0.2696		131	0.9167	90.0000	12.0000	273
+uniref50 k25 top1	uniref50|k25|top1|none	bench.creinhardtii.complete	-0.7707	-0.7707				-133	0.7358	0.0000	868.0000	333
+uniref50 k25 top1	uniref50|k25|top1|none	bench.creinhardtii.fragments	0.7971		2.1678	-0.5813		132	0.7893	465.0000	381.0000	431
+uniref50 k1 top1, R2 needs subject M	uniref50|k1|top1|r2	sim.human.d1	-3.7355	-4.3024	0.7151	-7.0760	0.9808	-1244	0.8268	106.0000	1671.0000	2716
+uniref50 k1 top1, R2 needs subject M	uniref50|k1|top1|r2	sim.human.d8	-4.1360	-6.4876	0.2915	-6.1373	0.8161	-807	0.8446	153.0000	1076.0000	2299
+uniref50 k1 top1, R2 needs subject M	uniref50|k1|top1|r2	sim.human.d32	-3.4956	-9.4282	0.0596	-9.0021	0.4079	-460	0.8614	158.0000	594.0000	1936
+uniref50 k1 top1, R2 needs subject M	uniref50|k1|top1|r2	sim.athal.d1	0.7376	-0.0939	6.1814	2.9038	4.5732	152	0.9091	182.0000	1035.0000	1485
+uniref50 k1 top1, R2 needs subject M	uniref50|k1|top1|r2	sim.athal.d16	3.8111	-1.4790	6.3086	1.6772	6.7736	711	0.9217	377.0000	494.0000	2537
+uniref50 k1 top1, R2 needs subject M	uniref50|k1|top1|r2	bench.human.complete	-6.9696	-6.9696				-1320	0.8796	0.0000	1636.0000	1703
+uniref50 k1 top1, R2 needs subject M	uniref50|k1|top1|r2	bench.human.fragments	-3.5223		0.2693	-7.1930		-638	0.8752	154.0000	825.0000	2201
+uniref50 k1 top1, R2 needs subject M	uniref50|k1|top1|r2	bench.mouse.complete	-2.2908	-2.2908				-484	0.8997	0.0000	804.0000	949
+uniref50 k1 top1, R2 needs subject M	uniref50|k1|top1|r2	bench.mouse.fragments	-1.1103		0.4337	-2.6157		-223	0.8784	144.0000	404.0000	1812
+uniref50 k1 top1, R2 needs subject M	uniref50|k1|top1|r2	bench.dmel.complete	-0.0220	-0.0220				-3	0.9269	0.0000	319.0000	324
+uniref50 k1 top1, R2 needs subject M	uniref50|k1|top1|r2	bench.dmel.fragments	1.7023		3.4889	-0.0455		222	0.8891	206.0000	156.0000	848
+uniref50 k1 top1, R2 needs subject M	uniref50|k1|top1|r2	bench.athal.complete	0.1521	0.1521				40	0.9001	0.0000	1736.0000	1274
+uniref50 k1 top1, R2 needs subject M	uniref50|k1|top1|r2	bench.athal.fragments	2.6022		4.5598	0.6786		631	0.8427	343.0000	646.0000	2701
+uniref50 k1 top1, R2 needs subject M	uniref50|k1|top1|r2	bench.spombe.complete	0.8144	0.8144				41	0.9316	0.0000	228.0000	135
+uniref50 k1 top1, R2 needs subject M	uniref50|k1|top1|r2	bench.spombe.fragments	1.1199		1.5873	0.6590		54	0.8976	77.0000	111.0000	362
+uniref50 k1 top1, R2 needs subject M	uniref50|k1|top1|r2	bench.tthermophila.complete	0.5869	0.5869				148	0.8336	0.0000	1654.0000	746
+uniref50 k1 top1, R2 needs subject M	uniref50|k1|top1|r2	bench.tthermophila.fragments	3.2230		5.6221	0.8676		773	0.8013	812.0000	734.0000	1339
+uniref50 k1 top1, R2 needs subject M	uniref50|k1|top1|r2	bench.pfalciparum.complete	0.2467	0.2467				13	0.9431	0.0000	25.0000	19
+uniref50 k1 top1, R2 needs subject M	uniref50|k1|top1|r2	bench.pfalciparum.fragments	2.5393		4.9138	0.2311		130	0.9165	90.0000	13.0000	272
+uniref50 k1 top1, R2 needs subject M	uniref50|k1|top1|r2	bench.creinhardtii.complete	-0.6548	-0.6548				-113	0.7369	0.0000	848.0000	310
+uniref50 k1 top1, R2 needs subject M	uniref50|k1|top1|r2	bench.creinhardtii.fragments	0.8574		2.1798	-0.4723		142	0.7899	464.0000	372.0000	423
+uniref50 k1 top1, non-M subjects dropped	uniref50|k1|top1|all	sim.human.d1	-3.5193	-3.9619	0.1589	-6.3129	-0.0408	-1172	0.8289	138.0000	1567.0000	2536
+uniref50 k1 top1, non-M subjects dropped	uniref50|k1|top1|all	sim.human.d8	-4.1514	-5.9919	-0.5248	-5.2760	-0.6063	-810	0.8444	228.0000	1004.0000	2116
+uniref50 k1 top1, non-M subjects dropped	uniref50|k1|top1|all	sim.human.d32	-3.9364	-8.4511	-1.0125	-8.0252	-1.0768	-518	0.8569	267.0000	543.0000	1757
+uniref50 k1 top1, non-M subjects dropped	uniref50|k1|top1|all	sim.athal.d1	0.9317	0.1760	5.6829	3.2667	4.4208	192	0.9110	190.0000	987.0000	1428
+uniref50 k1 top1, non-M subjects dropped	uniref50|k1|top1|all	sim.athal.d16	3.7843	-0.9684	5.9250	2.0964	6.4365	706	0.9215	417.0000	459.0000	2459
+uniref50 k1 top1, non-M subjects dropped	uniref50|k1|top1|all	bench.human.complete	-6.4522	-6.4522				-1222	0.8848	0.0000	1538.0000	1601
+uniref50 k1 top1, non-M subjects dropped	uniref50|k1|top1|all	bench.human.fragments	-3.6825		-0.7296	-6.5410		-667	0.8736	243.0000	765.0000	2051
+uniref50 k1 top1, non-M subjects dropped	uniref50|k1|top1|all	bench.mouse.complete	-2.0400	-2.0400				-431	0.9022	0.0000	751.0000	894
+uniref50 k1 top1, non-M subjects dropped	uniref50|k1|top1|all	bench.mouse.fragments	-1.1950		-0.0202	-2.3403		-240	0.8776	189.0000	376.0000	1738
+uniref50 k1 top1, non-M subjects dropped	uniref50|k1|top1|all	bench.dmel.complete	0.0514	0.0514				7	0.9277	0.0000	309.0000	313
+uniref50 k1 top1, non-M subjects dropped	uniref50|k1|top1|all	bench.dmel.fragments	1.6256		3.2253	0.0607		212	0.8884	223.0000	149.0000	823
+uniref50 k1 top1, non-M subjects dropped	uniref50|k1|top1|all	bench.athal.complete	0.4106	0.4106				108	0.9027	0.0000	1668.0000	1206
+uniref50 k1 top1, non-M subjects dropped	uniref50|k1|top1|all	bench.athal.fragments	2.5073		4.1937	0.8503		608	0.8417	387.0000	625.0000	2636
+uniref50 k1 top1, non-M subjects dropped	uniref50|k1|top1|all	bench.spombe.complete	0.8144	0.8144				41	0.9316	0.0000	228.0000	135
+uniref50 k1 top1, non-M subjects dropped	uniref50|k1|top1|all	bench.spombe.fragments	1.0577		1.4620	0.6590		51	0.8969	80.0000	111.0000	359
+uniref50 k1 top1, non-M subjects dropped	uniref50|k1|top1|all	bench.tthermophila.complete	0.6226	0.6226				157	0.8339	0.0000	1645.0000	737
+uniref50 k1 top1, non-M subjects dropped	uniref50|k1|top1|all	bench.tthermophila.fragments	3.1980		5.5548	0.8841		767	0.8010	820.0000	732.0000	1329
+uniref50 k1 top1, non-M subjects dropped	uniref50|k1|top1|all	bench.pfalciparum.complete	0.2467	0.2467				13	0.9431	0.0000	25.0000	19
+uniref50 k1 top1, non-M subjects dropped	uniref50|k1|top1|all	bench.pfalciparum.fragments	2.3439		4.5175	0.2311		120	0.9145	100.0000	13.0000	262
+uniref50 k1 top1, non-M subjects dropped	uniref50|k1|top1|all	bench.creinhardtii.complete	-0.5795	-0.5795				-100	0.7377	0.0000	835.0000	296
+uniref50 k1 top1, non-M subjects dropped	uniref50|k1|top1|all	bench.creinhardtii.fragments	0.8695		2.1678	-0.4360		144	0.7900	465.0000	369.0000	419
+best_uniref50	uniref50|k25|top25_maj|all	sim.human.d1	-0.3093	-0.4431	0.7151	-0.4856	0.6539	-103	0.8610	114.0000	522.0000	1896
+best_uniref50	uniref50|k25|top25_maj|all	sim.human.d8	-0.3178	-0.5841	-0.2916	-0.4846	0.4197	-62	0.8828	180.0000	304.0000	1808
+best_uniref50	uniref50|k25|top25_maj|all	sim.human.d32	-0.2964	-0.3961	-0.4765	-0.3490	-0.1794	-39	0.8933	203.0000	128.0000	1664
+best_uniref50	uniref50|k25|top25_maj|all	sim.athal.d1	2.9020	2.4879	5.9820	5.2631	4.3191	598	0.9307	189.0000	582.0000	1615
+best_uniref50	uniref50|k25|top25_maj|all	sim.athal.d16	4.8295	2.3241	6.6070	4.6122	5.9581	901	0.9319	445.0000	236.0000	2619
+best_uniref50	uniref50|k25|top25_maj|all	bench.human.complete	-0.6653	-0.6653				-126	0.9427	0.0000	442.0000	1033
+best_uniref50	uniref50|k25|top25_maj|all	bench.human.fragments	-0.2595		-0.1347	-0.3803		-47	0.9078	190.0000	198.0000	1847
+best_uniref50	uniref50|k25|top25_maj|all	bench.mouse.complete	-0.3218	-0.3218				-68	0.9194	0.0000	388.0000	765
+best_uniref50	uniref50|k25|top25_maj|all	bench.mouse.fragments	-0.1295		-0.1109	-0.1475		-26	0.8882	198.0000	153.0000	1731
+best_uniref50	uniref50|k25|top25_maj|all	bench.dmel.complete	0.6310	0.6310				86	0.9335	0.0000	230.0000	336
+best_uniref50	uniref50|k25|top25_maj|all	bench.dmel.fragments	2.2544		3.9386	0.6068		294	0.8946	177.0000	113.0000	861
+best_uniref50	uniref50|k25|top25_maj|all	bench.athal.complete	2.3721	2.3721				624	0.9223	0.0000	1152.0000	1461
+best_uniref50	uniref50|k25|top25_maj|all	bench.athal.fragments	3.3940		4.3102	2.4936		823	0.8506	373.0000	424.0000	2816
+best_uniref50	uniref50|k25|top25_maj|all	bench.spombe.complete	0.9137	0.9137				46	0.9326	0.0000	223.0000	222
+best_uniref50	uniref50|k25|top25_maj|all	bench.spombe.fragments	1.2651		1.2949	1.2356		61	0.8990	84.0000	97.0000	389
+best_uniref50	uniref50|k25|top25_maj|all	bench.tthermophila.complete	0.2617	0.2617				66	0.8303	0.0000	1736.0000	1005
+best_uniref50	uniref50|k25|top25_maj|all	bench.tthermophila.fragments	3.3439		6.2029	0.5371		802	0.8025	743.0000	774.0000	1505
+best_uniref50	uniref50|k25|top25_maj|all	bench.pfalciparum.complete	0.3986	0.3986				21	0.9446	0.0000	17.0000	29
+best_uniref50	uniref50|k25|top25_maj|all	bench.pfalciparum.fragments	2.5783		4.8346	0.3852		132	0.9169	92.0000	9.0000	272
+best_uniref50	uniref50|k25|top25_maj|all	bench.creinhardtii.complete	-1.3269	-1.3269				-229	0.7302	0.0000	964.0000	494
+best_uniref50	uniref50|k25|top25_maj|all	bench.creinhardtii.fragments	0.7065		2.3966	-0.9931		117	0.7884	446.0000	415.0000	521
+best_uniref50_topn	uniref50|k25|top25_maj|none	sim.human.d1	-0.3723	-0.4834	0.4767	-0.7631	0.5313	-124	0.8604	120.0000	537.0000	1931
+best_uniref50_topn	uniref50|k25|top25_maj|none	sim.human.d8	-0.3946	-0.6903	-0.3499	-0.5384	0.3964	-77	0.8820	182.0000	317.0000	1832
+best_uniref50_topn	uniref50|k25|top25_maj|none	sim.human.d32	-0.3800	-0.4754	-0.5956	-0.5583	-0.2284	-50	0.8925	208.0000	134.0000	1674
+best_uniref50_topn	uniref50|k25|top25_maj|none	sim.athal.d1	2.8050	2.3706	6.0817	5.2631	4.2683	578	0.9298	189.0000	602.0000	1632
+best_uniref50_topn	uniref50|k25|top25_maj|none	sim.athal.d16	4.7384	2.1656	6.6070	4.4025	5.9038	884	0.9310	450.0000	248.0000	2627
+best_uniref50_topn	uniref50|k25|top25_maj|none	bench.human.complete	-0.7392	-0.7392				-140	0.9419	0.0000	456.0000	1047
+best_uniref50_topn	uniref50|k25|top25_maj|none	bench.human.fragments	-0.3092		-0.2470	-0.3695		-56	0.9073	200.0000	197.0000	1860
+best_uniref50_topn	uniref50|k25|top25_maj|none	bench.mouse.complete	-0.2840	-0.2840				-60	0.9198	0.0000	380.0000	768
+best_uniref50_topn	uniref50|k25|top25_maj|none	bench.mouse.fragments	-0.1494		-0.2017	-0.0983		-30	0.8880	207.0000	148.0000	1737
+best_uniref50_topn	uniref50|k25|top25_maj|none	bench.dmel.complete	0.6016	0.6016				82	0.9332	0.0000	234.0000	340
+best_uniref50_topn	uniref50|k25|top25_maj|none	bench.dmel.fragments	2.2084		3.8611	0.5916		288	0.8942	182.0000	114.0000	864
+best_uniref50_topn	uniref50|k25|top25_maj|none	bench.athal.complete	2.2619	2.2619				595	0.9212	0.0000	1181.0000	1486
+best_uniref50_topn	uniref50|k25|top25_maj|none	bench.athal.fragments	3.3610		4.2686	2.4691		815	0.8503	378.0000	427.0000	2824
+best_uniref50_topn	uniref50|k25|top25_maj|none	bench.spombe.complete	0.9535	0.9535				48	0.9330	0.0000	221.0000	226
+best_uniref50_topn	uniref50|k25|top25_maj|none	bench.spombe.fragments	1.2858		1.2114	1.3591		62	0.8992	86.0000	94.0000	392
+best_uniref50_topn	uniref50|k25|top25_maj|none	bench.tthermophila.complete	0.2141	0.2141				54	0.8299	0.0000	1748.0000	1015
+best_uniref50_topn	uniref50|k25|top25_maj|none	bench.tthermophila.fragments	3.3314		6.2197	0.4958		799	0.8024	741.0000	779.0000	1512
+best_uniref50_topn	uniref50|k25|top25_maj|none	bench.pfalciparum.complete	0.3986	0.3986				21	0.9446	0.0000	17.0000	29
+best_uniref50_topn	uniref50|k25|top25_maj|none	bench.pfalciparum.fragments	2.6369		4.9534	0.3852		135	0.9175	89.0000	9.0000	275
+best_uniref50_topn	uniref50|k25|top25_maj|none	bench.creinhardtii.complete	-1.3791	-1.3791				-238	0.7297	0.0000	973.0000	503
+best_uniref50_topn	uniref50|k25|top25_maj|none	bench.creinhardtii.fragments	0.6702		2.3605	-1.0294		111	0.7880	449.0000	418.0000	528
+best_uniref50_cons	uniref50|k25|cons25_fire_cap30|none	sim.human.d1	-0.6336	-0.0476	-4.6882	0.1388	-5.7621	-211	0.8578	339.0000	405.0000	1829
+best_uniref50_cons	uniref50|k25|cons25_fire_cap30|none	sim.human.d8	-2.1064	-0.0708	-5.7143	0.3768	-7.2753	-411	0.8649	603.0000	230.0000	1772
+best_uniref50_cons	uniref50|k25|cons25_fire_cap30|none	sim.human.d32	-4.2555	-0.0528	-5.3008	0.0697	-7.6684	-560	0.8538	743.0000	109.0000	1671
+best_uniref50_cons	uniref50|k25|cons25_fire_cap30|none	sim.athal.d1	2.5672	2.9104	2.3928	5.8076	-1.1687	529	0.9274	333.0000	507.0000	1743
+best_uniref50_cons	uniref50|k25|cons25_fire_cap30|none	sim.athal.d16	0.8791	2.7467	1.2788	4.1230	-0.8807	164	0.8924	1199.0000	219.0000	2518
+best_uniref50_cons	uniref50|k25|cons25_fire_cap30|none	bench.human.complete	0.0739	0.0739				14	0.9501	0.0000	302.0000	1001
+best_uniref50_cons	uniref50|k25|cons25_fire_cap30|none	bench.human.fragments	-3.3015		-7.1385	0.4128		-598	0.8774	814.0000	125.0000	1802
+best_uniref50_cons	uniref50|k25|cons25_fire_cap30|none	bench.mouse.complete	0.2698	0.2698				57	0.9253	0.0000	263.0000	781
+best_uniref50_cons	uniref50|k25|cons25_fire_cap30|none	bench.mouse.fragments	-3.4504		-7.1000	0.1082		-693	0.8550	891.0000	127.0000	1583
+best_uniref50_cons	uniref50|k25|cons25_fire_cap30|none	bench.dmel.complete	0.7263	0.7263				99	0.9344	0.0000	217.0000	403
+best_uniref50_cons	uniref50|k25|cons25_fire_cap30|none	bench.dmel.fragments	-0.8665		-2.5430	0.7737		-113	0.8634	595.0000	102.0000	767
+best_uniref50_cons	uniref50|k25|cons25_fire_cap30|none	bench.athal.complete	3.0412	3.0412				800	0.9290	0.0000	976.0000	1668
+best_uniref50_cons	uniref50|k25|cons25_fire_cap30|none	bench.athal.fragments	0.3959		-2.1219	2.8697		96	0.8206	1146.0000	378.0000	2763
+best_uniref50_cons	uniref50|k25|cons25_fire_cap30|none	bench.spombe.complete	0.2185	0.2185				11	0.9256	0.0000	258.0000	354
+best_uniref50_cons	uniref50|k25|cons25_fire_cap30|none	bench.spombe.fragments	-1.4517		-2.5480	-0.3707		-70	0.8718	176.0000	136.0000	386
+best_uniref50_cons	uniref50|k25|cons25_fire_cap30|none	bench.tthermophila.complete	0.9874	0.9874				249	0.8376	0.0000	1553.0000	1080
+best_uniref50_cons	uniref50|k25|cons25_fire_cap30|none	bench.tthermophila.fragments	0.1460		-0.7659	1.0411		35	0.7705	1571.0000	713.0000	919
+best_uniref50_cons	uniref50|k25|cons25_fire_cap30|none	bench.pfalciparum.complete	0.4745	0.4745				25	0.9453	0.0000	13.0000	44
+best_uniref50_cons	uniref50|k25|cons25_fire_cap30|none	bench.pfalciparum.fragments	-0.4884		-1.5058	0.5007		-25	0.8862	252.0000	6.0000	182
+best_uniref50_cons	uniref50|k25|cons25_fire_cap30|none	bench.creinhardtii.complete	-0.6606	-0.6606				-114	0.7369	0.0000	849.0000	534
+best_uniref50_cons	uniref50|k25|cons25_fire_cap30|none	bench.creinhardtii.fragments	-1.0387		-1.4452	-0.6298		-172	0.7710	765.0000	385.0000	494
+best_uniref50_mfilt_none	uniref50|k25|top25_maj|none	sim.human.d1	-0.3723	-0.4834	0.4767	-0.7631	0.5313	-124	0.8604	120.0000	537.0000	1931
+best_uniref50_mfilt_none	uniref50|k25|top25_maj|none	sim.human.d8	-0.3946	-0.6903	-0.3499	-0.5384	0.3964	-77	0.8820	182.0000	317.0000	1832
+best_uniref50_mfilt_none	uniref50|k25|top25_maj|none	sim.human.d32	-0.3800	-0.4754	-0.5956	-0.5583	-0.2284	-50	0.8925	208.0000	134.0000	1674
+best_uniref50_mfilt_none	uniref50|k25|top25_maj|none	sim.athal.d1	2.8050	2.3706	6.0817	5.2631	4.2683	578	0.9298	189.0000	602.0000	1632
+best_uniref50_mfilt_none	uniref50|k25|top25_maj|none	sim.athal.d16	4.7384	2.1656	6.6070	4.4025	5.9038	884	0.9310	450.0000	248.0000	2627
+best_uniref50_mfilt_none	uniref50|k25|top25_maj|none	bench.human.complete	-0.7392	-0.7392				-140	0.9419	0.0000	456.0000	1047
+best_uniref50_mfilt_none	uniref50|k25|top25_maj|none	bench.human.fragments	-0.3092		-0.2470	-0.3695		-56	0.9073	200.0000	197.0000	1860
+best_uniref50_mfilt_none	uniref50|k25|top25_maj|none	bench.mouse.complete	-0.2840	-0.2840				-60	0.9198	0.0000	380.0000	768
+best_uniref50_mfilt_none	uniref50|k25|top25_maj|none	bench.mouse.fragments	-0.1494		-0.2017	-0.0983		-30	0.8880	207.0000	148.0000	1737
+best_uniref50_mfilt_none	uniref50|k25|top25_maj|none	bench.dmel.complete	0.6016	0.6016				82	0.9332	0.0000	234.0000	340
+best_uniref50_mfilt_none	uniref50|k25|top25_maj|none	bench.dmel.fragments	2.2084		3.8611	0.5916		288	0.8942	182.0000	114.0000	864
+best_uniref50_mfilt_none	uniref50|k25|top25_maj|none	bench.athal.complete	2.2619	2.2619				595	0.9212	0.0000	1181.0000	1486
+best_uniref50_mfilt_none	uniref50|k25|top25_maj|none	bench.athal.fragments	3.3610		4.2686	2.4691		815	0.8503	378.0000	427.0000	2824
+best_uniref50_mfilt_none	uniref50|k25|top25_maj|none	bench.spombe.complete	0.9535	0.9535				48	0.9330	0.0000	221.0000	226
+best_uniref50_mfilt_none	uniref50|k25|top25_maj|none	bench.spombe.fragments	1.2858		1.2114	1.3591		62	0.8992	86.0000	94.0000	392
+best_uniref50_mfilt_none	uniref50|k25|top25_maj|none	bench.tthermophila.complete	0.2141	0.2141				54	0.8299	0.0000	1748.0000	1015
+best_uniref50_mfilt_none	uniref50|k25|top25_maj|none	bench.tthermophila.fragments	3.3314		6.2197	0.4958		799	0.8024	741.0000	779.0000	1512
+best_uniref50_mfilt_none	uniref50|k25|top25_maj|none	bench.pfalciparum.complete	0.3986	0.3986				21	0.9446	0.0000	17.0000	29
+best_uniref50_mfilt_none	uniref50|k25|top25_maj|none	bench.pfalciparum.fragments	2.6369		4.9534	0.3852		135	0.9175	89.0000	9.0000	275
+best_uniref50_mfilt_none	uniref50|k25|top25_maj|none	bench.creinhardtii.complete	-1.3791	-1.3791				-238	0.7297	0.0000	973.0000	503
+best_uniref50_mfilt_none	uniref50|k25|top25_maj|none	bench.creinhardtii.fragments	0.6702		2.3605	-1.0294		111	0.7880	449.0000	418.0000	528
+best_uniref50_mfilt_r2	uniref50|k25|top25_maj|r2	sim.human.d1	-0.4474	-0.5895	0.7151	-0.9018	0.6539	-149	0.8597	114.0000	568.0000	1946
+best_uniref50_mfilt_r2	uniref50|k25|top25_maj|r2	sim.human.d8	-0.4305	-0.7966	-0.2333	-0.6461	0.5130	-84	0.8816	175.0000	331.0000	1839
+best_uniref50_mfilt_r2	uniref50|k25|top25_maj|r2	sim.human.d32	-0.3724	-0.7131	-0.4765	-0.5583	-0.0979	-49	0.8926	198.0000	143.0000	1675
+best_uniref50_mfilt_r2	uniref50|k25|top25_maj|r2	sim.athal.d1	2.8050	2.3647	6.0817	5.2631	4.3191	578	0.9298	188.0000	603.0000	1629
+best_uniref50_mfilt_r2	uniref50|k25|top25_maj|r2	sim.athal.d16	4.7706	2.1656	6.6070	4.4025	5.9690	890	0.9313	444.0000	248.0000	2625
+best_uniref50_mfilt_r2	uniref50|k25|top25_maj|r2	bench.human.complete	-0.8871	-0.8871				-168	0.9405	0.0000	484.0000	1062
+best_uniref50_mfilt_r2	uniref50|k25|top25_maj|r2	bench.human.fragments	-0.3257		-0.1123	-0.5325		-59	0.9071	188.0000	212.0000	1857
+best_uniref50_mfilt_r2	uniref50|k25|top25_maj|r2	bench.mouse.complete	-0.4307	-0.4307				-91	0.9183	0.0000	411.0000	777
+best_uniref50_mfilt_r2	uniref50|k25|top25_maj|r2	bench.mouse.fragments	-0.1544		-0.1008	-0.2065		-31	0.8880	197.0000	159.0000	1736
+best_uniref50_mfilt_r2	uniref50|k25|top25_maj|r2	bench.dmel.complete	0.5943	0.5943				81	0.9331	0.0000	235.0000	340
+best_uniref50_mfilt_r2	uniref50|k25|top25_maj|r2	bench.dmel.fragments	2.2544		3.9541	0.5916		294	0.8946	176.0000	114.0000	864
+best_uniref50_mfilt_r2	uniref50|k25|top25_maj|r2	bench.athal.complete	2.2391	2.2391				589	0.9210	0.0000	1187.0000	1486
+best_uniref50_mfilt_r2	uniref50|k25|top25_maj|r2	bench.athal.fragments	3.3734		4.3351	2.4282		818	0.8504	370.0000	432.0000	2825
+best_uniref50_mfilt_r2	uniref50|k25|top25_maj|r2	bench.spombe.complete	0.8740	0.8740				44	0.9322	0.0000	225.0000	224
+best_uniref50_mfilt_r2	uniref50|k25|top25_maj|r2	bench.spombe.fragments	1.2651		1.2949	1.2356		61	0.8990	84.0000	97.0000	389
+best_uniref50_mfilt_r2	uniref50|k25|top25_maj|r2	bench.tthermophila.complete	0.2062	0.2062				52	0.8298	0.0000	1750.0000	1017
+best_uniref50_mfilt_r2	uniref50|k25|top25_maj|r2	bench.tthermophila.fragments	3.3231		6.2281	0.4710		797	0.8023	740.0000	782.0000	1514
+best_uniref50_mfilt_r2	uniref50|k25|top25_maj|r2	bench.pfalciparum.complete	0.3986	0.3986				21	0.9446	0.0000	17.0000	29
+best_uniref50_mfilt_r2	uniref50|k25|top25_maj|r2	bench.pfalciparum.fragments	2.6565		4.9931	0.3852		136	0.9177	88.0000	9.0000	274
+best_uniref50_mfilt_r2	uniref50|k25|top25_maj|r2	bench.creinhardtii.complete	-1.3906	-1.3906				-240	0.7296	0.0000	975.0000	505
+best_uniref50_mfilt_r2	uniref50|k25|top25_maj|r2	bench.creinhardtii.fragments	0.7004		2.4207	-1.0294		116	0.7883	444.0000	418.0000	526
+best_uniref50_mfilt_all	uniref50|k25|top25_maj|all	sim.human.d1	-0.3093	-0.4431	0.7151	-0.4856	0.6539	-103	0.8610	114.0000	522.0000	1896
+best_uniref50_mfilt_all	uniref50|k25|top25_maj|all	sim.human.d8	-0.3178	-0.5841	-0.2916	-0.4846	0.4197	-62	0.8828	180.0000	304.0000	1808
+best_uniref50_mfilt_all	uniref50|k25|top25_maj|all	sim.human.d32	-0.2964	-0.3961	-0.4765	-0.3490	-0.1794	-39	0.8933	203.0000	128.0000	1664
+best_uniref50_mfilt_all	uniref50|k25|top25_maj|all	sim.athal.d1	2.9020	2.4879	5.9820	5.2631	4.3191	598	0.9307	189.0000	582.0000	1615
+best_uniref50_mfilt_all	uniref50|k25|top25_maj|all	sim.athal.d16	4.8295	2.3241	6.6070	4.6122	5.9581	901	0.9319	445.0000	236.0000	2619
+best_uniref50_mfilt_all	uniref50|k25|top25_maj|all	bench.human.complete	-0.6653	-0.6653				-126	0.9427	0.0000	442.0000	1033
+best_uniref50_mfilt_all	uniref50|k25|top25_maj|all	bench.human.fragments	-0.2595		-0.1347	-0.3803		-47	0.9078	190.0000	198.0000	1847
+best_uniref50_mfilt_all	uniref50|k25|top25_maj|all	bench.mouse.complete	-0.3218	-0.3218				-68	0.9194	0.0000	388.0000	765
+best_uniref50_mfilt_all	uniref50|k25|top25_maj|all	bench.mouse.fragments	-0.1295		-0.1109	-0.1475		-26	0.8882	198.0000	153.0000	1731
+best_uniref50_mfilt_all	uniref50|k25|top25_maj|all	bench.dmel.complete	0.6310	0.6310				86	0.9335	0.0000	230.0000	336
+best_uniref50_mfilt_all	uniref50|k25|top25_maj|all	bench.dmel.fragments	2.2544		3.9386	0.6068		294	0.8946	177.0000	113.0000	861
+best_uniref50_mfilt_all	uniref50|k25|top25_maj|all	bench.athal.complete	2.3721	2.3721				624	0.9223	0.0000	1152.0000	1461
+best_uniref50_mfilt_all	uniref50|k25|top25_maj|all	bench.athal.fragments	3.3940		4.3102	2.4936		823	0.8506	373.0000	424.0000	2816
+best_uniref50_mfilt_all	uniref50|k25|top25_maj|all	bench.spombe.complete	0.9137	0.9137				46	0.9326	0.0000	223.0000	222
+best_uniref50_mfilt_all	uniref50|k25|top25_maj|all	bench.spombe.fragments	1.2651		1.2949	1.2356		61	0.8990	84.0000	97.0000	389
+best_uniref50_mfilt_all	uniref50|k25|top25_maj|all	bench.tthermophila.complete	0.2617	0.2617				66	0.8303	0.0000	1736.0000	1005
+best_uniref50_mfilt_all	uniref50|k25|top25_maj|all	bench.tthermophila.fragments	3.3439		6.2029	0.5371		802	0.8025	743.0000	774.0000	1505
+best_uniref50_mfilt_all	uniref50|k25|top25_maj|all	bench.pfalciparum.complete	0.3986	0.3986				21	0.9446	0.0000	17.0000	29
+best_uniref50_mfilt_all	uniref50|k25|top25_maj|all	bench.pfalciparum.fragments	2.5783		4.8346	0.3852		132	0.9169	92.0000	9.0000	272
+best_uniref50_mfilt_all	uniref50|k25|top25_maj|all	bench.creinhardtii.complete	-1.3269	-1.3269				-229	0.7302	0.0000	964.0000	494
+best_uniref50_mfilt_all	uniref50|k25|top25_maj|all	bench.creinhardtii.fragments	0.7065		2.3966	-0.9931		117	0.7884	446.0000	415.0000	521
+best_sprot	sprot|k25|top5_anyup|all	sim.human.d1	0.0691	0.0952	-0.2384	0.0694	-0.0408	23	0.8648	143.0000	367.0000	1330
+best_sprot	sprot|k25|top5_anyup|all	sim.human.d8	0.0154	0.1239	-0.5248	0.2153	-0.1400	3	0.8861	208.0000	211.0000	1513
+best_sprot	sprot|k25|top5_anyup|all	sim.human.d32	0.0000	0.2905	-0.4169	0.2093	-0.1142	0	0.8963	198.0000	94.0000	1492
+best_sprot	sprot|k25|top5_anyup|all	sim.athal.d1	0.0242	0.0000	0.2991	0.0000	0.1017	5	0.9020	329.0000	1035.0000	631
+best_sprot	sprot|k25|top5_anyup|all	sim.athal.d16	0.0107	0.0352	-0.2131	0.0000	0.0544	2	0.8837	1148.0000	432.0000	1353
+best_sprot	sprot|k25|top5_anyup|all	bench.human.complete	0.2323	0.2323				44	0.9517	0.0000	272.0000	732
+best_sprot	sprot|k25|top5_anyup|all	bench.human.fragments	0.1325		0.0224	0.2390		24	0.9117	176.0000	141.0000	1645
+best_sprot	sprot|k25|top5_anyup|all	bench.mouse.complete	0.1136	0.1136				24	0.9238	0.0000	296.0000	486
+best_sprot	sprot|k25|top5_anyup|all	bench.mouse.fragments	0.0448		0.0404	0.0492		9	0.8900	183.0000	133.0000	1508
+best_sprot	sprot|k25|top5_anyup|all	bench.dmel.complete	-0.0734	-0.0734				-10	0.9264	0.0000	326.0000	79
+best_sprot	sprot|k25|top5_anyup|all	bench.dmel.fragments	-0.0077		0.0620	-0.0759		-1	0.8720	427.0000	158.0000	437
+best_sprot	sprot|k25|top5_anyup|all	bench.athal.complete	-0.0038	-0.0038				-1	0.8986	0.0000	1777.0000	333
+best_sprot	sprot|k25|top5_anyup|all	bench.athal.fragments	0.0289		0.0582	0.0000		7	0.8169	884.0000	729.0000	1673
+best_sprot	sprot|k25|top5_anyup|all	bench.spombe.complete	0.0596	0.0596				3	0.9240	0.0000	266.0000	105
+best_sprot	sprot|k25|top5_anyup|all	bench.spombe.fragments	0.1867		0.1253	0.2471		9	0.8882	112.0000	121.0000	305
+best_sprot	sprot|k25|top5_anyup|all	bench.tthermophila.complete	0.0238	0.0238				6	0.8280	0.0000	1796.0000	201
+best_sprot	sprot|k25|top5_anyup|all	bench.tthermophila.fragments	-0.0250		0.0084	-0.0578		-6	0.7688	1479.0000	846.0000	387
+best_sprot	sprot|k25|top5_anyup|all	bench.pfalciparum.complete	0.0189	0.0189				1	0.9408	0.0000	37.0000	3
+best_sprot	sprot|k25|top5_anyup|all	bench.pfalciparum.fragments	-0.0196		-0.0396	0.0000		-1	0.8909	215.0000	19.0000	120
+best_sprot	sprot|k25|top5_anyup|all	bench.creinhardtii.complete	-0.0348	-0.0348				-6	0.7431	0.0000	741.0000	87
+best_sprot	sprot|k25|top5_anyup|all	bench.creinhardtii.fragments	-0.0484		0.0000	-0.0968		-8	0.7809	645.0000	341.0000	115
+best_sprot_cons	sprot|k25|cons1_all|none	sim.human.d1	-0.3243	-0.5712	3.2578	-1.3181	1.0626	-108	0.8609	72.0000	569.0000	1822
+best_sprot_cons	sprot|k25|cons1_all|none	sim.human.d8	-0.0154	-0.7612	1.6326	-0.8614	1.6555	-3	0.8858	94.0000	331.0000	1806
+best_sprot_cons	sprot|k25|cons1_all|none	sim.human.d32	0.7371	-0.3169	1.6677	-0.4885	1.4358	97	0.9037	68.0000	127.0000	1679
+best_sprot_cons	sprot|k25|cons1_all|none	sim.athal.d1	-2.3925	-3.2448	4.2871	-2.9039	1.6769	-493	0.8778	258.0000	1604.0000	1454
+best_sprot_cons	sprot|k25|cons1_all|none	sim.athal.d16	-0.4449	-3.5039	2.1739	-2.9350	1.1634	-83	0.8792	990.0000	675.0000	1877
+best_sprot_cons	sprot|k25|cons1_all|none	bench.human.complete	-0.6653	-0.6653				-126	0.9427	0.0000	442.0000	950
+best_sprot_cons	sprot|k25|cons1_all|none	bench.human.fragments	0.5079		1.3581	-0.3151		92	0.9155	57.0000	192.0000	1852
+best_sprot_cons	sprot|k25|cons1_all|none	bench.mouse.complete	-0.5206	-0.5206				-110	0.9174	0.0000	430.0000	679
+best_sprot_cons	sprot|k25|cons1_all|none	bench.mouse.fragments	0.2539		1.0489	-0.5212		51	0.8921	83.0000	191.0000	1690
+best_sprot_cons	sprot|k25|cons1_all|none	bench.dmel.complete	-2.1497	-2.1497				-293	0.9056	0.0000	609.0000	411
+best_sprot_cons	sprot|k25|cons1_all|none	bench.dmel.fragments	-0.1764		1.3336	-1.6535		-23	0.8703	345.0000	262.0000	650
+best_sprot_cons	sprot|k25|cons1_all|none	bench.athal.complete	-2.8814	-2.8814				-758	0.8698	0.0000	2534.0000	1332
+best_sprot_cons	sprot|k25|cons1_all|none	bench.athal.fragments	-0.3381		1.3812	-2.0277		-82	0.8133	725.0000	977.0000	2171
+best_sprot_cons	sprot|k25|cons1_all|none	bench.spombe.complete	-3.5356	-3.5356				-178	0.8881	0.0000	447.0000	358
+best_sprot_cons	sprot|k25|cons1_all|none	bench.spombe.fragments	-0.7673		0.8772	-2.3888		-37	0.8787	94.0000	185.0000	407
+best_sprot_cons	sprot|k25|cons1_all|none	bench.tthermophila.complete	-3.3509	-3.3509				-845	0.7942	0.0000	2647.0000	1144
+best_sprot_cons	sprot|k25|cons1_all|none	bench.tthermophila.fragments	-0.6462		0.6817	-1.9500		-155	0.7626	1399.0000	1075.0000	756
+best_sprot_cons	sprot|k25|cons1_all|none	bench.pfalciparum.complete	-0.2658	-0.2658				-14	0.9379	0.0000	52.0000	19
+best_sprot_cons	sprot|k25|cons1_all|none	bench.pfalciparum.fragments	0.2539		0.6737	-0.1541		13	0.8936	197.0000	23.0000	145
+best_sprot_cons	sprot|k25|cons1_all|none	bench.creinhardtii.complete	-1.3791	-1.3791				-238	0.7297	0.0000	973.0000	418
+best_sprot_cons	sprot|k25|cons1_all|none	bench.creinhardtii.fragments	-0.1631		0.7587	-1.0900		-27	0.7797	582.0000	423.0000	302
+perfect (oracle)	perfect	sim.human.d1	1.6006	1.3401	5.8800	1.9424	2.6563	533	0.8801			1204
+perfect (oracle)	perfect	sim.human.d8	2.1628	1.6905	2.9737	2.0457	3.3111	422	0.9076			1484
+perfect (oracle)	perfect	sim.human.d32	2.2189	2.0864	2.5610	2.0237	2.3006	292	0.9185			1476
+perfect (oracle)	perfect	sim.athal.d1	6.6437	5.7151	17.0488	11.0707	8.2826	1369	0.9682			1785
+perfect (oracle)	perfect	sim.athal.d16	8.4798	5.6343	11.7647	7.9665	9.4808	1582	0.9684			2736
+perfect (oracle)	perfect	bench.human.complete	1.6684	1.6684				316	0.9660			873
+perfect (oracle)	perfect	bench.human.fragments	1.8826		1.9978	1.7710		341	0.9292			1886
+perfect (oracle)	perfect	bench.mouse.complete	1.5147	1.5147				320	0.9378			650
+perfect (oracle)	perfect	bench.mouse.fragments	1.6181		1.8860	1.3570		325	0.9057			1762
+perfect (oracle)	perfect	bench.dmel.complete	2.3184	2.3184				316	0.9503			306
+perfect (oracle)	perfect	bench.dmel.fragments	4.4782		6.6832	2.3210		584	0.9169			988
+perfect (oracle)	perfect	bench.athal.complete	6.7513	6.7513				1776	0.9661			1760
+perfect (oracle)	perfect	bench.athal.fragments	6.6807		7.4138	5.9602		1620	0.8835			3161
+perfect (oracle)	perfect	bench.spombe.complete	5.3432	5.3432				269	0.9769			305
+perfect (oracle)	perfect	bench.spombe.fragments	5.0187		4.8037	5.2306		242	0.9365			516
+perfect (oracle)	perfect	bench.tthermophila.complete	7.1458	7.1458				1802	0.8992			1659
+perfect (oracle)	perfect	bench.tthermophila.fragments	9.6690		12.4563	6.9324		2319	0.8657			2551
+perfect (oracle)	perfect	bench.pfalciparum.complete	0.7213	0.7213				38	0.9478			39
+perfect (oracle)	perfect	bench.pfalciparum.fragments	4.5512		8.4803	0.7319		233	0.9366			350
+perfect (oracle)	perfect	bench.creinhardtii.complete	4.2587	4.2587				735	0.7860			675
+perfect (oracle)	perfect	bench.creinhardtii.fragments	5.9058		7.7678	4.0332		978	0.8404			1029
+release (ab initio)	release	sim.human.d1	-2.0149	-1.0326	-10.6476	-1.2487	-9.6853	-671	0.8440	510.0000	694.0000	0
+release (ab initio)	release	sim.human.d8	-5.4429	-1.9029	-13.1196	-3.6609	-12.9183	-1062	0.8315	972.0000	512.0000	0
+release (ab initio)	release	sim.human.d32	-8.9973	-2.8522	-12.6861	-5.0943	-12.8895	-1184	0.8063	1187.0000	289.0000	0
+release (ab initio)	release	sim.athal.d1	-2.0189	-0.1643	-14.1575	-0.7260	-12.2967	-416	0.8815	718.0000	1067.0000	0
+release (ab initio)	release	sim.athal.d16	-6.1857	-0.4578	-11.7221	-0.2096	-9.2416	-1154	0.8218	2273.0000	463.0000	0
+release (ab initio)	release	bench.human.complete	-2.9410	-2.9410				-557	0.9199	0.0000	873.0000	0
+release (ab initio)	release	bench.human.fragments	-8.5298		-14.1310	-3.1076		-1545	0.8251	1437.0000	449.0000	0
+release (ab initio)	release	bench.mouse.complete	-1.5619	-1.5619				-330	0.9070	0.0000	650.0000	0
+release (ab initio)	release	bench.mouse.fragments	-7.1546		-13.2015	-1.2587		-1437	0.8180	1496.0000	266.0000	0
+release (ab initio)	release	bench.dmel.complete	0.0734	0.0734				10	0.9279	0.0000	306.0000	0
+release (ab initio)	release	bench.dmel.fragments	-3.0980		-6.2490	-0.0152		-404	0.8411	834.0000	154.0000	0
+release (ab initio)	release	bench.athal.complete	0.0609	0.0609				16	0.8992	0.0000	1760.0000	0
+release (ab initio)	release	bench.athal.fragments	-6.3549		-12.8391	0.0163		-1541	0.7531	2434.0000	727.0000	0
+release (ab initio)	release	bench.spombe.complete	-0.7150	-0.7150				-36	0.9163	0.0000	305.0000	0
+release (ab initio)	release	bench.spombe.fragments	-5.6823		-10.8605	-0.5766		-274	0.8295	375.0000	141.0000	0
+release (ab initio)	release	bench.tthermophila.complete	0.5671	0.5671				143	0.8334	0.0000	1659.0000	0
+release (ab initio)	release	bench.tthermophila.fragments	-0.9673		-2.4745	0.5123		-232	0.7594	1774.0000	777.0000	0
+release (ab initio)	release	bench.pfalciparum.complete	-0.0190	-0.0190				-1	0.9404	0.0000	39.0000	0
+release (ab initio)	release	bench.pfalciparum.fragments	-2.2854		-4.5968	-0.0386		-117	0.8682	330.0000	20.0000	0
+release (ab initio)	release	bench.creinhardtii.complete	0.3476	0.3476				60	0.7469	0.0000	675.0000	0
+release (ab initio)	release	bench.creinhardtii.fragments	-0.3080		-0.8671	0.2544		-51	0.7783	717.0000	312.0000	0

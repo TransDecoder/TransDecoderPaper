@@ -1,0 +1,115 @@
+Thu Oct 29 11:50:19 AM EDT 2026
+pass 0: own taxsets
+Thu Oct 29 11:50:22 AM EDT 2026
+pass 1 rows: 38840027
+taxonmap: merged->new 55657, common taxid 4, root 5
+Thu Oct 29 11:52:01 AM EDT 2026
+pass 2: FASTA -> diamond makedb
+diamond v2.2.8.188 (C) Max Planck Society for the Advancement of Science, Benjamin J. Buchfink, University of Tuebingen
+Documentation, support and updates available at http://www.diamondsearch.org
+Please cite: http://dx.doi.org/10.1038/s41592-021-01101-x Nature Methods (2021)
+#CPU threads: 8
+Scoring parameters: (Matrix=BLOSUM62 Lambda=0.267 K=0.041 Penalties=11/1)
+Database input file: /dev/stdin
+Opening the database file...  [179.141s]
+Accession parsing rules triggered for database seqids (use --no-parse-seqids to disable):
+ UniRef prefix  38840027
+gi|xxx| prefix  0
+   xxx| prefix  0
+   |xxx suffix  0
+   .xxx suffix  0
+  :PDB= suffix  0
+Loaded taxonomy names for 3'024'414 taxon ids.
+Joining accession mapping...  [41.77s]
+Accession parsing rules triggered for mapping file seqids (use --no-parse-seqids to disable):
+ UniRef prefix  38840027
+gi|xxx| prefix  0
+   xxx| prefix  0
+   |xxx suffix  0
+   .xxx suffix  0
+  :PDB= suffix  0
+Building taxonomy nodes...  [0.121s]
+3'024'414 taxonomy nodes processed.
+Maximum taxon id: 3'904'846
+Number of nodes assigned to rank:
+no rank           1'146'674
+superkingdom      0
+cellular root     1
+acellular root    1
+domain            3
+realm             10
+kingdom           22
+subkingdom        1
+superphylum       1
+phylum            342
+subphylum         36
+superclass        6
+class             643
+subclass          173
+infraclass        17
+cohort            5
+subcohort         3
+superorder        57
+order             2'170
+suborder          383
+infraorder        144
+parvorder         33
+superfamily       950
+family            11'633
+subfamily         3'506
+tribe             2'572
+subtribe          591
+genus             133'672
+subgenus          2'167
+section           564
+subsection        41
+series            10
+species group     386
+species subgroup  134
+species           2'497'048
+subspecies        35'859
+varietas          11'036
+forma             781
+strain            49'255
+biotype           18
+clade             936
+forma specialis   862
+genotype          24
+isolate           1'322
+morph             11
+pathogroup        6
+serogroup         164
+serotype          573
+subvariety        1
+Closing the input file...  [0s]
+Closing the database file...  [0.47s]
+Database sequences                   38840027
+Database letters                     12182780325
+Accessions in database               38840027
+Entries in accession to taxid file   38840027
+Database accessions mapped to taxid  38840027
+Database sequences mapped to taxid   38840027
+Database hash                        58c6401c3f18155d9e8bfb3f69541b05
+Total time                           1204s
+Thu Oct 29 12:12:06 PM EDT 2026
+seqinfo rows: 38840027
+diamond v2.2.8.188 (C) Max Planck Society for the Advancement of Science, Benjamin J. Buchfink, University of Tuebingen
+Documentation, support and updates available at http://www.diamondsearch.org
+Please cite: http://dx.doi.org/10.1038/s41592-021-01101-x Nature Methods (2021)
+          Database type  Diamond database
+Database format version  3
+          Diamond build  188
+              Sequences  38840027
+                Letters  12182780325
+total 15369608
+drwxrwxr-x  2 bhaas root         273 Oct 29 12:12 .
+drwxrwxr-x 10 bhaas root         286 Oct 29 12:12 ..
+-rw-rw-r--  1 bhaas root         392 Oct 29 11:47 own_cluster_stats.tsv
+-rw-rw-r--  1 bhaas root         362 Oct 29 11:50 own_taxsets.tsv
+-rw-rw-r--  1 bhaas root     5229361 Oct 29 11:09 sprot_seqinfo.tsv.gz
+-rw-rw-r--  1 bhaas root 13911090744 Oct 29 12:12 uniref50_2026_03.dmnd
+-rw-rw-r--  1 bhaas root   413359663 Oct 29 11:52 uniref50_rep_taxonmap.gz
+-rw-rw-r--  1 bhaas root   339563233 Oct 29 12:09 uniref50_seqinfo.tsv.gz
+-rw-rw-r--  1 bhaas root   374429714 Oct 29 11:25 uniref50_xml_rep.tsv.gz
+15G	/broad/hptmp/bhaas/TRANSDECODER_PAPER/data/start_classifier/step5/db
+BUILD_DONE

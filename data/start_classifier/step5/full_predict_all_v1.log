@@ -1,0 +1,22 @@
+14:27:50 sim.athal.d16 rc=0
+14:29:01 sim.athal.d1 rc=0
+14:30:16 bench.human.complete rc=0
+14:30:51 bench.human.fragments rc=0
+14:30:52 sim.human.d8 rc=0
+14:33:24 bench.athal.fragments rc=0
+14:33:31 bench.human.fragments.wRand rc=0
+14:35:10 bench.athal.complete rc=0
+14:36:03 bench.human.complete.wRand rc=0
+14:36:13 bench.athal.fragments.wRand rc=0
+14:38:00 bench.dmel.fragments rc=0
+14:38:17 bench.dmel.complete rc=0
+14:39:17 bench.athal.complete.wRand rc=0
+14:40:10 bench.dmel.fragments.wRand rc=0
+14:40:47 bench.dmel.complete.wRand rc=0
+14:43:31 bench.tthermophila.fragments rc=0
+14:47:40 bench.tthermophila.complete rc=0
+14:48:22 bench.tthermophila.fragments.wRand rc=0
+14:51:06 bench.human.complete.wLnc rc=0
+14:52:24 bench.human.fragments.wLnc rc=0
+14:57:14 bench.tthermophila.complete.wRand rc=0
+14:57:14 ALLDONE

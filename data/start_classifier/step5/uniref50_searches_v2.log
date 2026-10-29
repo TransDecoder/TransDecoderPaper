@@ -1,0 +1,33 @@
+12:16:08 start k25 human: 51093 queries
+12:26:49 end k25 human rc=0 	Elapsed (wall clock) time (h:mm:ss or m:ss): 10:32.80 	Maximum resident set size (kbytes): 8144792 
+12:26:49 start k1 human: 317992 queries
+12:40:10 end k1 human rc=0 	Elapsed (wall clock) time (h:mm:ss or m:ss): 13:19.75 	Maximum resident set size (kbytes): 8070676 
+12:40:10 start k25 athal: 39258 queries
+12:46:51 end k25 athal rc=0 	Elapsed (wall clock) time (h:mm:ss or m:ss): 6:33.93 	Maximum resident set size (kbytes): 5500368 
+12:46:51 start k1 athal: 163624 queries
+12:56:06 end k1 athal rc=0 	Elapsed (wall clock) time (h:mm:ss or m:ss): 9:13.51 	Maximum resident set size (kbytes): 8262916 
+12:56:06 start k25 dmel: 9208 queries
+13:00:14 end k25 dmel rc=0 	Elapsed (wall clock) time (h:mm:ss or m:ss): 4:07.20 	Maximum resident set size (kbytes): 4685056 
+13:00:14 start k1 dmel: 103788 queries
+13:07:05 end k1 dmel rc=0 	Elapsed (wall clock) time (h:mm:ss or m:ss): 6:49.57 	Maximum resident set size (kbytes): 5900064 
+13:07:05 start k25 mouse: 16228 queries
+13:14:13 end k25 mouse rc=0 	Elapsed (wall clock) time (h:mm:ss or m:ss): 7:05.19 	Maximum resident set size (kbytes): 4909948 
+13:14:13 start k1 mouse: 16228 queries
+13:18:46 end k1 mouse rc=0 	Elapsed (wall clock) time (h:mm:ss or m:ss): 4:33.25 	Maximum resident set size (kbytes): 4571264 
+13:18:46 start k25 spombe: 3890 queries
+13:22:11 end k25 spombe rc=0 	Elapsed (wall clock) time (h:mm:ss or m:ss): 3:23.58 	Maximum resident set size (kbytes): 7885288 
+13:22:11 start k1 spombe: 3890 queries
+13:25:20 end k1 spombe rc=0 	Elapsed (wall clock) time (h:mm:ss or m:ss): 3:09.44 	Maximum resident set size (kbytes): 7494020 
+13:25:20 start k25 pfalciparum: 2547 queries
+13:29:08 end k25 pfalciparum rc=0 	Elapsed (wall clock) time (h:mm:ss or m:ss): 3:46.94 	Maximum resident set size (kbytes): 6047272 
+13:29:08 start k1 pfalciparum: 2547 queries
+13:33:18 end k1 pfalciparum rc=0 	Elapsed (wall clock) time (h:mm:ss or m:ss): 4:10.23 	Maximum resident set size (kbytes): 5882488 
+13:33:18 start k25 creinhardtii: 13081 queries
+13:41:28 end k25 creinhardtii rc=0 	Elapsed (wall clock) time (h:mm:ss or m:ss): 8:07.83 	Maximum resident set size (kbytes): 4661544 
+13:41:28 start k1 creinhardtii: 13081 queries
+13:47:34 end k1 creinhardtii rc=0 	Elapsed (wall clock) time (h:mm:ss or m:ss): 6:06.32 	Maximum resident set size (kbytes): 4243996 
+13:47:34 start k25 tthermophila: 27410 queries
+14:02:34 end k25 tthermophila rc=0 	Elapsed (wall clock) time (h:mm:ss or m:ss): 14:57.08 	Maximum resident set size (kbytes): 5602616 
+14:02:34 start k1 tthermophila: 549870 queries
+14:22:10 end k1 tthermophila rc=0 	Elapsed (wall clock) time (h:mm:ss or m:ss): 19:35.32 	Maximum resident set size (kbytes): 8036508 
+14:22:10 ALLDONE
