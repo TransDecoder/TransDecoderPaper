@@ -49,6 +49,7 @@ disagrees with its E-record, the E-record wins; fix the log.
 | S10 | UTR-length prior for keep-open vs trim | NOT ADOPTED | Short open UTRs are common in real annotation; the prior just shifts alpha's trade-off |
 | S11 | Keep-open vs trim for 5'-open ORFs (E33) | ADOPTED (PyTD only, homology mode; classifiers not adopted) | Self-trained classifiers fail (benchmark artefact "ORF lacks a stop"; context does not transfer). Homology hits (subject N-terminus at the ATG -> trim; alignment or Pfam domain upstream -> keep) give +2 to +9 exact F1 points on simulated assemblies; in PyTD a5b24c3. Top-n hits, looser e-values (step 4) and UniRef50 (step 5) did not improve on top-1 Swiss-Prot at 1e-5 |
 | S12 | Later annotated ATGs (C. reinhardtii) | OPEN | 19.6% of C. reinhardtii starts are later ATGs; no tested rule recovers them |
+| S13 | One-sided Kozak term ("Kozak floor", E35) | NOT ADOPTED | A negative Kozak score at the first ATG is right ~3/4 of the time on fragmented inputs (an internal ATG of a truncated CDS); flooring it helps complete inputs and loses more on fragments and assemblies |
 | O1 | Minimum ORF length 100 -> 50 codons | ADOPTED | Needs a coding test below 100 codons, else lncRNA calls triple |
 | O2 | Fixed short-ORF guard (C = 200 below 100 codons) | PARTIAL | Kept short-protein gain at -m 100 noise; replaced at release by A9 |
 | O3 | Post-hoc minimum length on GM12878 | NOT ADOPTED | 50 vs 100 aa barely changes precision; the step is at 100-150 aa |
@@ -558,6 +559,32 @@ Outcome counts: see the end of this file.
   happen" and has not been investigated (E09 Caveats).
 - **Pointers:** E09, E33.
 
+### S13. One-sided Kozak term ("Kozak floor") (2026-10-30)
+- **Question:** E34 found that 19-42% of the UTR extensions wrongly kept open are "Kozak vetoes" (u looks like UTR,
+  but K < 0 at the first ATG pushes 0.4|u| + 17K below coding(u)). Does limiting the negative Kozak term help?
+- **Tried:** offline, on 90 finished runs (benchmark 48 ab initio + 24 homology inputs; human d1/d8/d32 and athal
+  d1-d32, ab initio and with the homology start assist), with the runs' own selections and scores:
+  V1 17 max(K, 0); V2 floor at -0.5 / -1; V3 negative K weighted 8.5 / 4 per bit; V4 floor only when coding(u) <= 0.
+  Acceptance set beforehand: mean complete-input change >= -0.1 point, no benchmark input below -0.5; E13 objective
+  reported. V0 reproduced every official score (328 comparisons, 0 differences).
+- **Outcome: NOT ADOPTED** (recommendation; no code changed).
+- **Numbers (exact F1 points vs release):**
+  - Ab initio: complete inputs +0.34 (V2_1) to +1.41 (V1) on average, every one up; fragments -0.80 to -3.59, every
+    fragments and mixed input down (21-32 of 48 inputs below -0.5); E13 objective -0.12 (V3_8.5) to -1.09 (V1).
+  - Assemblies ab initio: human d32 -1.3 to -6.1, athal d32 -2.1 to -8.8; only athal d1 (+0.03..+0.21, all but V2_1) and human d1
+    with V3_8.5 (+0.04) gain. 5'-partial and internal F1 fall 1-14 points.
+  - With the assist: V2_1 and V3_8.5 pass the benchmark criteria (E13 objective +0.06 / +0.15) but lower athal
+    d8-d32 by 0.23-0.81 and 5'-partial / internal F1 on every athal assembly (-0.9 to -2.0).
+  - Decisions changed: on complete inputs only gains (r2w = 0; 15-28% of the changes trim to the first ATG while the
+    true start is a later ATG, neutral for exact F1); on fragments and assemblies the keep-open was right in 76-83%
+    (ab initio) / 63-70% (assist) of the changed decisions.
+- **Lessons:**
+  - E34 counted only the UTR side of the veto. A poor first-ATG context mostly means an internal ATG of a truncated
+    CDS; the vetoed UTRs and the protected truncated CDSs have similar |u|, coding(u) and K, so no u-intrinsic floor
+    separates them.
+  - Any floor moves the rule along the same complete-vs-fragment axis as alpha (E13/S7).
+- **Pointers:** E35; `data/kozak_floor/`; scripts `pipeline/kozak_floor/`; per-candidate tables in `$P/data/kozak_floor/`.
+
 ## 3. Short ORFs and minimum length
 
 ### O1. Minimum ORF length 100 -> 50 codons (2026-10-20)
@@ -1037,12 +1064,12 @@ or note describes the incident; details are unknown.
    **Resolved 2026-10-28:** Brian approved one sentence. The baseline was recomputed at the release (E07 Addendum; `first_atg_baseline.tsv`): complete exact F1 0.956 vs 0.912, fragments 0.484 vs 0.822.
 
 ## Outcome counts
-Entries: 56 (A1-A13, S1-S12, O1-O4, H1-H5, B1-B10, T1-T6, G1-G6).
+Entries: 57 (A1-A13, S1-S13, O1-O4, H1-H5, B1-B10, T1-T6, G1-G6).
 
 | Outcome | Count | Entries |
 |---|---|---|
 | ADOPTED | 33 | A1-A4, A9-A12, S4, S6-S9, S11, O1, H1, H2, B1-B4, B8, B10, T1-T4, G1-G6 |
-| NOT ADOPTED | 13 | A5, A7, A8, A13, S2, S3, S5, S10, O3, O4, H3, H4, H5 |
+| NOT ADOPTED | 14 | A5, A7, A8, A13, S2, S3, S5, S10, S13, O3, O4, H3, H4, H5 |
 | PARTIAL | 4 | S1, O2, B5, B7 |
 | OPEN | 4 | A6, S12, B9, T6 |
 | ABANDONED | 2 | B6, T5 |

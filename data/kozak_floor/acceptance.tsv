@@ -1,0 +1,15 @@
+arm	variant	mean_d_complete	mean_d_complete_and_fullutr	n_bench_inputs	n_bench_down_gt_0_5	worst_input	worst_d	crit_complete_ok	crit_no_input_below_0_5_ok	e13_d_objective	acceptable
+abinitio	V0	0.0000	0.0000	48	0	bench.human.complete	0.0000	1	1	0.0000	1
+abinitio	V1	1.4117	1.3753	48	32	bench.mouse.fragments	-5.0834	1	0	-1.0886	0
+abinitio	V2_05	0.7392	0.7046	48	31	bench.mouse.fragments	-2.5094	1	0	-0.4479	0
+abinitio	V2_1	0.3440	0.3306	48	21	bench.human.fragments	-1.3637	1	0	-0.2264	0
+abinitio	V3_8.5	0.6100	0.5857	48	26	bench.mouse.fragments_mixed_t3	-1.3118	1	0	-0.1197	0
+abinitio	V3_4	1.0130	0.9755	48	32	bench.mouse.fragments	-2.5243	1	0	-0.3703	0
+abinitio	V4	0.5304	0.5236	48	31	bench.mouse.fragments	-2.3700	1	0	-0.4994	0
+homology	V0	0.0000	0.0000	24	0	bench.human.complete.H	0.0000	1	1	0.0000	1
+homology	V1	1.1272	1.0969	24	7	bench.pfalciparum.fragments.H	-2.4758	1	0	-0.0754	0
+homology	V2_05	0.5833	0.5539	24	3	bench.pfalciparum.fragments.H	-1.0137	1	0	0.0702	0
+homology	V2_1	0.2747	0.2599	24	0	bench.pfalciparum.fragments.H	-0.4094	1	1	0.0553	1
+homology	V3_8.5	0.4802	0.4625	24	0	bench.pfalciparum.fragments.H	-0.4289	1	1	0.1527	1
+homology	V3_4	0.8026	0.7695	24	4	bench.pfalciparum.fragments.H	-1.0722	1	0	0.1586	0
+homology	V4	0.4443	0.4369	24	6	bench.creinhardtii.fragments.H	-1.1610	1	0	-0.1008	0
