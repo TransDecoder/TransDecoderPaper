@@ -50,7 +50,7 @@ disagrees with its E-record, the E-record wins; fix the log.
 | S11 | Keep-open vs trim for 5'-open ORFs (E33) | ADOPTED (PyTD only, homology mode; classifiers not adopted) | Self-trained classifiers fail (benchmark artefact "ORF lacks a stop"; context does not transfer). Homology hits (subject N-terminus at the ATG -> trim; alignment or Pfam domain upstream -> keep) give +2 to +9 exact F1 points on simulated assemblies; in PyTD a5b24c3. Top-n hits, looser e-values (step 4) and UniRef50 (step 5) did not improve on top-1 Swiss-Prot at 1e-5 |
 | S12 | Later annotated ATGs (C. reinhardtii) | OPEN | 19.6% of C. reinhardtii starts are later ATGs; no tested rule recovers them |
 | S13 | One-sided Kozak term ("Kozak floor", E35) | NOT ADOPTED | A negative Kozak score at the first ATG is right ~3/4 of the time on fragmented inputs (an internal ATG of a truncated CDS); flooring it helps complete inputs and loses more on fragments and assemblies |
-| S14 | Per-transcript alpha from transcript / ORF length (E36) | OPEN (recommended to Brian: logO) | Length relates to truncation the same way on benchmark and assemblies; O/L does not (single-cut artefact, -15 points held out). alpha = 0.35 + 0.15 log2(O/1kb) passes E35 acceptance and raises every held-out assembly ab initio (+0.3 to +3.9) |
+| S14 | Per-transcript alpha from transcript / ORF length (E36) | DEFERRED (future version; BH 2026-10-30: ~0.4-point gain not worth a Perl+PyTD change and full rerun now) | Length relates to truncation the same way on benchmark and assemblies; O/L does not (single-cut artefact, -15 points held out). alpha = 0.35 + 0.15 log2(O/1kb) passes E35 acceptance and raises every held-out assembly ab initio (+0.3 to +3.9) |
 | O1 | Minimum ORF length 100 -> 50 codons | ADOPTED | Needs a coding test below 100 codons, else lncRNA calls triple |
 | O2 | Fixed short-ORF guard (C = 200 below 100 codons) | PARTIAL | Kept short-protein gain at -m 100 noise; replaced at release by A9 |
 | O3 | Post-hoc minimum length on GM12878 | NOT ADOPTED | 50 vs 100 aa barely changes precision; the step is at 100-150 aa |
@@ -604,7 +604,9 @@ Outcome counts: see the end of this file.
     statistic, ab initio and with the assist.
   - Step 4: oracle ceilings per (L, O/L) bin.
   - Exact fast rescoring, checked against E35 (90 runs) and full substitution (0 difference).
-- **Outcome: OPEN** (logO recommended; decision with Brian; no code changed).
+- **Outcome: DEFERRED** (2026-10-30). Brian: noted as a possible future addition; the ~0.4-point benchmark gain does not
+  justify a Perl + PyTD change, parity check and full rerun for this release. No code changed. If revisited, use
+  alpha = 0.5 log10(O/200 nt), floored at 0 (= logO), and the adoption steps in E36 "Recommendation".
 - **Numbers (exact F1 points vs release):**
   - logO = 0.35 + 0.15 log2(O/1000): same parameters in all 8 LOO folds.
     - Benchmark ab initio: E13 objective +0.43, complete +0.08, fragments +0.78, mixed +0.84; 0 of 48 inputs < -0.5.
@@ -1115,7 +1117,8 @@ Entries: 58 (A1-A13, S1-S14, O1-O4, H1-H5, B1-B10, T1-T6, G1-G6).
 | ADOPTED | 33 | A1-A4, A9-A12, S4, S6-S9, S11, O1, H1, H2, B1-B4, B8, B10, T1-T4, G1-G6 |
 | NOT ADOPTED | 14 | A5, A7, A8, A13, S2, S3, S5, S10, S13, O3, O4, H3, H4, H5 |
 | PARTIAL | 4 | S1, O2, B5, B7 |
-| OPEN | 5 | A6, S12, S14, B9, T6 |
+| OPEN | 4 | A6, S12, B9, T6 |
+| DEFERRED | 1 | S14 |
 | ABANDONED | 2 | B6, T5 |
 
 Rejected variants inside ADOPTED entries: the decoy-derived long-ORF length (A10), the multiplicative

@@ -405,3 +405,11 @@ Question (BH): is there a simpler, more intuitive formula that works nearly as w
 - The ramp has the better complete-input behaviour (+0.15, no organism below -0.5) but keeps far fewer true
   5' partials open on GM12878 (+0.25 vs +2.0).
 - Recommended statement of the rule, if adopted: alpha = 0.5 log10(O/200 nt), floored at 0.
+
+## Decision (2026-10-30)
+Deferred. Brian: "Let's note it for a possible future addition. I'm not sure it's worth the effort given the 0.4 pt
+improvement." No code change in Perl v7.0.0 or PyTD v0.2.0, and the manuscript is unchanged. If it is revisited:
+- use alpha = 0.5 log10(O/200 nt), floored at 0;
+- implement it in both implementations (ab initio and with the assist);
+- check Perl/PyTD parity;
+- rerun the benchmark, GM12878 and the simulated assemblies with the program.
