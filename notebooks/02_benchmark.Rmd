@@ -1187,10 +1187,46 @@ mainly a test of frame and end placement on assembled coding transcripts, not of
 noncoding test is the human simulation (E30/E31) and the lncRNA inputs of the main benchmark (E04).
 
 
+**Homology mode.** TransDecoder (PyTD a5b24c3, `r evidence("E33")`) on each depth level of both simulations
+in three conditions on the same LongOrfs: A ab initio; B homology mode (DIAMOND `-k 1 -e 1e-5` against Swiss-Prot
+without the organism's own entries, `sprot_minus_9606` / `sprot_minus_3702`, and `hmmsearch --cut_ga` against Pfam-A,
+on all LongOrfs peptides) with the homology start assist (the default when hits are supplied); C the same hits with
+`--no-homology-start-assist`. Condition A equals the release TransDecoder rows above. Scripts
+`pipeline/start_classifier/17_*`-`22_*`; tables `data/start_classifier/adoption/{human,athal}_depth_scores.tsv`.
+
+```{r depth-homology}
+HOM_COND <- c(TD_A_abinitio = "A ab initio", TD_B_homology_assist = "B homology + start assist",
+              TD_C_homology_noassist = "C homology, no start assist")
+hds <- bind_rows(
+  read_tab("start_classifier", "adoption", "human_depth_scores.tsv") %>% mutate(species = "human"),
+  read_tab("start_classifier", "adoption", "athal_depth_scores.tsv") %>% mutate(species = "A. thaliana")) %>%
+  mutate(species = factor(species, c("human", "A. thaliana")))
+hds_lab <- function(sp, lv) ifelse(sp == "human", LEV_LAB[lv], ALEV_LAB[lv])
+kable(hds %>% filter(method %in% names(HOM_COND)) %>%
+        transmute(species, reads = hds_lab(species, level), lv = as.integer(sub("d", "", level)), condition = HOM_COND[method],
+                  `all: exact F1` = r3(f1_exact), `all: stop F1` = r3(f1_stop),
+                  complete = r3(f1_exact_wneg_complete), `5' partial` = r3(f1_exact_wneg_5prime_partial),
+                  `3' partial` = r3(f1_exact_wneg_3prime_partial), internal = r3(f1_exact_wneg_internal)) %>%
+        arrange(species, lv, condition) %>% select(-lv),
+      caption = "TransDecoder ab initio (A), homology mode with (B) and without (C) the start assist: exact F1 overall and per CDS type (per type: negatives counted)")
+kable(hds %>% filter(species == "human", method %in% names(HOM_COND)) %>%
+        transmute(reads = LEV_LAB[level], lv = as.integer(sub("d", "", level)), condition = HOM_COND[method],
+                  v = sprintf("%s / %s", num(negatives_with_pred), num(n_negatives))) %>%
+        pivot_wider(names_from = condition, values_from = v) %>% arrange(lv) %>% select(-lv),
+      caption = "Human: lncRNA-only contigs (negatives) with a prediction / negatives, by condition")
+```
+
 **Human vs Arabidopsis.** Exact F1 per CDS type (negatives counted) and overall, by depth level, for both
-simulations (human: E30/E31, above).
+simulations (human: E30/E31, above). Dashed: TransDecoder in homology mode with the start assist (condition B above).
 
 ```{r figS-athal, fig.width = FULL_W, fig.height = 120 * MM}
+HOM_LAB <- "TransDecoder + homology"
+hom <- hds %>% filter(method == "TD_B_homology_assist") %>%
+  transmute(species, fraction = ifelse(species == "human", lev_frac(level), alev$fraction[match(level, alev$level)]),
+            f1_exact, complete = f1_exact_wneg_complete, `5prime_partial` = f1_exact_wneg_5prime_partial,
+            `3prime_partial` = f1_exact_wneg_3prime_partial, internal = f1_exact_wneg_internal) %>%
+  pivot_longer(-c(species, fraction), names_to = "panel", values_to = "value") %>%
+  mutate(panel = ifelse(panel == "f1_exact", "all", SIM_TYPE_LAB[panel]), method = HOM_LAB, species = as.character(species))
 both <- bind_rows(
   dbt %>% transmute(species = "human", fraction = lev_frac(level), method, panel = as.character(type), value = f1_exact_wneg),
   dov %>% transmute(species = "human", fraction = lev_frac(level), method, panel = "all", value = f1_exact),
@@ -1198,16 +1234,22 @@ both <- bind_rows(
                     panel = as.character(type), value = f1_exact_wneg),
   aov %>% transmute(species = "A. thaliana", fraction = alev$fraction[match(level, alev$level)], method, panel = "all",
                     value = f1_exact)) %>%
+  mutate(method = as.character(method)) %>% bind_rows(hom) %>%
   mutate(panel = factor(panel, c(SIM_TYPE_LAB, "all"), c(SIM_TYPE_LAB, "all contigs")),
-         species = factor(species, c("human", "A. thaliana")))
-figS_athal <- ggplot(both, aes(fraction, value, colour = method)) + geom_line(linewidth = 0.4) + geom_point(size = 0.6) +
+         species = factor(species, c("human", "A. thaliana")),
+         method = factor(method, c(SIM_TOOLS, HOM_LAB)))
+HOM_COL <- c(DEPTH_COL, setNames(TD_C, HOM_LAB))
+HOM_LTY <- setNames(c(rep("solid", length(DEPTH_COL)), "22"), names(HOM_COL))
+figS_athal <- ggplot(both, aes(fraction, value, colour = method, linetype = method)) + geom_line(linewidth = 0.4) +
+  geom_point(size = 0.6) +
   facet_grid(species ~ panel) +
   scale_x_continuous(trans = "log2", breaks = c(1, 1/4, 1/16), labels = c("1", "1/4", "1/16")) +
-  scale_colour_manual(values = DEPTH_COL, name = NULL) + scale_y_continuous(limits = c(0, 1)) +
+  scale_colour_manual(values = HOM_COL, name = NULL) + scale_linetype_manual(values = HOM_LTY, name = NULL) +
+  scale_y_continuous(limits = c(0, 1)) +
   labs(x = "fraction of simulated read pairs", y = "exact F1 (per type: negatives counted)") +
   theme(legend.position = "bottom",
         panel.grid.major.y = element_line(linewidth = 0.2, colour = "#e5e5e5")) +
-  guides(colour = guide_legend(nrow = 2))
+  guides(colour = guide_legend(nrow = 2), linetype = guide_legend(nrow = 2))
 save_fig(figS_athal, "figS_simtrinity_athal", FULL_W, 120 * MM)
 figS_athal
 ```

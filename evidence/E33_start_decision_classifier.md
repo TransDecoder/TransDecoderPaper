@@ -668,6 +668,84 @@ Other levels are in the table file. The best other method per type is the same a
 - Swiss-Prot without Arabidopsis entries (as E25/E32): BLAST coverage of plant CDSs is lower than for human (step 3: 48-65% of candidates). With the species' own proteins included, B would gain more.
 - Simulated reads; one replicate per level.
 
+## Human depth series (E30/E31) with homology mode and the start assist (2026-10-30)
+
+### Question
+Brian approved adding the simulated depth series with homology-mode TransDecoder rows to the manuscript, for both
+species (Arabidopsis: previous section). Human had no full homology-mode runs across depth, so the three conditions
+were run on the human simulated GM12878 Trinity levels d1-d32 (E30 = d1, E31 = d2-d32).
+
+### Data and runs
+- **Inputs (read only):** d1 `$P/data/simtrinity/{inputs,labels}` (E30); dN `$P/data/simtrinity/depth/dN/{inputs,labels}` (E31). The assemblies (`Trinity-GG.fasta`) and labels survived the 2026-10-29 cleanup (`notes/DISK_CLEANUP_2026-10-29.md`).
+- **Code:** PyTD a5b24c3 (`$P/work/trees/PY_hstart`).
+- **Scripts** (new, adapted from 17/18/19; the originals are unchanged):
+  - `pipeline/start_classifier/20_human_depth_level_v1.sh` (one level; as 17 with the human inputs and `sprot_minus_9606`; gzips the search outputs at the end);
+  - `21_human_depth_lanes_v1.sh` (3 lanes, nice 10, at most 3 levels at a time: d1+d32, d2+d16, d4+d8; 08:18-10:43 on methods01, 0 failures; logs `$P/work/start_classifier/human_depth/lane_{1,2,3}.log`);
+  - `22_human_depth_summary.py` (table and checks).
+- **Fresh runs, no resume:** one `-S -G Universal` LongOrfs per level, copied into each condition before a fresh Predict.
+- **Conditions** as for Arabidopsis: A ab initio; B full homology mode, start assist on (default); C the same hits with `--no-homology-start-assist`.
+- **Searches** on all LongOrfs peptides (42,399 at d32 to 271,612 at d1) with `run_tool.sh pytd_v7_homology`'s commands: DIAMOND `--max-target-seqs 1 --evalue 1e-5 --threads 3` against `sprot_minus_9606.dmnd`; hmmsearch `--cut_ga --noali` against Pfam-A in 3 single-CPU chunks. Outputs `$P/work/start_classifier/human_depth/searches/<level>/{blastp.outfmt6,pfam.domtblout}.gz` (chunk files moved to `$P/_trash`). Wall time is dominated by hmmsearch (about 1 h 40 min at d1, 14 min at d32, 3 levels in parallel on a loaded host).
+- **Scoring:** E30/E31's `score_simtrinity.py` per condition, collected with `13b_depth_collect.py --data-root` on a symlink root (`human_depth/dataroot`: d1 -> E30 labels and assembly, dN -> E31 level dirs), which gives the E31 layout. E31's own methods are read from the committed `data/simtrinity/depth/*.tsv`. Output `data/start_classifier/adoption/human_depth_scores.tsv` (stdout `human_depth_scores.stdout.txt`); same columns as `athal_depth_scores.tsv` plus negatives with a prediction.
+
+### Checks
+- Condition A reproduces E31's committed TransDecoder (pytd_v7, release 3a793ff) rows at every level: overall, per type and negatives rows identical (runtime excluded).
+- A's `preds.tsv`, `longest_orf.preds.tsv` and `input.fa.transdecoder.gff3` are byte-identical to the release runs (`$P/work/simtrinity/{runs,depth/<level>/runs}/pytd_v7`) at all six levels.
+- B and C have identical predictions and stops at every level; only starts differ (1,775-1,973 ORFs per level, equal to the "decisions differ" count in the B Predict log).
+
+Start-assist rule counts in B (Predict logs):
+
+| level | ORFs with BLASTP hit | with Pfam | R1 | R2 | R3 | homology trims | keeps | conflicts | changed vs ab initio |
+|---|---|---|---|---|---|---|---|---|---|
+| d1 | 53,515 | 44,109 | 4,110 | 7,290 | 2,846 | 7,189 | 4,637 | 101 | 1,930 |
+| d2 | 42,493 | 35,511 | 4,005 | 6,556 | 2,729 | 6,463 | 4,525 | 93 | 1,858 |
+| d4 | 32,473 | 27,326 | 4,365 | 5,604 | 2,918 | 5,506 | 4,882 | 98 | 1,775 |
+| d8 | 25,186 | 20,653 | 5,620 | 4,494 | 3,447 | 4,412 | 6,154 | 82 | 1,973 |
+| d16 | 20,055 | 15,544 | 6,966 | 3,364 | 4,041 | 3,306 | 7,465 | 58 | 1,973 |
+| d32 | 15,440 | 11,284 | 6,868 | 2,341 | 3,978 | 2,304 | 7,310 | 37 | 1,936 |
+
+### Results (`human_depth_scores.tsv`)
+Exact F1 overall (stop F1 in parentheses; B and C have the same stops).
+
+| level | A ab initio | C homology, no assist | B homology + assist | best other method | longest ORF |
+|---|---|---|---|---|---|
+| d1 | 0.8440 (0.9161) | 0.8577 (0.9340) | **0.8823** (0.9340) | 0.7993 (cpat) | 0.5714 |
+| d2 | 0.8461 (0.9196) | 0.8615 (0.9405) | **0.8930** (0.9405) | 0.7941 (cpat) | 0.5852 |
+| d4 | 0.8456 (0.9235) | 0.8633 (0.9484) | **0.9041** (0.9484) | 0.7616 (cpat) | 0.6061 |
+| d8 | 0.8315 (0.9242) | 0.8554 (0.9598) | **0.9209** (0.9598) | 0.7058 (gmst) | 0.6515 |
+| d16 | 0.8246 (0.9292) | 0.8536 (0.9711) | **0.9389** (0.9711) | 0.7063 (gmst) | 0.7155 |
+| d32 | 0.8063 (0.9252) | 0.8385 (0.9788) | **0.9491** (0.9788) | 0.7245 (prodigal) | 0.7633 |
+
+Per-type exact F1 with negatives, B / C / A (best other method per type: `best_other` rows of the table file):
+
+| level | complete | 5' partial | 3' partial | internal |
+|---|---|---|---|---|
+| d1 | 0.892 / 0.880 / 0.869 | 0.706 / 0.617 / 0.599 | 0.832 / 0.813 / 0.776 | 0.919 / 0.792 / 0.747 |
+| d2 | 0.902 / 0.889 / 0.875 | 0.741 / 0.612 / 0.587 | 0.865 / 0.839 / 0.816 | 0.922 / 0.783 / 0.743 |
+| d4 | 0.914 / 0.899 / 0.884 | 0.777 / 0.661 / 0.639 | 0.888 / 0.858 / 0.826 | 0.927 / 0.784 / 0.742 |
+| d8 | 0.922 / 0.903 / 0.886 | 0.865 / 0.715 / 0.676 | 0.921 / 0.878 / 0.837 | 0.942 / 0.786 / 0.748 |
+| d16 | 0.932 / 0.911 / 0.894 | 0.910 / 0.772 / 0.724 | 0.934 / 0.890 / 0.845 | 0.958 / 0.806 / 0.771 |
+| d32 | 0.941 / 0.912 / 0.891 | 0.930 / 0.775 / 0.732 | 0.944 / 0.887 / 0.831 | 0.960 / 0.801 / 0.768 |
+
+Best other method per type (exact F1 with negatives): complete CPAT 0.888 (d1) to 0.941 (d32); 5' partial GeneMarkS-T
+0.455-0.749, Prodigal 0.808 at d32; 3' partial CPAT/RNAsamba 0.796-0.904; internal Prodigal 0.872-0.966.
+
+**lncRNA-derived contigs (negatives) with a prediction, A -> B (C = B):** d1 1,688 -> 3,319 of 20,815 (8.1% -> 15.9%);
+d2 1,343 -> 2,480 of 15,054 (8.9% -> 16.5%); d4 995 -> 1,788 of 9,913 (10.0% -> 18.0%); d8 704 -> 1,129 of 5,885
+(12.0% -> 19.2%); d16 466 -> 666 of 3,267 (14.3% -> 20.4%); d32 264 -> 361 of 1,594 (16.6% -> 22.6%). Longest ORF:
+65-71%. These come from homology retention (selection), not from the start assist.
+
+### Summary
+- Homology for retention (C vs A): +1.4 (d1), +1.5, +1.8, +2.4, +2.9, +3.2 (d32) exact-F1 points; stop F1 +1.8 to +5.4 points.
+- The start assist (B vs C) adds +2.5 (d1), +3.2, +4.1, +6.6, +8.5 and +11.1 (d32) points.
+- B vs A: +3.8 (d1), +4.7, +5.9, +8.9, +11.4, +14.3 (d32). B rises with fragmentation (0.882 -> 0.949), while A falls (0.844 -> 0.806). Same pattern as Arabidopsis (B 0.899-0.915, +3.2 to +8.0), with larger gains in human (better Swiss-Prot coverage).
+- Gains are largest on 5' partials (B vs A +10.7 to +19.8 points) and internal CDSs (+17.2 to +19.5), and positive on every type at every level (complete +2.3 to +5.0, 3' partial +4.9 to +11.3).
+- B has the best overall exact F1 of all methods at every level: +8.3 (d1) to +23.3 (d16) points over the best non-TransDecoder method.
+- Cost: homology retention doubles the lncRNA contigs with a prediction at d1 (1,688 -> 3,319; +1,631) and adds +97 at d32 (H1: retention raises lncRNA calls). Stop precision falls (d1 0.934 -> 0.898, d32 0.976 -> 0.972) while stop sensitivity rises (0.899 -> 0.974, 0.879 -> 0.986), so F1 rises.
+
+### Caveats
+- Swiss-Prot minus human (taxid 9606) leaves close primate orthologs, so homology coverage is higher than for Arabidopsis; the human gain is closer to an upper bound for a well-studied clade.
+- Simulated reads; one replicate per level. Searches were on all LongOrfs, so retention (selection) changes as well as starts.
+
 ## Step 4: hit depth and e-value (2026-10-28)
 
 ### Question

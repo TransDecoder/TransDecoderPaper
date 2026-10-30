@@ -548,6 +548,11 @@ Outcome counts: see the end of this file.
     - retention and the start assist would need separate hit files to use UniRef50 safely.
   - Pointers: E33 "Step 5"; `data/start_classifier/step5/`; scripts `pipeline/start_classifier/step5_*`; db and
     searches in `$P/data/start_classifier/step5/`.
+- **Human depth series (2026-10-30; in the manuscript with Arabidopsis):** fresh A ab initio / B homology + start assist /
+  C homology without assist on E30/E31 d1-d32 (sprot_minus_9606 + Pfam on all LongOrfs, PyTD a5b24c3). A = E31 release
+  rows (byte-identical predictions). Exact F1 B 0.882 (d1) -> 0.949 (d32) vs A 0.844 -> 0.806 (+3.8 to +14.3 points;
+  assist alone +2.5 to +11.1); best at every level. Cost: lncRNA contigs with a prediction 1,688 -> 3,319 (d1), 264 -> 361
+  (d32). Pointers: E33 "Human depth series"; `data/start_classifier/adoption/human_depth_scores.tsv`; scripts 20-22.
 - **Pointers:** E33; `pipeline/start_classifier/`; `data/start_classifier/{step1,step2,step3,step4,step5}/`; large
   intermediates in `$P/data/start_classifier/`; env `$P/env/startclf`.
 
