@@ -8,7 +8,7 @@ quotes. The knitted HTML is committed next to the Rmd.
 |---|---|---|---|
 | `01_algorithm.Rmd` | Methods: algorithm; Results: algorithm | Fig. 1; presets table; long-ORF lengths; frame-contrast test | E08, E10, E20–E22, E24–E26 |
 | `02_benchmark.Rmd` | Methods: benchmark; Results: benchmark | Fig. 2; Table 1; Perl/Python concordance; run times | E07, E16, E25 |
-| `03_start_refinement.Rmd` | Results: start refinement | Fig. 3; Figs. S1, S2 | E09, E13 |
+| `03_start_refinement.Rmd` | Results: start refinement | Fig. 3; Figs. S1, S2 | E09, E13, E29 |
 | `04_short_orfs_qvalues.Rmd` | Results: minimum ORF length and target-decoy acceptance | Fig. 4; q settings; presets on small inputs; lncRNAs | E04, E18–E22, E25 |
 | `05_coding_failures.Rmd` | Results: coding-test failures | Fig. 5 | E12 |
 | `06_gm12878_application.Rmd` | Methods: GM12878 assemblies; Results: GM12878 application | Fig. 6 | E03, E05, E11, E25 |
