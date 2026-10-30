@@ -73,7 +73,7 @@ disagrees with its E-record, the E-record wins; fix the log.
 | T1 | Simulated GM12878 Trinity assembly | ADOPTED | Real-assembly truth is mostly unresolvable (91%); simulate instead |
 | T2 | Labeller end tolerance (10 nt) | ADOPTED | Decided after a strict pass; report both passes |
 | T3 | Read-depth ablation | ADOPTED | Depth controls fragmentation; d4-d8 match the real Trinity assembly |
-| T4 | Simulated Arabidopsis Trinity assembly (E32) | ADOPTED (done; manuscript placement awaiting BH) | Few expressed noncoding transcripts (0.4% of reads): a frame/end-placement test. Ab initio TD leads to d8, longest ORF passes it at d16-d32; homology + start assist leads at every depth (0.899-0.915) |
+| T4 | Simulated Arabidopsis Trinity assembly (E32) | ADOPTED (in paper: Results, Methods, Suppl. Fig. S7; manuscript e3b134d) | Few expressed noncoding transcripts (0.4% of reads): a frame/end-placement test. Ab initio TD leads to d8, longest ORF passes it at d16-d32; homology + start assist leads at every depth (0.899-0.915) |
 | T5 | Trinity de novo on GM12878 | ABANDONED | Projected to take weeks on this host |
 | T6 | Anatomy of missed CDSs; keep/trim errors on 5'-open 3' partials (E34) | OPEN (diagnostic) | Misses are short, weakly coding CDSs failing the q test; relaxing it costs ~1 lncRNA call per CDS; kept-open UTRs score coding, not a first-ATG issue |
 | G1 | Three GM12878 assemblies vs MANE/GENCODE | ADOPTED | Sensitivity is limited by assembly, not CDS calling |

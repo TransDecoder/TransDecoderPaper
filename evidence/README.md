@@ -68,7 +68,7 @@ Quick map of decisions and lessons across these records (what was tried, adopted
 | E29 | [Start placement on 5'-open ORFs; UTR-length prior (not adopted)](E29_five_prime_open_starts.md) | in paper (Start-codon refinement) |
 | E30 | [Simulated GM12878 Trinity assembly benchmark](E30_simulated_trinity_benchmark.md) | in paper (Results, Benchmark; Methods; Supp. Fig. S5) |
 | E31 | [Read-depth ablation of the simulated Trinity benchmark](E31_simtrinity_depth_ablation.md) | in paper (Results, Benchmark; Methods; Supp. Figs. S5-S6) |
-| E32 | [Simulated Arabidopsis Trinity assembly and depth ablation](E32_simtrinity_arabidopsis.md) | not yet in paper (complete d1-d32; placement awaiting BH) |
+| E32 | [Simulated Arabidopsis Trinity assembly and depth ablation](E32_simtrinity_arabidopsis.md) | in paper (Results, simulated assemblies; Methods; Supplementary Fig. S7; manuscript e3b134d) |
 | E33 | [Keep-open vs trim decision for 5'-open ORFs: classifier ceiling, self-trained prototypes (not adopted); homology-assisted start refinement (adopted in PyTD a5b24c3)](E33_start_decision_classifier.md) | homology start assist in paper (Methods, homology Results, Fig. 5d,e; manuscript fed3cde); classifier parts and steps 4-5 not in paper |
 | E34 | [Anatomy of missed CDSs (no prediction with the true stop) and of the 5' UTR-vs-coding decision on 5'-open candidates; relaxation counterfactuals](E34_missed_cds_anatomy.md) | not in paper (diagnostic) |
 | E35 | [One-sided Kozak term ("Kozak floor") in the start rule: offline evaluation of 7 variants, ab initio and with the homology start assist](E35_kozak_floor.md) | not in paper (not adopted) |
