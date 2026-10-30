@@ -142,14 +142,16 @@ check_text("correct calls of 50-99 aa at 50 codons", tp_short, 430)
   `r f3(r7$sens_short)`, `r num(r7$neg)` lncRNAs with a prediction
   (`r p1(r7$neg / N_LNC[["human"]])`%), precision `r f3(r7$prec)` (`by_length.v7.tsv`).
 
-The \todo at the end of this paragraph asks for an update from the release reruns. The minimum-length
-sweep itself was not rerun; only the release q settings can be added (Fig. 4a–c).
+The minimum-length sweep exists only as development runs (no release rerun of LongOrfs minima other
+than 50), so the paragraph's numbers stay on the sweep. The release q settings (q 0.01, 0.05, 0.2) are
+added to Fig. 4a,b as the blue paths and the release default to Fig. 4c (section *Figure 4*); the
+earlier \todo asking for this update has been resolved in the text and the caption.
 
 ## A target-decoy test for every ORF
 
 Medians over organisms (eight with random negatives, human and mouse with lncRNA negatives).
-"release" is `pytd_v7` (E25); "fixed" is `cliff_c200`; "dev q 0.05" is the development run the
-manuscript currently quotes (`decoy_q0.05_longgc`, E20/E22), rescored in the same file.
+"release" is `pytd_v7` (E25), the run the manuscript quotes; "fixed" is `cliff_c200`; "dev q 0.05" is
+the development run an earlier draft quoted (`decoy_q0.05_longgc`, E20/E22), rescored in the same file.
 
 ```{r para-decoy}
 tab_decoy <- med7 %>% filter(label %in% c("pytd_v7", "dev_q0.05", "cliff_c200")) %>%
@@ -161,19 +163,19 @@ kable(tab_decoy, digits = 3, col.names = c("input", "setting", "stop sens.", "ex
                                            "% negatives with prediction", "organisms"))
 rel <- function(v, col) m7(v, "pytd_v7", col)
 fix <- function(v, col) m7(v, "cliff_c200", col)
-# quoted (development q 0.05) values in the bullet list
+# values quoted in the bullet list (release q 0.05 against the fixed short-ORF test)
 quoted <- tribble(
   ~variant, ~col, ~q_rel, ~q_fix,
-  "complete.wRand", "sens_stop", 0.965, 0.957,
+  "complete.wRand", "sens_stop", 0.964, 0.957,
   "complete.wRand", "sens_exact", 0.899, 0.897,
-  "complete.wRand", "neg_rate", 0.36, 0.48,
+  "complete.wRand", "neg_rate", 0.29, 0.48,
   "fragments.wRand", "sens_stop", 0.872, 0.815,
-  "fragments.wRand", "sens_exact", 0.773, 0.708,
-  "fragments.wRand", "neg_rate", 0.22, 0.11,
+  "fragments.wRand", "sens_exact", 0.772, 0.708,
+  "fragments.wRand", "neg_rate", 0.23, 0.11,
   "complete.wLnc", "neg_rate", 5.0, 18.9,
-  "fragments.wLnc", "neg_rate", 5.8, 18.7,
-  "complete.wLnc", "sens_stop", 0.964, 0.976,
-  "fragments.wLnc", "sens_stop", 0.857, 0.858)
+  "fragments.wLnc", "neg_rate", 5.9, 18.7,
+  "complete.wLnc", "sens_stop", 0.963, 0.976,
+  "fragments.wLnc", "sens_stop", 0.858, 0.858)
 for (i in seq_len(nrow(quoted))) {
   q <- quoted[i, ]
   isneg <- q$col == "neg_rate"
@@ -296,19 +298,19 @@ d_lnc_dev <- function(v) 100 * (m7(v, "dev_q0.05", "sens_stop") - m7(v, "dev_q0.
 ll <- function(l, col, v = "complete.wLnc") lnc_len[[col]][lnc_len$label == l & lnc_len$variant == v]
 lo100 <- function(v, col) mq(v, "longest_orf_m100", col)
 kable(lnc_len, caption = "Human lncRNA calls by predicted ORF length (codons, stop included)")
-check_text("--precise lncRNA calls, complete (%)", round(100 * m7("complete.wLnc", "precise", "neg_rate"), 1), 4.1)
-check_text("--precise lncRNA calls, fragments (%)", round(100 * m7("fragments.wLnc", "precise", "neg_rate"), 1), 4.5)
-check_text("--precise stop sensitivity cost, complete + lncRNA (points)", round(d_lnc("complete.wLnc"), 1), 1.4)
-check_text("--precise stop sensitivity cost, fragments + lncRNA (points)", round(d_lnc("fragments.wLnc"), 1), 6.7)
-check_text("human lncRNA calls >= 200 codons at q 0.01", ll("pytd_v7_precise", "ge200"), 613)
-check_text("human lncRNA calls at q 0.01", ll("pytd_v7_precise", "n_lnc_calls"), 1322)
+check_text("--precise lncRNA calls, complete (%)", round(100 * m7("complete.wLnc", "precise", "neg_rate"), 1), 4.2)
+check_text("--precise lncRNA calls, fragments (%)", round(100 * m7("fragments.wLnc", "precise", "neg_rate"), 1), 4.6)
+check_text("--precise stop sensitivity cost, complete + lncRNA (points)", round(d_lnc("complete.wLnc"), 1), 1.3)
+check_text("--precise stop sensitivity cost, fragments + lncRNA (points)", round(d_lnc("fragments.wLnc"), 1), 6.4)
+check_text("human lncRNA calls >= 200 codons at q 0.01", ll("pytd_v7_precise", "ge200"), 623)
+check_text("human lncRNA calls at q 0.01", ll("pytd_v7_precise", "n_lnc_calls"), 1378)
 check_text("human lncRNA calls >= 300 codons at q 0.01", ll("pytd_v7_precise", "ge300"), 236)
 check_text("human lncRNA calls >= 300 codons at q 0.3 (dev only)", ll("decoy_q0.3_longgc", "ge300"), 234)
-check_text("--sensitive fragments + random stop sensitivity", round(m7("fragments.wRand", "sensitive", "sens_stop"), 3), 0.896)
+check_text("--sensitive fragments + random stop sensitivity", round(m7("fragments.wRand", "sensitive", "sens_stop"), 3), 0.895)
 check_text("q 0.3 fragments + random stop sensitivity (dev only)", mq("fragments.wRand", "decoy_q0.3", "sens_stop"), 0.898, tol = 0.0005)
 check_text("q 0.5 fragments + random stop sensitivity (dev only)", round(mq("fragments.wRand", "decoy_q0.5", "sens_stop"), 3), 0.898)
-check_text("--sensitive lncRNA calls, complete (%)", round(100 * m7("complete.wLnc", "sensitive", "neg_rate"), 1), 7.7)
-check_text("--sensitive lncRNA calls, fragments (%)", round(100 * m7("fragments.wLnc", "sensitive", "neg_rate"), 1), 10.5)
+check_text("--sensitive lncRNA calls, complete (%)", round(100 * m7("complete.wLnc", "sensitive", "neg_rate"), 1), 7.8)
+check_text("--sensitive lncRNA calls, fragments (%)", round(100 * m7("fragments.wLnc", "sensitive", "neg_rate"), 1), 10.2)
 check_text("--sensitive random calls below 0.5% (max of complete/fragments, %)",
            as.numeric(100 * max(m7("complete.wRand", "sensitive", "neg_rate"), m7("fragments.wRand", "sensitive", "neg_rate")) < 0.5), 1)
 check_text("longest ORF >= 100 codons, random calls complete (%)", round(100 * lo100("complete.wRand", "neg_rate")), 22)
@@ -389,11 +391,16 @@ details(era_tab %>% filter(variant == "fragments.wLnc") %>% arrange(-all) %>% mu
 e <- function(t, col) era_tab[[col]][era_tab$variant == "complete.wLnc" & era_tab$tool == t]
 fe <- function(t) { x <- era7 %>% filter(variant == "complete.wLnc", tool == t)
   fisher.test(matrix(c(x$n_called, x$n_lnc - x$n_called), 2))$p.value }
-check_text("TransDecoder lncRNA calls, in GENCODE v28 (%)", round(100 * e("pytd_v7", "pre_v28"), 1), 22.0)
-check_text("TransDecoder lncRNA calls, added later (%)", round(100 * e("pytd_v7", "post_v28"), 1), 19.7)
+check_text("TransDecoder lncRNA calls, in GENCODE v28 (%)", round(100 * e("pytd_v7", "pre_v28"), 1), 3.4)
+check_text("TransDecoder lncRNA calls, added later (%)", round(100 * e("pytd_v7", "post_v28"), 1), 5.8)
+check_text("TransDecoder lncRNA calls, ratio added later / in v28", round(e("pytd_v7", "ratio_post_pre"), 2), 1.68)
+check_text("TransDecoder lncRNA calls, Fisher p (x 1e-23)", round(fe("pytd_v7") / 1e-23, 1), 2.4)
 check_text("RNAsamba lncRNA calls, in v28 (%)", round(100 * e("rnasamba", "pre_v28"), 1), 6.2)
 check_text("RNAsamba lncRNA calls, added later (%)", round(100 * e("rnasamba", "post_v28"), 1), 10.9)
-check_text("TransDecoder lncRNA call rate (%)", round(100 * e("pytd_v7", "all"), 1), 20.6)
+check_text("RNAsamba lncRNA calls, ratio", round(e("rnasamba", "ratio_post_pre"), 2), 1.74)
+check_text("CPAT lncRNA calls, ratio", round(e("cpat", "ratio_post_pre"), 2), 0.94)
+check_text("CPC2 lncRNA calls, ratio", round(e("cpc2", "ratio_post_pre"), 2), 1.00)
+check_text("TransDecoder lncRNA call rate (%)", round(100 * e("pytd_v7", "all"), 1), 4.9)
 check_text("CPAT lncRNA call rate (%)", round(100 * e("cpat", "all"), 1), 10.5)
 check_text("CPC2 lncRNA call rate (%)", round(100 * e("cpc2", "all"), 1), 7.9)
 check_text("RNAsamba lncRNA call rate (%)", round(100 * e("rnasamba", "all"), 1), 9.1)
@@ -594,7 +601,13 @@ check_text("mix preset, complete 5,000", round(pv("complete", "half random", 500
 check_text("complete-only preset, complete 5,000", round(pv("complete", "half random", 5000, "preset_same", "sens_stop"), 3), 0.958)
 check_text("other-species preset, fragments 5,000 (median of 4 organisms)", round(pv("fragments", "half random", 5000, "preset_other", "sens_stop"), 2), 0.72)
 check_text("cross-clade preset only (A. thaliana, D. melanogaster), fragments 5,000, max",
-           round(max(cross$preset_other[cross$org %in% c("athal", "dmel")]), 2), 0.72)
+           round(max(cross$preset_other[cross$org %in% c("athal", "dmel")]), 2), 0.66)
+check_text("cross-clade preset only (A. thaliana, D. melanogaster), fragments 5,000, min",
+           round(min(cross$preset_other[cross$org %in% c("athal", "dmel")]), 2), 0.43)  # 1087/2500 = 0.4348; text said 0.44 until 2026-10-30
+check_text("human/mouse other-species preset, fragments 5,000, min",
+           round(min(cross$preset_other[cross$org %in% c("human", "mouse")]), 2), 0.78)
+check_text("human/mouse other-species preset, fragments 5,000, max",
+           round(max(cross$preset_other[cross$org %in% c("human", "mouse")]), 2), 0.81)
 check_text("same-species mix preset, fragments 5,000", round(pv("fragments", "half random", 5000, "preset_samemix", "sens_stop"), 2), 0.87)
 ```
 
@@ -650,8 +663,7 @@ check_text("preset strata include transcript length and type", as.numeric(pj$str
 ## Checks against the manuscript
 
 Each row compares the value computed here (release runs where they exist, see the labels) with the
-value the manuscript currently quotes. Mismatches in the target-decoy and *One setting* rows are
-mostly the release-versus-development difference that the manuscript's \todo already flags.
+value the manuscript quotes; the text quotes the release runs wherever one exists.
 
 ```{r checks}
 check_report()

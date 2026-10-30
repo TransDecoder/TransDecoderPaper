@@ -22,7 +22,7 @@ and the subsection "Start-codon refinement" of the Methods
 Supplementary Fig. S2 (`figS2_start_grid`). Provenance: `r evidence("E13")` (parameter grid, open
 5′ ends, GM12878 grid, Kozak score distributions), `r evidence("E09")` (releases, PWM seeds, Kozak
 models, later ATGs), `r evidence("E07")` (benchmark summary: v6.0.0 and development runs) and
-`r evidence("E25")` (final release runs).
+`r evidence("E25")` (final release runs) and `r evidence("E29")` (5′-open starts and the UTR-length prior).
 
 **Which runs.** The comparisons of refinement settings (no refinement, $w=0$, the $\alpha \times w$
 grid) exist only for the development code of the parameter grid (PyTD 48c870c; E13). Its default cell
@@ -47,6 +47,10 @@ Data:
   trained on annotated starts), `training_mu.tsv` ($\mu$ and Kozak training starts from the
   `pytd_v7` logs), `later_atg.tsv` (position of the annotated start among in-frame ATGs) and
   `seed_start_changes.tsv` (v6.0.0-era PWM seeds on the sample data).
+- `data/start_refinement/utr_prior/` (written by `pipeline/derive/03_utr_*.py`; E29): error anatomy and
+  decisions by distance on the release runs (`release.*`, `release_gm12878.*`), annotated 5′ UTR lengths
+  and cut-model distances (`annotation_utr5_summary.tsv`, `trunc_d_summary.tsv`), GM12878 truncation
+  (`gm12878_five_prime_truncation.tsv`) and the UTR-length prior runs (`utr_prior_eval.*.tsv`).
 - `figures/kozak/kozak_stats.tsv`: the earlier Kozak statistics (from the `perl_td` training sets),
   for comparison.
 
@@ -302,7 +306,7 @@ check_text("results L30: Kozak term fragments positive (n orgs)", sum(kzf$kozak_
 check_text("results L31: Kozak term complete min (pts)", round(min(kzc$kozak_gain), 1), -0.5)
 check_text("results L31: Kozak term complete max (pts; 2.85 from 4-decimal F1s)", max(kzc$kozak_gain), 2.9, tol = 0.051)
 check_text("results L31: Kozak term complete mean (pts)", round(mean(kzc$kozak_gain), 1), 0.6)
-check_text("results L32: Pearson r min (T. thermophila 0.8446)", round(min(kstat$pearson_self_truth), 2), 0.85)
+check_text("results L32: Pearson r min (T. thermophila 0.8446)", round(min(kstat$pearson_self_truth), 2), 0.84)
 check_text("results L32: Pearson r max", round(max(kstat$pearson_self_truth), 2), 0.98)
 check_text("results L33: -3 A/G preferred (n orgs)", sum(kstat$minus3_AG_self > 0), 8)
 ```
@@ -383,9 +387,9 @@ kable(c_dat %>% select(input, weight_per_nat = weight, alpha, mean_f1) %>% arran
 
 ## Comparison with earlier releases
 
-v6.0.0 (`perl_td_v600`, `summary.tsv`) against the release (`pytd_v7`, `all_scores.tsv`). The
-manuscript text was written from the development default (`pytd_dev_v2`, equal to the grid's default
-cell); those values are shown alongside. The fixed PWM is `pytd` in `summary.tsv` (PyTD 27bfb5e).
+v6.0.0 (`perl_td_v600`, `summary.tsv`) against the release (`pytd_v7`, `all_scores.tsv`), the values
+the manuscript quotes. The development default (`pytd_dev_v2`, equal to the grid's default cell), from
+which an earlier draft was written, is shown alongside. The fixed PWM is `pytd` in `summary.tsv` (PyTD 27bfb5e).
 
 ```{r releases}
 rel <- f1 %>% mutate(gain_release = pts(release - v600), gain_dev = pts(final - v600),
@@ -415,7 +419,7 @@ default: `r f1p(min(rf$gain_dev))` to `r f1p(max(rf$gain_dev))` and `r f1p(min(r
 `r f1p(max(rf$stop_dev))`). The fixed PWM had a median exact F1 of `r f3(median(fixed_pwm$f1_exact))` on
 complete inputs.
 
-The development values agree with the text: complete gain `r sprintf("%.2f", min(rc$gain_dev))` to
+The development values agree with the earlier draft: complete gain `r sprintf("%.2f", min(rc$gain_dev))` to
 `r sprintf("%.2f", max(rc$gain_dev))` (text 1.7 to 27.3; half-values rounded up), stop-level
 `r f1p(min(rc$stop_dev))` to `r f1p(max(rc$stop_dev))`, fragments `r sprintf("%.2f", min(rf$gain_dev))` to
 `r sprintf("%.2f", max(rf$gain_dev))`.
@@ -435,17 +439,17 @@ start codons relative to seed 1; on the StringTie sample data (`r num(ss$n_orfs[
 
 ```{r release-checks}
 check_text("results L44: v6.0.0 median exact F1 complete", round(median(rc$v600), 3), 0.779)
-check_text("results L44: final median exact F1 complete (release)", round(median(rc$release), 3), 0.910)
+check_text("results L44: final median exact F1 complete (release)", round(median(rc$release), 3), 0.912)
 check_text("results L45: v6.0.0 summed exact matches", sum(rc$v600_tp), 96957)
-check_text("results L45: final summed exact matches (release)", sum(rc$release_tp), 116384)
-check_text("results L45: gain per organism min (release, pts)", round(min(rc$gain_release), 1), 1.7)
-check_text("results L45: gain per organism max (release, pts)", round(max(rc$gain_release), 1), 27.3)
-check_text("results L46: stop F1 change min (release, pts)", round(min(rc$stop_release), 1), -0.7)
-check_text("results L46: stop F1 change max (release, pts)", round(max(rc$stop_release), 1), 0.8)
-check_text("results L46: fragments exact gain min (release, pts)", round(min(rf$gain_release), 1), 1.8)
-check_text("results L46: fragments exact gain max (release, pts)", round(max(rf$gain_release), 1), 14.1)
-check_text("results L48: fragments stop F1 gain min (release, pts)", round(min(rf$stop_release), 1), 1.7)
-check_text("results L48: fragments stop F1 gain max (release, pts)", round(max(rf$stop_release), 1), 5.0)
+check_text("results L45: final summed exact matches (release)", sum(rc$release_tp), 116362)
+check_text("results L45: gain per organism min (release, pts)", round(min(rc$gain_release), 1), 2.8)
+check_text("results L45: gain per organism max (release, pts)", round(max(rc$gain_release), 1), 26.6)
+check_text("results L46: stop F1 change min (release, pts)", round(min(rc$stop_release), 1), -1.4)
+check_text("results L46: stop F1 change max (release, pts)", round(max(rc$stop_release), 1), 1.3)
+check_text("results L46: fragments exact gain min (release, pts)", round(min(rf$gain_release), 1), 6.0)
+check_text("results L46: fragments exact gain max (release, pts)", round(max(rf$gain_release), 1), 13.8)
+check_text("results L48: fragments stop F1 gain min (release, pts)", round(min(rf$stop_release), 1), 1.1)
+check_text("results L48: fragments stop F1 gain max (release, pts)", round(max(rf$stop_release), 1), 10.1)
 check_text("results L49: fixed PWM median exact F1 complete", round(median(fixed_pwm$f1_exact), 3), 0.728)
 check_text("results L51: PASA ORFs", sp$n_orfs[1], 792)
 check_text("results L51: StringTie ORFs", ss$n_orfs[1], 3037)
@@ -480,13 +484,244 @@ in the other seven.
 
 ```{r remaining-checks}
 check_text("results L56: C. reinhardtii lowest exact F1 complete (1 = yes)", as.numeric(rem$org[which.min(rem$release)] == "creinhardtii"), 1)
-check_text("results L56: C. reinhardtii exact F1 complete (release)", round(cre$release, 3), 0.742)
+check_text("results L56: C. reinhardtii exact F1 complete (release)", round(cre$release, 3), 0.747)
 check_text("results L57: C. reinhardtii later ATG (%)", round(100 * cre$later_frac, 1), 19.6)
 check_text("results L58: other organisms later ATG min (%)", round(100 * min(oth$later_frac), 1), 0.7)
 check_text("results L58: other organisms later ATG max (%)", round(100 * max(oth$later_frac), 1), 5.0)
 ```
 
 `r evidence("E09")`, `r evidence("E25")`
+
+## Truncated ORFs and short UTRs are hard to tell apart
+
+Release runs (`pytd_v7`) on the stranded complete, complete_fullutr and fragment inputs and on the
+balanced mixed inputs (E28), with each selected ORF's keep-or-trim decision re-derived from
+`best_candidates.gff3` (it agrees with `revised_starts.gff3` in all 51 runs); GM12878 release runs
+with transcript-level truth from MANE; the reference annotations; and fresh runs of the unmerged
+UTR-length prior prototype (PyTD branch `exp/utr-prior`, c9d7875, λ = 1). Scripts
+`pipeline/derive/03_utr_*.py`, tables in `data/start_refinement/utr_prior/`. *d* is the 5′ UTR implied
+by trimming an open ORF to its first in-frame ATG.
+
+```{r utr-data}
+UP <- function(f) read_tab("start_refinement", "utr_prior", f)
+anat <- UP("release.anatomy.tsv")
+dbd <- UP("release.decision_by_d.tsv")
+dbd_gm <- UP("release_gm12878.decision_by_d.tsv")
+ann_utr <- UP("annotation_utr5_summary.tsv")
+trunc_d <- UP("trunc_d_summary.tsv")
+gm_trunc <- UP("gm12878_five_prime_truncation.tsv")
+prior_bench <- UP("utr_prior_eval.bench.tsv")
+prior_gm <- UP("utr_prior_eval.gm12878.tsv")
+DBINS <- c("0-9", "10-19", "20-49", "50-99", "100-199", "200-499", ">=500")
+input_set <- function(i) ifelse(grepl("^fragments_mixed", i), "mixed", i)
+```
+
+### Error anatomy
+
+5′ partials on the stranded fragments: every prediction with the correct stop but not the exact
+start should be a trim to an internal in-frame ATG (`trim_trunc`). Start-present references
+(complete transcripts and the 3′ partials of the fragment inputs): share of predictions with the
+correct stop that were left open through the true start into the UTR (`open_utr`).
+
+```{r utr-anatomy}
+f5 <- anat %>% filter(input == "fragments", ref_type == "5prime_partial") %>%
+  mutate(stop_sens = n_stop / n_ref, exact_sens = exact / n_ref, wrong_start = n_stop - exact,
+         other_errors = open_utr + trim_upstream + atg_other + other)
+kable(f5 %>% select(org, n_ref, stop_sens, exact_sens, wrong_start, trim_trunc, other_errors,
+                    median_d = trim_trunc_median_d, d_lt20 = trim_trunc_frac_d_lt20,
+                    d_lt50 = trim_trunc_frac_d_lt50, trimmed_cds = trim_trunc_median_trimmed_frac),
+      digits = 3, caption = "5' partials, stranded fragments (release)")
+spres <- anat %>% filter(input %in% c("complete", "complete_fullutr", "fragments"),
+                      ref_type %in% c("complete", "3prime_partial")) %>%
+  mutate(open_frac = open_utr / n_stop)
+sp_org <- spres %>% group_by(org) %>% summarise(open_frac = sum(open_utr) / sum(n_stop), .groups = "drop")
+kable(spres %>% select(org, input, ref_type, n_stop, open_utr, open_frac, true_utr_median = open_utr_median_true_utr) %>%
+        pivot_wider(id_cols = org, names_from = c(input, ref_type), values_from = open_frac),
+      digits = 4, caption = "Start-present references left open (share of correct-stop predictions)")
+sp_type <- spres %>% group_by(input, ref_type) %>% summarise(median = median(open_frac), .groups = "drop")
+kable(sp_type, digits = 4, caption = "Median over organisms per input type")
+```
+
+On the stranded fragments, `r num(sum(f5$wrong_start))` 5′ partials had the correct stop but not the
+exact start; `r num(sum(f5$trim_trunc))` of them were trims to an internal ATG and
+`r sum(f5$other_errors)` were other errors. Median over organisms: stop found
+`r f3(median(f5$stop_sens))`, exact `r f3(median(f5$exact_sens))`. The trims lay a median
+`r min(f5$trim_trunc_median_d)`–`r max(f5$trim_trunc_median_d)` nt from the fragment start.
+Start-present references were left open through the true start in `r pct(min(spres$open_frac))`–`r pct(max(spres$open_frac))`
+of correct-stop predictions (organism × input type); the median over organisms of the per-organism
+rates is `r pct(median(sp_org$open_frac))` (per input type
+`r paste(pct(sp_type$median), collapse = ", ")`), which the text gives as "about 5%".
+
+```{r utr-anatomy-checks}
+check_text("results L73: 5' partials, correct stop but wrong start (n)", sum(f5$wrong_start), 9397)
+check_text("results L74: all of them trimmed to an internal ATG (1 = yes)",
+           as.numeric(sum(f5$trim_trunc) == sum(f5$wrong_start) && sum(f5$other_errors) == 0), 1)
+check_text("results L75: start-present left open, median over organisms (about 5%)",
+           round(100 * median(sp_org$open_frac)), 5)
+check_text("results L75: start-present left open, min (%)", round(100 * min(spres$open_frac), 1), 0.7)
+check_text("results L75: start-present left open, max (%)", round(100 * max(spres$open_frac), 1), 8.5)
+```
+
+### Decisions by distance to the first ATG
+
+Complete and fragment inputs (the complete_fullutr and mixed inputs are not included), all
+organisms pooled. "Truncated": 5′-partial reference, keeping the ORF open is right; share trimmed.
+"UTR, first ATG": start-present reference whose start is the first in-frame ATG, trimming is right;
+share left open.
+
+```{r utr-by-d}
+byd <- dbd %>% filter(input %in% c("complete", "fragments"), dclass %in% c("truncated", "utr_first")) %>%
+  group_by(dclass, dbin) %>% summarise(n = sum(n), n_trim = sum(n_trim), .groups = "drop") %>%
+  mutate(error = ifelse(dclass == "truncated", n_trim / n, 1 - n_trim / n),
+         dbin = factor(dbin, DBINS)) %>% arrange(dclass, dbin)
+kable(byd, digits = 3, caption = "Error rate by d (truncated: trimmed; UTR, first ATG: left open)")
+tr_lt20 <- byd %>% filter(dclass == "truncated", dbin %in% c("0-9", "10-19")) %>%
+  summarise(e = sum(n_trim) / sum(n)) %>% pull(e)
+err <- function(cl, b) byd$error[byd$dclass == cl & byd$dbin == b]
+gm_byd <- dbd_gm %>% filter(dclass == "truncated") %>%
+  mutate(d20 = ifelse(dbin %in% c("0-9", "10-19"), "d < 20", "d >= 20")) %>%
+  group_by(assembly = input, d20) %>% summarise(n = sum(n), trimmed = sum(n_trim) / sum(n), .groups = "drop")
+kable(gm_byd, digits = 3, caption = "GM12878 (release runs): truncated ORFs trimmed, by d")
+gm_lt20 <- gm_byd %>% filter(d20 == "d < 20")
+```
+
+Truncated ORFs were trimmed in `r pct(tr_lt20, 0)` of cases at d < 20 nt and `r pct(err("truncated", ">=500"), 0)`
+at d ≥ 500; UTR extensions were left open in `r pct(err("utr_first", "0-9"), 0)` at d < 10 and
+`r pct(err("utr_first", "100-199"), 0)` at 100–199 nt. On GM12878 the same dependence holds: truncated
+ORFs at d < 20 were trimmed in `r pct(min(gm_lt20$trimmed), 0)`–`r pct(max(gm_lt20$trimmed), 0)`
+(more than at d ≥ 20 in every assembly).
+
+```{r utr-by-d-checks}
+check_text("results L78: truncated trimmed, d < 20 (%)", round(100 * tr_lt20), 30)
+check_text("results L79: truncated trimmed, d >= 500 (%)", round(100 * err("truncated", ">=500")), 7)
+check_text("results L79: UTR extensions left open, d < 10 (%)", round(100 * err("utr_first", "0-9")), 36)
+check_text("results L80: UTR extensions left open, d 100-199 (%)", round(100 * err("utr_first", "100-199")), 12)
+check_text("results L85: GM12878 truncated trimmed more at d < 20 than at d >= 20 in all three (1 = yes)",
+           as.numeric(all(gm_byd %>% group_by(assembly) %>%
+                            summarise(x = trimmed[d20 == "d < 20"] > trimmed[d20 == "d >= 20"]) %>% pull(x))), 1)
+```
+
+### Cut model and annotated UTRs
+
+Distance from a cut inside an annotated CDS to the next in-frame ATG, for uniform and N(0.5, 0.1) cut
+positions (`trunc_d_summary.tsv`; `no_atg` = no in-frame ATG downstream of the cut; the other
+fractions are among cuts with an ATG), and 5′ UTR lengths of all eligible annotated transcripts
+(`annotation_utr5_summary.tsv`; "open" = no in-frame stop upstream of the start, the UTRs that leave
+an ORF open on a complete transcript).
+
+```{r utr-cut-model}
+cut_cmp <- trunc_d %>% pivot_wider(id_cols = org, names_from = cut, values_from = c(lt10, lt20, lt50, median_d, no_atg))
+kable(cut_cmp, digits = 3)
+cut_diff <- cut_cmp %>% transmute(org, d_lt10 = lt10_normal - lt10_uniform, d_lt20 = lt20_normal - lt20_uniform,
+                                  d_lt50 = lt50_normal - lt50_uniform,
+                                  median_ratio = median_d_normal / median_d_uniform)
+kable(cut_diff, digits = 4, caption = "normal minus uniform")
+open_utr <- ann_utr %>% filter(set == "all", utr_kind == "open")
+kable(ann_utr %>% filter(set == "all", utr_kind %in% c("any", "open")) %>%
+        select(org, utr_kind, n, frac_of_tx, median, lt10, lt20, lt50), digits = 3)
+```
+
+Uniform and normal cuts give d distributions within `r f3(max(abs(c(cut_diff$d_lt10, cut_diff$d_lt20))))`
+(fractions below 10 and 20 nt) and `r f3(max(abs(cut_diff$d_lt50)))` (below 50 nt), with medians within
+`r pct(max(abs(cut_diff$median_ratio - 1)), 0)`. (The share of cuts with no downstream in-frame ATG
+differs, `r pct(min(cut_cmp$no_atg_uniform), 0)`–`r pct(max(cut_cmp$no_atg_uniform), 0)` uniform against
+`r pct(min(cut_cmp$no_atg_normal), 0)`–`r pct(max(cut_cmp$no_atg_normal), 0)` normal, presumably
+because uniform cuts include positions near the 3′ end of the CDS; such ORFs have no trim option.) Open annotated 5′ UTRs have a
+median length of `r min(open_utr$median)`–`r max(open_utr$median)` nt per organism.
+
+```{r utr-cut-checks}
+check_text("results L84: cut model, d fractions < 20 nt within 0.01 (1 = yes)",
+           as.numeric(max(abs(c(cut_diff$d_lt10, cut_diff$d_lt20))) <= 0.01), 1)
+check_text("results L87: open 5' UTR median length, min (nt)", min(open_utr$median), 27)
+check_text("results L87: open 5' UTR median length, max (nt)", max(open_utr$median), 118)
+```
+
+### UTR-length prior (not adopted)
+
+Exact F1 with the prior (λ = 1) minus the release, in points. Stops were identical in every run.
+
+```{r utr-prior}
+pb <- prior_bench %>% mutate(set = input_set(input)) %>%
+  select(org, input, set, run, f1_stop, f1_exact) %>%
+  pivot_wider(names_from = run, values_from = c(f1_stop, f1_exact)) %>%
+  mutate(d_exact = 100 * (f1_exact_utr_l1 - f1_exact_release), d_stop = 100 * (f1_stop_utr_l1 - f1_stop_release))
+pb_sum <- pb %>% group_by(set) %>%
+  summarise(inputs = n(), min = min(d_exact), median = median(d_exact), max = max(d_exact),
+            n_up = sum(d_exact > 0), n_down = sum(d_exact < 0), max_abs_d_stop = max(abs(d_stop)), .groups = "drop")
+kable(pb_sum, digits = 2)
+kable(pb %>% select(org, input, f1_exact_release, f1_exact_utr_l1, d_exact), digits = 4, caption = "Per input")
+cpl <- pb %>% filter(set %in% c("complete", "complete_fullutr"))
+frg <- pb %>% filter(set == "fragments")
+mix <- pb %>% filter(set == "mixed")
+kable(prior_gm %>% select(assembly, run, MANE_exact, MANE_sens_exact_given_assembled,
+                          GENCODE_complete_exact, distinct_predicted_5prime_partial), digits = 4,
+      caption = "GM12878")
+```
+
+On complete transcripts (complete and complete_fullutr) the prior changed exact F1 by
+`r sprintf("%+.2f", min(cpl$d_exact))` to `r sprintf("%+.2f", max(cpl$d_exact))` points
+(`r sum(cpl$d_exact > 0)` of `r nrow(cpl)` up), on fragments by `r sprintf("%+.2f", max(frg$d_exact))` to
+`r sprintf("%+.2f", min(frg$d_exact))`, and it lowered exact F1 in `r sum(mix$d_exact < 0)` of
+`r nrow(mix)` mixed inputs (`r sprintf("%+.2f", max(mix$d_exact))` to `r sprintf("%+.2f", min(mix$d_exact))`).
+
+```{r utr-prior-checks}
+check_text("E29: stop F1 unchanged by the prior (max |change|, points)", max(abs(pb$d_stop)), 0)
+check_text("results L90: complete exact F1 gain min (pts)", round(min(cpl$d_exact), 2), 0.02)
+check_text("results L90: complete exact F1 gain max (pts)", round(max(cpl$d_exact), 1), 2.6)
+check_text("results L90: fragments exact F1 loss min (pts)", round(-max(frg$d_exact), 1), 0.6)
+check_text("results L90: fragments exact F1 loss max (pts)", round(-min(frg$d_exact), 1), 1.3)
+check_text("results L91: mixed inputs lowered (n of 24)", sum(mix$d_exact < 0), 24)
+```
+
+### How many open ends are truly truncated
+
+Transcript-level shares (`gm12878_five_prime_truncation.tsv`, `03_utr_gm12878_summary.py`). GM12878:
+transcripts carrying a MANE stop with the reference splicing from the stop to the 5′ end; benchmark:
+the reference transcripts of each input. `frac_5p` is the share that begin inside the CDS, and
+π = 5′ partials / (5′ partials + complete references with an open 5′ UTR of at least 3 nt), the share
+of 5′-open ends that are truly truncated. Mixed inputs: trial 1 only.
+
+```{r utr-pi}
+gt <- gm_trunc %>% select(source, n, n_5p, frac_5p, n_complete, n_open_utr, frac_open, pi = pi_trunc_among_open)
+kable(gt, digits = 4)
+gm_only <- gt %>% filter(grepl("^gm12878_", source))
+pi_gm <- setNames(gm_only$pi, sub("gm12878_", "", gm_only$source))
+pi_frag <- gt$pi[gt$source == "benchmark_fragments"]
+pi_mix <- gt$pi[gt$source == "benchmark_fragments_mixed_t1"]
+# prediction-level cross-check: among correct-stop predictions that are 5'-open before refinement, the
+# share whose reference lacks its start (start-present open ends = utr_first + utr_later rows of
+# release.decision_by_d.tsv)
+pi_pred <- anat %>% mutate(set = input_set(input)) %>% filter(set %in% c("fragments", "mixed")) %>%
+  group_by(set) %>% summarise(truncated = sum(n_stop[ref_type %in% c("5prime_partial", "internal")]), .groups = "drop") %>%
+  left_join(dbd %>% mutate(set = input_set(input)) %>% filter(dclass != "truncated") %>%
+              group_by(set) %>% summarise(start_present_open = sum(n), .groups = "drop"), by = "set") %>%
+  mutate(pi_pred = truncated / (truncated + start_present_open))
+kable(pi_pred, digits = 4, caption = "Prediction-level cross-check (all three mixed trials)")
+```
+
+Truly truncated: `r pct(pi_frag)` of 5′-open ends in the fragments and `r pct(pi_mix)` in the mixed
+inputs (prediction level: `r paste(pct(pi_pred$pi_pred), collapse = " and ")`), against
+`r pct(pi_gm[["lraa"]])` (LRAA), `r pct(pi_gm[["stringtie"]])` (StringTie) and `r pct(pi_gm[["trinity"]])`
+(Trinity) in GM12878, where `r pct(min(gm_only$frac_5p))`–`r pct(max(gm_only$frac_5p))` of transcripts
+began inside the CDS. The benchmark share is `r sprintf("%.1f", min(pi_frag, pi_mix) / max(pi_gm))` to
+`r sprintf("%.1f", max(pi_frag, pi_mix) / min(pi_gm))` times that of the assemblies.
+
+```{r utr-pi-checks}
+check_text("results L95: benchmark fragments truly truncated (%)", round(100 * pi_frag), 76)
+check_text("results L95: benchmark mixed inputs truly truncated (%)", round(100 * pi_mix), 76)
+check_text("results L96: GM12878 began inside the CDS, min (%)", round(100 * min(gm_only$frac_5p), 1), 7.5)
+check_text("results L96: GM12878 began inside the CDS, max (%)", round(100 * max(gm_only$frac_5p), 1), 13.6)
+check_text("results L97: GM12878 truncated share, LRAA (%)", round(100 * pi_gm[["lraa"]]), 21)
+check_text("results L97: GM12878 truncated share, StringTie (%)", round(100 * pi_gm[["stringtie"]]), 20)
+check_text("results L97: GM12878 truncated share, Trinity (%)", round(100 * pi_gm[["trinity"]]), 37)
+check_text("results L98: benchmark weight, low (two times)", round(min(pi_frag, pi_mix) / max(pi_gm)), 2)
+check_text("results L98: benchmark weight, high (four times)", round(max(pi_frag, pi_mix) / min(pi_gm)), 4)
+check_text("discussion L109: fragment and mixed inputs truly truncated (%)", round(100 * pi_frag), 76)
+check_text("discussion L110: GM12878 range low (%)", round(100 * min(pi_gm)), 20)
+check_text("discussion L110: GM12878 range high (%)", round(100 * max(pi_gm)), 37)
+```
+
+`r evidence("E29")`, `r evidence("E28")`
 
 ## Methods: start-codon refinement
 
@@ -629,8 +864,7 @@ check_text("methods L293: Kozak term at 0.4, fragments (pts)", round(kz_at04$koz
 
 Panel b plots exact F1 per organism without refinement, with v6.0.0, at α 0.4 with $w=0$ and at the
 grid default (all from the controlled comparison, with v6.0.0 from `summary.tsv`). The release run
-(`pytd_v7`) is added as a fifth marker (diamond); the caption in `figures_main.tex` does not yet
-mention it.
+(`pytd_v7`) is added as a fifth marker (diamond), as described in the caption (`figures_main.tex`).
 
 ```{r fig3b}
 MARK_LAB <- c(norefine = "no refinement", v600 = "v6.0.0", w0 = "α 0.4, w 0 (no Kozak term)",
@@ -843,8 +1077,8 @@ kable(s2b_dat %>% select(assembly, metric, alpha, weight_per_nat = weight, value
 ## Checks against the manuscript
 
 `results L..` refers to `results_start_refinement.tex`, `methods L..` to `methods_algorithm.tex`.
-Values from the release (`pytd_v7`) are compared with text that was written from the development
-runs (see the `\todo` in `methods_algorithm.tex`).
+Values from the release (`pytd_v7`) are compared with the current text, which quotes the release
+where a release run exists; grid comparisons stay on the development grid (E13).
 
 ```{r checks}
 check_report()

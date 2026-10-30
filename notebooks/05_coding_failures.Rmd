@@ -22,8 +22,8 @@ and draws Fig. 5 (`fig:failures`, `figures/fig5_failures.{pdf,png}`). Provenance
 benchmark) and `r evidence("E25")` (final release runs).
 
 **Release rule.** The analysis of E12 used the development rule: $S_1>0$, frame contrast
-$C=S_1-\max(S_2,S_3)>0$ and, below 300 nt, a fixed short-ORF test ($C \ge 200\mu$). The text still
-quotes it (it carries a `\todo`). Here the analysis is rerun on the release predictions
+$C=S_1-\max(S_2,S_3)>0$ and, below 300 nt, a fixed short-ORF test ($C \ge 200\mu$). The text now
+quotes the release analysis. Here the analysis is rerun on the release predictions
 (`pytd_v7`: PyTD 3a793ff, release defaults; Perl gives identical predictions, E25), with the
 release coding test: $S_1>0$, $C>0$ and target-decoy q-value $\le 0.05$. The q-value of each
 candidate is read from the run's `decoy_qvalues.tsv`.

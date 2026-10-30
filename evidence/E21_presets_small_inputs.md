@@ -67,3 +67,9 @@ Coding-only sets (stop sensitivity / exact sensitivity / stop precision):
 ## Status update (2026-10-28)
 Adopted. Presets are released in both implementations (`--preset`, `build-preset`), with seven bundled
 presets built from complete transcripts plus fragments, and a warning below 1,000 transcripts (E24).
+
+## Correction (2026-10-30)
+Cross-clade transfer (fragments + random, 5,000 sequences, human preset): *A. thaliana* stop-level
+sensitivity is 1,087/2,500 = 0.4348 (`data/benchmark/presets/preset_scores.tsv`, `preset_other`),
+i.e. 0.43; the Results text said 0.44 and now says 0.43 (*D. melanogaster* 0.66 unchanged). Checked in
+notebook 04 (*Small inputs and presets*).

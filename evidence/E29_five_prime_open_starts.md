@@ -152,4 +152,18 @@ fragments weighted equally) looks conservative on fragments.
 ## Use in the manuscript (2026-10-25)
 Results, Start-codon refinement, paragraphs "Truncated ORFs and short UTRs are hard to tell apart"
 (error anatomy vs distance, cut-model and annotation checks, UTR-length prior not adopted, GM12878
-truncated share 0.20-0.37 vs 0.76) and Discussion Limitations (76% vs 20-37%). No notebook section yet.
+truncated share 0.20-0.37 vs 0.76) and Discussion Limitations (76% vs 20-37%).
+
+## Notebook section (2026-10-30)
+`notebooks/03_start_refinement.Rmd`, section "Truncated ORFs and short UTRs are hard to tell apart"
+(anchors `#truncated-orfs-and-short-utrs-are-hard-to-tell-apart` and
+`#how-many-open-ends-are-truly-truncated`), recomputes every number of the Results paragraphs and the
+Discussion sentence from `data/start_refinement/utr_prior/` (31 checks, all agree). Notes:
+- "about 5%" = median over organisms of the per-organism share (5.2%); per input type 5.5 / 4.6 / 5.9%.
+- Distance error rates use the complete and fragments inputs only (complete_fullutr and mixed not
+  pooled); with complete_fullutr pooled in, the d < 10 open rate would be 35%, not 36%.
+- The 76% (fragments 0.7558, mixed trial 1 0.7594) is the transcript-level π of
+  `gm12878_five_prime_truncation.tsv`, the same definition as for GM12878. A prediction-level
+  cross-check (correct-stop open ends before refinement) gives 75.5% / 75.4%.
+- LRAA π is 0.2086 (21%), StringTie 0.2035 (20%): the Results text "20% (LRAA, StringTie)" was changed
+  to "20--21% (StringTie, LRAA)".

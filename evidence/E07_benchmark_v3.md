@@ -260,3 +260,16 @@ so that both sides use the same LongOrfs output.
 - Compared with the 2026-10-23 version (100-aa LongOrfs): complete exact F1 0.956 vs 0.942 and
   fragments 0.484 vs 0.433. The values on complete + random equal the `longest_orf_atg` row of
   `data/benchmark/qmodes/qmodes.medians.tsv` (built from the same 50-aa LongOrfs).
+
+## Status update (2026-10-30): CodAn rows final
+- The *T. thermophila* `complete.unstranded.wRand` CodAn run (the only CodAn run without output) is
+  still in the same state (files of 2026-10-25 03:41, empty `codan.log`, no CodAn process). It was not
+  rerun: CodAn has no ciliate code (E27) and the input is not in Fig. 2 or Table 1. CodAn's final
+  state is 79 of 80 main-benchmark runs (no lncRNA runs).
+- `data/benchmark/summary.tsv`: its 62 CodAn rows were replaced by the 79 CodAn rows of
+  `summary.interim_20261025.tsv` (17 added; the other 61 differ only in `fp`). Only the CodAn rows were
+  changed, so in this file `fp` is correct (fixed scorer) for CodAn and still doubled for the other
+  tools; every other column is identical between the two files for all shared rows (checked).
+- Notebook 02 no longer describes CodAn or the `pytd_v7_homology` runs as running: the latter
+  finished 84/84 on 2026-10-26 (E25) and the notebook's homology section now uses those rows from
+  `final_v7/all_scores.tsv`.

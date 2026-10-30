@@ -1692,17 +1692,21 @@ correct calls.</li>
 50–99 aa sensitivity 0.391, 1,639 lncRNAs with a prediction (4.9%),
 precision 0.918 (<code>by_length.v7.tsv</code>).</li>
 </ul>
-<p>The at the end of this paragraph asks for an update from the release
-reruns. The minimum-length sweep itself was not rerun; only the release
-q settings can be added (Fig. 4a–c).</p>
+<p>The minimum-length sweep exists only as development runs (no release
+rerun of LongOrfs minima other than 50), so the paragraph&#39;s numbers stay
+on the sweep. The release q settings (q 0.01, 0.05, 0.2) are added to
+Fig. 4a,b as the blue paths and the release default to Fig. 4c (section
+<em>Figure 4</em>); the earlier asking for this update has been resolved
+in the text and the caption.</p>
 </div>
 <div id="a-target-decoy-test-for-every-orf" class="section level2">
 <h2>A target-decoy test for every ORF</h2>
 <p>Medians over organisms (eight with random negatives, human and mouse
-with lncRNA negatives). &quot;release&quot; is <code>pytd_v7</code> (E25); &quot;fixed&quot;
-is <code>cliff_c200</code>; &quot;dev q 0.05&quot; is the development run the
-manuscript currently quotes (<code>decoy_q0.05_longgc</code>, E20/E22),
-rescored in the same file.</p>
+with lncRNA negatives). &quot;release&quot; is <code>pytd_v7</code> (E25), the run
+the manuscript quotes; &quot;fixed&quot; is <code>cliff_c200</code>; &quot;dev q 0.05&quot;
+is the development run an earlier draft quoted
+(<code>decoy_q0.05_longgc</code>, E20/E22), rescored in the same
+file.</p>
 <pre class="r"><code>tab_decoy &lt;- med7 %&gt;% filter(label %in% c(&quot;pytd_v7&quot;, &quot;dev_q0.05&quot;, &quot;cliff_c200&quot;)) %&gt;%
   mutate(label = recode(label, pytd_v7 = &quot;release q 0.05&quot;, dev_q0.05 = &quot;dev q 0.05&quot;,
                         cliff_c200 = &quot;fixed short-ORF test&quot;),
@@ -1830,19 +1834,19 @@ kable(tab_decoy, digits = 3, col.names = c(&quot;input&quot;, &quot;setting&quot
 </table>
 <pre class="r"><code>rel &lt;- function(v, col) m7(v, &quot;pytd_v7&quot;, col)
 fix &lt;- function(v, col) m7(v, &quot;cliff_c200&quot;, col)
-# quoted (development q 0.05) values in the bullet list
+# values quoted in the bullet list (release q 0.05 against the fixed short-ORF test)
 quoted &lt;- tribble(
   ~variant, ~col, ~q_rel, ~q_fix,
-  &quot;complete.wRand&quot;, &quot;sens_stop&quot;, 0.965, 0.957,
+  &quot;complete.wRand&quot;, &quot;sens_stop&quot;, 0.964, 0.957,
   &quot;complete.wRand&quot;, &quot;sens_exact&quot;, 0.899, 0.897,
-  &quot;complete.wRand&quot;, &quot;neg_rate&quot;, 0.36, 0.48,
+  &quot;complete.wRand&quot;, &quot;neg_rate&quot;, 0.29, 0.48,
   &quot;fragments.wRand&quot;, &quot;sens_stop&quot;, 0.872, 0.815,
-  &quot;fragments.wRand&quot;, &quot;sens_exact&quot;, 0.773, 0.708,
-  &quot;fragments.wRand&quot;, &quot;neg_rate&quot;, 0.22, 0.11,
+  &quot;fragments.wRand&quot;, &quot;sens_exact&quot;, 0.772, 0.708,
+  &quot;fragments.wRand&quot;, &quot;neg_rate&quot;, 0.23, 0.11,
   &quot;complete.wLnc&quot;, &quot;neg_rate&quot;, 5.0, 18.9,
-  &quot;fragments.wLnc&quot;, &quot;neg_rate&quot;, 5.8, 18.7,
-  &quot;complete.wLnc&quot;, &quot;sens_stop&quot;, 0.964, 0.976,
-  &quot;fragments.wLnc&quot;, &quot;sens_stop&quot;, 0.857, 0.858)
+  &quot;fragments.wLnc&quot;, &quot;neg_rate&quot;, 5.9, 18.7,
+  &quot;complete.wLnc&quot;, &quot;sens_stop&quot;, 0.963, 0.976,
+  &quot;fragments.wLnc&quot;, &quot;sens_stop&quot;, 0.858, 0.858)
 for (i in seq_len(nrow(quoted))) {
   q &lt;- quoted[i, ]
   isneg &lt;- q$col == &quot;neg_rate&quot;
@@ -3414,19 +3418,19 @@ included)</caption>
 </tr>
 </tbody>
 </table>
-<pre class="r"><code>check_text(&quot;--precise lncRNA calls, complete (%)&quot;, round(100 * m7(&quot;complete.wLnc&quot;, &quot;precise&quot;, &quot;neg_rate&quot;), 1), 4.1)
-check_text(&quot;--precise lncRNA calls, fragments (%)&quot;, round(100 * m7(&quot;fragments.wLnc&quot;, &quot;precise&quot;, &quot;neg_rate&quot;), 1), 4.5)
-check_text(&quot;--precise stop sensitivity cost, complete + lncRNA (points)&quot;, round(d_lnc(&quot;complete.wLnc&quot;), 1), 1.4)
-check_text(&quot;--precise stop sensitivity cost, fragments + lncRNA (points)&quot;, round(d_lnc(&quot;fragments.wLnc&quot;), 1), 6.7)
-check_text(&quot;human lncRNA calls &gt;= 200 codons at q 0.01&quot;, ll(&quot;pytd_v7_precise&quot;, &quot;ge200&quot;), 613)
-check_text(&quot;human lncRNA calls at q 0.01&quot;, ll(&quot;pytd_v7_precise&quot;, &quot;n_lnc_calls&quot;), 1322)
+<pre class="r"><code>check_text(&quot;--precise lncRNA calls, complete (%)&quot;, round(100 * m7(&quot;complete.wLnc&quot;, &quot;precise&quot;, &quot;neg_rate&quot;), 1), 4.2)
+check_text(&quot;--precise lncRNA calls, fragments (%)&quot;, round(100 * m7(&quot;fragments.wLnc&quot;, &quot;precise&quot;, &quot;neg_rate&quot;), 1), 4.6)
+check_text(&quot;--precise stop sensitivity cost, complete + lncRNA (points)&quot;, round(d_lnc(&quot;complete.wLnc&quot;), 1), 1.3)
+check_text(&quot;--precise stop sensitivity cost, fragments + lncRNA (points)&quot;, round(d_lnc(&quot;fragments.wLnc&quot;), 1), 6.4)
+check_text(&quot;human lncRNA calls &gt;= 200 codons at q 0.01&quot;, ll(&quot;pytd_v7_precise&quot;, &quot;ge200&quot;), 623)
+check_text(&quot;human lncRNA calls at q 0.01&quot;, ll(&quot;pytd_v7_precise&quot;, &quot;n_lnc_calls&quot;), 1378)
 check_text(&quot;human lncRNA calls &gt;= 300 codons at q 0.01&quot;, ll(&quot;pytd_v7_precise&quot;, &quot;ge300&quot;), 236)
 check_text(&quot;human lncRNA calls &gt;= 300 codons at q 0.3 (dev only)&quot;, ll(&quot;decoy_q0.3_longgc&quot;, &quot;ge300&quot;), 234)
-check_text(&quot;--sensitive fragments + random stop sensitivity&quot;, round(m7(&quot;fragments.wRand&quot;, &quot;sensitive&quot;, &quot;sens_stop&quot;), 3), 0.896)
+check_text(&quot;--sensitive fragments + random stop sensitivity&quot;, round(m7(&quot;fragments.wRand&quot;, &quot;sensitive&quot;, &quot;sens_stop&quot;), 3), 0.895)
 check_text(&quot;q 0.3 fragments + random stop sensitivity (dev only)&quot;, mq(&quot;fragments.wRand&quot;, &quot;decoy_q0.3&quot;, &quot;sens_stop&quot;), 0.898, tol = 0.0005)
 check_text(&quot;q 0.5 fragments + random stop sensitivity (dev only)&quot;, round(mq(&quot;fragments.wRand&quot;, &quot;decoy_q0.5&quot;, &quot;sens_stop&quot;), 3), 0.898)
-check_text(&quot;--sensitive lncRNA calls, complete (%)&quot;, round(100 * m7(&quot;complete.wLnc&quot;, &quot;sensitive&quot;, &quot;neg_rate&quot;), 1), 7.7)
-check_text(&quot;--sensitive lncRNA calls, fragments (%)&quot;, round(100 * m7(&quot;fragments.wLnc&quot;, &quot;sensitive&quot;, &quot;neg_rate&quot;), 1), 10.5)
+check_text(&quot;--sensitive lncRNA calls, complete (%)&quot;, round(100 * m7(&quot;complete.wLnc&quot;, &quot;sensitive&quot;, &quot;neg_rate&quot;), 1), 7.8)
+check_text(&quot;--sensitive lncRNA calls, fragments (%)&quot;, round(100 * m7(&quot;fragments.wLnc&quot;, &quot;sensitive&quot;, &quot;neg_rate&quot;), 1), 10.2)
 check_text(&quot;--sensitive random calls below 0.5% (max of complete/fragments, %)&quot;,
            as.numeric(100 * max(m7(&quot;complete.wRand&quot;, &quot;sensitive&quot;, &quot;neg_rate&quot;), m7(&quot;fragments.wRand&quot;, &quot;sensitive&quot;, &quot;neg_rate&quot;)) &lt; 0.5), 1)
 check_text(&quot;longest ORF &gt;= 100 codons, random calls complete (%)&quot;, round(100 * lo100(&quot;complete.wRand&quot;, &quot;neg_rate&quot;)), 22)
@@ -5282,11 +5286,16 @@ pytd_v7_precise
 <pre class="r"><code>e &lt;- function(t, col) era_tab[[col]][era_tab$variant == &quot;complete.wLnc&quot; &amp; era_tab$tool == t]
 fe &lt;- function(t) { x &lt;- era7 %&gt;% filter(variant == &quot;complete.wLnc&quot;, tool == t)
   fisher.test(matrix(c(x$n_called, x$n_lnc - x$n_called), 2))$p.value }
-check_text(&quot;TransDecoder lncRNA calls, in GENCODE v28 (%)&quot;, round(100 * e(&quot;pytd_v7&quot;, &quot;pre_v28&quot;), 1), 22.0)
-check_text(&quot;TransDecoder lncRNA calls, added later (%)&quot;, round(100 * e(&quot;pytd_v7&quot;, &quot;post_v28&quot;), 1), 19.7)
+check_text(&quot;TransDecoder lncRNA calls, in GENCODE v28 (%)&quot;, round(100 * e(&quot;pytd_v7&quot;, &quot;pre_v28&quot;), 1), 3.4)
+check_text(&quot;TransDecoder lncRNA calls, added later (%)&quot;, round(100 * e(&quot;pytd_v7&quot;, &quot;post_v28&quot;), 1), 5.8)
+check_text(&quot;TransDecoder lncRNA calls, ratio added later / in v28&quot;, round(e(&quot;pytd_v7&quot;, &quot;ratio_post_pre&quot;), 2), 1.68)
+check_text(&quot;TransDecoder lncRNA calls, Fisher p (x 1e-23)&quot;, round(fe(&quot;pytd_v7&quot;) / 1e-23, 1), 2.4)
 check_text(&quot;RNAsamba lncRNA calls, in v28 (%)&quot;, round(100 * e(&quot;rnasamba&quot;, &quot;pre_v28&quot;), 1), 6.2)
 check_text(&quot;RNAsamba lncRNA calls, added later (%)&quot;, round(100 * e(&quot;rnasamba&quot;, &quot;post_v28&quot;), 1), 10.9)
-check_text(&quot;TransDecoder lncRNA call rate (%)&quot;, round(100 * e(&quot;pytd_v7&quot;, &quot;all&quot;), 1), 20.6)
+check_text(&quot;RNAsamba lncRNA calls, ratio&quot;, round(e(&quot;rnasamba&quot;, &quot;ratio_post_pre&quot;), 2), 1.74)
+check_text(&quot;CPAT lncRNA calls, ratio&quot;, round(e(&quot;cpat&quot;, &quot;ratio_post_pre&quot;), 2), 0.94)
+check_text(&quot;CPC2 lncRNA calls, ratio&quot;, round(e(&quot;cpc2&quot;, &quot;ratio_post_pre&quot;), 2), 1.00)
+check_text(&quot;TransDecoder lncRNA call rate (%)&quot;, round(100 * e(&quot;pytd_v7&quot;, &quot;all&quot;), 1), 4.9)
 check_text(&quot;CPAT lncRNA call rate (%)&quot;, round(100 * e(&quot;cpat&quot;, &quot;all&quot;), 1), 10.5)
 check_text(&quot;CPC2 lncRNA call rate (%)&quot;, round(100 * e(&quot;cpc2&quot;, &quot;all&quot;), 1), 7.9)
 check_text(&quot;RNAsamba lncRNA call rate (%)&quot;, round(100 * e(&quot;rnasamba&quot;, &quot;all&quot;), 1), 9.1)</code></pre>
@@ -9669,7 +9678,13 @@ check_text(&quot;mix preset, complete 5,000&quot;, round(pv(&quot;complete&quot;
 check_text(&quot;complete-only preset, complete 5,000&quot;, round(pv(&quot;complete&quot;, &quot;half random&quot;, 5000, &quot;preset_same&quot;, &quot;sens_stop&quot;), 3), 0.958)
 check_text(&quot;other-species preset, fragments 5,000 (median of 4 organisms)&quot;, round(pv(&quot;fragments&quot;, &quot;half random&quot;, 5000, &quot;preset_other&quot;, &quot;sens_stop&quot;), 2), 0.72)
 check_text(&quot;cross-clade preset only (A. thaliana, D. melanogaster), fragments 5,000, max&quot;,
-           round(max(cross$preset_other[cross$org %in% c(&quot;athal&quot;, &quot;dmel&quot;)]), 2), 0.72)
+           round(max(cross$preset_other[cross$org %in% c(&quot;athal&quot;, &quot;dmel&quot;)]), 2), 0.66)
+check_text(&quot;cross-clade preset only (A. thaliana, D. melanogaster), fragments 5,000, min&quot;,
+           round(min(cross$preset_other[cross$org %in% c(&quot;athal&quot;, &quot;dmel&quot;)]), 2), 0.43)  # 1087/2500 = 0.4348; text said 0.44 until 2026-10-30
+check_text(&quot;human/mouse other-species preset, fragments 5,000, min&quot;,
+           round(min(cross$preset_other[cross$org %in% c(&quot;human&quot;, &quot;mouse&quot;)]), 2), 0.78)
+check_text(&quot;human/mouse other-species preset, fragments 5,000, max&quot;,
+           round(max(cross$preset_other[cross$org %in% c(&quot;human&quot;, &quot;mouse&quot;)]), 2), 0.81)
 check_text(&quot;same-species mix preset, fragments 5,000&quot;, round(pv(&quot;fragments&quot;, &quot;half random&quot;, 5000, &quot;preset_samemix&quot;, &quot;sens_stop&quot;), 2), 0.87)</code></pre>
 <ul>
 <li>Trained on the input, complete transcripts, 50–500 sequences:
@@ -9718,17 +9733,15 @@ long-ORF rule paragraph are covered by notebook 01 (E26, E10).</li>
 <div id="checks-against-the-manuscript" class="section level2">
 <h2>Checks against the manuscript</h2>
 <p>Each row compares the value computed here (release runs where they
-exist, see the labels) with the value the manuscript currently quotes.
-Mismatches in the target-decoy and <em>One setting</em> rows are mostly
-the release-versus-development difference that the manuscript&#39;s already
-flags.</p>
+exist, see the labels) with the value the manuscript quotes; the text
+quotes the release runs wherever one exists.</p>
 <pre class="r"><code>check_report()</code></pre>
-<table style="width:99%;">
+<table>
 <colgroup>
-<col width="74%" />
+<col width="75%" />
 <col width="8%" />
 <col width="10%" />
-<col width="5%" />
+<col width="4%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -9808,8 +9821,8 @@ flags.</p>
 <tr class="even">
 <td align="left">complete + random sens_stop, q-value test</td>
 <td align="left">0.964</td>
-<td align="left">0.965</td>
-<td align="left">FALSE</td>
+<td align="left">0.964</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">complete + random sens_stop, fixed short-ORF test</td>
@@ -9832,8 +9845,8 @@ flags.</p>
 <tr class="even">
 <td align="left">complete + random neg_rate, q-value test</td>
 <td align="left">0.29</td>
-<td align="left">0.36</td>
-<td align="left">FALSE</td>
+<td align="left">0.29</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">complete + random neg_rate, fixed short-ORF test</td>
@@ -9856,8 +9869,8 @@ flags.</p>
 <tr class="even">
 <td align="left">fragments + random sens_exact, q-value test</td>
 <td align="left">0.772</td>
-<td align="left">0.773</td>
-<td align="left">FALSE</td>
+<td align="left">0.772</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">fragments + random sens_exact, fixed short-ORF
@@ -9869,8 +9882,8 @@ test</td>
 <tr class="even">
 <td align="left">fragments + random neg_rate, q-value test</td>
 <td align="left">0.23</td>
-<td align="left">0.22</td>
-<td align="left">FALSE</td>
+<td align="left">0.23</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">fragments + random neg_rate, fixed short-ORF test</td>
@@ -9893,8 +9906,8 @@ test</td>
 <tr class="even">
 <td align="left">fragments + lncRNA neg_rate, q-value test</td>
 <td align="left">5.9</td>
-<td align="left">5.8</td>
-<td align="left">FALSE</td>
+<td align="left">5.9</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">fragments + lncRNA neg_rate, fixed short-ORF test</td>
@@ -9905,8 +9918,8 @@ test</td>
 <tr class="even">
 <td align="left">complete + lncRNA sens_stop, q-value test</td>
 <td align="left">0.963</td>
-<td align="left">0.964</td>
-<td align="left">FALSE</td>
+<td align="left">0.963</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">complete + lncRNA sens_stop, fixed short-ORF test</td>
@@ -9917,8 +9930,8 @@ test</td>
 <tr class="even">
 <td align="left">fragments + lncRNA sens_stop, q-value test</td>
 <td align="left">0.858</td>
-<td align="left">0.857</td>
-<td align="left">FALSE</td>
+<td align="left">0.858</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">fragments + lncRNA sens_stop, fixed short-ORF test</td>
@@ -9972,40 +9985,40 @@ test</td>
 <tr class="odd">
 <td align="left">--precise lncRNA calls, complete (%)</td>
 <td align="left">4.2</td>
-<td align="left">4.1</td>
-<td align="left">FALSE</td>
+<td align="left">4.2</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">--precise lncRNA calls, fragments (%)</td>
 <td align="left">4.6</td>
-<td align="left">4.5</td>
-<td align="left">FALSE</td>
+<td align="left">4.6</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">--precise stop sensitivity cost, complete + lncRNA
 (points)</td>
 <td align="left">1.3</td>
-<td align="left">1.4</td>
-<td align="left">FALSE</td>
+<td align="left">1.3</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">--precise stop sensitivity cost, fragments + lncRNA
 (points)</td>
 <td align="left">6.4</td>
-<td align="left">6.7</td>
-<td align="left">FALSE</td>
+<td align="left">6.4</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">human lncRNA calls &gt;= 200 codons at q 0.01</td>
 <td align="left">623</td>
-<td align="left">613</td>
-<td align="left">FALSE</td>
+<td align="left">623</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">human lncRNA calls at q 0.01</td>
 <td align="left">1378</td>
-<td align="left">1322</td>
-<td align="left">FALSE</td>
+<td align="left">1378</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">human lncRNA calls &gt;= 300 codons at q 0.01</td>
@@ -10023,8 +10036,8 @@ only)</td>
 <tr class="odd">
 <td align="left">--sensitive fragments + random stop sensitivity</td>
 <td align="left">0.895</td>
-<td align="left">0.896</td>
-<td align="left">FALSE</td>
+<td align="left">0.895</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">q 0.3 fragments + random stop sensitivity (dev
@@ -10043,14 +10056,14 @@ only)</td>
 <tr class="even">
 <td align="left">--sensitive lncRNA calls, complete (%)</td>
 <td align="left">7.8</td>
-<td align="left">7.7</td>
-<td align="left">FALSE</td>
+<td align="left">7.8</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">--sensitive lncRNA calls, fragments (%)</td>
 <td align="left">10.2</td>
-<td align="left">10.5</td>
-<td align="left">FALSE</td>
+<td align="left">10.2</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">--sensitive random calls below 0.5% (max of
@@ -10108,14 +10121,27 @@ random</td>
 <tr class="even">
 <td align="left">TransDecoder lncRNA calls, in GENCODE v28 (%)</td>
 <td align="left">3.4</td>
-<td align="left">22</td>
-<td align="left">FALSE</td>
+<td align="left">3.4</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">TransDecoder lncRNA calls, added later (%)</td>
 <td align="left">5.8</td>
-<td align="left">19.7</td>
-<td align="left">FALSE</td>
+<td align="left">5.8</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">TransDecoder lncRNA calls, ratio added later / in
+v28</td>
+<td align="left">1.68</td>
+<td align="left">1.68</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">TransDecoder lncRNA calls, Fisher p (x 1e-23)</td>
+<td align="left">2.4</td>
+<td align="left">2.4</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">RNAsamba lncRNA calls, in v28 (%)</td>
@@ -10130,164 +10156,203 @@ random</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">TransDecoder lncRNA call rate (%)</td>
-<td align="left">4.9</td>
-<td align="left">20.6</td>
-<td align="left">FALSE</td>
+<td align="left">RNAsamba lncRNA calls, ratio</td>
+<td align="left">1.74</td>
+<td align="left">1.74</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
+<td align="left">CPAT lncRNA calls, ratio</td>
+<td align="left">0.94</td>
+<td align="left">0.94</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">CPC2 lncRNA calls, ratio</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">TransDecoder lncRNA call rate (%)</td>
+<td align="left">4.9</td>
+<td align="left">4.9</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
 <td align="left">CPAT lncRNA call rate (%)</td>
 <td align="left">10.5</td>
 <td align="left">10.5</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">CPC2 lncRNA call rate (%)</td>
 <td align="left">7.9</td>
 <td align="left">7.9</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">RNAsamba lncRNA call rate (%)</td>
 <td align="left">9.1</td>
 <td align="left">9.1</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">&lt;=500 seqs, random calls trained on input, min
 (%)</td>
 <td align="left">8</td>
 <td align="left">8</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">&lt;=500 seqs, random calls trained on input, max
 (%)</td>
 <td align="left">82</td>
 <td align="left">82</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">1,000 seqs, random calls complete (%)</td>
 <td align="left">0.8</td>
 <td align="left">0.8</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">1,000 seqs, random calls fragments (%)</td>
 <td align="left">3.7</td>
 <td align="left">3.7</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">5,000 seqs, random calls complete (%)</td>
 <td align="left">0.6</td>
 <td align="left">0.6</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">5,000 seqs, random calls fragments (%)</td>
 <td align="left">0.3</td>
 <td align="left">0.3</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">preset random calls, max (%)</td>
 <td align="left">0.4</td>
 <td align="left">0.4</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">preset random calls, min (%)</td>
 <td align="left">0</td>
 <td align="left">0</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">mix preset stop sens complete, min</td>
 <td align="left">0.948</td>
 <td align="left">0.948</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">mix preset stop sens complete, max</td>
 <td align="left">0.96</td>
 <td align="left">0.96</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">mix preset stop sens fragments, min</td>
 <td align="left">0.854</td>
 <td align="left">0.854</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">mix preset stop sens fragments, max</td>
 <td align="left">0.875</td>
 <td align="left">0.875</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">trained on 5,000, stop sens complete</td>
 <td align="left">0.967</td>
 <td align="left">0.967</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">trained on 5,000, stop sens fragments</td>
 <td align="left">0.88</td>
 <td align="left">0.88</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">50 complete coding, exact sens trained on input</td>
 <td align="left">0.81</td>
 <td align="left">0.81</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">50 complete coding, exact sens with mix preset</td>
 <td align="left">0.88</td>
 <td align="left">0.88</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">complete-only preset, fragments 5,000</td>
 <td align="left">0.806</td>
 <td align="left">0.806</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">mix preset, fragments 5,000</td>
 <td align="left">0.873</td>
 <td align="left">0.873</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">mix preset, complete 5,000</td>
 <td align="left">0.956</td>
 <td align="left">0.956</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">complete-only preset, complete 5,000</td>
 <td align="left">0.958</td>
 <td align="left">0.958</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">other-species preset, fragments 5,000 (median of 4
 organisms)</td>
 <td align="left">0.72</td>
 <td align="left">0.72</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">cross-clade preset only (A. thaliana, D. melanogaster),
 fragments 5,000, max</td>
 <td align="left">0.66</td>
-<td align="left">0.72</td>
-<td align="left">FALSE</td>
+<td align="left">0.66</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">cross-clade preset only (A. thaliana, D. melanogaster),
+fragments 5,000, min</td>
+<td align="left">0.43</td>
+<td align="left">0.43</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">human/mouse other-species preset, fragments 5,000,
+min</td>
+<td align="left">0.78</td>
+<td align="left">0.78</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">human/mouse other-species preset, fragments 5,000,
+max</td>
+<td align="left">0.81</td>
+<td align="left">0.81</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">same-species mix preset, fragments 5,000</td>

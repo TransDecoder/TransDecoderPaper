@@ -1108,6 +1108,14 @@ or note describes the incident; details are unknown.
 11. **First-ATG baseline.** E07 says the `longest_orf_atg` result (exact F1 0.942 vs 0.910) is "not yet in
     the manuscript". It is still absent (no "0.942" in the sections). Whether to report it is undecided.
    **Resolved 2026-10-28:** Brian approved one sentence. The baseline was recomputed at the release (E07 Addendum; `first_atg_baseline.tsv`): complete exact F1 0.956 vs 0.912, fragments 0.484 vs 0.822.
+12. **Notebook check values lagged the manuscript (found 2026-10-30).** Notebooks 03, 04, 07 and S1
+    compared release values with manuscript numbers hard-coded before the text moved to the release runs,
+    so 62 checks failed although the text and the data agreed. The quoted values were updated to the
+    current text; all checks of 02, 03, 04, 05, 07 and S1 now pass. Two real text errors turned up and were
+    corrected: the cross-clade preset value for *A. thaliana* (0.4348, text 0.44 -> 0.43; E21) and the
+    GM12878 truncated share for LRAA (0.2086, text "20% (LRAA, StringTie)" -> "20--21% (StringTie,
+    LRAA)"; E29). Notebook 06 still has two failing checks on the earlier runs (same-stop share 64/70%
+    against the quoted 62/68%; definition not documented, already noted in the notebook).
 
 ## Outcome counts
 Entries: 58 (A1-A13, S1-S14, O1-O4, H1-H5, B1-B10, T1-T6, G1-G6).

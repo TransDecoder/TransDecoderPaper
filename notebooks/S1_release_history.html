@@ -1800,8 +1800,8 @@ kable(tab)</code></pre>
 <code>supplement.tex</code>:</p>
 <pre class="r"><code>tex_name &lt;- c(&quot;r2012-08-07&quot; = &quot;r2012-08-07&quot;, &quot;v2.0&quot; = &quot;v2.0&quot;, &quot;v4.1.0&quot; = &quot;v4.1.0&quot;,
               &quot;v5.0.0&quot; = &quot;v5.0.0&quot;, &quot;v5.7.1 (= v6.0.0)&quot; = &quot;v5.7.1 ($\\equiv$ v6.0.0)&quot;,
-              &quot;v7 development, fixed short-ORF test&quot; = &quot;v7 development, fixed short-ORF test&quot;,
-              &quot;v7 (release), q 0.05&quot; = &quot;v7 (release), q~0.05&quot;)
+              &quot;v7 development, fixed short-ORF test&quot; = &quot;v7 dev., fixed test&quot;,
+              &quot;v7 (release), q 0.05&quot; = &quot;v7 release, q 0.05&quot;)
 for (i in seq_len(nrow(tab))) {
   cat(paste(c(tex_name[as.character(tab$Release[i])], unlist(tab[i, -1])), collapse = &quot; &amp; &quot;),
       &quot;\\\\\n&quot;)
@@ -1811,8 +1811,8 @@ v2.0 &amp; 0.935 / 0.667 / 0.1 &amp; 0.764 / 0.623 / 0.0 &amp; 0.966 / 0.618 / 1
 v4.1.0 &amp; 0.936 / 0.744 / 0.1 &amp; 0.757 / 0.621 / 0.0 &amp; 0.956 / 0.747 / 13.4 &amp; 0.772 / 0.643 / 13.3 \\
 v5.0.0 &amp; 0.946 / 0.748 / 0.3 &amp; 0.771 / 0.625 / 0.1 &amp; 0.969 / 0.757 / 17.9 &amp; 0.792 / 0.658 / 17.6 \\
 v5.7.1 ($\equiv$ v6.0.0) &amp; 0.946 / 0.758 / 0.3 &amp; 0.771 / 0.623 / 0.1 &amp; 0.969 / 0.764 / 17.9 &amp; 0.792 / 0.653 / 17.6 \\
-v7 development, fixed short-ORF test &amp; 0.957 / 0.897 / 0.5 &amp; 0.815 / 0.708 / 0.1 &amp; 0.976 / 0.905 / 18.9 &amp; 0.857 / 0.753 / 18.6 \\
-v7 (release), q~0.05 &amp; 0.964 / 0.899 / 0.3 &amp; 0.872 / 0.772 / 0.2 &amp; 0.963 / 0.893 / 5.0 &amp; 0.858 / 0.756 / 5.9 \\</code></pre>
+v7 dev., fixed test &amp; 0.957 / 0.897 / 0.5 &amp; 0.815 / 0.708 / 0.1 &amp; 0.976 / 0.905 / 18.9 &amp; 0.857 / 0.753 / 18.6 \\
+v7 release, q 0.05 &amp; 0.964 / 0.899 / 0.3 &amp; 0.872 / 0.772 / 0.2 &amp; 0.963 / 0.893 / 5.0 &amp; 0.858 / 0.756 / 5.9 \\</code></pre>
 <div id="text-of-the-paragraph" class="section level3">
 <h3>Text of the paragraph</h3>
 <pre class="r"><code>old &lt;- RELEASES$label[1:5]
@@ -4143,26 +4143,25 @@ Per-organism values
 table (3 decimals for sensitivity, 1 for percentages). The two v7 rows
 of the manuscript table are compared with the rows that replace them:
 the “fixed short-ORF test” row with the development run
-(<code>cliff_c200</code>) and the “q-value test” row with the release
-run (<code>pytd_v7</code>); the manuscript row for the q-value test
-still holds the development run (TODO in the table).</p>
-<pre class="r"><code># manuscript tab:history (supplement.tex lines 94-100): stop / exact / % negatives
+(<code>cliff_c200</code>) and the “v7 release, q 0.05” row with the
+release run (<code>pytd_v7</code>), which the table now holds.</p>
+<pre class="r"><code># manuscript tab:history (supplement.tex, Supplementary Note 1): stop / exact / % negatives
 quoted &lt;- tribble(
   ~label, ~variant, ~sens_stop, ~sens_exact, ~neg_pct,
   &quot;r2012&quot;, &quot;complete.wRand&quot;, 0.935, 0.666, 0.1, &quot;r2012&quot;, &quot;fragments.wRand&quot;, 0.759, 0.620, 0.0,
   &quot;r2012&quot;, &quot;complete.wLnc&quot;, 0.965, 0.618, 16.2, &quot;r2012&quot;, &quot;fragments.wLnc&quot;, 0.781, 0.633, 15.7,
-  &quot;v2.0&quot;, &quot;complete.wRand&quot;, 0.936, 0.667, 0.1, &quot;v2.0&quot;, &quot;fragments.wRand&quot;, 0.764, 0.623, 0.0,
+  &quot;v2.0&quot;, &quot;complete.wRand&quot;, 0.935, 0.667, 0.1, &quot;v2.0&quot;, &quot;fragments.wRand&quot;, 0.764, 0.623, 0.0,
   &quot;v2.0&quot;, &quot;complete.wLnc&quot;, 0.966, 0.618, 16.4, &quot;v2.0&quot;, &quot;fragments.wLnc&quot;, 0.784, 0.636, 15.8,
   &quot;v4.1.0&quot;, &quot;complete.wRand&quot;, 0.936, 0.744, 0.1, &quot;v4.1.0&quot;, &quot;fragments.wRand&quot;, 0.757, 0.621, 0.0,
   &quot;v4.1.0&quot;, &quot;complete.wLnc&quot;, 0.956, 0.747, 13.4, &quot;v4.1.0&quot;, &quot;fragments.wLnc&quot;, 0.772, 0.643, 13.3,
-  &quot;v5.0.0&quot;, &quot;complete.wRand&quot;, 0.946, 0.748, 0.3, &quot;v5.0.0&quot;, &quot;fragments.wRand&quot;, 0.772, 0.625, 0.1,
+  &quot;v5.0.0&quot;, &quot;complete.wRand&quot;, 0.946, 0.748, 0.3, &quot;v5.0.0&quot;, &quot;fragments.wRand&quot;, 0.771, 0.625, 0.1,
   &quot;v5.0.0&quot;, &quot;complete.wLnc&quot;, 0.969, 0.757, 17.9, &quot;v5.0.0&quot;, &quot;fragments.wLnc&quot;, 0.792, 0.658, 17.6,
-  &quot;v5.7.1&quot;, &quot;complete.wRand&quot;, 0.946, 0.758, 0.3, &quot;v5.7.1&quot;, &quot;fragments.wRand&quot;, 0.772, 0.623, 0.1,
+  &quot;v5.7.1&quot;, &quot;complete.wRand&quot;, 0.946, 0.758, 0.3, &quot;v5.7.1&quot;, &quot;fragments.wRand&quot;, 0.771, 0.623, 0.1,
   &quot;v5.7.1&quot;, &quot;complete.wLnc&quot;, 0.969, 0.764, 17.9, &quot;v5.7.1&quot;, &quot;fragments.wLnc&quot;, 0.792, 0.653, 17.6,
   &quot;cliff_c200&quot;, &quot;complete.wRand&quot;, 0.957, 0.897, 0.5, &quot;cliff_c200&quot;, &quot;fragments.wRand&quot;, 0.815, 0.708, 0.1,
-  &quot;cliff_c200&quot;, &quot;complete.wLnc&quot;, 0.976, 0.905, 18.9, &quot;cliff_c200&quot;, &quot;fragments.wLnc&quot;, 0.858, 0.753, 18.6,
-  &quot;pytd_v7&quot;, &quot;complete.wRand&quot;, 0.965, 0.899, 0.4, &quot;pytd_v7&quot;, &quot;fragments.wRand&quot;, 0.872, 0.773, 0.2,
-  &quot;pytd_v7&quot;, &quot;complete.wLnc&quot;, 0.964, 0.894, 5.0, &quot;pytd_v7&quot;, &quot;fragments.wLnc&quot;, 0.857, 0.755, 5.8
+  &quot;cliff_c200&quot;, &quot;complete.wLnc&quot;, 0.976, 0.905, 18.9, &quot;cliff_c200&quot;, &quot;fragments.wLnc&quot;, 0.857, 0.753, 18.6,
+  &quot;pytd_v7&quot;, &quot;complete.wRand&quot;, 0.964, 0.899, 0.3, &quot;pytd_v7&quot;, &quot;fragments.wRand&quot;, 0.872, 0.772, 0.2,
+  &quot;pytd_v7&quot;, &quot;complete.wLnc&quot;, 0.963, 0.893, 5.0, &quot;pytd_v7&quot;, &quot;fragments.wLnc&quot;, 0.858, 0.756, 5.9
 )
 for (i in seq_len(nrow(quoted))) {
   q &lt;- quoted[i, ]
@@ -4172,12 +4171,14 @@ for (i in seq_len(nrow(quoted))) {
     check_text(sprintf(&quot;Table S8 %s %s %s&quot;, q$label, q$variant, k), round(v, digits), q[[k]])
   }
 }
-# paragraph after the table (supplement.tex lines 105-111)
+# paragraph after tab:history (supplement.tex)
 check_text(&quot;random negatives, max median % (at most 0.5)&quot;, round(rand_max, 1), 0.5)
 check_text(&quot;exact, complete+random, r2012&quot;, round(m(&quot;r2012&quot;, &quot;complete.wRand&quot;, &quot;sens_exact&quot;), 3), 0.666)
 check_text(&quot;exact, complete+random, v4.1.0&quot;, round(m(&quot;v4.1.0&quot;, &quot;complete.wRand&quot;, &quot;sens_exact&quot;), 3), 0.744)
 check_text(&quot;exact, complete+random, v7 start rule (dev. short-ORF test)&quot;,
            round(m(&quot;cliff_c200&quot;, &quot;complete.wRand&quot;, &quot;sens_exact&quot;), 3), 0.897)
+check_text(&quot;exact, complete+random, v7 start rule (release)&quot;,
+           round(m(&quot;pytd_v7&quot;, &quot;complete.wRand&quot;, &quot;sens_exact&quot;), 3), 0.899)
 check_text(&quot;stop, fragments+random, 2012-v6.0.0 low (0.76)&quot;, round(min(frag_old), 2), 0.76)
 check_text(&quot;stop, fragments+random, 2012-v6.0.0 high (0.77)&quot;, round(max(frag_old), 2), 0.77)
 check_text(&quot;stop, fragments+random, v7 50-codon minimum (dev.)&quot;,
@@ -4187,14 +4188,14 @@ check_text(&quot;stop, fragments+random, v7 q-value test (release)&quot;,
 check_text(&quot;lncRNA % before q-value test, low (13)&quot;, round(min(lnc_before_q)), 13)
 check_text(&quot;lncRNA % before q-value test, high (19)&quot;, round(max(lnc_before_q)), 19)
 check_text(&quot;lncRNA % with q-value test, low (5.0)&quot;, round(min(lnc_q), 1), 5.0)
-check_text(&quot;lncRNA % with q-value test, high (5.8)&quot;, round(max(lnc_q), 1), 5.8)
+check_text(&quot;lncRNA % with q-value test, high (5.9)&quot;, round(max(lnc_q), 1), 5.9)
 check_report()</code></pre>
 <table>
 <colgroup>
-<col width="69%" />
+<col width="70%" />
 <col width="10%" />
 <col width="12%" />
-<col width="6%" />
+<col width="5%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -4280,8 +4281,8 @@ check_report()</code></pre>
 <tr class="odd">
 <td align="left">Table S8 v2.0 complete.wRand sens_stop</td>
 <td align="left">0.935</td>
-<td align="left">0.936</td>
-<td align="left">FALSE</td>
+<td align="left">0.935</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">Table S8 v2.0 complete.wRand sens_exact</td>
@@ -4442,8 +4443,8 @@ check_report()</code></pre>
 <tr class="even">
 <td align="left">Table S8 v5.0.0 fragments.wRand sens_stop</td>
 <td align="left">0.771</td>
-<td align="left">0.772</td>
-<td align="left">FALSE</td>
+<td align="left">0.771</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">Table S8 v5.0.0 fragments.wRand sens_exact</td>
@@ -4514,8 +4515,8 @@ check_report()</code></pre>
 <tr class="even">
 <td align="left">Table S8 v5.7.1 fragments.wRand sens_stop</td>
 <td align="left">0.771</td>
-<td align="left">0.772</td>
-<td align="left">FALSE</td>
+<td align="left">0.771</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">Table S8 v5.7.1 fragments.wRand sens_exact</td>
@@ -4622,8 +4623,8 @@ check_report()</code></pre>
 <tr class="even">
 <td align="left">Table S8 cliff_c200 fragments.wLnc sens_stop</td>
 <td align="left">0.857</td>
-<td align="left">0.858</td>
-<td align="left">FALSE</td>
+<td align="left">0.857</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">Table S8 cliff_c200 fragments.wLnc sens_exact</td>
@@ -4640,8 +4641,8 @@ check_report()</code></pre>
 <tr class="odd">
 <td align="left">Table S8 pytd_v7 complete.wRand sens_stop</td>
 <td align="left">0.964</td>
-<td align="left">0.965</td>
-<td align="left">FALSE</td>
+<td align="left">0.964</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">Table S8 pytd_v7 complete.wRand sens_exact</td>
@@ -4652,8 +4653,8 @@ check_report()</code></pre>
 <tr class="odd">
 <td align="left">Table S8 pytd_v7 complete.wRand neg_pct</td>
 <td align="left">0.3</td>
-<td align="left">0.4</td>
-<td align="left">FALSE</td>
+<td align="left">0.3</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">Table S8 pytd_v7 fragments.wRand sens_stop</td>
@@ -4664,8 +4665,8 @@ check_report()</code></pre>
 <tr class="odd">
 <td align="left">Table S8 pytd_v7 fragments.wRand sens_exact</td>
 <td align="left">0.772</td>
-<td align="left">0.773</td>
-<td align="left">FALSE</td>
+<td align="left">0.772</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">Table S8 pytd_v7 fragments.wRand neg_pct</td>
@@ -4676,14 +4677,14 @@ check_report()</code></pre>
 <tr class="odd">
 <td align="left">Table S8 pytd_v7 complete.wLnc sens_stop</td>
 <td align="left">0.963</td>
-<td align="left">0.964</td>
-<td align="left">FALSE</td>
+<td align="left">0.963</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">Table S8 pytd_v7 complete.wLnc sens_exact</td>
 <td align="left">0.893</td>
-<td align="left">0.894</td>
-<td align="left">FALSE</td>
+<td align="left">0.893</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">Table S8 pytd_v7 complete.wLnc neg_pct</td>
@@ -4694,20 +4695,20 @@ check_report()</code></pre>
 <tr class="even">
 <td align="left">Table S8 pytd_v7 fragments.wLnc sens_stop</td>
 <td align="left">0.858</td>
-<td align="left">0.857</td>
-<td align="left">FALSE</td>
+<td align="left">0.858</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">Table S8 pytd_v7 fragments.wLnc sens_exact</td>
 <td align="left">0.756</td>
-<td align="left">0.755</td>
-<td align="left">FALSE</td>
+<td align="left">0.756</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">Table S8 pytd_v7 fragments.wLnc neg_pct</td>
 <td align="left">5.9</td>
-<td align="left">5.8</td>
-<td align="left">FALSE</td>
+<td align="left">5.9</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">random negatives, max median % (at most 0.5)</td>
@@ -4735,52 +4736,58 @@ test)</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
+<td align="left">exact, complete+random, v7 start rule (release)</td>
+<td align="left">0.899</td>
+<td align="left">0.899</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
 <td align="left">stop, fragments+random, 2012-v6.0.0 low (0.76)</td>
 <td align="left">0.76</td>
 <td align="left">0.76</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">stop, fragments+random, 2012-v6.0.0 high (0.77)</td>
 <td align="left">0.77</td>
 <td align="left">0.77</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">stop, fragments+random, v7 50-codon minimum (dev.)</td>
 <td align="left">0.815</td>
 <td align="left">0.815</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">stop, fragments+random, v7 q-value test (release)</td>
 <td align="left">0.872</td>
 <td align="left">0.872</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">lncRNA % before q-value test, low (13)</td>
 <td align="left">13</td>
 <td align="left">13</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">lncRNA % before q-value test, high (19)</td>
 <td align="left">19</td>
 <td align="left">19</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">lncRNA % with q-value test, low (5.0)</td>
 <td align="left">5</td>
 <td align="left">5</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
-<td align="left">lncRNA % with q-value test, high (5.8)</td>
+<tr class="odd">
+<td align="left">lncRNA % with q-value test, high (5.9)</td>
 <td align="left">5.9</td>
-<td align="left">5.8</td>
-<td align="left">FALSE</td>
+<td align="left">5.9</td>
+<td align="left">TRUE</td>
 </tr>
 </tbody>
 </table>

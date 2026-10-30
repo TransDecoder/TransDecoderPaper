@@ -1584,11 +1584,13 @@ runs).</p>
 development rule: <span class="math inline">\(S_1&gt;0\)</span>, frame
 contrast <span class="math inline">\(C=S_1-\max(S_2,S_3)&gt;0\)</span>
 and, below 300 nt, a fixed short-ORF test (<span class="math inline">\(C
-\ge 200\mu\)</span>). The text still quotes it (it carries a
-<code>\todo</code>). Here the analysis is rerun on the release
-predictions (<code>pytd_v7</code>: PyTD 3a793ff, release defaults; Perl
-gives identical predictions, E25), with the release coding test: <span class="math inline">\(S_1&gt;0\)</span>, <span class="math inline">\(C&gt;0\)</span> and target-decoy q-value <span class="math inline">\(\le 0.05\)</span>. The q-value of each candidate
-is read from the run’s <code>decoy_qvalues.tsv</code>.</p>
+\ge 200\mu\)</span>). The text now quotes the release analysis. Here the
+analysis is rerun on the release predictions (<code>pytd_v7</code>: PyTD
+3a793ff, release defaults; Perl gives identical predictions, E25), with
+the release coding test: <span class="math inline">\(S_1&gt;0\)</span>,
+<span class="math inline">\(C&gt;0\)</span> and target-decoy q-value
+<span class="math inline">\(\le 0.05\)</span>. The q-value of each
+candidate is read from the run’s <code>decoy_qvalues.tsv</code>.</p>
 <p>Data (<code>data/long_orf_failures/v7/</code>, written by
 <code>pipeline/derive/05_long_orf_failures_v7.sh</code>, which runs
 <code>05_long_orf_failures_v7.py</code>,

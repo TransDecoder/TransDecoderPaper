@@ -1592,11 +1592,11 @@ matching) and <a href="../evidence/E25_final_release_reruns.md">E25</a>
 also <code>--precise</code> and <code>--sensitive</code> for LRAA and
 StringTie).</p>
 <p><strong>Which data.</strong> All numbers below use the final release
-runs (E25). The manuscript text was written from the earlier development
-runs (<code>final_abinitio</code>, fixed short-ORF test; E01, E02). The
-same statistics are also computed from the earlier tables, so the check
-table at the end shows which differences come from the change of
-runs.</p>
+runs (E25). The manuscript text was first written from the earlier
+development runs (<code>final_abinitio</code>, fixed short-ORF test;
+E01, E02) and now quotes the release runs. The same statistics are also
+computed from the earlier tables, so the check table at the end shows
+which differences come from the change of runs.</p>
 <p>Data:</p>
 <ul>
 <li>Final release (E25):
@@ -4595,8 +4595,7 @@ kable(c3 %&gt;% mutate(best_PEP = formatC(best_PEP, format = &quot;e&quot;, digi
 <p>It is predicted only in <strong>stringtie_sensitive</strong>, not in
 any default run (<code>c3_in_default</code> = FALSE): the 101-aa ORF is
 kept with the looser <code>--sensitive</code> q-value setting but not
-with the release default. The sentence on C3orf86P holds for the
-<code>--sensitive</code> setting only.</p>
+with the release default, as the text now states.</p>
 </div>
 <div id="interpretation" class="section level2">
 <h2>Interpretation</h2>
@@ -4608,10 +4607,11 @@ pseudogene or paralogous copies.</p>
 </div>
 <div id="checks-against-the-manuscript" class="section level1">
 <h1>Checks against the manuscript</h1>
-<p>Rows labelled “(final)” compare the final release values to the
-current text; rows labelled “(earlier)” compare the earlier-run tables,
-to show whether the text matched the data it was written from. Ranges
-are checked at their ends.</p>
+<p>Rows labelled “(final)” compare the final release values with the
+current text, which quotes the release runs; rows labelled “(earlier)”
+compare the earlier-run tables with the values the text quoted before
+the release reruns (the MS 9–24% for the fixed short-ORF test is still
+quoted). Ranges are checked at their ends.</p>
 <pre class="r"><code>chk_rng &lt;- function(label, x, lo, hi, d = 0) {
   check_text(paste(label, &quot;min&quot;), min(p(x, d)), lo)
   check_text(paste(label, &quot;max&quot;), max(p(x, d)), hi)
@@ -4622,37 +4622,47 @@ check_text(&quot;used read lengths 27, 29, 30 (all three present)&quot;,
            as.numeric(identical(as.numeric(used$read_len), c(27, 29, 30))), 1)
 check_text(&quot;frame-0 fraction, used lengths, about 0.55&quot;, round(fr0_used, 2), 0.55, tol = 0.01)
 check_text(&quot;MS peptides kept (758,603)&quot;, pepc7[[&quot;kept_rows&quot;]], 758603)
-# Results: Ribo-seq
+# Results: Ribo-seq. The text quotes the release (&quot;final&quot;) values; the &quot;earlier&quot; rows compare the
+# earlier-run tables with the values the text quoted before (in parentheses in the labels).
+RIBO_Q &lt;- list(final = list(cov = c(84, 90), sup = c(54, 59), nv = c(6.2, 1.7, 1.5), nvsup = c(0.4, 2.1),
+                            ex520 = 90, nv520 = 3.3),
+               earlier = list(cov = c(83, 89), sup = c(53, 59), nv = c(4.3, 1.0, 0.6), nvsup = c(0.2, 1.5),
+                              ex520 = 89, nv520 = 3.4))
 for (v in list(list(&quot;final&quot;, ex_cov, ex_sup, nv_cov, nv_sup, ex_5_20, nv_5_20),
                list(&quot;earlier&quot;, ex_cov0, ex_sup0, nv_cov0, nv_sup0, ex_5_20_0, nv_5_20_0))) {
-  s &lt;- v[[1]]
-  chk_rng(sprintf(&quot;Ribo exact &gt;=10 P-sites %% (83-89) (%s)&quot;, s), v[[2]], 83, 89)
-  chk_rng(sprintf(&quot;Ribo exact frame-supported %% (53-59) (%s)&quot;, s), v[[3]], 53, 59)
-  check_text(sprintf(&quot;Ribo unannotated covered %%, LRAA (4.3) (%s)&quot;, s), p(v[[4]][1], 1), 4.3)
-  check_text(sprintf(&quot;Ribo unannotated covered %%, StringTie (1.0) (%s)&quot;, s), p(v[[4]][2], 1), 1.0)
-  check_text(sprintf(&quot;Ribo unannotated covered %%, Trinity (0.6) (%s)&quot;, s), p(v[[4]][3], 1), 0.6)
-  chk_rng(sprintf(&quot;Ribo unannotated frame-supported %% (0.2-1.5) (%s)&quot;, s), v[[5]], 0.2, 1.5, d = 1)
-  check_text(sprintf(&quot;Ribo 5-20 TPM exact covered %% (89) (%s)&quot;, s), p(v[[6]]), 89)
-  check_text(sprintf(&quot;Ribo 5-20 TPM unannotated covered %% (3.4) (%s)&quot;, s), p(v[[7]], 1), 3.4)
+  s &lt;- v[[1]]; q &lt;- RIBO_Q[[s]]
+  chk_rng(sprintf(&quot;Ribo exact &gt;=10 P-sites %% (%s-%s) (%s)&quot;, q$cov[1], q$cov[2], s), v[[2]], q$cov[1], q$cov[2])
+  chk_rng(sprintf(&quot;Ribo exact frame-supported %% (%s-%s) (%s)&quot;, q$sup[1], q$sup[2], s), v[[3]], q$sup[1], q$sup[2])
+  check_text(sprintf(&quot;Ribo unannotated covered %%, LRAA (%s) (%s)&quot;, q$nv[1], s), p(v[[4]][1], 1), q$nv[1])
+  check_text(sprintf(&quot;Ribo unannotated covered %%, StringTie (%s) (%s)&quot;, q$nv[2], s), p(v[[4]][2], 1), q$nv[2])
+  check_text(sprintf(&quot;Ribo unannotated covered %%, Trinity (%s) (%s)&quot;, q$nv[3], s), p(v[[4]][3], 1), q$nv[3])
+  chk_rng(sprintf(&quot;Ribo unannotated frame-supported %% (%s-%s) (%s)&quot;, q$nvsup[1], q$nvsup[2], s), v[[5]],
+          q$nvsup[1], q$nvsup[2], d = 1)
+  check_text(sprintf(&quot;Ribo 5-20 TPM exact covered %% (%s) (%s)&quot;, q$ex520, s), p(v[[6]]), q$ex520)
+  check_text(sprintf(&quot;Ribo 5-20 TPM unannotated covered %% (%s) (%s)&quot;, q$nv520, s), p(v[[7]], 1), q$nv520)
 }
-# Results: MS
+# Results: MS. The release text quotes 30-49% for unannotated predictions and 9-24% for the fixed
+# short-ORF test of development versions (the earlier runs).
+MS_Q &lt;- list(final = list(long = c(94, 95), short = c(85, 90), nv = c(30, 49)),
+             earlier = list(long = c(93, 94), short = c(81, 87), nv = c(9, 24)))
 for (v in list(list(&quot;final&quot;, ex_long, ex_short, nv_all, ex_long_ge2_of_ge1),
                list(&quot;earlier&quot;, ex_long0, ex_short0, nv_all0, ex_long_ge2_of_ge1_0))) {
-  s &lt;- v[[1]]
-  chk_rng(sprintf(&quot;MS exact &gt;=100 aa with &gt;=1 peptide %% (93-94) (%s)&quot;, s), v[[2]], 93, 94)
+  s &lt;- v[[1]]; q &lt;- MS_Q[[s]]
+  chk_rng(sprintf(&quot;MS exact &gt;=100 aa with &gt;=1 peptide %% (%s-%s) (%s)&quot;, q$long[1], q$long[2], s), v[[2]], q$long[1], q$long[2])
   check_text(sprintf(&quot;MS exact &gt;=100 aa: &gt;=2 of &gt;=1 peptide, &#39;nearly all&#39; (&gt;=97%%) (%s)&quot;, s),
              as.numeric(min(v[[5]]) &gt;= 0.97), 1)
-  chk_rng(sprintf(&quot;MS exact &lt;100 aa with &gt;=1 peptide %% (81-87) (%s)&quot;, s), v[[3]], 81, 87)
-  chk_rng(sprintf(&quot;MS unannotated with &gt;=1 peptide %% (9-24) (%s)&quot;, s), v[[4]], 9, 24)
+  chk_rng(sprintf(&quot;MS exact &lt;100 aa with &gt;=1 peptide %% (%s-%s) (%s)&quot;, q$short[1], q$short[2], s), v[[3]], q$short[1], q$short[2])
+  chk_rng(sprintf(&quot;MS unannotated with &gt;=1 peptide %% (%s-%s) (%s)&quot;, q$nv[1], q$nv[2], s), v[[4]], q$nv[1], q$nv[2])
 }
-check_text(&quot;C3orf86P predicted in a default run (final)&quot;, as.numeric(c3_in_default), 1)
+check_text(&quot;C3orf86P predicted at the default (final; text: --sensitive only, 0 = not at default)&quot;,
+           as.numeric(c3_in_default), 0)
 check_report()</code></pre>
-<table>
+<table style="width:99%;">
 <colgroup>
-<col width="72%" />
+<col width="77%" />
+<col width="8%" />
 <col width="9%" />
-<col width="11%" />
-<col width="6%" />
+<col width="4%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -4688,73 +4698,73 @@ check_report()</code></pre>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Ribo exact &gt;=10 P-sites % (83-89) (final) min</td>
+<td align="left">Ribo exact &gt;=10 P-sites % (84-90) (final) min</td>
 <td align="left">84</td>
-<td align="left">83</td>
-<td align="left">FALSE</td>
+<td align="left">84</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Ribo exact &gt;=10 P-sites % (83-89) (final) max</td>
+<td align="left">Ribo exact &gt;=10 P-sites % (84-90) (final) max</td>
 <td align="left">90</td>
-<td align="left">89</td>
-<td align="left">FALSE</td>
+<td align="left">90</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Ribo exact frame-supported % (53-59) (final) min</td>
+<td align="left">Ribo exact frame-supported % (54-59) (final) min</td>
 <td align="left">54</td>
-<td align="left">53</td>
-<td align="left">FALSE</td>
+<td align="left">54</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Ribo exact frame-supported % (53-59) (final) max</td>
+<td align="left">Ribo exact frame-supported % (54-59) (final) max</td>
 <td align="left">59</td>
 <td align="left">59</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Ribo unannotated covered %, LRAA (4.3) (final)</td>
+<td align="left">Ribo unannotated covered %, LRAA (6.2) (final)</td>
 <td align="left">6.2</td>
-<td align="left">4.3</td>
-<td align="left">FALSE</td>
+<td align="left">6.2</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Ribo unannotated covered %, StringTie (1.0)
+<td align="left">Ribo unannotated covered %, StringTie (1.7)
 (final)</td>
 <td align="left">1.7</td>
-<td align="left">1</td>
-<td align="left">FALSE</td>
+<td align="left">1.7</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Ribo unannotated covered %, Trinity (0.6) (final)</td>
+<td align="left">Ribo unannotated covered %, Trinity (1.5) (final)</td>
 <td align="left">1.5</td>
-<td align="left">0.6</td>
-<td align="left">FALSE</td>
+<td align="left">1.5</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Ribo unannotated frame-supported % (0.2-1.5) (final)
+<td align="left">Ribo unannotated frame-supported % (0.4-2.1) (final)
 min</td>
 <td align="left">0.4</td>
-<td align="left">0.2</td>
-<td align="left">FALSE</td>
+<td align="left">0.4</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Ribo unannotated frame-supported % (0.2-1.5) (final)
+<td align="left">Ribo unannotated frame-supported % (0.4-2.1) (final)
 max</td>
 <td align="left">2.1</td>
-<td align="left">1.5</td>
-<td align="left">FALSE</td>
+<td align="left">2.1</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Ribo 5-20 TPM exact covered % (89) (final)</td>
+<td align="left">Ribo 5-20 TPM exact covered % (90) (final)</td>
 <td align="left">90</td>
-<td align="left">89</td>
-<td align="left">FALSE</td>
+<td align="left">90</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Ribo 5-20 TPM unannotated covered % (3.4) (final)</td>
+<td align="left">Ribo 5-20 TPM unannotated covered % (3.3) (final)</td>
 <td align="left">3.3</td>
-<td align="left">3.4</td>
-<td align="left">FALSE</td>
+<td align="left">3.3</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">Ribo exact &gt;=10 P-sites % (83-89) (earlier) min</td>
@@ -4787,7 +4797,7 @@ max</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Ribo unannotated covered %, StringTie (1.0)
+<td align="left">Ribo unannotated covered %, StringTie (1)
 (earlier)</td>
 <td align="left">1</td>
 <td align="left">1</td>
@@ -4828,18 +4838,18 @@ max</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">MS exact &gt;=100 aa with &gt;=1 peptide % (93-94)
+<td align="left">MS exact &gt;=100 aa with &gt;=1 peptide % (94-95)
 (final) min</td>
 <td align="left">94</td>
-<td align="left">93</td>
-<td align="left">FALSE</td>
+<td align="left">94</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">MS exact &gt;=100 aa with &gt;=1 peptide % (93-94)
+<td align="left">MS exact &gt;=100 aa with &gt;=1 peptide % (94-95)
 (final) max</td>
 <td align="left">95</td>
-<td align="left">94</td>
-<td align="left">FALSE</td>
+<td align="left">95</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">MS exact &gt;=100 aa: &gt;=2 of &gt;=1 peptide, ‘nearly
@@ -4849,32 +4859,32 @@ all’ (&gt;=97%) (final)</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">MS exact &lt;100 aa with &gt;=1 peptide % (81-87)
+<td align="left">MS exact &lt;100 aa with &gt;=1 peptide % (85-90)
 (final) min</td>
 <td align="left">85</td>
-<td align="left">81</td>
-<td align="left">FALSE</td>
+<td align="left">85</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">MS exact &lt;100 aa with &gt;=1 peptide % (81-87)
+<td align="left">MS exact &lt;100 aa with &gt;=1 peptide % (85-90)
 (final) max</td>
 <td align="left">90</td>
-<td align="left">87</td>
-<td align="left">FALSE</td>
+<td align="left">90</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">MS unannotated with &gt;=1 peptide % (9-24) (final)
+<td align="left">MS unannotated with &gt;=1 peptide % (30-49) (final)
 min</td>
 <td align="left">30</td>
-<td align="left">9</td>
-<td align="left">FALSE</td>
+<td align="left">30</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">MS unannotated with &gt;=1 peptide % (9-24) (final)
+<td align="left">MS unannotated with &gt;=1 peptide % (30-49) (final)
 max</td>
 <td align="left">49</td>
-<td align="left">24</td>
-<td align="left">FALSE</td>
+<td align="left">49</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">MS exact &gt;=100 aa with &gt;=1 peptide % (93-94)
@@ -4926,14 +4936,15 @@ max</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">C3orf86P predicted in a default run (final)</td>
+<td align="left">C3orf86P predicted at the default (final; text:
+–sensitive only, 0 = not at default)</td>
 <td align="left">0</td>
-<td align="left">1</td>
-<td align="left">FALSE</td>
+<td align="left">0</td>
+<td align="left">TRUE</td>
 </tr>
 </tbody>
 </table>
-<pre><code>## R 4 . 4.3 ; knitted 2026-10-25</code></pre>
+<pre><code>## R 4 . 4.3 ; knitted 2026-10-30</code></pre>
 </div>
 
 

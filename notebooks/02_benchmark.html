@@ -1813,8 +1813,8 @@ under two sets of labels:</p>
 <ul>
 <li><em>earlier final defaults</em>: <code>pytd_dev_v2</code> /
 <code>perl_td_dev_v2</code> (PyTD 48c870c, Perl de3f57e; fixed short-ORF
-test; E07). The manuscript text, Table 1 and the current Fig. 2 quote
-these runs.</li>
+test; E07). Earlier drafts of the manuscript quoted these runs; the
+text, Table 1 and Fig. 2 now use the release runs.</li>
 <li><em>release</em>: <code>pytd_v7</code> / <code>perl_td_v7</code>
 (PyTD main 3a793ff, Perl devel 41fc5ee; decoy q-value test at q 0.05;
 E25), with the presets <code>pytd_v7_precise</code>,
@@ -1861,6 +1861,7 @@ miss &lt;- function(tool) INPUTS %&gt;% anti_join(S %&gt;% filter(tool == !!tool
 codan_miss &lt;- miss(&quot;codan&quot;)
 hom_miss &lt;- miss(&quot;pytd_v7_homology&quot;)
 hom_have &lt;- S %&gt;% filter(tool == &quot;pytd_v7_homology&quot;) %&gt;% distinct(org, variant)
+hom_a7 &lt;- A7 %&gt;% filter(tool == &quot;pytd_v7_homology&quot;) %&gt;% distinct(org, variant)
 kable(cov, caption = &quot;Rows per tool (84 inputs in total)&quot;)</code></pre>
 <table>
 <caption>Rows per tool (84 inputs in total)</caption>
@@ -1937,20 +1938,35 @@ kable(cov, caption = &quot;Rows per tool (84 inputs in total)&quot;)</code></pre
 </tr>
 </tbody>
 </table>
-<p>The summary is interim. Rows missing for the tools used here:</p>
+<pre class="r"><code>check_text(&quot;CodAn inputs without a row (4 lncRNA + T. thermophila complete.unstranded.wRand)&quot;,
+           nrow(codan_miss), 5)
+check_text(&quot;CodAn missing row outside wLnc is only T. thermophila complete.unstranded.wRand (1 = yes)&quot;,
+           as.numeric(identical(paste(codan_miss$org, codan_miss$variant)[!grepl(&quot;wLnc&quot;, codan_miss$variant)],
+                                &quot;tthermophila complete.unstranded.wRand&quot;)), 1)
+check_text(&quot;pytd_v7_homology rows in all_scores.tsv (all 84 finished)&quot;, nrow(hom_a7), 84)</code></pre>
+<p>Rows missing for the tools used here (all runs have ended; state
+checked 2026-10-30):</p>
 <ul>
 <li><strong>CodAn</strong>: 5 of 84 inputs have no row: human
 complete.wLnc; human fragments.wLnc; mouse complete.wLnc; mouse
 fragments.wLnc; tthermophila complete.unstranded.wRand. The <em>T.
-thermophila</em> <code>complete.unstranded.wRand</code> run was still
-running; CodAn has no lncRNA (<code>wLnc</code>) runs. None of these
-inputs is used in Fig. 2 or Table 1, which use the stranded complete,
-complete + random and fragments inputs; CodAn has all 8 organisms
-there.</li>
+thermophila</em> <code>complete.unstranded.wRand</code> run stopped
+without output (its files date from 2026-10-25 03:41,
+<code>codan.log</code> is empty and no CodAn process is running; E07
+status update) and was not rerun, because CodAn has no ciliate genetic
+code and its <em>T. thermophila</em> runs are not results (E27). CodAn
+has no lncRNA (<code>wLnc</code>) runs. None of these inputs is used in
+Fig. 2 or Table 1, which use the stranded complete, complete + random
+and fragments inputs; CodAn has all 8 organisms there.</li>
 <li><strong>PyTD with homology</strong> (<code>pytd_v7_homology</code>):
-32 of 84 rows (athal 10, creinhardtii 10, dmel 10, human 2); the other
-runs were still running. These runs are not in Fig. 2 or Table 1; the
-section on homology below uses the available rows only.</li>
+32 of 84 rows (athal 10, creinhardtii 10, dmel 10, human 2) in this
+summary, which was taken while the runs were in progress. All 84
+finished on 2026-10-26 and are scored in
+<code>final_v7/all_scores.tsv</code> (84 rows; E25); the section on
+homology below uses those. These runs are not in Fig. 2 or Table 1. The
+manuscript’s homology results use the released homology mode
+(<code>pytd_v7h_homology</code>, PyTD a5b24c3, with homology-assisted
+start refinement; notebook 05, Fig. 5d,e; E25 addendum 2026-10-28).</li>
 <li><code>--precise</code> and <code>--sensitive</code> were run on the
 negative-containing inputs only (20 each; E25).</li>
 <li>RNAsamba was run on stranded inputs only (44); v6.0.0, v5.7.1 and
@@ -5239,12 +5255,16 @@ reinhardtii</em> (v6.0.0, Prodigal, GeneMarkS-T, CPAT): exact F1
 0.653-0.786.</p>
 </div>
 </div>
-<div id="homology-evidence-interim" class="section level2">
-<h2>Homology evidence (interim)</h2>
-<p>The Methods list PyTD with DIAMOND/Pfam evidence; the Results
-benchmark section quotes no number for it. Release homology runs
-available: 32 of 84 (above).</p>
-<pre class="r"><code>hom &lt;- S %&gt;% filter(tool %in% c(TD, &quot;pytd_v7_homology&quot;)) %&gt;%
+<div id="homology-evidence" class="section level2">
+<h2>Homology evidence</h2>
+<p>The Methods list PyTD with DIAMOND/Pfam evidence. Release homology
+runs (<code>pytd_v7_homology</code>, PyTD 3a793ff, before the
+homology-assisted start refinement): all 84 of 84, from
+<code>final_v7/all_scores.tsv</code> (E25). The manuscript’s homology
+numbers on the benchmark inputs come from the released homology mode
+(<code>pytd_v7h_homology</code>, which also uses homology in start
+refinement) and are reproduced in notebook 05.</p>
+<pre class="r"><code>hom &lt;- A7 %&gt;% filter(tool %in% c(TD, &quot;pytd_v7_homology&quot;)) %&gt;%
   select(org, variant, tool, sensitivity_stop, precision_stop, f1_exact) %&gt;%
   pivot_wider(names_from = tool, values_from = c(sensitivity_stop, precision_stop, f1_exact)) %&gt;%
   filter(!is.na(sensitivity_stop_pytd_v7_homology)) %&gt;%
@@ -5254,10 +5274,10 @@ available: 32 of 84 (above).</p>
             type = ifelse(grepl(&quot;^fragments&quot;, variant), &quot;fragments&quot;, &quot;complete-type&quot;))
 hom_sum &lt;- hom %&gt;% group_by(type) %&gt;% summarise(inputs = n(), across(starts_with(&quot;d_&quot;), list(min = min, max = max)))
 kable(hom_sum %&gt;% mutate(across(starts_with(&quot;d_&quot;), ~ round(.x, 4))),
-      caption = &quot;Homology minus ab initio (release), available rows only (INTERIM)&quot;)</code></pre>
+      caption = &quot;Homology (pytd_v7_homology, 3a793ff) minus ab initio (release), 84 inputs&quot;)</code></pre>
 <table>
-<caption>Homology minus ab initio (release), available rows only
-(INTERIM)</caption>
+<caption>Homology (pytd_v7_homology, 3a793ff) minus ab initio (release),
+84 inputs</caption>
 <colgroup>
 <col width="12%" />
 <col width="6%" />
@@ -5283,23 +5303,23 @@ kable(hom_sum %&gt;% mutate(across(starts_with(&quot;d_&quot;), ~ round(.x, 4)))
 <tbody>
 <tr class="odd">
 <td align="left">complete-type</td>
-<td align="right">20</td>
-<td align="right">0.0004</td>
-<td align="right">0.0300</td>
-<td align="right">-0.0039</td>
-<td align="right">0.0014</td>
-<td align="right">-0.0015</td>
-<td align="right">0.0153</td>
+<td align="right">50</td>
+<td align="right">-0.0029</td>
+<td align="right">0.0372</td>
+<td align="right">-0.0648</td>
+<td align="right">0.0066</td>
+<td align="right">-0.0211</td>
+<td align="right">0.0209</td>
 </tr>
 <tr class="even">
 <td align="left">fragments</td>
-<td align="right">12</td>
-<td align="right">0.0068</td>
-<td align="right">0.0703</td>
-<td align="right">-0.0007</td>
-<td align="right">0.0043</td>
-<td align="right">0.0022</td>
-<td align="right">0.0347</td>
+<td align="right">34</td>
+<td align="right">0.0042</td>
+<td align="right">0.0920</td>
+<td align="right">-0.0580</td>
+<td align="right">0.0132</td>
+<td align="right">0.0011</td>
+<td align="right">0.0465</td>
 </tr>
 </tbody>
 </table>
@@ -5332,6 +5352,46 @@ type
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:left;">
+athal
+</td>
+<td style="text-align:left;">
+complete_fullutr.unstranded
+</td>
+<td style="text-align:right;">
+0.0233
+</td>
+<td style="text-align:right;">
+-0.0031
+</td>
+<td style="text-align:right;">
+0.0106
+</td>
+<td style="text-align:left;">
+complete-type
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+athal
+</td>
+<td style="text-align:left;">
+complete_fullutr
+</td>
+<td style="text-align:right;">
+0.0199
+</td>
+<td style="text-align:right;">
+-0.0030
+</td>
+<td style="text-align:right;">
+0.0089
+</td>
+<td style="text-align:left;">
+complete-type
+</td>
+</tr>
 <tr>
 <td style="text-align:left;">
 athal
@@ -5377,26 +5437,6 @@ complete-type
 athal
 </td>
 <td style="text-align:left;">
-complete.unstranded.wRand
-</td>
-<td style="text-align:right;">
-0.0265
-</td>
-<td style="text-align:right;">
--0.0013
-</td>
-<td style="text-align:right;">
-0.0127
-</td>
-<td style="text-align:left;">
-complete-type
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athal
-</td>
-<td style="text-align:left;">
 complete.wRand
 </td>
 <td style="text-align:right;">
@@ -5417,36 +5457,16 @@ complete-type
 athal
 </td>
 <td style="text-align:left;">
-complete_fullutr
+complete.unstranded.wRand
 </td>
 <td style="text-align:right;">
-0.0199
+0.0265
 </td>
 <td style="text-align:right;">
--0.0030
+-0.0013
 </td>
 <td style="text-align:right;">
-0.0089
-</td>
-<td style="text-align:left;">
-complete-type
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-athal
-</td>
-<td style="text-align:left;">
-complete_fullutr.unstranded
-</td>
-<td style="text-align:right;">
-0.0233
-</td>
-<td style="text-align:right;">
--0.0031
-</td>
-<td style="text-align:right;">
-0.0106
+0.0127
 </td>
 <td style="text-align:left;">
 complete-type
@@ -5514,6 +5534,26 @@ fragments
 </tr>
 <tr>
 <td style="text-align:left;">
+creinhardtii
+</td>
+<td style="text-align:left;">
+complete_fullutr
+</td>
+<td style="text-align:right;">
+0.0018
+</td>
+<td style="text-align:right;">
+-0.0015
+</td>
+<td style="text-align:right;">
+-0.0002
+</td>
+<td style="text-align:left;">
+complete-type
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 athal
 </td>
 <td style="text-align:left;">
@@ -5530,6 +5570,26 @@ fragments.wRand
 </td>
 <td style="text-align:left;">
 fragments
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+creinhardtii
+</td>
+<td style="text-align:left;">
+complete_fullutr.unstranded
+</td>
+<td style="text-align:right;">
+0.0004
+</td>
+<td style="text-align:right;">
+-0.0039
+</td>
+<td style="text-align:right;">
+-0.0015
+</td>
+<td style="text-align:left;">
+complete-type
 </td>
 </tr>
 <tr>
@@ -5607,46 +5667,6 @@ complete.wRand
 </td>
 <td style="text-align:right;">
 -0.0001
-</td>
-<td style="text-align:left;">
-complete-type
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-creinhardtii
-</td>
-<td style="text-align:left;">
-complete_fullutr
-</td>
-<td style="text-align:right;">
-0.0018
-</td>
-<td style="text-align:right;">
--0.0015
-</td>
-<td style="text-align:right;">
--0.0002
-</td>
-<td style="text-align:left;">
-complete-type
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-creinhardtii
-</td>
-<td style="text-align:left;">
-complete_fullutr.unstranded
-</td>
-<td style="text-align:right;">
-0.0004
-</td>
-<td style="text-align:right;">
--0.0039
-</td>
-<td style="text-align:right;">
--0.0015
 </td>
 <td style="text-align:left;">
 complete-type
@@ -5737,6 +5757,46 @@ fragments
 dmel
 </td>
 <td style="text-align:left;">
+complete_fullutr
+</td>
+<td style="text-align:right;">
+0.0122
+</td>
+<td style="text-align:right;">
+0.0014
+</td>
+<td style="text-align:right;">
+0.0060
+</td>
+<td style="text-align:left;">
+complete-type
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+dmel
+</td>
+<td style="text-align:left;">
+complete_fullutr.unstranded
+</td>
+<td style="text-align:right;">
+0.0118
+</td>
+<td style="text-align:right;">
+0.0007
+</td>
+<td style="text-align:right;">
+0.0057
+</td>
+<td style="text-align:left;">
+complete-type
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+dmel
+</td>
+<td style="text-align:left;">
 complete
 </td>
 <td style="text-align:right;">
@@ -5807,46 +5867,6 @@ complete.wRand
 </td>
 <td style="text-align:right;">
 0.0039
-</td>
-<td style="text-align:left;">
-complete-type
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-dmel
-</td>
-<td style="text-align:left;">
-complete_fullutr
-</td>
-<td style="text-align:right;">
-0.0122
-</td>
-<td style="text-align:right;">
-0.0014
-</td>
-<td style="text-align:right;">
-0.0060
-</td>
-<td style="text-align:left;">
-complete-type
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-dmel
-</td>
-<td style="text-align:left;">
-complete_fullutr.unstranded
-</td>
-<td style="text-align:right;">
-0.0118
-</td>
-<td style="text-align:right;">
-0.0007
-</td>
-<td style="text-align:right;">
-0.0057
 </td>
 <td style="text-align:left;">
 complete-type
@@ -5937,6 +5957,46 @@ fragments
 human
 </td>
 <td style="text-align:left;">
+complete_fullutr
+</td>
+<td style="text-align:right;">
+0.0300
+</td>
+<td style="text-align:right;">
+0.0014
+</td>
+<td style="text-align:right;">
+0.0153
+</td>
+<td style="text-align:left;">
+complete-type
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+human
+</td>
+<td style="text-align:left;">
+complete_fullutr.unstranded
+</td>
+<td style="text-align:right;">
+0.0372
+</td>
+<td style="text-align:right;">
+0.0038
+</td>
+<td style="text-align:right;">
+0.0194
+</td>
+<td style="text-align:left;">
+complete-type
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+human
+</td>
+<td style="text-align:left;">
 complete
 </td>
 <td style="text-align:right;">
@@ -5957,19 +6017,1019 @@ complete-type
 human
 </td>
 <td style="text-align:left;">
-complete_fullutr
+complete.unstranded
 </td>
 <td style="text-align:right;">
-0.0300
+0.0248
+</td>
+<td style="text-align:right;">
+0.0032
+</td>
+<td style="text-align:right;">
+0.0130
+</td>
+<td style="text-align:left;">
+complete-type
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+human
+</td>
+<td style="text-align:left;">
+complete.unstranded.wRand
+</td>
+<td style="text-align:right;">
+0.0253
+</td>
+<td style="text-align:right;">
+0.0032
+</td>
+<td style="text-align:right;">
+0.0131
+</td>
+<td style="text-align:left;">
+complete-type
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+human
+</td>
+<td style="text-align:left;">
+complete.wLnc
+</td>
+<td style="text-align:right;">
+0.0298
+</td>
+<td style="text-align:right;">
+-0.0648
+</td>
+<td style="text-align:right;">
+-0.0211
+</td>
+<td style="text-align:left;">
+complete-type
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+human
+</td>
+<td style="text-align:left;">
+fragments
+</td>
+<td style="text-align:right;">
+0.0606
+</td>
+<td style="text-align:right;">
+0.0013
+</td>
+<td style="text-align:right;">
+0.0258
+</td>
+<td style="text-align:left;">
+fragments
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+human
+</td>
+<td style="text-align:left;">
+complete.wRand
+</td>
+<td style="text-align:right;">
+0.0202
+</td>
+<td style="text-align:right;">
+0.0008
+</td>
+<td style="text-align:right;">
+0.0098
+</td>
+<td style="text-align:left;">
+complete-type
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+human
+</td>
+<td style="text-align:left;">
+fragments.unstranded
+</td>
+<td style="text-align:right;">
+0.0821
+</td>
+<td style="text-align:right;">
+0.0080
+</td>
+<td style="text-align:right;">
+0.0372
+</td>
+<td style="text-align:left;">
+fragments
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+human
+</td>
+<td style="text-align:left;">
+fragments.unstranded.wRand
+</td>
+<td style="text-align:right;">
+0.0829
+</td>
+<td style="text-align:right;">
+0.0082
+</td>
+<td style="text-align:right;">
+0.0381
+</td>
+<td style="text-align:left;">
+fragments
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+human
+</td>
+<td style="text-align:left;">
+fragments.wLnc
+</td>
+<td style="text-align:right;">
+0.0818
+</td>
+<td style="text-align:right;">
+-0.0580
+</td>
+<td style="text-align:right;">
+0.0021
+</td>
+<td style="text-align:left;">
+fragments
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+human
+</td>
+<td style="text-align:left;">
+fragments.wRand
+</td>
+<td style="text-align:right;">
+0.0611
 </td>
 <td style="text-align:right;">
 0.0014
+</td>
+<td style="text-align:right;">
+0.0260
+</td>
+<td style="text-align:left;">
+fragments
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+mouse
+</td>
+<td style="text-align:left;">
+complete_fullutr
+</td>
+<td style="text-align:right;">
+0.0344
+</td>
+<td style="text-align:right;">
+0.0020
+</td>
+<td style="text-align:right;">
+0.0178
+</td>
+<td style="text-align:left;">
+complete-type
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+mouse
+</td>
+<td style="text-align:left;">
+complete_fullutr.unstranded
+</td>
+<td style="text-align:right;">
+0.0368
+</td>
+<td style="text-align:right;">
+0.0066
+</td>
+<td style="text-align:right;">
+0.0209
+</td>
+<td style="text-align:left;">
+complete-type
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+mouse
+</td>
+<td style="text-align:left;">
+complete
+</td>
+<td style="text-align:right;">
+0.0219
+</td>
+<td style="text-align:right;">
+0.0015
+</td>
+<td style="text-align:right;">
+0.0116
+</td>
+<td style="text-align:left;">
+complete-type
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+mouse
+</td>
+<td style="text-align:left;">
+complete.unstranded
+</td>
+<td style="text-align:right;">
+0.0272
+</td>
+<td style="text-align:right;">
+0.0052
+</td>
+<td style="text-align:right;">
+0.0154
+</td>
+<td style="text-align:left;">
+complete-type
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+mouse
+</td>
+<td style="text-align:left;">
+complete.unstranded.wRand
+</td>
+<td style="text-align:right;">
+0.0273
+</td>
+<td style="text-align:right;">
+0.0051
 </td>
 <td style="text-align:right;">
 0.0153
 </td>
 <td style="text-align:left;">
 complete-type
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+mouse
+</td>
+<td style="text-align:left;">
+complete.wLnc
+</td>
+<td style="text-align:right;">
+0.0302
+</td>
+<td style="text-align:right;">
+-0.0287
+</td>
+<td style="text-align:right;">
+-0.0010
+</td>
+<td style="text-align:left;">
+complete-type
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+mouse
+</td>
+<td style="text-align:left;">
+complete.wRand
+</td>
+<td style="text-align:right;">
+0.0221
+</td>
+<td style="text-align:right;">
+0.0014
+</td>
+<td style="text-align:right;">
+0.0116
+</td>
+<td style="text-align:left;">
+complete-type
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+mouse
+</td>
+<td style="text-align:left;">
+fragments
+</td>
+<td style="text-align:right;">
+0.0669
+</td>
+<td style="text-align:right;">
+0.0033
+</td>
+<td style="text-align:right;">
+0.0308
+</td>
+<td style="text-align:left;">
+fragments
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+mouse
+</td>
+<td style="text-align:left;">
+fragments.unstranded
+</td>
+<td style="text-align:right;">
+0.0898
+</td>
+<td style="text-align:right;">
+0.0132
+</td>
+<td style="text-align:right;">
+0.0456
+</td>
+<td style="text-align:left;">
+fragments
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+mouse
+</td>
+<td style="text-align:left;">
+fragments.unstranded.wRand
+</td>
+<td style="text-align:right;">
+0.0920
+</td>
+<td style="text-align:right;">
+0.0132
+</td>
+<td style="text-align:right;">
+0.0465
+</td>
+<td style="text-align:left;">
+fragments
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+mouse
+</td>
+<td style="text-align:left;">
+fragments.wLnc
+</td>
+<td style="text-align:right;">
+0.0831
+</td>
+<td style="text-align:right;">
+-0.0221
+</td>
+<td style="text-align:right;">
+0.0230
+</td>
+<td style="text-align:left;">
+fragments
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+mouse
+</td>
+<td style="text-align:left;">
+fragments.wRand
+</td>
+<td style="text-align:right;">
+0.0713
+</td>
+<td style="text-align:right;">
+0.0035
+</td>
+<td style="text-align:right;">
+0.0331
+</td>
+<td style="text-align:left;">
+fragments
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pfalciparum
+</td>
+<td style="text-align:left;">
+complete_fullutr
+</td>
+<td style="text-align:right;">
+0.0023
+</td>
+<td style="text-align:right;">
+-0.0008
+</td>
+<td style="text-align:right;">
+0.0010
+</td>
+<td style="text-align:left;">
+complete-type
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pfalciparum
+</td>
+<td style="text-align:left;">
+complete_fullutr.unstranded
+</td>
+<td style="text-align:right;">
+-0.0029
+</td>
+<td style="text-align:right;">
+-0.0051
+</td>
+<td style="text-align:right;">
+-0.0035
+</td>
+<td style="text-align:left;">
+complete-type
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pfalciparum
+</td>
+<td style="text-align:left;">
+complete
+</td>
+<td style="text-align:right;">
+0.0017
+</td>
+<td style="text-align:right;">
+0.0002
+</td>
+<td style="text-align:right;">
+0.0010
+</td>
+<td style="text-align:left;">
+complete-type
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pfalciparum
+</td>
+<td style="text-align:left;">
+complete.unstranded
+</td>
+<td style="text-align:right;">
+0.0023
+</td>
+<td style="text-align:right;">
+0.0006
+</td>
+<td style="text-align:right;">
+0.0013
+</td>
+<td style="text-align:left;">
+complete-type
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pfalciparum
+</td>
+<td style="text-align:left;">
+complete.unstranded.wRand
+</td>
+<td style="text-align:right;">
+0.0036
+</td>
+<td style="text-align:right;">
+0.0008
+</td>
+<td style="text-align:right;">
+0.0021
+</td>
+<td style="text-align:left;">
+complete-type
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pfalciparum
+</td>
+<td style="text-align:left;">
+complete.wRand
+</td>
+<td style="text-align:right;">
+0.0022
+</td>
+<td style="text-align:right;">
+0.0004
+</td>
+<td style="text-align:right;">
+0.0012
+</td>
+<td style="text-align:left;">
+complete-type
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pfalciparum
+</td>
+<td style="text-align:left;">
+fragments
+</td>
+<td style="text-align:right;">
+0.0042
+</td>
+<td style="text-align:right;">
+0.0004
+</td>
+<td style="text-align:right;">
+0.0013
+</td>
+<td style="text-align:left;">
+fragments
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pfalciparum
+</td>
+<td style="text-align:left;">
+fragments.unstranded
+</td>
+<td style="text-align:right;">
+0.0068
+</td>
+<td style="text-align:right;">
+0.0023
+</td>
+<td style="text-align:right;">
+0.0024
+</td>
+<td style="text-align:left;">
+fragments
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pfalciparum
+</td>
+<td style="text-align:left;">
+fragments.unstranded.wRand
+</td>
+<td style="text-align:right;">
+0.0070
+</td>
+<td style="text-align:right;">
+0.0023
+</td>
+<td style="text-align:right;">
+0.0025
+</td>
+<td style="text-align:left;">
+fragments
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pfalciparum
+</td>
+<td style="text-align:left;">
+fragments.wRand
+</td>
+<td style="text-align:right;">
+0.0051
+</td>
+<td style="text-align:right;">
+0.0003
+</td>
+<td style="text-align:right;">
+0.0011
+</td>
+<td style="text-align:left;">
+fragments
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+spombe
+</td>
+<td style="text-align:left;">
+complete_fullutr
+</td>
+<td style="text-align:right;">
+0.0108
+</td>
+<td style="text-align:right;">
+0.0005
+</td>
+<td style="text-align:right;">
+0.0057
+</td>
+<td style="text-align:left;">
+complete-type
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+spombe
+</td>
+<td style="text-align:left;">
+complete_fullutr.unstranded
+</td>
+<td style="text-align:right;">
+0.0108
+</td>
+<td style="text-align:right;">
+0.0009
+</td>
+<td style="text-align:right;">
+0.0068
+</td>
+<td style="text-align:left;">
+complete-type
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+spombe
+</td>
+<td style="text-align:left;">
+complete
+</td>
+<td style="text-align:right;">
+0.0063
+</td>
+<td style="text-align:right;">
+-0.0002
+</td>
+<td style="text-align:right;">
+0.0033
+</td>
+<td style="text-align:left;">
+complete-type
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+spombe
+</td>
+<td style="text-align:left;">
+complete.unstranded
+</td>
+<td style="text-align:right;">
+0.0110
+</td>
+<td style="text-align:right;">
+0.0004
+</td>
+<td style="text-align:right;">
+0.0058
+</td>
+<td style="text-align:left;">
+complete-type
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+spombe
+</td>
+<td style="text-align:left;">
+complete.unstranded.wRand
+</td>
+<td style="text-align:right;">
+0.0130
+</td>
+<td style="text-align:right;">
+0.0005
+</td>
+<td style="text-align:right;">
+0.0069
+</td>
+<td style="text-align:left;">
+complete-type
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+spombe
+</td>
+<td style="text-align:left;">
+fragments
+</td>
+<td style="text-align:right;">
+0.0149
+</td>
+<td style="text-align:right;">
+-0.0002
+</td>
+<td style="text-align:right;">
+0.0056
+</td>
+<td style="text-align:left;">
+fragments
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+spombe
+</td>
+<td style="text-align:left;">
+complete.wRand
+</td>
+<td style="text-align:right;">
+0.0080
+</td>
+<td style="text-align:right;">
+-0.0004
+</td>
+<td style="text-align:right;">
+0.0042
+</td>
+<td style="text-align:left;">
+complete-type
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+spombe
+</td>
+<td style="text-align:left;">
+fragments.unstranded
+</td>
+<td style="text-align:right;">
+0.0202
+</td>
+<td style="text-align:right;">
+-0.0003
+</td>
+<td style="text-align:right;">
+0.0070
+</td>
+<td style="text-align:left;">
+fragments
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+spombe
+</td>
+<td style="text-align:left;">
+fragments.unstranded.wRand
+</td>
+<td style="text-align:right;">
+0.0294
+</td>
+<td style="text-align:right;">
+0.0011
+</td>
+<td style="text-align:right;">
+0.0118
+</td>
+<td style="text-align:left;">
+fragments
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+spombe
+</td>
+<td style="text-align:left;">
+fragments.wRand
+</td>
+<td style="text-align:right;">
+0.0172
+</td>
+<td style="text-align:right;">
+-0.0001
+</td>
+<td style="text-align:right;">
+0.0065
+</td>
+<td style="text-align:left;">
+fragments
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tthermophila
+</td>
+<td style="text-align:left;">
+complete_fullutr
+</td>
+<td style="text-align:right;">
+0.0043
+</td>
+<td style="text-align:right;">
+-0.0030
+</td>
+<td style="text-align:right;">
+0.0011
+</td>
+<td style="text-align:left;">
+complete-type
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tthermophila
+</td>
+<td style="text-align:left;">
+complete_fullutr.unstranded
+</td>
+<td style="text-align:right;">
+0.0052
+</td>
+<td style="text-align:right;">
+-0.0031
+</td>
+<td style="text-align:right;">
+0.0017
+</td>
+<td style="text-align:left;">
+complete-type
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tthermophila
+</td>
+<td style="text-align:left;">
+complete
+</td>
+<td style="text-align:right;">
+0.0040
+</td>
+<td style="text-align:right;">
+-0.0019
+</td>
+<td style="text-align:right;">
+0.0014
+</td>
+<td style="text-align:left;">
+complete-type
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tthermophila
+</td>
+<td style="text-align:left;">
+complete.unstranded
+</td>
+<td style="text-align:right;">
+0.0061
+</td>
+<td style="text-align:right;">
+-0.0011
+</td>
+<td style="text-align:right;">
+0.0030
+</td>
+<td style="text-align:left;">
+complete-type
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tthermophila
+</td>
+<td style="text-align:left;">
+complete.unstranded.wRand
+</td>
+<td style="text-align:right;">
+0.0061
+</td>
+<td style="text-align:right;">
+-0.0028
+</td>
+<td style="text-align:right;">
+0.0023
+</td>
+<td style="text-align:left;">
+complete-type
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tthermophila
+</td>
+<td style="text-align:left;">
+complete.wRand
+</td>
+<td style="text-align:right;">
+0.0045
+</td>
+<td style="text-align:right;">
+-0.0025
+</td>
+<td style="text-align:right;">
+0.0016
+</td>
+<td style="text-align:left;">
+complete-type
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tthermophila
+</td>
+<td style="text-align:left;">
+fragments
+</td>
+<td style="text-align:right;">
+0.0156
+</td>
+<td style="text-align:right;">
+-0.0006
+</td>
+<td style="text-align:right;">
+0.0065
+</td>
+<td style="text-align:left;">
+fragments
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tthermophila
+</td>
+<td style="text-align:left;">
+fragments.unstranded
+</td>
+<td style="text-align:right;">
+0.0190
+</td>
+<td style="text-align:right;">
+0.0016
+</td>
+<td style="text-align:right;">
+0.0091
+</td>
+<td style="text-align:left;">
+fragments
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tthermophila
+</td>
+<td style="text-align:left;">
+fragments.unstranded.wRand
+</td>
+<td style="text-align:right;">
+0.0214
+</td>
+<td style="text-align:right;">
+0.0005
+</td>
+<td style="text-align:right;">
+0.0100
+</td>
+<td style="text-align:left;">
+fragments
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tthermophila
+</td>
+<td style="text-align:left;">
+fragments.wRand
+</td>
+<td style="text-align:right;">
+0.0168
+</td>
+<td style="text-align:right;">
+-0.0012
+</td>
+<td style="text-align:right;">
+0.0070
+</td>
+<td style="text-align:left;">
+fragments
 </td>
 </tr>
 </tbody>
@@ -248184,9 +249244,9 @@ check_text(&quot;fm:39 ANGEL complete runs only on A. thaliana (1 = yes)&quot;,
 check_report()</code></pre>
 <table>
 <colgroup>
-<col width="76%" />
-<col width="8%" />
-<col width="10%" />
+<col width="78%" />
+<col width="7%" />
+<col width="9%" />
 <col width="4%" />
 </colgroup>
 <thead>
@@ -248199,817 +249259,838 @@ check_report()</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
+<td align="left">CodAn inputs without a row (4 lncRNA + T. thermophila
+complete.unstranded.wRand)</td>
+<td align="left">5</td>
+<td align="left">5</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">CodAn missing row outside wLnc is only T. thermophila
+complete.unstranded.wRand (1 = yes)</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">pytd_v7_homology rows in all_scores.tsv (all 84
+finished)</td>
+<td align="left">84</td>
+<td align="left">84</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
 <td align="left">mb:32-39 genes, P. falciparum</td>
 <td align="left">5281</td>
 <td align="left">5281</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">mb:32-39 genes, T. thermophila</td>
 <td align="left">26456</td>
 <td align="left">26456</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">mb:32-39 genes, S. pombe</td>
 <td align="left">5100</td>
 <td align="left">5100</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">mb:32-39 genes, A. thaliana</td>
 <td align="left">26867</td>
 <td align="left">26867</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">mb:32-39 genes, D. melanogaster</td>
 <td align="left">13884</td>
 <td align="left">13884</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">mb:32-39 genes, M. musculus</td>
 <td align="left">21409</td>
 <td align="left">21409</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">mb:32-39 genes, H. sapiens</td>
 <td align="left">19167</td>
 <td align="left">19167</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">mb:32-39 genes, C. reinhardtii</td>
 <td align="left">17621</td>
 <td align="left">17621</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">mb:82 inputs per organism</td>
 <td align="left">10</td>
 <td align="left">10</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">mb:84 human lncRNA negatives</td>
 <td align="left">33668</td>
 <td align="left">33668</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">mb:85 mouse lncRNA negatives</td>
 <td align="left">31467</td>
 <td align="left">31467</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">mb:85 inputs in total</td>
 <td align="left">84</td>
 <td align="left">84</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">mb:93 v5.7.1 = v6.0.0, inputs</td>
 <td align="left">80</td>
 <td align="left">80</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">mb:120 ANGEL runs</td>
 <td align="left">3</td>
 <td align="left">3</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">mb:120 ANGEL hours, min</td>
 <td align="left">17</td>
 <td align="left">17</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">mb:120 ANGEL hours, max</td>
 <td align="left">22</td>
 <td align="left">22</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:24 Table 1 TransDecoder (release),
 complete_stop_f1</td>
 <td align="left">0.98</td>
 <td align="left">0.98</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:24 Table 1 TransDecoder (release),
 complete_exact_f1</td>
 <td align="left">0.912</td>
 <td align="left">0.912</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:24 Table 1 TransDecoder (release),
 fragments_stop_f1</td>
 <td align="left">0.93</td>
 <td align="left">0.93</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:24 Table 1 TransDecoder (release),
 fragments_exact_f1</td>
 <td align="left">0.822</td>
 <td align="left">0.822</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:24 Table 1 TransDecoder (release),
 complete_rand_precision</td>
 <td align="left">0.994</td>
 <td align="left">0.994</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:25 Table 1 TransDecoder v6.0.0,
 complete_stop_f1</td>
 <td align="left">0.972</td>
 <td align="left">0.972</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:25 Table 1 TransDecoder v6.0.0,
 complete_exact_f1</td>
 <td align="left">0.779</td>
 <td align="left">0.779</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:25 Table 1 TransDecoder v6.0.0,
 fragments_stop_f1</td>
 <td align="left">0.869</td>
 <td align="left">0.869</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:25 Table 1 TransDecoder v6.0.0,
 fragments_exact_f1</td>
 <td align="left">0.715</td>
 <td align="left">0.715</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:25 Table 1 TransDecoder v6.0.0,
 complete_rand_precision</td>
 <td align="left">0.995</td>
 <td align="left">0.995</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:26 Table 1 longest ORF, complete_stop_f1</td>
 <td align="left">0.976</td>
 <td align="left">0.976</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:26 Table 1 longest ORF, complete_exact_f1</td>
 <td align="left">0.689</td>
 <td align="left">0.689</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:26 Table 1 longest ORF, fragments_stop_f1</td>
 <td align="left">0.839</td>
 <td align="left">0.839</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:26 Table 1 longest ORF, fragments_exact_f1</td>
 <td align="left">0.713</td>
 <td align="left">0.713</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:26 Table 1 longest ORF, complete_rand_precision</td>
 <td align="left">0.803</td>
 <td align="left">0.803</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:27 Table 1 Prodigal, complete_stop_f1</td>
 <td align="left">0.937</td>
 <td align="left">0.937</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:27 Table 1 Prodigal, complete_exact_f1</td>
 <td align="left">0.643</td>
 <td align="left">0.643</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:27 Table 1 Prodigal, fragments_stop_f1</td>
 <td align="left">0.936</td>
 <td align="left">0.936</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:27 Table 1 Prodigal, fragments_exact_f1</td>
 <td align="left">0.782</td>
 <td align="left">0.782</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:27 Table 1 Prodigal, complete_rand_precision</td>
 <td align="left">0.66</td>
 <td align="left">0.66</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:28 Table 1 GeneMarkS-T, complete_stop_f1</td>
 <td align="left">0.974</td>
 <td align="left">0.974</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:28 Table 1 GeneMarkS-T, complete_exact_f1</td>
 <td align="left">0.783</td>
 <td align="left">0.783</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:28 Table 1 GeneMarkS-T, fragments_stop_f1</td>
 <td align="left">0.866</td>
 <td align="left">0.866</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:28 Table 1 GeneMarkS-T, fragments_exact_f1</td>
 <td align="left">0.746</td>
 <td align="left">0.746</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:28 Table 1 GeneMarkS-T, complete_rand_precision</td>
 <td align="left">0.996</td>
 <td align="left">0.996</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:29 Table 1 CPAT, complete_stop_f1</td>
 <td align="left">0.965</td>
 <td align="left">0.965</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:29 Table 1 CPAT, complete_exact_f1</td>
 <td align="left">0.94</td>
 <td align="left">0.94</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:29 Table 1 CPAT, fragments_stop_f1</td>
 <td align="left">0.783</td>
 <td align="left">0.783</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:29 Table 1 CPAT, fragments_exact_f1</td>
 <td align="left">0.44</td>
 <td align="left">0.44</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:29 Table 1 CPAT, complete_rand_precision</td>
 <td align="left">0.971</td>
 <td align="left">0.971</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:30 Table 1 RNAsamba, complete_stop_f1</td>
 <td align="left">0.991</td>
 <td align="left">0.991</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:30 Table 1 RNAsamba, complete_exact_f1</td>
 <td align="left">0.961</td>
 <td align="left">0.961</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:30 Table 1 RNAsamba, fragments_stop_f1</td>
 <td align="left">0.864</td>
 <td align="left">0.864</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:30 Table 1 RNAsamba, fragments_exact_f1</td>
 <td align="left">0.486</td>
 <td align="left">0.486</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:30 Table 1 RNAsamba, complete_rand_precision</td>
 <td align="left">0.721</td>
 <td align="left">0.721</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:31 Table 1 CPC2, complete_stop_f1</td>
 <td align="left">0.964</td>
 <td align="left">0.964</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:31 Table 1 CPC2, complete_exact_f1</td>
 <td align="left">0.935</td>
 <td align="left">0.935</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:31 Table 1 CPC2, fragments_stop_f1</td>
 <td align="left">0.572</td>
 <td align="left">0.572</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:31 Table 1 CPC2, fragments_exact_f1</td>
 <td align="left">0.183</td>
 <td align="left">0.183</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:31 Table 1 CPC2, complete_rand_precision</td>
 <td align="left">0.982</td>
 <td align="left">0.982</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:32 Table 1 Borf, complete_stop_f1</td>
 <td align="left">0.976</td>
 <td align="left">0.976</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:32 Table 1 Borf, complete_exact_f1</td>
 <td align="left">0.923</td>
 <td align="left">0.923</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:32 Table 1 Borf, fragments_stop_f1</td>
 <td align="left">0.816</td>
 <td align="left">0.816</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:32 Table 1 Borf, fragments_exact_f1</td>
 <td align="left">0.538</td>
 <td align="left">0.538</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:32 Table 1 Borf, complete_rand_precision</td>
 <td align="left">0.838</td>
 <td align="left">0.838</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:33 Table 1 CodAn, complete_stop_f1</td>
 <td align="left">0.974</td>
 <td align="left">0.974</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:33 Table 1 CodAn, complete_exact_f1</td>
 <td align="left">0.83</td>
 <td align="left">0.83</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:33 Table 1 CodAn, fragments_stop_f1</td>
 <td align="left">0.912</td>
 <td align="left">0.912</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:33 Table 1 CodAn, fragments_exact_f1</td>
 <td align="left">0.761</td>
 <td align="left">0.761</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:33 Table 1 CodAn, complete_rand_precision</td>
 <td align="left">0.946</td>
 <td align="left">0.946</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:17 Table 1 caption: standard-code tools’ medians
 over 7 organisms (1 = yes)</td>
 <td align="left">1</td>
 <td align="left">1</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:39 TD complete stop F1 min</td>
 <td align="left">0.933</td>
 <td align="left">0.933</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:39 TD complete stop F1 max</td>
 <td align="left">0.997</td>
 <td align="left">0.997</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:40 TD complete stop F1 median</td>
 <td align="left">0.98</td>
 <td align="left">0.98</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:40 v6.0.0 complete stop F1 min</td>
 <td align="left">0.948</td>
 <td align="left">0.948</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:40 v6.0.0 complete stop F1 max</td>
 <td align="left">0.985</td>
 <td align="left">0.985</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:41 longest ORF complete stop F1 min</td>
 <td align="left">0.954</td>
 <td align="left">0.954</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:41 longest ORF complete stop F1 max</td>
 <td align="left">0.984</td>
 <td align="left">0.984</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:41 TD within x of v6.0.0 per organism (stop)</td>
 <td align="left">0.014</td>
 <td align="left">0.014</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:48 TD complete+rand precision median</td>
 <td align="left">0.994</td>
 <td align="left">0.994</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:49 TD complete+rand precision min</td>
 <td align="left">0.98</td>
 <td align="left">0.98</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:49 TD complete+rand precision max</td>
 <td align="left">0.997</td>
 <td align="left">0.997</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:49 TD stop F1 complete median (from)</td>
 <td align="left">0.98</td>
 <td align="left">0.98</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:49 TD stop F1 complete+rand median (to)</td>
 <td align="left">0.979</td>
 <td align="left">0.979</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:50 Prodigal complete+rand precision min</td>
 <td align="left">0.344</td>
 <td align="left">0.344</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:50 Prodigal complete+rand precision max</td>
 <td align="left">0.866</td>
 <td align="left">0.866</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:50 Prodigal complete+rand precision median</td>
 <td align="left">0.66</td>
 <td align="left">0.66</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:51 Prodigal stop F1 complete median (from)</td>
 <td align="left">0.937</td>
 <td align="left">0.937</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:51 Prodigal stop F1 complete+rand median (to)</td>
 <td align="left">0.791</td>
 <td align="left">0.791</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:52 longest ORF complete+rand precision median</td>
 <td align="left">0.803</td>
 <td align="left">0.803</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:52 longest ORF complete+rand precision, C. rei.</td>
 <td align="left">0.567</td>
 <td align="left">0.567</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:53 RNAsamba complete+rand precision median</td>
 <td align="left">0.721</td>
 <td align="left">0.721</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:53 Borf complete+rand precision median</td>
 <td align="left">0.838</td>
 <td align="left">0.838</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:53 CPAT complete+rand precision median</td>
 <td align="left">0.971</td>
 <td align="left">0.971</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:54 CPAT complete+rand precision, C. rei.</td>
 <td align="left">0.629</td>
 <td align="left">0.629</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:58 longest ORF complete exact F1 median</td>
 <td align="left">0.689</td>
 <td align="left">0.689</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:58 TD complete exact F1 min</td>
 <td align="left">0.747</td>
 <td align="left">0.747</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:58 TD complete exact F1 max</td>
 <td align="left">0.94</td>
 <td align="left">0.94</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:59 TD complete exact F1 median</td>
 <td align="left">0.912</td>
 <td align="left">0.912</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:60 v6.0.0 complete exact F1 min</td>
 <td align="left">0.567</td>
 <td align="left">0.567</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:60 v6.0.0 complete exact F1 max</td>
 <td align="left">0.912</td>
 <td align="left">0.912</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:60 v6.0.0 complete exact F1 median</td>
 <td align="left">0.779</td>
 <td align="left">0.779</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:61 Prodigal complete exact F1 median</td>
 <td align="left">0.643</td>
 <td align="left">0.643</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:62 GeneMarkS-T complete exact F1 median</td>
 <td align="left">0.783</td>
 <td align="left">0.783</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:63 CPAT/RNAsamba/CPC2 complete exact F1 medians,
 lowest</td>
 <td align="left">0.935</td>
 <td align="left">0.935</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:63 CPAT/RNAsamba/CPC2 complete exact F1 medians,
 highest</td>
 <td align="left">0.961</td>
 <td align="left">0.961</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:64 CPAT/RNAsamba/CPC2 fragments exact F1 medians,
 lowest</td>
 <td align="left">0.183</td>
 <td align="left">0.183</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:64 CPAT/RNAsamba/CPC2 fragments exact F1 medians,
 highest</td>
 <td align="left">0.486</td>
 <td align="left">0.486</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:64 TD fragments exact F1 median</td>
 <td align="left">0.822</td>
 <td align="left">0.822</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:66 organisms where Prodigal stop F1 &gt; TD,
 fragments</td>
 <td align="left">5</td>
 <td align="left">5</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:67 Prodigal fragments stop F1 median</td>
 <td align="left">0.936</td>
 <td align="left">0.936</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:67 TD fragments stop F1 median</td>
 <td align="left">0.93</td>
 <td align="left">0.93</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:68 T. the. is the exception (Prodigal not
 higher)</td>
 <td align="left">1</td>
 <td align="left">1</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:68 Prodigal fragments stop F1, T. the.</td>
 <td align="left">0.869</td>
 <td align="left">0.869</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:68 TD fragments stop F1, T. the.</td>
 <td align="left">0.887</td>
 <td align="left">0.887</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:79 TD &gt; Prodigal exact on fragments in human,
 mouse, S. pom., D. mel., T. the.</td>
 <td align="left">1</td>
 <td align="left">1</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:80 TD T. the. complete stop F1</td>
 <td align="left">0.933</td>
 <td align="left">0.933</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:80 TD T. the. complete exact F1</td>
 <td align="left">0.833</td>
 <td align="left">0.833</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:81 v6.0.0 T. the. complete stop F1</td>
 <td align="left">0.948</td>
 <td align="left">0.948</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:81 v6.0.0 T. the. complete exact F1</td>
 <td align="left">0.567</td>
 <td align="left">0.567</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:81 Prodigal T. the. complete stop F1</td>
 <td align="left">0.856</td>
 <td align="left">0.856</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:81 Prodigal T. the. complete exact F1</td>
 <td align="left">0.395</td>
 <td align="left">0.395</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:82 CPAT T. the. complete stop F1</td>
 <td align="left">0.884</td>
 <td align="left">0.884</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:82 CPAT T. the. complete exact F1</td>
 <td align="left">0.851</td>
 <td align="left">0.851</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:83 TD T. the. complete+rand precision</td>
 <td align="left">0.98</td>
 <td align="left">0.98</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:83 v6.0.0 T. the. complete+rand precision</td>
 <td align="left">0.519</td>
 <td align="left">0.519</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:83 Prodigal T. the. complete+rand precision</td>
 <td align="left">0.344</td>
 <td align="left">0.344</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:88 P. fal. has the highest TD exact F1 (1 =
 yes)</td>
 <td align="left">1</td>
 <td align="left">1</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:88 TD P. fal. complete exact F1</td>
 <td align="left">0.94</td>
 <td align="left">0.94</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:88 TD P. fal. complete stop F1</td>
 <td align="left">0.997</td>
 <td align="left">0.997</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:89 TD C. rei. complete stop F1</td>
 <td align="left">0.975</td>
 <td align="left">0.975</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:89 TD C. rei. complete exact F1</td>
 <td align="left">0.747</td>
 <td align="left">0.747</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:89 C. rei. has the lowest TD exact F1 (1 = yes)</td>
 <td align="left">1</td>
 <td align="left">1</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:90 other methods C. rei. exact F1, lowest</td>
 <td align="left">0.653</td>
 <td align="left">0.653</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">rb:90 other methods C. rei. exact F1, highest</td>
 <td align="left">0.786</td>
 <td align="left">0.786</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rb:7 Perl and Python identical, inputs</td>
 <td align="left">84</td>
 <td align="left">84</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">fm:39 ANGEL complete runs only on A. thaliana (1 =
 yes)</td>
 <td align="left">1</td>
@@ -249019,7 +250100,7 @@ yes)</td>
 </tbody>
 </table>
 <pre class="r"><code>chk &lt;- bind_rows(.checks$rows)</code></pre>
-<p>0 of 133 checked values differ from the manuscript.</p>
+<p>0 of 136 checked values differ from the manuscript.</p>
 </div>
 
 

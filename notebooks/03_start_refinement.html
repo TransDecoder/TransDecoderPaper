@@ -1579,7 +1579,8 @@ Fig. S2 (<code>figS2_start_grid</code>). Provenance: <a href="../evidence/E13_st
 grid, open 5′ ends, GM12878 grid, Kozak score distributions), <a href="../evidence/E09_start_refinement_kozak.md">E09</a> (releases, PWM
 seeds, Kozak models, later ATGs), <a href="../evidence/E07_benchmark_v3.md">E07</a> (benchmark summary:
 v6.0.0 and development runs) and <a href="../evidence/E25_final_release_reruns.md">E25</a> (final release
-runs).</p>
+runs) and <a href="../evidence/E29_five_prime_open_starts.md">E29</a>
+(5′-open starts and the UTR-length prior).</p>
 <p><strong>Which runs.</strong> The comparisons of refinement settings
 (no refinement, <span class="math inline">\(w=0\)</span>, the <span class="math inline">\(\alpha \times w\)</span> grid) exist only for the
 development code of the parameter grid (PyTD 48c870c; E13). Its default
@@ -1616,6 +1617,14 @@ on annotated starts), <code>training_mu.tsv</code> (<span class="math inline">\(
 annotated start among in-frame ATGs) and
 <code>seed_start_changes.tsv</code> (v6.0.0-era PWM seeds on the sample
 data).</li>
+<li><code>data/start_refinement/utr_prior/</code> (written by
+<code>pipeline/derive/03_utr_*.py</code>; E29): error anatomy and
+decisions by distance on the release runs (<code>release.*</code>,
+<code>release_gm12878.*</code>), annotated 5′ UTR lengths and cut-model
+distances (<code>annotation_utr5_summary.tsv</code>,
+<code>trunc_d_summary.tsv</code>), GM12878 truncation
+(<code>gm12878_five_prime_truncation.tsv</code>) and the UTR-length
+prior runs (<code>utr_prior_eval.*.tsv</code>).</li>
 <li><code>figures/kozak/kozak_stats.tsv</code>: the earlier Kozak
 statistics (from the <code>perl_td</code> training sets), for
 comparison.</li>
@@ -3112,7 +3121,7 @@ check_text(&quot;results L30: Kozak term fragments positive (n orgs)&quot;, sum(
 check_text(&quot;results L31: Kozak term complete min (pts)&quot;, round(min(kzc$kozak_gain), 1), -0.5)
 check_text(&quot;results L31: Kozak term complete max (pts; 2.85 from 4-decimal F1s)&quot;, max(kzc$kozak_gain), 2.9, tol = 0.051)
 check_text(&quot;results L31: Kozak term complete mean (pts)&quot;, round(mean(kzc$kozak_gain), 1), 0.6)
-check_text(&quot;results L32: Pearson r min (T. thermophila 0.8446)&quot;, round(min(kstat$pearson_self_truth), 2), 0.85)
+check_text(&quot;results L32: Pearson r min (T. thermophila 0.8446)&quot;, round(min(kstat$pearson_self_truth), 2), 0.84)
 check_text(&quot;results L32: Pearson r max&quot;, round(max(kstat$pearson_self_truth), 2), 0.98)
 check_text(&quot;results L33: -3 A/G preferred (n orgs)&quot;, sum(kstat$minus3_AG_self &gt; 0), 8)</code></pre>
 <p><a href="../evidence/E13_start_param_sensitivity.md">E13</a>, <a href="../evidence/E09_start_refinement_kozak.md">E09</a></p>
@@ -3948,11 +3957,11 @@ Fig. 3c values
 <div id="comparison-with-earlier-releases" class="section level2">
 <h2>Comparison with earlier releases</h2>
 <p>v6.0.0 (<code>perl_td_v600</code>, <code>summary.tsv</code>) against
-the release (<code>pytd_v7</code>, <code>all_scores.tsv</code>). The
-manuscript text was written from the development default
-(<code>pytd_dev_v2</code>, equal to the grid’s default cell); those
-values are shown alongside. The fixed PWM is <code>pytd</code> in
-<code>summary.tsv</code> (PyTD 27bfb5e).</p>
+the release (<code>pytd_v7</code>, <code>all_scores.tsv</code>), the
+values the manuscript quotes. The development default
+(<code>pytd_dev_v2</code>, equal to the grid’s default cell), from which
+an earlier draft was written, is shown alongside. The fixed PWM is
+<code>pytd</code> in <code>summary.tsv</code> (PyTD 27bfb5e).</p>
 <pre class="r"><code>rel &lt;- f1 %&gt;% mutate(gain_release = pts(release - v600), gain_dev = pts(final - v600),
                      stop_release = pts(release_stop - v600_stop), stop_dev = pts(final_stop - v600_stop))
 rc &lt;- rel %&gt;% filter(input == &quot;complete&quot;)
@@ -4207,9 +4216,9 @@ fragments the release gained 6.0 to 13.8 points of exact F1 and 1.1 to
 10.1 points of stop-level F1 (development default: 1.8 to 14.0 and 1.7
 to 4.9). The fixed PWM had a median exact F1 of 0.728 on complete
 inputs.</p>
-<p>The development values agree with the text: complete gain 1.65 to
-27.25 (text 1.7 to 27.3; half-values rounded up), stop-level -0.7 to
-0.8, fragments 1.77 to 14.05.</p>
+<p>The development values agree with the earlier draft: complete gain
+1.65 to 27.25 (text 1.7 to 27.3; half-values rounded up), stop-level
+-0.7 to 0.8, fragments 1.77 to 14.05.</p>
 <div id="pwm-seeds-v6.0.0-style-refinement" class="section level3">
 <h3>PWM seeds (v6.0.0-style refinement)</h3>
 <pre class="r"><code>kable(seeds)</code></pre>
@@ -4306,17 +4315,17 @@ stopifnot(all(seeds$stop_not_shared == 0), all(seeds$n_orfs == seeds$n_orfs_seed
 codons relative to seed 1; on the StringTie sample data (3,037 ORFs),
 47–144. All stops were shared.</p>
 <pre class="r"><code>check_text(&quot;results L44: v6.0.0 median exact F1 complete&quot;, round(median(rc$v600), 3), 0.779)
-check_text(&quot;results L44: final median exact F1 complete (release)&quot;, round(median(rc$release), 3), 0.910)
+check_text(&quot;results L44: final median exact F1 complete (release)&quot;, round(median(rc$release), 3), 0.912)
 check_text(&quot;results L45: v6.0.0 summed exact matches&quot;, sum(rc$v600_tp), 96957)
-check_text(&quot;results L45: final summed exact matches (release)&quot;, sum(rc$release_tp), 116384)
-check_text(&quot;results L45: gain per organism min (release, pts)&quot;, round(min(rc$gain_release), 1), 1.7)
-check_text(&quot;results L45: gain per organism max (release, pts)&quot;, round(max(rc$gain_release), 1), 27.3)
-check_text(&quot;results L46: stop F1 change min (release, pts)&quot;, round(min(rc$stop_release), 1), -0.7)
-check_text(&quot;results L46: stop F1 change max (release, pts)&quot;, round(max(rc$stop_release), 1), 0.8)
-check_text(&quot;results L46: fragments exact gain min (release, pts)&quot;, round(min(rf$gain_release), 1), 1.8)
-check_text(&quot;results L46: fragments exact gain max (release, pts)&quot;, round(max(rf$gain_release), 1), 14.1)
-check_text(&quot;results L48: fragments stop F1 gain min (release, pts)&quot;, round(min(rf$stop_release), 1), 1.7)
-check_text(&quot;results L48: fragments stop F1 gain max (release, pts)&quot;, round(max(rf$stop_release), 1), 5.0)
+check_text(&quot;results L45: final summed exact matches (release)&quot;, sum(rc$release_tp), 116362)
+check_text(&quot;results L45: gain per organism min (release, pts)&quot;, round(min(rc$gain_release), 1), 2.8)
+check_text(&quot;results L45: gain per organism max (release, pts)&quot;, round(max(rc$gain_release), 1), 26.6)
+check_text(&quot;results L46: stop F1 change min (release, pts)&quot;, round(min(rc$stop_release), 1), -1.4)
+check_text(&quot;results L46: stop F1 change max (release, pts)&quot;, round(max(rc$stop_release), 1), 1.3)
+check_text(&quot;results L46: fragments exact gain min (release, pts)&quot;, round(min(rf$gain_release), 1), 6.0)
+check_text(&quot;results L46: fragments exact gain max (release, pts)&quot;, round(max(rf$gain_release), 1), 13.8)
+check_text(&quot;results L48: fragments stop F1 gain min (release, pts)&quot;, round(min(rf$stop_release), 1), 1.1)
+check_text(&quot;results L48: fragments stop F1 gain max (release, pts)&quot;, round(max(rf$stop_release), 1), 10.1)
 check_text(&quot;results L49: fixed PWM median exact F1 complete&quot;, round(median(fixed_pwm$f1_exact), 3), 0.728)
 check_text(&quot;results L51: PASA ORFs&quot;, sp$n_orfs[1], 792)
 check_text(&quot;results L51: StringTie ORFs&quot;, ss$n_orfs[1], 3037)
@@ -4461,11 +4470,1582 @@ the release (0.747; development default 0.742; lowest: creinhardtii).
 Its annotated start was a later in-frame ATG in 19.6% of transcripts,
 against 0.7%–5.0% in the other seven.</p>
 <pre class="r"><code>check_text(&quot;results L56: C. reinhardtii lowest exact F1 complete (1 = yes)&quot;, as.numeric(rem$org[which.min(rem$release)] == &quot;creinhardtii&quot;), 1)
-check_text(&quot;results L56: C. reinhardtii exact F1 complete (release)&quot;, round(cre$release, 3), 0.742)
+check_text(&quot;results L56: C. reinhardtii exact F1 complete (release)&quot;, round(cre$release, 3), 0.747)
 check_text(&quot;results L57: C. reinhardtii later ATG (%)&quot;, round(100 * cre$later_frac, 1), 19.6)
 check_text(&quot;results L58: other organisms later ATG min (%)&quot;, round(100 * min(oth$later_frac), 1), 0.7)
 check_text(&quot;results L58: other organisms later ATG max (%)&quot;, round(100 * max(oth$later_frac), 1), 5.0)</code></pre>
 <p><a href="../evidence/E09_start_refinement_kozak.md">E09</a>, <a href="../evidence/E25_final_release_reruns.md">E25</a></p>
+</div>
+<div id="truncated-orfs-and-short-utrs-are-hard-to-tell-apart" class="section level2">
+<h2>Truncated ORFs and short UTRs are hard to tell apart</h2>
+<p>Release runs (<code>pytd_v7</code>) on the stranded complete,
+complete_fullutr and fragment inputs and on the balanced mixed inputs
+(E28), with each selected ORF’s keep-or-trim decision re-derived from
+<code>best_candidates.gff3</code> (it agrees with
+<code>revised_starts.gff3</code> in all 51 runs); GM12878 release runs
+with transcript-level truth from MANE; the reference annotations; and
+fresh runs of the unmerged UTR-length prior prototype (PyTD branch
+<code>exp/utr-prior</code>, c9d7875, λ = 1). Scripts
+<code>pipeline/derive/03_utr_*.py</code>, tables in
+<code>data/start_refinement/utr_prior/</code>. <em>d</em> is the 5′ UTR
+implied by trimming an open ORF to its first in-frame ATG.</p>
+<pre class="r"><code>UP &lt;- function(f) read_tab(&quot;start_refinement&quot;, &quot;utr_prior&quot;, f)
+anat &lt;- UP(&quot;release.anatomy.tsv&quot;)
+dbd &lt;- UP(&quot;release.decision_by_d.tsv&quot;)
+dbd_gm &lt;- UP(&quot;release_gm12878.decision_by_d.tsv&quot;)
+ann_utr &lt;- UP(&quot;annotation_utr5_summary.tsv&quot;)
+trunc_d &lt;- UP(&quot;trunc_d_summary.tsv&quot;)
+gm_trunc &lt;- UP(&quot;gm12878_five_prime_truncation.tsv&quot;)
+prior_bench &lt;- UP(&quot;utr_prior_eval.bench.tsv&quot;)
+prior_gm &lt;- UP(&quot;utr_prior_eval.gm12878.tsv&quot;)
+DBINS &lt;- c(&quot;0-9&quot;, &quot;10-19&quot;, &quot;20-49&quot;, &quot;50-99&quot;, &quot;100-199&quot;, &quot;200-499&quot;, &quot;&gt;=500&quot;)
+input_set &lt;- function(i) ifelse(grepl(&quot;^fragments_mixed&quot;, i), &quot;mixed&quot;, i)</code></pre>
+<div id="error-anatomy" class="section level3">
+<h3>Error anatomy</h3>
+<p>5′ partials on the stranded fragments: every prediction with the
+correct stop but not the exact start should be a trim to an internal
+in-frame ATG (<code>trim_trunc</code>). Start-present references
+(complete transcripts and the 3′ partials of the fragment inputs): share
+of predictions with the correct stop that were left open through the
+true start into the UTR (<code>open_utr</code>).</p>
+<pre class="r"><code>f5 &lt;- anat %&gt;% filter(input == &quot;fragments&quot;, ref_type == &quot;5prime_partial&quot;) %&gt;%
+  mutate(stop_sens = n_stop / n_ref, exact_sens = exact / n_ref, wrong_start = n_stop - exact,
+         other_errors = open_utr + trim_upstream + atg_other + other)
+kable(f5 %&gt;% select(org, n_ref, stop_sens, exact_sens, wrong_start, trim_trunc, other_errors,
+                    median_d = trim_trunc_median_d, d_lt20 = trim_trunc_frac_d_lt20,
+                    d_lt50 = trim_trunc_frac_d_lt50, trimmed_cds = trim_trunc_median_trimmed_frac),
+      digits = 3, caption = &quot;5&#39; partials, stranded fragments (release)&quot;)</code></pre>
+<table>
+<caption>5’ partials, stranded fragments (release)</caption>
+<colgroup>
+<col width="11%" />
+<col width="5%" />
+<col width="9%" />
+<col width="9%" />
+<col width="10%" />
+<col width="9%" />
+<col width="11%" />
+<col width="8%" />
+<col width="6%" />
+<col width="6%" />
+<col width="10%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">org</th>
+<th align="right">n_ref</th>
+<th align="right">stop_sens</th>
+<th align="right">exact_sens</th>
+<th align="right">wrong_start</th>
+<th align="right">trim_trunc</th>
+<th align="right">other_errors</th>
+<th align="right">median_d</th>
+<th align="right">d_lt20</th>
+<th align="right">d_lt50</th>
+<th align="right">trimmed_cds</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">human</td>
+<td align="right">9483</td>
+<td align="right">0.874</td>
+<td align="right">0.723</td>
+<td align="right">1437</td>
+<td align="right">1437</td>
+<td align="right">0</td>
+<td align="right">59</td>
+<td align="right">0.188</td>
+<td align="right">0.438</td>
+<td align="right">0.093</td>
+</tr>
+<tr class="even">
+<td align="left">mouse</td>
+<td align="right">10572</td>
+<td align="right">0.867</td>
+<td align="right">0.726</td>
+<td align="right">1496</td>
+<td align="right">1496</td>
+<td align="right">0</td>
+<td align="right">60</td>
+<td align="right">0.193</td>
+<td align="right">0.438</td>
+<td align="right">0.094</td>
+</tr>
+<tr class="odd">
+<td align="left">dmel</td>
+<td align="right">6878</td>
+<td align="right">0.869</td>
+<td align="right">0.748</td>
+<td align="right">834</td>
+<td align="right">834</td>
+<td align="right">0</td>
+<td align="right">48</td>
+<td align="right">0.239</td>
+<td align="right">0.516</td>
+<td align="right">0.073</td>
+</tr>
+<tr class="even">
+<td align="left">athal</td>
+<td align="right">13326</td>
+<td align="right">0.799</td>
+<td align="right">0.616</td>
+<td align="right">2434</td>
+<td align="right">2434</td>
+<td align="right">0</td>
+<td align="right">63</td>
+<td align="right">0.180</td>
+<td align="right">0.422</td>
+<td align="right">0.114</td>
+</tr>
+<tr class="odd">
+<td align="left">spombe</td>
+<td align="right">2528</td>
+<td align="right">0.892</td>
+<td align="right">0.744</td>
+<td align="right">375</td>
+<td align="right">375</td>
+<td align="right">0</td>
+<td align="right">46</td>
+<td align="right">0.219</td>
+<td align="right">0.512</td>
+<td align="right">0.088</td>
+</tr>
+<tr class="even">
+<td align="left">tthermophila</td>
+<td align="right">13125</td>
+<td align="right">0.798</td>
+<td align="right">0.663</td>
+<td align="right">1774</td>
+<td align="right">1774</td>
+<td align="right">0</td>
+<td align="right">56</td>
+<td align="right">0.180</td>
+<td align="right">0.449</td>
+<td align="right">0.063</td>
+</tr>
+<tr class="odd">
+<td align="left">pfalciparum</td>
+<td align="right">2609</td>
+<td align="right">0.932</td>
+<td align="right">0.806</td>
+<td align="right">330</td>
+<td align="right">330</td>
+<td align="right">0</td>
+<td align="right">55</td>
+<td align="right">0.221</td>
+<td align="right">0.461</td>
+<td align="right">0.085</td>
+</tr>
+<tr class="even">
+<td align="left">creinhardtii</td>
+<td align="right">8729</td>
+<td align="right">0.893</td>
+<td align="right">0.811</td>
+<td align="right">717</td>
+<td align="right">717</td>
+<td align="right">0</td>
+<td align="right">54</td>
+<td align="right">0.247</td>
+<td align="right">0.480</td>
+<td align="right">0.059</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>spres &lt;- anat %&gt;% filter(input %in% c(&quot;complete&quot;, &quot;complete_fullutr&quot;, &quot;fragments&quot;),
+                      ref_type %in% c(&quot;complete&quot;, &quot;3prime_partial&quot;)) %&gt;%
+  mutate(open_frac = open_utr / n_stop)
+sp_org &lt;- spres %&gt;% group_by(org) %&gt;% summarise(open_frac = sum(open_utr) / sum(n_stop), .groups = &quot;drop&quot;)
+kable(spres %&gt;% select(org, input, ref_type, n_stop, open_utr, open_frac, true_utr_median = open_utr_median_true_utr) %&gt;%
+        pivot_wider(id_cols = org, names_from = c(input, ref_type), values_from = open_frac),
+      digits = 4, caption = &quot;Start-present references left open (share of correct-stop predictions)&quot;)</code></pre>
+<table>
+<caption>Start-present references left open (share of correct-stop
+predictions)</caption>
+<colgroup>
+<col width="15%" />
+<col width="21%" />
+<col width="31%" />
+<col width="30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">org</th>
+<th align="right">complete_complete</th>
+<th align="right">complete_fullutr_complete</th>
+<th align="right">fragments_3prime_partial</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">human</td>
+<td align="right">0.0507</td>
+<td align="right">0.0499</td>
+<td align="right">0.0560</td>
+</tr>
+<tr class="even">
+<td align="left">mouse</td>
+<td align="right">0.0381</td>
+<td align="right">0.0360</td>
+<td align="right">0.0365</td>
+</tr>
+<tr class="odd">
+<td align="left">dmel</td>
+<td align="right">0.0258</td>
+<td align="right">0.0232</td>
+<td align="right">0.0276</td>
+</tr>
+<tr class="even">
+<td align="left">athal</td>
+<td align="right">0.0699</td>
+<td align="right">0.0680</td>
+<td align="right">0.0683</td>
+</tr>
+<tr class="odd">
+<td align="left">spombe</td>
+<td align="right">0.0618</td>
+<td align="right">0.0606</td>
+<td align="right">0.0618</td>
+</tr>
+<tr class="even">
+<td align="left">tthermophila</td>
+<td align="right">0.0777</td>
+<td align="right">0.0695</td>
+<td align="right">0.0853</td>
+</tr>
+<tr class="odd">
+<td align="left">pfalciparum</td>
+<td align="right">0.0086</td>
+<td align="right">0.0075</td>
+<td align="right">0.0092</td>
+</tr>
+<tr class="even">
+<td align="left">creinhardtii</td>
+<td align="right">0.0596</td>
+<td align="right">0.0414</td>
+<td align="right">0.0627</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>sp_type &lt;- spres %&gt;% group_by(input, ref_type) %&gt;% summarise(median = median(open_frac), .groups = &quot;drop&quot;)
+kable(sp_type, digits = 4, caption = &quot;Median over organisms per input type&quot;)</code></pre>
+<table>
+<caption>Median over organisms per input type</caption>
+<thead>
+<tr class="header">
+<th align="left">input</th>
+<th align="left">ref_type</th>
+<th align="right">median</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">complete</td>
+<td align="left">complete</td>
+<td align="right">0.0551</td>
+</tr>
+<tr class="even">
+<td align="left">complete_fullutr</td>
+<td align="left">complete</td>
+<td align="right">0.0457</td>
+</tr>
+<tr class="odd">
+<td align="left">fragments</td>
+<td align="left">3prime_partial</td>
+<td align="right">0.0589</td>
+</tr>
+</tbody>
+</table>
+<p>On the stranded fragments, 9,397 5′ partials had the correct stop but
+not the exact start; 9,397 of them were trims to an internal ATG and 0
+were other errors. Median over organisms: stop found 0.871, exact 0.735.
+The trims lay a median 46–63 nt from the fragment start. Start-present
+references were left open through the true start in 0.7%–8.5% of
+correct-stop predictions (organism × input type); the median over
+organisms of the per-organism rates is 5.2% (per input type 5.5%, 4.6%,
+5.9%), which the text gives as “about 5%”.</p>
+<pre class="r"><code>check_text(&quot;results L73: 5&#39; partials, correct stop but wrong start (n)&quot;, sum(f5$wrong_start), 9397)
+check_text(&quot;results L74: all of them trimmed to an internal ATG (1 = yes)&quot;,
+           as.numeric(sum(f5$trim_trunc) == sum(f5$wrong_start) &amp;&amp; sum(f5$other_errors) == 0), 1)
+check_text(&quot;results L75: start-present left open, median over organisms (about 5%)&quot;,
+           round(100 * median(sp_org$open_frac)), 5)
+check_text(&quot;results L75: start-present left open, min (%)&quot;, round(100 * min(spres$open_frac), 1), 0.7)
+check_text(&quot;results L75: start-present left open, max (%)&quot;, round(100 * max(spres$open_frac), 1), 8.5)</code></pre>
+</div>
+<div id="decisions-by-distance-to-the-first-atg" class="section level3">
+<h3>Decisions by distance to the first ATG</h3>
+<p>Complete and fragment inputs (the complete_fullutr and mixed inputs
+are not included), all organisms pooled. “Truncated”: 5′-partial
+reference, keeping the ORF open is right; share trimmed. “UTR, first
+ATG”: start-present reference whose start is the first in-frame ATG,
+trimming is right; share left open.</p>
+<pre class="r"><code>byd &lt;- dbd %&gt;% filter(input %in% c(&quot;complete&quot;, &quot;fragments&quot;), dclass %in% c(&quot;truncated&quot;, &quot;utr_first&quot;)) %&gt;%
+  group_by(dclass, dbin) %&gt;% summarise(n = sum(n), n_trim = sum(n_trim), .groups = &quot;drop&quot;) %&gt;%
+  mutate(error = ifelse(dclass == &quot;truncated&quot;, n_trim / n, 1 - n_trim / n),
+         dbin = factor(dbin, DBINS)) %&gt;% arrange(dclass, dbin)
+kable(byd, digits = 3, caption = &quot;Error rate by d (truncated: trimmed; UTR, first ATG: left open)&quot;)</code></pre>
+<table>
+<caption>Error rate by d (truncated: trimmed; UTR, first ATG: left
+open)</caption>
+<thead>
+<tr class="header">
+<th align="left">dclass</th>
+<th align="left">dbin</th>
+<th align="right">n</th>
+<th align="right">n_trim</th>
+<th align="right">error</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">truncated</td>
+<td align="left">0-9</td>
+<td align="right">2629</td>
+<td align="right">799</td>
+<td align="right">0.304</td>
+</tr>
+<tr class="even">
+<td align="left">truncated</td>
+<td align="left">10-19</td>
+<td align="right">3517</td>
+<td align="right">1049</td>
+<td align="right">0.298</td>
+</tr>
+<tr class="odd">
+<td align="left">truncated</td>
+<td align="left">20-49</td>
+<td align="right">8997</td>
+<td align="right">2378</td>
+<td align="right">0.264</td>
+</tr>
+<tr class="even">
+<td align="left">truncated</td>
+<td align="left">50-99</td>
+<td align="right">11222</td>
+<td align="right">2241</td>
+<td align="right">0.200</td>
+</tr>
+<tr class="odd">
+<td align="left">truncated</td>
+<td align="left">100-199</td>
+<td align="right">13156</td>
+<td align="right">1792</td>
+<td align="right">0.136</td>
+</tr>
+<tr class="even">
+<td align="left">truncated</td>
+<td align="left">200-499</td>
+<td align="right">10679</td>
+<td align="right">1012</td>
+<td align="right">0.095</td>
+</tr>
+<tr class="odd">
+<td align="left">truncated</td>
+<td align="left">&gt;=500</td>
+<td align="right">1797</td>
+<td align="right">126</td>
+<td align="right">0.070</td>
+</tr>
+<tr class="even">
+<td align="left">utr_first</td>
+<td align="left">0-9</td>
+<td align="right">1409</td>
+<td align="right">903</td>
+<td align="right">0.359</td>
+</tr>
+<tr class="odd">
+<td align="left">utr_first</td>
+<td align="left">10-19</td>
+<td align="right">3838</td>
+<td align="right">2957</td>
+<td align="right">0.230</td>
+</tr>
+<tr class="even">
+<td align="left">utr_first</td>
+<td align="left">20-49</td>
+<td align="right">13517</td>
+<td align="right">11077</td>
+<td align="right">0.181</td>
+</tr>
+<tr class="odd">
+<td align="left">utr_first</td>
+<td align="left">50-99</td>
+<td align="right">16945</td>
+<td align="right">14433</td>
+<td align="right">0.148</td>
+</tr>
+<tr class="even">
+<td align="left">utr_first</td>
+<td align="left">100-199</td>
+<td align="right">12845</td>
+<td align="right">11357</td>
+<td align="right">0.116</td>
+</tr>
+<tr class="odd">
+<td align="left">utr_first</td>
+<td align="left">200-499</td>
+<td align="right">7259</td>
+<td align="right">5973</td>
+<td align="right">0.177</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>tr_lt20 &lt;- byd %&gt;% filter(dclass == &quot;truncated&quot;, dbin %in% c(&quot;0-9&quot;, &quot;10-19&quot;)) %&gt;%
+  summarise(e = sum(n_trim) / sum(n)) %&gt;% pull(e)
+err &lt;- function(cl, b) byd$error[byd$dclass == cl &amp; byd$dbin == b]
+gm_byd &lt;- dbd_gm %&gt;% filter(dclass == &quot;truncated&quot;) %&gt;%
+  mutate(d20 = ifelse(dbin %in% c(&quot;0-9&quot;, &quot;10-19&quot;), &quot;d &lt; 20&quot;, &quot;d &gt;= 20&quot;)) %&gt;%
+  group_by(assembly = input, d20) %&gt;% summarise(n = sum(n), trimmed = sum(n_trim) / sum(n), .groups = &quot;drop&quot;)
+kable(gm_byd, digits = 3, caption = &quot;GM12878 (release runs): truncated ORFs trimmed, by d&quot;)</code></pre>
+<table>
+<caption>GM12878 (release runs): truncated ORFs trimmed, by d</caption>
+<thead>
+<tr class="header">
+<th align="left">assembly</th>
+<th align="left">d20</th>
+<th align="right">n</th>
+<th align="right">trimmed</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">lraa</td>
+<td align="left">d &lt; 20</td>
+<td align="right">161</td>
+<td align="right">0.453</td>
+</tr>
+<tr class="even">
+<td align="left">lraa</td>
+<td align="left">d &gt;= 20</td>
+<td align="right">989</td>
+<td align="right">0.245</td>
+</tr>
+<tr class="odd">
+<td align="left">stringtie</td>
+<td align="left">d &lt; 20</td>
+<td align="right">59</td>
+<td align="right">0.475</td>
+</tr>
+<tr class="even">
+<td align="left">stringtie</td>
+<td align="left">d &gt;= 20</td>
+<td align="right">674</td>
+<td align="right">0.175</td>
+</tr>
+<tr class="odd">
+<td align="left">trinity</td>
+<td align="left">d &lt; 20</td>
+<td align="right">124</td>
+<td align="right">0.347</td>
+</tr>
+<tr class="even">
+<td align="left">trinity</td>
+<td align="left">d &gt;= 20</td>
+<td align="right">973</td>
+<td align="right">0.210</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>gm_lt20 &lt;- gm_byd %&gt;% filter(d20 == &quot;d &lt; 20&quot;)</code></pre>
+<p>Truncated ORFs were trimmed in 30% of cases at d &lt; 20 nt and 7% at
+d ≥ 500; UTR extensions were left open in 36% at d &lt; 10 and 12% at
+100–199 nt. On GM12878 the same dependence holds: truncated ORFs at d
+&lt; 20 were trimmed in 35%–47% (more than at d ≥ 20 in every
+assembly).</p>
+<pre class="r"><code>check_text(&quot;results L78: truncated trimmed, d &lt; 20 (%)&quot;, round(100 * tr_lt20), 30)
+check_text(&quot;results L79: truncated trimmed, d &gt;= 500 (%)&quot;, round(100 * err(&quot;truncated&quot;, &quot;&gt;=500&quot;)), 7)
+check_text(&quot;results L79: UTR extensions left open, d &lt; 10 (%)&quot;, round(100 * err(&quot;utr_first&quot;, &quot;0-9&quot;)), 36)
+check_text(&quot;results L80: UTR extensions left open, d 100-199 (%)&quot;, round(100 * err(&quot;utr_first&quot;, &quot;100-199&quot;)), 12)
+check_text(&quot;results L85: GM12878 truncated trimmed more at d &lt; 20 than at d &gt;= 20 in all three (1 = yes)&quot;,
+           as.numeric(all(gm_byd %&gt;% group_by(assembly) %&gt;%
+                            summarise(x = trimmed[d20 == &quot;d &lt; 20&quot;] &gt; trimmed[d20 == &quot;d &gt;= 20&quot;]) %&gt;% pull(x))), 1)</code></pre>
+</div>
+<div id="cut-model-and-annotated-utrs" class="section level3">
+<h3>Cut model and annotated UTRs</h3>
+<p>Distance from a cut inside an annotated CDS to the next in-frame ATG,
+for uniform and N(0.5, 0.1) cut positions
+(<code>trunc_d_summary.tsv</code>; <code>no_atg</code> = no in-frame ATG
+downstream of the cut; the other fractions are among cuts with an ATG),
+and 5′ UTR lengths of all eligible annotated transcripts
+(<code>annotation_utr5_summary.tsv</code>; “open” = no in-frame stop
+upstream of the start, the UTRs that leave an ORF open on a complete
+transcript).</p>
+<pre class="r"><code>cut_cmp &lt;- trunc_d %&gt;% pivot_wider(id_cols = org, names_from = cut, values_from = c(lt10, lt20, lt50, median_d, no_atg))
+kable(cut_cmp, digits = 3)</code></pre>
+<table>
+<colgroup>
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="11%" />
+<col width="10%" />
+<col width="10%" />
+<col width="9%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">org</th>
+<th align="right">lt10_uniform</th>
+<th align="right">lt10_normal</th>
+<th align="right">lt20_uniform</th>
+<th align="right">lt20_normal</th>
+<th align="right">lt50_uniform</th>
+<th align="right">lt50_normal</th>
+<th align="right">median_d_uniform</th>
+<th align="right">median_d_normal</th>
+<th align="right">no_atg_uniform</th>
+<th align="right">no_atg_normal</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">human</td>
+<td align="right">0.057</td>
+<td align="right">0.059</td>
+<td align="right">0.110</td>
+<td align="right">0.114</td>
+<td align="right">0.260</td>
+<td align="right">0.272</td>
+<td align="right">100.177</td>
+<td align="right">102.926</td>
+<td align="right">0.101</td>
+<td align="right">0.037</td>
+</tr>
+<tr class="even">
+<td align="left">mouse</td>
+<td align="right">0.060</td>
+<td align="right">0.062</td>
+<td align="right">0.114</td>
+<td align="right">0.119</td>
+<td align="right">0.269</td>
+<td align="right">0.281</td>
+<td align="right">96.702</td>
+<td align="right">99.650</td>
+<td align="right">0.099</td>
+<td align="right">0.034</td>
+</tr>
+<tr class="odd">
+<td align="left">dmel</td>
+<td align="right">0.063</td>
+<td align="right">0.065</td>
+<td align="right">0.120</td>
+<td align="right">0.125</td>
+<td align="right">0.280</td>
+<td align="right">0.293</td>
+<td align="right">91.158</td>
+<td align="right">92.978</td>
+<td align="right">0.105</td>
+<td align="right">0.045</td>
+</tr>
+<tr class="even">
+<td align="left">athal</td>
+<td align="right">0.064</td>
+<td align="right">0.067</td>
+<td align="right">0.123</td>
+<td align="right">0.128</td>
+<td align="right">0.288</td>
+<td align="right">0.304</td>
+<td align="right">86.625</td>
+<td align="right">88.050</td>
+<td align="right">0.112</td>
+<td align="right">0.038</td>
+</tr>
+<tr class="odd">
+<td align="left">spombe</td>
+<td align="right">0.054</td>
+<td align="right">0.057</td>
+<td align="right">0.105</td>
+<td align="right">0.111</td>
+<td align="right">0.250</td>
+<td align="right">0.266</td>
+<td align="right">101.579</td>
+<td align="right">102.781</td>
+<td align="right">0.116</td>
+<td align="right">0.043</td>
+</tr>
+<tr class="even">
+<td align="left">tthermophila</td>
+<td align="right">0.048</td>
+<td align="right">0.048</td>
+<td align="right">0.092</td>
+<td align="right">0.092</td>
+<td align="right">0.223</td>
+<td align="right">0.224</td>
+<td align="right">119.302</td>
+<td align="right">128.514</td>
+<td align="right">0.102</td>
+<td align="right">0.040</td>
+</tr>
+<tr class="odd">
+<td align="left">pfalciparum</td>
+<td align="right">0.061</td>
+<td align="right">0.063</td>
+<td align="right">0.116</td>
+<td align="right">0.120</td>
+<td align="right">0.270</td>
+<td align="right">0.280</td>
+<td align="right">101.861</td>
+<td align="right">102.697</td>
+<td align="right">0.063</td>
+<td align="right">0.017</td>
+</tr>
+<tr class="even">
+<td align="left">creinhardtii</td>
+<td align="right">0.049</td>
+<td align="right">0.050</td>
+<td align="right">0.093</td>
+<td align="right">0.097</td>
+<td align="right">0.221</td>
+<td align="right">0.230</td>
+<td align="right">126.939</td>
+<td align="right">129.478</td>
+<td align="right">0.084</td>
+<td align="right">0.028</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>cut_diff &lt;- cut_cmp %&gt;% transmute(org, d_lt10 = lt10_normal - lt10_uniform, d_lt20 = lt20_normal - lt20_uniform,
+                                  d_lt50 = lt50_normal - lt50_uniform,
+                                  median_ratio = median_d_normal / median_d_uniform)
+kable(cut_diff, digits = 4, caption = &quot;normal minus uniform&quot;)</code></pre>
+<table>
+<caption>normal minus uniform</caption>
+<thead>
+<tr class="header">
+<th align="left">org</th>
+<th align="right">d_lt10</th>
+<th align="right">d_lt20</th>
+<th align="right">d_lt50</th>
+<th align="right">median_ratio</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">human</td>
+<td align="right">0.0022</td>
+<td align="right">0.0044</td>
+<td align="right">0.0115</td>
+<td align="right">1.0274</td>
+</tr>
+<tr class="even">
+<td align="left">mouse</td>
+<td align="right">0.0025</td>
+<td align="right">0.0050</td>
+<td align="right">0.0123</td>
+<td align="right">1.0305</td>
+</tr>
+<tr class="odd">
+<td align="left">dmel</td>
+<td align="right">0.0024</td>
+<td align="right">0.0050</td>
+<td align="right">0.0132</td>
+<td align="right">1.0200</td>
+</tr>
+<tr class="even">
+<td align="left">athal</td>
+<td align="right">0.0022</td>
+<td align="right">0.0049</td>
+<td align="right">0.0163</td>
+<td align="right">1.0164</td>
+</tr>
+<tr class="odd">
+<td align="left">spombe</td>
+<td align="right">0.0029</td>
+<td align="right">0.0059</td>
+<td align="right">0.0164</td>
+<td align="right">1.0118</td>
+</tr>
+<tr class="even">
+<td align="left">tthermophila</td>
+<td align="right">0.0000</td>
+<td align="right">0.0001</td>
+<td align="right">0.0014</td>
+<td align="right">1.0772</td>
+</tr>
+<tr class="odd">
+<td align="left">pfalciparum</td>
+<td align="right">0.0022</td>
+<td align="right">0.0043</td>
+<td align="right">0.0101</td>
+<td align="right">1.0082</td>
+</tr>
+<tr class="even">
+<td align="left">creinhardtii</td>
+<td align="right">0.0016</td>
+<td align="right">0.0033</td>
+<td align="right">0.0091</td>
+<td align="right">1.0200</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>open_utr &lt;- ann_utr %&gt;% filter(set == &quot;all&quot;, utr_kind == &quot;open&quot;)
+kable(ann_utr %&gt;% filter(set == &quot;all&quot;, utr_kind %in% c(&quot;any&quot;, &quot;open&quot;)) %&gt;%
+        select(org, utr_kind, n, frac_of_tx, median, lt10, lt20, lt50), digits = 3)</code></pre>
+<table>
+<colgroup>
+<col width="20%" />
+<col width="13%" />
+<col width="10%" />
+<col width="16%" />
+<col width="10%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">org</th>
+<th align="left">utr_kind</th>
+<th align="right">n</th>
+<th align="right">frac_of_tx</th>
+<th align="right">median</th>
+<th align="right">lt10</th>
+<th align="right">lt20</th>
+<th align="right">lt50</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">human</td>
+<td align="left">any</td>
+<td align="right">18890</td>
+<td align="right">0.982</td>
+<td align="right">136</td>
+<td align="right">0.007</td>
+<td align="right">0.039</td>
+<td align="right">0.165</td>
+</tr>
+<tr class="even">
+<td align="left">human</td>
+<td align="left">open</td>
+<td align="right">7634</td>
+<td align="right">0.397</td>
+<td align="right">70</td>
+<td align="right">0.017</td>
+<td align="right">0.092</td>
+<td align="right">0.352</td>
+</tr>
+<tr class="odd">
+<td align="left">mouse</td>
+<td align="left">any</td>
+<td align="right">163386</td>
+<td align="right">0.983</td>
+<td align="right">271</td>
+<td align="right">0.002</td>
+<td align="right">0.005</td>
+<td align="right">0.036</td>
+</tr>
+<tr class="even">
+<td align="left">mouse</td>
+<td align="left">open</td>
+<td align="right">30308</td>
+<td align="right">0.182</td>
+<td align="right">118</td>
+<td align="right">0.010</td>
+<td align="right">0.024</td>
+<td align="right">0.147</td>
+</tr>
+<tr class="odd">
+<td align="left">dmel</td>
+<td align="left">any</td>
+<td align="right">29537</td>
+<td align="right">0.981</td>
+<td align="right">189</td>
+<td align="right">0.008</td>
+<td align="right">0.028</td>
+<td align="right">0.112</td>
+</tr>
+<tr class="even">
+<td align="left">dmel</td>
+<td align="left">open</td>
+<td align="right">4588</td>
+<td align="right">0.152</td>
+<td align="right">53</td>
+<td align="right">0.051</td>
+<td align="right">0.164</td>
+<td align="right">0.476</td>
+</tr>
+<tr class="odd">
+<td align="left">athal</td>
+<td align="left">any</td>
+<td align="right">35382</td>
+<td align="right">0.968</td>
+<td align="right">111</td>
+<td align="right">0.014</td>
+<td align="right">0.051</td>
+<td align="right">0.198</td>
+</tr>
+<tr class="even">
+<td align="left">athal</td>
+<td align="left">open</td>
+<td align="right">9068</td>
+<td align="right">0.248</td>
+<td align="right">48</td>
+<td align="right">0.052</td>
+<td align="right">0.170</td>
+<td align="right">0.512</td>
+</tr>
+<tr class="odd">
+<td align="left">spombe</td>
+<td align="left">any</td>
+<td align="right">4511</td>
+<td align="right">0.883</td>
+<td align="right">97</td>
+<td align="right">0.016</td>
+<td align="right">0.090</td>
+<td align="right">0.297</td>
+</tr>
+<tr class="even">
+<td align="left">spombe</td>
+<td align="left">open</td>
+<td align="right">1178</td>
+<td align="right">0.230</td>
+<td align="right">27</td>
+<td align="right">0.061</td>
+<td align="right">0.320</td>
+<td align="right">0.811</td>
+</tr>
+<tr class="odd">
+<td align="left">tthermophila</td>
+<td align="left">any</td>
+<td align="right">26177</td>
+<td align="right">0.990</td>
+<td align="right">149</td>
+<td align="right">0.011</td>
+<td align="right">0.026</td>
+<td align="right">0.111</td>
+</tr>
+<tr class="even">
+<td align="left">tthermophila</td>
+<td align="left">open</td>
+<td align="right">12201</td>
+<td align="right">0.461</td>
+<td align="right">95</td>
+<td align="right">0.022</td>
+<td align="right">0.052</td>
+<td align="right">0.204</td>
+</tr>
+<tr class="odd">
+<td align="left">pfalciparum</td>
+<td align="left">any</td>
+<td align="right">4421</td>
+<td align="right">0.826</td>
+<td align="right">497</td>
+<td align="right">0.004</td>
+<td align="right">0.015</td>
+<td align="right">0.048</td>
+</tr>
+<tr class="even">
+<td align="left">pfalciparum</td>
+<td align="left">open</td>
+<td align="right">172</td>
+<td align="right">0.032</td>
+<td align="right">32</td>
+<td align="right">0.081</td>
+<td align="right">0.320</td>
+<td align="right">0.674</td>
+</tr>
+<tr class="odd">
+<td align="left">creinhardtii</td>
+<td align="left">any</td>
+<td align="right">19387</td>
+<td align="right">1.000</td>
+<td align="right">191</td>
+<td align="right">0.002</td>
+<td align="right">0.004</td>
+<td align="right">0.081</td>
+</tr>
+<tr class="even">
+<td align="left">creinhardtii</td>
+<td align="left">open</td>
+<td align="right">4001</td>
+<td align="right">0.206</td>
+<td align="right">93</td>
+<td align="right">0.009</td>
+<td align="right">0.020</td>
+<td align="right">0.263</td>
+</tr>
+</tbody>
+</table>
+<p>Uniform and normal cuts give d distributions within 0.006 (fractions
+below 10 and 20 nt) and 0.016 (below 50 nt), with medians within 8%.
+(The share of cuts with no downstream in-frame ATG differs, 6%–12%
+uniform against 2%–5% normal, because uniform cuts fall more often near
+the 3′ end; those ORFs have no trim option.) Open annotated 5′ UTRs have
+a median length of 27–118 nt per organism.</p>
+<pre class="r"><code>check_text(&quot;results L84: cut model, d fractions &lt; 20 nt within 0.01 (1 = yes)&quot;,
+           as.numeric(max(abs(c(cut_diff$d_lt10, cut_diff$d_lt20))) &lt;= 0.01), 1)
+check_text(&quot;results L87: open 5&#39; UTR median length, min (nt)&quot;, min(open_utr$median), 27)
+check_text(&quot;results L87: open 5&#39; UTR median length, max (nt)&quot;, max(open_utr$median), 118)</code></pre>
+</div>
+<div id="utr-length-prior-not-adopted" class="section level3">
+<h3>UTR-length prior (not adopted)</h3>
+<p>Exact F1 with the prior (λ = 1) minus the release, in points. Stops
+were identical in every run.</p>
+<pre class="r"><code>pb &lt;- prior_bench %&gt;% mutate(set = input_set(input)) %&gt;%
+  select(org, input, set, run, f1_stop, f1_exact) %&gt;%
+  pivot_wider(names_from = run, values_from = c(f1_stop, f1_exact)) %&gt;%
+  mutate(d_exact = 100 * (f1_exact_utr_l1 - f1_exact_release), d_stop = 100 * (f1_stop_utr_l1 - f1_stop_release))
+pb_sum &lt;- pb %&gt;% group_by(set) %&gt;%
+  summarise(inputs = n(), min = min(d_exact), median = median(d_exact), max = max(d_exact),
+            n_up = sum(d_exact &gt; 0), n_down = sum(d_exact &lt; 0), max_abs_d_stop = max(abs(d_stop)), .groups = &quot;drop&quot;)
+kable(pb_sum, digits = 2)</code></pre>
+<table>
+<colgroup>
+<col width="24%" />
+<col width="10%" />
+<col width="8%" />
+<col width="10%" />
+<col width="8%" />
+<col width="7%" />
+<col width="10%" />
+<col width="21%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">set</th>
+<th align="right">inputs</th>
+<th align="right">min</th>
+<th align="right">median</th>
+<th align="right">max</th>
+<th align="right">n_up</th>
+<th align="right">n_down</th>
+<th align="right">max_abs_d_stop</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">complete</td>
+<td align="right">8</td>
+<td align="right">0.02</td>
+<td align="right">0.67</td>
+<td align="right">2.60</td>
+<td align="right">8</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">complete_fullutr</td>
+<td align="right">8</td>
+<td align="right">0.19</td>
+<td align="right">0.66</td>
+<td align="right">2.47</td>
+<td align="right">8</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">fragments</td>
+<td align="right">8</td>
+<td align="right">-1.30</td>
+<td align="right">-0.74</td>
+<td align="right">-0.60</td>
+<td align="right">0</td>
+<td align="right">8</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">mixed</td>
+<td align="right">24</td>
+<td align="right">-1.43</td>
+<td align="right">-0.81</td>
+<td align="right">-0.28</td>
+<td align="right">0</td>
+<td align="right">24</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>kable(pb %&gt;% select(org, input, f1_exact_release, f1_exact_utr_l1, d_exact), digits = 4, caption = &quot;Per input&quot;)</code></pre>
+<table>
+<caption>Per input</caption>
+<colgroup>
+<col width="17%" />
+<col width="26%" />
+<col width="23%" />
+<col width="21%" />
+<col width="10%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">org</th>
+<th align="left">input</th>
+<th align="right">f1_exact_release</th>
+<th align="right">f1_exact_utr_l1</th>
+<th align="right">d_exact</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">human</td>
+<td align="left">complete</td>
+<td align="right">0.9199</td>
+<td align="right">0.9278</td>
+<td align="right">0.79</td>
+</tr>
+<tr class="even">
+<td align="left">human</td>
+<td align="left">complete_fullutr</td>
+<td align="right">0.9136</td>
+<td align="right">0.9219</td>
+<td align="right">0.83</td>
+</tr>
+<tr class="odd">
+<td align="left">human</td>
+<td align="left">fragments</td>
+<td align="right">0.8251</td>
+<td align="right">0.8177</td>
+<td align="right">-0.74</td>
+</tr>
+<tr class="even">
+<td align="left">human</td>
+<td align="left">fragments_mixed_t1</td>
+<td align="right">0.8491</td>
+<td align="right">0.8420</td>
+<td align="right">-0.71</td>
+</tr>
+<tr class="odd">
+<td align="left">human</td>
+<td align="left">fragments_mixed_t2</td>
+<td align="right">0.8506</td>
+<td align="right">0.8430</td>
+<td align="right">-0.76</td>
+</tr>
+<tr class="even">
+<td align="left">human</td>
+<td align="left">fragments_mixed_t3</td>
+<td align="right">0.8532</td>
+<td align="right">0.8459</td>
+<td align="right">-0.73</td>
+</tr>
+<tr class="odd">
+<td align="left">mouse</td>
+<td align="left">complete</td>
+<td align="right">0.9070</td>
+<td align="right">0.9083</td>
+<td align="right">0.13</td>
+</tr>
+<tr class="even">
+<td align="left">mouse</td>
+<td align="left">complete_fullutr</td>
+<td align="right">0.8975</td>
+<td align="right">0.9009</td>
+<td align="right">0.34</td>
+</tr>
+<tr class="odd">
+<td align="left">mouse</td>
+<td align="left">fragments</td>
+<td align="right">0.8180</td>
+<td align="right">0.8073</td>
+<td align="right">-1.07</td>
+</tr>
+<tr class="even">
+<td align="left">mouse</td>
+<td align="left">fragments_mixed_t1</td>
+<td align="right">0.8328</td>
+<td align="right">0.8232</td>
+<td align="right">-0.96</td>
+</tr>
+<tr class="odd">
+<td align="left">mouse</td>
+<td align="left">fragments_mixed_t2</td>
+<td align="right">0.8367</td>
+<td align="right">0.8261</td>
+<td align="right">-1.06</td>
+</tr>
+<tr class="even">
+<td align="left">mouse</td>
+<td align="left">fragments_mixed_t3</td>
+<td align="right">0.8346</td>
+<td align="right">0.8245</td>
+<td align="right">-1.01</td>
+</tr>
+<tr class="odd">
+<td align="left">dmel</td>
+<td align="left">complete</td>
+<td align="right">0.9279</td>
+<td align="right">0.9346</td>
+<td align="right">0.67</td>
+</tr>
+<tr class="even">
+<td align="left">dmel</td>
+<td align="left">complete_fullutr</td>
+<td align="right">0.9153</td>
+<td align="right">0.9221</td>
+<td align="right">0.68</td>
+</tr>
+<tr class="odd">
+<td align="left">dmel</td>
+<td align="left">fragments</td>
+<td align="right">0.8411</td>
+<td align="right">0.8298</td>
+<td align="right">-1.13</td>
+</tr>
+<tr class="even">
+<td align="left">dmel</td>
+<td align="left">fragments_mixed_t1</td>
+<td align="right">0.8715</td>
+<td align="right">0.8631</td>
+<td align="right">-0.84</td>
+</tr>
+<tr class="odd">
+<td align="left">dmel</td>
+<td align="left">fragments_mixed_t2</td>
+<td align="right">0.8744</td>
+<td align="right">0.8640</td>
+<td align="right">-1.04</td>
+</tr>
+<tr class="even">
+<td align="left">dmel</td>
+<td align="left">fragments_mixed_t3</td>
+<td align="right">0.8708</td>
+<td align="right">0.8591</td>
+<td align="right">-1.17</td>
+</tr>
+<tr class="odd">
+<td align="left">athal</td>
+<td align="left">complete</td>
+<td align="right">0.8992</td>
+<td align="right">0.9186</td>
+<td align="right">1.94</td>
+</tr>
+<tr class="even">
+<td align="left">athal</td>
+<td align="left">complete_fullutr</td>
+<td align="right">0.8959</td>
+<td align="right">0.9155</td>
+<td align="right">1.96</td>
+</tr>
+<tr class="odd">
+<td align="left">athal</td>
+<td align="left">fragments</td>
+<td align="right">0.7531</td>
+<td align="right">0.7467</td>
+<td align="right">-0.64</td>
+</tr>
+<tr class="even">
+<td align="left">athal</td>
+<td align="left">fragments_mixed_t1</td>
+<td align="right">0.7979</td>
+<td align="right">0.7951</td>
+<td align="right">-0.28</td>
+</tr>
+<tr class="odd">
+<td align="left">athal</td>
+<td align="left">fragments_mixed_t2</td>
+<td align="right">0.8019</td>
+<td align="right">0.7980</td>
+<td align="right">-0.39</td>
+</tr>
+<tr class="even">
+<td align="left">athal</td>
+<td align="left">fragments_mixed_t3</td>
+<td align="right">0.8025</td>
+<td align="right">0.7967</td>
+<td align="right">-0.58</td>
+</tr>
+<tr class="odd">
+<td align="left">spombe</td>
+<td align="left">complete</td>
+<td align="right">0.9163</td>
+<td align="right">0.9423</td>
+<td align="right">2.60</td>
+</tr>
+<tr class="even">
+<td align="left">spombe</td>
+<td align="left">complete_fullutr</td>
+<td align="right">0.9109</td>
+<td align="right">0.9356</td>
+<td align="right">2.47</td>
+</tr>
+<tr class="odd">
+<td align="left">spombe</td>
+<td align="left">fragments</td>
+<td align="right">0.8295</td>
+<td align="right">0.8235</td>
+<td align="right">-0.60</td>
+</tr>
+<tr class="even">
+<td align="left">spombe</td>
+<td align="left">fragments_mixed_t1</td>
+<td align="right">0.8635</td>
+<td align="right">0.8585</td>
+<td align="right">-0.50</td>
+</tr>
+<tr class="odd">
+<td align="left">spombe</td>
+<td align="left">fragments_mixed_t2</td>
+<td align="right">0.8695</td>
+<td align="right">0.8597</td>
+<td align="right">-0.98</td>
+</tr>
+<tr class="even">
+<td align="left">spombe</td>
+<td align="left">fragments_mixed_t3</td>
+<td align="right">0.8715</td>
+<td align="right">0.8673</td>
+<td align="right">-0.42</td>
+</tr>
+<tr class="odd">
+<td align="left">tthermophila</td>
+<td align="left">complete</td>
+<td align="right">0.8334</td>
+<td align="right">0.8402</td>
+<td align="right">0.68</td>
+</tr>
+<tr class="even">
+<td align="left">tthermophila</td>
+<td align="left">complete_fullutr</td>
+<td align="right">0.8312</td>
+<td align="right">0.8376</td>
+<td align="right">0.64</td>
+</tr>
+<tr class="odd">
+<td align="left">tthermophila</td>
+<td align="left">fragments</td>
+<td align="right">0.7594</td>
+<td align="right">0.7524</td>
+<td align="right">-0.70</td>
+</tr>
+<tr class="even">
+<td align="left">tthermophila</td>
+<td align="left">fragments_mixed_t1</td>
+<td align="right">0.7883</td>
+<td align="right">0.7783</td>
+<td align="right">-1.00</td>
+</tr>
+<tr class="odd">
+<td align="left">tthermophila</td>
+<td align="left">fragments_mixed_t2</td>
+<td align="right">0.7875</td>
+<td align="right">0.7808</td>
+<td align="right">-0.67</td>
+</tr>
+<tr class="even">
+<td align="left">tthermophila</td>
+<td align="left">fragments_mixed_t3</td>
+<td align="right">0.7872</td>
+<td align="right">0.7772</td>
+<td align="right">-1.00</td>
+</tr>
+<tr class="odd">
+<td align="left">pfalciparum</td>
+<td align="left">complete</td>
+<td align="right">0.9404</td>
+<td align="right">0.9429</td>
+<td align="right">0.25</td>
+</tr>
+<tr class="even">
+<td align="left">pfalciparum</td>
+<td align="left">complete_fullutr</td>
+<td align="right">0.9371</td>
+<td align="right">0.9390</td>
+<td align="right">0.19</td>
+</tr>
+<tr class="odd">
+<td align="left">pfalciparum</td>
+<td align="left">fragments</td>
+<td align="right">0.8682</td>
+<td align="right">0.8552</td>
+<td align="right">-1.30</td>
+</tr>
+<tr class="even">
+<td align="left">pfalciparum</td>
+<td align="left">fragments_mixed_t1</td>
+<td align="right">0.8934</td>
+<td align="right">0.8848</td>
+<td align="right">-0.86</td>
+</tr>
+<tr class="odd">
+<td align="left">pfalciparum</td>
+<td align="left">fragments_mixed_t2</td>
+<td align="right">0.8921</td>
+<td align="right">0.8803</td>
+<td align="right">-1.18</td>
+</tr>
+<tr class="even">
+<td align="left">pfalciparum</td>
+<td align="left">fragments_mixed_t3</td>
+<td align="right">0.8976</td>
+<td align="right">0.8833</td>
+<td align="right">-1.43</td>
+</tr>
+<tr class="odd">
+<td align="left">creinhardtii</td>
+<td align="left">complete</td>
+<td align="right">0.7469</td>
+<td align="right">0.7471</td>
+<td align="right">0.02</td>
+</tr>
+<tr class="even">
+<td align="left">creinhardtii</td>
+<td align="left">complete_fullutr</td>
+<td align="right">0.7325</td>
+<td align="right">0.7356</td>
+<td align="right">0.31</td>
+</tr>
+<tr class="odd">
+<td align="left">creinhardtii</td>
+<td align="left">fragments</td>
+<td align="right">0.7783</td>
+<td align="right">0.7708</td>
+<td align="right">-0.75</td>
+</tr>
+<tr class="even">
+<td align="left">creinhardtii</td>
+<td align="left">fragments_mixed_t1</td>
+<td align="right">0.8018</td>
+<td align="right">0.7941</td>
+<td align="right">-0.77</td>
+</tr>
+<tr class="odd">
+<td align="left">creinhardtii</td>
+<td align="left">fragments_mixed_t2</td>
+<td align="right">0.8068</td>
+<td align="right">0.8012</td>
+<td align="right">-0.56</td>
+</tr>
+<tr class="even">
+<td align="left">creinhardtii</td>
+<td align="left">fragments_mixed_t3</td>
+<td align="right">0.7997</td>
+<td align="right">0.7959</td>
+<td align="right">-0.38</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>cpl &lt;- pb %&gt;% filter(set %in% c(&quot;complete&quot;, &quot;complete_fullutr&quot;))
+frg &lt;- pb %&gt;% filter(set == &quot;fragments&quot;)
+mix &lt;- pb %&gt;% filter(set == &quot;mixed&quot;)
+kable(prior_gm %&gt;% select(assembly, run, MANE_exact, MANE_sens_exact_given_assembled,
+                          GENCODE_complete_exact, distinct_predicted_5prime_partial), digits = 4,
+      caption = &quot;GM12878&quot;)</code></pre>
+<table>
+<caption>GM12878</caption>
+<colgroup>
+<col width="8%" />
+<col width="6%" />
+<col width="9%" />
+<col width="27%" />
+<col width="19%" />
+<col width="28%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">assembly</th>
+<th align="left">run</th>
+<th align="right">MANE_exact</th>
+<th align="right">MANE_sens_exact_given_assembled</th>
+<th align="right">GENCODE_complete_exact</th>
+<th align="right">distinct_predicted_5prime_partial</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">lraa</td>
+<td align="left">release</td>
+<td align="right">5848</td>
+<td align="right">0.9291</td>
+<td align="right">48375</td>
+<td align="right">2502</td>
+</tr>
+<tr class="even">
+<td align="left">lraa</td>
+<td align="left">utr_l1</td>
+<td align="right">5876</td>
+<td align="right">0.9336</td>
+<td align="right">48422</td>
+<td align="right">2370</td>
+</tr>
+<tr class="odd">
+<td align="left">stringtie</td>
+<td align="left">release</td>
+<td align="right">8160</td>
+<td align="right">0.9149</td>
+<td align="right">58060</td>
+<td align="right">2646</td>
+</tr>
+<tr class="even">
+<td align="left">stringtie</td>
+<td align="left">utr_l1</td>
+<td align="right">8187</td>
+<td align="right">0.9179</td>
+<td align="right">58111</td>
+<td align="right">2624</td>
+</tr>
+</tbody>
+</table>
+<p>On complete transcripts (complete and complete_fullutr) the prior
+changed exact F1 by +0.02 to +2.60 points (16 of 16 up), on fragments by
+-0.60 to -1.30, and it lowered exact F1 in 24 of 24 mixed inputs (-0.28
+to -1.43).</p>
+<pre class="r"><code>check_text(&quot;E29: stop F1 unchanged by the prior (max |change|, points)&quot;, max(abs(pb$d_stop)), 0)
+check_text(&quot;results L90: complete exact F1 gain min (pts)&quot;, round(min(cpl$d_exact), 2), 0.02)
+check_text(&quot;results L90: complete exact F1 gain max (pts)&quot;, round(max(cpl$d_exact), 1), 2.6)
+check_text(&quot;results L90: fragments exact F1 loss min (pts)&quot;, round(-max(frg$d_exact), 1), 0.6)
+check_text(&quot;results L90: fragments exact F1 loss max (pts)&quot;, round(-min(frg$d_exact), 1), 1.3)
+check_text(&quot;results L91: mixed inputs lowered (n of 24)&quot;, sum(mix$d_exact &lt; 0), 24)</code></pre>
+</div>
+<div id="how-many-open-ends-are-truly-truncated" class="section level3">
+<h3>How many open ends are truly truncated</h3>
+<p>Transcript-level shares
+(<code>gm12878_five_prime_truncation.tsv</code>,
+<code>03_utr_gm12878_summary.py</code>). GM12878: transcripts carrying a
+MANE stop with the reference splicing from the stop to the 5′ end;
+benchmark: the reference transcripts of each input. <code>frac_5p</code>
+is the share that begin inside the CDS, and π = 5′ partials / (5′
+partials + complete references with an open 5′ UTR of at least 3 nt),
+the share of 5′-open ends that are truly truncated. Mixed inputs: trial
+1 only.</p>
+<pre class="r"><code>gt &lt;- gm_trunc %&gt;% select(source, n, n_5p, frac_5p, n_complete, n_open_utr, frac_open, pi = pi_trunc_among_open)
+kable(gt, digits = 4)</code></pre>
+<table>
+<colgroup>
+<col width="32%" />
+<col width="7%" />
+<col width="6%" />
+<col width="8%" />
+<col width="12%" />
+<col width="12%" />
+<col width="11%" />
+<col width="7%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">source</th>
+<th align="right">n</th>
+<th align="right">n_5p</th>
+<th align="right">frac_5p</th>
+<th align="right">n_complete</th>
+<th align="right">n_open_utr</th>
+<th align="right">frac_open</th>
+<th align="right">pi</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">gm12878_lraa</td>
+<td align="right">14949</td>
+<td align="right">1365</td>
+<td align="right">0.0913</td>
+<td align="right">13584</td>
+<td align="right">5199</td>
+<td align="right">0.3827</td>
+<td align="right">0.2086</td>
+</tr>
+<tr class="even">
+<td align="left">gm12878_stringtie</td>
+<td align="right">13521</td>
+<td align="right">1017</td>
+<td align="right">0.0752</td>
+<td align="right">12504</td>
+<td align="right">4008</td>
+<td align="right">0.3205</td>
+<td align="right">0.2035</td>
+</tr>
+<tr class="odd">
+<td align="left">gm12878_trinity</td>
+<td align="right">14087</td>
+<td align="right">1915</td>
+<td align="right">0.1359</td>
+<td align="right">12172</td>
+<td align="right">3267</td>
+<td align="right">0.2684</td>
+<td align="right">0.3700</td>
+</tr>
+<tr class="even">
+<td align="left">benchmark_complete</td>
+<td align="right">135785</td>
+<td align="right">0</td>
+<td align="right">0.0000</td>
+<td align="right">135785</td>
+<td align="right">43292</td>
+<td align="right">0.3188</td>
+<td align="right">0.0000</td>
+</tr>
+<tr class="odd">
+<td align="left">benchmark_fragments</td>
+<td align="right">135785</td>
+<td align="right">67250</td>
+<td align="right">0.4953</td>
+<td align="right">68535</td>
+<td align="right">21826</td>
+<td align="right">0.3185</td>
+<td align="right">0.7558</td>
+</tr>
+<tr class="even">
+<td align="left">benchmark_fragments_mixed_t1</td>
+<td align="right">135429</td>
+<td align="right">67638</td>
+<td align="right">0.4994</td>
+<td align="right">67791</td>
+<td align="right">21531</td>
+<td align="right">0.3176</td>
+<td align="right">0.7594</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>gm_only &lt;- gt %&gt;% filter(grepl(&quot;^gm12878_&quot;, source))
+pi_gm &lt;- setNames(gm_only$pi, sub(&quot;gm12878_&quot;, &quot;&quot;, gm_only$source))
+pi_frag &lt;- gt$pi[gt$source == &quot;benchmark_fragments&quot;]
+pi_mix &lt;- gt$pi[gt$source == &quot;benchmark_fragments_mixed_t1&quot;]
+# prediction-level cross-check: among correct-stop predictions that are 5&#39;-open before refinement, the
+# share whose reference lacks its start (start-present open ends = utr_first + utr_later rows of
+# release.decision_by_d.tsv)
+pi_pred &lt;- anat %&gt;% mutate(set = input_set(input)) %&gt;% filter(set %in% c(&quot;fragments&quot;, &quot;mixed&quot;)) %&gt;%
+  group_by(set) %&gt;% summarise(truncated = sum(n_stop[ref_type %in% c(&quot;5prime_partial&quot;, &quot;internal&quot;)]), .groups = &quot;drop&quot;) %&gt;%
+  left_join(dbd %&gt;% mutate(set = input_set(input)) %&gt;% filter(dclass != &quot;truncated&quot;) %&gt;%
+              group_by(set) %&gt;% summarise(start_present_open = sum(n), .groups = &quot;drop&quot;), by = &quot;set&quot;) %&gt;%
+  mutate(pi_pred = truncated / (truncated + start_present_open))
+kable(pi_pred, digits = 4, caption = &quot;Prediction-level cross-check (all three mixed trials)&quot;)</code></pre>
+<table>
+<caption>Prediction-level cross-check (all three mixed trials)</caption>
+<thead>
+<tr class="header">
+<th align="left">set</th>
+<th align="right">truncated</th>
+<th align="right">start_present_open</th>
+<th align="right">pi_pred</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">fragments</td>
+<td align="right">57039</td>
+<td align="right">18523</td>
+<td align="right">0.7549</td>
+</tr>
+<tr class="even">
+<td align="left">mixed</td>
+<td align="right">184965</td>
+<td align="right">60310</td>
+<td align="right">0.7541</td>
+</tr>
+</tbody>
+</table>
+<p>Truly truncated: 75.6% of 5′-open ends in the fragments and 75.9% in
+the mixed inputs (prediction level: 75.5% and 75.4%), against 20.9%
+(LRAA), 20.3% (StringTie) and 37.0% (Trinity) in GM12878, where
+7.5%–13.6% of transcripts began inside the CDS. The benchmark share is
+2.0 to 3.7 times that of the assemblies.</p>
+<pre class="r"><code>check_text(&quot;results L95: benchmark fragments truly truncated (%)&quot;, round(100 * pi_frag), 76)
+check_text(&quot;results L95: benchmark mixed inputs truly truncated (%)&quot;, round(100 * pi_mix), 76)
+check_text(&quot;results L96: GM12878 began inside the CDS, min (%)&quot;, round(100 * min(gm_only$frac_5p), 1), 7.5)
+check_text(&quot;results L96: GM12878 began inside the CDS, max (%)&quot;, round(100 * max(gm_only$frac_5p), 1), 13.6)
+check_text(&quot;results L97: GM12878 truncated share, LRAA (%)&quot;, round(100 * pi_gm[[&quot;lraa&quot;]]), 21)
+check_text(&quot;results L97: GM12878 truncated share, StringTie (%)&quot;, round(100 * pi_gm[[&quot;stringtie&quot;]]), 20)
+check_text(&quot;results L97: GM12878 truncated share, Trinity (%)&quot;, round(100 * pi_gm[[&quot;trinity&quot;]]), 37)
+check_text(&quot;results L98: benchmark weight, low (two times)&quot;, round(min(pi_frag, pi_mix) / max(pi_gm)), 2)
+check_text(&quot;results L98: benchmark weight, high (four times)&quot;, round(max(pi_frag, pi_mix) / min(pi_gm)), 4)
+check_text(&quot;discussion L109: fragment and mixed inputs truly truncated (%)&quot;, round(100 * pi_frag), 76)
+check_text(&quot;discussion L110: GM12878 range low (%)&quot;, round(100 * min(pi_gm)), 20)
+check_text(&quot;discussion L110: GM12878 range high (%)&quot;, round(100 * max(pi_gm)), 37)</code></pre>
+<p><a href="../evidence/E29_five_prime_open_starts.md">E29</a>, <a href="../evidence/E28_mixed_partial_inputs.md">E28</a></p>
+</div>
 </div>
 <div id="methods-start-codon-refinement" class="section level2">
 <h2>Methods: start-codon refinement</h2>
@@ -5400,8 +6980,8 @@ check_text(&quot;methods L293: Kozak term at 0.4, fragments (pts)&quot;, round(k
 at α 0.4 with <span class="math inline">\(w=0\)</span> and at the grid
 default (all from the controlled comparison, with v6.0.0 from
 <code>summary.tsv</code>). The release run (<code>pytd_v7</code>) is
-added as a fifth marker (diamond); the caption in
-<code>figures_main.tex</code> does not yet mention it.</p>
+added as a fifth marker (diamond), as described in the caption
+(<code>figures_main.tex</code>).</p>
 <pre class="r"><code>MARK_LAB &lt;- c(norefine = &quot;no refinement&quot;, v600 = &quot;v6.0.0&quot;, w0 = &quot;α 0.4, w 0 (no Kozak term)&quot;,
               final = &quot;α 0.4, w 17 per bit (grid)&quot;, release = &quot;release (v7)&quot;)
 MARK_SHAPE &lt;- c(norefine = 21, v600 = 22, w0 = 24, final = 21, release = 23)
@@ -8967,16 +10547,16 @@ Fig. S2 values
 <p><code>results L..</code> refers to
 <code>results_start_refinement.tex</code>, <code>methods L..</code> to
 <code>methods_algorithm.tex</code>. Values from the release
-(<code>pytd_v7</code>) are compared with text that was written from the
-development runs (see the <code>\todo</code> in
-<code>methods_algorithm.tex</code>).</p>
+(<code>pytd_v7</code>) are compared with the current text, which quotes
+the release where a release run exists; grid comparisons stay on the
+development grid (E13).</p>
 <pre class="r"><code>check_report()</code></pre>
 <table>
 <colgroup>
-<col width="74%" />
-<col width="8%" />
-<col width="10%" />
-<col width="5%" />
+<col width="78%" />
+<col width="7%" />
+<col width="9%" />
+<col width="4%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -9192,8 +10772,8 @@ orgs)</td>
 <tr class="even">
 <td align="left">results L32: Pearson r min (T. thermophila 0.8446)</td>
 <td align="left">0.84</td>
-<td align="left">0.85</td>
-<td align="left">FALSE</td>
+<td align="left">0.84</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">results L32: Pearson r max</td>
@@ -9247,8 +10827,8 @@ orgs)</td>
 <td align="left">results L44: final median exact F1 complete
 (release)</td>
 <td align="left">0.912</td>
-<td align="left">0.91</td>
-<td align="left">FALSE</td>
+<td align="left">0.912</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">results L45: v6.0.0 summed exact matches</td>
@@ -9259,60 +10839,60 @@ orgs)</td>
 <tr class="odd">
 <td align="left">results L45: final summed exact matches (release)</td>
 <td align="left">116362</td>
-<td align="left">116384</td>
-<td align="left">FALSE</td>
+<td align="left">116362</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">results L45: gain per organism min (release, pts)</td>
 <td align="left">2.8</td>
-<td align="left">1.7</td>
-<td align="left">FALSE</td>
+<td align="left">2.8</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">results L45: gain per organism max (release, pts)</td>
 <td align="left">26.6</td>
-<td align="left">27.3</td>
-<td align="left">FALSE</td>
+<td align="left">26.6</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">results L46: stop F1 change min (release, pts)</td>
 <td align="left">-1.4</td>
-<td align="left">-0.7</td>
-<td align="left">FALSE</td>
+<td align="left">-1.4</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">results L46: stop F1 change max (release, pts)</td>
 <td align="left">1.3</td>
-<td align="left">0.8</td>
-<td align="left">FALSE</td>
+<td align="left">1.3</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">results L46: fragments exact gain min (release,
 pts)</td>
 <td align="left">6</td>
-<td align="left">1.8</td>
-<td align="left">FALSE</td>
+<td align="left">6</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">results L46: fragments exact gain max (release,
 pts)</td>
 <td align="left">13.8</td>
-<td align="left">14.1</td>
-<td align="left">FALSE</td>
+<td align="left">13.8</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">results L48: fragments stop F1 gain min (release,
 pts)</td>
 <td align="left">1.1</td>
-<td align="left">1.7</td>
-<td align="left">FALSE</td>
+<td align="left">1.1</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">results L48: fragments stop F1 gain max (release,
 pts)</td>
 <td align="left">10.1</td>
-<td align="left">5</td>
-<td align="left">FALSE</td>
+<td align="left">10.1</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">results L49: fixed PWM median exact F1 complete</td>
@@ -9367,8 +10947,8 @@ pts)</td>
 <td align="left">results L56: C. reinhardtii exact F1 complete
 (release)</td>
 <td align="left">0.747</td>
-<td align="left">0.742</td>
-<td align="left">FALSE</td>
+<td align="left">0.747</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">results L57: C. reinhardtii later ATG (%)</td>
@@ -9389,134 +10969,332 @@ pts)</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
+<td align="left">results L73: 5’ partials, correct stop but wrong start
+(n)</td>
+<td align="left">9397</td>
+<td align="left">9397</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">results L74: all of them trimmed to an internal ATG (1
+= yes)</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">results L75: start-present left open, median over
+organisms (about 5%)</td>
+<td align="left">5</td>
+<td align="left">5</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">results L75: start-present left open, min (%)</td>
+<td align="left">0.7</td>
+<td align="left">0.7</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">results L75: start-present left open, max (%)</td>
+<td align="left">8.5</td>
+<td align="left">8.5</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">results L78: truncated trimmed, d &lt; 20 (%)</td>
+<td align="left">30</td>
+<td align="left">30</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">results L79: truncated trimmed, d &gt;= 500 (%)</td>
+<td align="left">7</td>
+<td align="left">7</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">results L79: UTR extensions left open, d &lt; 10
+(%)</td>
+<td align="left">36</td>
+<td align="left">36</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">results L80: UTR extensions left open, d 100-199
+(%)</td>
+<td align="left">12</td>
+<td align="left">12</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">results L85: GM12878 truncated trimmed more at d &lt;
+20 than at d &gt;= 20 in all three (1 = yes)</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">results L84: cut model, d fractions &lt; 20 nt within
+0.01 (1 = yes)</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">results L87: open 5’ UTR median length, min (nt)</td>
+<td align="left">27</td>
+<td align="left">27</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">results L87: open 5’ UTR median length, max (nt)</td>
+<td align="left">118</td>
+<td align="left">118</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">E29: stop F1 unchanged by the prior (max |change|,
+points)</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">results L90: complete exact F1 gain min (pts)</td>
+<td align="left">0.02</td>
+<td align="left">0.02</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">results L90: complete exact F1 gain max (pts)</td>
+<td align="left">2.6</td>
+<td align="left">2.6</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">results L90: fragments exact F1 loss min (pts)</td>
+<td align="left">0.6</td>
+<td align="left">0.6</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">results L90: fragments exact F1 loss max (pts)</td>
+<td align="left">1.3</td>
+<td align="left">1.3</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">results L91: mixed inputs lowered (n of 24)</td>
+<td align="left">24</td>
+<td align="left">24</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">results L95: benchmark fragments truly truncated
+(%)</td>
+<td align="left">76</td>
+<td align="left">76</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">results L95: benchmark mixed inputs truly truncated
+(%)</td>
+<td align="left">76</td>
+<td align="left">76</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">results L96: GM12878 began inside the CDS, min (%)</td>
+<td align="left">7.5</td>
+<td align="left">7.5</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">results L96: GM12878 began inside the CDS, max (%)</td>
+<td align="left">13.6</td>
+<td align="left">13.6</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">results L97: GM12878 truncated share, LRAA (%)</td>
+<td align="left">21</td>
+<td align="left">21</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">results L97: GM12878 truncated share, StringTie
+(%)</td>
+<td align="left">20</td>
+<td align="left">20</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">results L97: GM12878 truncated share, Trinity (%)</td>
+<td align="left">37</td>
+<td align="left">37</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">results L98: benchmark weight, low (two times)</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">results L98: benchmark weight, high (four times)</td>
+<td align="left">4</td>
+<td align="left">4</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">discussion L109: fragment and mixed inputs truly
+truncated (%)</td>
+<td align="left">76</td>
+<td align="left">76</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">discussion L110: GM12878 range low (%)</td>
+<td align="left">20</td>
+<td align="left">20</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">discussion L110: GM12878 range high (%)</td>
+<td align="left">37</td>
+<td align="left">37</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
 <td align="left">methods L245: mu min (complete)</td>
 <td align="left">0.063</td>
 <td align="left">0.063</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">methods L245: mu max (complete)</td>
 <td align="left">0.136</td>
 <td align="left">0.136</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">methods L267: worked example baseline</td>
 <td align="left">36</td>
 <td align="left">36</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">methods L268: worked example K=+1</td>
 <td align="left">53</td>
 <td align="left">53</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">methods L268: worked example K=-1</td>
 <td align="left">19</td>
 <td align="left">19</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">methods L278: true start median min (bits)</td>
 <td align="left">0.5</td>
 <td align="left">0.5</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">methods L278: true start median max (bits)</td>
 <td align="left">1.3</td>
 <td align="left">1.3</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">methods L278: internal ATG median, highest (bits; -0.45
 rounds either way)</td>
 <td align="left">-0.45</td>
 <td align="left">-0.5</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">methods L278: internal ATG median, lowest (bits)</td>
 <td align="left">-1.6</td>
 <td align="left">-1.6</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">methods L280: later ATG by context, no improvement (n
 orgs)</td>
 <td align="left">7</td>
 <td align="left">7</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">methods L284: grid values</td>
 <td align="left">78</td>
 <td align="left">78</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">methods L284: alpha max</td>
 <td align="left">3</td>
 <td align="left">3</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">methods L284: w max per bit</td>
 <td align="left">69</td>
 <td align="left">69</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">methods L290: cells within 0.5 pt</td>
 <td align="left">8</td>
 <td align="left">8</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">methods L290: plateau alpha min</td>
 <td align="left">0.2</td>
 <td align="left">0.2</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">methods L290: plateau alpha max</td>
 <td align="left">0.5</td>
 <td align="left">0.5</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">methods L290: plateau w min per bit</td>
 <td align="left">7</td>
 <td align="left">7</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">methods L290: plateau w max per bit</td>
 <td align="left">35</td>
 <td align="left">35</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">methods L291: LOO folds choosing default</td>
 <td align="left">7</td>
 <td align="left">7</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">methods L291: Kozak improved at every alpha (both)</td>
 <td align="left">1</td>
 <td align="left">1</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">methods L292: Kozak term at 0.4, complete (pts)</td>
 <td align="left">0.6</td>
 <td align="left">0.6</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">methods L293: Kozak term at 0.4, fragments (pts)</td>
 <td align="left">2.7</td>
 <td align="left">2.7</td>

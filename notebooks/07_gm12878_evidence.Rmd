@@ -30,10 +30,10 @@ Provenance: `r evidence("E01")` (Ribo-seq processing and scoring), `r evidence("
 matching) and `r evidence("E25")` (final release runs, PyTD main 3a793ff, ab initio, release
 defaults; also `--precise` and `--sensitive` for LRAA and StringTie).
 
-**Which data.** All numbers below use the final release runs (E25). The manuscript text was written
-from the earlier development runs (`final_abinitio`, fixed short-ORF test; E01, E02). The same
-statistics are also computed from the earlier tables, so the check table at the end shows which
-differences come from the change of runs.
+**Which data.** All numbers below use the final release runs (E25). The manuscript text was first written
+from the earlier development runs (`final_abinitio`, fixed short-ORF test; E01, E02) and now quotes
+the release runs. The same statistics are also computed from the earlier tables, so the check table
+at the end shows which differences come from the change of runs.
 
 Data:
 
@@ -345,8 +345,7 @@ c3_in_default <- any(c3_runs %in% ASM)
 
 It is predicted only in **`r paste(c3_runs, collapse = ", ")`**, not in any default run
 (`c3_in_default` = `r c3_in_default`): the 101-aa ORF is kept with the looser `--sensitive` q-value
-setting but not with the release default. The sentence on C3orf86P holds for the `--sensitive`
-setting only.
+setting but not with the release default, as the text now states.
 
 ## Interpretation
 
@@ -356,9 +355,10 @@ from pseudogene or paralogous copies.
 
 # Checks against the manuscript
 
-Rows labelled "(final)" compare the final release values to the current text; rows labelled
-"(earlier)" compare the earlier-run tables, to show whether the text matched the data it was written
-from. Ranges are checked at their ends.
+Rows labelled "(final)" compare the final release values with the current text, which quotes the
+release runs; rows labelled "(earlier)" compare the earlier-run tables with the values the text quoted
+before the release reruns (the MS 9–24% for the fixed short-ORF test is still quoted). Ranges are
+checked at their ends.
 
 ```{r checks}
 chk_rng <- function(label, x, lo, hi, d = 0) {
@@ -371,30 +371,40 @@ check_text("used read lengths 27, 29, 30 (all three present)",
            as.numeric(identical(as.numeric(used$read_len), c(27, 29, 30))), 1)
 check_text("frame-0 fraction, used lengths, about 0.55", round(fr0_used, 2), 0.55, tol = 0.01)
 check_text("MS peptides kept (758,603)", pepc7[["kept_rows"]], 758603)
-# Results: Ribo-seq
+# Results: Ribo-seq. The text quotes the release ("final") values; the "earlier" rows compare the
+# earlier-run tables with the values the text quoted before (in parentheses in the labels).
+RIBO_Q <- list(final = list(cov = c(84, 90), sup = c(54, 59), nv = c(6.2, 1.7, 1.5), nvsup = c(0.4, 2.1),
+                            ex520 = 90, nv520 = 3.3),
+               earlier = list(cov = c(83, 89), sup = c(53, 59), nv = c(4.3, 1.0, 0.6), nvsup = c(0.2, 1.5),
+                              ex520 = 89, nv520 = 3.4))
 for (v in list(list("final", ex_cov, ex_sup, nv_cov, nv_sup, ex_5_20, nv_5_20),
                list("earlier", ex_cov0, ex_sup0, nv_cov0, nv_sup0, ex_5_20_0, nv_5_20_0))) {
-  s <- v[[1]]
-  chk_rng(sprintf("Ribo exact >=10 P-sites %% (83-89) (%s)", s), v[[2]], 83, 89)
-  chk_rng(sprintf("Ribo exact frame-supported %% (53-59) (%s)", s), v[[3]], 53, 59)
-  check_text(sprintf("Ribo unannotated covered %%, LRAA (4.3) (%s)", s), p(v[[4]][1], 1), 4.3)
-  check_text(sprintf("Ribo unannotated covered %%, StringTie (1.0) (%s)", s), p(v[[4]][2], 1), 1.0)
-  check_text(sprintf("Ribo unannotated covered %%, Trinity (0.6) (%s)", s), p(v[[4]][3], 1), 0.6)
-  chk_rng(sprintf("Ribo unannotated frame-supported %% (0.2-1.5) (%s)", s), v[[5]], 0.2, 1.5, d = 1)
-  check_text(sprintf("Ribo 5-20 TPM exact covered %% (89) (%s)", s), p(v[[6]]), 89)
-  check_text(sprintf("Ribo 5-20 TPM unannotated covered %% (3.4) (%s)", s), p(v[[7]], 1), 3.4)
+  s <- v[[1]]; q <- RIBO_Q[[s]]
+  chk_rng(sprintf("Ribo exact >=10 P-sites %% (%s-%s) (%s)", q$cov[1], q$cov[2], s), v[[2]], q$cov[1], q$cov[2])
+  chk_rng(sprintf("Ribo exact frame-supported %% (%s-%s) (%s)", q$sup[1], q$sup[2], s), v[[3]], q$sup[1], q$sup[2])
+  check_text(sprintf("Ribo unannotated covered %%, LRAA (%s) (%s)", q$nv[1], s), p(v[[4]][1], 1), q$nv[1])
+  check_text(sprintf("Ribo unannotated covered %%, StringTie (%s) (%s)", q$nv[2], s), p(v[[4]][2], 1), q$nv[2])
+  check_text(sprintf("Ribo unannotated covered %%, Trinity (%s) (%s)", q$nv[3], s), p(v[[4]][3], 1), q$nv[3])
+  chk_rng(sprintf("Ribo unannotated frame-supported %% (%s-%s) (%s)", q$nvsup[1], q$nvsup[2], s), v[[5]],
+          q$nvsup[1], q$nvsup[2], d = 1)
+  check_text(sprintf("Ribo 5-20 TPM exact covered %% (%s) (%s)", q$ex520, s), p(v[[6]]), q$ex520)
+  check_text(sprintf("Ribo 5-20 TPM unannotated covered %% (%s) (%s)", q$nv520, s), p(v[[7]], 1), q$nv520)
 }
-# Results: MS
+# Results: MS. The release text quotes 30-49% for unannotated predictions and 9-24% for the fixed
+# short-ORF test of development versions (the earlier runs).
+MS_Q <- list(final = list(long = c(94, 95), short = c(85, 90), nv = c(30, 49)),
+             earlier = list(long = c(93, 94), short = c(81, 87), nv = c(9, 24)))
 for (v in list(list("final", ex_long, ex_short, nv_all, ex_long_ge2_of_ge1),
                list("earlier", ex_long0, ex_short0, nv_all0, ex_long_ge2_of_ge1_0))) {
-  s <- v[[1]]
-  chk_rng(sprintf("MS exact >=100 aa with >=1 peptide %% (93-94) (%s)", s), v[[2]], 93, 94)
+  s <- v[[1]]; q <- MS_Q[[s]]
+  chk_rng(sprintf("MS exact >=100 aa with >=1 peptide %% (%s-%s) (%s)", q$long[1], q$long[2], s), v[[2]], q$long[1], q$long[2])
   check_text(sprintf("MS exact >=100 aa: >=2 of >=1 peptide, 'nearly all' (>=97%%) (%s)", s),
              as.numeric(min(v[[5]]) >= 0.97), 1)
-  chk_rng(sprintf("MS exact <100 aa with >=1 peptide %% (81-87) (%s)", s), v[[3]], 81, 87)
-  chk_rng(sprintf("MS unannotated with >=1 peptide %% (9-24) (%s)", s), v[[4]], 9, 24)
+  chk_rng(sprintf("MS exact <100 aa with >=1 peptide %% (%s-%s) (%s)", q$short[1], q$short[2], s), v[[3]], q$short[1], q$short[2])
+  chk_rng(sprintf("MS unannotated with >=1 peptide %% (%s-%s) (%s)", q$nv[1], q$nv[2], s), v[[4]], q$nv[1], q$nv[2])
 }
-check_text("C3orf86P predicted in a default run (final)", as.numeric(c3_in_default), 1)
+check_text("C3orf86P predicted at the default (final; text: --sensitive only, 0 = not at default)",
+           as.numeric(c3_in_default), 0)
 check_report()
 ```
 

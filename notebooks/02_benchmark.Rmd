@@ -13,8 +13,8 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, fig.align =
 source(file.path("R", "common.R"))
 library(knitr)
 
-# The scored summary of all benchmark runs. To use the final summary when the last runs finish,
-# change this one line (the file must be in data/benchmark/).
+# The scored summary of all benchmark runs (rescoring of 2026-10-25; every run that finished is in it
+# except the release homology runs, see "Data and missing rows"). The file must be in data/benchmark/.
 SUMMARY_FILE <- "summary.interim_20261025.tsv"
 
 details <- function(df, summary = "table") {
@@ -39,7 +39,8 @@ papers benchmarked; background only, no numbers are taken from it here).
 **Which runs.** TransDecoder appears in the benchmark under two sets of labels:
 
 - *earlier final defaults*: `pytd_dev_v2` / `perl_td_dev_v2` (PyTD 48c870c, Perl de3f57e; fixed
-  short-ORF test; E07). The manuscript text, Table 1 and the current Fig. 2 quote these runs.
+  short-ORF test; E07). Earlier drafts of the manuscript quoted these runs; the text, Table 1 and
+  Fig. 2 now use the release runs.
 - *release*: `pytd_v7` / `perl_td_v7` (PyTD main 3a793ff, Perl devel 41fc5ee; decoy q-value test at
   q 0.05; E25), with the presets `pytd_v7_precise`, `pytd_v7_sensitive` and the homology runs
   `pytd_v7_homology`.
@@ -86,20 +87,32 @@ miss <- function(tool) INPUTS %>% anti_join(S %>% filter(tool == !!tool), by = c
 codan_miss <- miss("codan")
 hom_miss <- miss("pytd_v7_homology")
 hom_have <- S %>% filter(tool == "pytd_v7_homology") %>% distinct(org, variant)
+hom_a7 <- A7 %>% filter(tool == "pytd_v7_homology") %>% distinct(org, variant)
 kable(cov, caption = "Rows per tool (84 inputs in total)")
+check_text("CodAn inputs without a row (4 lncRNA + T. thermophila complete.unstranded.wRand)",
+           nrow(codan_miss), 5)
+check_text("CodAn missing row outside wLnc is only T. thermophila complete.unstranded.wRand (1 = yes)",
+           as.numeric(identical(paste(codan_miss$org, codan_miss$variant)[!grepl("wLnc", codan_miss$variant)],
+                                "tthermophila complete.unstranded.wRand")), 1)
+check_text("pytd_v7_homology rows in all_scores.tsv (all 84 finished)", nrow(hom_a7), 84)
 ```
 
-The summary is interim. Rows missing for the tools used here:
+Rows missing for the tools used here (all runs have ended; state checked 2026-10-30):
 
 - **CodAn**: `r nrow(codan_miss)` of 84 inputs have no row:
   `r paste(paste(codan_miss$org, codan_miss$variant), collapse = "; ")`.
-  The *T. thermophila* `complete.unstranded.wRand` run was still running; CodAn has no lncRNA (`wLnc`)
-  runs. None of these inputs is used in Fig. 2 or Table 1, which use the stranded complete,
+  The *T. thermophila* `complete.unstranded.wRand` run stopped without output (its files date from
+  2026-10-25 03:41, `codan.log` is empty and no CodAn process is running; E07 status update) and was
+  not rerun, because CodAn has no ciliate genetic code and its *T. thermophila* runs are not results
+  (E27). CodAn has no lncRNA (`wLnc`) runs. None of these inputs is used in Fig. 2 or Table 1, which use the stranded complete,
   complete + random and fragments inputs; CodAn has all 8 organisms there.
 - **PyTD with homology** (`pytd_v7_homology`): `r nrow(hom_have)` of 84 rows
-  (`r paste(names(table(hom_have$org)), table(hom_have$org), sep = " ", collapse = ", ")`); the other runs
-  were still running. These runs are not in Fig. 2 or Table 1; the section on homology below uses the
-  available rows only.
+  (`r paste(names(table(hom_have$org)), table(hom_have$org), sep = " ", collapse = ", ")`) in this
+  summary, which was taken while the runs were in progress. All 84 finished on 2026-10-26 and are scored
+  in `final_v7/all_scores.tsv` (`r nrow(hom_a7)` rows; E25); the section on homology below uses those.
+  These runs are not in Fig. 2 or Table 1. The manuscript's homology results use the released homology
+  mode (`pytd_v7h_homology`, PyTD a5b24c3, with homology-assisted start refinement; notebook 05,
+  Fig. 5d,e; E25 addendum 2026-10-28).
 - `--precise` and `--sensitive` were run on the negative-containing inputs only (20 each; E25).
 - RNAsamba was run on stranded inputs only (44); v6.0.0, v5.7.1 and the longest-ORF baseline have no
   lncRNA inputs (80); ANGEL has 3 runs (dropped, Methods).
@@ -480,13 +493,15 @@ stop F1 `r f3(td_cs[["creinhardtii"]])`, exact F1 `r f3(td_ce[["creinhardtii"]])
 `r ORG_LABEL[names(which.min(td_ce))]`). Other methods on *C. reinhardtii* (v6.0.0, Prodigal,
 GeneMarkS-T, CPAT): exact F1 `r rng(cre_others)`.
 
-## Homology evidence (interim)
+## Homology evidence
 
-The Methods list PyTD with DIAMOND/Pfam evidence; the Results benchmark section quotes no number for
-it. Release homology runs available: `r nrow(hom_have)` of 84 (above).
+The Methods list PyTD with DIAMOND/Pfam evidence. Release homology runs (`pytd_v7_homology`, PyTD
+3a793ff, before the homology-assisted start refinement): all `r nrow(hom_a7)` of 84, from `final_v7/all_scores.tsv` (E25). The
+manuscript's homology numbers on the benchmark inputs come from the released homology mode
+(`pytd_v7h_homology`, which also uses homology in start refinement) and are reproduced in notebook 05.
 
 ```{r homology}
-hom <- S %>% filter(tool %in% c(TD, "pytd_v7_homology")) %>%
+hom <- A7 %>% filter(tool %in% c(TD, "pytd_v7_homology")) %>%
   select(org, variant, tool, sensitivity_stop, precision_stop, f1_exact) %>%
   pivot_wider(names_from = tool, values_from = c(sensitivity_stop, precision_stop, f1_exact)) %>%
   filter(!is.na(sensitivity_stop_pytd_v7_homology)) %>%
@@ -496,7 +511,7 @@ hom <- S %>% filter(tool %in% c(TD, "pytd_v7_homology")) %>%
             type = ifelse(grepl("^fragments", variant), "fragments", "complete-type"))
 hom_sum <- hom %>% group_by(type) %>% summarise(inputs = n(), across(starts_with("d_"), list(min = min, max = max)))
 kable(hom_sum %>% mutate(across(starts_with("d_"), ~ round(.x, 4))),
-      caption = "Homology minus ab initio (release), available rows only (INTERIM)")
+      caption = "Homology (pytd_v7_homology, 3a793ff) minus ab initio (release), 84 inputs")
 details(hom %>% mutate(across(starts_with("d_"), ~ round(.x, 4))), "per input")
 ```
 
