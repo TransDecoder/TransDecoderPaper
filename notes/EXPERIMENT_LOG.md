@@ -50,6 +50,7 @@ disagrees with its E-record, the E-record wins; fix the log.
 | S11 | Keep-open vs trim for 5'-open ORFs (E33) | ADOPTED (PyTD only, homology mode; classifiers not adopted) | Self-trained classifiers fail (benchmark artefact "ORF lacks a stop"; context does not transfer). Homology hits (subject N-terminus at the ATG -> trim; alignment or Pfam domain upstream -> keep) give +2 to +9 exact F1 points on simulated assemblies; in PyTD a5b24c3. Top-n hits, looser e-values (step 4) and UniRef50 (step 5) did not improve on top-1 Swiss-Prot at 1e-5 |
 | S12 | Later annotated ATGs (C. reinhardtii) | OPEN | 19.6% of C. reinhardtii starts are later ATGs; no tested rule recovers them |
 | S13 | One-sided Kozak term ("Kozak floor", E35) | NOT ADOPTED | A negative Kozak score at the first ATG is right ~3/4 of the time on fragmented inputs (an internal ATG of a truncated CDS); flooring it helps complete inputs and loses more on fragments and assemblies |
+| S14 | Per-transcript alpha from transcript / ORF length (E36) | OPEN (recommended to Brian: logO) | Length relates to truncation the same way on benchmark and assemblies; O/L does not (single-cut artefact, -15 points held out). alpha = 0.35 + 0.15 log2(O/1kb) passes E35 acceptance and raises every held-out assembly ab initio (+0.3 to +3.9) |
 | O1 | Minimum ORF length 100 -> 50 codons | ADOPTED | Needs a coding test below 100 codons, else lncRNA calls triple |
 | O2 | Fixed short-ORF guard (C = 200 below 100 codons) | PARTIAL | Kept short-protein gain at -m 100 noise; replaced at release by A9 |
 | O3 | Post-hoc minimum length on GM12878 | NOT ADOPTED | 50 vs 100 aa barely changes precision; the step is at 100-150 aa |
@@ -585,6 +586,39 @@ Outcome counts: see the end of this file.
   - Any floor moves the rule along the same complete-vs-fragment axis as alpha (E13/S7).
 - **Pointers:** E35; `data/kozak_floor/`; scripts `pipeline/kozak_floor/`; per-candidate tables in `$P/data/kozak_floor/`.
 
+### S14. Per-transcript alpha from transcript and ORF length (2026-10-30)
+- **Question (Brian):** set alpha_i = g(L, O) per transcript (L = transcript length, O = candidate ORF length, or O/L,
+  |u|/L) so that complete transcripts get a high alpha and fragments a low one.
+- **Tried:** offline, on 95 finished runs. The E35 harness and candidate tables were reused, plus human d2/d4/d16 and
+  GM12878 Trinity ab initio and with the assist.
+  - Step 1: descriptive tables of the oracle keep/trim answer by L, O, O/L and |u|/L.
+  - Step 2: 7 forms (const, logL, logO, OL, uL, stepOL, stepL; 7,220 configurations), tuned on the benchmark only
+    (complete, complete_fullutr, fragments and mixed; E13-type 50/50 objective), with leave-one-organism-out selection,
+    free or under the E35 acceptance criteria.
+  - Step 3: held-out evaluation on the simulated human d1-d32 and athal d1-d32 assemblies and the GM12878 E29
+    statistic, ab initio and with the assist.
+  - Step 4: oracle ceilings per (L, O/L) bin.
+  - Exact fast rescoring, checked against E35 (90 runs) and full substitution (0 difference).
+- **Outcome: OPEN** (logO recommended; decision with Brian; no code changed).
+- **Numbers (exact F1 points vs release):**
+  - logO = 0.35 + 0.15 log2(O/1000): same parameters in all 8 LOO folds.
+    - Benchmark ab initio: E13 objective +0.43, complete +0.08, fragments +0.78, mixed +0.84; 0 of 48 inputs < -0.5.
+    - Held out ab initio: human +0.31..+2.65, athal +0.39..+3.93.
+    - With the assist: +0.07..+1.57 (athal d1 B -0.03).
+    - GM12878: 5' partials kept open +2.0, complete exact given stop -0.1.
+  - logL (0.35 + 0.1 log2(L/1000)) and uL (0.5 - |u|/L) also pass; stepL passes the criteria but not "both up".
+  - O/L forms:
+    - ab initio benchmark-tuned: -1.4 to +0.3 on the assemblies;
+    - tuned with the assist: they pass LOO (+0.40-0.53), then lose 1-15 points on the assemblies.
+  - Ceiling (alpha per L x O/L bin, in-sample): human +1.2..+3.6, athal +2.7..+5.0 ab initio; at depth mostly a lower
+    constant alpha. The per-candidate oracle is +3.6..+14.7.
+- **Lessons:**
+  - Short transcripts and ORFs are mostly fragments on every data set, so a length slope transfers.
+  - O/L >= 0.95 means "no stop". That class is all UTR in the single-cut benchmark fragments but mostly truncated
+    in assemblies. LOO by organism cannot catch a design artefact shared by all organisms.
+  - The gain is mostly on internal and 5'-partial CDSs; the complete-input gain is small and organism-dependent.
+- **Pointers:** E36; `data/alpha_by_length/`; scripts `pipeline/alpha_by_length/`; per-candidate tables in `$P/data/alpha_by_length/`.
+
 ## 3. Short ORFs and minimum length
 
 ### O1. Minimum ORF length 100 -> 50 codons (2026-10-20)
@@ -1064,14 +1098,14 @@ or note describes the incident; details are unknown.
    **Resolved 2026-10-28:** Brian approved one sentence. The baseline was recomputed at the release (E07 Addendum; `first_atg_baseline.tsv`): complete exact F1 0.956 vs 0.912, fragments 0.484 vs 0.822.
 
 ## Outcome counts
-Entries: 57 (A1-A13, S1-S13, O1-O4, H1-H5, B1-B10, T1-T6, G1-G6).
+Entries: 58 (A1-A13, S1-S14, O1-O4, H1-H5, B1-B10, T1-T6, G1-G6).
 
 | Outcome | Count | Entries |
 |---|---|---|
 | ADOPTED | 33 | A1-A4, A9-A12, S4, S6-S9, S11, O1, H1, H2, B1-B4, B8, B10, T1-T4, G1-G6 |
 | NOT ADOPTED | 14 | A5, A7, A8, A13, S2, S3, S5, S10, S13, O3, O4, H3, H4, H5 |
 | PARTIAL | 4 | S1, O2, B5, B7 |
-| OPEN | 4 | A6, S12, B9, T6 |
+| OPEN | 5 | A6, S12, S14, B9, T6 |
 | ABANDONED | 2 | B6, T5 |
 
 Rejected variants inside ADOPTED entries: the decoy-derived long-ORF length (A10), the multiplicative

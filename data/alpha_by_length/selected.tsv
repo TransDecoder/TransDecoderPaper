@@ -1,0 +1,29 @@
+arm	form	mode	params	J	E13	complete	complete_fullutr	fragments	mixed	n_inputs	n_below_05	worst_input	n_changed	acceptable	both_up
+abinitio	OL	free	a0=0.3;b=0.5	0.087	0.382	-0.555	-1.013	1.319	0.595	48	10	bench.human.complete_fullutr -2.58	7930	False	False
+abinitio	OL	accept	a0=0.4;b=0	0.000	0.000	0.000	0.000	0.000	0.000	48	0	bench.human.complete +0.00	0	True	False
+abinitio	const	free	a0=0.35	0.035	-0.001	-0.392	-0.365	0.389	0.508	48	6	bench.tthermophila.complete_fullutr -0.83	6276	False	False
+abinitio	const	accept	a0=0.4	0.000	0.000	0.000	0.000	0.000	0.000	48	0	bench.human.complete +0.00	0	True	False
+abinitio	logL	free	a0=0.25;b=0.2	0.425	0.227	-0.185	0.039	0.640	1.208	48	3	bench.athal.complete -0.92	22798	False	False
+abinitio	logL	accept	a0=0.35;b=0.1	0.337	0.232	0.139	0.247	0.325	0.637	48	0	bench.creinhardtii.fragments -0.27	11191	True	True
+abinitio	logO	free	a0=0.35;b=0.15	0.426	0.429	0.079	0.006	0.778	0.839	48	0	bench.athal.complete_fullutr -0.45	17320	True	True
+abinitio	logO	accept	a0=0.35;b=0.15	0.426	0.429	0.079	0.006	0.778	0.839	48	0	bench.athal.complete_fullutr -0.45	17320	True	True
+abinitio	stepL	free	l=1000;alo=0.15;ahi=0.45	0.348	0.201	-0.195	-0.075	0.597	1.066	48	1	bench.tthermophila.fragments -0.58	17258	False	False
+abinitio	stepL	accept	l=1000;alo=0.2;ahi=0.45	0.324	0.205	-0.081	-0.004	0.490	0.891	48	0	bench.tthermophila.fragments -0.36	14709	True	False
+abinitio	stepOL	free	r=0.8;alo=0.15;ahi=0.4	0.173	0.523	-0.493	-0.950	1.539	0.598	48	11	bench.human.complete_fullutr -2.43	7706	False	False
+abinitio	stepOL	accept	r=0.8;alo=0.35;ahi=0.4	0.066	0.124	-0.086	-0.150	0.335	0.165	48	0	bench.human.complete_fullutr -0.40	1635	True	False
+abinitio	uL	free	a0=0.7;b=-3	0.467	0.216	0.510	0.711	-0.079	0.727	48	3	bench.tthermophila.fragments -1.45	22733	False	False
+abinitio	uL	accept	a0=0.5;b=-1	0.373	0.218	0.190	0.251	0.246	0.804	48	0	bench.tthermophila.fragments -0.37	10575	True	True
+homology	OL	free	a0=0.2;b=4	0.453	0.585	0.186	-0.344	0.985		24	4	bench.creinhardtii.complete_fullutr.H -1.06	8016	False	True
+homology	OL	accept	a0=0.45;b=1.25	0.321	0.433	0.598	0.151	0.267		24	0	bench.human.complete_fullutr.H -0.47	4641	True	True
+homology	const	free	a0=0.5	0.060	0.075	0.490	0.431	-0.341		24	3	bench.pfalciparum.fragments.H -0.82	2778	False	False
+homology	const	accept	a0=0.45	0.035	0.046	0.269	0.223	-0.177		24	0	bench.pfalciparum.fragments.H -0.43	1413	True	False
+homology	logL	free	a0=0.5;b=0.1	0.082	0.101	0.775	0.702	-0.574		24	3	bench.creinhardtii.fragments.H -1.20	3795	False	False
+homology	logL	accept	a0=0.4;b=0.05	0.045	0.046	0.188	0.184	-0.096		24	0	bench.tthermophila.fragments.H -0.23	1261	True	False
+homology	logO	free	a0=0.5;b=0.1	0.128	0.157	0.688	0.572	-0.373		24	3	bench.creinhardtii.fragments.H -0.96	3443	False	False
+homology	logO	accept	a0=0.45;b=0.05	0.099	0.113	0.376	0.318	-0.149		24	0	bench.creinhardtii.fragments.H -0.37	1836	True	False
+homology	stepL	free	l=1500;alo=0.4;ahi=0.6	0.099	0.100	0.470	0.466	-0.269		24	3	bench.creinhardtii.fragments.H -0.75	2197	False	False
+homology	stepL	accept	l=1500;alo=0.4;ahi=0.5	0.070	0.067	0.256	0.269	-0.122		24	0	bench.creinhardtii.fragments.H -0.31	1191	True	False
+homology	stepOL	free	r=0.95;alo=0.35;ahi=3	0.567	0.590	0.291	0.198	0.889		24	1	bench.pfalciparum.fragments.H -1.27	6086	False	True
+homology	stepOL	accept	r=0.95;alo=0.35;ahi=1	0.455	0.471	0.134	0.072	0.807		24	0	bench.pfalciparum.fragments.H -0.25	4269	True	True
+homology	uL	free	a0=0.8;b=-2	0.228	0.244	1.130	1.065	-0.641		24	4	bench.tthermophila.fragments.H -1.48	6396	False	False
+homology	uL	accept	a0=0.5;b=-0.5	0.123	0.131	0.347	0.316	-0.085		24	0	bench.pfalciparum.fragments.H -0.23	1847	True	False
