@@ -1,0 +1,163 @@
+arm	form	mode	held_out	params	train_J	ho_J	ho_E13	ho_complete	ho_complete_fullutr	ho_fragments	ho_mixed	ho_min_input
+abinitio	const	free	athal	a0=0.35	0.031	0.064	0.045	-0.525	-0.526	0.614	0.692	-0.526
+abinitio	const	free	creinhardtii	a0=0.35	0.034	0.046	-0.023	-0.342	-0.163	0.296	0.394	-0.342
+abinitio	const	free	dmel	a0=0.35	0.024	0.114	0.065	-0.169	-0.184	0.299	0.510	-0.184
+abinitio	const	free	human	a0=0.3	0.063	-0.196	-0.224	-1.204	-1.193	0.756	0.857	-1.204
+abinitio	const	free	mouse	a0=0.35	0.036	0.030	-0.036	-0.435	-0.338	0.363	0.530	-0.435
+abinitio	const	free	pfalciparum	a0=0.35	0.002	0.267	0.235	-0.038	-0.076	0.508	0.673	-0.076
+abinitio	const	free	spombe	a0=0.35	0.026	0.102	0.036	-0.218	-0.279	0.290	0.617	-0.279
+abinitio	const	free	tthermophila	a0=0.3	0.133	-0.686	-0.665	-1.713	-1.753	0.384	0.339	-1.753
+abinitio	const	accept	athal	a0=0.4	0.000	0.000	0.000	0.000	0.000	0.000	0.000	0.000
+abinitio	const	accept	creinhardtii	a0=0.4	0.000	0.000	0.000	0.000	0.000	0.000	0.000	0.000
+abinitio	const	accept	dmel	a0=0.4	0.000	0.000	0.000	0.000	0.000	0.000	0.000	0.000
+abinitio	const	accept	human	a0=0.4	0.000	0.000	0.000	0.000	0.000	0.000	0.000	0.000
+abinitio	const	accept	mouse	a0=0.4	0.000	0.000	0.000	0.000	0.000	0.000	0.000	0.000
+abinitio	const	accept	pfalciparum	a0=0.4	0.000	0.000	0.000	0.000	0.000	0.000	0.000	0.000
+abinitio	const	accept	spombe	a0=0.4	0.000	0.000	0.000	0.000	0.000	0.000	0.000	0.000
+abinitio	const	accept	tthermophila	a0=0.4	0.000	0.000	0.000	0.000	0.000	0.000	0.000	0.000
+abinitio	linO	free	athal	c=0.225	0.178	0.542	0.494	-1.342	-1.316	2.330	2.497	-1.342
+abinitio	linO	free	creinhardtii	c=0.275	0.298	-0.395	-0.189	0.637	0.209	-1.015	-1.412	-1.532
+abinitio	linO	free	dmel	c=0.25	0.234	0.155	0.205	-0.426	-0.456	0.836	0.665	-0.456
+abinitio	linO	free	human	c=0.225	0.254	0.013	-0.034	-0.681	-0.716	0.613	0.837	-0.716
+abinitio	linO	free	mouse	c=0.225	0.225	0.220	0.195	-0.710	-0.643	1.100	1.131	-0.710
+abinitio	linO	free	pfalciparum	c=0.275	0.224	0.123	0.369	0.152	0.095	0.586	-0.343	-0.742
+abinitio	linO	free	spombe	c=0.225	0.164	0.645	0.748	-0.536	-0.617	2.032	1.702	-0.617
+abinitio	linO	free	tthermophila	c=0.2	0.275	-0.382	-0.415	-0.650	-0.632	-0.179	-0.065	-0.650
+abinitio	linO	accept	athal	none_acceptable								
+abinitio	linO	accept	creinhardtii	none_acceptable								
+abinitio	linO	accept	dmel	none_acceptable								
+abinitio	linO	accept	human	none_acceptable								
+abinitio	linO	accept	mouse	none_acceptable								
+abinitio	linO	accept	pfalciparum	none_acceptable								
+abinitio	linO	accept	spombe	none_acceptable								
+abinitio	linO	accept	tthermophila	none_acceptable								
+abinitio	linO	accept	all	none_acceptable								
+abinitio	logO	free	athal	a0=0.35;b=0.15	0.389	0.682	0.674	-0.437	-0.446	1.786	1.824	-0.446
+abinitio	logO	free	creinhardtii	a0=0.35;b=0.15	0.479	0.052	0.077	0.342	0.110	-0.187	-0.058	-0.187
+abinitio	logO	free	dmel	a0=0.35;b=0.15	0.445	0.289	0.300	-0.198	-0.228	0.797	0.784	-0.228
+abinitio	logO	free	human	a0=0.3;b=0.15	0.443	0.223	0.177	-0.391	-0.488	0.745	1.027	-0.488
+abinitio	logO	free	mouse	a0=0.35;b=0.15	0.429	0.402	0.382	-0.024	-0.029	0.787	0.874	-0.029
+abinitio	logO	free	pfalciparum	a0=0.35;b=0.15	0.399	0.611	0.594	0.114	0.057	1.074	1.199	0.057
+abinitio	logO	free	spombe	a0=0.35;b=0.15	0.400	0.609	0.655	-0.079	-0.119	1.389	1.247	-0.119
+abinitio	logO	free	tthermophila	a0=0.3;b=0.15	0.456	0.130	0.073	0.079	-0.040	0.067	0.415	-0.040
+abinitio	logO	accept	athal	a0=0.35;b=0.15	0.389	0.682	0.674	-0.437	-0.446	1.786	1.824	-0.446
+abinitio	logO	accept	creinhardtii	a0=0.35;b=0.15	0.479	0.052	0.077	0.342	0.110	-0.187	-0.058	-0.187
+abinitio	logO	accept	dmel	a0=0.35;b=0.15	0.445	0.289	0.300	-0.198	-0.228	0.797	0.784	-0.228
+abinitio	logO	accept	human	a0=0.35;b=0.15	0.438	0.339	0.349	0.069	-0.021	0.629	0.679	-0.021
+abinitio	logO	accept	mouse	a0=0.35;b=0.15	0.429	0.402	0.382	-0.024	-0.029	0.787	0.874	-0.029
+abinitio	logO	accept	pfalciparum	a0=0.35;b=0.15	0.399	0.611	0.594	0.114	0.057	1.074	1.199	0.057
+abinitio	logO	accept	spombe	a0=0.35;b=0.15	0.400	0.609	0.655	-0.079	-0.119	1.389	1.247	-0.119
+abinitio	logO	accept	tthermophila	a0=0.35;b=0.15	0.426	0.423	0.399	0.849	0.728	-0.050	0.166	-0.050
+abinitio	rampO	free	athal	o=1500;a=0.5	0.379	0.711	0.695	-0.578	-0.542	1.967	1.997	-0.578
+abinitio	rampO	free	creinhardtii	o=1500;a=0.5	0.468	0.085	-0.010	0.029	-0.041	-0.048	0.400	-0.048
+abinitio	rampO	free	dmel	o=1500;a=0.5	0.433	0.335	0.308	-0.242	-0.272	0.859	0.997	-0.272
+abinitio	rampO	free	human	o=1500;a=0.5	0.441	0.277	0.233	-0.169	-0.244	0.635	0.887	-0.244
+abinitio	rampO	free	mouse	o=1500;a=0.5	0.422	0.411	0.339	-0.208	-0.148	0.886	1.114	-0.208
+abinitio	rampO	free	pfalciparum	o=1500;a=0.6	0.375	0.483	0.515	0.152	0.114	0.879	0.787	0.114
+abinitio	rampO	free	spombe	o=1500;a=0.5	0.396	0.592	0.627	-0.218	-0.219	1.472	1.334	-0.219
+abinitio	rampO	free	tthermophila	o=1500;a=0.45	0.456	-0.048	-0.135	-0.337	-0.433	0.067	0.510	-0.433
+abinitio	rampO	accept	athal	o=1500;a=0.5	0.379	0.711	0.695	-0.578	-0.542	1.967	1.997	-0.578
+abinitio	rampO	accept	creinhardtii	o=1500;a=0.6	0.449	-0.038	0.013	0.510	0.227	-0.483	-0.404	-0.483
+abinitio	rampO	accept	dmel	o=1200;a=0.5	0.415	0.258	0.273	-0.051	-0.125	0.598	0.608	-0.125
+abinitio	rampO	accept	human	o=1200;a=0.5	0.408	0.303	0.272	0.164	0.106	0.381	0.561	0.106
+abinitio	rampO	accept	mouse	o=1200;a=0.5	0.399	0.369	0.336	0.085	0.119	0.588	0.683	0.085
+abinitio	rampO	accept	pfalciparum	o=1500;a=0.6	0.375	0.483	0.515	0.152	0.114	0.879	0.787	0.114
+abinitio	rampO	accept	spombe	o=1200;a=0.5	0.377	0.524	0.632	0.040	-0.060	1.224	0.892	-0.060
+abinitio	rampO	accept	tthermophila	o=1200;a=0.5	0.399	0.370	0.338	0.793	0.660	-0.117	0.143	-0.117
+abinitio	stepO	free	athal	o=750;alo=0.15;ahi=0.45	0.286	0.645	0.642	-0.357	-0.301	1.641	1.597	-0.357
+abinitio	stepO	free	creinhardtii	o=900;alo=0.15;ahi=0.5	0.385	-0.013	-0.080	0.093	0.012	-0.254	0.097	-0.254
+abinitio	stepO	free	dmel	o=900;alo=0.15;ahi=0.5	0.352	0.214	0.205	-0.235	-0.316	0.644	0.764	-0.316
+abinitio	stepO	free	human	o=750;alo=0.1;ahi=0.45	0.351	0.167	0.045	-0.269	-0.202	0.359	0.778	-0.269
+abinitio	stepO	free	mouse	o=900;alo=0.15;ahi=0.5	0.339	0.311	0.245	-0.222	-0.133	0.712	0.890	-0.222
+abinitio	stepO	free	pfalciparum	o=1000;alo=0.25;ahi=0.5	0.293	0.413	0.410	0.038	0.019	0.781	0.812	0.019
+abinitio	stepO	free	spombe	o=900;alo=0.15;ahi=0.5	0.316	0.470	0.556	-0.278	-0.279	1.389	1.045	-0.279
+abinitio	stepO	free	tthermophila	o=750;alo=0.1;ahi=0.4	0.400	-0.278	-0.450	-0.658	-0.632	-0.242	0.421	-0.658
+abinitio	stepO	accept	athal	o=750;alo=0.15;ahi=0.45	0.286	0.645	0.642	-0.357	-0.301	1.641	1.597	-0.357
+abinitio	stepO	accept	creinhardtii	o=1000;alo=0.2;ahi=0.5	0.366	0.001	-0.062	0.093	0.012	-0.217	0.117	-0.217
+abinitio	stepO	accept	dmel	o=900;alo=0.15;ahi=0.5	0.352	0.214	0.205	-0.235	-0.316	0.644	0.764	-0.316
+abinitio	stepO	accept	human	o=900;alo=0.15;ahi=0.5	0.351	0.225	0.140	-0.090	-0.111	0.370	0.731	-0.111
+abinitio	stepO	accept	mouse	o=900;alo=0.15;ahi=0.5	0.339	0.311	0.245	-0.222	-0.133	0.712	0.890	-0.222
+abinitio	stepO	accept	pfalciparum	o=1000;alo=0.25;ahi=0.5	0.293	0.413	0.410	0.038	0.019	0.781	0.812	0.019
+abinitio	stepO	accept	spombe	o=900;alo=0.15;ahi=0.5	0.316	0.470	0.556	-0.278	-0.279	1.389	1.045	-0.279
+abinitio	stepO	accept	tthermophila	o=750;alo=0.1;ahi=0.5	0.344	0.072	-0.054	0.646	0.513	-0.755	-0.116	-0.755
+homology	const	free	athal	a0=0.5	0.034	0.245	0.248	0.708	0.697	-0.212		-0.212
+homology	const	free	creinhardtii	a0=0.5	0.076	-0.054	-0.008	0.538	0.354	-0.553		-0.553
+homology	const	free	dmel	a0=0.5	0.075	-0.042	-0.026	0.329	0.263	-0.381		-0.381
+homology	const	free	human	a0=0.5	0.051	0.123	0.121	0.199	0.209	0.043		0.043
+homology	const	free	mouse	a0=0.5	0.057	0.084	0.077	0.173	0.201	-0.019		-0.019
+homology	const	free	pfalciparum	a0=0.5	0.123	-0.381	-0.371	0.076	0.038	-0.819		-0.819
+homology	const	free	spombe	a0=0.5	0.047	0.150	0.164	0.535	0.475	-0.206		-0.206
+homology	const	free	tthermophila	a0=0.5	0.018	0.355	0.393	1.364	1.212	-0.579		-0.579
+homology	const	accept	athal	a0=0.45	0.019	0.142	0.139	0.361	0.373	-0.084		-0.084
+homology	const	accept	creinhardtii	a0=0.45	0.042	-0.017	0.018	0.313	0.174	-0.277		-0.277
+homology	const	accept	dmel	a0=0.45	0.041	-0.008	0.007	0.212	0.153	-0.198		-0.198
+homology	const	accept	human	a0=0.45	0.031	0.059	0.045	0.073	0.131	0.016		0.016
+homology	const	accept	mouse	a0=0.45	0.032	0.052	0.047	0.094	0.112	0.000		0.000
+homology	const	accept	pfalciparum	a0=0.45	0.066	-0.186	-0.177	0.076	0.038	-0.429		-0.429
+homology	const	accept	spombe	a0=0.45	0.030	0.066	0.076	0.317	0.277	-0.165		-0.165
+homology	const	accept	tthermophila	a0=0.45	0.015	0.169	0.215	0.708	0.523	-0.277		-0.277
+homology	linO	free	athal	c=0.275	-0.087	-0.318	-0.327	-0.670	-0.633	0.016		-0.670
+homology	linO	free	creinhardtii	c=0.375	0.019	-0.778	-0.650	1.059	0.546	-2.358		-2.358
+homology	linO	free	dmel	c=0.375	-0.072	-0.144	-0.131	0.073	0.022	-0.335		-0.335
+homology	linO	free	human	c=0.35	-0.091	-0.012	-0.022	0.084	0.125	-0.128		-0.128
+homology	linO	free	mouse	c=0.35	-0.091	-0.013	-0.006	0.061	0.033	-0.072		-0.072
+homology	linO	free	pfalciparum	c=0.425	-0.003	-0.866	-0.842	0.285	0.190	-1.969		-1.969
+homology	linO	free	spombe	c=0.325	-0.118	0.111	0.121	0.139	0.099	0.103		0.099
+homology	linO	free	tthermophila	c=0.325	-0.144	0.299	0.376	1.830	1.521	-1.079		-1.079
+homology	linO	accept	athal	none_acceptable								
+homology	linO	accept	creinhardtii	none_acceptable								
+homology	linO	accept	dmel	none_acceptable								
+homology	linO	accept	human	none_acceptable								
+homology	linO	accept	mouse	none_acceptable								
+homology	linO	accept	pfalciparum	none_acceptable								
+homology	linO	accept	spombe	none_acceptable								
+homology	linO	accept	tthermophila	none_acceptable								
+homology	linO	accept	all	none_acceptable								
+homology	logO	free	athal	a0=0.45;b=0.15	0.108	0.226	0.228	0.384	0.377	0.072		0.072
+homology	logO	free	creinhardtii	a0=0.5;b=0.15	0.177	-0.244	-0.120	1.065	0.569	-1.305		-1.305
+homology	logO	free	dmel	a0=0.5;b=0.15	0.145	-0.022	-0.015	0.336	0.307	-0.365		-0.365
+homology	logO	free	human	a0=0.5;b=0.1	0.131	0.112	0.114	0.272	0.261	-0.043		-0.043
+homology	logO	free	mouse	a0=0.5;b=0.1	0.135	0.083	0.082	0.183	0.187	-0.019		-0.019
+homology	logO	free	pfalciparum	a0=0.5;b=0.1	0.187	-0.279	-0.265	0.152	0.095	-0.682		-0.682
+homology	logO	free	spombe	a0=0.45;b=0.1	0.124	0.117	0.117	0.317	0.317	-0.082		-0.082
+homology	logO	free	tthermophila	a0=0.45;b=0.1	0.065	0.530	0.565	1.589	1.450	-0.459		-0.459
+homology	logO	accept	athal	a0=0.4;b=0.1	0.093	0.061	0.060	-0.008	-0.004	0.128		-0.008
+homology	logO	accept	creinhardtii	a0=0.45;b=0.1	0.143	-0.016	0.070	0.706	0.360	-0.566		-0.566
+homology	logO	accept	dmel	a0=0.45;b=0.05	0.109	0.029	0.034	0.190	0.168	-0.122		-0.122
+homology	logO	accept	human	a0=0.45;b=0.05	0.105	0.060	0.060	0.157	0.157	-0.037		-0.037
+homology	logO	accept	mouse	a0=0.45;b=0.05	0.106	0.050	0.042	0.098	0.131	-0.014		-0.014
+homology	logO	accept	pfalciparum	a0=0.45;b=0.05	0.127	-0.099	-0.089	0.095	0.057	-0.273		-0.273
+homology	logO	accept	spombe	a0=0.45;b=0.05	0.098	0.108	0.118	0.297	0.258	-0.062		-0.062
+homology	logO	accept	tthermophila	a0=0.45;b=0.05	0.050	0.440	0.478	1.261	1.109	-0.306		-0.306
+homology	rampO	free	athal	o=1200;a=0.6	0.093	0.268	0.269	0.486	0.483	0.052		0.052
+homology	rampO	free	creinhardtii	o=750;a=0.6	0.169	-0.193	-0.116	0.862	0.557	-1.095		-1.095
+homology	rampO	free	dmel	o=750;a=0.6	0.141	0.001	0.018	0.431	0.365	-0.396		-0.396
+homology	rampO	free	human	o=750;a=0.6	0.121	0.139	0.136	0.272	0.282	0.000		0.000
+homology	rampO	free	mouse	o=1200;a=0.6	0.125	0.049	0.051	0.117	0.108	-0.014		-0.014
+homology	rampO	free	pfalciparum	o=750;a=0.6	0.179	-0.265	-0.246	0.190	0.114	-0.682		-0.682
+homology	rampO	free	spombe	o=750;a=0.6	0.107	0.238	0.273	0.772	0.634	-0.226		-0.226
+homology	rampO	free	tthermophila	o=750;a=0.6	0.080	0.431	0.484	2.178	1.968	-1.211		-1.211
+homology	rampO	accept	athal	o=900;a=0.5	0.080	0.149	0.150	0.256	0.253	0.044		0.044
+homology	rampO	accept	creinhardtii	o=750;a=0.5	0.116	-0.050	-0.022	0.376	0.267	-0.421		-0.421
+homology	rampO	accept	dmel	o=750;a=0.5	0.106	0.016	0.034	0.183	0.110	-0.114		-0.114
+homology	rampO	accept	human	o=750;a=0.5	0.102	0.048	0.052	0.167	0.152	-0.064		-0.064
+homology	rampO	accept	mouse	o=750;a=0.5	0.099	0.064	0.058	0.126	0.150	-0.010		-0.010
+homology	rampO	accept	pfalciparum	o=750;a=0.5	0.106	0.019	0.028	0.076	0.038	-0.019		-0.019
+homology	rampO	accept	spombe	o=750;a=0.5	0.092	0.118	0.128	0.297	0.258	-0.041		-0.041
+homology	rampO	accept	tthermophila	o=600;a=0.5	0.073	0.324	0.357	1.281	1.149	-0.566		-0.566
+homology	stepO	free	athal	o=900;alo=0.35;ahi=0.6	0.080	0.339	0.337	0.742	0.750	-0.068		-0.068
+homology	stepO	free	creinhardtii	o=900;alo=0.4;ahi=0.6	0.151	-0.152	-0.076	0.810	0.505	-0.963		-0.963
+homology	stepO	free	dmel	o=900;alo=0.4;ahi=0.6	0.129	0.006	0.011	0.373	0.351	-0.350		-0.350
+homology	stepO	free	human	o=900;alo=0.35;ahi=0.6	0.112	0.119	0.107	0.204	0.251	0.011		0.011
+homology	stepO	free	mouse	o=900;alo=0.35;ahi=0.6	0.120	0.060	0.058	0.122	0.127	-0.005		-0.005
+homology	stepO	free	pfalciparum	o=1500;alo=0.5;ahi=0.7	0.182	-0.606	-0.587	0.171	0.095	-1.345		-1.345
+homology	stepO	free	spombe	o=900;alo=0.35;ahi=0.6	0.099	0.211	0.235	0.594	0.495	-0.123		-0.123
+homology	stepO	free	tthermophila	o=450;alo=0.25;ahi=0.5	0.061	0.325	0.361	1.305	1.160	-0.583		-0.583
+homology	stepO	accept	athal	o=1500;alo=0.35;ahi=0.6	0.075	0.063	0.063	0.094	0.094	0.032		0.032
+homology	stepO	accept	creinhardtii	o=1200;alo=0.35;ahi=0.6	0.114	-0.070	0.000	0.596	0.313	-0.596		-0.596
+homology	stepO	accept	dmel	o=900;alo=0.4;ahi=0.5	0.094	-0.000	0.010	0.226	0.183	-0.205		-0.205
+homology	stepO	accept	human	o=900;alo=0.35;ahi=0.5	0.083	0.069	0.063	0.120	0.146	0.005		0.005
+homology	stepO	accept	mouse	o=900;alo=0.35;ahi=0.5	0.089	0.029	0.021	0.061	0.094	-0.019		-0.019
+homology	stepO	accept	pfalciparum	o=750;alo=0.4;ahi=0.5	0.119	-0.196	-0.186	0.076	0.038	-0.448		-0.448
+homology	stepO	accept	spombe	o=900;alo=0.35;ahi=0.5	0.080	0.088	0.097	0.277	0.238	-0.082		-0.082
+homology	stepO	accept	tthermophila	o=450;alo=0.25;ahi=0.5	0.061	0.325	0.361	1.305	1.160	-0.583		-0.583

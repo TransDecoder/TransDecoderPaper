@@ -625,6 +625,11 @@ Outcome counts: see the end of this file.
 - **Pointers:** E36; `data/alpha_by_length/`; scripts `pipeline/alpha_by_length/`; per-candidate tables in `$P/data/alpha_by_length/`.
 
 ## 3. Short ORFs and minimum length
+- **Addendum (2026-10-30): simpler forms** (BH asked for a more intuitive formula; E36 addendum).
+  - A two-value step (0.15 if O < 900 nt else 0.5) and a proportional ramp (0.5 min(1, O/1200)) recover about
+    70-90% of logO's gain, with less stable parameters across folds.
+  - A one-parameter linear form (0.225 O/kb) fails acceptance.
+  - logO is equivalent to alpha = 0.5 log10(O/200 nt): 140 of 817,983 decisions differ.
 
 ### O1. Minimum ORF length 100 -> 50 codons (2026-10-20)
 - **Outcome: ADOPTED** (LongOrfs default 50 at PyTD 429a89a), always with a coding test for short

@@ -364,3 +364,44 @@ Points of exact F1 vs V0 (table above, last column; per-dataset rows in `ceiling
   Its F1 is not meaningful; only the E29 shares are reported.
 - The benchmark fragments are cut once per CDS, so they have no internal fragments and a reversed 3'-open class.
   Mixed inputs are balanced by design. Neither reproduces assembly length distributions exactly.
+
+## Addendum (2026-10-30): simpler forms (`data/alpha_by_length/simpler_v2/`)
+Question (BH): is there a simpler, more intuitive formula that works nearly as well as logO?
+
+**Method.**
+- New scripts: `abl_common_v2.py` (adds forms), `05_tune_grid_v2.py`, `05_tune_grid_all_v2.sh`, `07_evaluate_v2.py`.
+  06 and 09 v1 were reused unchanged.
+- Raw grid in `$P/data/alpha_by_length/grid_v2/`, evaluation in `.../eval_v2/` (not in git).
+- Same objective, LOO procedure, acceptance criteria and held-out sets as steps 2-3.
+- Forms tested:
+  - stepO: alo if O < o else ahi;
+  - rampO: a min(1, O/o);
+  - linO: c O/1000 (one parameter);
+  - const and logO, rescored for reference (they reproduce the v1 values).
+
+**Results, ab initio** (points of exact F1 vs V0):
+
+| form (selected on all 8, accept mode) | LOO J | params across 8 folds | complete | fragments | mixed | human d1/d8/d32 | athal d1/d8/d32 | GM12878 5' partials kept open |
+|---|---|---|---|---|---|---|---|---|
+| logO 0.35 + 0.15 log2(O/1000) | +0.43 | identical in 8 | +0.08 | +0.78 | +0.84 | +0.31 / +1.08 / +2.65 | +0.39 / +2.40 / +3.93 | +2.0 |
+| rampO 0.5 min(1, O/1200) | +0.37 (1 fold -0.04) | o 1200 (6) / 1500 (2); a 0.5 (6) / 0.6 (2) | +0.15 | +0.64 | +0.70 | +0.36 / +1.02 / +2.33 | +0.43 / +2.21 / +3.39 | +0.25 |
+| stepO 0.15 if O < 900 else 0.5 | +0.29 | o 750-1000; 5 distinct | -0.08 | +0.70 | +0.82 | +0.18 / +0.87 / +2.33 | +0.26 / +2.16 / +3.29 | +1.0 |
+| linO 0.225 O/1000 | +0.12 (2 folds down) | 4 distinct; accept mode: none | -0.42 | +0.94 | +0.87 | -0.11 / +0.94 / +2.77 | -0.04 / +2.61 / +4.22 | +4.0 |
+
+- linO fails the acceptance criteria: 13 of 48 inputs are below -0.5 (athal complete -1.34). Long ORFs get too
+  large an alpha.
+- With the assist, all forms tuned ab initio give +0.0 to +0.2 points on human and up to +1.6 on athal d32, as logO did.
+
+**The selected logO formula rewritten.**
+- 0.35 + 0.15 log2(O/1000) = 0.15 log2(O/199.6) is numerically equivalent to **alpha = 0.5 log10(O / 200 nt)**:
+  - alpha is 0 for a 200-nt open ORF and rises by 0.5 for each tenfold increase in length;
+  - it equals the release constant (0.35-0.4) at about 1 kb;
+  - it can be stated as "+0.15 per doubling of ORF length".
+- Scored on all 95 runs (817,983 candidates), the two forms differ in 140 decisions, a net +10 exact CDSs.
+
+**Conclusion.**
+- None of the simpler forms is as good as logO. In particular, a proportional ramp or a two-value step recovers
+  about 70-90% of its benchmark and held-out gain, with less stable parameters across folds.
+- The ramp has the better complete-input behaviour (+0.15, no organism below -0.5) but keeps far fewer true
+  5' partials open on GM12878 (+0.25 vs +2.0).
+- Recommended statement of the rule, if adopted: alpha = 0.5 log10(O/200 nt), floored at 0.
