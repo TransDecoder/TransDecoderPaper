@@ -1,10 +1,11 @@
-# E37. Supplementary Tables S1–S8: assembly from committed data
+# E37. Supplementary Tables S1–S9: assembly from committed data
 
 ## Claims supported
-Manuscript: `manuscript/supplement.tex` (Supplementary Tables S1–S8) and the main-text citations of
+Manuscript: `manuscript/supplement.tex` (Supplementary Tables S1–S9) and the main-text citations of
 them. No new runs; every value comes from tables already committed under `data/` or
 `benchmark_v2/`. This record covers the tables built by `pipeline/derive/09_supplementary_tables.py`
-(S2, S5, S6, S7, S8); S1, S3 and S4 existed before (E27, E28) and were only renumbered.
+(S2, S5, S6, S8, S9); S1, S3 and S4 existed before (E27, E28) and were only renumbered. S7 (GM12878
+homology series) is built from the E06 release rerun (2026-10-30).
 
 Numbering is by first citation in the main text (Background, Results, Methods, in that order). The
 main text cites the tables by hard-coded number (main and supplement are separate documents with no
@@ -18,11 +19,15 @@ cross-document references); `supplement.tex` carries a comment to keep the two i
 | S4 | Balanced mixed inputs by type (was S9) | Results, benchmark | E28; `data/benchmark/final_v7/mixed_medians.tsv` | LaTeX |
 | S5 | Accuracy of every method on every benchmark input (1,207 rows) | Results, benchmark; Fig. 2 caption; Discussion | E07, E25, E28 | TSV data file (Additional file 2); the supplement has a column description |
 | S6 | Start-codon choice in earlier procedures: first ATG vs PWM-chosen later ATG, v6.0.0 vs scale-corrected PWM, release; PWM seed changes | Results, start refinement; Methods (start refinement, two places) | E09; `data/benchmark/summary.tsv`, `final_v7/all_scores.tsv`, `data/start_refinement/seed_start_changes.tsv` | LaTeX |
-| S7 | Long-ORF length L* by G+C, with the v5.0.0–v6.0.0 table | Methods, long-ORF rule | E10; `data/long_orf_threshold/final_thresholds.tsv` | LaTeX |
-| S8 | Benchmark truth sets: annotation file, transcripts with CDS, genes kept, UTRs annotated/added | Methods, benchmark data | E07; `benchmark_v2/annotation_downloads.tsv`, `benchmark_v2/truth_logs_v3/*.log` | LaTeX (+ TSV in repo) |
+| S7 | GM12878 homology series (clade-excluded Swiss-Prot, Pfam), three assemblies, PyTD a5b24c3 | Results, homology and evolutionary distance; Fig. 7 caption | E06 (Release rerun); `data/gm12878/gm12878_homology_series_v7h.tsv` via `pipeline/derive/08_homology_series_v7h_table.py` | LaTeX |
+| S8 | Long-ORF length L* by G+C, with the v5.0.0–v6.0.0 table | Methods, long-ORF rule | E10; `data/long_orf_threshold/final_thresholds.tsv` | LaTeX |
+| S9 | Benchmark truth sets: annotation file, transcripts with CDS, genes kept, UTRs annotated/added | Methods, benchmark data | E07; `benchmark_v2/annotation_downloads.tsv`, `benchmark_v2/truth_logs_v3/*.log` | LaTeX (+ TSV in repo) |
 
-The two tables of Supplementary Note 1 (releases, history) follow and take the next numbers. A
-GM12878 homology-series table being added by another task goes last in `supplement.tex`.
+The two tables of Supplementary Note 1 (releases, history) follow and take the next numbers (S10,
+S11). Update 2026-10-30: the GM12878 homology-series table (E06) is cited in Results before the
+Methods tables, so it became S7 and L* and the truth sets moved to S8 and S9; the main-text citations
+(methods_algorithm.tex, methods_benchmark.tex) and notebook 01 (L* table) were renumbered.
+Notebook S1 still calls the Supplementary Note tables "Table S7/S8"; they are S10/S11.
 
 ## Data
 All inputs are committed (see the table above). `summary.interim_20261025.tsv` is the scored summary
@@ -46,8 +51,8 @@ The LaTeX rows in `latex_bodies.txt` were pasted into `supplement.tex` (each tab
 - `perl_python_sample_sets.tsv` (S2)
 - `benchmark_per_input.tsv` (S5; Additional file 2)
 - `start_choice_legacy.tsv` (S6a; S6b is `data/start_refinement/seed_start_changes.tsv`)
-- `long_orf_length_by_gc.tsv` (S7)
-- `benchmark_truth_sets.tsv` (S8, with genome URLs and per-filter exclusion counts)
+- `long_orf_length_by_gc.tsv` (S8)
+- `benchmark_truth_sets.tsv` (S9, with genome URLs and per-filter exclusion counts)
 - `latex_bodies.txt` (LaTeX rows)
 
 ## Results
@@ -62,11 +67,11 @@ The LaTeX rows in `latex_bodies.txt` were pasted into `supplement.tex` (each tab
   +1 in *P. falciparum* (4,824 vs 4,823), +69 in *C. reinhardtii* (12,661 vs 12,592). Median exact
   F1: first ATG 0.893, PWM choice 0.887, v6.0.0 0.779, scale-corrected PWM 0.728, release 0.912.
   Seeds 2–5 changed 53/30/61/29 starts (PASA, 792 ORFs) and 144/47/111/54 (StringTie, 3,037).
-- **S7.** L* 519 nt at 25% G+C to 2,436 nt at 80%; at least 85,056 random ORFs per level. The
+- **S8.** L* 519 nt at 25% G+C to 2,436 nt at 80%; at least 85,056 random ORFs per level. The
   v5–v6 column is the code table of v5.0.0 and v6.0.0 (`@GC_TO_MIN_LONG_ORF_LENGTH`, checked in
   `work/trees/TD_base` at tags v5.0.0 and 66d4712); it is the 2017 q0.999 column hand-rounded
   (30%: 510; 80%: 2,422).
-- **S8.** UTRs added per organism: 5′ 0 (*C. reinhardtii*) to 1,142 (*A. thaliana*); 3′ 0 to 947
+- **S9.** UTRs added per organism: 5′ 0 (*C. reinhardtii*) to 1,142 (*A. thaliana*); 3′ 0 to 947
   (*P. falciparum*). Three *D. melanogaster* genes have neither an annotated nor an added 3′ UTR.
 - **Discussion (CodAn).** On complete *P. falciparum* transcripts CodAn (invertebrate model) had
   stop-level sensitivity 0.552 and F1 0.710; TransDecoder 0.994 and 0.997 (S5 rows
@@ -80,7 +85,7 @@ The LaTeX rows in `latex_bodies.txt` were pasted into `supplement.tex` (each tab
   2026-10-30 while another task had uncommitted edits to that file).
 - S6 release median exact F1 (0.912) and v6.0.0 (0.779), scale-corrected PWM (0.728) match the
   Results text; seeds match the text (29–61, 47–144).
-- S8 counts match the E07 table and `benchmark_v2/README.md`; annotated + added + none = kept genes
+- S9 counts match the E07 table and `benchmark_v2/README.md`; annotated + added + none = kept genes
   for both ends in every organism.
 - Both documents compile with tectonic without errors or undefined references.
 

@@ -698,6 +698,14 @@ Outcome counts: see the end of this file.
 - **Lesson:** Pfam alone recovers most of the gain, but Pfam HMMs include human sequences, so it is not
   distance-controlled.
 - **Pointers:** E06; `genome_annotation/scripts/homology_series*.sh`; `data/gm12878/gm12878_homology_series.tsv`.
+- **Release rerun (2026-10-30, BH-approved; now in the paper):** all 36 configurations rerun fresh with
+  PyTD a5b24c3 (homology start assist on); searches identical to the development ones (DIAMOND rerun,
+  byte-identical; Pfam reused after verification). Minus human: +4.4 / +4.5 / +4.3 points (development
+  +1.8 / +1.1 / +1.4); minus animals +0.7 each. Pfam alone now gives only about half the gain (+1.9 /
+  +1.8 / +2.3), because the BLAST start-trim rule has no Pfam counterpart; in Trinity 1.7 of the 4.3
+  points come from start refinement (selection-only run, E33). Lesson: with the start assist, close
+  homologs matter more than in the development series.
+  Pointers: E06 "Release rerun"; `data/gm12878/gm12878_homology_series_v7h.tsv`; Supplementary Table S7.
 
 ### H3. Screen out transposable-element homology hits (2026-10-21)
 - **Outcome: NOT ADOPTED** (Brian, 2026-10-21: keep TE-homology-retained ORFs as candidate neo-ORFs;
@@ -707,6 +715,11 @@ Outcome counts: see the end of this file.
 - **Lesson:** a single curated protein with a TE-derived segment can dominate homology retention; check
   best-hit concentration whenever homology adds many unannotated ORFs.
 - **Pointers:** E06; `data/gm12878/gm12878_homology_primate_retention.txt`.
+- **Release rerun (2026-10-30):** 5,127 / 4,791 unannotated / 4,555 UTY_PANTR / 88% < 100 aa
+  (`gm12878_homology_primate_retention_v7h.txt`). A screen recipe (best-hit name + RepeatMasker overlap)
+  is now in the PyTD docs (`docs/homology_te_screen.md`, d3892b5); on Trinity the overlap screen flagged
+  97% of the genome-mapped homology-only UTY_PANTR ORFs, the name screen none of them
+  (`gm12878_te_screen_v7h.tsv`). Lesson: screen by repeat overlap, not only by best-hit name.
 
 ### H4. DIAMOND sensitivity, hit depth and e-value
 - **Outcome: NOT ADOPTED (2026-10-28).** Tested for the start assist in E33 step 4 (see S11): `--more-sensitive`,

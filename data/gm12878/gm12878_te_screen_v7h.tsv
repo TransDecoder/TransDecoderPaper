@@ -1,0 +1,4 @@
+assembly	homology_run	predicted	abinitio	homology_only	flag_by_name	flag_by_overlap	flag_either	homology_only_genome_mapped	best_hit_UTY_PANTR	UTY_PANTR_genome_mapped	UTY_PANTR_flag_by_overlap
+lraa	blast_9606_nopfam	35361	33028	2545	60	184	185	2545	116	116	107
+stringtie	blast_9606_nopfam	42315	36479	6229	467	2066	2068	6229	1534	1534	1466
+trinity	blast_9606_nopfam	101681	80797	21646	2153	7106	7396	18912	6743	5098	4970

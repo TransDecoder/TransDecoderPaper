@@ -28,7 +28,7 @@ This notebook supports the Results section "Parameter choices on real assemblies
 (`figures/fig7_parameters.{pdf,png}`) and computes the numbers the section quotes.
 Provenance: `r evidence("E13")` (start-parameter grid), `r evidence("E04")` (minimum length),
 `r evidence("E20")` and `r evidence("E22")` (q-value test, development runs), `r evidence("E06")`
-(homology series) and `r evidence("E25")` (release runs).
+(homology series; release rerun with PyTD a5b24c3) and `r evidence("E25")` (release runs).
 
 **Which runs.** The release runs (E25: PyTD 3a793ff; q-value test at q 0.05, 50-codon minimum,
 start refinement alpha 0.4, Kozak 17 per bit) are used where an equivalent exists or could be
@@ -41,13 +41,15 @@ derived:
   caption's `\todo` asks.
 - The q-value paragraph: release protein matches and a release version of the dropped-ORF support
   table (`pipeline/derive/08_rule_support_v7.py`).
+- The homology series (Fig. 7c, d) and the transposable-element paragraph: release rerun with PyTD
+  a5b24c3 (homology-assisted start refinement on; `pipeline/derive/08_homology_series_v7h.sh`, E06
+  "Release rerun"). The development series (48c870c) is tabulated for comparison.
 
 No release equivalent exists for:
 
 - the start-parameter grid (Fig. 7a; development code 48c870c, E13). Fig. 7a adds the release
   default as one extra point per assembly;
-- the comparison of pre-defined LongOrfs minima (`-m 100`, `-m 50` without a test; E04);
-- the homology series (Fig. 7c, d; E06, 48c870c).
+- the comparison of pre-defined LongOrfs minima (`-m 100`, `-m 50` without a test; E04).
 
 These use the data of the earlier figure.
 
@@ -85,8 +87,11 @@ pm_dev <- read_tab("benchmark", "qmodes", "gm12878_qmodes_protein_matches.tsv") 
 cat_v7 <- read_tab("benchmark", "final_v7", "gm12878_v7_riboseq_orf_catalog_matches.tsv")
 sup_v7 <- read_tab("gm12878", "final_v7", "08_rule_support_v7.tsv")
 sup_dev <- read_tab("benchmark", "rules", "gm12878_rule_support.tsv")
-hom <- read_tab("gm12878", "gm12878_homology_series.tsv")
-ret_txt <- readLines(data_path("gm12878", "gm12878_homology_primate_retention.txt"))
+hom <- read_tab("gm12878", "gm12878_homology_series_v7h.tsv")
+hom_dev <- read_tab("gm12878", "gm12878_homology_series.tsv")
+ret_txt <- readLines(data_path("gm12878", "gm12878_homology_primate_retention_v7h.txt"))
+ret_txt_dev <- readLines(data_path("gm12878", "gm12878_homology_primate_retention.txt"))
+te_screen <- read_tab("gm12878", "gm12878_te_screen_v7h.tsv")
 ```
 
 ## Start refinement {#start-refinement}
@@ -458,9 +463,11 @@ chk("L54 Trinity MANE exact given assembled, >= 150 aa", mv("trinity",150,"MANE_
 
 ## Homology evidence and evolutionary distance {#homology-evidence-and-evolutionary-distance}
 
-Source: `data/gm12878/gm12878_homology_series.tsv` (E06; development code 48c870c, reusing the
-`final_abinitio` LongOrfs output; fixed short-ORF test). No release homology series exists. Change =
-configuration minus ab initio.
+Source: `data/gm12878/gm12878_homology_series_v7h.tsv` (E06 release rerun; PyTD a5b24c3 with the
+homology-assisted start refinement, release defaults; one fresh LongOrfs per assembly, identical to
+the release ab initio run's; ab initio row = a fresh a5b24c3 run, byte-identical to the E25 release
+run). Change = configuration minus ab initio. The development series (`gm12878_homology_series.tsv`,
+48c870c, fixed short-ORF test) is compared below.
 
 ```{r homology}
 CLADES <- c("9606" = "human", "9443" = "primates", "40674" = "mammals", "7742" = "vertebrates",
@@ -488,45 +495,77 @@ dh <- function(a, cfg, col) hom_d[[col]][hom_d$assembly == a & hom_d$config == c
   `r pct(h("lraa","blast_9606_nopfam","MANE_sens_exact_given_assembled"))`, `r pct(h("stringtie","blast_9606_nopfam","MANE_sens_exact_given_assembled"))`,
   `r pct(h("trinity","blast_9606_nopfam","MANE_sens_exact_given_assembled"))`.
 
+Development series (48c870c, fixed short-ORF test) against the release rerun (a5b24c3): MANE exact
+given assembled and its change over each series' own ab initio run, and distinct predicted CDSs.
+
+```{r homology_dev_vs_release}
+hom_cmp <- hom_dev %>% group_by(assembly) %>%
+  mutate(d_dev = 100 * (MANE_sens_exact_given_assembled - MANE_sens_exact_given_assembled[config == "abinitio"])) %>%
+  ungroup() %>%
+  select(assembly, config, exact_dev = MANE_sens_exact_given_assembled, d_dev, cds_dev = distinct_predicted_cds) %>%
+  inner_join(hom_d %>% select(assembly, config, exact_rel = MANE_sens_exact_given_assembled,
+                              d_rel = d_mane_exact_pts, cds_rel = distinct_predicted_cds),
+             by = c("assembly", "config"))
+kable(hom_cmp, digits = c(0, 0, 4, 2, 0, 4, 2, 0))
+```
+
 `r evidence("E06")`
 
 ```{r chk_hom, include = FALSE}
-chk("L67 LRAA -human gain, MANE exact given assembled (points)", dh("lraa","blast_9606_nopfam","d_mane_exact_pts"), 1.8)
-chk("L68 StringTie -human gain (points)", dh("stringtie","blast_9606_nopfam","d_mane_exact_pts"), 1.1)
-chk("L68 Trinity -human gain (points)", dh("trinity","blast_9606_nopfam","d_mane_exact_pts"), 1.4)
-chk("L69 LRAA -human gain, MANE compatible (points)", dh("lraa","blast_9606_nopfam","d_mane_compat_pts"), 0.9)
-chk("L69 StringTie -human gain, MANE compatible (points)", dh("stringtie","blast_9606_nopfam","d_mane_compat_pts"), 2.3)
-chk("L69 Trinity -human gain, MANE compatible (points)", dh("trinity","blast_9606_nopfam","d_mane_compat_pts"), 2.1)
-chk("L71 LRAA -animals gain (points)", dh("lraa","blast_33208_nopfam","d_mane_exact_pts"), 0.4)
-chk("L71 StringTie -animals gain (points)", dh("stringtie","blast_33208_nopfam","d_mane_exact_pts"), 0.3)
-chk("L71 Trinity -animals gain (points)", dh("trinity","blast_33208_nopfam","d_mane_exact_pts"), 0.4)
-chk("L72 LRAA Pfam alone (%)", 100 * h("lraa","pfam","MANE_sens_exact_given_assembled"), 95.3)
-chk("L72 StringTie Pfam alone (%)", 100 * h("stringtie","pfam","MANE_sens_exact_given_assembled"), 93.9)
-chk("L72 Trinity Pfam alone (%)", 100 * h("trinity","pfam","MANE_sens_exact_given_assembled"), 92.0)
-chk("L73 LRAA Swiss-Prot -human (%)", 100 * h("lraa","blast_9606_nopfam","MANE_sens_exact_given_assembled"), 95.3)
-chk("L73 StringTie Swiss-Prot -human (%)", 100 * h("stringtie","blast_9606_nopfam","MANE_sens_exact_given_assembled"), 93.8)
-chk("L73 Trinity Swiss-Prot -human (%)", 100 * h("trinity","blast_9606_nopfam","MANE_sens_exact_given_assembled"), 92.0)
+# release rerun (a5b24c3); development values (48c870c) were 1.8/1.1/1.4, 0.9/2.3/2.1, 0.4/0.3/0.4,
+# Pfam 95.3/93.9/92.0 and minus human 95.3/93.8/92.0
+chk("Homology LRAA -human gain, MANE exact given assembled (points)", dh("lraa","blast_9606_nopfam","d_mane_exact_pts"), 4.4)
+chk("Homology StringTie -human gain (points)", dh("stringtie","blast_9606_nopfam","d_mane_exact_pts"), 4.5)
+chk("Homology Trinity -human gain (points)", dh("trinity","blast_9606_nopfam","d_mane_exact_pts"), 4.3)
+chk("Homology LRAA -human gain, MANE compatible (points)", dh("lraa","blast_9606_nopfam","d_mane_compat_pts"), 1.5)
+chk("Homology StringTie -human gain, MANE compatible (points)", dh("stringtie","blast_9606_nopfam","d_mane_compat_pts"), 3.5)
+chk("Homology Trinity -human gain, MANE compatible (points)", dh("trinity","blast_9606_nopfam","d_mane_compat_pts"), 3.3)
+chk("Homology Trinity -human + Pfam gain (points)", dh("trinity","blast_9606_pfam","d_mane_exact_pts"), 4.3)
+sel_only <- readr::read_tsv(data_path("start_classifier", "adoption", "gm12878_trinity_summary.tsv"),
+                            show_col_types = FALSE) %>% filter(label == "MANE_sens_exact_given_assembled")
+chk("Homology Trinity -human + Pfam, selection only (E33, 3a793ff) gain (points)",
+    100 * (as.numeric(sel_only$trinity_final_v7_homology) - as.numeric(sel_only$trinity_final_v7_abinitio)), 2.7)
+check_text("Homology Trinity -human + Pfam equals E33 v7h run", h("trinity","blast_9606_pfam","MANE_sens_exact_given_assembled"),
+           as.numeric(sel_only$trinity_final_v7h_homology))
+chk("Homology LRAA -animals gain (points)", dh("lraa","blast_33208_nopfam","d_mane_exact_pts"), 0.7)
+chk("Homology StringTie -animals gain (points)", dh("stringtie","blast_33208_nopfam","d_mane_exact_pts"), 0.7)
+chk("Homology Trinity -animals gain (points)", dh("trinity","blast_33208_nopfam","d_mane_exact_pts"), 0.7)
+chk("Homology LRAA Pfam alone (%)", 100 * h("lraa","pfam","MANE_sens_exact_given_assembled"), 94.8)
+chk("Homology StringTie Pfam alone (%)", 100 * h("stringtie","pfam","MANE_sens_exact_given_assembled"), 93.3)
+chk("Homology Trinity Pfam alone (%)", 100 * h("trinity","pfam","MANE_sens_exact_given_assembled"), 91.6)
+chk("Homology LRAA Swiss-Prot -human (%)", 100 * h("lraa","blast_9606_nopfam","MANE_sens_exact_given_assembled"), 97.3)
+chk("Homology StringTie Swiss-Prot -human (%)", 100 * h("stringtie","blast_9606_nopfam","MANE_sens_exact_given_assembled"), 96.0)
+chk("Homology Trinity Swiss-Prot -human (%)", 100 * h("trinity","blast_9606_nopfam","MANE_sens_exact_given_assembled"), 93.6)
+chk("Homology LRAA ab initio (%)", 100 * h("lraa","abinitio","MANE_sens_exact_given_assembled"), 92.9)
+chk("Homology StringTie ab initio (%)", 100 * h("stringtie","abinitio","MANE_sens_exact_given_assembled"), 91.5)
+chk("Homology Trinity ab initio (%)", 100 * h("trinity","abinitio","MANE_sens_exact_given_assembled"), 89.3)
 ```
 
 ## Homology to transposable elements retains short unannotated ORFs {#homology-to-transposable-elements}
 
-Source: `data/gm12878/gm12878_homology_primate_retention.txt` (E06; `homology_series_retention.py`,
-Swiss-Prot minus human vs minus primates, BLAST only). Parsed below.
+Source: `data/gm12878/gm12878_homology_primate_retention_v7h.txt` (E06 release rerun;
+`homology_series_retention.py`, Swiss-Prot minus human vs minus primates, BLAST only). Parsed below;
+the development values (`gm12878_homology_primate_retention.txt`) follow.
 
 ```{r retention}
-parse_ret <- function(asm) {
-  i <- which(ret_txt == paste("==", asm))
-  blk <- ret_txt[(i + 1):(i + 4)]
+prot_n <- function(line, prot) {
+  m <- regmatches(line, regexec(sprintf("\\('%s', (\\d+)\\)", prot), line))[[1]]
+  if (length(m) == 2) as.integer(m[2]) else 0L
+}
+parse_ret <- function(asm, txt = ret_txt) {
+  i <- which(txt == paste("==", asm))
+  blk <- txt[(i + 1):(i + 4)]
   n_only <- as.integer(sub("in A only: (\\d+) .*", "\\1", blk[1]))
   novel <- as.integer(sub(".*'novel': (\\d+).*", "\\1", blk[1]))
   short <- as.integer(sub(".*short\\(<100aa\\): (\\d+).*", "\\1", blk[1]))
-  uty <- as.integer(sub(".*\\('UTY_PANTR', (\\d+)\\).*", "\\1", blk[3]))
-  lin1 <- as.integer(sub(".*\\('LIN1_NYCCO', (\\d+)\\).*", "\\1", blk[3]))
   tibble(assembly = asm, only_minus_human = n_only, unannotated = novel, short_lt100 = short,
-         best_hit_UTY_PANTR = uty, best_hit_LIN1_NYCCO = lin1)
+         best_hit_UTY_PANTR = prot_n(blk[3], "UTY_PANTR"), best_hit_LIN1_NYCCO = prot_n(blk[3], "LIN1_NYCCO"),
+         best_hit_LORF2_MOUSE = prot_n(blk[3], "LORF2_MOUSE"))
 }
-ret <- bind_rows(parse_ret("trinity"), parse_ret("stringtie"))
-kable(ret)
+ret <- bind_rows(parse_ret("trinity"), parse_ret("stringtie"), parse_ret("lraa"))
+ret_dev <- bind_rows(parse_ret("trinity", ret_txt_dev), parse_ret("stringtie", ret_txt_dev))
+kable(ret, caption = "Release (a5b24c3)")
+kable(ret_dev, caption = "Development (48c870c)")
 r <- function(a, col) ret[[col]][ret$assembly == a]
 ```
 
@@ -535,7 +574,7 @@ minus primates; `r num(r("trinity","unannotated"))` with no annotated CDS overla
 `r pct(r("trinity","short_lt100") / r("trinity","only_minus_human"), 0)` encode fewer than 100 aa
 (`r num(r("trinity","short_lt100"))`, counted over all `r num(r("trinity","only_minus_human"))`);
 `r num(r("trinity","best_hit_UTY_PANTR"))` have chimpanzee UTY as best hit and
-`r r("trinity","best_hit_LIN1_NYCCO")` a primate LINE-1 ORF1 protein. MANE exact (all MANE):
+`r r("trinity","best_hit_LIN1_NYCCO")` a primate LINE-1 protein (LIN1_NYCCO). MANE exact (all MANE):
 `r sprintf("%.4f", h("trinity","blast_9606_nopfam","MANE_sens_exact"))` (minus human) and
 `r sprintf("%.4f", h("trinity","blast_9443_nopfam","MANE_sens_exact"))` (minus primates). StringTie:
 `r num(r("stringtie","best_hit_UTY_PANTR"))` of `r num(r("stringtie","unannotated"))`.
@@ -543,16 +582,29 @@ These numbers also appear in the Fig. 7d annotation.
 
 `r evidence("E06")`
 
+Transposable-element screen (`pipeline/derive/08_te_screen_check_v7h.sh`, the recipe of PyTD
+`docs/homology_te_screen.md`, d3892b5): ORFs predicted with Swiss-Prot minus human (BLAST only) but not
+ab initio, flagged by best-hit name, by at least half of the CDS in RepeatMasker TEs, or either.
+
+```{r te_screen}
+kable(te_screen)
+```
+
 ```{r chk_ret, include = FALSE}
-check_text("L79 Trinity CDSs only with -human", r("trinity","only_minus_human"), 4981)
-check_text("L80 Trinity unannotated of these", r("trinity","unannotated"), 4692)
-chk("L80 Trinity share < 100 aa (%)", 100 * r("trinity","short_lt100") / r("trinity","only_minus_human"), 95, 0)
-chk("L81 Trinity MANE exact, -human", h("trinity","blast_9606_nopfam","MANE_sens_exact"), 0.3671, 4)
-chk("L81 Trinity MANE exact, -primates", h("trinity","blast_9443_nopfam","MANE_sens_exact"), 0.3671, 4)
-check_text("L82 Trinity best hit UTY_PANTR", r("trinity","best_hit_UTY_PANTR"), 4465)
-check_text("L83 Trinity best hit LINE-1 ORF1", r("trinity","best_hit_LIN1_NYCCO"), 185)
-check_text("L85 StringTie best hit UTY_PANTR", r("stringtie","best_hit_UTY_PANTR"), 1232)
-check_text("L85 StringTie unannotated only with -human", r("stringtie","unannotated"), 1305)
+# release rerun (a5b24c3); development values were 4,981 / 4,692 / 95% / 0.3671 / 0.3671 / 4,465 / 185 / 1,232 of 1,305
+check_text("TE Trinity CDSs only with -human", r("trinity","only_minus_human"), 5127)
+check_text("TE Trinity unannotated of these", r("trinity","unannotated"), 4791)
+chk("TE Trinity share < 100 aa (%)", 100 * r("trinity","short_lt100") / r("trinity","only_minus_human"), 88, 0)
+chk("TE Trinity MANE exact, -human", h("trinity","blast_9606_nopfam","MANE_sens_exact"), 0.3738, 4)
+chk("TE Trinity MANE exact, -primates", h("trinity","blast_9443_nopfam","MANE_sens_exact"), 0.3737, 4)
+check_text("TE Trinity best hit UTY_PANTR", r("trinity","best_hit_UTY_PANTR"), 4555)
+check_text("TE Trinity best hit LINE-1 (LIN1_NYCCO)", r("trinity","best_hit_LIN1_NYCCO"), 201)
+check_text("TE StringTie best hit UTY_PANTR", r("stringtie","best_hit_UTY_PANTR"), 1353)
+check_text("TE StringTie unannotated only with -human", r("stringtie","unannotated"), 1426)
+ts <- function(a, col) te_screen[[col]][te_screen$assembly == a]
+check_text("TE screen Trinity UTY best hit, genome-mapped", ts("trinity","UTY_PANTR_genome_mapped"), 5098)
+check_text("TE screen Trinity UTY flagged by overlap", ts("trinity","UTY_PANTR_flag_by_overlap"), 4970)
+chk("TE screen Trinity UTY flagged share (%)", 100 * ts("trinity","UTY_PANTR_flag_by_overlap") / ts("trinity","UTY_PANTR_genome_mapped"), 97, 0)
 ```
 
 ## Figure 7 {#figure-7}
@@ -565,7 +617,8 @@ Port of `figures/fig7_parameters/make_fig7.py`, with two changes, both to use th
   not overlap). They replace the earlier
   pre-defined-minimum runs from development code. Trinity was run at the default only.
 
-Panels c and d are unchanged (development homology series).
+Panels c and d use the release homology series (PyTD a5b24c3; E06 release rerun); they replace the
+development series (48c870c).
 
 ```{r fig7_panels}
 # (a) start refinement
