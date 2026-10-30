@@ -1572,8 +1572,8 @@ releases, 2012-2026</h1>
 
 
 <p>This notebook supports Supplementary Note 1 of the supplement (<a href="../manuscript/supplement.tex"><code>../manuscript/supplement.tex</code></a>):
-the table of method changes in key releases (Table S7,
-<code>tab:releases</code>), the benchmark of key releases (Table S8,
+the table of method changes in key releases (Table S10,
+<code>tab:releases</code>), the benchmark of key releases (Table S11,
 <code>tab:history</code>) and Fig. S3 (<code>fig:history</code>).
 Provenance: <a href="../evidence/E23_version_history.md">E23</a>
 (release history and runs of the old releases) and <a href="../evidence/E25_final_release_reruns.md">E25</a> (final v7 release
@@ -1642,7 +1642,7 @@ same_dev &lt;- neg %&gt;% filter(label == &quot;cliff_c200&quot;) %&gt;%
 predictions and negatives with a prediction: 0.</p>
 <div id="method-changes-in-key-releases" class="section level2">
 <h2>Method changes in key releases</h2>
-<p>Table S7 (<code>tab:releases</code>) is a reading of the code and
+<p>Table S10 (<code>tab:releases</code>) is a reading of the code and
 change log of each release
 (<code>data/benchmark/history/VERSIONS.md</code>, <a href="../evidence/E23_version_history.md">E23</a>). It has no computed
 values. The release dates in the table:</p>
@@ -4168,7 +4168,7 @@ for (i in seq_len(nrow(quoted))) {
   for (k in c(&quot;sens_stop&quot;, &quot;sens_exact&quot;, &quot;neg_pct&quot;)) {
     v &lt;- m(q$label, q$variant, k)
     digits &lt;- if (k == &quot;neg_pct&quot;) 1 else 3
-    check_text(sprintf(&quot;Table S8 %s %s %s&quot;, q$label, q$variant, k), round(v, digits), q[[k]])
+    check_text(sprintf(&quot;Table S11 %s %s %s&quot;, q$label, q$variant, k), round(v, digits), q[[k]])
   }
 }
 # paragraph after tab:history (supplement.tex)
@@ -4207,505 +4207,505 @@ check_report()</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Table S8 r2012 complete.wRand sens_stop</td>
+<td align="left">Table S11 r2012 complete.wRand sens_stop</td>
 <td align="left">0.935</td>
 <td align="left">0.935</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Table S8 r2012 complete.wRand sens_exact</td>
+<td align="left">Table S11 r2012 complete.wRand sens_exact</td>
 <td align="left">0.666</td>
 <td align="left">0.666</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Table S8 r2012 complete.wRand neg_pct</td>
+<td align="left">Table S11 r2012 complete.wRand neg_pct</td>
 <td align="left">0.1</td>
 <td align="left">0.1</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Table S8 r2012 fragments.wRand sens_stop</td>
+<td align="left">Table S11 r2012 fragments.wRand sens_stop</td>
 <td align="left">0.759</td>
 <td align="left">0.759</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Table S8 r2012 fragments.wRand sens_exact</td>
+<td align="left">Table S11 r2012 fragments.wRand sens_exact</td>
 <td align="left">0.62</td>
 <td align="left">0.62</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Table S8 r2012 fragments.wRand neg_pct</td>
+<td align="left">Table S11 r2012 fragments.wRand neg_pct</td>
 <td align="left">0</td>
 <td align="left">0</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Table S8 r2012 complete.wLnc sens_stop</td>
+<td align="left">Table S11 r2012 complete.wLnc sens_stop</td>
 <td align="left">0.965</td>
 <td align="left">0.965</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Table S8 r2012 complete.wLnc sens_exact</td>
+<td align="left">Table S11 r2012 complete.wLnc sens_exact</td>
 <td align="left">0.618</td>
 <td align="left">0.618</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Table S8 r2012 complete.wLnc neg_pct</td>
+<td align="left">Table S11 r2012 complete.wLnc neg_pct</td>
 <td align="left">16.2</td>
 <td align="left">16.2</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Table S8 r2012 fragments.wLnc sens_stop</td>
+<td align="left">Table S11 r2012 fragments.wLnc sens_stop</td>
 <td align="left">0.781</td>
 <td align="left">0.781</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Table S8 r2012 fragments.wLnc sens_exact</td>
+<td align="left">Table S11 r2012 fragments.wLnc sens_exact</td>
 <td align="left">0.633</td>
 <td align="left">0.633</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Table S8 r2012 fragments.wLnc neg_pct</td>
+<td align="left">Table S11 r2012 fragments.wLnc neg_pct</td>
 <td align="left">15.7</td>
 <td align="left">15.7</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Table S8 v2.0 complete.wRand sens_stop</td>
+<td align="left">Table S11 v2.0 complete.wRand sens_stop</td>
 <td align="left">0.935</td>
 <td align="left">0.935</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Table S8 v2.0 complete.wRand sens_exact</td>
+<td align="left">Table S11 v2.0 complete.wRand sens_exact</td>
 <td align="left">0.667</td>
 <td align="left">0.667</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Table S8 v2.0 complete.wRand neg_pct</td>
+<td align="left">Table S11 v2.0 complete.wRand neg_pct</td>
 <td align="left">0.1</td>
 <td align="left">0.1</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Table S8 v2.0 fragments.wRand sens_stop</td>
+<td align="left">Table S11 v2.0 fragments.wRand sens_stop</td>
 <td align="left">0.764</td>
 <td align="left">0.764</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Table S8 v2.0 fragments.wRand sens_exact</td>
+<td align="left">Table S11 v2.0 fragments.wRand sens_exact</td>
 <td align="left">0.623</td>
 <td align="left">0.623</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Table S8 v2.0 fragments.wRand neg_pct</td>
+<td align="left">Table S11 v2.0 fragments.wRand neg_pct</td>
 <td align="left">0</td>
 <td align="left">0</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Table S8 v2.0 complete.wLnc sens_stop</td>
+<td align="left">Table S11 v2.0 complete.wLnc sens_stop</td>
 <td align="left">0.966</td>
 <td align="left">0.966</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Table S8 v2.0 complete.wLnc sens_exact</td>
+<td align="left">Table S11 v2.0 complete.wLnc sens_exact</td>
 <td align="left">0.618</td>
 <td align="left">0.618</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Table S8 v2.0 complete.wLnc neg_pct</td>
+<td align="left">Table S11 v2.0 complete.wLnc neg_pct</td>
 <td align="left">16.4</td>
 <td align="left">16.4</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Table S8 v2.0 fragments.wLnc sens_stop</td>
+<td align="left">Table S11 v2.0 fragments.wLnc sens_stop</td>
 <td align="left">0.784</td>
 <td align="left">0.784</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Table S8 v2.0 fragments.wLnc sens_exact</td>
+<td align="left">Table S11 v2.0 fragments.wLnc sens_exact</td>
 <td align="left">0.636</td>
 <td align="left">0.636</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Table S8 v2.0 fragments.wLnc neg_pct</td>
+<td align="left">Table S11 v2.0 fragments.wLnc neg_pct</td>
 <td align="left">15.8</td>
 <td align="left">15.8</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Table S8 v4.1.0 complete.wRand sens_stop</td>
+<td align="left">Table S11 v4.1.0 complete.wRand sens_stop</td>
 <td align="left">0.936</td>
 <td align="left">0.936</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Table S8 v4.1.0 complete.wRand sens_exact</td>
+<td align="left">Table S11 v4.1.0 complete.wRand sens_exact</td>
 <td align="left">0.744</td>
 <td align="left">0.744</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Table S8 v4.1.0 complete.wRand neg_pct</td>
+<td align="left">Table S11 v4.1.0 complete.wRand neg_pct</td>
 <td align="left">0.1</td>
 <td align="left">0.1</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Table S8 v4.1.0 fragments.wRand sens_stop</td>
+<td align="left">Table S11 v4.1.0 fragments.wRand sens_stop</td>
 <td align="left">0.757</td>
 <td align="left">0.757</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Table S8 v4.1.0 fragments.wRand sens_exact</td>
+<td align="left">Table S11 v4.1.0 fragments.wRand sens_exact</td>
 <td align="left">0.621</td>
 <td align="left">0.621</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Table S8 v4.1.0 fragments.wRand neg_pct</td>
+<td align="left">Table S11 v4.1.0 fragments.wRand neg_pct</td>
 <td align="left">0</td>
 <td align="left">0</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Table S8 v4.1.0 complete.wLnc sens_stop</td>
+<td align="left">Table S11 v4.1.0 complete.wLnc sens_stop</td>
 <td align="left">0.956</td>
 <td align="left">0.956</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Table S8 v4.1.0 complete.wLnc sens_exact</td>
+<td align="left">Table S11 v4.1.0 complete.wLnc sens_exact</td>
 <td align="left">0.747</td>
 <td align="left">0.747</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Table S8 v4.1.0 complete.wLnc neg_pct</td>
+<td align="left">Table S11 v4.1.0 complete.wLnc neg_pct</td>
 <td align="left">13.4</td>
 <td align="left">13.4</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Table S8 v4.1.0 fragments.wLnc sens_stop</td>
+<td align="left">Table S11 v4.1.0 fragments.wLnc sens_stop</td>
 <td align="left">0.772</td>
 <td align="left">0.772</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Table S8 v4.1.0 fragments.wLnc sens_exact</td>
+<td align="left">Table S11 v4.1.0 fragments.wLnc sens_exact</td>
 <td align="left">0.643</td>
 <td align="left">0.643</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Table S8 v4.1.0 fragments.wLnc neg_pct</td>
+<td align="left">Table S11 v4.1.0 fragments.wLnc neg_pct</td>
 <td align="left">13.3</td>
 <td align="left">13.3</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Table S8 v5.0.0 complete.wRand sens_stop</td>
+<td align="left">Table S11 v5.0.0 complete.wRand sens_stop</td>
 <td align="left">0.946</td>
 <td align="left">0.946</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Table S8 v5.0.0 complete.wRand sens_exact</td>
+<td align="left">Table S11 v5.0.0 complete.wRand sens_exact</td>
 <td align="left">0.748</td>
 <td align="left">0.748</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Table S8 v5.0.0 complete.wRand neg_pct</td>
+<td align="left">Table S11 v5.0.0 complete.wRand neg_pct</td>
 <td align="left">0.3</td>
 <td align="left">0.3</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Table S8 v5.0.0 fragments.wRand sens_stop</td>
+<td align="left">Table S11 v5.0.0 fragments.wRand sens_stop</td>
 <td align="left">0.771</td>
 <td align="left">0.771</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Table S8 v5.0.0 fragments.wRand sens_exact</td>
+<td align="left">Table S11 v5.0.0 fragments.wRand sens_exact</td>
 <td align="left">0.625</td>
 <td align="left">0.625</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Table S8 v5.0.0 fragments.wRand neg_pct</td>
+<td align="left">Table S11 v5.0.0 fragments.wRand neg_pct</td>
 <td align="left">0.1</td>
 <td align="left">0.1</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Table S8 v5.0.0 complete.wLnc sens_stop</td>
+<td align="left">Table S11 v5.0.0 complete.wLnc sens_stop</td>
 <td align="left">0.969</td>
 <td align="left">0.969</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Table S8 v5.0.0 complete.wLnc sens_exact</td>
+<td align="left">Table S11 v5.0.0 complete.wLnc sens_exact</td>
 <td align="left">0.757</td>
 <td align="left">0.757</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Table S8 v5.0.0 complete.wLnc neg_pct</td>
+<td align="left">Table S11 v5.0.0 complete.wLnc neg_pct</td>
 <td align="left">17.9</td>
 <td align="left">17.9</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Table S8 v5.0.0 fragments.wLnc sens_stop</td>
+<td align="left">Table S11 v5.0.0 fragments.wLnc sens_stop</td>
 <td align="left">0.792</td>
 <td align="left">0.792</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Table S8 v5.0.0 fragments.wLnc sens_exact</td>
+<td align="left">Table S11 v5.0.0 fragments.wLnc sens_exact</td>
 <td align="left">0.658</td>
 <td align="left">0.658</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Table S8 v5.0.0 fragments.wLnc neg_pct</td>
+<td align="left">Table S11 v5.0.0 fragments.wLnc neg_pct</td>
 <td align="left">17.6</td>
 <td align="left">17.6</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Table S8 v5.7.1 complete.wRand sens_stop</td>
+<td align="left">Table S11 v5.7.1 complete.wRand sens_stop</td>
 <td align="left">0.946</td>
 <td align="left">0.946</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Table S8 v5.7.1 complete.wRand sens_exact</td>
+<td align="left">Table S11 v5.7.1 complete.wRand sens_exact</td>
 <td align="left">0.758</td>
 <td align="left">0.758</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Table S8 v5.7.1 complete.wRand neg_pct</td>
+<td align="left">Table S11 v5.7.1 complete.wRand neg_pct</td>
 <td align="left">0.3</td>
 <td align="left">0.3</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Table S8 v5.7.1 fragments.wRand sens_stop</td>
+<td align="left">Table S11 v5.7.1 fragments.wRand sens_stop</td>
 <td align="left">0.771</td>
 <td align="left">0.771</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Table S8 v5.7.1 fragments.wRand sens_exact</td>
+<td align="left">Table S11 v5.7.1 fragments.wRand sens_exact</td>
 <td align="left">0.623</td>
 <td align="left">0.623</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Table S8 v5.7.1 fragments.wRand neg_pct</td>
+<td align="left">Table S11 v5.7.1 fragments.wRand neg_pct</td>
 <td align="left">0.1</td>
 <td align="left">0.1</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Table S8 v5.7.1 complete.wLnc sens_stop</td>
+<td align="left">Table S11 v5.7.1 complete.wLnc sens_stop</td>
 <td align="left">0.969</td>
 <td align="left">0.969</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Table S8 v5.7.1 complete.wLnc sens_exact</td>
+<td align="left">Table S11 v5.7.1 complete.wLnc sens_exact</td>
 <td align="left">0.764</td>
 <td align="left">0.764</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Table S8 v5.7.1 complete.wLnc neg_pct</td>
+<td align="left">Table S11 v5.7.1 complete.wLnc neg_pct</td>
 <td align="left">17.9</td>
 <td align="left">17.9</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Table S8 v5.7.1 fragments.wLnc sens_stop</td>
+<td align="left">Table S11 v5.7.1 fragments.wLnc sens_stop</td>
 <td align="left">0.792</td>
 <td align="left">0.792</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Table S8 v5.7.1 fragments.wLnc sens_exact</td>
+<td align="left">Table S11 v5.7.1 fragments.wLnc sens_exact</td>
 <td align="left">0.653</td>
 <td align="left">0.653</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Table S8 v5.7.1 fragments.wLnc neg_pct</td>
+<td align="left">Table S11 v5.7.1 fragments.wLnc neg_pct</td>
 <td align="left">17.6</td>
 <td align="left">17.6</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Table S8 cliff_c200 complete.wRand sens_stop</td>
+<td align="left">Table S11 cliff_c200 complete.wRand sens_stop</td>
 <td align="left">0.957</td>
 <td align="left">0.957</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Table S8 cliff_c200 complete.wRand sens_exact</td>
+<td align="left">Table S11 cliff_c200 complete.wRand sens_exact</td>
 <td align="left">0.897</td>
 <td align="left">0.897</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Table S8 cliff_c200 complete.wRand neg_pct</td>
+<td align="left">Table S11 cliff_c200 complete.wRand neg_pct</td>
 <td align="left">0.5</td>
 <td align="left">0.5</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Table S8 cliff_c200 fragments.wRand sens_stop</td>
+<td align="left">Table S11 cliff_c200 fragments.wRand sens_stop</td>
 <td align="left">0.815</td>
 <td align="left">0.815</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Table S8 cliff_c200 fragments.wRand sens_exact</td>
+<td align="left">Table S11 cliff_c200 fragments.wRand sens_exact</td>
 <td align="left">0.708</td>
 <td align="left">0.708</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Table S8 cliff_c200 fragments.wRand neg_pct</td>
+<td align="left">Table S11 cliff_c200 fragments.wRand neg_pct</td>
 <td align="left">0.1</td>
 <td align="left">0.1</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Table S8 cliff_c200 complete.wLnc sens_stop</td>
+<td align="left">Table S11 cliff_c200 complete.wLnc sens_stop</td>
 <td align="left">0.976</td>
 <td align="left">0.976</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Table S8 cliff_c200 complete.wLnc sens_exact</td>
+<td align="left">Table S11 cliff_c200 complete.wLnc sens_exact</td>
 <td align="left">0.905</td>
 <td align="left">0.905</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Table S8 cliff_c200 complete.wLnc neg_pct</td>
+<td align="left">Table S11 cliff_c200 complete.wLnc neg_pct</td>
 <td align="left">18.9</td>
 <td align="left">18.9</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Table S8 cliff_c200 fragments.wLnc sens_stop</td>
+<td align="left">Table S11 cliff_c200 fragments.wLnc sens_stop</td>
 <td align="left">0.857</td>
 <td align="left">0.857</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Table S8 cliff_c200 fragments.wLnc sens_exact</td>
+<td align="left">Table S11 cliff_c200 fragments.wLnc sens_exact</td>
 <td align="left">0.753</td>
 <td align="left">0.753</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Table S8 cliff_c200 fragments.wLnc neg_pct</td>
+<td align="left">Table S11 cliff_c200 fragments.wLnc neg_pct</td>
 <td align="left">18.6</td>
 <td align="left">18.6</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Table S8 pytd_v7 complete.wRand sens_stop</td>
+<td align="left">Table S11 pytd_v7 complete.wRand sens_stop</td>
 <td align="left">0.964</td>
 <td align="left">0.964</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Table S8 pytd_v7 complete.wRand sens_exact</td>
+<td align="left">Table S11 pytd_v7 complete.wRand sens_exact</td>
 <td align="left">0.899</td>
 <td align="left">0.899</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Table S8 pytd_v7 complete.wRand neg_pct</td>
+<td align="left">Table S11 pytd_v7 complete.wRand neg_pct</td>
 <td align="left">0.3</td>
 <td align="left">0.3</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Table S8 pytd_v7 fragments.wRand sens_stop</td>
+<td align="left">Table S11 pytd_v7 fragments.wRand sens_stop</td>
 <td align="left">0.872</td>
 <td align="left">0.872</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Table S8 pytd_v7 fragments.wRand sens_exact</td>
+<td align="left">Table S11 pytd_v7 fragments.wRand sens_exact</td>
 <td align="left">0.772</td>
 <td align="left">0.772</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Table S8 pytd_v7 fragments.wRand neg_pct</td>
+<td align="left">Table S11 pytd_v7 fragments.wRand neg_pct</td>
 <td align="left">0.2</td>
 <td align="left">0.2</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Table S8 pytd_v7 complete.wLnc sens_stop</td>
+<td align="left">Table S11 pytd_v7 complete.wLnc sens_stop</td>
 <td align="left">0.963</td>
 <td align="left">0.963</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Table S8 pytd_v7 complete.wLnc sens_exact</td>
+<td align="left">Table S11 pytd_v7 complete.wLnc sens_exact</td>
 <td align="left">0.893</td>
 <td align="left">0.893</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Table S8 pytd_v7 complete.wLnc neg_pct</td>
+<td align="left">Table S11 pytd_v7 complete.wLnc neg_pct</td>
 <td align="left">5</td>
 <td align="left">5</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Table S8 pytd_v7 fragments.wLnc sens_stop</td>
+<td align="left">Table S11 pytd_v7 fragments.wLnc sens_stop</td>
 <td align="left">0.858</td>
 <td align="left">0.858</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">Table S8 pytd_v7 fragments.wLnc sens_exact</td>
+<td align="left">Table S11 pytd_v7 fragments.wLnc sens_exact</td>
 <td align="left">0.756</td>
 <td align="left">0.756</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">Table S8 pytd_v7 fragments.wLnc neg_pct</td>
+<td align="left">Table S11 pytd_v7 fragments.wLnc neg_pct</td>
 <td align="left">5.9</td>
 <td align="left">5.9</td>
 <td align="left">TRUE</td>
