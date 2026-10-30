@@ -21,7 +21,7 @@ This notebook supports two manuscript sections:
 - Results, the algorithm: [`results_algorithm.tex`](../manuscript/sections/results_algorithm.tex)
 
 It draws Fig. 1 (`figures/fig1_algorithm.{pdf,png}`), and computes the bundled-presets table
-(Table `tab:presets`), the G+C long-ORF length table (Supplementary Table S1), the Perl/Python
+(Table `tab:presets`), the G+C long-ORF length table (Supplementary Table S7), the Perl/Python
 concordance and run-time numbers, and the frame-contrast retest in Methods.
 
 Data are the final release runs (Perl 41fc5ee, PyTransDecoder 3a793ff; `r evidence("E25")`) wherever a
@@ -179,7 +179,7 @@ pb <- ggplot() +
 ```{r fig1b-table}
 orgs_b %>% transmute(organism = label, `G+C of complete input (%)` = gc,
                      `L* (nt)` = ifelse(is.na(lstar), "rule off (ciliate code)", num(lstar))) %>%
-  kable(caption = "Panel b: benchmark organisms placed on the lookup (step line = Supplementary Table S1)") %>%
+  kable(caption = "Panel b: benchmark organisms placed on the lookup (step line = Supplementary Table S7)") %>%
   kable_styling(full_width = FALSE, font_size = 12)
 ```
 
@@ -297,7 +297,7 @@ Seven presets are distributed (`r nrow(presets)` in the release packages; `r evi
 $L^\ast$ is the 0.999 quantile of ORF lengths in i.i.d. random sequence, simulated in 5% G+C
 steps (`r evidence("E10")`). It rises from `r num(thr$"q0.999"[thr$gc == 25])` nt at 25% G+C to
 `r num(thr$"q0.999"[thr$gc == 80])` nt at 80%. Each level has at least
-`r num(min(thr$n_orfs))` random ORFs. The table below is Supplementary Table S1, with the 2017
+`r num(min(thr$n_orfs))` random ORFs. The table below is Supplementary Table S7, with the 2017
 table it replaces.
 
 ```{r long-orf-table}
@@ -306,7 +306,7 @@ lt <- thr %>% left_join(thr2017 %>% select(gc, q2017 = `q0.999`), by = "gc") %>%
 lt %>% transmute(`G+C (%)` = gc, `random ORFs` = num(n_orfs), `q0.95` = `q0.95`, `q0.99` = `q0.99`,
                  `L* = q0.999 (nt)` = `q0.999`, `q0.9999` = `q0.9999`,
                  `2017 q0.999` = round(q2017), `2017 vs L* (%)` = round(diff_pct, 1)) %>%
-  kable(caption = "Long-ORF length by G+C (Supplementary Table S1)") %>%
+  kable(caption = "Long-ORF length by G+C (Supplementary Table S7)") %>%
   kable_styling(full_width = FALSE, font_size = 12)
 ```
 

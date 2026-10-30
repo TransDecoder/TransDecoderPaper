@@ -1,0 +1,11 @@
+comparison	sample_set	perl_orfs	py_orfs	exact_match	same_stop_diff_start	perl_only	py_only	perl_runtime_sec	py_runtime_sec
+release (Perl 41fc5ee, PyTD 3a793ff)	trinity	737	737	737	0	0	0	158.3	59.3
+release (Perl 41fc5ee, PyTD 3a793ff)	pasa	786	786	786	0	0	0	173.5	61.2
+release (Perl 41fc5ee, PyTD 3a793ff)	stringtie	2584	2584	2584	0	0	0	285.4	95.1
+release (Perl 41fc5ee, PyTD 3a793ff)	supertx	69	69	69	0	0	0	153.4	47.8
+release (Perl 41fc5ee, PyTD 3a793ff)	cufflinks	60	60	60	0	0	0	51.9	19.6
+v6.0.0 (Perl 66d4712) vs first PyTD port (43f4293)	trinity	679	682	663	15	1	4	85.7	31.7
+v6.0.0 (Perl 66d4712) vs first PyTD port (43f4293)	pasa	792	792	725	67	0	0	81.4	28.2
+v6.0.0 (Perl 66d4712) vs first PyTD port (43f4293)	stringtie	3037	3045	2944	71	22	30	133.9	47.7
+v6.0.0 (Perl 66d4712) vs first PyTD port (43f4293)	supertx	117	117	117	0	0	0	71.9	24.9
+v6.0.0 (Perl 66d4712) vs first PyTD port (43f4293)	cufflinks	80	80	76	4	0	0	44.7	14.7

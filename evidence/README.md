@@ -63,8 +63,8 @@ Quick map of decisions and lessons across these records (what was tried, adopted
 | E24 | [Release implementation: decoy rule and presets, Perl = PyTD](E24_release_decoy_rule_presets.md) | in paper (Methods) |
 | E25 | [Final reruns at the release commits](E25_final_release_reruns.md) | in paper |
 | E26 | [Frame contrast: forward frames vs all five other frames](E26_frame_contrast_reverse_frames.md) | in paper (Methods) |
-| E27 | [How the compared methods work](E27_comparator_algorithms.md) | in paper (Background, Table S7) |
-| E28 | [Balanced mixed inputs: complete, 5', 3' and internal partial CDSs](E28_mixed_partial_inputs.md) | in paper (Table 1, Table S9) |
+| E27 | [How the compared methods work](E27_comparator_algorithms.md) | in paper (Background, Supplementary Table S1) |
+| E28 | [Balanced mixed inputs: complete, 5', 3' and internal partial CDSs](E28_mixed_partial_inputs.md) | in paper (Table 1, Supplementary Tables S3, S4) |
 | E29 | [Start placement on 5'-open ORFs; UTR-length prior (not adopted)](E29_five_prime_open_starts.md) | in paper (Start-codon refinement) |
 | E30 | [Simulated GM12878 Trinity assembly benchmark](E30_simulated_trinity_benchmark.md) | in paper (Results, Benchmark; Methods; Supp. Fig. S5) |
 | E31 | [Read-depth ablation of the simulated Trinity benchmark](E31_simtrinity_depth_ablation.md) | in paper (Results, Benchmark; Methods; Supp. Figs. S5-S6) |
@@ -73,3 +73,4 @@ Quick map of decisions and lessons across these records (what was tried, adopted
 | E34 | [Anatomy of missed CDSs (no prediction with the true stop) and of the 5' UTR-vs-coding decision on 5'-open candidates; relaxation counterfactuals](E34_missed_cds_anatomy.md) | not in paper (diagnostic) |
 | E35 | [One-sided Kozak term ("Kozak floor") in the start rule: offline evaluation of 7 variants, ab initio and with the homology start assist](E35_kozak_floor.md) | not in paper (not adopted) |
 | E36 | [Per-transcript alpha in the start rule from transcript / ORF length: descriptive, benchmark-tuned forms with leave-one-organism-out, held-out assemblies and GM12878, ceiling](E36_alpha_by_length.md) | not in paper; deferred to a future version (BH 2026-10-30) |
+| E37 | [Supplementary Tables S1–S8: numbering and the tables built from committed data (Perl/Python sample sets, per-input accuracy, earlier start procedures, L* by G+C, truth sets)](E37_supplementary_tables.md) | in paper (supplement; main-text citations) |

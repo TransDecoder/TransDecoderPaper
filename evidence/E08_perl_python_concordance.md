@@ -1,7 +1,7 @@
 # E08. Perl / Python implementation concordance and runtime
 
 ## Claims supported
-Manuscript: Methods, "Implementations" (`methods_algorithm.tex`, §sec:impl); Supplementary Table S2 (`\todo`).
+Manuscript: Methods, "Implementations" (`methods_algorithm.tex`, §sec:impl); Supplementary Table S2 (built in E37).
 
 1. PyTransDecoder reproduces the Perl algorithm, including tie order.
    - On five test data sets the two give identical ORFs, coding scores and pre-refinement selections.

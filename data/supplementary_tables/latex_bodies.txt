@@ -1,0 +1,58 @@
+% perl_python_sample_sets.tsv
+% release (Perl 41fc5ee, PyTD 3a793ff)
+Trinity & 737 & 737 & 737 & 0 & 0 & 0 & 158 & 59 \\
+PASA & 786 & 786 & 786 & 0 & 0 & 0 & 174 & 61 \\
+StringTie & 2{,}584 & 2{,}584 & 2{,}584 & 0 & 0 & 0 & 285 & 95 \\
+SuperTranscripts & 69 & 69 & 69 & 0 & 0 & 0 & 153 & 48 \\
+Cufflinks & 60 & 60 & 60 & 0 & 0 & 0 & 52 & 20 \\
+% v6.0.0 (Perl 66d4712) vs first PyTD port (43f4293)
+Trinity & 679 & 682 & 663 & 15 & 1 & 4 & 86 & 32 \\
+PASA & 792 & 792 & 725 & 67 & 0 & 0 & 81 & 28 \\
+StringTie & 3{,}037 & 3{,}045 & 2{,}944 & 71 & 22 & 30 & 134 & 48 \\
+SuperTranscripts & 117 & 117 & 117 & 0 & 0 & 0 & 72 & 25 \\
+Cufflinks & 80 & 80 & 76 & 4 & 0 & 0 & 45 & 15 \\
+% benchmark_per_input.tsv: 1207 rows, 15 input types, 8 organisms, 13 runs
+% rows per run: angel 3, borf 105, codan 100, cpat 108, cpc2 105, gmst 105, longest_orf 104, perl_td_v600 104, perl_td_v7 108, prodigal 108, pytd_v7 108, pytd_v7_homology 84, rnasamba 65
+% start_choice_legacy.tsv (exact matches; first ATG, PWM later ATG, v6.0.0, PWM scale corrected, release)
+\textit{P. falciparum} & 5{,}281 & 4{,}823 & 4{,}824 & 4{,}738 & 4{,}708 & 4{,}954 \\
+\textit{T. thermophila} & 26{,}456 & 21{,}439 & 21{,}250 & 14{,}720 & 12{,}502 & 21{,}016 \\
+\textit{S. pombe} & 5{,}100 & 4{,}496 & 4{,}483 & 3{,}880 & 3{,}631 & 4{,}613 \\
+\textit{A. thaliana} & 26{,}867 & 23{,}092 & 22{,}855 & 20{,}295 & 18{,}635 & 23{,}655 \\
+\textit{D. melanogaster} & 13{,}884 & 12{,}197 & 12{,}147 & 10{,}898 & 10{,}448 & 12{,}647 \\
+\textit{M. musculus} & 21{,}409 & 18{,}920 & 18{,}886 & 16{,}751 & 15{,}297 & 19{,}163 \\
+\textit{H. sapiens} & 19{,}167 & 16{,}841 & 16{,}636 & 14{,}277 & 13{,}901 & 17{,}423 \\
+\textit{C. reinhardtii} & 17{,}621 & 12{,}592 & 12{,}661 & 11{,}398 & 11{,}041 & 12{,}891 \\
+median exact F1 & & 0.893 & 0.887 & 0.779 & 0.728 & 0.912 \\
+% seed_start_changes.tsv
+pasa & 792 & 53 & 30 & 61 & 29 & 0 & 0 & 0 & 0 \\
+stringtie & 3{,}037 & 144 & 47 & 111 & 54 & 0 & 0 & 0 & 0 \\
+% long_orf_length_by_gc.tsv
+25 & 85{,}915 & 396 & 447 & 519 & 580 & 465 \\
+30 & 85{,}056 & 408 & 462 & 552 & 621 & 510 \\
+35 & 101{,}458 & 417 & 483 & 573 & 663 & 555 \\
+40 & 115{,}742 & 435 & 507 & 615 & 708 & 590 \\
+45 & 150{,}612 & 456 & 540 & 663 & 768 & 645 \\
+50 & 103{,}782 & 483 & 585 & 726 & 852 & 749 \\
+55 & 200{,}546 & 522 & 639 & 804 & 978 & 797 \\
+60 & 357{,}795 & 570 & 714 & 927 & 1{,}150 & 927 \\
+65 & 584{,}858 & 642 & 822 & 1{,}083 & 1{,}356 & 1{,}086 \\
+70 & 860{,}669 & 750 & 993 & 1{,}347 & 1{,}707 & 1{,}358 \\
+75 & 1{,}121{,}478 & 924 & 1{,}257 & 1{,}746 & 2{,}202 & 1{,}743 \\
+80 & 1{,}264{,}679 & 1{,}233 & 1{,}731 & 2{,}436 & 3{,}153 & 2{,}422 \\
+% benchmark_truth_sets.tsv
+\textit{H. sapiens} & 19{,}367 & 19{,}167 & 18{,}816 & 351 & 18{,}832 & 335 \\
+\textit{M. musculus} & 270{,}228 & 21{,}409 & 20{,}575 & 834 & 20{,}595 & 814 \\
+\textit{D. melanogaster} & 30{,}837 & 13{,}884 & 13{,}367 & 517 & 13{,}467 & 414 \\
+\textit{A. thaliana} & 36{,}572 & 26{,}867 & 25{,}725 & 1{,}142 & 25{,}955 & 912 \\
+\textit{S. pombe} & 5{,}137 & 5{,}100 & 4{,}501 & 599 & 4{,}717 & 383 \\
+\textit{T. thermophila} & 26{,}687 & 26{,}456 & 26{,}177 & 279 & 26{,}140 & 316 \\
+\textit{P. falciparum} & 5{,}356 & 5{,}281 & 4{,}406 & 875 & 4{,}334 & 947 \\
+\textit{C. reinhardtii} & 19{,}527 & 17{,}621 & 17{,}621 & 0 & 17{,}621 & 0 \\
+% human: missing_required_tag=74;seqid_not_in_genome=64;non_ATG_start=37;internal_stop=24;cds_len=1; no 5' UTR 0, no 3' UTR 0
+% mouse: missing_required_tag=158743;not_protein_coding=89844;excluded_tag=102;non_ATG_start=74;internal_stop=25;no_terminal_stop=14;organelle_seqid=13;cds_len=4; no 5' UTR 0, no 3' UTR 0
+% dmel: not_longest_for_gene=16234;internal_stop=502;non_ATG_start=124;cds_len=71;organelle_seqid=13;no_terminal_stop=9; no 5' UTR 0, no 3' UTR 3
+% athal: not_longest_for_gene=9705; no 5' UTR 0, no 3' UTR 0
+% spombe: cds_len=20;not_longest_for_gene=11;non_ATG_start=3;internal_stop=3; no 5' UTR 0, no 3' UTR 0
+% tthermophila: cds_len=151;non_ATG_start=75;internal_stop=5; no 5' UTR 0, no 3' UTR 0
+% pfalciparum: not_longest_for_gene=71;internal_stop=4; no 5' UTR 0, no 3' UTR 0
+% creinhardtii: not_longest_for_gene=1768;non_ACGT=88;no_terminal_stop=24;non_ATG_start=20;cds_len=6; no 5' UTR 0, no 3' UTR 0

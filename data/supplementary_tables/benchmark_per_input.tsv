@@ -1,0 +1,1208 @@
+organism	input	run_label	method	genetic_code_supported	n_truth	n_pred	n_pred_random	tp_stop	tp_exact	fp	fp_random	fn	sensitivity_stop	precision_stop	f1_stop	sensitivity_exact	precision_exact	f1_exact	runtime_sec
+P. falciparum	complete	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	5281	5255	0	5251	4954	4	0	30	0.9943	0.9992	0.9968	0.9381	0.9427	0.9404	128.1
+P. falciparum	complete	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5281	5255	0	5251	4954	4	0	30	0.9943	0.9992	0.9968	0.9381	0.9427	0.9404	275.9
+P. falciparum	complete	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	5281	5263	0	5260	4963	3	0	21	0.996	0.9994	0.9977	0.9398	0.943	0.9414	1221.5
+P. falciparum	complete	perl_td_v600	TransDecoder v6.0.0	yes	5281	5110	0	5110	4738	0	0	171	0.9676	1.0	0.9835	0.8972	0.9272	0.9119	216.0
+P. falciparum	complete	prodigal	Prodigal 2.6.3	yes	5281	5487	0	5264	4762	223	0	17	0.9968	0.9594	0.9777	0.9017	0.8679	0.8845	19.3
+P. falciparum	complete	gmst	GeneMarkS-T 5.1	yes	5281	5115	0	5115	4807	0	0	166	0.9686	1.0	0.984	0.9102	0.9398	0.9248	10.7
+P. falciparum	complete	codan	CodAn 1.1	yes	5281	2934	0	2915	1553	19	0	2366	0.552	0.9935	0.7097	0.2941	0.5293	0.3781	1752.1
+P. falciparum	complete	cpat	CPAT 3.0.5	yes	5281	4657	0	4657	4428	0	0	624	0.8818	1.0	0.9372	0.8385	0.9508	0.8911	23.3
+P. falciparum	complete	cpc2	CPC2 1.0.1	yes	5281	4918	0	4918	4670	0	0	363	0.9313	1.0	0.9644	0.8843	0.9496	0.9158	14.7
+P. falciparum	complete	rnasamba	RNAsamba 0.2.5	yes	5281	5094	0	5094	4844	0	0	187	0.9646	1.0	0.982	0.9173	0.9509	0.9338	36.1
+P. falciparum	complete	borf	Borf 1.2	yes	5281	5110	0	5110	4836	0	0	171	0.9676	1.0	0.9835	0.9157	0.9464	0.9308	19.2
+P. falciparum	complete	longest_orf	longest ORF baseline	yes	5281	5115	0	5115	4664	0	0	166	0.9686	1.0	0.984	0.8832	0.9118	0.8973	
+P. falciparum	complete.unstranded	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	5281	5258	0	5244	4950	14	0	37	0.993	0.9973	0.9952	0.9373	0.9414	0.9394	152.6
+P. falciparum	complete.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5281	5258	0	5244	4950	14	0	37	0.993	0.9973	0.9952	0.9373	0.9414	0.9394	340.3
+P. falciparum	complete.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	5281	5267	0	5256	4961	11	0	25	0.9953	0.9979	0.9966	0.9394	0.9419	0.9407	1478.1
+P. falciparum	complete.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	5281	5114	0	5111	4739	3	0	170	0.9678	0.9994	0.9834	0.8974	0.9267	0.9118	272.2
+P. falciparum	complete.unstranded	prodigal	Prodigal 2.6.3	yes	5281	5804	0	5264	4762	540	0	17	0.9968	0.907	0.9498	0.9017	0.8205	0.8592	25.4
+P. falciparum	complete.unstranded	gmst	GeneMarkS-T 5.1	yes	5281	5115	0	5115	4819	0	0	166	0.9686	1.0	0.984	0.9125	0.9421	0.9271	12.0
+P. falciparum	complete.unstranded	codan	CodAn 1.1	yes	5281	2940	0	2915	1553	25	0	2366	0.552	0.9915	0.7092	0.2941	0.5282	0.3778	3283.5
+P. falciparum	complete.unstranded	cpat	CPAT 3.0.5	yes	5281	4657	0	4656	4428	1	0	625	0.8817	0.9998	0.937	0.8385	0.9508	0.8911	26.3
+P. falciparum	complete.unstranded	cpc2	CPC2 1.0.1	yes	5281	4891	0	4887	4641	4	0	394	0.9254	0.9992	0.9609	0.8788	0.9489	0.9125	18.2
+P. falciparum	complete.unstranded	borf	Borf 1.2	yes	5281	5112	0	5104	4830	8	0	177	0.9665	0.9984	0.9822	0.9146	0.9448	0.9295	29.6
+P. falciparum	complete.unstranded	longest_orf	longest ORF baseline	yes	5281	5118	0	5109	4658	9	0	172	0.9674	0.9982	0.9826	0.882	0.9101	0.8959	
+P. falciparum	complete.unstranded.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	5281	5270	26	5230	4936	40	26	51	0.9903	0.9924	0.9914	0.9347	0.9366	0.9356	163.1
+P. falciparum	complete.unstranded.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5281	5270	26	5230	4936	40	26	51	0.9903	0.9924	0.9914	0.9347	0.9366	0.9356	365.1
+P. falciparum	complete.unstranded.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	5281	5285	26	5249	4954	36	26	32	0.9939	0.9932	0.9936	0.9381	0.9374	0.9377	1526.5
+P. falciparum	complete.unstranded.wRand	perl_td_v600	TransDecoder v6.0.0	yes	5281	5115	1	5111	4739	4	1	170	0.9678	0.9992	0.9833	0.8974	0.9265	0.9117	296.5
+P. falciparum	complete.unstranded.wRand	prodigal	Prodigal 2.6.3	yes	5281	7540	1095	5271	4793	2269	1095	10	0.9981	0.6991	0.8222	0.9076	0.6357	0.7477	33.7
+P. falciparum	complete.unstranded.wRand	gmst	GeneMarkS-T 5.1	yes	5281	5113	0	5112	4760	1	0	169	0.968	0.9998	0.9836	0.9013	0.931	0.9159	26.6
+P. falciparum	complete.unstranded.wRand	codan	CodAn 1.1	yes	5281	2941	1	2915	1553	26	1	2366	0.552	0.9912	0.7091	0.2941	0.5281	0.3778	14456.1
+P. falciparum	complete.unstranded.wRand	cpat	CPAT 3.0.5	yes	5281	4657	0	4656	4428	1	0	625	0.8817	0.9998	0.937	0.8385	0.9508	0.8911	43.0
+P. falciparum	complete.unstranded.wRand	cpc2	CPC2 1.0.1	yes	5281	4896	5	4887	4641	9	5	394	0.9254	0.9982	0.9604	0.8788	0.9479	0.9121	32.5
+P. falciparum	complete.unstranded.wRand	borf	Borf 1.2	yes	5281	5147	35	5104	4830	43	35	177	0.9665	0.9916	0.9789	0.9146	0.9384	0.9264	58.3
+P. falciparum	complete.unstranded.wRand	longest_orf	longest ORF baseline	yes	5281	5157	39	5109	4658	48	39	172	0.9674	0.9907	0.9789	0.882	0.9032	0.8925	
+P. falciparum	complete.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	5281	5265	13	5248	4954	17	13	33	0.9938	0.9968	0.9953	0.9381	0.9409	0.9395	127.5
+P. falciparum	complete.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5281	5265	13	5248	4954	17	13	33	0.9938	0.9968	0.9953	0.9381	0.9409	0.9395	294.6
+P. falciparum	complete.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	5281	5275	13	5260	4965	15	13	21	0.996	0.9972	0.9966	0.9402	0.9412	0.9407	1268.9
+P. falciparum	complete.wRand	perl_td_v600	TransDecoder v6.0.0	yes	5281	5112	2	5110	4738	2	2	171	0.9676	0.9996	0.9834	0.8972	0.9268	0.9118	275.6
+P. falciparum	complete.wRand	prodigal	Prodigal 2.6.3	yes	5281	6085	343	5267	4762	818	343	14	0.9973	0.8656	0.9268	0.9017	0.7826	0.8379	35.8
+P. falciparum	complete.wRand	gmst	GeneMarkS-T 5.1	yes	5281	5113	0	5113	4749	0	0	168	0.9682	1.0	0.9838	0.8993	0.9288	0.9138	25.0
+P. falciparum	complete.wRand	codan	CodAn 1.1	yes	5281	2935	1	2915	1553	20	1	2366	0.552	0.9932	0.7096	0.2941	0.5291	0.378	7618.6
+P. falciparum	complete.wRand	cpat	CPAT 3.0.5	yes	5281	4657	0	4657	4428	0	0	624	0.8818	1.0	0.9372	0.8385	0.9508	0.8911	26.1
+P. falciparum	complete.wRand	cpc2	CPC2 1.0.1	yes	5281	4918	0	4918	4670	0	0	363	0.9313	1.0	0.9644	0.8843	0.9496	0.9158	20.1
+P. falciparum	complete.wRand	rnasamba	RNAsamba 0.2.5	yes	5281	5111	17	5094	4844	17	17	187	0.9646	0.9967	0.9804	0.9173	0.9478	0.9323	49.3
+P. falciparum	complete.wRand	borf	Borf 1.2	yes	5281	5120	10	5110	4836	10	10	171	0.9676	0.998	0.9826	0.9157	0.9445	0.9299	30.4
+P. falciparum	complete.wRand	longest_orf	longest ORF baseline	yes	5281	5126	11	5115	4664	11	11	166	0.9686	0.9979	0.983	0.8832	0.9099	0.8963	
+P. falciparum	complete_fullutr	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	5281	5239	0	5220	4929	19	0	61	0.9884	0.9964	0.9924	0.9333	0.9408	0.9371	136.7
+P. falciparum	complete_fullutr	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5281	5239	0	5220	4929	19	0	61	0.9884	0.9964	0.9924	0.9333	0.9408	0.9371	309.5
+P. falciparum	complete_fullutr	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	5281	5255	0	5232	4942	23	0	49	0.9907	0.9956	0.9932	0.9358	0.9404	0.9381	1212.3
+P. falciparum	complete_fullutr	perl_td_v600	TransDecoder v6.0.0	yes	5281	5233	0	5111	4754	122	0	170	0.9678	0.9767	0.9722	0.9002	0.9085	0.9043	230.9
+P. falciparum	complete_fullutr	prodigal	Prodigal 2.6.3	yes	5281	5684	0	5266	4785	418	0	15	0.9972	0.9265	0.9605	0.9061	0.8418	0.8728	22.6
+P. falciparum	complete_fullutr	gmst	GeneMarkS-T 5.1	yes	5281	5119	0	5105	4790	14	0	176	0.9667	0.9973	0.9817	0.907	0.9357	0.9212	12.2
+P. falciparum	complete_fullutr	codan	CodAn 1.1	yes	5281	2939	0	2913	1552	26	0	2368	0.5516	0.9912	0.7088	0.2939	0.5281	0.3776	2022.9
+P. falciparum	complete_fullutr	cpat	CPAT 3.0.5	yes	5281	4657	0	4650	4421	7	0	631	0.8805	0.9985	0.9358	0.8372	0.9493	0.8897	22.5
+P. falciparum	complete_fullutr	cpc2	CPC2 1.0.1	yes	5281	4874	0	4866	4621	8	0	415	0.9214	0.9984	0.9583	0.875	0.9481	0.9101	12.5
+P. falciparum	complete_fullutr	rnasamba	RNAsamba 0.2.5	yes	5281	4892	0	4880	4636	12	0	401	0.9241	0.9975	0.9594	0.8779	0.9477	0.9114	39.0
+P. falciparum	complete_fullutr	borf	Borf 1.2	yes	5281	5115	0	5100	4842	15	0	181	0.9657	0.9971	0.9811	0.9169	0.9466	0.9315	20.5
+P. falciparum	complete_fullutr	longest_orf	longest ORF baseline	yes	5281	5120	0	5104	4669	16	0	177	0.9665	0.9969	0.9814	0.8841	0.9119	0.8978	
+P. falciparum	complete_fullutr.unstranded	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	5281	5250	0	5198	4908	52	0	83	0.9843	0.9901	0.9872	0.9294	0.9349	0.9321	171.0
+P. falciparum	complete_fullutr.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5281	5250	0	5198	4908	52	0	83	0.9843	0.9901	0.9872	0.9294	0.9349	0.9321	386.2
+P. falciparum	complete_fullutr.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	5281	5262	0	5183	4895	79	0	98	0.9814	0.985	0.9832	0.9269	0.9303	0.9286	1523.0
+P. falciparum	complete_fullutr.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	5281	5368	0	5110	4753	258	0	171	0.9676	0.9519	0.9597	0.9	0.8854	0.8927	264.9
+P. falciparum	complete_fullutr.unstranded	prodigal	Prodigal 2.6.3	yes	5281	6327	0	5266	4785	1061	0	15	0.9972	0.8323	0.9073	0.9061	0.7563	0.8244	23.1
+P. falciparum	complete_fullutr.unstranded	gmst	GeneMarkS-T 5.1	yes	5281	5127	0	5093	4796	34	0	188	0.9644	0.9934	0.9787	0.9082	0.9354	0.9216	12.0
+P. falciparum	complete_fullutr.unstranded	codan	CodAn 1.1	yes	5281	2955	0	2911	1552	44	0	2370	0.5512	0.9851	0.7069	0.2939	0.5252	0.3769	3843.6
+P. falciparum	complete_fullutr.unstranded	cpat	CPAT 3.0.5	yes	5281	4664	0	4645	4417	19	0	636	0.8796	0.9959	0.9341	0.8364	0.947	0.8883	27.7
+P. falciparum	complete_fullutr.unstranded	cpc2	CPC2 1.0.1	yes	5281	4859	0	4832	4586	27	0	449	0.915	0.9944	0.9531	0.8684	0.9438	0.9045	21.7
+P. falciparum	complete_fullutr.unstranded	borf	Borf 1.2	yes	5281	5125	0	5081	4823	44	0	200	0.9621	0.9914	0.9766	0.9133	0.9411	0.927	29.1
+P. falciparum	complete_fullutr.unstranded	longest_orf	longest ORF baseline	yes	5281	5131	0	5084	4649	47	0	197	0.9627	0.9908	0.9766	0.8803	0.9061	0.893	
+P. falciparum	fragments	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	5281	4958	0	4942	4445	16	0	339	0.9358	0.9968	0.9653	0.8417	0.8965	0.8682	77.4
+P. falciparum	fragments	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5281	4958	0	4942	4445	16	0	339	0.9358	0.9968	0.9653	0.8417	0.8965	0.8682	160.5
+P. falciparum	fragments	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	5281	4978	0	4964	4460	14	0	317	0.94	0.9972	0.9677	0.8445	0.8959	0.8695	558.7
+P. falciparum	fragments	perl_td_v600	TransDecoder v6.0.0	yes	5281	4130	0	4130	3709	0	0	1151	0.782	1.0	0.8777	0.7023	0.8981	0.7882	160.8
+P. falciparum	fragments	prodigal	Prodigal 2.6.3	yes	5281	5270	0	5157	4878	113	0	124	0.9765	0.9786	0.9775	0.9237	0.9256	0.9247	9.0
+P. falciparum	fragments	gmst	GeneMarkS-T 5.1	yes	5281	4152	0	4152	3915	0	0	1129	0.7862	1.0	0.8803	0.7413	0.9429	0.8301	10.5
+P. falciparum	fragments	codan	CodAn 1.1	yes	5281	2210	0	2203	1743	7	0	3078	0.4172	0.9968	0.5882	0.3301	0.7887	0.4654	1137.4
+P. falciparum	fragments	cpat	CPAT 3.0.5	yes	5281	2815	0	2806	1520	9	0	2475	0.5313	0.9968	0.6932	0.2878	0.54	0.3755	10.2
+P. falciparum	fragments	cpc2	CPC2 1.0.1	yes	5281	2313	0	2309	812	4	0	2972	0.4372	0.9983	0.6081	0.1538	0.3511	0.2139	6.2
+P. falciparum	fragments	rnasamba	RNAsamba 0.2.5	yes	5281	3107	0	3098	1709	9	0	2183	0.5866	0.9971	0.7387	0.3236	0.55	0.4075	30.7
+P. falciparum	fragments	borf	Borf 1.2	yes	5281	3974	0	3970	2765	4	0	1311	0.7518	0.999	0.8579	0.5236	0.6958	0.5975	10.9
+P. falciparum	fragments	longest_orf	longest ORF baseline	yes	5281	4142	0	4139	3919	3	0	1142	0.7838	0.9993	0.8785	0.7421	0.9462	0.8318	
+P. falciparum	fragments.unstranded	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	5281	4954	0	4903	4417	51	0	378	0.9284	0.9897	0.9581	0.8364	0.8916	0.8631	95.3
+P. falciparum	fragments.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5281	4954	0	4903	4417	51	0	378	0.9284	0.9897	0.9581	0.8364	0.8916	0.8631	201.1
+P. falciparum	fragments.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	5281	4979	0	4939	4440	40	0	342	0.9352	0.992	0.9628	0.8407	0.8917	0.8655	698.6
+P. falciparum	fragments.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	5281	4124	0	4115	3683	9	0	1166	0.7792	0.9978	0.8751	0.6974	0.8931	0.7832	148.8
+P. falciparum	fragments.unstranded	prodigal	Prodigal 2.6.3	yes	5281	5453	0	5157	4877	296	0	124	0.9765	0.9457	0.9609	0.9235	0.8944	0.9087	10.1
+P. falciparum	fragments.unstranded	gmst	GeneMarkS-T 5.1	yes	5281	4162	0	4152	3804	10	0	1129	0.7862	0.9976	0.8794	0.7203	0.914	0.8057	8.7
+P. falciparum	fragments.unstranded	codan	CodAn 1.1	yes	5281	2225	0	2201	1741	24	0	3080	0.4168	0.9892	0.5865	0.3297	0.7825	0.4639	2328.9
+P. falciparum	fragments.unstranded	cpat	CPAT 3.0.5	yes	5281	2819	0	2803	1519	16	0	2478	0.5308	0.9943	0.6921	0.2876	0.5388	0.3751	13.5
+P. falciparum	fragments.unstranded	cpc2	CPC2 1.0.1	yes	5281	2189	0	2183	734	6	0	3098	0.4134	0.9973	0.5845	0.139	0.3353	0.1965	12.3
+P. falciparum	fragments.unstranded	borf	Borf 1.2	yes	5281	3987	0	3964	2760	23	0	1317	0.7506	0.9942	0.8554	0.5226	0.6922	0.5956	15.7
+P. falciparum	fragments.unstranded	longest_orf	longest ORF baseline	yes	5281	4158	0	4130	3910	28	0	1151	0.782	0.9933	0.8751	0.7404	0.9404	0.8285	
+P. falciparum	fragments.unstranded.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	5281	4966	15	4900	4414	66	15	381	0.9279	0.9867	0.9564	0.8358	0.8888	0.8615	96.1
+P. falciparum	fragments.unstranded.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5281	4966	15	4900	4414	66	15	381	0.9279	0.9867	0.9564	0.8358	0.8888	0.8615	205.7
+P. falciparum	fragments.unstranded.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	5281	4992	15	4937	4438	55	15	344	0.9349	0.989	0.9612	0.8404	0.889	0.864	714.4
+P. falciparum	fragments.unstranded.wRand	perl_td_v600	TransDecoder v6.0.0	yes	5281	4125	1	4115	3683	10	1	1166	0.7792	0.9976	0.875	0.6974	0.8928	0.7831	149.0
+P. falciparum	fragments.unstranded.wRand	prodigal	Prodigal 2.6.3	yes	5281	6536	713	5191	4924	1345	713	90	0.983	0.7942	0.8786	0.9324	0.7534	0.8334	13.1
+P. falciparum	fragments.unstranded.wRand	gmst	GeneMarkS-T 5.1	yes	5281	4125	0	4118	3633	7	0	1163	0.7798	0.9983	0.8756	0.6879	0.8807	0.7725	14.0
+P. falciparum	fragments.unstranded.wRand	codan	CodAn 1.1	yes	5281	2231	6	2201	1741	30	6	3080	0.4168	0.9866	0.586	0.3297	0.7804	0.4635	10598.2
+P. falciparum	fragments.unstranded.wRand	cpat	CPAT 3.0.5	yes	5281	2819	0	2803	1519	16	0	2478	0.5308	0.9943	0.6921	0.2876	0.5388	0.3751	21.1
+P. falciparum	fragments.unstranded.wRand	cpc2	CPC2 1.0.1	yes	5281	2191	2	2183	734	8	2	3098	0.4134	0.9963	0.5843	0.139	0.335	0.1965	14.0
+P. falciparum	fragments.unstranded.wRand	borf	Borf 1.2	yes	5281	3995	8	3964	2760	31	8	1317	0.7506	0.9922	0.8547	0.5226	0.6909	0.5951	30.9
+P. falciparum	fragments.unstranded.wRand	longest_orf	longest ORF baseline	yes	5281	4166	8	4130	3910	36	8	1151	0.782	0.9914	0.8744	0.7404	0.9386	0.8278	
+P. falciparum	fragments.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	5281	4950	10	4925	4439	25	10	356	0.9326	0.9949	0.9628	0.8406	0.8968	0.8678	80.3
+P. falciparum	fragments.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5281	4950	10	4925	4439	25	10	356	0.9326	0.9949	0.9628	0.8406	0.8968	0.8678	168.4
+P. falciparum	fragments.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	5281	4976	10	4952	4456	24	10	329	0.9377	0.9952	0.9656	0.8438	0.8955	0.8689	568.3
+P. falciparum	fragments.wRand	perl_td_v600	TransDecoder v6.0.0	yes	5281	4121	0	4121	3703	0	0	1160	0.7803	1.0	0.8766	0.7012	0.8986	0.7877	137.1
+P. falciparum	fragments.wRand	prodigal	Prodigal 2.6.3	yes	5281	5845	368	5194	4927	651	368	87	0.9835	0.8886	0.9337	0.933	0.8429	0.8857	12.4
+P. falciparum	fragments.wRand	gmst	GeneMarkS-T 5.1	yes	5281	4122	0	4122	3827	0	0	1159	0.7805	1.0	0.8767	0.7247	0.9284	0.814	14.9
+P. falciparum	fragments.wRand	codan	CodAn 1.1	yes	5281	2218	8	2203	1743	15	8	3078	0.4172	0.9932	0.5875	0.3301	0.7858	0.4649	5605.7
+P. falciparum	fragments.wRand	cpat	CPAT 3.0.5	yes	5281	2815	0	2806	1520	9	0	2475	0.5313	0.9968	0.6932	0.2878	0.54	0.3755	14.3
+P. falciparum	fragments.wRand	cpc2	CPC2 1.0.1	yes	5281	2313	0	2309	812	4	0	2972	0.4372	0.9983	0.6081	0.1538	0.3511	0.2139	11.8
+P. falciparum	fragments.wRand	rnasamba	RNAsamba 0.2.5	yes	5281	3123	16	3098	1709	25	16	2183	0.5866	0.992	0.7373	0.3236	0.5472	0.4067	41.5
+P. falciparum	fragments.wRand	borf	Borf 1.2	yes	5281	3986	12	3970	2765	16	12	1311	0.7518	0.996	0.8568	0.5236	0.6937	0.5967	19.6
+P. falciparum	fragments.wRand	longest_orf	longest ORF baseline	yes	5281	4155	13	4139	3919	16	13	1142	0.7838	0.9961	0.8773	0.7421	0.9432	0.8306	
+P. falciparum	fragments_mixed_t1	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	5275	5231	0	5223	4693	8	0	52	0.9901	0.9985	0.9943	0.8897	0.8972	0.8934	96.3
+P. falciparum	fragments_mixed_t1	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5275	5231	0	5223	4693	8	0	52	0.9901	0.9985	0.9943	0.8897	0.8972	0.8934	217.8
+P. falciparum	fragments_mixed_t1	perl_td_v600	TransDecoder v6.0.0	yes	5275	4645	0	4645	4166	0	0	630	0.8806	1.0	0.9365	0.7898	0.8969	0.8399	168.7
+P. falciparum	fragments_mixed_t1	prodigal	Prodigal 2.6.3	yes	5275	5327	0	5212	4943	115	0	63	0.9881	0.9784	0.9832	0.9371	0.9279	0.9325	12.5
+P. falciparum	fragments_mixed_t1	gmst	GeneMarkS-T 5.1	yes	5275	4650	0	4650	4418	0	0	625	0.8815	1.0	0.937	0.8375	0.9501	0.8903	9.3
+P. falciparum	fragments_mixed_t1	codan	CodAn 1.1	yes	5275	2695	0	2679	1938	16	0	2596	0.5079	0.9941	0.6723	0.3674	0.7191	0.4863	1305.4
+P. falciparum	fragments_mixed_t1	cpat	CPAT 3.0.5	yes	5275	3594	0	3583	1986	11	0	1692	0.6792	0.9969	0.808	0.3765	0.5526	0.4479	9.5
+P. falciparum	fragments_mixed_t1	cpc2	CPC2 1.0.1	yes	5275	3069	0	3067	1685	2	0	2208	0.5814	0.9993	0.7351	0.3194	0.549	0.4039	5.9
+P. falciparum	fragments_mixed_t1	rnasamba	RNAsamba 0.2.5	yes	5275	3923	0	3900	2055	23	0	1375	0.7393	0.9941	0.848	0.3896	0.5238	0.4468	25.3
+P. falciparum	fragments_mixed_t1	borf	Borf 1.2	yes	5275	4536	0	4534	3208	2	0	741	0.8595	0.9996	0.9243	0.6082	0.7072	0.654	10.5
+P. falciparum	fragments_mixed_t1	longest_orf	longest ORF baseline	yes	5275	5275	0	5267	5017	8	0	8	0.9985	0.9985	0.9985	0.9511	0.9511	0.9511	
+P. falciparum	fragments_mixed_t2	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	5277	5226	0	5217	4685	9	0	60	0.9886	0.9983	0.9934	0.8878	0.8965	0.8921	98.3
+P. falciparum	fragments_mixed_t2	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5277	5226	0	5217	4685	9	0	60	0.9886	0.9983	0.9934	0.8878	0.8965	0.8921	224.2
+P. falciparum	fragments_mixed_t2	perl_td_v600	TransDecoder v6.0.0	yes	5277	4602	0	4602	4125	0	0	675	0.8721	1.0	0.9317	0.7817	0.8963	0.8351	180.6
+P. falciparum	fragments_mixed_t2	prodigal	Prodigal 2.6.3	yes	5277	5357	0	5228	4976	129	0	49	0.9907	0.9759	0.9833	0.943	0.9289	0.9359	12.5
+P. falciparum	fragments_mixed_t2	gmst	GeneMarkS-T 5.1	yes	5277	4613	0	4613	4394	0	0	664	0.8742	1.0	0.9329	0.8327	0.9525	0.8886	9.7
+P. falciparum	fragments_mixed_t2	codan	CodAn 1.1	yes	5277	2670	0	2656	1948	14	0	2621	0.5033	0.9948	0.6684	0.3691	0.7296	0.4902	1286.0
+P. falciparum	fragments_mixed_t2	cpat	CPAT 3.0.5	yes	5277	3575	0	3569	2012	6	0	1708	0.6763	0.9983	0.8064	0.3813	0.5628	0.4546	9.3
+P. falciparum	fragments_mixed_t2	cpc2	CPC2 1.0.1	yes	5277	3056	0	3054	1714	2	0	2223	0.5787	0.9993	0.733	0.3248	0.5609	0.4114	5.9
+P. falciparum	fragments_mixed_t2	rnasamba	RNAsamba 0.2.5	yes	5277	3892	0	3868	2073	24	0	1409	0.733	0.9938	0.8437	0.3928	0.5326	0.4522	22.7
+P. falciparum	fragments_mixed_t2	borf	Borf 1.2	yes	5277	4486	0	4484	3195	2	0	793	0.8497	0.9996	0.9186	0.6055	0.7122	0.6545	11.4
+P. falciparum	fragments_mixed_t2	longest_orf	longest ORF baseline	yes	5277	5276	0	5261	5021	15	0	16	0.997	0.9972	0.9971	0.9515	0.9517	0.9516	
+P. falciparum	fragments_mixed_t3	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	5278	5232	0	5228	4717	4	0	50	0.9905	0.9992	0.9949	0.8937	0.9016	0.8976	97.6
+P. falciparum	fragments_mixed_t3	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5278	5232	0	5228	4717	4	0	50	0.9905	0.9992	0.9949	0.8937	0.9016	0.8976	219.9
+P. falciparum	fragments_mixed_t3	perl_td_v600	TransDecoder v6.0.0	yes	5278	4626	0	4626	4085	0	0	652	0.8765	1.0	0.9342	0.774	0.8831	0.8249	168.6
+P. falciparum	fragments_mixed_t3	prodigal	Prodigal 2.6.3	yes	5278	5351	0	5227	4954	124	0	51	0.9903	0.9768	0.9835	0.9386	0.9258	0.9322	12.2
+P. falciparum	fragments_mixed_t3	gmst	GeneMarkS-T 5.1	yes	5278	4632	0	4632	4410	0	0	646	0.8776	1.0	0.9348	0.8355	0.9521	0.89	9.4
+P. falciparum	fragments_mixed_t3	codan	CodAn 1.1	yes	5278	2691	0	2675	1941	16	0	2603	0.5068	0.9941	0.6714	0.3678	0.7213	0.4871	1326.1
+P. falciparum	fragments_mixed_t3	cpat	CPAT 3.0.5	yes	5278	3590	0	3588	2016	2	0	1690	0.6798	0.9994	0.8092	0.382	0.5616	0.4547	9.9
+P. falciparum	fragments_mixed_t3	cpc2	CPC2 1.0.1	yes	5278	3082	0	3082	1709	0	0	2196	0.5839	1.0	0.7373	0.3238	0.5545	0.4089	6.0
+P. falciparum	fragments_mixed_t3	rnasamba	RNAsamba 0.2.5	yes	5278	3908	0	3883	2063	25	0	1395	0.7357	0.9936	0.8454	0.3909	0.5279	0.4492	23.1
+P. falciparum	fragments_mixed_t3	borf	Borf 1.2	yes	5278	4495	0	4495	3176	0	0	783	0.8516	1.0	0.9199	0.6017	0.7066	0.65	14.0
+P. falciparum	fragments_mixed_t3	longest_orf	longest ORF baseline	yes	5278	5277	0	5271	5031	6	0	7	0.9987	0.9989	0.9988	0.9532	0.9534	0.9533	
+T. thermophila	complete	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	26456	23979	0	23541	21016	438	0	2915	0.8898	0.9817	0.9335	0.7944	0.8764	0.8334	576.7
+T. thermophila	complete	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26456	23979	0	23541	21016	438	0	2915	0.8898	0.9817	0.9335	0.7944	0.8764	0.8334	1619.9
+T. thermophila	complete	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	26456	24134	0	23646	21116	488	0	2810	0.8938	0.9798	0.9348	0.7982	0.8749	0.8348	5399.7
+T. thermophila	complete	perl_td_v600	TransDecoder v6.0.0	yes	26456	25435	0	24591	14720	844	0	1865	0.9295	0.9668	0.9478	0.5564	0.5787	0.5673	725.9
+T. thermophila	complete	prodigal	Prodigal 2.6.3	yes	26456	30826	0	24501	11321	6325	0	1955	0.9261	0.7948	0.8555	0.4279	0.3673	0.3953	68.3
+T. thermophila	complete	gmst	GeneMarkS-T 5.1	no	26456	1958	0	112	20	1846	0	26344	0.0042	0.0572	0.0079	0.0008	0.0102	0.0014	44.9
+T. thermophila	complete	codan	CodAn 1.1	no	26456	3665	0	229	23	3436	0	26227	0.0087	0.0625	0.0152	0.0009	0.0063	0.0015	74839.7
+T. thermophila	complete	cpat	CPAT 3.0.5	yes	26456	21204	0	21070	20275	134	0	5386	0.7964	0.9937	0.8842	0.7664	0.9562	0.8508	95.9
+T. thermophila	complete	cpc2	CPC2 1.0.1	no	26456	1541	0	92	15	1449	0	26364	0.0035	0.0597	0.0066	0.0006	0.0097	0.0011	33.4
+T. thermophila	complete	rnasamba	RNAsamba 0.2.5	no	26456	3612	0	214	24	3398	0	26242	0.0081	0.0592	0.0142	0.0009	0.0066	0.0016	86.6
+T. thermophila	complete	borf	Borf 1.2	no	26456	2142	0	117	22	2025	0	26339	0.0044	0.0546	0.0082	0.0008	0.0103	0.0015	46.9
+T. thermophila	complete	longest_orf	longest ORF baseline	yes	26456	25952	0	25187	12294	765	0	1269	0.952	0.9705	0.9612	0.4647	0.4737	0.4692	
+T. thermophila	complete.unstranded	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	26456	23893	0	23282	20788	611	0	3174	0.88	0.9744	0.9248	0.7858	0.87	0.8258	958.7
+T. thermophila	complete.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26456	23893	0	23282	20788	611	0	3174	0.88	0.9744	0.9248	0.7858	0.87	0.8258	2899.7
+T. thermophila	complete.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	26456	24085	0	23443	20943	642	0	3013	0.8861	0.9733	0.9277	0.7916	0.8695	0.8288	9624.2
+T. thermophila	complete.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	26456	25719	0	24141	14747	1578	0	2315	0.9125	0.9386	0.9254	0.5574	0.5734	0.5653	1191.9
+T. thermophila	complete.unstranded	prodigal	Prodigal 2.6.3	yes	26456	34495	0	24546	11362	9949	0	1910	0.9278	0.7116	0.8054	0.4295	0.3294	0.3728	69.3
+T. thermophila	complete.unstranded	gmst	GeneMarkS-T 5.1	no	26456	2233	0	113	20	2120	0	26343	0.0043	0.0506	0.0079	0.0008	0.009	0.0014	47.5
+T. thermophila	complete.unstranded	codan	CodAn 1.1	no	26456	3836	0	223	23	3613	0	26233	0.0084	0.0581	0.0147	0.0009	0.006	0.0015	176138.8
+T. thermophila	complete.unstranded	cpat	CPAT 3.0.5	yes	26456	21285	0	20877	20086	408	0	5579	0.7891	0.9808	0.8746	0.7592	0.9437	0.8415	127.1
+T. thermophila	complete.unstranded	cpc2	CPC2 1.0.1	no	26456	1521	0	85	16	1436	0	26371	0.0032	0.0559	0.0061	0.0006	0.0105	0.0011	58.2
+T. thermophila	complete.unstranded	borf	Borf 1.2	no	26456	2712	0	115	22	2597	0	26341	0.0043	0.0424	0.0079	0.0008	0.0081	0.0015	68.4
+T. thermophila	complete.unstranded	longest_orf	longest ORF baseline	yes	26456	26280	0	23407	11129	2873	0	3049	0.8848	0.8907	0.8877	0.4207	0.4235	0.4221	
+T. thermophila	complete.unstranded.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	26456	23943	84	23265	20772	678	84	3191	0.8794	0.9717	0.9232	0.7852	0.8676	0.8243	1904.3
+T. thermophila	complete.unstranded.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26456	23943	84	23265	20772	678	84	3191	0.8794	0.9717	0.9232	0.7852	0.8676	0.8243	5703.2
+T. thermophila	complete.unstranded.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	26456	24181	123	23428	20929	753	123	3028	0.8855	0.9689	0.9253	0.7911	0.8655	0.8266	16285.9
+T. thermophila	complete.unstranded.wRand	perl_td_v600	TransDecoder v6.0.0	yes	26456	61573	35854	24141	14747	37432	35854	2315	0.9125	0.3921	0.5485	0.5574	0.2395	0.335	1888.6
+T. thermophila	complete.unstranded.wRand	prodigal	Prodigal 2.6.3	yes	26456	114944	80449	24546	11362	90398	80449	1910	0.9278	0.2135	0.3472	0.4295	0.0988	0.1607	125.7
+T. thermophila	complete.unstranded.wRand	gmst	GeneMarkS-T 5.1	no	26456	2267	12	112	21	2155	12	26344	0.0042	0.0494	0.0078	0.0008	0.0093	0.0015	109.4
+T. thermophila	complete.unstranded.wRand	cpat	CPAT 3.0.5	yes	26456	24660	3375	20877	20086	3783	3375	5579	0.7891	0.8466	0.8168	0.7592	0.8145	0.7859	198.5
+T. thermophila	complete.unstranded.wRand	cpc2	CPC2 1.0.1	no	26456	1544	23	85	16	1459	23	26371	0.0032	0.0551	0.0061	0.0006	0.0104	0.0011	102.3
+T. thermophila	complete.unstranded.wRand	borf	Borf 1.2	no	26456	2976	264	115	22	2861	264	26341	0.0043	0.0386	0.0078	0.0008	0.0074	0.0015	123.1
+T. thermophila	complete.unstranded.wRand	longest_orf	longest ORF baseline	yes	26456	52342	26062	23407	11129	28935	26062	3049	0.8848	0.4472	0.5941	0.4207	0.2126	0.2825	
+T. thermophila	complete.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	26456	23939	49	23464	20947	475	49	2992	0.8869	0.9802	0.9312	0.7918	0.875	0.8313	1062.1
+T. thermophila	complete.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26456	23939	49	23464	20947	475	49	2992	0.8869	0.9802	0.9312	0.7918	0.875	0.8313	3483.8
+T. thermophila	complete.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	26456	24122	61	23583	21062	539	61	2873	0.8914	0.9777	0.9325	0.7961	0.8731	0.8329	10641.2
+T. thermophila	complete.wRand	perl_td_v600	TransDecoder v6.0.0	yes	26456	47163	21916	24458	14631	22705	21916	1998	0.9245	0.5186	0.6644	0.553	0.3102	0.3975	1166.0
+T. thermophila	complete.wRand	prodigal	Prodigal 2.6.3	yes	26456	71176	40350	24501	11321	46675	40350	1955	0.9261	0.3442	0.5019	0.4279	0.1591	0.2319	100.4
+T. thermophila	complete.wRand	gmst	GeneMarkS-T 5.1	no	26456	1968	4	113	21	1855	4	26343	0.0043	0.0574	0.008	0.0008	0.0107	0.0015	93.5
+T. thermophila	complete.wRand	codan	CodAn 1.1	no	26456	3672	7	229	23	3443	7	26227	0.0087	0.0624	0.0152	0.0009	0.0063	0.0015	368582.0
+T. thermophila	complete.wRand	cpat	CPAT 3.0.5	yes	26456	23065	1861	21070	20275	1995	1861	5386	0.7964	0.9135	0.851	0.7664	0.879	0.8188	128.3
+T. thermophila	complete.wRand	cpc2	CPC2 1.0.1	no	26456	1557	16	92	15	1465	16	26364	0.0035	0.0591	0.0066	0.0006	0.0096	0.0011	54.1
+T. thermophila	complete.wRand	rnasamba	RNAsamba 0.2.5	no	26456	3853	241	214	24	3639	241	26242	0.0081	0.0555	0.0141	0.0009	0.0062	0.0016	150.5
+T. thermophila	complete.wRand	borf	Borf 1.2	no	26456	2276	134	117	22	2159	134	26339	0.0044	0.0514	0.0081	0.0008	0.0097	0.0015	62.0
+T. thermophila	complete.wRand	longest_orf	longest ORF baseline	yes	26456	50438	24486	25187	12294	25251	24486	1269	0.952	0.4994	0.6551	0.4647	0.2437	0.3198	
+T. thermophila	complete_fullutr	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	26456	23853	0	23343	20908	510	0	3113	0.8823	0.9786	0.928	0.7903	0.8765	0.8312	601.3
+T. thermophila	complete_fullutr	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26456	23853	0	23343	20908	510	0	3113	0.8823	0.9786	0.928	0.7903	0.8765	0.8312	1740.8
+T. thermophila	complete_fullutr	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	26456	24042	0	23455	21016	587	0	3001	0.8866	0.9756	0.9289	0.7944	0.8741	0.8323	5593.7
+T. thermophila	complete_fullutr	perl_td_v600	TransDecoder v6.0.0	yes	26456	27575	0	24558	15168	3017	0	1898	0.9283	0.8906	0.909	0.5733	0.5501	0.5615	735.8
+T. thermophila	complete_fullutr	prodigal	Prodigal 2.6.3	yes	26456	33068	0	24497	11719	8571	0	1959	0.926	0.7408	0.8231	0.443	0.3544	0.3938	68.8
+T. thermophila	complete_fullutr	gmst	GeneMarkS-T 5.1	no	26456	1967	0	112	20	1855	0	26344	0.0042	0.0569	0.0079	0.0008	0.0102	0.0014	50.0
+T. thermophila	complete_fullutr	codan	CodAn 1.1	no	26456	3698	0	229	23	3469	0	26227	0.0087	0.0619	0.0152	0.0009	0.0062	0.0015	84067.7
+T. thermophila	complete_fullutr	cpat	CPAT 3.0.5	yes	26456	21299	0	21044	20128	255	0	5412	0.7954	0.988	0.8813	0.7608	0.945	0.843	101.3
+T. thermophila	complete_fullutr	cpc2	CPC2 1.0.1	no	26456	1515	0	88	14	1427	0	26368	0.0033	0.0581	0.0063	0.0005	0.0092	0.001	40.5
+T. thermophila	complete_fullutr	rnasamba	RNAsamba 0.2.5	no	26456	3574	0	207	25	3367	0	26249	0.0078	0.0579	0.0138	0.0009	0.007	0.0017	83.0
+T. thermophila	complete_fullutr	borf	Borf 1.2	no	26456	2153	0	117	22	2036	0	26339	0.0044	0.0543	0.0082	0.0008	0.0102	0.0015	43.1
+T. thermophila	complete_fullutr	longest_orf	longest ORF baseline	yes	26456	26043	0	24914	12543	1129	0	1542	0.9417	0.9566	0.9491	0.4741	0.4816	0.4778	
+T. thermophila	complete_fullutr.unstranded	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	26456	23861	0	23120	20677	741	0	3336	0.8739	0.9689	0.919	0.7816	0.8666	0.8219	998.8
+T. thermophila	complete_fullutr.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26456	23861	0	23120	20677	741	0	3336	0.8739	0.9689	0.919	0.7816	0.8666	0.8219	2966.5
+T. thermophila	complete_fullutr.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	26456	24081	0	23258	20812	823	0	3198	0.8791	0.9658	0.9204	0.7867	0.8642	0.8236	8293.9
+T. thermophila	complete_fullutr.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	26456	28373	0	24134	15359	4239	0	2322	0.9122	0.8506	0.8803	0.5805	0.5413	0.5603	1123.2
+T. thermophila	complete_fullutr.unstranded	prodigal	Prodigal 2.6.3	yes	26456	38855	0	24514	11752	14341	0	1942	0.9266	0.6309	0.7507	0.4442	0.3025	0.3599	69.5
+T. thermophila	complete_fullutr.unstranded	gmst	GeneMarkS-T 5.1	no	26456	2243	0	113	20	2130	0	26343	0.0043	0.0504	0.0079	0.0008	0.0089	0.0014	47.7
+T. thermophila	complete_fullutr.unstranded	codan	CodAn 1.1	no	26456	3880	0	224	23	3656	0	26232	0.0085	0.0577	0.0148	0.0009	0.0059	0.0015	175892.2
+T. thermophila	complete_fullutr.unstranded	cpat	CPAT 3.0.5	yes	26456	21449	0	20825	19916	624	0	5631	0.7872	0.9709	0.8694	0.7528	0.9285	0.8315	140.9
+T. thermophila	complete_fullutr.unstranded	cpc2	CPC2 1.0.1	no	26456	1480	0	83	15	1397	0	26373	0.0031	0.0561	0.0059	0.0006	0.0101	0.0011	69.1
+T. thermophila	complete_fullutr.unstranded	borf	Borf 1.2	no	26456	2743	0	115	22	2628	0	26341	0.0043	0.0419	0.0079	0.0008	0.008	0.0015	79.8
+T. thermophila	complete_fullutr.unstranded	longest_orf	longest ORF baseline	yes	26456	26340	0	23042	11293	3298	0	3414	0.871	0.8748	0.8729	0.4269	0.4287	0.4278	
+T. thermophila	fragments	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	26456	21512	0	21282	18213	230	0	5174	0.8044	0.9893	0.8873	0.6884	0.8466	0.7594	258.7
+T. thermophila	fragments	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26456	21512	0	21282	18213	230	0	5174	0.8044	0.9893	0.8873	0.6884	0.8466	0.7594	757.6
+T. thermophila	fragments	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	26456	21944	0	21695	18535	249	0	4761	0.82	0.9887	0.8965	0.7006	0.8447	0.7659	3090.2
+T. thermophila	fragments	perl_td_v600	TransDecoder v6.0.0	yes	26456	21401	0	20956	14871	445	0	5500	0.7921	0.9792	0.8758	0.5621	0.6949	0.6215	361.5
+T. thermophila	fragments	prodigal	Prodigal 2.6.3	yes	26456	26844	0	23168	16317	3676	0	3288	0.8757	0.8631	0.8693	0.6168	0.6078	0.6123	51.1
+T. thermophila	fragments	gmst	GeneMarkS-T 5.1	no	26456	744	0	99	26	645	0	26357	0.0037	0.1331	0.0073	0.001	0.0349	0.0019	34.2
+T. thermophila	fragments	codan	CodAn 1.1	no	26456	2708	0	291	117	2417	0	26165	0.011	0.1075	0.02	0.0044	0.0432	0.008	56428.9
+T. thermophila	fragments	cpat	CPAT 3.0.5	yes	26456	10980	0	10729	6029	251	0	15727	0.4055	0.9771	0.5732	0.2279	0.5491	0.3221	34.3
+T. thermophila	fragments	cpc2	CPC2 1.0.1	no	26456	483	0	29	1	454	0	26427	0.0011	0.06	0.0022	0.0	0.0021	0.0001	16.3
+T. thermophila	fragments	rnasamba	RNAsamba 0.2.5	no	26456	1959	0	285	36	1674	0	26171	0.0108	0.1455	0.0201	0.0014	0.0184	0.0025	75.2
+T. thermophila	fragments	borf	Borf 1.2	no	26456	805	0	101	19	704	0	26355	0.0038	0.1255	0.0074	0.0007	0.0236	0.0014	19.7
+T. thermophila	fragments	longest_orf	longest ORF baseline	yes	26456	22472	0	20496	14154	1976	0	5960	0.7747	0.9121	0.8378	0.535	0.6299	0.5786	
+T. thermophila	fragments.unstranded	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	26456	21337	0	20856	17916	481	0	5600	0.7883	0.9775	0.8728	0.6772	0.8397	0.7497	428.6
+T. thermophila	fragments.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26456	21337	0	20856	17916	481	0	5600	0.7883	0.9775	0.8728	0.6772	0.8397	0.7497	1251.7
+T. thermophila	fragments.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	26456	21814	0	21359	18313	455	0	5097	0.8073	0.9791	0.885	0.6922	0.8395	0.7588	3877.6
+T. thermophila	fragments.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	26456	22072	0	20789	14745	1283	0	5667	0.7858	0.9419	0.8568	0.5573	0.668	0.6077	493.7
+T. thermophila	fragments.unstranded	prodigal	Prodigal 2.6.3	yes	26456	29734	0	23058	16244	6676	0	3398	0.8716	0.7755	0.8207	0.614	0.5463	0.5782	50.1
+T. thermophila	fragments.unstranded	gmst	GeneMarkS-T 5.1	no	26456	837	0	99	26	738	0	26357	0.0037	0.1183	0.0073	0.001	0.0311	0.0019	34.4
+T. thermophila	fragments.unstranded	codan	CodAn 1.1	no	26456	3034	0	274	113	2760	0	26182	0.0104	0.0903	0.0186	0.0043	0.0372	0.0077	138047.5
+T. thermophila	fragments.unstranded	cpat	CPAT 3.0.5	yes	26456	11121	0	10601	5992	520	0	15855	0.4007	0.9532	0.5642	0.2265	0.5388	0.3189	56.7
+T. thermophila	fragments.unstranded	cpc2	CPC2 1.0.1	no	26456	478	0	26	1	452	0	26430	0.001	0.0544	0.0019	0.0	0.0021	0.0001	26.8
+T. thermophila	fragments.unstranded	borf	Borf 1.2	no	26456	1040	0	97	18	943	0	26359	0.0037	0.0933	0.0071	0.0007	0.0173	0.0013	38.9
+T. thermophila	fragments.unstranded	longest_orf	longest ORF baseline	yes	26456	23877	0	18006	12101	5871	0	8450	0.6806	0.7541	0.7155	0.4574	0.5068	0.4808	
+T. thermophila	fragments.unstranded.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	26456	21160	124	20605	17704	555	124	5851	0.7788	0.9738	0.8655	0.6692	0.8367	0.7436	801.4
+T. thermophila	fragments.unstranded.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26456	21160	124	20605	17704	555	124	5851	0.7788	0.9738	0.8655	0.6692	0.8367	0.7436	2440.3
+T. thermophila	fragments.unstranded.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	26456	21727	147	21169	18156	558	147	5287	0.8002	0.9743	0.8787	0.6863	0.8356	0.7536	6395.5
+T. thermophila	fragments.unstranded.wRand	perl_td_v600	TransDecoder v6.0.0	yes	26456	35423	13351	20789	14745	14634	13351	5667	0.7858	0.5869	0.6719	0.5573	0.4163	0.4766	766.0
+T. thermophila	fragments.unstranded.wRand	prodigal	Prodigal 2.6.3	yes	26456	73087	43064	22959	16137	50128	43064	3497	0.8678	0.3141	0.4613	0.61	0.2208	0.3242	68.1
+T. thermophila	fragments.unstranded.wRand	gmst	GeneMarkS-T 5.1	no	26456	828	2	101	25	727	2	26355	0.0038	0.122	0.0074	0.0009	0.0302	0.0018	66.9
+T. thermophila	fragments.unstranded.wRand	codan	CodAn 1.1	no	26456	3148	114	274	113	2874	114	26182	0.0104	0.087	0.0185	0.0043	0.0359	0.0076	224902.0
+T. thermophila	fragments.unstranded.wRand	cpat	CPAT 3.0.5	yes	26456	12046	925	10601	5992	1445	925	15855	0.4007	0.88	0.5507	0.2265	0.4974	0.3113	100.4
+T. thermophila	fragments.unstranded.wRand	cpc2	CPC2 1.0.1	no	26456	485	7	26	1	459	7	26430	0.001	0.0536	0.0019	0.0	0.0021	0.0001	53.3
+T. thermophila	fragments.unstranded.wRand	borf	Borf 1.2	no	26456	1133	93	97	18	1036	93	26359	0.0037	0.0856	0.007	0.0007	0.0159	0.0013	73.2
+T. thermophila	fragments.unstranded.wRand	longest_orf	longest ORF baseline	yes	26456	46610	22733	18006	12101	28604	22733	8450	0.6806	0.3863	0.4929	0.4574	0.2596	0.3312	
+T. thermophila	fragments.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	26456	21424	114	21099	18075	325	114	5357	0.7975	0.9848	0.8813	0.6832	0.8437	0.755	471.9
+T. thermophila	fragments.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26456	21424	114	21099	18075	325	114	5357	0.7975	0.9848	0.8813	0.6832	0.8437	0.755	1426.5
+T. thermophila	fragments.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	26456	21903	126	21544	18424	359	126	4912	0.8143	0.9836	0.891	0.6964	0.8412	0.762	3584.3
+T. thermophila	fragments.wRand	perl_td_v600	TransDecoder v6.0.0	yes	26456	32084	10683	20958	14869	11126	10683	5498	0.7922	0.6532	0.716	0.562	0.4634	0.508	493.7
+T. thermophila	fragments.wRand	prodigal	Prodigal 2.6.3	yes	26456	48248	21247	23104	16235	25144	21247	3352	0.8733	0.4789	0.6185	0.6137	0.3365	0.4346	64.2
+T. thermophila	fragments.wRand	gmst	GeneMarkS-T 5.1	no	26456	731	0	99	26	632	0	26357	0.0037	0.1354	0.0073	0.001	0.0356	0.0019	66.3
+T. thermophila	fragments.wRand	codan	CodAn 1.1	no	26456	2773	65	291	117	2482	65	26165	0.011	0.1049	0.0199	0.0044	0.0422	0.008	110273.4
+T. thermophila	fragments.wRand	cpat	CPAT 3.0.5	yes	26456	11462	482	10729	6029	733	482	15727	0.4055	0.936	0.5659	0.2279	0.526	0.318	62.7
+T. thermophila	fragments.wRand	cpc2	CPC2 1.0.1	no	26456	486	3	29	1	457	3	26427	0.0011	0.0597	0.0022	0.0	0.0021	0.0001	35.2
+T. thermophila	fragments.wRand	rnasamba	RNAsamba 0.2.5	no	26456	2331	372	285	36	2046	372	26171	0.0108	0.1223	0.0198	0.0014	0.0154	0.0025	135.5
+T. thermophila	fragments.wRand	borf	Borf 1.2	no	26456	859	54	101	19	758	54	26355	0.0038	0.1176	0.0074	0.0007	0.0221	0.0014	37.3
+T. thermophila	fragments.wRand	longest_orf	longest ORF baseline	yes	26456	41346	18874	20496	14154	20850	18874	5960	0.7747	0.4957	0.6046	0.535	0.3423	0.4175	
+T. thermophila	fragments_mixed_t1	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	26377	22979	0	22739	19454	240	0	3638	0.8621	0.9896	0.9214	0.7375	0.8466	0.7883	387.8
+T. thermophila	fragments_mixed_t1	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26377	22979	0	22739	19454	240	0	3638	0.8621	0.9896	0.9214	0.7375	0.8466	0.7883	1093.3
+T. thermophila	fragments_mixed_t1	perl_td_v600	TransDecoder v6.0.0	yes	26377	23157	0	22694	15637	463	0	3683	0.8604	0.98	0.9163	0.5928	0.6753	0.6314	527.8
+T. thermophila	fragments_mixed_t1	prodigal	Prodigal 2.6.3	yes	26377	27612	0	24281	17589	3331	0	2096	0.9205	0.8794	0.8995	0.6668	0.637	0.6516	61.7
+T. thermophila	fragments_mixed_t1	cpat	CPAT 3.0.5	yes	26377	15360	0	15202	8862	158	0	11175	0.5763	0.9897	0.7285	0.336	0.577	0.4247	47.0
+T. thermophila	fragments_mixed_t1	longest_orf	longest ORF baseline	yes	26377	26374	0	24995	18323	1379	0	1382	0.9476	0.9477	0.9477	0.6947	0.6947	0.6947	
+T. thermophila	fragments_mixed_t2	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	26362	23032	0	22775	19448	257	0	3587	0.8639	0.9888	0.9222	0.7377	0.8444	0.7875	388.9
+T. thermophila	fragments_mixed_t2	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26362	23032	0	22775	19448	257	0	3587	0.8639	0.9888	0.9222	0.7377	0.8444	0.7875	1068.6
+T. thermophila	fragments_mixed_t2	perl_td_v600	TransDecoder v6.0.0	yes	26362	23127	0	22647	16613	480	0	3715	0.8591	0.9792	0.9152	0.6302	0.7183	0.6714	578.3
+T. thermophila	fragments_mixed_t2	prodigal	Prodigal 2.6.3	yes	26362	27670	0	24278	17609	3392	0	2084	0.9209	0.8774	0.8987	0.668	0.6364	0.6518	61.6
+T. thermophila	fragments_mixed_t2	cpat	CPAT 3.0.5	yes	26362	15320	0	15145	8944	175	0	11217	0.5745	0.9886	0.7267	0.3393	0.5838	0.4292	47.2
+T. thermophila	fragments_mixed_t2	longest_orf	longest ORF baseline	yes	26362	26359	0	24968	18326	1391	0	1394	0.9471	0.9472	0.9472	0.6952	0.6952	0.6952	
+T. thermophila	fragments_mixed_t3	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	26372	22979	0	22735	19424	244	0	3637	0.8621	0.9894	0.9214	0.7365	0.8453	0.7872	390.2
+T. thermophila	fragments_mixed_t3	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26372	22979	0	22735	19424	244	0	3637	0.8621	0.9894	0.9214	0.7365	0.8453	0.7872	1142.4
+T. thermophila	fragments_mixed_t3	perl_td_v600	TransDecoder v6.0.0	yes	26372	23130	0	22671	16150	459	0	3701	0.8597	0.9802	0.916	0.6124	0.6982	0.6525	522.8
+T. thermophila	fragments_mixed_t3	prodigal	Prodigal 2.6.3	yes	26372	27727	0	24328	17570	3399	0	2044	0.9225	0.8774	0.8994	0.6662	0.6337	0.6495	61.3
+T. thermophila	fragments_mixed_t3	cpat	CPAT 3.0.5	yes	26372	15339	0	15139	8912	200	0	11233	0.5741	0.987	0.7259	0.3379	0.581	0.4273	46.7
+T. thermophila	fragments_mixed_t3	longest_orf	longest ORF baseline	yes	26372	26367	0	24992	18269	1375	0	1380	0.9477	0.9479	0.9478	0.6927	0.6929	0.6928	
+S. pombe	complete	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	5100	4969	0	4969	4613	0	0	131	0.9743	1.0	0.987	0.9045	0.9284	0.9163	96.6
+S. pombe	complete	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5100	4969	0	4969	4613	0	0	131	0.9743	1.0	0.987	0.9045	0.9284	0.9163	215.4
+S. pombe	complete	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	5100	5002	0	5001	4645	1	0	99	0.9806	0.9998	0.9901	0.9108	0.9286	0.9196	563.3
+S. pombe	complete	perl_td_v600	TransDecoder v6.0.0	yes	5100	4841	0	4841	3880	0	0	259	0.9492	1.0	0.9739	0.7608	0.8015	0.7806	153.2
+S. pombe	complete	prodigal	Prodigal 2.6.3	yes	5100	5431	0	5019	3581	412	0	81	0.9841	0.9241	0.9532	0.7022	0.6594	0.6801	11.2
+S. pombe	complete	gmst	GeneMarkS-T 5.1	yes	5100	4846	0	4843	4078	3	0	257	0.9496	0.9994	0.9739	0.7996	0.8415	0.82	9.5
+S. pombe	complete	codan	CodAn 1.1	yes	5100	4824	0	4824	4395	0	0	276	0.9459	1.0	0.9722	0.8618	0.9111	0.8857	1409.2
+S. pombe	complete	cpat	CPAT 3.0.5	yes	5100	4664	0	4662	4617	2	0	438	0.9141	0.9996	0.9549	0.9053	0.9899	0.9457	11.8
+S. pombe	complete	cpc2	CPC2 1.0.1	yes	5100	4754	0	4754	4706	0	0	346	0.9322	1.0	0.9649	0.9227	0.9899	0.9551	7.7
+S. pombe	complete	rnasamba	RNAsamba 0.2.5	yes	5100	5032	0	5029	4977	3	0	71	0.9861	0.9994	0.9927	0.9759	0.9891	0.9824	34.3
+S. pombe	complete	borf	Borf 1.2	yes	5100	4866	0	4865	4797	1	0	235	0.9539	0.9998	0.9763	0.9406	0.9858	0.9627	13.4
+S. pombe	complete	longest_orf	longest ORF baseline	yes	5100	4884	0	4883	3569	1	0	217	0.9575	0.9998	0.9782	0.6998	0.7308	0.7149	
+S. pombe	complete.unstranded	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	5100	4937	0	4925	4582	12	0	175	0.9657	0.9976	0.9814	0.8984	0.9281	0.913	114.4
+S. pombe	complete.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5100	4937	0	4925	4582	12	0	175	0.9657	0.9976	0.9814	0.8984	0.9281	0.913	276.5
+S. pombe	complete.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	5100	4991	0	4981	4636	10	0	119	0.9767	0.998	0.9872	0.909	0.9289	0.9188	659.6
+S. pombe	complete.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	5100	4842	0	4836	3876	6	0	264	0.9482	0.9988	0.9728	0.76	0.8005	0.7797	161.6
+S. pombe	complete.unstranded	prodigal	Prodigal 2.6.3	yes	5100	5908	0	5018	3579	890	0	82	0.9839	0.8494	0.9117	0.7018	0.6058	0.6503	11.4
+S. pombe	complete.unstranded	gmst	GeneMarkS-T 5.1	yes	5100	4846	0	4840	4328	6	0	260	0.949	0.9988	0.9733	0.8486	0.8931	0.8703	10.0
+S. pombe	complete.unstranded	codan	CodAn 1.1	yes	5100	4829	0	4822	4394	7	0	278	0.9455	0.9986	0.9713	0.8616	0.9099	0.8851	2592.9
+S. pombe	complete.unstranded	cpat	CPAT 3.0.5	yes	5100	4666	0	4659	4614	7	0	441	0.9135	0.9985	0.9541	0.9047	0.9889	0.9449	21.1
+S. pombe	complete.unstranded	cpc2	CPC2 1.0.1	yes	5100	4714	0	4705	4660	9	0	395	0.9225	0.9981	0.9588	0.9137	0.9885	0.9497	12.6
+S. pombe	complete.unstranded	borf	Borf 1.2	yes	5100	4868	0	4845	4777	23	0	255	0.95	0.9953	0.9721	0.9367	0.9813	0.9585	15.8
+S. pombe	complete.unstranded	longest_orf	longest ORF baseline	yes	5100	4886	0	4863	3560	23	0	237	0.9535	0.9953	0.974	0.698	0.7286	0.713	
+S. pombe	complete.unstranded.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	5100	4943	20	4911	4568	32	20	189	0.9629	0.9935	0.978	0.8957	0.9241	0.9097	151.7
+S. pombe	complete.unstranded.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5100	4943	20	4911	4568	32	20	189	0.9629	0.9935	0.978	0.8957	0.9241	0.9097	359.0
+S. pombe	complete.unstranded.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	5100	5007	20	4977	4632	30	20	123	0.9759	0.994	0.9849	0.9082	0.9251	0.9166	776.6
+S. pombe	complete.unstranded.wRand	perl_td_v600	TransDecoder v6.0.0	yes	5100	4895	53	4836	3876	59	53	264	0.9482	0.9879	0.9677	0.76	0.7918	0.7756	174.9
+S. pombe	complete.unstranded.wRand	prodigal	Prodigal 2.6.3	yes	5100	10464	3905	5058	3651	5406	3905	42	0.9918	0.4834	0.65	0.7159	0.3489	0.4692	19.5
+S. pombe	complete.unstranded.wRand	gmst	GeneMarkS-T 5.1	yes	5100	4886	42	4838	4341	48	42	262	0.9486	0.9902	0.969	0.8512	0.8885	0.8694	18.2
+S. pombe	complete.unstranded.wRand	codan	CodAn 1.1	yes	5100	4911	82	4822	4394	89	82	278	0.9455	0.9819	0.9633	0.8616	0.8947	0.8778	9529.3
+S. pombe	complete.unstranded.wRand	cpat	CPAT 3.0.5	yes	5100	4679	13	4659	4614	20	13	441	0.9135	0.9957	0.9529	0.9047	0.9861	0.9437	36.4
+S. pombe	complete.unstranded.wRand	cpc2	CPC2 1.0.1	yes	5100	4739	25	4705	4660	34	25	395	0.9225	0.9928	0.9564	0.9137	0.9833	0.9473	23.0
+S. pombe	complete.unstranded.wRand	borf	Borf 1.2	yes	5100	5111	243	4845	4777	266	243	255	0.95	0.948	0.949	0.9367	0.9347	0.9357	34.4
+S. pombe	complete.unstranded.wRand	longest_orf	longest ORF baseline	yes	5100	5183	297	4863	3560	320	297	237	0.9535	0.9383	0.9458	0.698	0.6869	0.6924	
+S. pombe	complete.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	5100	4983	25	4958	4604	25	25	142	0.9722	0.995	0.9834	0.9027	0.9239	0.9132	115.9
+S. pombe	complete.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5100	4983	25	4958	4604	25	25	142	0.9722	0.995	0.9834	0.9027	0.9239	0.9132	278.7
+S. pombe	complete.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	5100	5026	26	4999	4645	27	26	101	0.9802	0.9946	0.9874	0.9108	0.9242	0.9174	661.5
+S. pombe	complete.wRand	perl_td_v600	TransDecoder v6.0.0	yes	5100	4864	23	4841	3880	23	23	259	0.9492	0.9953	0.9717	0.7608	0.7977	0.7788	167.1
+S. pombe	complete.wRand	prodigal	Prodigal 2.6.3	yes	5100	7716	1889	5058	3652	2658	1889	42	0.9918	0.6555	0.7893	0.7161	0.4733	0.5699	19.4
+S. pombe	complete.wRand	gmst	GeneMarkS-T 5.1	yes	5100	4866	24	4840	4082	26	24	260	0.949	0.9947	0.9713	0.8004	0.8389	0.8192	17.7
+S. pombe	complete.wRand	codan	CodAn 1.1	yes	5100	4863	39	4824	4395	39	39	276	0.9459	0.992	0.9684	0.8618	0.9038	0.8823	4995.0
+S. pombe	complete.wRand	cpat	CPAT 3.0.5	yes	5100	4669	5	4662	4617	7	5	438	0.9141	0.9985	0.9544	0.9053	0.9889	0.9452	20.8
+S. pombe	complete.wRand	cpc2	CPC2 1.0.1	yes	5100	4757	3	4754	4706	3	3	346	0.9322	0.9994	0.9646	0.9227	0.9893	0.9549	15.8
+S. pombe	complete.wRand	rnasamba	RNAsamba 0.2.5	yes	5100	5706	674	5029	4977	677	674	71	0.9861	0.8814	0.9308	0.9759	0.8722	0.9212	43.4
+S. pombe	complete.wRand	borf	Borf 1.2	yes	5100	4981	115	4865	4797	116	115	235	0.9539	0.9767	0.9652	0.9406	0.9631	0.9517	17.5
+S. pombe	complete.wRand	longest_orf	longest ORF baseline	yes	5100	5021	137	4883	3569	138	137	217	0.9575	0.9725	0.9649	0.6998	0.7108	0.7053	
+S. pombe	complete_fullutr	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	5100	4943	0	4921	4574	22	0	179	0.9649	0.9955	0.98	0.8969	0.9253	0.9109	82.6
+S. pombe	complete_fullutr	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5100	4943	0	4921	4574	22	0	179	0.9649	0.9955	0.98	0.8969	0.9253	0.9109	191.7
+S. pombe	complete_fullutr	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	5100	4996	0	4976	4627	20	0	124	0.9757	0.996	0.9857	0.9073	0.9261	0.9166	565.4
+S. pombe	complete_fullutr	perl_td_v600	TransDecoder v6.0.0	yes	5100	4925	0	4839	3806	86	0	261	0.9488	0.9825	0.9654	0.7463	0.7728	0.7593	164.6
+S. pombe	complete_fullutr	prodigal	Prodigal 2.6.3	yes	5100	5557	0	5020	3586	537	0	80	0.9843	0.9034	0.9421	0.7031	0.6453	0.673	12.7
+S. pombe	complete_fullutr	gmst	GeneMarkS-T 5.1	yes	5100	4849	0	4826	4088	23	0	274	0.9463	0.9953	0.9701	0.8016	0.8431	0.8218	10.2
+S. pombe	complete_fullutr	codan	CodAn 1.1	yes	5100	4839	0	4818	4396	21	0	282	0.9447	0.9957	0.9695	0.862	0.9085	0.8846	1458.2
+S. pombe	complete_fullutr	cpat	CPAT 3.0.5	yes	5100	4674	0	4657	4612	17	0	443	0.9131	0.9964	0.9529	0.9043	0.9867	0.9437	15.5
+S. pombe	complete_fullutr	cpc2	CPC2 1.0.1	yes	5100	4707	0	4697	4649	10	0	403	0.921	0.9979	0.9579	0.9116	0.9877	0.9481	9.5
+S. pombe	complete_fullutr	rnasamba	RNAsamba 0.2.5	yes	5100	5029	0	5005	4953	24	0	95	0.9814	0.9952	0.9883	0.9712	0.9849	0.978	31.4
+S. pombe	complete_fullutr	borf	Borf 1.2	yes	5100	4872	0	4852	4789	20	0	248	0.9514	0.9959	0.9731	0.939	0.983	0.9605	9.2
+S. pombe	complete_fullutr	longest_orf	longest ORF baseline	yes	5100	4890	0	4869	3566	21	0	231	0.9547	0.9957	0.9748	0.6992	0.7292	0.7139	
+S. pombe	complete_fullutr.unstranded	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	5100	4945	0	4738	4406	207	0	362	0.929	0.9581	0.9434	0.8639	0.891	0.8773	106.1
+S. pombe	complete_fullutr.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5100	4945	0	4738	4406	207	0	362	0.929	0.9581	0.9434	0.8639	0.891	0.8773	253.8
+S. pombe	complete_fullutr.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	5100	4998	0	4793	4464	205	0	307	0.9398	0.959	0.9493	0.8753	0.8932	0.8841	654.5
+S. pombe	complete_fullutr.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	5100	5382	0	4833	3910	549	0	267	0.9476	0.898	0.9222	0.7667	0.7265	0.746	169.1
+S. pombe	complete_fullutr.unstranded	prodigal	Prodigal 2.6.3	yes	5100	6615	0	5019	3585	1596	0	81	0.9841	0.7587	0.8569	0.7029	0.542	0.612	13.1
+S. pombe	complete_fullutr.unstranded	gmst	GeneMarkS-T 5.1	yes	5100	4876	0	4669	4193	207	0	431	0.9155	0.9575	0.936	0.8222	0.8599	0.8406	10.9
+S. pombe	complete_fullutr.unstranded	codan	CodAn 1.1	yes	5100	4860	0	4670	4266	190	0	430	0.9157	0.9609	0.9378	0.8365	0.8778	0.8566	2798.0
+S. pombe	complete_fullutr.unstranded	cpat	CPAT 3.0.5	yes	5100	4705	0	4527	4482	178	0	573	0.8876	0.9622	0.9234	0.8788	0.9526	0.9142	20.5
+S. pombe	complete_fullutr.unstranded	cpc2	CPC2 1.0.1	yes	5100	4703	0	4536	4491	167	0	564	0.8894	0.9645	0.9254	0.8806	0.9549	0.9163	15.5
+S. pombe	complete_fullutr.unstranded	borf	Borf 1.2	yes	5100	4894	0	4691	4628	203	0	409	0.9198	0.9585	0.9388	0.9075	0.9456	0.9262	18.0
+S. pombe	complete_fullutr.unstranded	longest_orf	longest ORF baseline	yes	5100	4912	0	4703	3451	209	0	397	0.9222	0.9575	0.9395	0.6767	0.7026	0.6894	
+S. pombe	fragments	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	5100	4544	0	4539	4000	5	0	561	0.89	0.9989	0.9413	0.7843	0.8803	0.8295	63.9
+S. pombe	fragments	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5100	4544	0	4539	4000	5	0	561	0.89	0.9989	0.9413	0.7843	0.8803	0.8295	147.3
+S. pombe	fragments	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	5100	4621	0	4615	4059	6	0	485	0.9049	0.9987	0.9495	0.7959	0.8784	0.8351	316.8
+S. pombe	fragments	perl_td_v600	TransDecoder v6.0.0	yes	5100	3699	0	3697	3144	2	0	1403	0.7249	0.9995	0.8403	0.6165	0.85	0.7146	107.1
+S. pombe	fragments	prodigal	Prodigal 2.6.3	yes	5100	5133	0	4916	4225	217	0	184	0.9639	0.9577	0.9608	0.8284	0.8231	0.8258	4.7
+S. pombe	fragments	gmst	GeneMarkS-T 5.1	yes	5100	3703	0	3702	3243	1	0	1398	0.7259	0.9997	0.8411	0.6359	0.8758	0.7368	6.6
+S. pombe	fragments	codan	CodAn 1.1	yes	5100	4268	0	4265	3602	3	0	835	0.8363	0.9993	0.9105	0.7063	0.844	0.769	987.2
+S. pombe	fragments	cpat	CPAT 3.0.5	yes	5100	2941	0	2929	1736	12	0	2171	0.5743	0.9959	0.7285	0.3404	0.5903	0.4318	6.1
+S. pombe	fragments	cpc2	CPC2 1.0.1	yes	5100	1923	0	1902	562	21	0	3198	0.3729	0.9891	0.5416	0.1102	0.2923	0.16	5.0
+S. pombe	fragments	rnasamba	RNAsamba 0.2.5	yes	5100	4349	0	4112	2357	237	0	988	0.8063	0.9455	0.8704	0.4622	0.542	0.4989	32.1
+S. pombe	fragments	borf	Borf 1.2	yes	5100	3477	0	3459	2459	18	0	1641	0.6782	0.9948	0.8066	0.4822	0.7072	0.5734	7.9
+S. pombe	fragments	longest_orf	longest ORF baseline	yes	5100	3724	0	3707	3222	17	0	1393	0.7269	0.9954	0.8402	0.6318	0.8652	0.7303	
+S. pombe	fragments.unstranded	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	5100	4507	0	4478	3952	29	0	622	0.878	0.9936	0.9322	0.7749	0.8769	0.8227	81.6
+S. pombe	fragments.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5100	4507	0	4478	3952	29	0	622	0.878	0.9936	0.9322	0.7749	0.8769	0.8227	192.3
+S. pombe	fragments.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	5100	4612	0	4581	4029	31	0	519	0.8982	0.9933	0.9434	0.79	0.8736	0.8297	413.6
+S. pombe	fragments.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	5100	3714	0	3698	3139	16	0	1402	0.7251	0.9957	0.8391	0.6155	0.8452	0.7123	112.4
+S. pombe	fragments.unstranded	prodigal	Prodigal 2.6.3	yes	5100	5430	0	4918	4230	512	0	182	0.9643	0.9057	0.9341	0.8294	0.779	0.8034	5.0
+S. pombe	fragments.unstranded	gmst	GeneMarkS-T 5.1	yes	5100	3718	0	3700	3138	18	0	1400	0.7255	0.9952	0.8392	0.6153	0.844	0.7117	6.7
+S. pombe	fragments.unstranded	codan	CodAn 1.1	yes	5100	4299	0	4250	3589	49	0	850	0.8333	0.9886	0.9044	0.7037	0.8348	0.7637	1839.1
+S. pombe	fragments.unstranded	cpat	CPAT 3.0.5	yes	5100	2964	0	2919	1736	45	0	2181	0.5724	0.9848	0.724	0.3404	0.5857	0.4306	10.3
+S. pombe	fragments.unstranded	cpc2	CPC2 1.0.1	yes	5100	1815	0	1779	500	36	0	3321	0.3488	0.9802	0.5145	0.098	0.2755	0.1446	6.2
+S. pombe	fragments.unstranded	borf	Borf 1.2	yes	5100	3503	0	3445	2448	58	0	1655	0.6755	0.9834	0.8009	0.48	0.6988	0.5691	11.4
+S. pombe	fragments.unstranded	longest_orf	longest ORF baseline	yes	5100	3742	0	3681	3199	61	0	1419	0.7218	0.9837	0.8326	0.6273	0.8549	0.7236	
+S. pombe	fragments.unstranded.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	5100	4462	25	4405	3888	57	25	695	0.8637	0.9872	0.9214	0.7624	0.8714	0.8132	82.6
+S. pombe	fragments.unstranded.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5100	4462	25	4405	3888	57	25	695	0.8637	0.9872	0.9214	0.7624	0.8714	0.8132	193.4
+S. pombe	fragments.unstranded.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	5100	4609	25	4555	4005	54	25	545	0.8931	0.9883	0.9383	0.7853	0.869	0.825	436.7
+S. pombe	fragments.unstranded.wRand	perl_td_v600	TransDecoder v6.0.0	yes	5100	3722	8	3698	3139	24	8	1402	0.7251	0.9936	0.8384	0.6155	0.8434	0.7116	115.0
+S. pombe	fragments.unstranded.wRand	prodigal	Prodigal 2.6.3	yes	5100	8672	2873	4966	4278	3706	2873	134	0.9737	0.5726	0.7212	0.8388	0.4933	0.6213	8.1
+S. pombe	fragments.unstranded.wRand	gmst	GeneMarkS-T 5.1	yes	5100	3704	4	3685	3079	19	4	1415	0.7225	0.9949	0.8371	0.6037	0.8313	0.6995	12.8
+S. pombe	fragments.unstranded.wRand	codan	CodAn 1.1	yes	5100	4468	169	4250	3589	218	169	850	0.8333	0.9512	0.8884	0.7037	0.8033	0.7502	6750.9
+S. pombe	fragments.unstranded.wRand	cpat	CPAT 3.0.5	yes	5100	2968	4	2919	1736	49	4	2181	0.5724	0.9835	0.7236	0.3404	0.5849	0.4303	14.8
+S. pombe	fragments.unstranded.wRand	cpc2	CPC2 1.0.1	yes	5100	1828	13	1779	500	49	13	3321	0.3488	0.9732	0.5136	0.098	0.2735	0.1443	12.1
+S. pombe	fragments.unstranded.wRand	borf	Borf 1.2	yes	5100	3595	92	3445	2448	150	92	1655	0.6755	0.9583	0.7924	0.48	0.6809	0.5631	19.7
+S. pombe	fragments.unstranded.wRand	longest_orf	longest ORF baseline	yes	5100	3855	113	3681	3199	174	113	1419	0.7218	0.9549	0.8221	0.6273	0.8298	0.7145	
+S. pombe	fragments.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	5100	4541	19	4518	3981	23	19	582	0.8859	0.9949	0.9372	0.7806	0.8767	0.8258	68.0
+S. pombe	fragments.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5100	4541	19	4518	3981	23	19	582	0.8859	0.9949	0.9372	0.7806	0.8767	0.8258	150.1
+S. pombe	fragments.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	5100	4630	19	4606	4049	24	19	494	0.9031	0.9948	0.9468	0.7939	0.8745	0.8323	362.7
+S. pombe	fragments.wRand	perl_td_v600	TransDecoder v6.0.0	yes	5100	3705	4	3699	3145	6	4	1401	0.7253	0.9984	0.8402	0.6167	0.8489	0.7144	111.8
+S. pombe	fragments.wRand	prodigal	Prodigal 2.6.3	yes	5100	6804	1441	4967	4278	1837	1441	133	0.9739	0.73	0.8345	0.8388	0.6287	0.7188	8.1
+S. pombe	fragments.wRand	gmst	GeneMarkS-T 5.1	yes	5100	3694	2	3691	3223	3	2	1409	0.7237	0.9992	0.8394	0.632	0.8725	0.733	12.9
+S. pombe	fragments.wRand	codan	CodAn 1.1	yes	5100	4355	87	4265	3602	90	87	835	0.8363	0.9793	0.9022	0.7063	0.8271	0.7619	3493.6
+S. pombe	fragments.wRand	cpat	CPAT 3.0.5	yes	5100	2942	1	2929	1736	13	1	2171	0.5743	0.9956	0.7284	0.3404	0.5901	0.4317	9.4
+S. pombe	fragments.wRand	cpc2	CPC2 1.0.1	yes	5100	1930	7	1902	562	28	7	3198	0.3729	0.9855	0.5411	0.1102	0.2912	0.1599	8.2
+S. pombe	fragments.wRand	rnasamba	RNAsamba 0.2.5	yes	5100	5526	1177	4112	2357	1414	1177	988	0.8063	0.7441	0.774	0.4622	0.4265	0.4436	38.5
+S. pombe	fragments.wRand	borf	Borf 1.2	yes	5100	3516	39	3459	2459	57	39	1641	0.6782	0.9838	0.8029	0.4822	0.6994	0.5708	11.6
+S. pombe	fragments.wRand	longest_orf	longest ORF baseline	yes	5100	3778	54	3707	3222	71	54	1393	0.7269	0.9812	0.8351	0.6318	0.8528	0.7258	
+S. pombe	fragments_mixed_t1	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	5086	4834	0	4833	4283	1	0	253	0.9503	0.9998	0.9744	0.8421	0.886	0.8635	77.0
+S. pombe	fragments_mixed_t1	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5086	4834	0	4833	4283	1	0	253	0.9503	0.9998	0.9744	0.8421	0.886	0.8635	171.5
+S. pombe	fragments_mixed_t1	perl_td_v600	TransDecoder v6.0.0	yes	5086	4214	0	4213	3537	1	0	873	0.8284	0.9998	0.906	0.6954	0.8393	0.7606	130.8
+S. pombe	fragments_mixed_t1	prodigal	Prodigal 2.6.3	yes	5086	5224	0	4985	4281	239	0	101	0.9801	0.9542	0.967	0.8417	0.8195	0.8305	7.3
+S. pombe	fragments_mixed_t1	gmst	GeneMarkS-T 5.1	yes	5086	4230	0	4228	3770	2	0	858	0.8313	0.9995	0.9077	0.7413	0.8913	0.8094	6.3
+S. pombe	fragments_mixed_t1	codan	CodAn 1.1	yes	5086	4636	0	4635	3882	1	0	451	0.9113	0.9998	0.9535	0.7633	0.8374	0.7986	972.6
+S. pombe	fragments_mixed_t1	cpat	CPAT 3.0.5	yes	5086	3632	0	3615	2131	17	0	1471	0.7108	0.9953	0.8293	0.419	0.5867	0.4889	6.5
+S. pombe	fragments_mixed_t1	cpc2	CPC2 1.0.1	yes	5086	2754	0	2739	1647	15	0	2347	0.5385	0.9946	0.6987	0.3238	0.598	0.4202	4.1
+S. pombe	fragments_mixed_t1	rnasamba	RNAsamba 0.2.5	yes	5086	4683	0	4510	2489	173	0	576	0.8867	0.9631	0.9233	0.4894	0.5315	0.5096	19.5
+S. pombe	fragments_mixed_t1	borf	Borf 1.2	yes	5086	4091	0	4084	3046	7	0	1002	0.803	0.9983	0.8901	0.5989	0.7446	0.6638	6.7
+S. pombe	fragments_mixed_t1	longest_orf	longest ORF baseline	yes	5086	5081	0	5050	4378	31	0	36	0.9929	0.9939	0.9934	0.8608	0.8616	0.8612	
+S. pombe	fragments_mixed_t2	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	5084	4878	0	4877	4331	1	0	207	0.9593	0.9998	0.9791	0.8519	0.8879	0.8695	77.9
+S. pombe	fragments_mixed_t2	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5084	4878	0	4877	4331	1	0	207	0.9593	0.9998	0.9791	0.8519	0.8879	0.8695	179.2
+S. pombe	fragments_mixed_t2	perl_td_v600	TransDecoder v6.0.0	yes	5084	4239	0	4239	3486	0	0	845	0.8338	1.0	0.9094	0.6857	0.8224	0.7478	135.7
+S. pombe	fragments_mixed_t2	prodigal	Prodigal 2.6.3	yes	5084	5211	0	4998	4284	213	0	86	0.9831	0.9591	0.971	0.8426	0.8221	0.8322	7.4
+S. pombe	fragments_mixed_t2	gmst	GeneMarkS-T 5.1	yes	5084	4239	0	4238	3783	1	0	846	0.8336	0.9998	0.9091	0.7441	0.8924	0.8115	7.1
+S. pombe	fragments_mixed_t2	codan	CodAn 1.1	yes	5084	4679	0	4674	3905	5	0	410	0.9194	0.9989	0.9575	0.7681	0.8346	0.8	977.7
+S. pombe	fragments_mixed_t2	cpat	CPAT 3.0.5	yes	5084	3622	0	3609	2155	13	0	1475	0.7099	0.9964	0.8291	0.4239	0.595	0.4951	6.5
+S. pombe	fragments_mixed_t2	cpc2	CPC2 1.0.1	yes	5084	2756	0	2737	1680	19	0	2347	0.5384	0.9931	0.6982	0.3304	0.6096	0.4286	4.2
+S. pombe	fragments_mixed_t2	rnasamba	RNAsamba 0.2.5	yes	5084	4668	0	4472	2484	196	0	612	0.8796	0.958	0.9171	0.4886	0.5321	0.5094	23.5
+S. pombe	fragments_mixed_t2	borf	Borf 1.2	yes	5084	4097	0	4088	3052	9	0	996	0.8041	0.9978	0.8905	0.6003	0.7449	0.6649	8.4
+S. pombe	fragments_mixed_t2	longest_orf	longest ORF baseline	yes	5084	5080	0	5046	4363	34	0	38	0.9925	0.9933	0.9929	0.8582	0.8589	0.8585	
+S. pombe	fragments_mixed_t3	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	5084	4878	0	4875	4341	3	0	209	0.9589	0.9994	0.9787	0.8539	0.8899	0.8715	77.0
+S. pombe	fragments_mixed_t3	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5084	4878	0	4875	4341	3	0	209	0.9589	0.9994	0.9787	0.8539	0.8899	0.8715	173.2
+S. pombe	fragments_mixed_t3	perl_td_v600	TransDecoder v6.0.0	yes	5084	4244	0	4242	3601	2	0	842	0.8344	0.9995	0.9095	0.7083	0.8485	0.7721	132.9
+S. pombe	fragments_mixed_t3	prodigal	Prodigal 2.6.3	yes	5084	5245	0	4992	4285	253	0	92	0.9819	0.9518	0.9666	0.8428	0.817	0.8297	7.2
+S. pombe	fragments_mixed_t3	gmst	GeneMarkS-T 5.1	yes	5084	4245	0	4242	3777	3	0	842	0.8344	0.9993	0.9094	0.7429	0.8898	0.8097	6.4
+S. pombe	fragments_mixed_t3	codan	CodAn 1.1	yes	5084	4681	0	4677	3908	4	0	407	0.9199	0.9991	0.9579	0.7687	0.8349	0.8004	971.0
+S. pombe	fragments_mixed_t3	cpat	CPAT 3.0.5	yes	5084	3630	0	3621	2166	9	0	1463	0.7122	0.9975	0.8311	0.426	0.5967	0.4971	6.5
+S. pombe	fragments_mixed_t3	cpc2	CPC2 1.0.1	yes	5084	2739	0	2729	1657	10	0	2355	0.5368	0.9963	0.6977	0.3259	0.605	0.4236	4.4
+S. pombe	fragments_mixed_t3	rnasamba	RNAsamba 0.2.5	yes	5084	4705	0	4503	2490	202	0	581	0.8857	0.9571	0.92	0.4898	0.5292	0.5087	22.2
+S. pombe	fragments_mixed_t3	borf	Borf 1.2	yes	5084	4093	0	4085	3077	8	0	999	0.8035	0.998	0.8903	0.6052	0.7518	0.6706	7.1
+S. pombe	fragments_mixed_t3	longest_orf	longest ORF baseline	yes	5084	5080	0	5049	4379	31	0	35	0.9931	0.9939	0.9935	0.8613	0.862	0.8617	
+A. thaliana	complete	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	26867	25745	0	25695	23655	50	0	1172	0.9564	0.9981	0.9768	0.8804	0.9188	0.8992	261.1
+A. thaliana	complete	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26867	25745	0	25695	23655	50	0	1172	0.9564	0.9981	0.9768	0.8804	0.9188	0.8992	666.6
+A. thaliana	complete	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	26867	26258	0	26168	24103	90	0	699	0.974	0.9966	0.9851	0.8971	0.9179	0.9074	2677.8
+A. thaliana	complete	perl_td_v600	TransDecoder v6.0.0	yes	26867	25386	0	25347	20295	39	0	1520	0.9434	0.9985	0.9702	0.7554	0.7995	0.7768	383.5
+A. thaliana	complete	prodigal	Prodigal 2.6.3	yes	26867	29247	0	26357	17784	2890	0	510	0.981	0.9012	0.9394	0.6619	0.6081	0.6339	45.0
+A. thaliana	complete	gmst	GeneMarkS-T 5.1	yes	26867	25512	0	25475	19658	37	0	1392	0.9482	0.9985	0.9727	0.7317	0.7705	0.7506	33.9
+A. thaliana	complete	codan	CodAn 1.1	yes	26867	25381	0	25351	21382	30	0	1516	0.9436	0.9988	0.9704	0.7958	0.8424	0.8185	35114.4
+A. thaliana	complete	cpat	CPAT 3.0.5	yes	26867	24754	0	24703	24457	51	0	2164	0.9195	0.9979	0.9571	0.9103	0.988	0.9476	58.0
+A. thaliana	complete	cpc2	CPC2 1.0.1	yes	26867	24900	0	24894	24642	6	0	1973	0.9266	0.9998	0.9618	0.9172	0.9896	0.952	29.7
+A. thaliana	complete	rnasamba	RNAsamba 0.2.5	yes	26867	26517	0	26483	26183	34	0	384	0.9857	0.9987	0.9922	0.9745	0.9874	0.9809	107.4
+A. thaliana	complete	borf	Borf 1.2	yes	26867	25324	0	25300	24683	24	0	1567	0.9417	0.9991	0.9695	0.9187	0.9747	0.9459	35.7
+A. thaliana	complete	longest_orf	longest ORF baseline	yes	26867	25553	0	25515	17823	38	0	1352	0.9497	0.9985	0.9735	0.6634	0.6975	0.68	
+A. thaliana	complete	angel	ANGEL 3.0 (not benchmarked further)	yes	26867	25531	0	25488	18522	43	0	1379	0.9487	0.9983	0.9729	0.6894	0.7255	0.707	62502.9
+A. thaliana	complete.unstranded	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	26867	25521	0	25371	23377	150	0	1496	0.9443	0.9941	0.9686	0.8701	0.916	0.8925	348.0
+A. thaliana	complete.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26867	25521	0	25371	23377	150	0	1496	0.9443	0.9941	0.9686	0.8701	0.916	0.8925	904.7
+A. thaliana	complete.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	26867	26191	0	26007	23976	184	0	860	0.968	0.993	0.9803	0.8924	0.9154	0.9038	3214.9
+A. thaliana	complete.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	26867	25418	0	25249	20046	169	0	1618	0.9398	0.9934	0.9658	0.7461	0.7887	0.7668	417.2
+A. thaliana	complete.unstranded	prodigal	Prodigal 2.6.3	yes	26867	31695	0	26355	17782	5340	0	512	0.9809	0.8315	0.9001	0.6619	0.561	0.6073	45.4
+A. thaliana	complete.unstranded	gmst	GeneMarkS-T 5.1	yes	26867	25560	0	25424	20963	136	0	1443	0.9463	0.9947	0.9699	0.7803	0.8201	0.7997	38.6
+A. thaliana	complete.unstranded	codan	CodAn 1.1	yes	26867	25447	0	25302	21344	145	0	1565	0.9418	0.9943	0.9673	0.7944	0.8388	0.816	75153.9
+A. thaliana	complete.unstranded	cpat	CPAT 3.0.5	yes	26867	24805	0	24647	24402	158	0	2220	0.9174	0.9936	0.954	0.9083	0.9838	0.9445	72.2
+A. thaliana	complete.unstranded	cpc2	CPC2 1.0.1	yes	26867	24812	0	24712	24462	100	0	2155	0.9198	0.996	0.9564	0.9105	0.9859	0.9467	47.9
+A. thaliana	complete.unstranded	borf	Borf 1.2	yes	26867	25408	0	25193	24577	215	0	1674	0.9377	0.9915	0.9639	0.9148	0.9673	0.9403	65.1
+A. thaliana	complete.unstranded	longest_orf	longest ORF baseline	yes	26867	25623	0	25398	17733	225	0	1469	0.9453	0.9912	0.9677	0.66	0.6921	0.6757	
+A. thaliana	complete.unstranded.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	26867	25443	46	25254	23268	189	46	1613	0.94	0.9926	0.9656	0.866	0.9145	0.8896	531.6
+A. thaliana	complete.unstranded.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26867	25443	46	25254	23268	189	46	1613	0.94	0.9926	0.9656	0.866	0.9145	0.8896	1369.1
+A. thaliana	complete.unstranded.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	26867	26193	47	25966	23937	227	47	901	0.9665	0.9913	0.9787	0.8909	0.9139	0.9023	4090.0
+A. thaliana	complete.unstranded.wRand	perl_td_v600	TransDecoder v6.0.0	yes	26867	25592	174	25249	20046	343	174	1618	0.9398	0.9866	0.9626	0.7461	0.7833	0.7643	470.4
+A. thaliana	complete.unstranded.wRand	prodigal	Prodigal 2.6.3	yes	26867	52480	20785	26355	17782	26125	20785	512	0.9809	0.5022	0.6643	0.6619	0.3388	0.4482	55.7
+A. thaliana	complete.unstranded.wRand	gmst	GeneMarkS-T 5.1	yes	26867	25692	148	25411	20437	281	148	1456	0.9458	0.9891	0.967	0.7607	0.7955	0.7777	71.2
+A. thaliana	complete.unstranded.wRand	codan	CodAn 1.1	yes	26867	26062	615	25302	21344	760	615	1565	0.9418	0.9708	0.9561	0.7944	0.819	0.8065	404678.8
+A. thaliana	complete.unstranded.wRand	cpat	CPAT 3.0.5	yes	26867	25071	266	24647	24402	424	266	2220	0.9174	0.9831	0.9491	0.9083	0.9733	0.9397	123.4
+A. thaliana	complete.unstranded.wRand	cpc2	CPC2 1.0.1	yes	26867	25078	266	24712	24462	366	266	2155	0.9198	0.9854	0.9515	0.9105	0.9754	0.9418	80.6
+A. thaliana	complete.unstranded.wRand	borf	Borf 1.2	yes	26867	27623	2215	25193	24577	2430	2215	1674	0.9377	0.912	0.9247	0.9148	0.8897	0.9021	110.3
+A. thaliana	complete.unstranded.wRand	longest_orf	longest ORF baseline	yes	26867	28173	2550	25398	17733	2775	2550	1469	0.9453	0.9015	0.9229	0.66	0.6294	0.6444	
+A. thaliana	complete.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	26867	25677	39	25590	23557	87	39	1277	0.9525	0.9966	0.974	0.8768	0.9174	0.8967	381.2
+A. thaliana	complete.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26867	25677	39	25590	23557	87	39	1277	0.9525	0.9966	0.974	0.8768	0.9174	0.8967	1056.2
+A. thaliana	complete.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	26867	26264	39	26133	24075	131	39	734	0.9727	0.995	0.9837	0.8961	0.9167	0.9063	3001.3
+A. thaliana	complete.wRand	perl_td_v600	TransDecoder v6.0.0	yes	26867	25437	81	25317	20279	120	81	1550	0.9423	0.9953	0.9681	0.7548	0.7972	0.7754	422.4
+A. thaliana	complete.wRand	prodigal	Prodigal 2.6.3	yes	26867	39698	10451	26357	17784	13341	10451	510	0.981	0.6639	0.7919	0.6619	0.448	0.5343	54.8
+A. thaliana	complete.wRand	gmst	GeneMarkS-T 5.1	yes	26867	25582	77	25467	18723	115	77	1400	0.9479	0.9955	0.9711	0.6969	0.7319	0.714	64.4
+A. thaliana	complete.wRand	codan	CodAn 1.1	yes	26867	25696	315	25351	21382	345	315	1516	0.9436	0.9866	0.9646	0.7958	0.8321	0.8136	155071.0
+A. thaliana	complete.wRand	cpat	CPAT 3.0.5	yes	26867	24907	153	24703	24457	204	153	2164	0.9195	0.9918	0.9543	0.9103	0.9819	0.9448	72.5
+A. thaliana	complete.wRand	cpc2	CPC2 1.0.1	yes	26867	25058	158	24894	24642	164	158	1973	0.9266	0.9935	0.9588	0.9172	0.9834	0.9491	50.7
+A. thaliana	complete.wRand	rnasamba	RNAsamba 0.2.5	yes	26867	32478	5961	26483	26183	5995	5961	384	0.9857	0.8154	0.8925	0.9745	0.8062	0.8824	178.9
+A. thaliana	complete.wRand	borf	Borf 1.2	yes	26867	26502	1178	25300	24683	1202	1178	1567	0.9417	0.9546	0.9481	0.9187	0.9314	0.925	60.0
+A. thaliana	complete.wRand	longest_orf	longest ORF baseline	yes	26867	26907	1354	25515	17823	1392	1354	1352	0.9497	0.9483	0.949	0.6634	0.6624	0.6629	
+A. thaliana	complete_fullutr	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	26867	25565	0	25468	23487	97	0	1399	0.9479	0.9962	0.9715	0.8742	0.9187	0.8959	269.0
+A. thaliana	complete_fullutr	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26867	25565	0	25468	23487	97	0	1399	0.9479	0.9962	0.9715	0.8742	0.9187	0.8959	705.2
+A. thaliana	complete_fullutr	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	26867	26182	0	26003	23999	179	0	864	0.9678	0.9932	0.9803	0.8933	0.9166	0.9048	2678.1
+A. thaliana	complete_fullutr	perl_td_v600	TransDecoder v6.0.0	yes	26867	25898	0	25344	20290	554	0	1523	0.9433	0.9786	0.9606	0.7552	0.7835	0.7691	391.5
+A. thaliana	complete_fullutr	prodigal	Prodigal 2.6.3	yes	26867	29769	0	26371	17935	3398	0	496	0.9815	0.8859	0.9312	0.6675	0.6025	0.6333	45.2
+A. thaliana	complete_fullutr	gmst	GeneMarkS-T 5.1	yes	26867	25512	0	25416	19663	96	0	1451	0.946	0.9962	0.9705	0.7319	0.7707	0.7508	34.8
+A. thaliana	complete_fullutr	codan	CodAn 1.1	yes	26867	25411	0	25316	21377	95	0	1551	0.9423	0.9963	0.9685	0.7957	0.8412	0.8178	36027.7
+A. thaliana	complete_fullutr	cpat	CPAT 3.0.5	yes	26867	24758	0	24662	24412	96	0	2205	0.9179	0.9961	0.9554	0.9086	0.986	0.9457	59.3
+A. thaliana	complete_fullutr	cpc2	CPC2 1.0.1	yes	26867	24855	0	24817	24562	38	0	2050	0.9237	0.9985	0.9596	0.9142	0.9882	0.9498	33.0
+A. thaliana	complete_fullutr	rnasamba	RNAsamba 0.2.5	yes	26867	26475	0	26396	26095	79	0	471	0.9825	0.997	0.9897	0.9713	0.9856	0.9784	110.3
+A. thaliana	complete_fullutr	borf	Borf 1.2	yes	26867	25332	0	25266	24728	66	0	1601	0.9404	0.9974	0.9681	0.9204	0.9762	0.9475	35.8
+A. thaliana	complete_fullutr	longest_orf	longest ORF baseline	yes	26867	25560	0	25474	17868	86	0	1393	0.9482	0.9966	0.9718	0.6651	0.6991	0.6816	
+A. thaliana	complete_fullutr	angel	ANGEL 3.0 (not benchmarked further)	yes	26867	25571	0	25444	18962	127	0	1423	0.947	0.995	0.9704	0.7058	0.7415	0.7232	63705.4
+A. thaliana	complete_fullutr.unstranded	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	26867	25440	0	25178	23229	262	0	1689	0.9371	0.9897	0.9627	0.8646	0.9131	0.8882	352.3
+A. thaliana	complete_fullutr.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26867	25440	0	25178	23229	262	0	1689	0.9371	0.9897	0.9627	0.8646	0.9131	0.8882	920.7
+A. thaliana	complete_fullutr.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	26867	26154	0	25804	23827	350	0	1063	0.9604	0.9866	0.9734	0.8869	0.911	0.8988	3482.9
+A. thaliana	complete_fullutr.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	26867	26213	0	25246	20173	967	0	1621	0.9397	0.9631	0.9512	0.7508	0.7696	0.7601	431.0
+A. thaliana	complete_fullutr.unstranded	prodigal	Prodigal 2.6.3	yes	26867	32925	0	26369	17936	6556	0	498	0.9815	0.8009	0.882	0.6676	0.5448	0.5999	45.7
+A. thaliana	complete_fullutr.unstranded	gmst	GeneMarkS-T 5.1	yes	26867	25567	0	25300	20935	267	0	1567	0.9417	0.9896	0.965	0.7792	0.8188	0.7985	39.9
+A. thaliana	complete_fullutr.unstranded	codan	CodAn 1.1	yes	26867	25488	0	25209	21292	279	0	1658	0.9383	0.9891	0.963	0.7925	0.8354	0.8134	77210.6
+A. thaliana	complete_fullutr.unstranded	cpat	CPAT 3.0.5	yes	26867	24818	0	24560	24311	258	0	2307	0.9141	0.9896	0.9504	0.9049	0.9796	0.9407	83.5
+A. thaliana	complete_fullutr.unstranded	cpc2	CPC2 1.0.1	yes	26867	24762	0	24573	24320	189	0	2294	0.9146	0.9924	0.9519	0.9052	0.9822	0.9421	48.0
+A. thaliana	complete_fullutr.unstranded	borf	Borf 1.2	yes	26867	25424	0	25111	24574	313	0	1756	0.9346	0.9877	0.9604	0.9147	0.9666	0.9399	70.8
+A. thaliana	complete_fullutr.unstranded	longest_orf	longest ORF baseline	yes	26867	25636	0	25305	17736	331	0	1562	0.9419	0.9871	0.9639	0.6601	0.6918	0.6756	
+A. thaliana	complete_fullutr.unstranded	angel	ANGEL 3.0 (not benchmarked further)	yes	26867	26808	0	25233	18923	1575	0	1634	0.9392	0.9412	0.9402	0.7043	0.7059	0.7051	79014.3
+A. thaliana	fragments	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	26867	21631	0	21524	18262	107	0	5343	0.8011	0.9951	0.8876	0.6797	0.8443	0.7531	155.7
+A. thaliana	fragments	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26867	21631	0	21524	18262	107	0	5343	0.8011	0.9951	0.8876	0.6797	0.8443	0.7531	390.0
+A. thaliana	fragments	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	26867	23052	0	22924	19382	128	0	3943	0.8532	0.9944	0.9184	0.7214	0.8408	0.7765	1166.1
+A. thaliana	fragments	perl_td_v600	TransDecoder v6.0.0	yes	26867	18832	0	18776	15829	56	0	8091	0.6988	0.997	0.8217	0.5892	0.8405	0.6928	196.3
+A. thaliana	fragments	prodigal	Prodigal 2.6.3	yes	26867	26934	0	25078	21025	1856	0	1789	0.9334	0.9311	0.9323	0.7826	0.7806	0.7816	23.8
+A. thaliana	fragments	gmst	GeneMarkS-T 5.1	yes	26867	19117	0	19043	16340	74	0	7824	0.7088	0.9961	0.8282	0.6082	0.8547	0.7107	21.6
+A. thaliana	fragments	codan	CodAn 1.1	yes	26867	22621	0	22287	18202	334	0	4580	0.8295	0.9852	0.9007	0.6775	0.8047	0.7356	25768.6
+A. thaliana	fragments	cpat	CPAT 3.0.5	yes	26867	16552	0	16400	9710	152	0	10467	0.6104	0.9908	0.7554	0.3614	0.5866	0.4473	23.1
+A. thaliana	fragments	cpc2	CPC2 1.0.1	yes	26867	9203	0	9110	2314	93	0	17757	0.3391	0.9899	0.5051	0.0861	0.2514	0.1283	15.6
+A. thaliana	fragments	rnasamba	RNAsamba 0.2.5	yes	26867	23117	0	21589	12158	1528	0	5278	0.8036	0.9339	0.8638	0.4525	0.5259	0.4865	89.3
+A. thaliana	fragments	borf	Borf 1.2	yes	26867	17764	0	17634	12072	130	0	9233	0.6563	0.9927	0.7902	0.4493	0.6796	0.541	19.6
+A. thaliana	fragments	longest_orf	longest ORF baseline	yes	26867	19223	0	19082	16056	141	0	7785	0.7102	0.9927	0.828	0.5976	0.8352	0.6967	
+A. thaliana	fragments.unstranded	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	26867	21040	0	20670	17555	370	0	6197	0.7693	0.9824	0.8629	0.6534	0.8344	0.7329	207.4
+A. thaliana	fragments.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26867	21040	0	20670	17555	370	0	6197	0.7693	0.9824	0.8629	0.6534	0.8344	0.7329	512.7
+A. thaliana	fragments.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	26867	22776	0	22473	19012	303	0	4394	0.8365	0.9867	0.9054	0.7076	0.8347	0.7659	1488.6
+A. thaliana	fragments.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	26867	18932	0	18630	15636	302	0	8237	0.6934	0.984	0.8136	0.582	0.8259	0.6828	213.6
+A. thaliana	fragments.unstranded	prodigal	Prodigal 2.6.3	yes	26867	28801	0	25076	21021	3725	0	1791	0.9333	0.8707	0.9009	0.7824	0.7299	0.7552	23.9
+A. thaliana	fragments.unstranded	gmst	GeneMarkS-T 5.1	yes	26867	19281	0	18981	15702	300	0	7886	0.7065	0.9844	0.8226	0.5844	0.8144	0.6805	23.2
+A. thaliana	fragments.unstranded	codan	CodAn 1.1	yes	26867	23282	0	21865	17941	1417	0	5002	0.8138	0.9391	0.872	0.6678	0.7706	0.7155	55931.0
+A. thaliana	fragments.unstranded	cpat	CPAT 3.0.5	yes	26867	16768	0	16319	9680	449	0	10548	0.6074	0.9732	0.748	0.3603	0.5773	0.4437	34.2
+A. thaliana	fragments.unstranded	cpc2	CPC2 1.0.1	yes	26867	8794	0	8546	2045	248	0	18321	0.3181	0.9718	0.4793	0.0761	0.2325	0.1147	23.2
+A. thaliana	fragments.unstranded	borf	Borf 1.2	yes	26867	17996	0	17477	11974	519	0	9390	0.6505	0.9712	0.7791	0.4457	0.6654	0.5338	38.9
+A. thaliana	fragments.unstranded	longest_orf	longest ORF baseline	yes	26867	19425	0	18901	15890	524	0	7966	0.7035	0.973	0.8166	0.5914	0.818	0.6865	
+A. thaliana	fragments.unstranded.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	26867	20915	63	20501	17424	414	63	6366	0.7631	0.9802	0.8581	0.6485	0.8331	0.7293	230.5
+A. thaliana	fragments.unstranded.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26867	20915	63	20501	17424	414	63	6366	0.7631	0.9802	0.8581	0.6485	0.8331	0.7293	574.1
+A. thaliana	fragments.unstranded.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	26867	22745	64	22391	18953	354	64	4476	0.8334	0.9844	0.9026	0.7054	0.8333	0.764	1805.4
+A. thaliana	fragments.unstranded.wRand	perl_td_v600	TransDecoder v6.0.0	yes	26867	18983	51	18630	15636	353	51	8237	0.6934	0.9814	0.8126	0.582	0.8237	0.6821	247.6
+A. thaliana	fragments.unstranded.wRand	prodigal	Prodigal 2.6.3	yes	26867	46300	15669	25304	21270	20996	15669	1563	0.9418	0.5465	0.6917	0.7917	0.4594	0.5814	37.4
+A. thaliana	fragments.unstranded.wRand	gmst	GeneMarkS-T 5.1	yes	26867	19156	32	18811	14933	345	32	8056	0.7002	0.982	0.8175	0.5558	0.7795	0.6489	46.2
+A. thaliana	fragments.unstranded.wRand	codan	CodAn 1.1	yes	26867	26103	2821	21865	17941	4238	2821	5002	0.8138	0.8376	0.8256	0.6678	0.6873	0.6774	271888.5
+A. thaliana	fragments.unstranded.wRand	cpat	CPAT 3.0.5	yes	26867	16900	132	16319	9680	581	132	10548	0.6074	0.9656	0.7457	0.3603	0.5728	0.4423	55.5
+A. thaliana	fragments.unstranded.wRand	cpc2	CPC2 1.0.1	yes	26867	8952	158	8546	2045	406	158	18321	0.3181	0.9546	0.4772	0.0761	0.2284	0.1142	42.7
+A. thaliana	fragments.unstranded.wRand	borf	Borf 1.2	yes	26867	18800	804	17477	11974	1323	804	9390	0.6505	0.9296	0.7654	0.4457	0.6369	0.5244	70.0
+A. thaliana	fragments.unstranded.wRand	longest_orf	longest ORF baseline	yes	26867	20446	1021	18901	15890	1545	1021	7966	0.7035	0.9244	0.799	0.5914	0.7772	0.6717	
+A. thaliana	fragments.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	26867	21569	58	21405	18169	164	58	5462	0.7967	0.9924	0.8838	0.6763	0.8424	0.7502	169.5
+A. thaliana	fragments.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26867	21569	58	21405	18169	164	58	5462	0.7967	0.9924	0.8838	0.6763	0.8424	0.7502	433.6
+A. thaliana	fragments.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	26867	23024	58	22836	19314	188	58	4031	0.85	0.9918	0.9154	0.7189	0.8389	0.7742	1371.3
+A. thaliana	fragments.wRand	perl_td_v600	TransDecoder v6.0.0	yes	26867	18860	27	18779	15837	81	27	8088	0.699	0.9957	0.8214	0.5895	0.8397	0.6927	218.8
+A. thaliana	fragments.wRand	prodigal	Prodigal 2.6.3	yes	26867	36000	7873	25303	21266	10697	7873	1564	0.9418	0.7029	0.805	0.7915	0.5907	0.6765	36.5
+A. thaliana	fragments.wRand	gmst	GeneMarkS-T 5.1	yes	26867	18936	21	18836	15638	100	21	8031	0.7011	0.9947	0.8225	0.5821	0.8258	0.6828	43.7
+A. thaliana	fragments.wRand	codan	CodAn 1.1	yes	26867	24041	1420	22287	18202	1754	1420	4580	0.8295	0.927	0.8756	0.6775	0.7571	0.7151	120151.0
+A. thaliana	fragments.wRand	cpat	CPAT 3.0.5	yes	26867	16614	62	16400	9710	214	62	10467	0.6104	0.9871	0.7544	0.3614	0.5844	0.4466	33.6
+A. thaliana	fragments.wRand	cpc2	CPC2 1.0.1	yes	26867	9274	71	9110	2314	164	71	17757	0.3391	0.9823	0.5041	0.0861	0.2495	0.1281	28.1
+A. thaliana	fragments.wRand	rnasamba	RNAsamba 0.2.5	yes	26867	32169	9052	21589	12158	10580	9052	5278	0.8036	0.6711	0.7314	0.4525	0.3779	0.4119	145.7
+A. thaliana	fragments.wRand	borf	Borf 1.2	yes	26867	18185	421	17634	12072	551	421	9233	0.6563	0.9697	0.7828	0.4493	0.6638	0.5359	33.2
+A. thaliana	fragments.wRand	longest_orf	longest ORF baseline	yes	26867	19758	535	19082	16056	676	535	7785	0.7102	0.9658	0.8185	0.5976	0.8126	0.6887	
+A. thaliana	fragments_mixed_t1	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	26787	24034	0	23965	20276	69	0	2822	0.8947	0.9971	0.9431	0.7569	0.8436	0.7979	180.2
+A. thaliana	fragments_mixed_t1	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26787	24034	0	23965	20276	69	0	2822	0.8947	0.9971	0.9431	0.7569	0.8436	0.7979	445.7
+A. thaliana	fragments_mixed_t1	perl_td_v600	TransDecoder v6.0.0	yes	26787	21997	0	21961	18053	36	0	4826	0.8198	0.9984	0.9003	0.6739	0.8207	0.7401	329.9
+A. thaliana	fragments_mixed_t1	prodigal	Prodigal 2.6.3	yes	26787	27712	0	26001	21805	1711	0	786	0.9707	0.9383	0.9542	0.814	0.7868	0.8002	37.9
+A. thaliana	fragments_mixed_t1	gmst	GeneMarkS-T 5.1	yes	26787	22215	0	22171	19110	44	0	4616	0.8277	0.998	0.9049	0.7134	0.8602	0.78	30.2
+A. thaliana	fragments_mixed_t1	codan	CodAn 1.1	yes	26787	24825	0	24670	19994	155	0	2117	0.921	0.9938	0.956	0.7464	0.8054	0.7748	29837.7
+A. thaliana	fragments_mixed_t1	cpat	CPAT 3.0.5	yes	26787	19828	0	19736	11555	92	0	7051	0.7368	0.9954	0.8468	0.4314	0.5828	0.4958	30.7
+A. thaliana	fragments_mixed_t1	cpc2	CPC2 1.0.1	yes	26787	13867	0	13812	8444	55	0	12975	0.5156	0.996	0.6795	0.3152	0.6089	0.4154	21.1
+A. thaliana	fragments_mixed_t1	rnasamba	RNAsamba 0.2.5	yes	26787	24769	0	23710	12944	1059	0	3077	0.8851	0.9572	0.9198	0.4832	0.5226	0.5021	112.2
+A. thaliana	fragments_mixed_t1	borf	Borf 1.2	yes	26787	21233	0	21178	15302	55	0	5609	0.7906	0.9974	0.882	0.5712	0.7207	0.6373	31.4
+A. thaliana	fragments_mixed_t1	longest_orf	longest ORF baseline	yes	26787	26758	0	26500	22555	258	0	287	0.9893	0.9904	0.9898	0.842	0.8429	0.8425	
+A. thaliana	fragments_mixed_t2	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	26764	23973	0	23913	20343	60	0	2851	0.8935	0.9975	0.9426	0.7601	0.8486	0.8019	183.4
+A. thaliana	fragments_mixed_t2	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26764	23973	0	23913	20343	60	0	2851	0.8935	0.9975	0.9426	0.7601	0.8486	0.8019	444.5
+A. thaliana	fragments_mixed_t2	perl_td_v600	TransDecoder v6.0.0	yes	26764	21904	0	21857	18126	47	0	4907	0.8167	0.9979	0.8982	0.6773	0.8275	0.7449	314.8
+A. thaliana	fragments_mixed_t2	prodigal	Prodigal 2.6.3	yes	26764	27704	0	26013	21767	1691	0	751	0.9719	0.939	0.9552	0.8133	0.7857	0.7993	38.0
+A. thaliana	fragments_mixed_t2	gmst	GeneMarkS-T 5.1	yes	26764	22136	0	22087	18998	49	0	4677	0.8253	0.9978	0.9034	0.7098	0.8582	0.777	29.2
+A. thaliana	fragments_mixed_t2	codan	CodAn 1.1	yes	26764	24843	0	24671	19948	172	0	2093	0.9218	0.9931	0.9561	0.7453	0.803	0.7731	29820.5
+A. thaliana	fragments_mixed_t2	cpat	CPAT 3.0.5	yes	26764	19830	0	19723	11574	107	0	7041	0.7369	0.9946	0.8466	0.4324	0.5837	0.4968	28.2
+A. thaliana	fragments_mixed_t2	cpc2	CPC2 1.0.1	yes	26764	13951	0	13907	8486	44	0	12857	0.5196	0.9968	0.6831	0.3171	0.6083	0.4168	18.4
+A. thaliana	fragments_mixed_t2	rnasamba	RNAsamba 0.2.5	yes	26764	24768	0	23724	13016	1044	0	3040	0.8864	0.9578	0.9207	0.4863	0.5255	0.5052	66.5
+A. thaliana	fragments_mixed_t2	borf	Borf 1.2	yes	26764	21137	0	21082	15286	55	0	5682	0.7877	0.9974	0.8802	0.5711	0.7232	0.6382	26.1
+A. thaliana	fragments_mixed_t2	longest_orf	longest ORF baseline	yes	26764	26747	0	26509	22489	238	0	255	0.9905	0.9911	0.9908	0.8403	0.8408	0.8405	
+A. thaliana	fragments_mixed_t3	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	26777	24176	0	24113	20445	63	0	2664	0.9005	0.9974	0.9465	0.7635	0.8457	0.8025	182.6
+A. thaliana	fragments_mixed_t3	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26777	24176	0	24113	20445	63	0	2664	0.9005	0.9974	0.9465	0.7635	0.8457	0.8025	437.6
+A. thaliana	fragments_mixed_t3	perl_td_v600	TransDecoder v6.0.0	yes	26777	21933	0	21893	18107	40	0	4884	0.8176	0.9982	0.8989	0.6762	0.8256	0.7435	317.1
+A. thaliana	fragments_mixed_t3	prodigal	Prodigal 2.6.3	yes	26777	27691	0	26000	21819	1691	0	777	0.971	0.9389	0.9547	0.8148	0.7879	0.8012	38.6
+A. thaliana	fragments_mixed_t3	gmst	GeneMarkS-T 5.1	yes	26777	22142	0	22091	19025	51	0	4686	0.825	0.9977	0.9032	0.7105	0.8592	0.7778	28.6
+A. thaliana	fragments_mixed_t3	codan	CodAn 1.1	yes	26777	24802	0	24620	19932	182	0	2157	0.9194	0.9927	0.9547	0.7444	0.8036	0.7729	25953.9
+A. thaliana	fragments_mixed_t3	cpat	CPAT 3.0.5	yes	26777	19813	0	19714	11600	99	0	7063	0.7362	0.995	0.8463	0.4332	0.5855	0.498	28.4
+A. thaliana	fragments_mixed_t3	cpc2	CPC2 1.0.1	yes	26777	13965	0	13897	8564	68	0	12880	0.519	0.9951	0.6822	0.3198	0.6132	0.4204	17.7
+A. thaliana	fragments_mixed_t3	rnasamba	RNAsamba 0.2.5	yes	26777	24920	0	23831	13035	1089	0	2946	0.89	0.9563	0.9219	0.4868	0.5231	0.5043	66.4
+A. thaliana	fragments_mixed_t3	borf	Borf 1.2	yes	26777	21238	0	21168	15298	70	0	5609	0.7905	0.9967	0.8817	0.5713	0.7203	0.6372	26.5
+A. thaliana	fragments_mixed_t3	longest_orf	longest ORF baseline	yes	26777	26749	0	26472	22532	277	0	305	0.9886	0.9896	0.9891	0.8415	0.8423	0.8419	
+D. melanogaster	complete	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	13884	13376	0	13331	12647	45	0	553	0.9602	0.9966	0.9781	0.9109	0.9455	0.9279	197.5
+D. melanogaster	complete	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	13884	13376	0	13331	12647	45	0	553	0.9602	0.9966	0.9781	0.9109	0.9455	0.9279	516.9
+D. melanogaster	complete	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	13884	13495	0	13450	12754	45	0	434	0.9687	0.9967	0.9825	0.9186	0.9451	0.9317	1753.5
+D. melanogaster	complete	perl_td_v600	TransDecoder v6.0.0	yes	13884	12996	0	12981	10898	15	0	903	0.935	0.9988	0.9658	0.7849	0.8386	0.8109	308.1
+D. melanogaster	complete	prodigal	Prodigal 2.6.3	yes	13884	14850	0	13494	10258	1356	0	390	0.9719	0.9087	0.9392	0.7388	0.6908	0.714	41.5
+D. melanogaster	complete	gmst	GeneMarkS-T 5.1	yes	13884	12799	0	12773	10697	26	0	1111	0.92	0.998	0.9574	0.7705	0.8358	0.8018	23.9
+D. melanogaster	complete	codan	CodAn 1.1	yes	13884	13509	0	13466	12151	43	0	418	0.9699	0.9968	0.9832	0.8752	0.8995	0.8872	12563.5
+D. melanogaster	complete	cpat	CPAT 3.0.5	yes	13884	13209	0	13169	12802	40	0	715	0.9485	0.997	0.9721	0.9221	0.9692	0.945	35.0
+D. melanogaster	complete	cpc2	CPC2 1.0.1	yes	13884	12955	0	12932	12552	23	0	952	0.9314	0.9982	0.9637	0.9041	0.9689	0.9354	19.3
+D. melanogaster	complete	rnasamba	RNAsamba 0.2.5	yes	13884	13721	0	13651	13257	70	0	233	0.9832	0.9949	0.989	0.9548	0.9662	0.9605	64.6
+D. melanogaster	complete	borf	Borf 1.2	yes	13884	13107	0	13033	12462	74	0	851	0.9387	0.9944	0.9657	0.8976	0.9508	0.9234	48.0
+D. melanogaster	complete	longest_orf	longest ORF baseline	yes	13884	13205	0	13113	10130	92	0	771	0.9445	0.993	0.9681	0.7296	0.7671	0.7479	
+D. melanogaster	complete.unstranded	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	13884	13388	0	13315	12625	73	0	569	0.959	0.9945	0.9765	0.9093	0.943	0.9259	276.5
+D. melanogaster	complete.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	13884	13388	0	13315	12625	73	0	569	0.959	0.9945	0.9765	0.9093	0.943	0.9259	794.3
+D. melanogaster	complete.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	13884	13506	0	13427	12727	79	0	457	0.9671	0.9942	0.9804	0.9167	0.9423	0.9293	2423.6
+D. melanogaster	complete.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	13884	13020	0	12967	10884	53	0	917	0.934	0.9959	0.9639	0.7839	0.8359	0.8091	369.7
+D. melanogaster	complete.unstranded	prodigal	Prodigal 2.6.3	yes	13884	15500	0	13494	10259	2006	0	390	0.9719	0.8706	0.9185	0.7389	0.6619	0.6983	42.5
+D. melanogaster	complete.unstranded	gmst	GeneMarkS-T 5.1	yes	13884	12846	0	12758	10959	88	0	1126	0.9189	0.9931	0.9546	0.7893	0.8531	0.82	26.7
+D. melanogaster	complete.unstranded	codan	CodAn 1.1	yes	13884	13524	0	13453	12138	71	0	431	0.969	0.9948	0.9817	0.8742	0.8975	0.8857	22920.1
+D. melanogaster	complete.unstranded	cpat	CPAT 3.0.5	yes	13884	13217	0	13118	12752	99	0	766	0.9448	0.9925	0.9681	0.9185	0.9648	0.9411	47.8
+D. melanogaster	complete.unstranded	cpc2	CPC2 1.0.1	yes	13884	12931	0	12679	12302	252	0	1205	0.9132	0.9805	0.9457	0.8861	0.9514	0.9175	29.7
+D. melanogaster	complete.unstranded	borf	Borf 1.2	yes	13884	13207	0	12744	12176	463	0	1140	0.9179	0.9649	0.9408	0.877	0.9219	0.8989	96.5
+D. melanogaster	complete.unstranded	longest_orf	longest ORF baseline	yes	13884	13302	0	12815	9893	487	0	1069	0.923	0.9634	0.9428	0.7125	0.7437	0.7278	
+D. melanogaster	complete.unstranded.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	13884	13436	54	13309	12619	127	54	575	0.9586	0.9905	0.9743	0.9089	0.9392	0.9238	418.6
+D. melanogaster	complete.unstranded.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	13884	13436	54	13309	12619	127	54	575	0.9586	0.9905	0.9743	0.9089	0.9392	0.9238	1239.5
+D. melanogaster	complete.unstranded.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	13884	13556	55	13419	12719	137	55	465	0.9665	0.9899	0.9781	0.9161	0.9383	0.927	3139.7
+D. melanogaster	complete.unstranded.wRand	perl_td_v600	TransDecoder v6.0.0	yes	13884	13060	40	12967	10884	93	40	917	0.934	0.9929	0.9625	0.7839	0.8334	0.8079	414.3
+D. melanogaster	complete.unstranded.wRand	prodigal	Prodigal 2.6.3	yes	13884	22708	6825	13533	10269	9175	6825	351	0.9747	0.596	0.7397	0.7396	0.4522	0.5613	53.6
+D. melanogaster	complete.unstranded.wRand	gmst	GeneMarkS-T 5.1	yes	13884	12923	36	12843	11088	80	36	1041	0.925	0.9938	0.9582	0.7986	0.858	0.8272	48.6
+D. melanogaster	complete.unstranded.wRand	codan	CodAn 1.1	yes	13884	17235	3711	13453	12138	3782	3711	431	0.969	0.7806	0.8646	0.8742	0.7043	0.7801	88746.0
+D. melanogaster	complete.unstranded.wRand	cpat	CPAT 3.0.5	yes	13884	13253	36	13118	12752	135	36	766	0.9448	0.9898	0.9668	0.9185	0.9622	0.9398	89.7
+D. melanogaster	complete.unstranded.wRand	cpc2	CPC2 1.0.1	yes	13884	13445	514	12679	12302	766	514	1205	0.9132	0.943	0.9279	0.8861	0.915	0.9003	53.4
+D. melanogaster	complete.unstranded.wRand	borf	Borf 1.2	yes	13884	17387	4180	12744	12176	4643	4180	1140	0.9179	0.733	0.8151	0.877	0.7003	0.7787	161.7
+D. melanogaster	complete.unstranded.wRand	longest_orf	longest ORF baseline	yes	13884	17879	4577	12815	9893	5064	4577	1069	0.923	0.7168	0.8069	0.7125	0.5533	0.6229	
+D. melanogaster	complete.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	13884	13384	44	13298	12614	86	44	586	0.9578	0.9936	0.9754	0.9085	0.9425	0.9252	293.8
+D. melanogaster	complete.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	13884	13384	44	13298	12614	86	44	586	0.9578	0.9936	0.9754	0.9085	0.9425	0.9252	838.9
+D. melanogaster	complete.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	13884	13511	44	13422	12726	89	44	462	0.9667	0.9934	0.9799	0.9166	0.9419	0.9291	2114.8
+D. melanogaster	complete.wRand	perl_td_v600	TransDecoder v6.0.0	yes	13884	13015	26	12973	10894	42	26	911	0.9344	0.9968	0.9646	0.7846	0.837	0.81	350.0
+D. melanogaster	complete.wRand	prodigal	Prodigal 2.6.3	yes	13884	18546	3449	13533	10275	5013	3449	351	0.9747	0.7297	0.8346	0.7401	0.554	0.6337	52.8
+D. melanogaster	complete.wRand	gmst	GeneMarkS-T 5.1	yes	13884	12896	24	12854	10776	42	24	1030	0.9258	0.9967	0.96	0.7761	0.8356	0.8048	45.3
+D. melanogaster	complete.wRand	codan	CodAn 1.1	yes	13884	15866	2357	13466	12151	2400	2357	418	0.9699	0.8487	0.9053	0.8752	0.7659	0.8169	45687.9
+D. melanogaster	complete.wRand	cpat	CPAT 3.0.5	yes	13884	13231	22	13169	12802	62	22	715	0.9485	0.9953	0.9713	0.9221	0.9676	0.9443	53.7
+D. melanogaster	complete.wRand	cpc2	CPC2 1.0.1	yes	13884	13168	213	12932	12552	236	213	952	0.9314	0.9821	0.9561	0.9041	0.9532	0.928	31.0
+D. melanogaster	complete.wRand	rnasamba	RNAsamba 0.2.5	yes	13884	18933	5212	13651	13257	5282	5212	233	0.9832	0.721	0.8319	0.9548	0.7002	0.8079	102.2
+D. melanogaster	complete.wRand	borf	Borf 1.2	yes	13884	15562	2455	13033	12462	2529	2455	851	0.9387	0.8375	0.8852	0.8976	0.8008	0.8464	89.6
+D. melanogaster	complete.wRand	longest_orf	longest ORF baseline	yes	13884	15935	2730	13113	10130	2822	2730	771	0.9445	0.8229	0.8795	0.7296	0.6357	0.6794	
+D. melanogaster	complete_fullutr	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	13884	13329	0	13092	12454	237	0	792	0.943	0.9822	0.9622	0.897	0.9344	0.9153	208.0
+D. melanogaster	complete_fullutr	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	13884	13329	0	13092	12454	237	0	792	0.943	0.9822	0.9622	0.897	0.9344	0.9153	563.1
+D. melanogaster	complete_fullutr	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	13884	13483	0	13262	12607	221	0	622	0.9552	0.9836	0.9692	0.908	0.935	0.9213	1829.6
+D. melanogaster	complete_fullutr	perl_td_v600	TransDecoder v6.0.0	yes	13884	13481	0	12916	10892	565	0	968	0.9303	0.9581	0.944	0.7845	0.808	0.7961	317.9
+D. melanogaster	complete_fullutr	prodigal	Prodigal 2.6.3	yes	13884	15526	0	13526	10286	2000	0	358	0.9742	0.8712	0.9198	0.7409	0.6625	0.6995	48.1
+D. melanogaster	complete_fullutr	gmst	GeneMarkS-T 5.1	yes	13884	13229	0	12979	11058	250	0	905	0.9348	0.9811	0.9574	0.7965	0.8359	0.8157	41.0
+D. melanogaster	complete_fullutr	codan	CodAn 1.1	yes	13884	13553	0	13301	12024	252	0	583	0.958	0.9814	0.9696	0.866	0.8872	0.8765	13890.3
+D. melanogaster	complete_fullutr	cpat	CPAT 3.0.5	yes	13884	13128	0	12920	12557	208	0	964	0.9306	0.9842	0.9566	0.9044	0.9565	0.9297	41.0
+D. melanogaster	complete_fullutr	cpc2	CPC2 1.0.1	yes	13884	12996	0	12771	12396	225	0	1113	0.9198	0.9827	0.9502	0.8928	0.9538	0.9223	19.5
+D. melanogaster	complete_fullutr	rnasamba	RNAsamba 0.2.5	yes	13884	13709	0	13438	13052	271	0	446	0.9679	0.9802	0.974	0.9401	0.9521	0.946	60.8
+D. melanogaster	complete_fullutr	borf	Borf 1.2	yes	13884	13177	0	12890	12423	287	0	994	0.9284	0.9782	0.9527	0.8948	0.9428	0.9181	39.7
+D. melanogaster	complete_fullutr	longest_orf	longest ORF baseline	yes	13884	13278	0	12969	10112	309	0	915	0.9341	0.9767	0.9549	0.7283	0.7616	0.7446	
+D. melanogaster	complete_fullutr.unstranded	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	13884	13352	0	13047	12403	305	0	837	0.9397	0.9772	0.9581	0.8933	0.9289	0.9108	300.3
+D. melanogaster	complete_fullutr.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	13884	13352	0	13047	12403	305	0	837	0.9397	0.9772	0.9581	0.8933	0.9289	0.9108	829.8
+D. melanogaster	complete_fullutr.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	13884	13508	0	13210	12552	298	0	674	0.9515	0.9779	0.9645	0.9041	0.9292	0.9165	2549.0
+D. melanogaster	complete_fullutr.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	13884	13685	0	12915	10887	770	0	969	0.9302	0.9437	0.9369	0.7841	0.7955	0.7898	379.0
+D. melanogaster	complete_fullutr.unstranded	prodigal	Prodigal 2.6.3	yes	13884	16586	0	13525	10289	3061	0	359	0.9741	0.8154	0.8878	0.7411	0.6203	0.6754	47.6
+D. melanogaster	complete_fullutr.unstranded	gmst	GeneMarkS-T 5.1	yes	13884	13292	0	12948	11353	344	0	936	0.9326	0.9741	0.9529	0.8177	0.8541	0.8355	45.5
+D. melanogaster	complete_fullutr.unstranded	codan	CodAn 1.1	yes	13884	13573	0	13264	11991	309	0	620	0.9553	0.9772	0.9662	0.8637	0.8834	0.8734	25364.3
+D. melanogaster	complete_fullutr.unstranded	cpat	CPAT 3.0.5	yes	13884	13142	0	12865	12503	277	0	1019	0.9266	0.9789	0.952	0.9005	0.9514	0.9253	54.3
+D. melanogaster	complete_fullutr.unstranded	cpc2	CPC2 1.0.1	yes	13884	12978	0	12508	12136	470	0	1376	0.9009	0.9638	0.9313	0.8741	0.9351	0.9036	33.4
+D. melanogaster	complete_fullutr.unstranded	borf	Borf 1.2	yes	13884	13270	0	12592	12127	678	0	1292	0.9069	0.9489	0.9275	0.8735	0.9139	0.8932	100.3
+D. melanogaster	complete_fullutr.unstranded	longest_orf	longest ORF baseline	yes	13884	13363	0	12661	9863	702	0	1223	0.9119	0.9475	0.9294	0.7104	0.7381	0.724	
+D. melanogaster	fragments	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	13884	12198	0	12132	10969	66	0	1752	0.8738	0.9946	0.9303	0.79	0.8992	0.8411	119.9
+D. melanogaster	fragments	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	13884	12198	0	12132	10969	66	0	1752	0.8738	0.9946	0.9303	0.79	0.8992	0.8411	333.4
+D. melanogaster	fragments	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	13884	12396	0	12326	11103	70	0	1558	0.8878	0.9944	0.9381	0.7997	0.8957	0.845	923.2
+D. melanogaster	fragments	perl_td_v600	TransDecoder v6.0.0	yes	13884	9850	0	9837	8660	13	0	4047	0.7085	0.9987	0.8289	0.6237	0.8792	0.7298	176.4
+D. melanogaster	fragments	prodigal	Prodigal 2.6.3	yes	13884	13766	0	13065	11379	701	0	819	0.941	0.9491	0.945	0.8196	0.8266	0.8231	18.1
+D. melanogaster	fragments	gmst	GeneMarkS-T 5.1	yes	13884	10045	0	9992	8885	53	0	3892	0.7197	0.9947	0.8351	0.6399	0.8845	0.7426	32.8
+D. melanogaster	fragments	codan	CodAn 1.1	yes	13884	12872	0	12719	11057	153	0	1165	0.9161	0.9881	0.9507	0.7964	0.859	0.8265	8343.1
+D. melanogaster	fragments	cpat	CPAT 3.0.5	yes	13884	10656	0	10551	5974	105	0	3333	0.7599	0.9901	0.8599	0.4303	0.5606	0.4869	14.6
+D. melanogaster	fragments	cpc2	CPC2 1.0.1	yes	13884	5688	0	5580	1790	108	0	8304	0.4019	0.981	0.5702	0.1289	0.3147	0.1829	10.7
+D. melanogaster	fragments	rnasamba	RNAsamba 0.2.5	yes	13884	12674	0	11592	6510	1082	0	2292	0.8349	0.9146	0.873	0.4689	0.5136	0.4902	52.0
+D. melanogaster	fragments	borf	Borf 1.2	yes	13884	9566	0	9369	6306	197	0	4515	0.6748	0.9794	0.7991	0.4542	0.6592	0.5378	20.4
+D. melanogaster	fragments	longest_orf	longest ORF baseline	yes	13884	10145	0	9923	8764	222	0	3961	0.7147	0.9781	0.8259	0.6312	0.8639	0.7295	
+D. melanogaster	fragments.unstranded	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	13884	12132	0	11979	10840	153	0	1905	0.8628	0.9874	0.9209	0.7808	0.8935	0.8333	161.9
+D. melanogaster	fragments.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	13884	12132	0	11979	10840	153	0	1905	0.8628	0.9874	0.9209	0.7808	0.8935	0.8333	478.1
+D. melanogaster	fragments.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	13884	12368	0	12228	11020	140	0	1656	0.8807	0.9887	0.9316	0.7937	0.891	0.8396	1140.6
+D. melanogaster	fragments.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	13884	9897	0	9810	8623	87	0	4074	0.7066	0.9912	0.825	0.6211	0.8713	0.7252	200.4
+D. melanogaster	fragments.unstranded	prodigal	Prodigal 2.6.3	yes	13884	14219	0	13058	11373	1161	0	826	0.9405	0.9183	0.9293	0.8191	0.7998	0.8094	18.9
+D. melanogaster	fragments.unstranded	gmst	GeneMarkS-T 5.1	yes	13884	10090	0	9929	8372	161	0	3955	0.7151	0.984	0.8283	0.603	0.8297	0.6984	33.9
+D. melanogaster	fragments.unstranded	codan	CodAn 1.1	yes	13884	13079	0	12520	10917	559	0	1364	0.9018	0.9573	0.9287	0.7863	0.8347	0.8098	17340.3
+D. melanogaster	fragments.unstranded	cpat	CPAT 3.0.5	yes	13884	10917	0	10417	5961	500	0	3467	0.7503	0.9542	0.84	0.4293	0.546	0.4807	27.6
+D. melanogaster	fragments.unstranded	cpc2	CPC2 1.0.1	yes	13884	5610	0	5275	1678	335	0	8609	0.3799	0.9403	0.5412	0.1209	0.2991	0.1722	17.4
+D. melanogaster	fragments.unstranded	borf	Borf 1.2	yes	13884	9824	0	8952	5999	872	0	4932	0.6448	0.9112	0.7552	0.4321	0.6106	0.5061	48.6
+D. melanogaster	fragments.unstranded	longest_orf	longest ORF baseline	yes	13884	10352	0	9414	8286	938	0	4470	0.678	0.9094	0.7769	0.5968	0.8004	0.6838	
+D. melanogaster	fragments.unstranded.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	13884	12079	56	11878	10752	201	56	2006	0.8555	0.9834	0.915	0.7744	0.8901	0.8283	195.9
+D. melanogaster	fragments.unstranded.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	13884	12079	56	11878	10752	201	56	2006	0.8555	0.9834	0.915	0.7744	0.8901	0.8283	535.3
+D. melanogaster	fragments.unstranded.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	13884	12344	56	12155	10957	189	56	1729	0.8755	0.9847	0.9269	0.7892	0.8876	0.8355	1398.5
+D. melanogaster	fragments.unstranded.wRand	perl_td_v600	TransDecoder v6.0.0	yes	13884	9916	19	9810	8623	106	19	4074	0.7066	0.9893	0.8244	0.6211	0.8696	0.7246	222.7
+D. melanogaster	fragments.unstranded.wRand	prodigal	Prodigal 2.6.3	yes	13884	24540	9352	13237	11582	11303	9352	647	0.9534	0.5394	0.689	0.8342	0.472	0.6029	30.5
+D. melanogaster	fragments.unstranded.wRand	gmst	GeneMarkS-T 5.1	yes	13884	9968	13	9870	8216	98	13	4014	0.7109	0.9902	0.8276	0.5918	0.8242	0.6889	65.1
+D. melanogaster	fragments.unstranded.wRand	codan	CodAn 1.1	yes	13884	17938	4859	12520	10917	5418	4859	1364	0.9018	0.698	0.7869	0.7863	0.6086	0.6861	64276.3
+D. melanogaster	fragments.unstranded.wRand	cpat	CPAT 3.0.5	yes	13884	11011	94	10417	5961	594	94	3467	0.7503	0.9461	0.8369	0.4293	0.5414	0.4789	38.6
+D. melanogaster	fragments.unstranded.wRand	cpc2	CPC2 1.0.1	yes	13884	5854	244	5275	1678	579	244	8609	0.3799	0.9011	0.5345	0.1209	0.2866	0.17	29.1
+D. melanogaster	fragments.unstranded.wRand	borf	Borf 1.2	yes	13884	11772	1948	8952	5999	2820	1948	4932	0.6448	0.7604	0.6978	0.4321	0.5096	0.4676	74.4
+D. melanogaster	fragments.unstranded.wRand	longest_orf	longest ORF baseline	yes	13884	12700	2348	9414	8286	3286	2348	4470	0.678	0.7413	0.7082	0.5968	0.6524	0.6234	
+D. melanogaster	fragments.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	13884	12202	52	12082	10930	120	52	1802	0.8702	0.9902	0.9263	0.7872	0.8958	0.838	135.5
+D. melanogaster	fragments.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	13884	12202	52	12082	10930	120	52	1802	0.8702	0.9902	0.9263	0.7872	0.8958	0.838	348.5
+D. melanogaster	fragments.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	13884	12419	53	12295	11078	124	53	1589	0.8856	0.99	0.9349	0.7979	0.892	0.8423	1002.7
+D. melanogaster	fragments.wRand	perl_td_v600	TransDecoder v6.0.0	yes	13884	9838	8	9817	8646	21	8	4067	0.7071	0.9979	0.8277	0.6227	0.8788	0.7289	185.1
+D. melanogaster	fragments.wRand	prodigal	Prodigal 2.6.3	yes	13884	19127	4714	13232	11574	5895	4714	652	0.953	0.6918	0.8017	0.8336	0.6051	0.7012	30.4
+D. melanogaster	fragments.wRand	gmst	GeneMarkS-T 5.1	yes	13884	9960	11	9921	8796	39	11	3963	0.7146	0.9961	0.8322	0.6335	0.8831	0.7378	64.5
+D. melanogaster	fragments.wRand	codan	CodAn 1.1	yes	13884	15864	2992	12719	11057	3145	2992	1165	0.9161	0.8018	0.8551	0.7964	0.697	0.7434	31863.9
+D. melanogaster	fragments.wRand	cpat	CPAT 3.0.5	yes	13884	10725	69	10551	5974	174	69	3333	0.7599	0.9838	0.8575	0.4303	0.557	0.4855	27.2
+D. melanogaster	fragments.wRand	cpc2	CPC2 1.0.1	yes	13884	5822	134	5580	1790	242	134	8304	0.4019	0.9584	0.5663	0.1289	0.3075	0.1817	16.0
+D. melanogaster	fragments.wRand	rnasamba	RNAsamba 0.2.5	yes	13884	17923	5249	11592	6510	6331	5249	2292	0.8349	0.6468	0.7289	0.4689	0.3632	0.4093	88.7
+D. melanogaster	fragments.wRand	borf	Borf 1.2	yes	13884	10633	1067	9369	6306	1264	1067	4515	0.6748	0.8811	0.7643	0.4542	0.5931	0.5144	38.4
+D. melanogaster	fragments.wRand	longest_orf	longest ORF baseline	yes	13884	11427	1282	9923	8764	1504	1282	3961	0.7147	0.8684	0.7841	0.6312	0.767	0.6925	
+D. melanogaster	fragments_mixed_t1	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	13789	13172	0	13141	11748	31	0	648	0.953	0.9976	0.9748	0.852	0.8919	0.8715	180.9
+D. melanogaster	fragments_mixed_t1	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	13789	13172	0	13141	11748	31	0	648	0.953	0.9976	0.9748	0.852	0.8919	0.8715	473.7
+D. melanogaster	fragments_mixed_t1	perl_td_v600	TransDecoder v6.0.0	yes	13789	11437	0	11429	10005	8	0	2360	0.8288	0.9993	0.9061	0.7256	0.8748	0.7932	242.6
+D. melanogaster	fragments_mixed_t1	prodigal	Prodigal 2.6.3	yes	13789	14057	0	13348	11630	709	0	441	0.968	0.9496	0.9587	0.8434	0.8273	0.8353	27.8
+D. melanogaster	fragments_mixed_t1	gmst	GeneMarkS-T 5.1	yes	13789	11535	0	11496	10302	39	0	2293	0.8337	0.9966	0.9079	0.7471	0.8931	0.8136	29.8
+D. melanogaster	fragments_mixed_t1	codan	CodAn 1.1	yes	13789	13410	0	13339	11553	71	0	450	0.9674	0.9947	0.9808	0.8378	0.8615	0.8495	7849.2
+D. melanogaster	fragments_mixed_t1	cpat	CPAT 3.0.5	yes	13789	11679	0	11587	6355	92	0	2202	0.8403	0.9921	0.9099	0.4609	0.5441	0.4991	18.5
+D. melanogaster	fragments_mixed_t1	cpc2	CPC2 1.0.1	yes	13789	7786	0	7711	4530	75	0	6078	0.5592	0.9904	0.7148	0.3285	0.5818	0.4199	11.0
+D. melanogaster	fragments_mixed_t1	rnasamba	RNAsamba 0.2.5	yes	13789	13221	0	12447	6684	774	0	1342	0.9027	0.9415	0.9217	0.4847	0.5056	0.4949	44.9
+D. melanogaster	fragments_mixed_t1	borf	Borf 1.2	yes	13789	11218	0	11095	7804	123	0	2694	0.8046	0.989	0.8874	0.566	0.6957	0.6241	33.7
+D. melanogaster	fragments_mixed_t1	longest_orf	longest ORF baseline	yes	13789	13770	0	13459	11875	311	0	330	0.9761	0.9774	0.9767	0.8612	0.8624	0.8618	
+D. melanogaster	fragments_mixed_t2	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	13789	13168	0	13137	11786	31	0	652	0.9527	0.9976	0.9747	0.8547	0.895	0.8744	176.3
+D. melanogaster	fragments_mixed_t2	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	13789	13168	0	13137	11786	31	0	652	0.9527	0.9976	0.9747	0.8547	0.895	0.8744	481.9
+D. melanogaster	fragments_mixed_t2	perl_td_v600	TransDecoder v6.0.0	yes	13789	11392	0	11378	10013	14	0	2411	0.8252	0.9988	0.9037	0.7262	0.879	0.7953	246.7
+D. melanogaster	fragments_mixed_t2	prodigal	Prodigal 2.6.3	yes	13789	14024	0	13333	11582	691	0	456	0.9669	0.9507	0.9588	0.8399	0.8259	0.8328	27.7
+D. melanogaster	fragments_mixed_t2	gmst	GeneMarkS-T 5.1	yes	13789	11505	0	11465	10293	40	0	2324	0.8315	0.9965	0.9065	0.7465	0.8947	0.8139	29.7
+D. melanogaster	fragments_mixed_t2	codan	CodAn 1.1	yes	13789	13405	0	13334	11542	71	0	455	0.967	0.9947	0.9807	0.837	0.861	0.8489	7562.5
+D. melanogaster	fragments_mixed_t2	cpat	CPAT 3.0.5	yes	13789	11692	0	11599	6413	93	0	2190	0.8412	0.992	0.9104	0.4651	0.5485	0.5034	18.3
+D. melanogaster	fragments_mixed_t2	cpc2	CPC2 1.0.1	yes	13789	7725	0	7644	4533	81	0	6145	0.5544	0.9895	0.7106	0.3287	0.5868	0.4214	11.3
+D. melanogaster	fragments_mixed_t2	rnasamba	RNAsamba 0.2.5	yes	13789	13210	0	12443	6705	767	0	1346	0.9024	0.9419	0.9217	0.4863	0.5076	0.4967	41.4
+D. melanogaster	fragments_mixed_t2	borf	Borf 1.2	yes	13789	11133	0	11000	7760	133	0	2789	0.7977	0.9881	0.8828	0.5628	0.697	0.6227	41.4
+D. melanogaster	fragments_mixed_t2	longest_orf	longest ORF baseline	yes	13789	13770	0	13458	11872	312	0	331	0.976	0.9773	0.9767	0.861	0.8622	0.8616	
+D. melanogaster	fragments_mixed_t3	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	13778	13166	0	13130	11732	36	0	648	0.953	0.9973	0.9746	0.8515	0.8911	0.8708	180.5
+D. melanogaster	fragments_mixed_t3	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	13778	13166	0	13130	11732	36	0	648	0.953	0.9973	0.9746	0.8515	0.8911	0.8708	456.0
+D. melanogaster	fragments_mixed_t3	perl_td_v600	TransDecoder v6.0.0	yes	13778	11372	0	11357	9873	15	0	2421	0.8243	0.9987	0.9031	0.7166	0.8682	0.7851	254.1
+D. melanogaster	fragments_mixed_t3	prodigal	Prodigal 2.6.3	yes	13778	14050	0	13322	11593	728	0	456	0.9669	0.9482	0.9575	0.8414	0.8251	0.8332	27.6
+D. melanogaster	fragments_mixed_t3	gmst	GeneMarkS-T 5.1	yes	13778	11497	0	11450	10302	47	0	2328	0.831	0.9959	0.906	0.7477	0.8961	0.8152	30.5
+D. melanogaster	fragments_mixed_t3	codan	CodAn 1.1	yes	13778	13413	0	13339	11545	74	0	439	0.9681	0.9945	0.9811	0.8379	0.8607	0.8492	7523.6
+D. melanogaster	fragments_mixed_t3	cpat	CPAT 3.0.5	yes	13778	11716	0	11632	6386	84	0	2146	0.8442	0.9928	0.9125	0.4635	0.5451	0.501	18.2
+D. melanogaster	fragments_mixed_t3	cpc2	CPC2 1.0.1	yes	13778	7712	0	7642	4520	70	0	6136	0.5547	0.9909	0.7112	0.3281	0.5861	0.4207	11.1
+D. melanogaster	fragments_mixed_t3	rnasamba	RNAsamba 0.2.5	yes	13778	13244	0	12495	6698	749	0	1283	0.9069	0.9434	0.9248	0.4861	0.5057	0.4957	38.7
+D. melanogaster	fragments_mixed_t3	borf	Borf 1.2	yes	13778	11154	0	11028	7738	126	0	2750	0.8004	0.9887	0.8846	0.5616	0.6937	0.6207	39.1
+D. melanogaster	fragments_mixed_t3	longest_orf	longest ORF baseline	yes	13778	13765	0	13453	11829	312	0	325	0.9764	0.9773	0.9769	0.8585	0.8594	0.8589	
+M. musculus	complete	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	21409	20846	0	20764	19163	82	0	645	0.9699	0.9961	0.9828	0.8951	0.9193	0.907	320.1
+M. musculus	complete	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	21409	20846	0	20764	19163	82	0	645	0.9699	0.9961	0.9828	0.8951	0.9193	0.907	829.5
+M. musculus	complete	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	21409	21285	0	21234	19610	51	0	175	0.9918	0.9976	0.9947	0.916	0.9213	0.9186	2576.5
+M. musculus	complete	perl_td_v600	TransDecoder v6.0.0	yes	21409	20795	0	20683	16751	112	0	726	0.9661	0.9946	0.9801	0.7824	0.8055	0.7938	634.8
+M. musculus	complete	prodigal	Prodigal 2.6.3	yes	21409	24406	0	20882	14423	3524	0	527	0.9754	0.8556	0.9116	0.6737	0.591	0.6296	60.0
+M. musculus	complete	gmst	GeneMarkS-T 5.1	yes	21409	20958	0	20890	16587	68	0	519	0.9758	0.9968	0.9861	0.7748	0.7914	0.783	73.2
+M. musculus	complete	codan	CodAn 1.1	yes	21409	20471	0	20403	17388	68	0	1006	0.953	0.9967	0.9744	0.8122	0.8494	0.8304	27116.2
+M. musculus	complete	cpat	CPAT 3.0.5	yes	21409	20613	0	20582	19640	31	0	827	0.9614	0.9985	0.9796	0.9174	0.9528	0.9347	50.6
+M. musculus	complete	cpc2	CPC2 1.0.1	yes	21409	20598	0	20575	19631	23	0	834	0.961	0.9989	0.9796	0.917	0.9531	0.9347	30.0
+M. musculus	complete	rnasamba	RNAsamba 0.2.5	yes	21409	21165	0	21095	20140	70	0	314	0.9853	0.9967	0.991	0.9407	0.9516	0.9461	87.3
+M. musculus	complete	borf	Borf 1.2	yes	21409	20880	0	20790	18026	90	0	619	0.9711	0.9957	0.9832	0.842	0.8633	0.8525	79.7
+M. musculus	complete	longest_orf	longest ORF baseline	yes	21409	20988	0	20866	14803	122	0	543	0.9746	0.9942	0.9843	0.6914	0.7053	0.6983	
+M. musculus	complete.unstranded	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	21409	20812	0	20623	19031	189	0	786	0.9633	0.9909	0.9769	0.8889	0.9144	0.9015	455.1
+M. musculus	complete.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	21409	20812	0	20623	19031	189	0	786	0.9633	0.9909	0.9769	0.8889	0.9144	0.9015	1216.8
+M. musculus	complete.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	21409	21287	0	21205	19574	82	0	204	0.9905	0.9961	0.9933	0.9143	0.9195	0.9169	3525.1
+M. musculus	complete.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	21409	20911	0	20643	16722	268	0	766	0.9642	0.9872	0.9756	0.7811	0.7997	0.7903	799.4
+M. musculus	complete.unstranded	prodigal	Prodigal 2.6.3	yes	21409	27324	0	20883	14429	6441	0	526	0.9754	0.7643	0.857	0.674	0.5281	0.5922	82.0
+M. musculus	complete.unstranded	gmst	GeneMarkS-T 5.1	yes	21409	21022	0	20814	17015	208	0	595	0.9722	0.9901	0.9811	0.7948	0.8094	0.802	71.8
+M. musculus	complete.unstranded	codan	CodAn 1.1	yes	21409	20588	0	20373	17362	215	0	1036	0.9516	0.9896	0.9702	0.811	0.8433	0.8268	50443.8
+M. musculus	complete.unstranded	cpat	CPAT 3.0.5	yes	21409	20644	0	20484	19542	160	0	925	0.9568	0.9922	0.9742	0.9128	0.9466	0.9294	77.5
+M. musculus	complete.unstranded	cpc2	CPC2 1.0.1	yes	21409	20538	0	20290	19356	248	0	1119	0.9477	0.9879	0.9674	0.9041	0.9424	0.9229	49.1
+M. musculus	complete.unstranded	borf	Borf 1.2	yes	21409	20987	0	20490	17748	497	0	919	0.9571	0.9763	0.9666	0.829	0.8457	0.8372	162.9
+M. musculus	complete.unstranded	longest_orf	longest ORF baseline	yes	21409	21081	0	20568	14581	513	0	841	0.9607	0.9757	0.9681	0.6811	0.6917	0.6863	
+M. musculus	complete.unstranded.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	21409	20862	54	20622	19030	240	54	787	0.9632	0.9885	0.9757	0.8889	0.9122	0.9004	734.4
+M. musculus	complete.unstranded.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	21409	20862	54	20622	19030	240	54	787	0.9632	0.9885	0.9757	0.8889	0.9122	0.9004	2014.3
+M. musculus	complete.unstranded.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	21409	21342	55	21205	19574	137	55	204	0.9905	0.9936	0.992	0.9143	0.9172	0.9157	4764.3
+M. musculus	complete.unstranded.wRand	perl_td_v600	TransDecoder v6.0.0	yes	21409	20983	72	20643	16722	340	72	766	0.9642	0.9838	0.9739	0.7811	0.7969	0.7889	854.3
+M. musculus	complete.unstranded.wRand	prodigal	Prodigal 2.6.3	yes	21409	44537	17213	20883	14429	23654	17213	526	0.9754	0.4689	0.6333	0.674	0.324	0.4376	90.6
+M. musculus	complete.unstranded.wRand	gmst	GeneMarkS-T 5.1	yes	21409	21050	25	20808	17196	242	25	601	0.9719	0.9885	0.9801	0.8032	0.8169	0.81	140.5
+M. musculus	complete.unstranded.wRand	codan	CodAn 1.1	yes	21409	22599	2011	20373	17362	2226	2011	1036	0.9516	0.9015	0.9259	0.811	0.7683	0.789	357336.9
+M. musculus	complete.unstranded.wRand	cpat	CPAT 3.0.5	yes	21409	22507	1863	20484	19542	2023	1863	925	0.9568	0.9101	0.9329	0.9128	0.8683	0.89	118.3
+M. musculus	complete.unstranded.wRand	cpc2	CPC2 1.0.1	yes	21409	21603	1065	20290	19356	1313	1065	1119	0.9477	0.9392	0.9435	0.9041	0.896	0.9	98.7
+M. musculus	complete.unstranded.wRand	borf	Borf 1.2	yes	21409	29044	8057	20490	17748	8554	8057	919	0.9571	0.7055	0.8122	0.829	0.6111	0.7035	226.8
+M. musculus	complete.unstranded.wRand	longest_orf	longest ORF baseline	yes	21409	29847	8766	20568	14581	9279	8766	841	0.9607	0.6891	0.8026	0.6811	0.4885	0.5689	
+M. musculus	complete.wLnc	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	21409	22274	0	20565	18973	1709	0	844	0.9606	0.9233	0.9416	0.8862	0.8518	0.8687	473.7
+M. musculus	complete.wLnc	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	21409	22274	0	20565	18973	1709	0	844	0.9606	0.9233	0.9416	0.8862	0.8518	0.8687	1265.2
+M. musculus	complete.wLnc	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	21409	23711	0	21211	19576	2500	0	198	0.9908	0.8946	0.9402	0.9144	0.8256	0.8677	3302.1
+M. musculus	complete.wLnc	prodigal	Prodigal 2.6.3	yes	21409	37704	0	20882	14423	16822	0	527	0.9754	0.5538	0.7065	0.6737	0.3825	0.488	76.5
+M. musculus	complete.wLnc	gmst	GeneMarkS-T 5.1	yes	21409	27469	0	20898	16584	6571	0	511	0.9761	0.7608	0.8551	0.7746	0.6037	0.6786	147.5
+M. musculus	complete.wLnc	cpat	CPAT 3.0.5	yes	21409	22406	0	20582	19640	1824	0	827	0.9614	0.9186	0.9395	0.9174	0.8766	0.8965	77.6
+M. musculus	complete.wLnc	cpc2	CPC2 1.0.1	yes	21409	23020	0	20575	19631	2445	0	834	0.961	0.8938	0.9262	0.917	0.8528	0.8837	49.6
+M. musculus	complete.wLnc	rnasamba	RNAsamba 0.2.5	yes	21409	24783	0	21095	20140	3688	0	314	0.9853	0.8512	0.9134	0.9407	0.8127	0.872	130.9
+M. musculus	complete.wLnc	borf	Borf 1.2	yes	21409	27164	0	20790	18026	6374	0	619	0.9711	0.7654	0.856	0.842	0.6636	0.7422	119.4
+M. musculus	complete.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	21409	20883	42	20761	19160	122	42	648	0.9697	0.9942	0.9818	0.895	0.9175	0.9061	478.2
+M. musculus	complete.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	21409	20883	42	20761	19160	122	42	648	0.9697	0.9942	0.9818	0.895	0.9175	0.9061	1356.7
+M. musculus	complete.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	21409	21326	42	21233	19609	93	42	176	0.9918	0.9956	0.9937	0.9159	0.9195	0.9177	3280.9
+M. musculus	complete.wRand	perl_td_v600	TransDecoder v6.0.0	yes	21409	20846	56	20682	16752	164	56	727	0.966	0.9921	0.9789	0.7825	0.8036	0.7929	510.1
+M. musculus	complete.wRand	prodigal	Prodigal 2.6.3	yes	21409	33102	8696	20882	14423	12220	8696	527	0.9754	0.6308	0.7662	0.6737	0.4357	0.5292	64.1
+M. musculus	complete.wRand	gmst	GeneMarkS-T 5.1	yes	21409	20976	16	20892	16749	84	16	517	0.9759	0.996	0.9858	0.7823	0.7985	0.7903	114.0
+M. musculus	complete.wRand	codan	CodAn 1.1	yes	21409	21575	1104	20403	17388	1172	1104	1006	0.953	0.9457	0.9493	0.8122	0.8059	0.809	165426.5
+M. musculus	complete.wRand	cpat	CPAT 3.0.5	yes	21409	21644	1031	20582	19640	1062	1031	827	0.9614	0.9509	0.9561	0.9174	0.9074	0.9124	76.5
+M. musculus	complete.wRand	cpc2	CPC2 1.0.1	yes	21409	21156	558	20575	19631	581	558	834	0.961	0.9725	0.9668	0.917	0.9279	0.9224	55.6
+M. musculus	complete.wRand	rnasamba	RNAsamba 0.2.5	yes	21409	29360	8195	21095	20140	8265	8195	314	0.9853	0.7185	0.831	0.9407	0.686	0.7934	145.2
+M. musculus	complete.wRand	borf	Borf 1.2	yes	21409	25986	5106	20790	18026	5196	5106	619	0.9711	0.8	0.8773	0.842	0.6937	0.7607	110.9
+M. musculus	complete.wRand	longest_orf	longest ORF baseline	yes	21409	26646	5658	20866	14803	5780	5658	543	0.9746	0.7831	0.8684	0.6914	0.5555	0.6161	
+M. musculus	complete_fullutr	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	21409	20574	0	20449	18839	125	0	960	0.9552	0.9939	0.9742	0.88	0.9157	0.8975	429.7
+M. musculus	complete_fullutr	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	21409	20574	0	20449	18839	125	0	960	0.9552	0.9939	0.9742	0.88	0.9157	0.8975	1175.7
+M. musculus	complete_fullutr	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	21409	21275	0	21187	19535	88	0	222	0.9896	0.9959	0.9927	0.9125	0.9182	0.9153	3013.0
+M. musculus	complete_fullutr	perl_td_v600	TransDecoder v6.0.0	yes	21409	24183	0	20680	17020	3503	0	729	0.9659	0.8551	0.9072	0.795	0.7038	0.7466	663.1
+M. musculus	complete_fullutr	prodigal	Prodigal 2.6.3	yes	21409	31461	0	20972	14901	10489	0	437	0.9796	0.6666	0.7933	0.696	0.4736	0.5637	72.8
+M. musculus	complete_fullutr	gmst	GeneMarkS-T 5.1	yes	21409	21034	0	20864	15832	170	0	545	0.9745	0.9919	0.9832	0.7395	0.7527	0.746	88.5
+M. musculus	complete_fullutr	codan	CodAn 1.1	yes	21409	20591	0	20468	17675	123	0	941	0.956	0.994	0.9747	0.8256	0.8584	0.8417	35810.6
+M. musculus	complete_fullutr	cpat	CPAT 3.0.5	yes	21409	20612	0	20539	19534	73	0	870	0.9594	0.9965	0.9776	0.9124	0.9477	0.9297	71.9
+M. musculus	complete_fullutr	cpc2	CPC2 1.0.1	yes	21409	20424	0	20320	19322	104	0	1089	0.9491	0.9949	0.9715	0.9025	0.946	0.9238	45.1
+M. musculus	complete_fullutr	rnasamba	RNAsamba 0.2.5	yes	21409	20954	0	20832	19822	122	0	577	0.973	0.9942	0.9835	0.9259	0.946	0.9358	95.6
+M. musculus	complete_fullutr	borf	Borf 1.2	yes	21409	20929	0	20702	18554	227	0	707	0.967	0.9892	0.9779	0.8666	0.8865	0.8765	111.2
+M. musculus	complete_fullutr	longest_orf	longest ORF baseline	yes	21409	21035	0	20748	15309	287	0	661	0.9691	0.9864	0.9777	0.7151	0.7278	0.7214	
+M. musculus	complete_fullutr.unstranded	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	21409	20631	0	20356	18761	275	0	1053	0.9508	0.9867	0.9684	0.8763	0.9094	0.8925	625.1
+M. musculus	complete_fullutr.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	21409	20631	0	20356	18761	275	0	1053	0.9508	0.9867	0.9684	0.8763	0.9094	0.8925	1712.3
+M. musculus	complete_fullutr.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	21409	21286	0	21143	19498	143	0	266	0.9876	0.9933	0.9904	0.9107	0.916	0.9134	4288.5
+M. musculus	complete_fullutr.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	21409	27315	0	20623	16941	6692	0	786	0.9633	0.755	0.8465	0.7913	0.6202	0.6954	976.1
+M. musculus	complete_fullutr.unstranded	prodigal	Prodigal 2.6.3	yes	21409	40294	0	20972	14913	19322	0	437	0.9796	0.5205	0.6798	0.6966	0.3701	0.4834	63.2
+M. musculus	complete_fullutr.unstranded	gmst	GeneMarkS-T 5.1	yes	21409	21122	0	20734	16032	388	0	675	0.9685	0.9816	0.975	0.7488	0.759	0.7539	91.7
+M. musculus	complete_fullutr.unstranded	codan	CodAn 1.1	yes	21409	20710	0	20371	17595	339	0	1038	0.9515	0.9836	0.9673	0.8219	0.8496	0.8355	66563.4
+M. musculus	complete_fullutr.unstranded	cpat	CPAT 3.0.5	yes	21409	20655	0	20382	19378	273	0	1027	0.952	0.9868	0.9691	0.9051	0.9382	0.9214	95.5
+M. musculus	complete_fullutr.unstranded	cpc2	CPC2 1.0.1	yes	21409	20380	0	19988	18999	392	0	1421	0.9336	0.9808	0.9566	0.8874	0.9322	0.9093	72.0
+M. musculus	complete_fullutr.unstranded	borf	Borf 1.2	yes	21409	21041	0	20323	18194	718	0	1086	0.9493	0.9659	0.9575	0.8498	0.8647	0.8572	205.4
+M. musculus	complete_fullutr.unstranded	longest_orf	longest ORF baseline	yes	21409	21124	0	20382	15030	742	0	1027	0.952	0.9649	0.9584	0.702	0.7115	0.7067	
+M. musculus	fragments	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	21409	18761	0	18646	16429	115	0	2763	0.8709	0.9939	0.9284	0.7674	0.8757	0.818	194.8
+M. musculus	fragments	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	21409	18761	0	18646	16429	115	0	2763	0.8709	0.9939	0.9284	0.7674	0.8757	0.818	492.6
+M. musculus	fragments	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	21409	20134	0	20077	17631	57	0	1332	0.9378	0.9972	0.9666	0.8235	0.8757	0.8488	1330.3
+M. musculus	fragments	perl_td_v600	TransDecoder v6.0.0	yes	21409	16749	0	16620	14115	129	0	4789	0.7763	0.9923	0.8711	0.6593	0.8427	0.7398	240.5
+M. musculus	fragments	prodigal	Prodigal 2.6.3	yes	21409	22890	0	20368	17078	2522	0	1041	0.9514	0.8898	0.9196	0.7977	0.7461	0.771	28.7
+M. musculus	fragments	gmst	GeneMarkS-T 5.1	yes	21409	16722	0	16509	14273	213	0	4900	0.7711	0.9873	0.8659	0.6667	0.8535	0.7486	49.3
+M. musculus	fragments	codan	CodAn 1.1	yes	21409	18433	0	18168	15409	265	0	3241	0.8486	0.9856	0.912	0.7197	0.8359	0.7735	18001.0
+M. musculus	fragments	cpat	CPAT 3.0.5	yes	21409	14765	0	14678	8342	87	0	6731	0.6856	0.9941	0.8115	0.3896	0.565	0.4612	22.8
+M. musculus	fragments	cpc2	CPC2 1.0.1	yes	21409	8868	0	8661	2702	207	0	12748	0.4045	0.9767	0.5721	0.1262	0.3047	0.1785	15.5
+M. musculus	fragments	rnasamba	RNAsamba 0.2.5	yes	21409	17640	0	16749	9370	891	0	4660	0.7823	0.9495	0.8578	0.4377	0.5312	0.4799	78.0
+M. musculus	fragments	borf	Borf 1.2	yes	21409	16227	0	15774	9855	453	0	5635	0.7368	0.9721	0.8382	0.4603	0.6073	0.5237	30.4
+M. musculus	fragments	longest_orf	longest ORF baseline	yes	21409	17310	0	16864	14148	446	0	4545	0.7877	0.9742	0.8711	0.6608	0.8173	0.7308	
+M. musculus	fragments.unstranded	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	21409	18453	0	18106	15978	347	0	3303	0.8457	0.9812	0.9084	0.7463	0.8659	0.8017	264.8
+M. musculus	fragments.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	21409	18453	0	18106	15978	347	0	3303	0.8457	0.9812	0.9084	0.7463	0.8659	0.8017	752.4
+M. musculus	fragments.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	21409	20140	0	20028	17602	112	0	1381	0.9355	0.9944	0.9641	0.8222	0.874	0.8473	1837.4
+M. musculus	fragments.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	21409	17068	0	16555	14064	513	0	4854	0.7733	0.9699	0.8605	0.6569	0.824	0.731	271.6
+M. musculus	fragments.unstranded	prodigal	Prodigal 2.6.3	yes	21409	24961	0	20376	17083	4585	0	1033	0.9517	0.8163	0.8788	0.7979	0.6844	0.7368	30.8
+M. musculus	fragments.unstranded	gmst	GeneMarkS-T 5.1	yes	21409	17021	0	16437	13450	584	0	4972	0.7678	0.9657	0.8554	0.6282	0.7902	0.7	52.8
+M. musculus	fragments.unstranded	codan	CodAn 1.1	yes	21409	18697	0	18012	15292	685	0	3397	0.8413	0.9634	0.8982	0.7143	0.8179	0.7626	34874.7
+M. musculus	fragments.unstranded	cpat	CPAT 3.0.5	yes	21409	14958	0	14531	8276	427	0	6878	0.6787	0.9715	0.7991	0.3866	0.5533	0.4551	40.6
+M. musculus	fragments.unstranded	cpc2	CPC2 1.0.1	yes	21409	8835	0	8254	2503	581	0	13155	0.3855	0.9342	0.5458	0.1169	0.2833	0.1655	23.3
+M. musculus	fragments.unstranded	borf	Borf 1.2	yes	21409	16841	0	15191	9429	1650	0	6218	0.7096	0.902	0.7943	0.4404	0.5599	0.493	64.4
+M. musculus	fragments.unstranded	longest_orf	longest ORF baseline	yes	21409	17770	0	16158	13537	1612	0	5251	0.7547	0.9093	0.8248	0.6323	0.7618	0.691	
+M. musculus	fragments.unstranded.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	21409	18447	52	18054	15936	393	52	3355	0.8433	0.9787	0.906	0.7444	0.8639	0.7997	323.6
+M. musculus	fragments.unstranded.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	21409	18447	52	18054	15936	393	52	3355	0.8433	0.9787	0.906	0.7444	0.8639	0.7997	883.0
+M. musculus	fragments.unstranded.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	21409	20188	52	20024	17600	164	52	1385	0.9353	0.9919	0.9628	0.8221	0.8718	0.8462	2351.9
+M. musculus	fragments.unstranded.wRand	perl_td_v600	TransDecoder v6.0.0	yes	21409	17098	30	16555	14064	543	30	4854	0.7733	0.9682	0.8598	0.6569	0.8226	0.7305	313.0
+M. musculus	fragments.unstranded.wRand	prodigal	Prodigal 2.6.3	yes	21409	43610	16126	20458	17265	23152	16126	951	0.9556	0.4691	0.6293	0.8064	0.3959	0.5311	45.5
+M. musculus	fragments.unstranded.wRand	gmst	GeneMarkS-T 5.1	yes	21409	17013	7	16401	13422	612	7	5008	0.7661	0.964	0.8537	0.6269	0.7889	0.6987	97.4
+M. musculus	fragments.unstranded.wRand	codan	CodAn 1.1	yes	21409	21649	2952	18012	15292	3637	2952	3397	0.8413	0.832	0.8366	0.7143	0.7064	0.7103	255795.0
+M. musculus	fragments.unstranded.wRand	cpat	CPAT 3.0.5	yes	21409	15813	855	14531	8276	1282	855	6878	0.6787	0.9189	0.7808	0.3866	0.5234	0.4447	75.5
+M. musculus	fragments.unstranded.wRand	cpc2	CPC2 1.0.1	yes	21409	9396	561	8254	2503	1142	561	13155	0.3855	0.8785	0.5359	0.1169	0.2664	0.1625	53.7
+M. musculus	fragments.unstranded.wRand	borf	Borf 1.2	yes	21409	21007	4166	15191	9429	5816	4166	6218	0.7096	0.7231	0.7163	0.4404	0.4489	0.4446	114.9
+M. musculus	fragments.unstranded.wRand	longest_orf	longest ORF baseline	yes	21409	22747	4977	16158	13537	6589	4977	5251	0.7547	0.7103	0.7319	0.6323	0.5951	0.6131	
+M. musculus	fragments.wLnc	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	21409	20239	0	18250	16094	1989	0	3159	0.8524	0.9017	0.8764	0.7517	0.7952	0.7729	294.3
+M. musculus	fragments.wLnc	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	21409	20239	0	18250	16094	1989	0	3159	0.8524	0.9017	0.8764	0.7517	0.7952	0.7729	788.1
+M. musculus	fragments.wLnc	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	21409	22770	0	20028	17581	2742	0	1381	0.9355	0.8796	0.9067	0.8212	0.7721	0.7959	1989.3
+M. musculus	fragments.wLnc	prodigal	Prodigal 2.6.3	yes	21409	46785	0	20445	17208	26340	0	964	0.955	0.437	0.5996	0.8038	0.3678	0.5047	56.2
+M. musculus	fragments.wLnc	gmst	GeneMarkS-T 5.1	yes	21409	23052	0	16388	13394	6664	0	5021	0.7655	0.7109	0.7372	0.6256	0.581	0.6025	137.4
+M. musculus	fragments.wLnc	cpat	CPAT 3.0.5	yes	21409	16558	0	14678	8342	1880	0	6731	0.6856	0.8865	0.7732	0.3896	0.5038	0.4394	49.8
+M. musculus	fragments.wLnc	cpc2	CPC2 1.0.1	yes	21409	11290	0	8661	2702	2629	0	12748	0.4045	0.7671	0.5297	0.1262	0.2393	0.1653	33.9
+M. musculus	fragments.wLnc	rnasamba	RNAsamba 0.2.5	yes	21409	20851	0	16749	9370	4102	0	4660	0.7823	0.8033	0.7927	0.4377	0.4494	0.4434	114.2
+M. musculus	fragments.wLnc	borf	Borf 1.2	yes	21409	22511	0	15774	9855	6737	0	5635	0.7368	0.7007	0.7183	0.4603	0.4378	0.4488	74.5
+M. musculus	fragments.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	21409	18687	32	18544	16349	143	32	2865	0.8662	0.9923	0.925	0.7637	0.8749	0.8155	226.8
+M. musculus	fragments.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	21409	18687	32	18544	16349	143	32	2865	0.8662	0.9923	0.925	0.7637	0.8749	0.8155	578.3
+M. musculus	fragments.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	21409	20156	33	20072	17635	84	33	1337	0.9375	0.9958	0.9658	0.8237	0.8749	0.8486	1556.1
+M. musculus	fragments.wRand	perl_td_v600	TransDecoder v6.0.0	yes	21409	16791	16	16645	14127	146	16	4764	0.7775	0.9913	0.8715	0.6599	0.8413	0.7396	268.6
+M. musculus	fragments.wRand	prodigal	Prodigal 2.6.3	yes	21409	32451	8095	20456	17260	11995	8095	953	0.9555	0.6304	0.7596	0.8062	0.5319	0.6409	43.6
+M. musculus	fragments.wRand	gmst	GeneMarkS-T 5.1	yes	21409	16730	3	16513	14346	217	3	4896	0.7713	0.987	0.8659	0.6701	0.8575	0.7523	97.3
+M. musculus	fragments.wRand	codan	CodAn 1.1	yes	21409	20010	1577	18168	15409	1842	1577	3241	0.8486	0.9079	0.8773	0.7197	0.7701	0.7441	119535.3
+M. musculus	fragments.wRand	cpat	CPAT 3.0.5	yes	21409	15247	482	14678	8342	569	482	6731	0.6856	0.9627	0.8009	0.3896	0.5471	0.4552	52.7
+M. musculus	fragments.wRand	cpc2	CPC2 1.0.1	yes	21409	9147	279	8661	2702	486	279	12748	0.4045	0.9469	0.5669	0.1262	0.2954	0.1769	38.0
+M. musculus	fragments.wRand	rnasamba	RNAsamba 0.2.5	yes	21409	25481	7841	16749	9370	8732	7841	4660	0.7823	0.6573	0.7144	0.4377	0.3677	0.3997	117.0
+M. musculus	fragments.wRand	borf	Borf 1.2	yes	21409	18754	2527	15774	9855	2980	2527	5635	0.7368	0.8411	0.7855	0.4603	0.5255	0.4908	69.6
+M. musculus	fragments.wRand	longest_orf	longest ORF baseline	yes	21409	20341	3031	16864	14148	3477	3031	4545	0.7877	0.8291	0.8079	0.6608	0.6955	0.6777	
+M. musculus	fragments_mixed_t1	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	21367	20090	0	20006	17262	84	0	1361	0.9363	0.9958	0.9651	0.8079	0.8592	0.8328	207.7
+M. musculus	fragments_mixed_t1	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	21367	20090	0	20006	17262	84	0	1361	0.9363	0.9958	0.9651	0.8079	0.8592	0.8328	541.9
+M. musculus	fragments_mixed_t1	perl_td_v600	TransDecoder v6.0.0	yes	21367	18639	0	18538	15856	101	0	2829	0.8676	0.9946	0.9268	0.7421	0.8507	0.7927	342.3
+M. musculus	fragments_mixed_t1	prodigal	Prodigal 2.6.3	yes	21367	23096	0	20731	17444	2365	0	636	0.9702	0.8976	0.9325	0.8164	0.7553	0.7847	43.9
+M. musculus	fragments_mixed_t1	gmst	GeneMarkS-T 5.1	yes	21367	18806	0	18729	16282	77	0	2638	0.8765	0.9959	0.9324	0.762	0.8658	0.8106	47.7
+M. musculus	fragments_mixed_t1	codan	CodAn 1.1	yes	21367	19793	0	19641	16489	152	0	1726	0.9192	0.9923	0.9544	0.7717	0.8331	0.8012	17289.2
+M. musculus	fragments_mixed_t1	cpat	CPAT 3.0.5	yes	21367	17200	0	17108	9456	92	0	4259	0.8007	0.9947	0.8872	0.4426	0.5498	0.4904	29.3
+M. musculus	fragments_mixed_t1	cpc2	CPC2 1.0.1	yes	21367	12349	0	12206	7004	143	0	9161	0.5713	0.9884	0.724	0.3278	0.5672	0.4155	17.2
+M. musculus	fragments_mixed_t1	rnasamba	RNAsamba 0.2.5	yes	21367	19421	0	18706	9957	715	0	2661	0.8755	0.9632	0.9172	0.466	0.5127	0.4882	55.1
+M. musculus	fragments_mixed_t1	borf	Borf 1.2	yes	21367	18285	0	18066	11864	219	0	3301	0.8455	0.988	0.9112	0.5552	0.6488	0.5984	62.5
+M. musculus	fragments_mixed_t1	longest_orf	longest ORF baseline	yes	21367	21362	0	20946	17887	416	0	421	0.9803	0.9805	0.9804	0.8371	0.8373	0.8372	
+M. musculus	fragments_mixed_t2	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	21357	19959	0	19899	17284	60	0	1458	0.9317	0.997	0.9633	0.8093	0.866	0.8367	212.8
+M. musculus	fragments_mixed_t2	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	21357	19959	0	19899	17284	60	0	1458	0.9317	0.997	0.9633	0.8093	0.866	0.8367	548.1
+M. musculus	fragments_mixed_t2	perl_td_v600	TransDecoder v6.0.0	yes	21357	18687	0	18607	15864	80	0	2750	0.8712	0.9957	0.9293	0.7428	0.8489	0.7923	354.9
+M. musculus	fragments_mixed_t2	prodigal	Prodigal 2.6.3	yes	21357	23061	0	20770	17407	2291	0	587	0.9725	0.9007	0.9352	0.815	0.7548	0.7838	43.8
+M. musculus	fragments_mixed_t2	gmst	GeneMarkS-T 5.1	yes	21357	18831	0	18749	16263	82	0	2608	0.8779	0.9956	0.9331	0.7615	0.8636	0.8093	48.8
+M. musculus	fragments_mixed_t2	codan	CodAn 1.1	yes	21357	19780	0	19644	16419	136	0	1713	0.9198	0.9931	0.9551	0.7688	0.8301	0.7983	18780.9
+M. musculus	fragments_mixed_t2	cpat	CPAT 3.0.5	yes	21357	17154	0	17086	9485	68	0	4271	0.8	0.996	0.8873	0.4441	0.5529	0.4926	29.1
+M. musculus	fragments_mixed_t2	cpc2	CPC2 1.0.1	yes	21357	12432	0	12297	7071	135	0	9060	0.5758	0.9891	0.7279	0.3311	0.5688	0.4185	17.1
+M. musculus	fragments_mixed_t2	rnasamba	RNAsamba 0.2.5	yes	21357	19399	0	18731	9950	668	0	2626	0.877	0.9656	0.9192	0.4659	0.5129	0.4883	54.1
+M. musculus	fragments_mixed_t2	borf	Borf 1.2	yes	21357	18325	0	18083	11824	242	0	3274	0.8467	0.9868	0.9114	0.5536	0.6452	0.5959	73.3
+M. musculus	fragments_mixed_t2	longest_orf	longest ORF baseline	yes	21357	21352	0	20922	17783	430	0	435	0.9796	0.9799	0.9797	0.8327	0.8328	0.8328	
+M. musculus	fragments_mixed_t3	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	21362	19955	0	19891	17241	64	0	1471	0.9311	0.9968	0.9628	0.8071	0.864	0.8346	213.3
+M. musculus	fragments_mixed_t3	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	21362	19955	0	19891	17241	64	0	1471	0.9311	0.9968	0.9628	0.8071	0.864	0.8346	529.4
+M. musculus	fragments_mixed_t3	perl_td_v600	TransDecoder v6.0.0	yes	21362	18673	0	18577	15800	96	0	2785	0.8696	0.9949	0.928	0.7396	0.8461	0.7893	333.9
+M. musculus	fragments_mixed_t3	prodigal	Prodigal 2.6.3	yes	21362	23137	0	20770	17438	2367	0	592	0.9723	0.8977	0.9335	0.8163	0.7537	0.7837	43.6
+M. musculus	fragments_mixed_t3	gmst	GeneMarkS-T 5.1	yes	21362	18849	0	18758	16312	91	0	2604	0.8781	0.9952	0.933	0.7636	0.8654	0.8113	48.0
+M. musculus	fragments_mixed_t3	codan	CodAn 1.1	yes	21362	19773	0	19626	16432	147	0	1736	0.9187	0.9926	0.9542	0.7692	0.831	0.7989	19810.4
+M. musculus	fragments_mixed_t3	cpat	CPAT 3.0.5	yes	21362	17067	0	17003	9480	64	0	4359	0.7959	0.9963	0.8849	0.4438	0.5555	0.4934	29.4
+M. musculus	fragments_mixed_t3	cpc2	CPC2 1.0.1	yes	21362	12341	0	12229	7058	112	0	9133	0.5725	0.9909	0.7257	0.3304	0.5719	0.4188	16.9
+M. musculus	fragments_mixed_t3	rnasamba	RNAsamba 0.2.5	yes	21362	19370	0	18717	9969	653	0	2645	0.8762	0.9663	0.919	0.4667	0.5147	0.4895	53.9
+M. musculus	fragments_mixed_t3	borf	Borf 1.2	yes	21362	18342	0	18103	11961	239	0	3259	0.8474	0.987	0.9119	0.5599	0.6521	0.6025	63.0
+M. musculus	fragments_mixed_t3	longest_orf	longest ORF baseline	yes	21362	21355	0	20966	17906	389	0	396	0.9815	0.9818	0.9816	0.8382	0.8385	0.8384	
+H. sapiens	complete	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	19167	18712	0	18672	17423	40	0	495	0.9742	0.9979	0.9859	0.909	0.9311	0.9199	300.8
+H. sapiens	complete	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	19167	18712	0	18672	17423	40	0	495	0.9742	0.9979	0.9859	0.909	0.9311	0.9199	767.4
+H. sapiens	complete	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	19167	19093	0	19066	17789	27	0	101	0.9947	0.9986	0.9967	0.9281	0.9317	0.9299	2442.9
+H. sapiens	complete	perl_td_v600	TransDecoder v6.0.0	yes	19167	18671	0	18630	14277	41	0	537	0.972	0.9978	0.9847	0.7449	0.7647	0.7546	433.0
+H. sapiens	complete	prodigal	Prodigal 2.6.3	yes	19167	21480	0	18834	10755	2646	0	333	0.9826	0.8768	0.9267	0.5611	0.5007	0.5292	49.5
+H. sapiens	complete	gmst	GeneMarkS-T 5.1	yes	19167	18763	0	18712	14339	51	0	455	0.9763	0.9973	0.9867	0.7481	0.7642	0.7561	56.7
+H. sapiens	complete	codan	CodAn 1.1	yes	19167	18476	0	18444	16168	32	0	723	0.9623	0.9983	0.9799	0.8435	0.8751	0.859	23356.4
+H. sapiens	complete	cpat	CPAT 3.0.5	yes	19167	18796	0	18773	18393	23	0	394	0.9794	0.9988	0.989	0.9596	0.9786	0.969	51.9
+H. sapiens	complete	cpc2	CPC2 1.0.1	yes	19167	18431	0	18403	18028	28	0	764	0.9601	0.9985	0.9789	0.9406	0.9781	0.959	31.0
+H. sapiens	complete	rnasamba	RNAsamba 0.2.5	yes	19167	19031	0	18955	18574	76	0	212	0.9889	0.996	0.9925	0.9691	0.976	0.9725	82.6
+H. sapiens	complete	borf	Borf 1.2	yes	19167	18645	0	18480	16438	165	0	687	0.9642	0.9912	0.9775	0.8576	0.8816	0.8695	68.8
+H. sapiens	complete	longest_orf	longest ORF baseline	yes	19167	18797	0	18601	10577	196	0	566	0.9705	0.9896	0.9799	0.5518	0.5627	0.5572	
+H. sapiens	complete.unstranded	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	19167	18665	0	18574	17337	91	0	593	0.9691	0.9951	0.9819	0.9045	0.9289	0.9165	428.5
+H. sapiens	complete.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	19167	18665	0	18574	17337	91	0	593	0.9691	0.9951	0.9819	0.9045	0.9289	0.9165	1148.6
+H. sapiens	complete.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	19167	19084	0	19051	17778	33	0	116	0.9939	0.9983	0.9961	0.9275	0.9316	0.9295	3557.6
+H. sapiens	complete.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	19167	18742	0	18603	14350	139	0	564	0.9706	0.9926	0.9815	0.7487	0.7657	0.7571	595.8
+H. sapiens	complete.unstranded	prodigal	Prodigal 2.6.3	yes	19167	23699	0	18834	10809	4865	0	333	0.9826	0.7947	0.8787	0.5639	0.4561	0.5043	53.5
+H. sapiens	complete.unstranded	gmst	GeneMarkS-T 5.1	yes	19167	18804	0	18684	14994	120	0	483	0.9748	0.9936	0.9841	0.7823	0.7974	0.7898	63.9
+H. sapiens	complete.unstranded	codan	CodAn 1.1	yes	19167	18519	0	18431	16161	88	0	736	0.9616	0.9952	0.9781	0.8432	0.8727	0.8577	45537.6
+H. sapiens	complete.unstranded	cpat	CPAT 3.0.5	yes	19167	18824	0	18661	18283	163	0	506	0.9736	0.9913	0.9824	0.9539	0.9713	0.9625	87.3
+H. sapiens	complete.unstranded	cpc2	CPC2 1.0.1	yes	19167	18307	0	18088	17721	219	0	1079	0.9437	0.988	0.9654	0.9246	0.968	0.9458	54.3
+H. sapiens	complete.unstranded	borf	Borf 1.2	yes	19167	18739	0	18083	16074	656	0	1084	0.9434	0.965	0.9541	0.8386	0.8578	0.8481	159.2
+H. sapiens	complete.unstranded	longest_orf	longest ORF baseline	yes	19167	18865	0	18219	10377	646	0	948	0.9505	0.9658	0.9581	0.5414	0.5501	0.5457	
+H. sapiens	complete.unstranded.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	19167	18825	170	18566	17330	259	170	601	0.9686	0.9862	0.9774	0.9042	0.9206	0.9123	657.8
+H. sapiens	complete.unstranded.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	19167	18825	170	18566	17330	259	170	601	0.9686	0.9862	0.9774	0.9042	0.9206	0.9123	1963.6
+H. sapiens	complete.unstranded.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	19167	19255	172	19050	17777	205	172	117	0.9939	0.9894	0.9916	0.9275	0.9232	0.9254	4973.9
+H. sapiens	complete.unstranded.wRand	perl_td_v600	TransDecoder v6.0.0	yes	19167	18934	192	18603	14350	331	192	564	0.9706	0.9825	0.9765	0.7487	0.7579	0.7533	745.8
+H. sapiens	complete.unstranded.wRand	prodigal	Prodigal 2.6.3	yes	19167	38331	14632	18834	10809	19497	14632	333	0.9826	0.4914	0.6551	0.5639	0.282	0.376	71.3
+H. sapiens	complete.unstranded.wRand	gmst	GeneMarkS-T 5.1	yes	19167	18830	18	18676	15317	154	18	491	0.9744	0.9918	0.983	0.7991	0.8134	0.8062	122.1
+H. sapiens	complete.unstranded.wRand	codan	CodAn 1.1	yes	19167	20574	2055	18431	16161	2143	2055	736	0.9616	0.8958	0.9276	0.8432	0.7855	0.8133	246714.3
+H. sapiens	complete.unstranded.wRand	cpat	CPAT 3.0.5	yes	19167	23552	4728	18661	18283	4891	4728	506	0.9736	0.7923	0.8737	0.9539	0.7763	0.856	116.5
+H. sapiens	complete.unstranded.wRand	cpc2	CPC2 1.0.1	yes	19167	19390	1083	18088	17721	1302	1083	1079	0.9437	0.9329	0.9382	0.9246	0.9139	0.9192	84.3
+H. sapiens	complete.unstranded.wRand	borf	Borf 1.2	yes	19167	26661	7922	18083	16074	8578	7922	1084	0.9434	0.6783	0.7892	0.8386	0.6029	0.7015	242.9
+H. sapiens	complete.unstranded.wRand	longest_orf	longest ORF baseline	yes	19167	27393	8528	18219	10377	9174	8528	948	0.9505	0.6651	0.7826	0.5414	0.3788	0.4457	
+H. sapiens	complete.wLnc	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	19167	20148	0	18486	17241	1662	0	681	0.9645	0.9175	0.9404	0.8995	0.8557	0.8771	457.1
+H. sapiens	complete.wLnc	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	19167	20148	0	18486	17241	1662	0	681	0.9645	0.9175	0.9404	0.8995	0.8557	0.8771	1382.7
+H. sapiens	complete.wLnc	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	19167	22350	0	19057	17769	3293	0	110	0.9943	0.8527	0.918	0.9271	0.795	0.856	3704.8
+H. sapiens	complete.wLnc	prodigal	Prodigal 2.6.3	yes	19167	36219	0	18834	10755	17385	0	333	0.9826	0.52	0.6801	0.5611	0.2969	0.3884	76.6
+H. sapiens	complete.wLnc	gmst	GeneMarkS-T 5.1	yes	19167	27068	0	18724	13578	8344	0	443	0.9769	0.6917	0.8099	0.7084	0.5016	0.5873	147.9
+H. sapiens	complete.wLnc	cpat	CPAT 3.0.5	yes	19167	22316	0	18773	18393	3543	0	394	0.9794	0.8412	0.9051	0.9596	0.8242	0.8868	72.4
+H. sapiens	complete.wLnc	cpc2	CPC2 1.0.1	yes	19167	21091	0	18403	18028	2688	0	764	0.9601	0.8726	0.9143	0.9406	0.8548	0.8956	49.4
+H. sapiens	complete.wLnc	rnasamba	RNAsamba 0.2.5	yes	19167	22088	0	18955	18574	3133	0	212	0.9889	0.8582	0.9189	0.9691	0.8409	0.9004	155.6
+H. sapiens	complete.wLnc	borf	Borf 1.2	yes	19167	26489	0	18480	16438	8009	0	687	0.9642	0.6976	0.8095	0.8576	0.6206	0.7201	209.4
+H. sapiens	complete.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	19167	18829	113	18678	17431	151	113	489	0.9745	0.992	0.9832	0.9094	0.9258	0.9175	460.5
+H. sapiens	complete.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	19167	18829	113	18678	17431	151	113	489	0.9745	0.992	0.9832	0.9094	0.9258	0.9175	1319.4
+H. sapiens	complete.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	19167	19205	113	19066	17792	139	113	101	0.9947	0.9928	0.9937	0.9283	0.9264	0.9273	3409.3
+H. sapiens	complete.wRand	perl_td_v600	TransDecoder v6.0.0	yes	19167	18787	113	18634	14280	153	113	533	0.9722	0.9919	0.9819	0.745	0.7601	0.7525	600.5
+H. sapiens	complete.wRand	prodigal	Prodigal 2.6.3	yes	19167	28903	7423	18834	10755	10069	7423	333	0.9826	0.6516	0.7836	0.5611	0.3721	0.4475	66.4
+H. sapiens	complete.wRand	gmst	GeneMarkS-T 5.1	yes	19167	18773	7	18714	14539	59	7	453	0.9764	0.9969	0.9865	0.7585	0.7745	0.7664	115.2
+H. sapiens	complete.wRand	codan	CodAn 1.1	yes	19167	19577	1101	18444	16168	1133	1101	723	0.9623	0.9421	0.9521	0.8435	0.8259	0.8346	86675.7
+H. sapiens	complete.wRand	cpat	CPAT 3.0.5	yes	19167	21971	3175	18773	18393	3198	3175	394	0.9794	0.8544	0.9127	0.9596	0.8371	0.8942	75.4
+H. sapiens	complete.wRand	cpc2	CPC2 1.0.1	yes	19167	19030	599	18403	18028	627	599	764	0.9601	0.9671	0.9636	0.9406	0.9473	0.9439	42.8
+H. sapiens	complete.wRand	rnasamba	RNAsamba 0.2.5	yes	19167	26299	7268	18955	18574	7344	7268	212	0.9889	0.7207	0.8338	0.9691	0.7063	0.8171	141.1
+H. sapiens	complete.wRand	borf	Borf 1.2	yes	19167	23920	5275	18480	16438	5440	5275	687	0.9642	0.7726	0.8578	0.8576	0.6872	0.763	121.0
+H. sapiens	complete.wRand	longest_orf	longest ORF baseline	yes	19167	24645	5848	18601	10577	6044	5848	566	0.9705	0.7548	0.8491	0.5518	0.4292	0.4828	
+H. sapiens	complete_fullutr	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	19167	18544	0	18462	17227	82	0	705	0.9632	0.9956	0.9791	0.8988	0.929	0.9136	407.9
+H. sapiens	complete_fullutr	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	19167	18544	0	18462	17227	82	0	705	0.9632	0.9956	0.9791	0.8988	0.929	0.9136	1107.5
+H. sapiens	complete_fullutr	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	19167	19095	0	19037	17770	58	0	130	0.9932	0.997	0.9951	0.9271	0.9306	0.9289	2992.2
+H. sapiens	complete_fullutr	perl_td_v600	TransDecoder v6.0.0	yes	19167	21940	0	18619	14553	3321	0	548	0.9714	0.8486	0.9059	0.7593	0.6633	0.7081	503.1
+H. sapiens	complete_fullutr	prodigal	Prodigal 2.6.3	yes	19167	29374	0	18901	10750	10473	0	266	0.9861	0.6435	0.7788	0.5609	0.366	0.4429	55.4
+H. sapiens	complete_fullutr	gmst	GeneMarkS-T 5.1	yes	19167	18827	0	18677	12283	150	0	490	0.9744	0.992	0.9832	0.6408	0.6524	0.6466	71.4
+H. sapiens	complete_fullutr	codan	CodAn 1.1	yes	19167	18564	0	18509	16417	55	0	658	0.9657	0.997	0.9811	0.8565	0.8843	0.8702	31660.9
+H. sapiens	complete_fullutr	cpat	CPAT 3.0.5	yes	19167	18779	0	18718	18323	61	0	449	0.9766	0.9968	0.9866	0.956	0.9757	0.9657	62.3
+H. sapiens	complete_fullutr	cpc2	CPC2 1.0.1	yes	19167	18291	0	18160	17776	131	0	1007	0.9475	0.9928	0.9696	0.9274	0.9718	0.9491	39.9
+H. sapiens	complete_fullutr	rnasamba	RNAsamba 0.2.5	yes	19167	18910	0	18721	18335	189	0	446	0.9767	0.99	0.9833	0.9566	0.9696	0.963	94.2
+H. sapiens	complete_fullutr	borf	Borf 1.2	yes	19167	18681	0	18408	16691	273	0	759	0.9604	0.9854	0.9727	0.8708	0.8935	0.882	87.6
+H. sapiens	complete_fullutr	longest_orf	longest ORF baseline	yes	19167	18830	0	18498	10836	332	0	669	0.9651	0.9824	0.9737	0.5653	0.5755	0.5704	
+H. sapiens	complete_fullutr.unstranded	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	19167	18443	0	18308	17099	135	0	859	0.9552	0.9927	0.9736	0.8921	0.9271	0.9093	569.5
+H. sapiens	complete_fullutr.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	19167	18443	0	18308	17099	135	0	859	0.9552	0.9927	0.9736	0.8921	0.9271	0.9093	1574.9
+H. sapiens	complete_fullutr.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	19167	19089	0	19022	17764	67	0	145	0.9924	0.9965	0.9945	0.9268	0.9306	0.9287	4281.4
+H. sapiens	complete_fullutr.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	19167	24768	0	18584	14509	6184	0	583	0.9696	0.7503	0.846	0.757	0.5858	0.6605	670.5
+H. sapiens	complete_fullutr.unstranded	prodigal	Prodigal 2.6.3	yes	19167	38021	0	18899	10785	19122	0	268	0.986	0.4971	0.6609	0.5627	0.2837	0.3772	56.3
+H. sapiens	complete_fullutr.unstranded	gmst	GeneMarkS-T 5.1	yes	19167	18883	0	18612	13046	271	0	555	0.971	0.9856	0.9783	0.6806	0.6909	0.6857	76.8
+H. sapiens	complete_fullutr.unstranded	codan	CodAn 1.1	yes	19167	18619	0	18482	16400	137	0	685	0.9643	0.9926	0.9782	0.8556	0.8808	0.868	61779.3
+H. sapiens	complete_fullutr.unstranded	cpat	CPAT 3.0.5	yes	19167	18806	0	18553	18163	253	0	614	0.968	0.9865	0.9772	0.9476	0.9658	0.9566	120.0
+H. sapiens	complete_fullutr.unstranded	cpc2	CPC2 1.0.1	yes	19167	18175	0	17803	17429	372	0	1364	0.9288	0.9795	0.9535	0.9093	0.959	0.9335	57.6
+H. sapiens	complete_fullutr.unstranded	borf	Borf 1.2	yes	19167	18789	0	17983	16291	806	0	1184	0.9382	0.9571	0.9476	0.85	0.867	0.8584	200.1
+H. sapiens	complete_fullutr.unstranded	longest_orf	longest ORF baseline	yes	19167	18899	0	18105	10627	794	0	1062	0.9446	0.958	0.9512	0.5544	0.5623	0.5583	
+H. sapiens	fragments	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	19167	17059	0	16998	14945	61	0	2169	0.8868	0.9964	0.9384	0.7797	0.8761	0.8251	188.6
+H. sapiens	fragments	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	19167	17059	0	16998	14945	61	0	2169	0.8868	0.9964	0.9384	0.7797	0.8761	0.8251	487.2
+H. sapiens	fragments	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	19167	18201	0	18159	15899	42	0	1008	0.9474	0.9977	0.9719	0.8295	0.8735	0.8509	1294.2
+H. sapiens	fragments	perl_td_v600	TransDecoder v6.0.0	yes	19167	15394	0	15315	12370	79	0	3852	0.799	0.9949	0.8863	0.6454	0.8036	0.7158	294.3
+H. sapiens	fragments	prodigal	Prodigal 2.6.3	yes	19167	20180	0	18357	14125	1823	0	810	0.9577	0.9097	0.9331	0.7369	0.7	0.718	29.3
+H. sapiens	fragments	gmst	GeneMarkS-T 5.1	yes	19167	15309	0	15163	12955	146	0	4004	0.7911	0.9905	0.8796	0.6759	0.8462	0.7515	48.8
+H. sapiens	fragments	codan	CodAn 1.1	yes	19167	16918	0	16770	13085	148	0	2397	0.8749	0.9913	0.9295	0.6827	0.7734	0.7252	18994.6
+H. sapiens	fragments	cpat	CPAT 3.0.5	yes	19167	15354	0	15190	8728	164	0	3977	0.7925	0.9893	0.88	0.4554	0.5685	0.5057	23.0
+H. sapiens	fragments	cpc2	CPC2 1.0.1	yes	19167	8294	0	8082	2650	212	0	11085	0.4217	0.9744	0.5886	0.1383	0.3195	0.193	16.1
+H. sapiens	fragments	rnasamba	RNAsamba 0.2.5	yes	19167	16412	0	15481	8926	931	0	3686	0.8077	0.9433	0.8702	0.4657	0.5439	0.5018	65.0
+H. sapiens	fragments	borf	Borf 1.2	yes	19167	14871	0	14254	9151	617	0	4913	0.7437	0.9585	0.8375	0.4774	0.6154	0.5377	38.4
+H. sapiens	fragments	longest_orf	longest ORF baseline	yes	19167	15798	0	15213	11705	585	0	3954	0.7937	0.963	0.8702	0.6107	0.7409	0.6695	
+H. sapiens	fragments.unstranded	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	19167	16756	0	16552	14612	204	0	2615	0.8636	0.9878	0.9215	0.7624	0.872	0.8135	259.1
+H. sapiens	fragments.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	19167	16756	0	16552	14612	204	0	2615	0.8636	0.9878	0.9215	0.7624	0.872	0.8135	722.5
+H. sapiens	fragments.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	19167	18204	0	18127	15895	77	0	1040	0.9457	0.9958	0.9701	0.8293	0.8732	0.8507	1743.7
+H. sapiens	fragments.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	19167	15640	0	15252	12332	388	0	3915	0.7957	0.9752	0.8764	0.6434	0.7885	0.7086	321.0
+H. sapiens	fragments.unstranded	prodigal	Prodigal 2.6.3	yes	19167	21760	0	18359	14131	3401	0	808	0.9578	0.8437	0.8972	0.7373	0.6494	0.6905	39.2
+H. sapiens	fragments.unstranded	gmst	GeneMarkS-T 5.1	yes	19167	15537	0	15140	12403	397	0	4027	0.7899	0.9744	0.8725	0.6471	0.7983	0.7148	54.6
+H. sapiens	fragments.unstranded	codan	CodAn 1.1	yes	19167	17043	0	16682	13031	361	0	2485	0.8704	0.9788	0.9214	0.6799	0.7646	0.7197	34030.0
+H. sapiens	fragments.unstranded	cpat	CPAT 3.0.5	yes	19167	15728	0	14939	8660	789	0	4228	0.7794	0.9498	0.8562	0.4518	0.5506	0.4963	38.8
+H. sapiens	fragments.unstranded	cpc2	CPC2 1.0.1	yes	19167	8174	0	7603	2448	571	0	11564	0.3967	0.9301	0.5562	0.1277	0.2995	0.1791	23.4
+H. sapiens	fragments.unstranded	borf	Borf 1.2	yes	19167	15492	0	13455	8562	2037	0	5712	0.702	0.8685	0.7764	0.4467	0.5527	0.4941	67.7
+H. sapiens	fragments.unstranded	longest_orf	longest ORF baseline	yes	19167	16137	0	14341	11039	1796	0	4826	0.7482	0.8887	0.8124	0.5759	0.6841	0.6254	
+H. sapiens	fragments.unstranded.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	19167	16800	67	16534	14585	266	67	2633	0.8626	0.9842	0.9194	0.7609	0.8682	0.811	313.9
+H. sapiens	fragments.unstranded.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	19167	16800	67	16534	14585	266	67	2633	0.8626	0.9842	0.9194	0.7609	0.8682	0.811	852.9
+H. sapiens	fragments.unstranded.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	19167	18262	68	18123	15891	139	68	1044	0.9455	0.9924	0.9684	0.8291	0.8702	0.8491	2363.6
+H. sapiens	fragments.unstranded.wRand	perl_td_v600	TransDecoder v6.0.0	yes	19167	15704	64	15252	12332	452	64	3915	0.7957	0.9712	0.8748	0.6434	0.7853	0.7073	401.4
+H. sapiens	fragments.unstranded.wRand	prodigal	Prodigal 2.6.3	yes	19167	39994	15667	18411	14202	21583	15667	756	0.9606	0.4603	0.6224	0.741	0.3551	0.4801	57.1
+H. sapiens	fragments.unstranded.wRand	gmst	GeneMarkS-T 5.1	yes	19167	15476	4	15060	12348	416	4	4107	0.7857	0.9731	0.8694	0.6442	0.7979	0.7129	110.6
+H. sapiens	fragments.unstranded.wRand	codan	CodAn 1.1	yes	19167	19934	2891	16682	13031	3252	2891	2485	0.8704	0.8369	0.8533	0.6799	0.6537	0.6665	147452.1
+H. sapiens	fragments.unstranded.wRand	cpat	CPAT 3.0.5	yes	19167	18385	2657	14939	8660	3446	2657	4228	0.7794	0.8126	0.7956	0.4518	0.471	0.4612	66.1
+H. sapiens	fragments.unstranded.wRand	cpc2	CPC2 1.0.1	yes	19167	8743	569	7603	2448	1140	569	11564	0.3967	0.8696	0.5448	0.1277	0.28	0.1754	44.9
+H. sapiens	fragments.unstranded.wRand	borf	Borf 1.2	yes	19167	20160	4668	13455	8562	6705	4668	5712	0.702	0.6674	0.6843	0.4467	0.4247	0.4354	99.8
+H. sapiens	fragments.unstranded.wRand	longest_orf	longest ORF baseline	yes	19167	21487	5350	14341	11039	7146	5350	4826	0.7482	0.6674	0.7055	0.5759	0.5138	0.5431	
+H. sapiens	fragments.wLnc	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	19167	18529	0	16564	14577	1965	0	2603	0.8642	0.894	0.8788	0.7605	0.7867	0.7734	300.9
+H. sapiens	fragments.wLnc	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	19167	18529	0	16564	14577	1965	0	2603	0.8642	0.894	0.8788	0.7605	0.7867	0.7734	930.4
+H. sapiens	fragments.wLnc	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	19167	21688	0	18132	15841	3556	0	1035	0.946	0.836	0.8876	0.8265	0.7304	0.7755	2185.2
+H. sapiens	fragments.wLnc	prodigal	Prodigal 2.6.3	yes	19167	48026	0	18400	14170	29626	0	767	0.96	0.3831	0.5477	0.7393	0.295	0.4218	56.0
+H. sapiens	fragments.wLnc	gmst	GeneMarkS-T 5.1	yes	19167	25130	0	15368	11869	9762	0	3799	0.8018	0.6115	0.6939	0.6192	0.4723	0.5359	130.2
+H. sapiens	fragments.wLnc	cpat	CPAT 3.0.5	yes	19167	18874	0	15190	8728	3684	0	3977	0.7925	0.8048	0.7986	0.4554	0.4624	0.4589	47.0
+H. sapiens	fragments.wLnc	cpc2	CPC2 1.0.1	yes	19167	10954	0	8082	2650	2872	0	11085	0.4217	0.7378	0.5366	0.1383	0.2419	0.176	34.4
+H. sapiens	fragments.wLnc	rnasamba	RNAsamba 0.2.5	yes	19167	18993	0	15481	8926	3512	0	3686	0.8077	0.8151	0.8114	0.4657	0.47	0.4678	132.3
+H. sapiens	fragments.wLnc	borf	Borf 1.2	yes	19167	22715	0	14254	9151	8461	0	4913	0.7437	0.6275	0.6807	0.4774	0.4029	0.437	161.7
+H. sapiens	fragments.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	19167	17096	44	16988	14946	108	44	2179	0.8863	0.9937	0.9369	0.7798	0.8742	0.8243	212.3
+H. sapiens	fragments.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	19167	17096	44	16988	14946	108	44	2179	0.8863	0.9937	0.9369	0.7798	0.8742	0.8243	556.7
+H. sapiens	fragments.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	19167	18248	44	18159	15907	89	44	1008	0.9474	0.9951	0.9707	0.8299	0.8717	0.8503	1612.3
+H. sapiens	fragments.wRand	perl_td_v600	TransDecoder v6.0.0	yes	19167	15418	23	15316	12372	102	23	3851	0.7991	0.9934	0.8857	0.6455	0.8024	0.7155	330.7
+H. sapiens	fragments.wRand	prodigal	Prodigal 2.6.3	yes	19167	29619	8054	18404	14198	11215	8054	763	0.9602	0.6214	0.7545	0.7408	0.4794	0.5821	48.1
+H. sapiens	fragments.wRand	gmst	GeneMarkS-T 5.1	yes	19167	15279	4	15136	12963	143	4	4031	0.7897	0.9906	0.8788	0.6763	0.8484	0.7527	117.1
+H. sapiens	fragments.wRand	codan	CodAn 1.1	yes	19167	18549	1631	16770	13085	1779	1631	2397	0.8749	0.9041	0.8893	0.6827	0.7054	0.6939	64633.4
+H. sapiens	fragments.wRand	cpat	CPAT 3.0.5	yes	19167	16893	1539	15190	8728	1703	1539	3977	0.7925	0.8992	0.8425	0.4554	0.5167	0.4841	35.4
+H. sapiens	fragments.wRand	cpc2	CPC2 1.0.1	yes	19167	8564	270	8082	2650	482	270	11085	0.4217	0.9437	0.5829	0.1383	0.3094	0.1911	26.9
+H. sapiens	fragments.wRand	rnasamba	RNAsamba 0.2.5	yes	19167	22752	6340	15481	8926	7271	6340	3686	0.8077	0.6804	0.7386	0.4657	0.3923	0.4259	110.6
+H. sapiens	fragments.wRand	borf	Borf 1.2	yes	19167	17584	2713	14254	9151	3330	2713	4913	0.7437	0.8106	0.7757	0.4774	0.5204	0.498	59.4
+H. sapiens	fragments.wRand	longest_orf	longest ORF baseline	yes	19167	19075	3277	15213	11705	3862	3277	3954	0.7937	0.7975	0.7956	0.6107	0.6136	0.6122	
+H. sapiens	fragments_mixed_t1	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	19127	18086	0	18062	15799	24	0	1065	0.9443	0.9987	0.9707	0.826	0.8735	0.8491	200.9
+H. sapiens	fragments_mixed_t1	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	19127	18086	0	18062	15799	24	0	1065	0.9443	0.9987	0.9707	0.826	0.8735	0.8491	514.5
+H. sapiens	fragments_mixed_t1	perl_td_v600	TransDecoder v6.0.0	yes	19127	16890	0	16850	13945	40	0	2277	0.881	0.9976	0.9357	0.7291	0.8256	0.7744	340.0
+H. sapiens	fragments_mixed_t1	prodigal	Prodigal 2.6.3	yes	19127	20277	0	18715	14402	1562	0	412	0.9785	0.923	0.9499	0.753	0.7103	0.731	39.3
+H. sapiens	fragments_mixed_t1	gmst	GeneMarkS-T 5.1	yes	19127	16997	0	16925	14419	72	0	2202	0.8849	0.9958	0.9371	0.7539	0.8483	0.7983	43.7
+H. sapiens	fragments_mixed_t1	codan	CodAn 1.1	yes	19127	17986	0	17893	13763	93	0	1234	0.9355	0.9948	0.9642	0.7196	0.7652	0.7417	14903.1
+H. sapiens	fragments_mixed_t1	cpat	CPAT 3.0.5	yes	19127	16660	0	16564	9148	96	0	2563	0.866	0.9942	0.9257	0.4783	0.5491	0.5112	28.4
+H. sapiens	fragments_mixed_t1	cpc2	CPC2 1.0.1	yes	19127	11256	0	11149	6590	107	0	7978	0.5829	0.9905	0.7339	0.3445	0.5855	0.4338	15.7
+H. sapiens	fragments_mixed_t1	rnasamba	RNAsamba 0.2.5	yes	19127	17729	0	17067	9274	662	0	2060	0.8923	0.9627	0.9261	0.4849	0.5231	0.5033	52.9
+H. sapiens	fragments_mixed_t1	borf	Borf 1.2	yes	19127	16538	0	16233	10929	305	0	2894	0.8487	0.9816	0.9103	0.5714	0.6608	0.6129	38.6
+H. sapiens	fragments_mixed_t1	longest_orf	longest ORF baseline	yes	19127	19125	0	18726	14578	399	0	401	0.979	0.9791	0.9791	0.7622	0.7622	0.7622	
+H. sapiens	fragments_mixed_t2	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	19137	17988	0	17962	15789	26	0	1175	0.9386	0.9986	0.9676	0.8251	0.8778	0.8506	204.3
+H. sapiens	fragments_mixed_t2	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	19137	17988	0	17962	15789	26	0	1175	0.9386	0.9986	0.9676	0.8251	0.8778	0.8506	518.3
+H. sapiens	fragments_mixed_t2	perl_td_v600	TransDecoder v6.0.0	yes	19137	16936	0	16895	14047	41	0	2242	0.8828	0.9976	0.9367	0.734	0.8294	0.7788	335.3
+H. sapiens	fragments_mixed_t2	prodigal	Prodigal 2.6.3	yes	19137	20297	0	18699	14447	1598	0	438	0.9771	0.9213	0.9484	0.7549	0.7118	0.7327	39.4
+H. sapiens	fragments_mixed_t2	gmst	GeneMarkS-T 5.1	yes	19137	17018	0	16945	14500	73	0	2192	0.8855	0.9957	0.9374	0.7577	0.852	0.8021	43.0
+H. sapiens	fragments_mixed_t2	codan	CodAn 1.1	yes	19137	17997	0	17908	13864	89	0	1229	0.9358	0.9951	0.9645	0.7245	0.7704	0.7467	14820.4
+H. sapiens	fragments_mixed_t2	cpat	CPAT 3.0.5	yes	19137	16692	0	16589	9156	103	0	2548	0.8669	0.9938	0.926	0.4784	0.5485	0.5111	26.9
+H. sapiens	fragments_mixed_t2	cpc2	CPC2 1.0.1	yes	19137	11253	0	11119	6557	134	0	8018	0.581	0.9881	0.7318	0.3426	0.5827	0.4315	16.1
+H. sapiens	fragments_mixed_t2	rnasamba	RNAsamba 0.2.5	yes	19137	17699	0	17021	9289	678	0	2116	0.8894	0.9617	0.9242	0.4854	0.5248	0.5043	51.5
+H. sapiens	fragments_mixed_t2	borf	Borf 1.2	yes	19137	16592	0	16282	11013	310	0	2855	0.8508	0.9813	0.9114	0.5755	0.6638	0.6165	35.7
+H. sapiens	fragments_mixed_t2	longest_orf	longest ORF baseline	yes	19137	19132	0	18703	14576	429	0	434	0.9773	0.9776	0.9774	0.7617	0.7619	0.7618	
+H. sapiens	fragments_mixed_t3	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	19131	18123	0	18084	15892	39	0	1047	0.9453	0.9978	0.9708	0.8307	0.8769	0.8532	205.9
+H. sapiens	fragments_mixed_t3	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	19131	18123	0	18084	15892	39	0	1047	0.9453	0.9978	0.9708	0.8307	0.8769	0.8532	497.6
+H. sapiens	fragments_mixed_t3	perl_td_v600	TransDecoder v6.0.0	yes	19131	16946	0	16895	13945	51	0	2236	0.8831	0.997	0.9366	0.7289	0.8229	0.7731	321.8
+H. sapiens	fragments_mixed_t3	prodigal	Prodigal 2.6.3	yes	19131	20333	0	18706	14489	1627	0	425	0.9778	0.92	0.948	0.7574	0.7126	0.7343	39.6
+H. sapiens	fragments_mixed_t3	gmst	GeneMarkS-T 5.1	yes	19131	17027	0	16950	14471	77	0	2181	0.886	0.9955	0.9376	0.7564	0.8499	0.8004	42.6
+H. sapiens	fragments_mixed_t3	codan	CodAn 1.1	yes	19131	18032	0	17937	13889	95	0	1194	0.9376	0.9947	0.9653	0.726	0.7702	0.7475	14317.4
+H. sapiens	fragments_mixed_t3	cpat	CPAT 3.0.5	yes	19131	16636	0	16528	9157	108	0	2603	0.8639	0.9935	0.9242	0.4786	0.5504	0.512	28.5
+H. sapiens	fragments_mixed_t3	cpc2	CPC2 1.0.1	yes	19131	11207	0	11092	6525	115	0	8039	0.5798	0.9897	0.7312	0.3411	0.5822	0.4302	15.9
+H. sapiens	fragments_mixed_t3	rnasamba	RNAsamba 0.2.5	yes	19131	17731	0	17053	9291	678	0	2078	0.8914	0.9618	0.9252	0.4857	0.524	0.5041	48.5
+H. sapiens	fragments_mixed_t3	borf	Borf 1.2	yes	19131	16584	0	16275	10964	309	0	2856	0.8507	0.9814	0.9114	0.5731	0.6611	0.614	49.3
+H. sapiens	fragments_mixed_t3	longest_orf	longest ORF baseline	yes	19131	19128	0	18716	14655	412	0	415	0.9783	0.9785	0.9784	0.766	0.7662	0.7661	
+C. reinhardtii	complete	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	17621	16896	0	16818	12891	78	0	803	0.9544	0.9954	0.9745	0.7316	0.763	0.7469	375.4
+C. reinhardtii	complete	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	17621	16896	0	16818	12891	78	0	803	0.9544	0.9954	0.9745	0.7316	0.763	0.7469	1058.7
+C. reinhardtii	complete	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	17621	16939	0	16849	12906	90	0	772	0.9562	0.9947	0.9751	0.7324	0.7619	0.7469	3769.9
+C. reinhardtii	complete	perl_td_v600	TransDecoder v6.0.0	yes	17621	16417	0	16379	11398	38	0	1242	0.9295	0.9977	0.9624	0.6468	0.6943	0.6697	487.8
+C. reinhardtii	complete	prodigal	Prodigal 2.6.3	yes	17621	18519	0	16884	11798	1635	0	737	0.9582	0.9117	0.9344	0.6695	0.6371	0.6529	50.2
+C. reinhardtii	complete	gmst	GeneMarkS-T 5.1	yes	17621	16548	0	16473	12655	75	0	1148	0.9349	0.9955	0.9642	0.7182	0.7647	0.7407	32.8
+C. reinhardtii	complete	codan	CodAn 1.1	yes	17621	17155	0	17081	13555	74	0	540	0.9694	0.9957	0.9823	0.7693	0.7901	0.7796	18322.3
+C. reinhardtii	complete	cpat	CPAT 3.0.5	yes	17621	17227	0	17056	13697	171	0	565	0.9679	0.9901	0.9789	0.7773	0.7951	0.7861	52.7
+C. reinhardtii	complete	cpc2	CPC2 1.0.1	yes	17621	16208	0	16120	12871	88	0	1501	0.9148	0.9946	0.953	0.7304	0.7941	0.7609	26.6
+C. reinhardtii	complete	rnasamba	RNAsamba 0.2.5	yes	17621	17439	0	17071	13694	368	0	550	0.9688	0.9789	0.9738	0.7771	0.7853	0.7812	84.6
+C. reinhardtii	complete	borf	Borf 1.2	yes	17621	16813	0	16435	12326	378	0	1186	0.9327	0.9775	0.9546	0.6995	0.7331	0.7159	50.1
+C. reinhardtii	complete	longest_orf	longest ORF baseline	yes	17621	16929	0	16475	10273	454	0	1146	0.935	0.9732	0.9537	0.583	0.6068	0.5947	
+C. reinhardtii	complete.unstranded	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	17621	16907	0	16722	12815	185	0	899	0.949	0.9891	0.9686	0.7273	0.758	0.7423	625.2
+C. reinhardtii	complete.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	17621	16907	0	16722	12815	185	0	899	0.949	0.9891	0.9686	0.7273	0.758	0.7423	1799.8
+C. reinhardtii	complete.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	17621	16963	0	16761	12835	202	0	860	0.9512	0.9881	0.9693	0.7284	0.7566	0.7423	5273.2
+C. reinhardtii	complete.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	17621	16506	0	16328	11358	178	0	1293	0.9266	0.9892	0.9569	0.6446	0.6881	0.6656	721.0
+C. reinhardtii	complete.unstranded	prodigal	Prodigal 2.6.3	yes	17621	19493	0	16880	11814	2613	0	741	0.9579	0.866	0.9096	0.6705	0.6061	0.6366	55.5
+C. reinhardtii	complete.unstranded	gmst	GeneMarkS-T 5.1	yes	17621	16670	0	16423	12690	247	0	1198	0.932	0.9852	0.9579	0.7202	0.7612	0.7401	45.7
+C. reinhardtii	complete.unstranded	codan	CodAn 1.1	yes	17621	17237	0	16945	13444	292	0	676	0.9616	0.9831	0.9722	0.763	0.78	0.7714	39405.2
+C. reinhardtii	complete.unstranded	cpat	CPAT 3.0.5	yes	17621	17352	0	16683	13384	669	0	938	0.9468	0.9614	0.9541	0.7595	0.7713	0.7654	85.5
+C. reinhardtii	complete.unstranded	cpc2	CPC2 1.0.1	yes	17621	16260	0	15243	12136	1017	0	2378	0.865	0.9375	0.8998	0.6887	0.7464	0.7164	48.9
+C. reinhardtii	complete.unstranded	borf	Borf 1.2	yes	17621	17188	0	15167	11303	2021	0	2454	0.8607	0.8824	0.8714	0.6415	0.6576	0.6494	96.4
+C. reinhardtii	complete.unstranded	longest_orf	longest ORF baseline	yes	17621	17273	0	15080	9385	2193	0	2541	0.8558	0.873	0.8643	0.5326	0.5433	0.5379	
+C. reinhardtii	complete.unstranded.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	17621	17027	142	16700	12796	327	142	921	0.9477	0.9808	0.964	0.7262	0.7515	0.7386	1027.2
+C. reinhardtii	complete.unstranded.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	17621	17027	142	16700	12796	327	142	921	0.9477	0.9808	0.964	0.7262	0.7515	0.7386	3088.4
+C. reinhardtii	complete.unstranded.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	17621	17086	144	16740	12816	346	144	881	0.95	0.9797	0.9646	0.7273	0.7501	0.7385	7409.2
+C. reinhardtii	complete.unstranded.wRand	perl_td_v600	TransDecoder v6.0.0	yes	17621	16607	101	16328	11358	279	101	1293	0.9266	0.9832	0.9541	0.6446	0.6839	0.6637	991.4
+C. reinhardtii	complete.unstranded.wRand	prodigal	Prodigal 2.6.3	yes	17621	24933	5440	16880	11814	8053	5440	741	0.9579	0.677	0.7933	0.6705	0.4738	0.5552	67.5
+C. reinhardtii	complete.unstranded.wRand	gmst	GeneMarkS-T 5.1	yes	17621	16631	6	16443	12914	188	6	1178	0.9331	0.9887	0.9601	0.7329	0.7765	0.7541	80.9
+C. reinhardtii	complete.unstranded.wRand	codan	CodAn 1.1	yes	17621	28411	11174	16945	13444	11466	11174	676	0.9616	0.5964	0.7362	0.763	0.4732	0.5841	169416.5
+C. reinhardtii	complete.unstranded.wRand	cpat	CPAT 3.0.5	yes	17621	29668	12316	16683	13384	12985	12316	938	0.9468	0.5623	0.7056	0.7595	0.4511	0.5661	138.8
+C. reinhardtii	complete.unstranded.wRand	cpc2	CPC2 1.0.1	yes	17621	18546	2286	15243	12136	3303	2286	2378	0.865	0.8219	0.8429	0.6887	0.6544	0.6711	77.9
+C. reinhardtii	complete.unstranded.wRand	borf	Borf 1.2	yes	17621	31227	14039	15167	11303	16060	14039	2454	0.8607	0.4857	0.621	0.6415	0.362	0.4628	171.3
+C. reinhardtii	complete.unstranded.wRand	longest_orf	longest ORF baseline	yes	17621	31905	14632	15080	9385	16825	14632	2541	0.8558	0.4727	0.609	0.5326	0.2942	0.379	
+C. reinhardtii	complete.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	17621	16943	65	16806	12883	137	65	815	0.9537	0.9919	0.9725	0.7311	0.7604	0.7455	641.3
+C. reinhardtii	complete.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	17621	16943	65	16806	12883	137	65	815	0.9537	0.9919	0.9725	0.7311	0.7604	0.7455	1936.3
+C. reinhardtii	complete.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	17621	16989	66	16839	12899	150	66	782	0.9556	0.9912	0.9731	0.732	0.7593	0.7454	4441.8
+C. reinhardtii	complete.wRand	perl_td_v600	TransDecoder v6.0.0	yes	17621	16457	55	16364	11393	93	55	1257	0.9287	0.9943	0.9604	0.6466	0.6923	0.6686	647.5
+C. reinhardtii	complete.wRand	prodigal	Prodigal 2.6.3	yes	17621	21325	2806	16884	11798	4441	2806	737	0.9582	0.7917	0.867	0.6695	0.5532	0.6059	62.1
+C. reinhardtii	complete.wRand	gmst	GeneMarkS-T 5.1	yes	17621	16546	3	16487	12861	59	3	1134	0.9356	0.9964	0.9651	0.7299	0.7773	0.7528	60.0
+C. reinhardtii	complete.wRand	codan	CodAn 1.1	yes	17621	26183	9028	17081	13555	9102	9028	540	0.9694	0.6524	0.7799	0.7693	0.5177	0.6189	90417.1
+C. reinhardtii	complete.wRand	cpat	CPAT 3.0.5	yes	17621	27121	9894	17056	13697	10065	9894	565	0.9679	0.6289	0.7624	0.7773	0.505	0.6123	82.5
+C. reinhardtii	complete.wRand	cpc2	CPC2 1.0.1	yes	17621	17485	1277	16120	12871	1365	1277	1501	0.9148	0.9219	0.9184	0.7304	0.7361	0.7333	47.4
+C. reinhardtii	complete.wRand	rnasamba	RNAsamba 0.2.5	yes	17621	24565	7126	17071	13694	7494	7126	550	0.9688	0.6949	0.8093	0.7771	0.5575	0.6492	129.1
+C. reinhardtii	complete.wRand	borf	Borf 1.2	yes	17621	28235	11422	16435	12326	11800	11422	1186	0.9327	0.5821	0.7168	0.6995	0.4366	0.5376	80.4
+C. reinhardtii	complete.wRand	longest_orf	longest ORF baseline	yes	17621	29068	12139	16475	10273	12593	12139	1146	0.935	0.5668	0.7057	0.583	0.3534	0.4401	
+C. reinhardtii	complete_fullutr	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	17621	16774	0	16647	12597	127	0	974	0.9447	0.9924	0.968	0.7149	0.751	0.7325	448.7
+C. reinhardtii	complete_fullutr	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	17621	16774	0	16647	12597	127	0	974	0.9447	0.9924	0.968	0.7149	0.751	0.7325	1258.7
+C. reinhardtii	complete_fullutr	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	17621	16832	0	16678	12615	154	0	943	0.9465	0.9909	0.9682	0.7159	0.7495	0.7323	4217.7
+C. reinhardtii	complete_fullutr	perl_td_v600	TransDecoder v6.0.0	yes	17621	16753	0	16349	11450	404	0	1272	0.9278	0.9759	0.9512	0.6498	0.6835	0.6662	516.1
+C. reinhardtii	complete_fullutr	prodigal	Prodigal 2.6.3	yes	17621	20088	0	16932	11637	3156	0	689	0.9609	0.8429	0.898	0.6604	0.5793	0.6172	55.3
+C. reinhardtii	complete_fullutr	gmst	GeneMarkS-T 5.1	yes	17621	16666	0	16506	12999	160	0	1115	0.9367	0.9904	0.9628	0.7377	0.78	0.7582	55.0
+C. reinhardtii	complete_fullutr	codan	CodAn 1.1	yes	17621	17253	0	16994	13170	259	0	627	0.9644	0.985	0.9746	0.7474	0.7633	0.7553	21049.6
+C. reinhardtii	complete_fullutr	cpat	CPAT 3.0.5	yes	17621	17332	0	16918	13237	414	0	703	0.9601	0.9761	0.968	0.7512	0.7637	0.7574	58.5
+C. reinhardtii	complete_fullutr	cpc2	CPC2 1.0.1	yes	17621	16196	0	15846	12299	350	0	1775	0.8993	0.9784	0.9372	0.698	0.7594	0.7274	31.5
+C. reinhardtii	complete_fullutr	rnasamba	RNAsamba 0.2.5	yes	17621	17313	0	16522	12880	791	0	1099	0.9376	0.9543	0.9459	0.7309	0.7439	0.7374	90.9
+C. reinhardtii	complete_fullutr	borf	Borf 1.2	yes	17621	17065	0	16220	12273	845	0	1401	0.9205	0.9505	0.9352	0.6965	0.7192	0.7077	48.4
+C. reinhardtii	complete_fullutr	longest_orf	longest ORF baseline	yes	17621	17162	0	16269	10262	893	0	1352	0.9233	0.948	0.9355	0.5824	0.5979	0.5901	
+C. reinhardtii	complete_fullutr.unstranded	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	17621	16920	0	16607	12589	313	0	1014	0.9425	0.9815	0.9616	0.7144	0.744	0.7289	717.5
+C. reinhardtii	complete_fullutr.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	17621	16920	0	16607	12589	313	0	1014	0.9425	0.9815	0.9616	0.7144	0.744	0.7289	2165.5
+C. reinhardtii	complete_fullutr.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	17621	16995	0	16614	12589	381	0	1007	0.9429	0.9776	0.9599	0.7144	0.7407	0.7274	6465.9
+C. reinhardtii	complete_fullutr.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	17621	17084	0	16288	11471	796	0	1333	0.9244	0.9534	0.9387	0.651	0.6714	0.6611	764.2
+C. reinhardtii	complete_fullutr.unstranded	prodigal	Prodigal 2.6.3	yes	17621	22476	0	16932	11646	5544	0	689	0.9609	0.7533	0.8446	0.6609	0.5182	0.5809	54.4
+C. reinhardtii	complete_fullutr.unstranded	gmst	GeneMarkS-T 5.1	yes	17621	16850	0	16442	13010	408	0	1179	0.9331	0.9758	0.954	0.7383	0.7721	0.7548	68.9
+C. reinhardtii	complete_fullutr.unstranded	codan	CodAn 1.1	yes	17621	17327	0	16774	12989	553	0	847	0.9519	0.9681	0.9599	0.7371	0.7496	0.7433	45257.7
+C. reinhardtii	complete_fullutr.unstranded	cpat	CPAT 3.0.5	yes	17621	17445	0	16306	12727	1139	0	1315	0.9254	0.9347	0.93	0.7223	0.7296	0.7259	98.0
+C. reinhardtii	complete_fullutr.unstranded	cpc2	CPC2 1.0.1	yes	17621	16458	0	14703	11337	1755	0	2918	0.8344	0.8934	0.8629	0.6434	0.6888	0.6653	62.6
+C. reinhardtii	complete_fullutr.unstranded	borf	Borf 1.2	yes	17621	17404	0	14814	11118	2590	0	2807	0.8407	0.8512	0.8459	0.631	0.6388	0.6349	115.9
+C. reinhardtii	complete_fullutr.unstranded	longest_orf	longest ORF baseline	yes	17621	17438	0	14863	9345	2575	0	2758	0.8435	0.8523	0.8479	0.5303	0.5359	0.5331	
+C. reinhardtii	fragments	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	17621	15499	0	15387	12888	112	0	2234	0.8732	0.9928	0.9292	0.7314	0.8315	0.7783	243.0
+C. reinhardtii	fragments	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	17621	15499	0	15387	12888	112	0	2234	0.8732	0.9928	0.9292	0.7314	0.8315	0.7783	737.2
+C. reinhardtii	fragments	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	17621	15624	0	15507	12974	117	0	2114	0.88	0.9925	0.9329	0.7363	0.8304	0.7805	1565.8
+C. reinhardtii	fragments	perl_td_v600	TransDecoder v6.0.0	yes	17621	13535	0	13497	10993	38	0	4124	0.766	0.9972	0.8664	0.6239	0.8122	0.7057	257.4
+C. reinhardtii	fragments	prodigal	Prodigal 2.6.3	yes	17621	17553	0	16497	13750	1056	0	1124	0.9362	0.9398	0.938	0.7803	0.7833	0.7818	28.1
+C. reinhardtii	fragments	gmst	GeneMarkS-T 5.1	yes	17621	13778	0	13640	11708	138	0	3981	0.7741	0.99	0.8688	0.6644	0.8498	0.7458	45.4
+C. reinhardtii	fragments	codan	CodAn 1.1	yes	17621	16651	0	16180	13033	471	0	1441	0.9182	0.9717	0.9442	0.7396	0.7827	0.7606	15320.7
+C. reinhardtii	fragments	cpat	CPAT 3.0.5	yes	17621	15459	0	15133	6778	326	0	2488	0.8588	0.9789	0.9149	0.3847	0.4385	0.4098	24.8
+C. reinhardtii	fragments	cpc2	CPC2 1.0.1	yes	17621	8459	0	8246	2584	213	0	9375	0.468	0.9748	0.6324	0.1466	0.3055	0.1982	14.4
+C. reinhardtii	fragments	rnasamba	RNAsamba 0.2.5	yes	17621	16399	0	14601	6630	1798	0	3020	0.8286	0.8904	0.8584	0.3763	0.4043	0.3898	68.0
+C. reinhardtii	fragments	borf	Borf 1.2	yes	17621	13734	0	12787	7633	947	0	4834	0.7257	0.931	0.8156	0.4332	0.5558	0.4869	27.6
+C. reinhardtii	fragments	longest_orf	longest ORF baseline	yes	17621	14414	0	13231	10373	1183	0	4390	0.7509	0.9179	0.826	0.5887	0.7196	0.6476	
+C. reinhardtii	fragments.unstranded	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	17621	15624	0	15253	12805	371	0	2368	0.8656	0.9763	0.9176	0.7267	0.8196	0.7703	380.0
+C. reinhardtii	fragments.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	17621	15624	0	15253	12805	371	0	2368	0.8656	0.9763	0.9176	0.7267	0.8196	0.7703	1177.9
+C. reinhardtii	fragments.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	17621	15756	0	15389	12900	367	0	2232	0.8733	0.9767	0.9221	0.7321	0.8187	0.773	2414.2
+C. reinhardtii	fragments.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	17621	13658	0	13422	11029	236	0	4199	0.7617	0.9827	0.8582	0.6259	0.8075	0.7052	382.2
+C. reinhardtii	fragments.unstranded	prodigal	Prodigal 2.6.3	yes	17621	18318	0	16497	13766	1821	0	1124	0.9362	0.9006	0.9181	0.7812	0.7515	0.7661	29.0
+C. reinhardtii	fragments.unstranded	gmst	GeneMarkS-T 5.1	yes	17621	14033	0	13579	11250	454	0	4042	0.7706	0.9676	0.858	0.6384	0.8017	0.7108	48.5
+C. reinhardtii	fragments.unstranded	codan	CodAn 1.1	yes	17621	17066	0	15489	12521	1577	0	2132	0.879	0.9076	0.8931	0.7106	0.7337	0.7219	31093.8
+C. reinhardtii	fragments.unstranded	cpat	CPAT 3.0.5	yes	17621	16116	0	14282	6723	1834	0	3339	0.8105	0.8862	0.8467	0.3815	0.4172	0.3986	37.9
+C. reinhardtii	fragments.unstranded	cpc2	CPC2 1.0.1	yes	17621	8095	0	7133	2386	962	0	10488	0.4048	0.8812	0.5548	0.1354	0.2947	0.1856	20.8
+C. reinhardtii	fragments.unstranded	borf	Borf 1.2	yes	17621	14836	0	11002	6629	3834	0	6619	0.6244	0.7416	0.6779	0.3762	0.4468	0.4085	55.2
+C. reinhardtii	fragments.unstranded	longest_orf	longest ORF baseline	yes	17621	15227	0	11298	8631	3929	0	6323	0.6412	0.742	0.6879	0.4898	0.5668	0.5255	
+C. reinhardtii	fragments.unstranded.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	17621	15660	48	15242	12798	418	48	2379	0.865	0.9733	0.916	0.7263	0.8172	0.7691	477.0
+C. reinhardtii	fragments.unstranded.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	17621	15660	48	15242	12798	418	48	2379	0.865	0.9733	0.916	0.7263	0.8172	0.7691	1439.7
+C. reinhardtii	fragments.unstranded.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	17621	15794	48	15379	12894	415	48	2242	0.8728	0.9737	0.9205	0.7317	0.8164	0.7717	3554.9
+C. reinhardtii	fragments.unstranded.wRand	perl_td_v600	TransDecoder v6.0.0	yes	17621	13690	32	13422	11029	268	32	4199	0.7617	0.9804	0.8573	0.6259	0.8056	0.7045	506.4
+C. reinhardtii	fragments.unstranded.wRand	prodigal	Prodigal 2.6.3	yes	17621	28612	9115	16662	13692	11950	9115	959	0.9456	0.5823	0.7208	0.777	0.4785	0.5923	45.7
+C. reinhardtii	fragments.unstranded.wRand	gmst	GeneMarkS-T 5.1	yes	17621	13821	3	13506	11017	315	3	4115	0.7665	0.9772	0.8591	0.6252	0.7971	0.7008	94.3
+C. reinhardtii	fragments.unstranded.wRand	codan	CodAn 1.1	yes	17621	31118	14052	15489	12521	15629	14052	2132	0.879	0.4978	0.6356	0.7106	0.4024	0.5138	126071.7
+C. reinhardtii	fragments.unstranded.wRand	cpat	CPAT 3.0.5	yes	17621	24322	8206	14282	6723	10040	8206	3339	0.8105	0.5872	0.681	0.3815	0.2764	0.3206	69.4
+C. reinhardtii	fragments.unstranded.wRand	cpc2	CPC2 1.0.1	yes	17621	9393	1298	7133	2386	2260	1298	10488	0.4048	0.7594	0.5281	0.1354	0.254	0.1766	41.4
+C. reinhardtii	fragments.unstranded.wRand	borf	Borf 1.2	yes	17621	25139	10303	11002	6629	14137	10303	6619	0.6244	0.4376	0.5146	0.3762	0.2637	0.3101	96.7
+C. reinhardtii	fragments.unstranded.wRand	longest_orf	longest ORF baseline	yes	17621	26598	11371	11298	8631	15300	11371	6323	0.6412	0.4248	0.511	0.4898	0.3245	0.3904	
+C. reinhardtii	fragments.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	17621	15523	29	15381	12886	142	29	2240	0.8729	0.9909	0.9281	0.7313	0.8301	0.7776	290.5
+C. reinhardtii	fragments.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	17621	15523	29	15381	12886	142	29	2240	0.8729	0.9909	0.9281	0.7313	0.8301	0.7776	833.9
+C. reinhardtii	fragments.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	17621	15656	29	15509	12976	147	29	2112	0.8801	0.9906	0.9321	0.7364	0.8288	0.7799	2084.1
+C. reinhardtii	fragments.wRand	perl_td_v600	TransDecoder v6.0.0	yes	17621	13542	16	13488	10991	54	16	4133	0.7655	0.996	0.8656	0.6237	0.8116	0.7054	345.0
+C. reinhardtii	fragments.wRand	prodigal	Prodigal 2.6.3	yes	17621	22879	4561	16661	13671	6218	4561	960	0.9455	0.7282	0.8228	0.7758	0.5975	0.6751	45.5
+C. reinhardtii	fragments.wRand	gmst	GeneMarkS-T 5.1	yes	17621	13593	3	13514	11539	79	3	4107	0.7669	0.9942	0.8659	0.6548	0.8489	0.7393	95.1
+C. reinhardtii	fragments.wRand	codan	CodAn 1.1	yes	17621	27903	11252	16180	13033	11723	11252	1441	0.9182	0.5799	0.7108	0.7396	0.4671	0.5726	64913.4
+C. reinhardtii	fragments.wRand	cpat	CPAT 3.0.5	yes	17621	21336	5877	15133	6778	6203	5877	2488	0.8588	0.7093	0.7769	0.3847	0.3177	0.348	42.5
+C. reinhardtii	fragments.wRand	cpc2	CPC2 1.0.1	yes	17621	9186	727	8246	2584	940	727	9375	0.468	0.8977	0.6152	0.1466	0.2813	0.1928	28.5
+C. reinhardtii	fragments.wRand	rnasamba	RNAsamba 0.2.5	yes	17621	20097	3698	14601	6630	5496	3698	3020	0.8286	0.7265	0.7742	0.3763	0.3299	0.3516	114.1
+C. reinhardtii	fragments.wRand	borf	Borf 1.2	yes	17621	21208	7474	12787	7633	8421	7474	4834	0.7257	0.6029	0.6586	0.4332	0.3599	0.3932	52.5
+C. reinhardtii	fragments.wRand	longest_orf	longest ORF baseline	yes	17621	22904	8490	13231	10373	9673	8490	4390	0.7509	0.5777	0.653	0.5887	0.4529	0.5119	
+C. reinhardtii	fragments_mixed_t1	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	17621	16702	0	16653	13760	49	0	968	0.9451	0.9971	0.9704	0.7809	0.8239	0.8018	269.6
+C. reinhardtii	fragments_mixed_t1	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	17621	16702	0	16653	13760	49	0	968	0.9451	0.9971	0.9704	0.7809	0.8239	0.8018	730.0
+C. reinhardtii	fragments_mixed_t1	perl_td_v600	TransDecoder v6.0.0	yes	17621	14981	0	14958	12348	23	0	2663	0.8489	0.9985	0.9176	0.7008	0.8242	0.7575	396.8
+C. reinhardtii	fragments_mixed_t1	prodigal	Prodigal 2.6.3	yes	17621	17827	0	16817	14032	1010	0	804	0.9544	0.9433	0.9488	0.7963	0.7871	0.7917	44.3
+C. reinhardtii	fragments_mixed_t1	gmst	GeneMarkS-T 5.1	yes	17621	15147	0	15070	13026	77	0	2551	0.8552	0.9949	0.9198	0.7392	0.86	0.795	40.8
+C. reinhardtii	fragments_mixed_t1	codan	CodAn 1.1	yes	17621	17272	0	17054	13799	218	0	567	0.9678	0.9874	0.9775	0.7831	0.7989	0.7909	15868.9
+C. reinhardtii	fragments_mixed_t1	cpat	CPAT 3.0.5	yes	17621	16024	0	15764	6964	260	0	1857	0.8946	0.9838	0.9371	0.3952	0.4346	0.414	32.1
+C. reinhardtii	fragments_mixed_t1	cpc2	CPC2 1.0.1	yes	17621	10440	0	10290	4930	150	0	7331	0.584	0.9856	0.7334	0.2798	0.4722	0.3514	17.5
+C. reinhardtii	fragments_mixed_t1	rnasamba	RNAsamba 0.2.5	yes	17621	16718	0	15634	6886	1084	0	1987	0.8872	0.9352	0.9106	0.3908	0.4119	0.4011	94.7
+C. reinhardtii	fragments_mixed_t1	borf	Borf 1.2	yes	17621	15131	0	14546	9283	585	0	3075	0.8255	0.9613	0.8883	0.5268	0.6135	0.5669	33.7
+C. reinhardtii	fragments_mixed_t1	longest_orf	longest ORF baseline	yes	17621	17621	0	16668	13471	953	0	953	0.9459	0.9459	0.9459	0.7645	0.7645	0.7645	
+C. reinhardtii	fragments_mixed_t2	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	17621	16723	0	16667	13855	56	0	954	0.9459	0.9967	0.9706	0.7863	0.8285	0.8068	265.6
+C. reinhardtii	fragments_mixed_t2	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	17621	16723	0	16667	13855	56	0	954	0.9459	0.9967	0.9706	0.7863	0.8285	0.8068	737.9
+C. reinhardtii	fragments_mixed_t2	perl_td_v600	TransDecoder v6.0.0	yes	17621	14897	0	14871	12187	26	0	2750	0.8439	0.9983	0.9146	0.6916	0.8181	0.7496	400.5
+C. reinhardtii	fragments_mixed_t2	prodigal	Prodigal 2.6.3	yes	17621	17811	0	16845	14059	966	0	776	0.956	0.9458	0.9508	0.7979	0.7893	0.7936	44.6
+C. reinhardtii	fragments_mixed_t2	gmst	GeneMarkS-T 5.1	yes	17621	15073	0	14996	13006	77	0	2625	0.851	0.9949	0.9174	0.7381	0.8629	0.7956	39.9
+C. reinhardtii	fragments_mixed_t2	codan	CodAn 1.1	yes	17621	17272	0	17068	13746	204	0	553	0.9686	0.9882	0.9783	0.7801	0.7959	0.7879	17104.2
+C. reinhardtii	fragments_mixed_t2	cpat	CPAT 3.0.5	yes	17621	16021	0	15774	7013	247	0	1847	0.8952	0.9846	0.9378	0.398	0.4377	0.4169	31.8
+C. reinhardtii	fragments_mixed_t2	cpc2	CPC2 1.0.1	yes	17621	10512	0	10349	4955	163	0	7272	0.5873	0.9845	0.7357	0.2812	0.4714	0.3523	17.6
+C. reinhardtii	fragments_mixed_t2	rnasamba	RNAsamba 0.2.5	yes	17621	16714	0	15626	6918	1088	0	1995	0.8868	0.9349	0.9102	0.3926	0.4139	0.403	52.1
+C. reinhardtii	fragments_mixed_t2	borf	Borf 1.2	yes	17621	15066	0	14496	9179	570	0	3125	0.8227	0.9622	0.887	0.5209	0.6093	0.5616	36.1
+C. reinhardtii	fragments_mixed_t2	longest_orf	longest ORF baseline	yes	17621	17621	0	16684	13420	937	0	937	0.9468	0.9468	0.9468	0.7616	0.7616	0.7616	
+C. reinhardtii	fragments_mixed_t3	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	17621	16700	0	16648	13723	52	0	973	0.9448	0.9969	0.9701	0.7788	0.8217	0.7997	267.9
+C. reinhardtii	fragments_mixed_t3	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	17621	16700	0	16648	13723	52	0	973	0.9448	0.9969	0.9701	0.7788	0.8217	0.7997	700.2
+C. reinhardtii	fragments_mixed_t3	perl_td_v600	TransDecoder v6.0.0	yes	17621	14917	0	14883	12011	34	0	2738	0.8446	0.9977	0.9148	0.6816	0.8052	0.7383	383.5
+C. reinhardtii	fragments_mixed_t3	prodigal	Prodigal 2.6.3	yes	17621	17837	0	16827	13982	1010	0	794	0.9549	0.9434	0.9491	0.7935	0.7839	0.7887	44.3
+C. reinhardtii	fragments_mixed_t3	gmst	GeneMarkS-T 5.1	yes	17621	15074	0	14976	12952	98	0	2645	0.8499	0.9935	0.9161	0.735	0.8592	0.7923	39.2
+C. reinhardtii	fragments_mixed_t3	codan	CodAn 1.1	yes	17621	17274	0	17048	13699	226	0	573	0.9675	0.9869	0.9771	0.7774	0.793	0.7852	16387.5
+C. reinhardtii	fragments_mixed_t3	cpat	CPAT 3.0.5	yes	17621	15999	0	15775	6942	224	0	1846	0.8952	0.986	0.9384	0.394	0.4339	0.413	31.6
+C. reinhardtii	fragments_mixed_t3	cpc2	CPC2 1.0.1	yes	17621	10558	0	10396	4988	162	0	7225	0.59	0.9847	0.7379	0.2831	0.4724	0.354	17.3
+C. reinhardtii	fragments_mixed_t3	rnasamba	RNAsamba 0.2.5	yes	17621	16717	0	15623	6877	1094	0	1998	0.8866	0.9346	0.91	0.3903	0.4114	0.4005	54.0
+C. reinhardtii	fragments_mixed_t3	borf	Borf 1.2	yes	17621	15039	0	14469	9114	570	0	3152	0.8211	0.9621	0.886	0.5172	0.606	0.5581	31.6
+C. reinhardtii	fragments_mixed_t3	longest_orf	longest ORF baseline	yes	17621	17621	0	16672	13348	949	0	949	0.9461	0.9461	0.9461	0.7575	0.7575	0.7575	
