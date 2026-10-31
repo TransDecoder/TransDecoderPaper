@@ -41,6 +41,7 @@ scratchpad (`papers/`, `dl/epmc/`, `codan_S2.tsv`; not in git).
 | inGAP-CDG, Peng 2016 Genome Biol, doi:10.1186/s13059-016-1094-x | not stated | human Trinity vs CCDS; orthologs | higher Sn, lower Sp, redundant, shorter CDSs |
 | GeMoRNA, Grau & Keilwagen 2026 NAR, doi:10.1093/nar/gkag091 | v5.7.0 -S, no homology | 7 species, StringTie/Scallop/Cufflinks; CDS F1 | worse than the plain longest ORF ("Surprisingly...", L103) |
 | Freedman & Sackton 2025 Genome Res, doi:10.1101/gr.280377.124 | v5.5.0 + BLASTP | 21 species; BUSCO-type completeness, PSAURON | near-NCBI CDS lengths; ORF errors at transcript termini |
+| TD2, Mao ... Haas ... Sommer 2025 bioRxiv, doi:10.1101/2025.04.13.648579 (not independent) | defaults | MANE, C. elegans, Arabidopsis, Plasmodium; LNCipedia negatives | TD2 higher sensitivity, lower lncRNA FP |
 
 Recurring criticisms are 5'-end and start errors (extension to the transcript end), antisense and
 multiple ORFs, longest-ORF bias in PTC isoforms, false positives at short lengths, and speed. No study
