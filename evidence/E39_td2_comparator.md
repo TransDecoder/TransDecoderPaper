@@ -66,6 +66,8 @@ By type with negatives counted, human: complete 0.881-0.923 (TransDecoder 0.869-
 - TD2 medians agree with the private runs of 2026-10-23 (`work/td2_private/RESULTS.md`: complete 0.982 / 0.941, fragments 0.876 / 0.421, precision 0.904), which were not reused.
 - Notebook 02 and 04 hold new `check_text` rows for the TD2 values in the text.
 
+- Fresh reruns (2026-10-31, *S. pombe*, `run_td2.sh`): `fragments` byte-identical to the published run. `fragments.unstranded`: 3 of 3,957 predictions on the opposite strand at the same coordinates; stop F1 0.8645 vs 0.8647, exact F1 0.4397 both; `longest_orfs.pep` and `psauron_score.csv` identical. Two reruns with `PYTHONHASHSEED=1` were byte-identical, so unstranded ties depend on Python's hash ordering. `PYTHONHASHSEED` was not set for the published runs. Reproduction guide: `benchmark_v2/TD2_REPRODUCE.md`.
+
 ## Caveats
 - The author is a TD2 co-author (above).
 - Mechanism statements for fragments are from code plus the two tallies; no ablated TD2 was run.
