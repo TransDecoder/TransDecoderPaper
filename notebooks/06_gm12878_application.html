@@ -1975,12 +1975,12 @@ partial) had the same stop codon, so it differed only at the start. In
 most of these the predicted start was upstream of the MANE start (93% /
 91% / 74%). With the earlier runs the same count gives 64% (LRAA) and
 70% (StringTie).</p>
-<p>The text quotes 62% (LRAA) and 68% (StringTie). No evidence record
-documents how these were computed, and the definition used here (any
-distinct predicted CDS with the same stop codon, chromosome and strand)
-does not reproduce them on the earlier runs (64% and 70%). The text
-should take the release values from this table, and the definition
-should be stated in the Methods or an evidence record.</p>
+<p>The text quotes the release values (58% LRAA, 60% StringTie and
+Trinity) and states this definition in the Methods: any distinct
+predicted CDS on the same chromosome and strand with the same stop
+codon. An earlier draft quoted 62% and 68% from the earlier runs, by a
+definition no record documents; the definition used here gives 64% and
+70% on those runs.</p>
 </div>
 <div id="table-pytd-on-three-gm12878-assemblies" class="section level2">
 <h2>Table: PyTD on three GM12878 assemblies</h2>
@@ -3383,21 +3383,22 @@ check_text(L(Rs, 11, &quot;StringTie transcripts&quot;), R(&quot;assembled_trans
 check_text(L(Rs, 11, &quot;LRAA transcripts&quot;), R(&quot;assembled_transcripts&quot;)[[&quot;lraa&quot;]], 39530)
 # Predictions
 for (a in ASMS) check_text(L(Rs, 14, paste(&quot;distinct CDSs&quot;, a)), n_rel[[a]],
-                           c(lraa = 23922, stringtie = 34404, trinity = 72323)[[a]])
+                           c(lraa = 22769, stringtie = 30846, trinity = 59514)[[a]])
 for (a in ASMS) check_text(L(Rs, 15, paste(&quot;% partial&quot;, a)), round(100 * part_rel[[a]] / n_rel[[a]]),
-                           c(lraa = 21, stringtie = 21, trinity = 28)[[a]])
-check_text(L(Rs, 17, &quot;Trinity ORFs not projected&quot;), g(&quot;release&quot;, &quot;trinity&quot;, &quot;not_projected&quot;), 4624)
-check_text(L(Rs, 17, &quot;Trinity transcript ORFs&quot;), g(&quot;release&quot;, &quot;trinity&quot;, &quot;transcript_orfs&quot;), 97088)
-check_text(L(Rs, 17, &quot;Trinity % not projected&quot;), round(100 * g(&quot;release&quot;, &quot;trinity&quot;, &quot;frac_not&quot;), 1), 4.8)
+                           c(lraa = 22, stringtie = 22, trinity = 25)[[a]])
+check_text(L(Rs, 17, &quot;Trinity ORFs not projected&quot;), g(&quot;release&quot;, &quot;trinity&quot;, &quot;not_projected&quot;), 3316)
+check_text(L(Rs, 17, &quot;Trinity transcript ORFs&quot;), g(&quot;release&quot;, &quot;trinity&quot;, &quot;transcript_orfs&quot;), 80797)
+check_text(L(Rs, 17, &quot;Trinity % not projected&quot;), round(100 * g(&quot;release&quot;, &quot;trinity&quot;, &quot;frac_not&quot;), 1), 4.1)
 check_text(L(Rs, 16, &quot;LRAA + StringTie ORFs not projected (none)&quot;),
            sum(gm$not_projected[gm$run == &quot;release&quot; &amp; gm$assembly != &quot;trinity&quot;]), 0)
 # CDS prediction on assembled transcripts
-check_text(L(Rs, 22, &quot;MANE exact given assembled, min&quot;), round(min(ega_mane), 3), 0.906)
-check_text(L(Rs, 22, &quot;MANE exact given assembled, max&quot;), round(max(ega_mane), 3), 0.935)
-check_text(L(Rs, 23, &quot;GENCODE exact given assembled, min&quot;), round(min(ega_gc), 3), 0.876)
-check_text(L(Rs, 23, &quot;GENCODE exact given assembled, max&quot;), round(max(ega_gc), 3), 0.889)
-check_text(L(Rs, 24, &quot;same stop, different start % LRAA&quot;), round(100 * ss(&quot;release&quot;, &quot;lraa&quot;)), 62)
-check_text(L(Rs, 24, &quot;same stop, different start % StringTie&quot;), round(100 * ss(&quot;release&quot;, &quot;stringtie&quot;)), 68)
+check_text(L(Rs, 22, &quot;MANE exact given assembled, min&quot;), round(min(ega_mane), 3), 0.893)
+check_text(L(Rs, 22, &quot;MANE exact given assembled, max&quot;), round(max(ega_mane), 3), 0.929)
+check_text(L(Rs, 23, &quot;GENCODE exact given assembled, min&quot;), round(min(ega_gc), 3), 0.856)
+check_text(L(Rs, 23, &quot;GENCODE exact given assembled, max&quot;), round(max(ega_gc), 3), 0.882)
+check_text(L(Rs, 24, &quot;same stop, different start % LRAA&quot;), round(100 * ss(&quot;release&quot;, &quot;lraa&quot;)), 58)
+check_text(L(Rs, 24, &quot;same stop, different start % StringTie&quot;), round(100 * ss(&quot;release&quot;, &quot;stringtie&quot;)), 60)
+check_text(L(Rs, 25, &quot;same stop, different start % Trinity&quot;), round(100 * ss(&quot;release&quot;, &quot;trinity&quot;)), 60)
 # Table tab:gm12878 (lines 38-49)
 quoted &lt;- list(
   list(38, &quot;distinct_predicted_cds&quot;, c(23922, 34404, 72323), 0),
@@ -3413,51 +3414,67 @@ quoted &lt;- list(
   list(47, &quot;pred_all_GENCODE_exact_frac&quot;, c(0.503, 0.401, 0.191), 3),
   list(48, &quot;pred_all_GENCODE_compatible_frac&quot;, c(0.726, 0.616, 0.423), 3),
   list(49, &quot;pred_all_no_GENCODE_CDS_overlap_frac&quot;, c(0.037, 0.120, 0.155), 3))
-for (q in quoted) for (i in seq_along(ASMS)) {
+# values quoted in the current text (release runs); `quoted` keeps the earlier-draft values for the
+# cross-check against the earlier runs below
+quoted_rel &lt;- list(
+  list(38, &quot;distinct_predicted_cds&quot;, c(22769, 30846, 59514), 0),
+  list(39, &quot;distinct_predicted_complete&quot;, c(17806, 24077, 44494), 0),
+  list(39, &quot;partial&quot;, c(4963, 6769, 15020), 0),
+  list(40, &quot;MANE_assembled_frac&quot;, c(0.327, 0.464, 0.399), 3),
+  list(41, &quot;MANE_sens_exact&quot;, c(0.304, 0.424, 0.357), 3),
+  list(42, &quot;MANE_sens_compatible&quot;, c(0.392, 0.563, 0.534), 3),
+  list(43, &quot;MANE_sens_exact_given_assembled&quot;, c(0.929, 0.915, 0.893), 3),
+  list(44, &quot;GENCODE_complete_sens_exact&quot;, c(0.191, 0.229, 0.204), 3),
+  list(45, &quot;GENCODE_complete_sens_compatible&quot;, c(0.265, 0.344, 0.427), 3),
+  list(46, &quot;GENCODE_complete_sens_exact_given_assembled&quot;, c(0.882, 0.868, 0.856), 3),
+  list(47, &quot;pred_all_GENCODE_exact_frac&quot;, c(0.520, 0.434, 0.225), 3),
+  list(48, &quot;pred_all_GENCODE_compatible_frac&quot;, c(0.747, 0.667, 0.488), 3),
+  list(49, &quot;pred_all_no_GENCODE_CDS_overlap_frac&quot;, c(0.015, 0.055, 0.042), 3))
+for (q in quoted_rel) for (i in seq_along(ASMS)) {
   v &lt;- summ_p$value[summ_p$run == &quot;release&quot; &amp; summ_p$assembly == ASMS[i] &amp; summ_p$metric == q[[2]]]
   check_text(L(Rs, q[[1]], paste(&quot;table&quot;, q[[2]], ASMS[i])), round(v, q[[4]]), q[[3]][i])
 }
 # Sensitivity is limited by assembly
-check_text(L(Rs, 55, &quot;MANE exact %, min&quot;), round(100 * min(R(&quot;MANE_sens_exact&quot;))), 31)
-check_text(L(Rs, 55, &quot;MANE exact %, max&quot;), round(100 * max(R(&quot;MANE_sens_exact&quot;))), 43)
-check_text(L(Rs, 55, &quot;MANE compatible %, min&quot;), round(100 * min(R(&quot;MANE_sens_compatible&quot;))), 40)
-check_text(L(Rs, 55, &quot;MANE compatible %, max&quot;), round(100 * max(R(&quot;MANE_sens_compatible&quot;))), 57)
+check_text(L(Rs, 55, &quot;MANE exact %, min&quot;), round(100 * min(R(&quot;MANE_sens_exact&quot;))), 30)
+check_text(L(Rs, 55, &quot;MANE exact %, max&quot;), round(100 * max(R(&quot;MANE_sens_exact&quot;))), 42)
+check_text(L(Rs, 55, &quot;MANE compatible %, min&quot;), round(100 * min(R(&quot;MANE_sens_compatible&quot;))), 39)
+check_text(L(Rs, 55, &quot;MANE compatible %, max&quot;), round(100 * max(R(&quot;MANE_sens_compatible&quot;))), 56)
 check_text(L(Rs, 56, &quot;MANE assembled %, min&quot;), round(100 * min(R(&quot;MANE_assembled_frac&quot;))), 33)
 check_text(L(Rs, 56, &quot;MANE assembled %, max&quot;), round(100 * max(R(&quot;MANE_assembled_frac&quot;))), 46)
 check_text(L(Rs, 57, &quot;MANE genes at TPM &gt;= 1&quot;), n_tpm1, 11076)
-check_text(L(Rs, 58, &quot;StringTie exact %, TPM &gt;= 1&quot;), round(100 * st_ex1), 74)
-check_text(L(Rs, 59, &quot;StringTie/Trinity compatible %, TPM &gt;= 1, min&quot;), round(100 * min(comp1)), 88)
-check_text(L(Rs, 59, &quot;StringTie/Trinity compatible %, TPM &gt;= 1, max&quot;), round(100 * max(comp1)), 89)
+check_text(L(Rs, 58, &quot;StringTie exact %, TPM &gt;= 1&quot;), round(100 * st_ex1), 73)
+check_text(L(Rs, 59, &quot;StringTie/Trinity compatible %, TPM &gt;= 1, min&quot;), round(100 * min(comp1)), 87)
+check_text(L(Rs, 59, &quot;StringTie/Trinity compatible %, TPM &gt;= 1, max&quot;), round(100 * max(comp1)), 87)
 check_text(L(Rs, 59, &quot;MANE genes at TPM &gt;= 10&quot;), n_tpm10, 7823)
-check_text(L(Rs, 59, &quot;StringTie exact %, TPM &gt;= 10&quot;), round(100 * st_ex10), 81)
-check_text(L(Rs, 60, &quot;StringTie/Trinity compatible %, TPM &gt;= 10, min&quot;), round(100 * min(comp10)), 90)
-check_text(L(Rs, 60, &quot;StringTie/Trinity compatible %, TPM &gt;= 10, max&quot;), round(100 * max(comp10)), 91)
-check_text(L(Rs, 61, &quot;MANE exact given assembled, TPM &gt;= 1/5/10, min&quot;), round(min(ega_expr), 3), 0.909)
-check_text(L(Rs, 61, &quot;MANE exact given assembled, TPM &gt;= 1/5/10, max&quot;), round(max(ega_expr), 3), 0.937)
+check_text(L(Rs, 59, &quot;StringTie exact %, TPM &gt;= 10&quot;), round(100 * st_ex10), 80)
+check_text(L(Rs, 60, &quot;StringTie/Trinity compatible %, TPM &gt;= 10, min&quot;), round(100 * min(comp10)), 89)
+check_text(L(Rs, 60, &quot;StringTie/Trinity compatible %, TPM &gt;= 10, max&quot;), round(100 * max(comp10)), 90)
+check_text(L(Rs, 61, &quot;MANE exact given assembled, TPM &gt;= 1/5/10, min&quot;), round(min(ega_expr), 3), 0.896)
+check_text(L(Rs, 61, &quot;MANE exact given assembled, TPM &gt;= 1/5/10, max&quot;), round(max(ega_expr), 3), 0.932)
 check_text(L(Rs, 62, &quot;LRAA exact, TPM &gt;= 1&quot;), round(lraa_ex[1], 2), 0.51)
 check_text(L(Rs, 62, &quot;LRAA exact, TPM &gt;= 10&quot;), round(lraa_ex[2], 2), 0.58)
 # Assembly type
-check_text(L(Rs, 67, &quot;Trinity GENCODE compatible sensitivity&quot;), round(R(&quot;GENCODE_complete_sens_compatible&quot;)[[&quot;trinity&quot;]], 3), 0.446)
+check_text(L(Rs, 67, &quot;Trinity GENCODE compatible sensitivity&quot;), round(R(&quot;GENCODE_complete_sens_compatible&quot;)[[&quot;trinity&quot;]], 3), 0.427)
 check_text(L(Rs, 67, &quot;Trinity highest GENCODE compatible sensitivity (1 = yes)&quot;),
            as.numeric(which.max(R(&quot;GENCODE_complete_sens_compatible&quot;)) == 3), 1)
-check_text(L(Rs, 68, &quot;Trinity % identical to GENCODE&quot;), round(100 * R(&quot;pred_all_GENCODE_exact_frac&quot;)[[&quot;trinity&quot;]]), 19)
-check_text(L(Rs, 69, &quot;LRAA % identical to GENCODE&quot;), round(100 * R(&quot;pred_all_GENCODE_exact_frac&quot;)[[&quot;lraa&quot;]]), 50)
-check_text(L(Rs, 69, &quot;LRAA % compatible with GENCODE&quot;), round(100 * R(&quot;pred_all_GENCODE_compatible_frac&quot;)[[&quot;lraa&quot;]]), 73)
-check_text(L(Rs, 70, &quot;LRAA complete % identical&quot;), round(100 * R(&quot;pred_complete_GENCODE_exact_frac&quot;)[[&quot;lraa&quot;]]), 64)
-check_text(L(Rs, 70, &quot;StringTie complete % identical&quot;), round(100 * R(&quot;pred_complete_GENCODE_exact_frac&quot;)[[&quot;stringtie&quot;]]), 51)
-check_text(L(Rs, 71, &quot;Trinity complete % identical&quot;), round(100 * R(&quot;pred_complete_GENCODE_exact_frac&quot;)[[&quot;trinity&quot;]]), 27)
+check_text(L(Rs, 68, &quot;Trinity % identical to GENCODE&quot;), round(100 * R(&quot;pred_all_GENCODE_exact_frac&quot;)[[&quot;trinity&quot;]]), 22)
+check_text(L(Rs, 69, &quot;LRAA % identical to GENCODE&quot;), round(100 * R(&quot;pred_all_GENCODE_exact_frac&quot;)[[&quot;lraa&quot;]]), 52)
+check_text(L(Rs, 69, &quot;LRAA % compatible with GENCODE&quot;), round(100 * R(&quot;pred_all_GENCODE_compatible_frac&quot;)[[&quot;lraa&quot;]]), 75)
+check_text(L(Rs, 70, &quot;LRAA complete % identical&quot;), round(100 * R(&quot;pred_complete_GENCODE_exact_frac&quot;)[[&quot;lraa&quot;]]), 66)
+check_text(L(Rs, 70, &quot;StringTie complete % identical&quot;), round(100 * R(&quot;pred_complete_GENCODE_exact_frac&quot;)[[&quot;stringtie&quot;]]), 56)
+check_text(L(Rs, 71, &quot;Trinity complete % identical&quot;), round(100 * R(&quot;pred_complete_GENCODE_exact_frac&quot;)[[&quot;trinity&quot;]]), 30)
 # Unannotated predictions
-check_text(L(Rs, 74, &quot;LRAA % no GENCODE overlap&quot;), round(100 * un$all_release[1], 1), 3.7)
-check_text(L(Rs, 74, &quot;StringTie % no GENCODE overlap&quot;), round(100 * un$all_release[2], 1), 12.0)
-check_text(L(Rs, 75, &quot;Trinity % no GENCODE overlap&quot;), round(100 * un$all_release[3], 1), 15.5)
-check_text(L(Rs, 76, &quot;StringTie partial % unannotated&quot;), round(100 * un$partial_release[2]), 18)
-check_text(L(Rs, 76, &quot;Trinity partial % unannotated&quot;), round(100 * un$partial_release[3]), 24)
-check_text(L(Rs, 77, &quot;StringTie complete % unannotated&quot;), round(100 * un$complete_release[2]), 10)
-check_text(L(Rs, 77, &quot;Trinity complete % unannotated&quot;), round(100 * un$complete_release[3]), 12)
+check_text(L(Rs, 74, &quot;LRAA % no GENCODE overlap&quot;), round(100 * un$all_release[1], 1), 1.5)
+check_text(L(Rs, 74, &quot;StringTie % no GENCODE overlap&quot;), round(100 * un$all_release[2], 1), 5.5)
+check_text(L(Rs, 75, &quot;Trinity % no GENCODE overlap&quot;), round(100 * un$all_release[3], 1), 4.2)
+check_text(L(Rs, 76, &quot;StringTie partial % unannotated&quot;), round(100 * un$partial_release[2]), 11)
+check_text(L(Rs, 76, &quot;Trinity partial % unannotated&quot;), round(100 * un$partial_release[3]), 8)
+check_text(L(Rs, 77, &quot;StringTie complete % unannotated&quot;), round(100 * un$complete_release[2]), 4)
+check_text(L(Rs, 77, &quot;Trinity complete % unannotated&quot;), round(100 * un$complete_release[3]), 3)
 check_report()</code></pre>
-<table>
+<table style="width:99%;">
 <colgroup>
-<col width="78%" />
+<col width="79%" />
 <col width="7%" />
 <col width="9%" />
 <col width="4%" />
@@ -3563,63 +3580,63 @@ transcripts</td>
 <td align="left">results_gm12878_application.tex:14 distinct CDSs
 lraa</td>
 <td align="left">22769</td>
-<td align="left">23922</td>
-<td align="left">FALSE</td>
+<td align="left">22769</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">results_gm12878_application.tex:14 distinct CDSs
 stringtie</td>
 <td align="left">30846</td>
-<td align="left">34404</td>
-<td align="left">FALSE</td>
+<td align="left">30846</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">results_gm12878_application.tex:14 distinct CDSs
 trinity</td>
 <td align="left">59514</td>
-<td align="left">72323</td>
-<td align="left">FALSE</td>
+<td align="left">59514</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">results_gm12878_application.tex:15 % partial lraa</td>
 <td align="left">22</td>
-<td align="left">21</td>
-<td align="left">FALSE</td>
+<td align="left">22</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">results_gm12878_application.tex:15 % partial
 stringtie</td>
 <td align="left">22</td>
-<td align="left">21</td>
-<td align="left">FALSE</td>
+<td align="left">22</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">results_gm12878_application.tex:15 % partial
 trinity</td>
 <td align="left">25</td>
-<td align="left">28</td>
-<td align="left">FALSE</td>
+<td align="left">25</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">results_gm12878_application.tex:17 Trinity ORFs not
 projected</td>
 <td align="left">3316</td>
-<td align="left">4624</td>
-<td align="left">FALSE</td>
+<td align="left">3316</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">results_gm12878_application.tex:17 Trinity transcript
 ORFs</td>
 <td align="left">80797</td>
-<td align="left">97088</td>
-<td align="left">FALSE</td>
+<td align="left">80797</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">results_gm12878_application.tex:17 Trinity % not
 projected</td>
 <td align="left">4.1</td>
-<td align="left">4.8</td>
-<td align="left">FALSE</td>
+<td align="left">4.1</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">results_gm12878_application.tex:16 LRAA + StringTie
@@ -3632,552 +3649,560 @@ ORFs not projected (none)</td>
 <td align="left">results_gm12878_application.tex:22 MANE exact given
 assembled, min</td>
 <td align="left">0.893</td>
-<td align="left">0.906</td>
-<td align="left">FALSE</td>
+<td align="left">0.893</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">results_gm12878_application.tex:22 MANE exact given
 assembled, max</td>
 <td align="left">0.929</td>
-<td align="left">0.935</td>
-<td align="left">FALSE</td>
+<td align="left">0.929</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">results_gm12878_application.tex:23 GENCODE exact given
 assembled, min</td>
 <td align="left">0.856</td>
-<td align="left">0.876</td>
-<td align="left">FALSE</td>
+<td align="left">0.856</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">results_gm12878_application.tex:23 GENCODE exact given
 assembled, max</td>
 <td align="left">0.882</td>
-<td align="left">0.889</td>
-<td align="left">FALSE</td>
+<td align="left">0.882</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">results_gm12878_application.tex:24 same stop, different
 start % LRAA</td>
 <td align="left">58</td>
-<td align="left">62</td>
-<td align="left">FALSE</td>
+<td align="left">58</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">results_gm12878_application.tex:24 same stop, different
 start % StringTie</td>
 <td align="left">60</td>
-<td align="left">68</td>
-<td align="left">FALSE</td>
+<td align="left">60</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
+<td align="left">results_gm12878_application.tex:25 same stop, different
+start % Trinity</td>
+<td align="left">60</td>
+<td align="left">60</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
 <td align="left">results_gm12878_application.tex:38 table
 distinct_predicted_cds lraa</td>
 <td align="left">22769</td>
-<td align="left">23922</td>
-<td align="left">FALSE</td>
+<td align="left">22769</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results_gm12878_application.tex:38 table
 distinct_predicted_cds stringtie</td>
 <td align="left">30846</td>
-<td align="left">34404</td>
-<td align="left">FALSE</td>
+<td align="left">30846</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results_gm12878_application.tex:38 table
 distinct_predicted_cds trinity</td>
 <td align="left">59514</td>
-<td align="left">72323</td>
-<td align="left">FALSE</td>
+<td align="left">59514</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results_gm12878_application.tex:39 table
 distinct_predicted_complete lraa</td>
 <td align="left">17806</td>
-<td align="left">18807</td>
-<td align="left">FALSE</td>
+<td align="left">17806</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results_gm12878_application.tex:39 table
 distinct_predicted_complete stringtie</td>
 <td align="left">24077</td>
-<td align="left">27034</td>
-<td align="left">FALSE</td>
+<td align="left">24077</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results_gm12878_application.tex:39 table
 distinct_predicted_complete trinity</td>
 <td align="left">44494</td>
-<td align="left">52123</td>
-<td align="left">FALSE</td>
+<td align="left">44494</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results_gm12878_application.tex:39 table partial
 lraa</td>
 <td align="left">4963</td>
-<td align="left">5115</td>
-<td align="left">FALSE</td>
-</tr>
-<tr class="odd">
-<td align="left">results_gm12878_application.tex:39 table partial
-stringtie</td>
-<td align="left">6769</td>
-<td align="left">7370</td>
-<td align="left">FALSE</td>
+<td align="left">4963</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">results_gm12878_application.tex:39 table partial
-trinity</td>
-<td align="left">15020</td>
-<td align="left">20200</td>
-<td align="left">FALSE</td>
+stringtie</td>
+<td align="left">6769</td>
+<td align="left">6769</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
+<td align="left">results_gm12878_application.tex:39 table partial
+trinity</td>
+<td align="left">15020</td>
+<td align="left">15020</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
 <td align="left">results_gm12878_application.tex:40 table
 MANE_assembled_frac lraa</td>
 <td align="left">0.327</td>
 <td align="left">0.327</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results_gm12878_application.tex:40 table
 MANE_assembled_frac stringtie</td>
 <td align="left">0.464</td>
 <td align="left">0.464</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results_gm12878_application.tex:40 table
 MANE_assembled_frac trinity</td>
 <td align="left">0.399</td>
 <td align="left">0.399</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results_gm12878_application.tex:41 table
 MANE_sens_exact lraa</td>
 <td align="left">0.304</td>
-<td align="left">0.306</td>
-<td align="left">FALSE</td>
+<td align="left">0.304</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results_gm12878_application.tex:41 table
 MANE_sens_exact stringtie</td>
 <td align="left">0.424</td>
-<td align="left">0.43</td>
-<td align="left">FALSE</td>
+<td align="left">0.424</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results_gm12878_application.tex:41 table
 MANE_sens_exact trinity</td>
 <td align="left">0.357</td>
-<td align="left">0.362</td>
-<td align="left">FALSE</td>
+<td align="left">0.357</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results_gm12878_application.tex:42 table
 MANE_sens_compatible lraa</td>
 <td align="left">0.392</td>
-<td align="left">0.395</td>
-<td align="left">FALSE</td>
+<td align="left">0.392</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results_gm12878_application.tex:42 table
 MANE_sens_compatible stringtie</td>
 <td align="left">0.563</td>
-<td align="left">0.569</td>
-<td align="left">FALSE</td>
+<td align="left">0.563</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results_gm12878_application.tex:42 table
 MANE_sens_compatible trinity</td>
 <td align="left">0.534</td>
-<td align="left">0.547</td>
-<td align="left">FALSE</td>
+<td align="left">0.534</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results_gm12878_application.tex:43 table
 MANE_sens_exact_given_assembled lraa</td>
 <td align="left">0.929</td>
-<td align="left">0.935</td>
-<td align="left">FALSE</td>
+<td align="left">0.929</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results_gm12878_application.tex:43 table
 MANE_sens_exact_given_assembled stringtie</td>
 <td align="left">0.915</td>
-<td align="left">0.927</td>
-<td align="left">FALSE</td>
+<td align="left">0.915</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results_gm12878_application.tex:43 table
 MANE_sens_exact_given_assembled trinity</td>
 <td align="left">0.893</td>
-<td align="left">0.906</td>
-<td align="left">FALSE</td>
+<td align="left">0.893</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results_gm12878_application.tex:44 table
 GENCODE_complete_sens_exact lraa</td>
 <td align="left">0.191</td>
-<td align="left">0.192</td>
-<td align="left">FALSE</td>
+<td align="left">0.191</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results_gm12878_application.tex:44 table
 GENCODE_complete_sens_exact stringtie</td>
 <td align="left">0.229</td>
-<td align="left">0.234</td>
-<td align="left">FALSE</td>
+<td align="left">0.229</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results_gm12878_application.tex:44 table
 GENCODE_complete_sens_exact trinity</td>
 <td align="left">0.204</td>
-<td align="left">0.209</td>
-<td align="left">FALSE</td>
+<td align="left">0.204</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results_gm12878_application.tex:45 table
 GENCODE_complete_sens_compatible lraa</td>
 <td align="left">0.265</td>
-<td align="left">0.269</td>
-<td align="left">FALSE</td>
+<td align="left">0.265</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results_gm12878_application.tex:45 table
 GENCODE_complete_sens_compatible stringtie</td>
 <td align="left">0.344</td>
-<td align="left">0.352</td>
-<td align="left">FALSE</td>
+<td align="left">0.344</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results_gm12878_application.tex:45 table
 GENCODE_complete_sens_compatible trinity</td>
 <td align="left">0.427</td>
-<td align="left">0.446</td>
-<td align="left">FALSE</td>
+<td align="left">0.427</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results_gm12878_application.tex:46 table
 GENCODE_complete_sens_exact_given_assembled lraa</td>
 <td align="left">0.882</td>
-<td align="left">0.889</td>
-<td align="left">FALSE</td>
+<td align="left">0.882</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results_gm12878_application.tex:46 table
 GENCODE_complete_sens_exact_given_assembled stringtie</td>
 <td align="left">0.868</td>
-<td align="left">0.886</td>
-<td align="left">FALSE</td>
+<td align="left">0.868</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results_gm12878_application.tex:46 table
 GENCODE_complete_sens_exact_given_assembled trinity</td>
 <td align="left">0.856</td>
-<td align="left">0.876</td>
-<td align="left">FALSE</td>
+<td align="left">0.856</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results_gm12878_application.tex:47 table
 pred_all_GENCODE_exact_frac lraa</td>
 <td align="left">0.52</td>
-<td align="left">0.503</td>
-<td align="left">FALSE</td>
+<td align="left">0.52</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results_gm12878_application.tex:47 table
 pred_all_GENCODE_exact_frac stringtie</td>
 <td align="left">0.434</td>
-<td align="left">0.401</td>
-<td align="left">FALSE</td>
+<td align="left">0.434</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results_gm12878_application.tex:47 table
 pred_all_GENCODE_exact_frac trinity</td>
 <td align="left">0.225</td>
-<td align="left">0.191</td>
-<td align="left">FALSE</td>
+<td align="left">0.225</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results_gm12878_application.tex:48 table
 pred_all_GENCODE_compatible_frac lraa</td>
 <td align="left">0.747</td>
-<td align="left">0.726</td>
-<td align="left">FALSE</td>
+<td align="left">0.747</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results_gm12878_application.tex:48 table
 pred_all_GENCODE_compatible_frac stringtie</td>
 <td align="left">0.667</td>
-<td align="left">0.616</td>
-<td align="left">FALSE</td>
+<td align="left">0.667</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results_gm12878_application.tex:48 table
 pred_all_GENCODE_compatible_frac trinity</td>
 <td align="left">0.488</td>
-<td align="left">0.423</td>
-<td align="left">FALSE</td>
+<td align="left">0.488</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results_gm12878_application.tex:49 table
 pred_all_no_GENCODE_CDS_overlap_frac lraa</td>
 <td align="left">0.015</td>
-<td align="left">0.037</td>
-<td align="left">FALSE</td>
+<td align="left">0.015</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results_gm12878_application.tex:49 table
 pred_all_no_GENCODE_CDS_overlap_frac stringtie</td>
 <td align="left">0.055</td>
-<td align="left">0.12</td>
-<td align="left">FALSE</td>
+<td align="left">0.055</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results_gm12878_application.tex:49 table
 pred_all_no_GENCODE_CDS_overlap_frac trinity</td>
 <td align="left">0.042</td>
-<td align="left">0.155</td>
-<td align="left">FALSE</td>
+<td align="left">0.042</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results_gm12878_application.tex:55 MANE exact %,
 min</td>
 <td align="left">30</td>
-<td align="left">31</td>
-<td align="left">FALSE</td>
+<td align="left">30</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results_gm12878_application.tex:55 MANE exact %,
 max</td>
 <td align="left">42</td>
-<td align="left">43</td>
-<td align="left">FALSE</td>
+<td align="left">42</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results_gm12878_application.tex:55 MANE compatible %,
 min</td>
 <td align="left">39</td>
-<td align="left">40</td>
-<td align="left">FALSE</td>
+<td align="left">39</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results_gm12878_application.tex:55 MANE compatible %,
 max</td>
 <td align="left">56</td>
-<td align="left">57</td>
-<td align="left">FALSE</td>
+<td align="left">56</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results_gm12878_application.tex:56 MANE assembled %,
 min</td>
 <td align="left">33</td>
 <td align="left">33</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results_gm12878_application.tex:56 MANE assembled %,
 max</td>
 <td align="left">46</td>
 <td align="left">46</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results_gm12878_application.tex:57 MANE genes at TPM
 &gt;= 1</td>
 <td align="left">11076</td>
 <td align="left">11076</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results_gm12878_application.tex:58 StringTie exact %,
 TPM &gt;= 1</td>
 <td align="left">73</td>
-<td align="left">74</td>
-<td align="left">FALSE</td>
-</tr>
-<tr class="odd">
-<td align="left">results_gm12878_application.tex:59 StringTie/Trinity
-compatible %, TPM &gt;= 1, min</td>
-<td align="left">87</td>
-<td align="left">88</td>
-<td align="left">FALSE</td>
+<td align="left">73</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">results_gm12878_application.tex:59 StringTie/Trinity
-compatible %, TPM &gt;= 1, max</td>
+compatible %, TPM &gt;= 1, min</td>
 <td align="left">87</td>
-<td align="left">89</td>
-<td align="left">FALSE</td>
+<td align="left">87</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
+<td align="left">results_gm12878_application.tex:59 StringTie/Trinity
+compatible %, TPM &gt;= 1, max</td>
+<td align="left">87</td>
+<td align="left">87</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
 <td align="left">results_gm12878_application.tex:59 MANE genes at TPM
 &gt;= 10</td>
 <td align="left">7823</td>
 <td align="left">7823</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results_gm12878_application.tex:59 StringTie exact %,
 TPM &gt;= 10</td>
 <td align="left">80</td>
-<td align="left">81</td>
-<td align="left">FALSE</td>
+<td align="left">80</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results_gm12878_application.tex:60 StringTie/Trinity
 compatible %, TPM &gt;= 10, min</td>
 <td align="left">89</td>
-<td align="left">90</td>
-<td align="left">FALSE</td>
+<td align="left">89</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results_gm12878_application.tex:60 StringTie/Trinity
 compatible %, TPM &gt;= 10, max</td>
 <td align="left">90</td>
-<td align="left">91</td>
-<td align="left">FALSE</td>
-</tr>
-<tr class="odd">
-<td align="left">results_gm12878_application.tex:61 MANE exact given
-assembled, TPM &gt;= 1/5/10, min</td>
-<td align="left">0.896</td>
-<td align="left">0.909</td>
-<td align="left">FALSE</td>
+<td align="left">90</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">results_gm12878_application.tex:61 MANE exact given
-assembled, TPM &gt;= 1/5/10, max</td>
-<td align="left">0.932</td>
-<td align="left">0.937</td>
-<td align="left">FALSE</td>
+assembled, TPM &gt;= 1/5/10, min</td>
+<td align="left">0.896</td>
+<td align="left">0.896</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
+<td align="left">results_gm12878_application.tex:61 MANE exact given
+assembled, TPM &gt;= 1/5/10, max</td>
+<td align="left">0.932</td>
+<td align="left">0.932</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
 <td align="left">results_gm12878_application.tex:62 LRAA exact, TPM
 &gt;= 1</td>
 <td align="left">0.51</td>
 <td align="left">0.51</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results_gm12878_application.tex:62 LRAA exact, TPM
 &gt;= 10</td>
 <td align="left">0.58</td>
 <td align="left">0.58</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results_gm12878_application.tex:67 Trinity GENCODE
 compatible sensitivity</td>
 <td align="left">0.427</td>
-<td align="left">0.446</td>
-<td align="left">FALSE</td>
+<td align="left">0.427</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results_gm12878_application.tex:67 Trinity highest
 GENCODE compatible sensitivity (1 = yes)</td>
 <td align="left">1</td>
 <td align="left">1</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results_gm12878_application.tex:68 Trinity % identical
 to GENCODE</td>
 <td align="left">22</td>
-<td align="left">19</td>
-<td align="left">FALSE</td>
+<td align="left">22</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results_gm12878_application.tex:69 LRAA % identical to
 GENCODE</td>
 <td align="left">52</td>
-<td align="left">50</td>
-<td align="left">FALSE</td>
+<td align="left">52</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results_gm12878_application.tex:69 LRAA % compatible
 with GENCODE</td>
 <td align="left">75</td>
-<td align="left">73</td>
-<td align="left">FALSE</td>
+<td align="left">75</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results_gm12878_application.tex:70 LRAA complete %
 identical</td>
 <td align="left">66</td>
-<td align="left">64</td>
-<td align="left">FALSE</td>
+<td align="left">66</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results_gm12878_application.tex:70 StringTie complete %
 identical</td>
 <td align="left">56</td>
-<td align="left">51</td>
-<td align="left">FALSE</td>
+<td align="left">56</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results_gm12878_application.tex:71 Trinity complete %
 identical</td>
 <td align="left">30</td>
-<td align="left">27</td>
-<td align="left">FALSE</td>
+<td align="left">30</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results_gm12878_application.tex:74 LRAA % no GENCODE
 overlap</td>
 <td align="left">1.5</td>
-<td align="left">3.7</td>
-<td align="left">FALSE</td>
+<td align="left">1.5</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results_gm12878_application.tex:74 StringTie % no
 GENCODE overlap</td>
 <td align="left">5.5</td>
-<td align="left">12</td>
-<td align="left">FALSE</td>
+<td align="left">5.5</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results_gm12878_application.tex:75 Trinity % no GENCODE
 overlap</td>
 <td align="left">4.2</td>
-<td align="left">15.5</td>
-<td align="left">FALSE</td>
+<td align="left">4.2</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results_gm12878_application.tex:76 StringTie partial %
 unannotated</td>
 <td align="left">11</td>
-<td align="left">18</td>
-<td align="left">FALSE</td>
+<td align="left">11</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results_gm12878_application.tex:76 Trinity partial %
 unannotated</td>
 <td align="left">8</td>
-<td align="left">24</td>
-<td align="left">FALSE</td>
+<td align="left">8</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results_gm12878_application.tex:77 StringTie complete %
 unannotated</td>
 <td align="left">4</td>
-<td align="left">10</td>
-<td align="left">FALSE</td>
+<td align="left">4</td>
+<td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results_gm12878_application.tex:77 Trinity complete %
 unannotated</td>
 <td align="left">3</td>
-<td align="left">12</td>
-<td align="left">FALSE</td>
+<td align="left">3</td>
+<td align="left">TRUE</td>
 </tr>
 </tbody>
 </table>
-<p>The same checks against the earlier runs (the values the text was
-written from), as a cross-check that the text matches its source:</p>
+<p>The same checks against the earlier runs, with the values an earlier
+draft quoted from them, as a cross-check that the text matches its
+source:</p>
 <pre class="r"><code>.checks$rows &lt;- list()
 for (a in ASMS) check_text(paste(&quot;distinct CDSs&quot;, a), n_ear[[a]], c(lraa = 23922, stringtie = 34404, trinity = 72323)[[a]])
 for (a in ASMS) check_text(paste(&quot;% partial&quot;, a), round(100 * part_ear[[a]] / n_ear[[a]]), c(lraa = 21, stringtie = 21, trinity = 28)[[a]])
@@ -4197,15 +4222,13 @@ check_text(&quot;StringTie partial % unannotated&quot;, round(100 * un$partial_e
 check_text(&quot;Trinity partial % unannotated&quot;, round(100 * un$partial_earlier[3]), 24)
 check_text(&quot;StringTie complete % unannotated&quot;, round(100 * un$complete_earlier[2]), 10)
 check_text(&quot;Trinity complete % unannotated&quot;, round(100 * un$complete_earlier[3]), 12)
-check_text(&quot;same stop, different start % LRAA (this notebook&#39;s definition)&quot;, round(100 * ss(&quot;earlier&quot;, &quot;lraa&quot;)), 62)
-check_text(&quot;same stop, different start % StringTie (this notebook&#39;s definition)&quot;, round(100 * ss(&quot;earlier&quot;, &quot;stringtie&quot;)), 68)
 check_report()</code></pre>
 <table>
 <colgroup>
-<col width="72%" />
-<col width="9%" />
-<col width="11%" />
-<col width="6%" />
+<col width="70%" />
+<col width="10%" />
+<col width="12%" />
+<col width="5%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -4555,20 +4578,6 @@ stringtie</td>
 <td align="left">12</td>
 <td align="left">12</td>
 <td align="left">TRUE</td>
-</tr>
-<tr class="odd">
-<td align="left">same stop, different start % LRAA (this notebook’s
-definition)</td>
-<td align="left">64</td>
-<td align="left">62</td>
-<td align="left">FALSE</td>
-</tr>
-<tr class="even">
-<td align="left">same stop, different start % StringTie (this notebook’s
-definition)</td>
-<td align="left">70</td>
-<td align="left">68</td>
-<td align="left">FALSE</td>
 </tr>
 </tbody>
 </table>

@@ -2178,10 +2178,11 @@ default.</p>
 </div>
 <div id="removed-orf-support" class="section level3">
 <h3>Support of the ORFs that the q-value test removed</h3>
-<p>The current text quotes <code>gm12878_rule_support.tsv</code>
-(E20/E22; development run <code>decoy_q0.05</code>, without long-ORF
-retention, against the development fixed short-ORF run
-<code>cliff_c200</code>). The release version,
+<p>The text quotes the release version. An earlier draft quoted
+<code>gm12878_rule_support.tsv</code> (E20/E22; development run
+<code>decoy_q0.05</code>, without long-ORF retention, against the
+development fixed short-ORF run <code>cliff_c200</code>), shown below
+for comparison. The release version,
 <code>data/gm12878/final_v7/08_rule_support_v7.tsv</code>
 (<code>pipeline/derive/08_rule_support_v7.py</code>), compares the
 release runs with the earlier <code>final_abinitio</code> runs (fixed
@@ -2565,10 +2566,10 @@ ten P-sites; MS rates are over all ORFs (gene models).</p>
 <pre class="r"><code>s7 &lt;- function(a, st, set, col) sup_v7[[col]][sup_v7$asm == a &amp; sup_v7$setting == st &amp; sup_v7$set == set]
 sd &lt;- function(a, set, col) sup_dev[[col]][sup_dev$asm == a &amp; sup_dev$label == &quot;decoy_q0.05&quot; &amp; sup_dev$set == set]
 kable(sup_dev %&gt;% filter(label %in% c(&quot;cliff_c200&quot;, &quot;decoy_q0.05&quot;)),
-      caption = &quot;Development (gm12878_rule_support.tsv), as quoted in the current text&quot;)</code></pre>
+      caption = &quot;Development (gm12878_rule_support.tsv), as quoted in an earlier draft&quot;)</code></pre>
 <table>
-<caption>Development (gm12878_rule_support.tsv), as quoted in the
-current text</caption>
+<caption>Development (gm12878_rule_support.tsv), as quoted in an earlier
+draft</caption>
 <colgroup>
 <col width="11%" />
 <col width="14%" />
@@ -2726,9 +2727,9 @@ enough footprints (n = 464, 525, 1,604), against 66%, 62%, 61% of all
 predictions.</li>
 <li>MS peptide: 35%, 20%, 17% against 64%, 69%, 65%.</li>
 </ul>
-<p>The development values quoted now (40% and 35% vs 66% and 62%; MS 35%
-and 20% vs 65% and 70%) are 40% / 35% vs 66% / 62%, and 35% / 20% vs 64%
-/ 70%.</p>
+<p>The development values quoted in an earlier draft (40% and 35% vs 66%
+and 62%; MS 35% and 20% vs 65% and 70%) are 40% / 35% vs 66% / 62%, and
+35% / 20% vs 64% / 70%.</p>
 <p><a href="../evidence/E22_qvalue_modes.md">E22</a>, <a href="../evidence/E20_decoy_fdr_rule.md">E20</a>, <a href="../evidence/E01_gm12878_riboseq.md">E01</a>, <a href="../evidence/E02_gm12878_ms_peptides.md">E02</a>, <a href="../evidence/E25_final_release_reruns.md">E25</a></p>
 </div>
 <div id="unannotated-by-length" class="section level3">
@@ -5042,10 +5043,10 @@ the text should update (see the <code>\todo</code> at line 29).</p>
 <pre class="r"><code>check_report()</code></pre>
 <table>
 <colgroup>
-<col width="74%" />
+<col width="75%" />
 <col width="8%" />
 <col width="10%" />
-<col width="5%" />
+<col width="4%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -5281,26 +5282,26 @@ share</td>
 <tr class="odd">
 <td align="left">L36 LRAA q0.05 matching</td>
 <td align="left">32751</td>
-<td align="left">32763</td>
-<td align="left">FALSE</td>
+<td align="left">32751</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">L36 LRAA q0.05 non-matching</td>
 <td align="left">277</td>
-<td align="left">278</td>
-<td align="left">FALSE</td>
+<td align="left">277</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">L36 StringTie q0.05 matching</td>
 <td align="left">35294</td>
-<td align="left">35391</td>
-<td align="left">FALSE</td>
+<td align="left">35294</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">L37 StringTie q0.05 non-matching</td>
 <td align="left">1185</td>
-<td align="left">1195</td>
-<td align="left">FALSE</td>
+<td align="left">1185</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">L37 LRAA fixed test matching</td>
@@ -5329,38 +5330,38 @@ share</td>
 <tr class="odd">
 <td align="left">L39 LRAA q0.01 matching</td>
 <td align="left">31672</td>
-<td align="left">32011</td>
-<td align="left">FALSE</td>
+<td align="left">31672</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">L39 LRAA q0.01 non-matching</td>
 <td align="left">189</td>
-<td align="left">193</td>
-<td align="left">FALSE</td>
+<td align="left">189</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">L39 StringTie q0.01 matching</td>
 <td align="left">33647</td>
-<td align="left">33869</td>
-<td align="left">FALSE</td>
+<td align="left">33647</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">L39 StringTie q0.01 non-matching</td>
 <td align="left">698</td>
-<td align="left">749</td>
-<td align="left">FALSE</td>
+<td align="left">698</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">L40 LRAA q0.2 matching</td>
 <td align="left">33443</td>
-<td align="left">33508</td>
-<td align="left">FALSE</td>
+<td align="left">33443</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">L40 LRAA q0.2 non-matching</td>
 <td align="left">560</td>
-<td align="left">579</td>
-<td align="left">FALSE</td>
+<td align="left">560</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">L40 StringTie q0.2 matching</td>
@@ -5371,14 +5372,14 @@ share</td>
 <tr class="even">
 <td align="left">L40 StringTie q0.2 non-matching</td>
 <td align="left">2879</td>
-<td align="left">2832</td>
-<td align="left">FALSE</td>
+<td align="left">2879</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">L42 fold fewer non-matching, low end</td>
 <td align="left">3.476</td>
-<td align="left">3.4</td>
-<td align="left">FALSE</td>
+<td align="left">3.5</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">L42 fold fewer non-matching, high end</td>
@@ -5395,21 +5396,21 @@ share</td>
 <tr class="even">
 <td align="left">L42 loss of matching, high end (%)</td>
 <td align="left">3.428</td>
-<td align="left">3.2</td>
-<td align="left">FALSE</td>
+<td align="left">3.4</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">L44 LRAA removed ORFs, Ribo-seq frame test (%)</td>
 <td align="left">39.22</td>
-<td align="left">40</td>
-<td align="left">FALSE</td>
+<td align="left">39</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">L44 StringTie removed ORFs, Ribo-seq frame test
 (%)</td>
 <td align="left">38.1</td>
-<td align="left">35</td>
-<td align="left">FALSE</td>
+<td align="left">38</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">L45 LRAA all predictions, Ribo-seq frame test (%)</td>
@@ -5439,26 +5440,26 @@ share</td>
 <tr class="odd">
 <td align="left">L46 LRAA all predictions, MS peptide (%)</td>
 <td align="left">64.48</td>
-<td align="left">65</td>
-<td align="left">FALSE</td>
+<td align="left">64</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">L46 StringTie all predictions, MS peptide (%)</td>
 <td align="left">68.84</td>
-<td align="left">70</td>
-<td align="left">FALSE</td>
+<td align="left">69</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">L50 short predictions no-overlap, low end (%)</td>
 <td align="left">4.98</td>
-<td align="left">18</td>
-<td align="left">FALSE</td>
+<td align="left">5</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">L50 short predictions no-overlap, high end (%)</td>
 <td align="left">18.75</td>
-<td align="left">41</td>
-<td align="left">FALSE</td>
+<td align="left">19</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">L50 &gt;=300 aa no-overlap, low end (%)</td>
@@ -5475,20 +5476,20 @@ share</td>
 <tr class="odd">
 <td align="left">L53 LRAA no-overlap at 150 aa (%)</td>
 <td align="left">0.99</td>
-<td align="left">1.1</td>
-<td align="left">FALSE</td>
+<td align="left">1</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">L53 StringTie no-overlap at 150 aa (%)</td>
 <td align="left">3.29</td>
-<td align="left">4.3</td>
-<td align="left">FALSE</td>
+<td align="left">3.3</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">L53 Trinity no-overlap at 150 aa (%)</td>
 <td align="left">2.23</td>
-<td align="left">3.3</td>
-<td align="left">FALSE</td>
+<td align="left">2.2</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">L54 LRAA MANE exact given assembled, unfiltered</td>
@@ -5500,14 +5501,14 @@ share</td>
 <td align="left">L54 StringTie MANE exact given assembled,
 unfiltered</td>
 <td align="left">0.9149</td>
-<td align="left">0.93</td>
-<td align="left">FALSE</td>
+<td align="left">0.91</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">L54 Trinity MANE exact given assembled, unfiltered</td>
 <td align="left">0.8933</td>
-<td align="left">0.91</td>
-<td align="left">FALSE</td>
+<td align="left">0.89</td>
+<td align="left">TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">L54 LRAA MANE exact given assembled, &gt;= 150 aa</td>

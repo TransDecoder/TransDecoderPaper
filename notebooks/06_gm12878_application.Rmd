@@ -186,10 +186,10 @@ most of these the predicted start was upstream of the MANE start
 same count gives `r pct(ss("earlier", "lraa"), 0)` (LRAA) and `r pct(ss("earlier", "stringtie"), 0)`
 (StringTie).
 
-The text quotes 62% (LRAA) and 68% (StringTie). No evidence record documents how these were computed,
-and the definition used here (any distinct predicted CDS with the same stop codon, chromosome and strand)
-does not reproduce them on the earlier runs (64% and 70%). The text should take the release values
-from this table, and the definition should be stated in the Methods or an evidence record.
+The text quotes the release values (58% LRAA, 60% StringTie and Trinity) and states this definition in
+the Methods: any distinct predicted CDS on the same chromosome and strand with the same stop codon. An
+earlier draft quoted 62% and 68% from the earlier runs, by a definition no record documents; the
+definition used here gives 64% and 70% on those runs.
 
 ## Table: PyTD on three GM12878 assemblies
 
@@ -467,21 +467,22 @@ check_text(L(Rs, 11, "StringTie transcripts"), R("assembled_transcripts")[["stri
 check_text(L(Rs, 11, "LRAA transcripts"), R("assembled_transcripts")[["lraa"]], 39530)
 # Predictions
 for (a in ASMS) check_text(L(Rs, 14, paste("distinct CDSs", a)), n_rel[[a]],
-                           c(lraa = 23922, stringtie = 34404, trinity = 72323)[[a]])
+                           c(lraa = 22769, stringtie = 30846, trinity = 59514)[[a]])
 for (a in ASMS) check_text(L(Rs, 15, paste("% partial", a)), round(100 * part_rel[[a]] / n_rel[[a]]),
-                           c(lraa = 21, stringtie = 21, trinity = 28)[[a]])
-check_text(L(Rs, 17, "Trinity ORFs not projected"), g("release", "trinity", "not_projected"), 4624)
-check_text(L(Rs, 17, "Trinity transcript ORFs"), g("release", "trinity", "transcript_orfs"), 97088)
-check_text(L(Rs, 17, "Trinity % not projected"), round(100 * g("release", "trinity", "frac_not"), 1), 4.8)
+                           c(lraa = 22, stringtie = 22, trinity = 25)[[a]])
+check_text(L(Rs, 17, "Trinity ORFs not projected"), g("release", "trinity", "not_projected"), 3316)
+check_text(L(Rs, 17, "Trinity transcript ORFs"), g("release", "trinity", "transcript_orfs"), 80797)
+check_text(L(Rs, 17, "Trinity % not projected"), round(100 * g("release", "trinity", "frac_not"), 1), 4.1)
 check_text(L(Rs, 16, "LRAA + StringTie ORFs not projected (none)"),
            sum(gm$not_projected[gm$run == "release" & gm$assembly != "trinity"]), 0)
 # CDS prediction on assembled transcripts
-check_text(L(Rs, 22, "MANE exact given assembled, min"), round(min(ega_mane), 3), 0.906)
-check_text(L(Rs, 22, "MANE exact given assembled, max"), round(max(ega_mane), 3), 0.935)
-check_text(L(Rs, 23, "GENCODE exact given assembled, min"), round(min(ega_gc), 3), 0.876)
-check_text(L(Rs, 23, "GENCODE exact given assembled, max"), round(max(ega_gc), 3), 0.889)
-check_text(L(Rs, 24, "same stop, different start % LRAA"), round(100 * ss("release", "lraa")), 62)
-check_text(L(Rs, 24, "same stop, different start % StringTie"), round(100 * ss("release", "stringtie")), 68)
+check_text(L(Rs, 22, "MANE exact given assembled, min"), round(min(ega_mane), 3), 0.893)
+check_text(L(Rs, 22, "MANE exact given assembled, max"), round(max(ega_mane), 3), 0.929)
+check_text(L(Rs, 23, "GENCODE exact given assembled, min"), round(min(ega_gc), 3), 0.856)
+check_text(L(Rs, 23, "GENCODE exact given assembled, max"), round(max(ega_gc), 3), 0.882)
+check_text(L(Rs, 24, "same stop, different start % LRAA"), round(100 * ss("release", "lraa")), 58)
+check_text(L(Rs, 24, "same stop, different start % StringTie"), round(100 * ss("release", "stringtie")), 60)
+check_text(L(Rs, 25, "same stop, different start % Trinity"), round(100 * ss("release", "trinity")), 60)
 # Table tab:gm12878 (lines 38-49)
 quoted <- list(
   list(38, "distinct_predicted_cds", c(23922, 34404, 72323), 0),
@@ -497,51 +498,67 @@ quoted <- list(
   list(47, "pred_all_GENCODE_exact_frac", c(0.503, 0.401, 0.191), 3),
   list(48, "pred_all_GENCODE_compatible_frac", c(0.726, 0.616, 0.423), 3),
   list(49, "pred_all_no_GENCODE_CDS_overlap_frac", c(0.037, 0.120, 0.155), 3))
-for (q in quoted) for (i in seq_along(ASMS)) {
+# values quoted in the current text (release runs); `quoted` keeps the earlier-draft values for the
+# cross-check against the earlier runs below
+quoted_rel <- list(
+  list(38, "distinct_predicted_cds", c(22769, 30846, 59514), 0),
+  list(39, "distinct_predicted_complete", c(17806, 24077, 44494), 0),
+  list(39, "partial", c(4963, 6769, 15020), 0),
+  list(40, "MANE_assembled_frac", c(0.327, 0.464, 0.399), 3),
+  list(41, "MANE_sens_exact", c(0.304, 0.424, 0.357), 3),
+  list(42, "MANE_sens_compatible", c(0.392, 0.563, 0.534), 3),
+  list(43, "MANE_sens_exact_given_assembled", c(0.929, 0.915, 0.893), 3),
+  list(44, "GENCODE_complete_sens_exact", c(0.191, 0.229, 0.204), 3),
+  list(45, "GENCODE_complete_sens_compatible", c(0.265, 0.344, 0.427), 3),
+  list(46, "GENCODE_complete_sens_exact_given_assembled", c(0.882, 0.868, 0.856), 3),
+  list(47, "pred_all_GENCODE_exact_frac", c(0.520, 0.434, 0.225), 3),
+  list(48, "pred_all_GENCODE_compatible_frac", c(0.747, 0.667, 0.488), 3),
+  list(49, "pred_all_no_GENCODE_CDS_overlap_frac", c(0.015, 0.055, 0.042), 3))
+for (q in quoted_rel) for (i in seq_along(ASMS)) {
   v <- summ_p$value[summ_p$run == "release" & summ_p$assembly == ASMS[i] & summ_p$metric == q[[2]]]
   check_text(L(Rs, q[[1]], paste("table", q[[2]], ASMS[i])), round(v, q[[4]]), q[[3]][i])
 }
 # Sensitivity is limited by assembly
-check_text(L(Rs, 55, "MANE exact %, min"), round(100 * min(R("MANE_sens_exact"))), 31)
-check_text(L(Rs, 55, "MANE exact %, max"), round(100 * max(R("MANE_sens_exact"))), 43)
-check_text(L(Rs, 55, "MANE compatible %, min"), round(100 * min(R("MANE_sens_compatible"))), 40)
-check_text(L(Rs, 55, "MANE compatible %, max"), round(100 * max(R("MANE_sens_compatible"))), 57)
+check_text(L(Rs, 55, "MANE exact %, min"), round(100 * min(R("MANE_sens_exact"))), 30)
+check_text(L(Rs, 55, "MANE exact %, max"), round(100 * max(R("MANE_sens_exact"))), 42)
+check_text(L(Rs, 55, "MANE compatible %, min"), round(100 * min(R("MANE_sens_compatible"))), 39)
+check_text(L(Rs, 55, "MANE compatible %, max"), round(100 * max(R("MANE_sens_compatible"))), 56)
 check_text(L(Rs, 56, "MANE assembled %, min"), round(100 * min(R("MANE_assembled_frac"))), 33)
 check_text(L(Rs, 56, "MANE assembled %, max"), round(100 * max(R("MANE_assembled_frac"))), 46)
 check_text(L(Rs, 57, "MANE genes at TPM >= 1"), n_tpm1, 11076)
-check_text(L(Rs, 58, "StringTie exact %, TPM >= 1"), round(100 * st_ex1), 74)
-check_text(L(Rs, 59, "StringTie/Trinity compatible %, TPM >= 1, min"), round(100 * min(comp1)), 88)
-check_text(L(Rs, 59, "StringTie/Trinity compatible %, TPM >= 1, max"), round(100 * max(comp1)), 89)
+check_text(L(Rs, 58, "StringTie exact %, TPM >= 1"), round(100 * st_ex1), 73)
+check_text(L(Rs, 59, "StringTie/Trinity compatible %, TPM >= 1, min"), round(100 * min(comp1)), 87)
+check_text(L(Rs, 59, "StringTie/Trinity compatible %, TPM >= 1, max"), round(100 * max(comp1)), 87)
 check_text(L(Rs, 59, "MANE genes at TPM >= 10"), n_tpm10, 7823)
-check_text(L(Rs, 59, "StringTie exact %, TPM >= 10"), round(100 * st_ex10), 81)
-check_text(L(Rs, 60, "StringTie/Trinity compatible %, TPM >= 10, min"), round(100 * min(comp10)), 90)
-check_text(L(Rs, 60, "StringTie/Trinity compatible %, TPM >= 10, max"), round(100 * max(comp10)), 91)
-check_text(L(Rs, 61, "MANE exact given assembled, TPM >= 1/5/10, min"), round(min(ega_expr), 3), 0.909)
-check_text(L(Rs, 61, "MANE exact given assembled, TPM >= 1/5/10, max"), round(max(ega_expr), 3), 0.937)
+check_text(L(Rs, 59, "StringTie exact %, TPM >= 10"), round(100 * st_ex10), 80)
+check_text(L(Rs, 60, "StringTie/Trinity compatible %, TPM >= 10, min"), round(100 * min(comp10)), 89)
+check_text(L(Rs, 60, "StringTie/Trinity compatible %, TPM >= 10, max"), round(100 * max(comp10)), 90)
+check_text(L(Rs, 61, "MANE exact given assembled, TPM >= 1/5/10, min"), round(min(ega_expr), 3), 0.896)
+check_text(L(Rs, 61, "MANE exact given assembled, TPM >= 1/5/10, max"), round(max(ega_expr), 3), 0.932)
 check_text(L(Rs, 62, "LRAA exact, TPM >= 1"), round(lraa_ex[1], 2), 0.51)
 check_text(L(Rs, 62, "LRAA exact, TPM >= 10"), round(lraa_ex[2], 2), 0.58)
 # Assembly type
-check_text(L(Rs, 67, "Trinity GENCODE compatible sensitivity"), round(R("GENCODE_complete_sens_compatible")[["trinity"]], 3), 0.446)
+check_text(L(Rs, 67, "Trinity GENCODE compatible sensitivity"), round(R("GENCODE_complete_sens_compatible")[["trinity"]], 3), 0.427)
 check_text(L(Rs, 67, "Trinity highest GENCODE compatible sensitivity (1 = yes)"),
            as.numeric(which.max(R("GENCODE_complete_sens_compatible")) == 3), 1)
-check_text(L(Rs, 68, "Trinity % identical to GENCODE"), round(100 * R("pred_all_GENCODE_exact_frac")[["trinity"]]), 19)
-check_text(L(Rs, 69, "LRAA % identical to GENCODE"), round(100 * R("pred_all_GENCODE_exact_frac")[["lraa"]]), 50)
-check_text(L(Rs, 69, "LRAA % compatible with GENCODE"), round(100 * R("pred_all_GENCODE_compatible_frac")[["lraa"]]), 73)
-check_text(L(Rs, 70, "LRAA complete % identical"), round(100 * R("pred_complete_GENCODE_exact_frac")[["lraa"]]), 64)
-check_text(L(Rs, 70, "StringTie complete % identical"), round(100 * R("pred_complete_GENCODE_exact_frac")[["stringtie"]]), 51)
-check_text(L(Rs, 71, "Trinity complete % identical"), round(100 * R("pred_complete_GENCODE_exact_frac")[["trinity"]]), 27)
+check_text(L(Rs, 68, "Trinity % identical to GENCODE"), round(100 * R("pred_all_GENCODE_exact_frac")[["trinity"]]), 22)
+check_text(L(Rs, 69, "LRAA % identical to GENCODE"), round(100 * R("pred_all_GENCODE_exact_frac")[["lraa"]]), 52)
+check_text(L(Rs, 69, "LRAA % compatible with GENCODE"), round(100 * R("pred_all_GENCODE_compatible_frac")[["lraa"]]), 75)
+check_text(L(Rs, 70, "LRAA complete % identical"), round(100 * R("pred_complete_GENCODE_exact_frac")[["lraa"]]), 66)
+check_text(L(Rs, 70, "StringTie complete % identical"), round(100 * R("pred_complete_GENCODE_exact_frac")[["stringtie"]]), 56)
+check_text(L(Rs, 71, "Trinity complete % identical"), round(100 * R("pred_complete_GENCODE_exact_frac")[["trinity"]]), 30)
 # Unannotated predictions
-check_text(L(Rs, 74, "LRAA % no GENCODE overlap"), round(100 * un$all_release[1], 1), 3.7)
-check_text(L(Rs, 74, "StringTie % no GENCODE overlap"), round(100 * un$all_release[2], 1), 12.0)
-check_text(L(Rs, 75, "Trinity % no GENCODE overlap"), round(100 * un$all_release[3], 1), 15.5)
-check_text(L(Rs, 76, "StringTie partial % unannotated"), round(100 * un$partial_release[2]), 18)
-check_text(L(Rs, 76, "Trinity partial % unannotated"), round(100 * un$partial_release[3]), 24)
-check_text(L(Rs, 77, "StringTie complete % unannotated"), round(100 * un$complete_release[2]), 10)
-check_text(L(Rs, 77, "Trinity complete % unannotated"), round(100 * un$complete_release[3]), 12)
+check_text(L(Rs, 74, "LRAA % no GENCODE overlap"), round(100 * un$all_release[1], 1), 1.5)
+check_text(L(Rs, 74, "StringTie % no GENCODE overlap"), round(100 * un$all_release[2], 1), 5.5)
+check_text(L(Rs, 75, "Trinity % no GENCODE overlap"), round(100 * un$all_release[3], 1), 4.2)
+check_text(L(Rs, 76, "StringTie partial % unannotated"), round(100 * un$partial_release[2]), 11)
+check_text(L(Rs, 76, "Trinity partial % unannotated"), round(100 * un$partial_release[3]), 8)
+check_text(L(Rs, 77, "StringTie complete % unannotated"), round(100 * un$complete_release[2]), 4)
+check_text(L(Rs, 77, "Trinity complete % unannotated"), round(100 * un$complete_release[3]), 3)
 check_report()
 ```
 
-The same checks against the earlier runs (the values the text was written from), as a cross-check that
+The same checks against the earlier runs, with the values an earlier draft quoted from them, as a cross-check that
 the text matches its source:
 
 ```{r checks-earlier}
@@ -564,7 +581,5 @@ check_text("StringTie partial % unannotated", round(100 * un$partial_earlier[2])
 check_text("Trinity partial % unannotated", round(100 * un$partial_earlier[3]), 24)
 check_text("StringTie complete % unannotated", round(100 * un$complete_earlier[2]), 10)
 check_text("Trinity complete % unannotated", round(100 * un$complete_earlier[3]), 12)
-check_text("same stop, different start % LRAA (this notebook's definition)", round(100 * ss("earlier", "lraa")), 62)
-check_text("same stop, different start % StringTie (this notebook's definition)", round(100 * ss("earlier", "stringtie")), 68)
 check_report()
 ```

@@ -312,32 +312,33 @@ by stop codon fall from 178 / 217 / 455 with the fixed short-ORF test (E04, E25)
 `r evidence("E22")`, `r evidence("E20")`, `r evidence("E25")`
 
 ```{r chk_q, include = FALSE}
-check_text("L36 LRAA q0.05 matching", q("lraa","default","matching"), 32763)
-check_text("L36 LRAA q0.05 non-matching", q("lraa","default","nonmatching"), 278)
-check_text("L36 StringTie q0.05 matching", q("stringtie","default","matching"), 35391)
-check_text("L37 StringTie q0.05 non-matching", q("stringtie","default","nonmatching"), 1195)
+check_text("L36 LRAA q0.05 matching", q("lraa","default","matching"), 32751)
+check_text("L36 LRAA q0.05 non-matching", q("lraa","default","nonmatching"), 277)
+check_text("L36 StringTie q0.05 matching", q("stringtie","default","matching"), 35294)
+check_text("L37 StringTie q0.05 non-matching", q("stringtie","default","nonmatching"), 1185)
 check_text("L37 LRAA fixed test matching", cl("lraa","matching"), 33587)
 check_text("L37 LRAA fixed test non-matching", cl("lraa","nonmatching"), 1005)
 check_text("L37 StringTie fixed test matching", cl("stringtie","matching"), 36547)
 check_text("L37 StringTie fixed test non-matching", cl("stringtie","nonmatching"), 4119)
-check_text("L39 LRAA q0.01 matching", q("lraa","precise","matching"), 32011)
-check_text("L39 LRAA q0.01 non-matching", q("lraa","precise","nonmatching"), 193)
-check_text("L39 StringTie q0.01 matching", q("stringtie","precise","matching"), 33869)
-check_text("L39 StringTie q0.01 non-matching", q("stringtie","precise","nonmatching"), 749)
-check_text("L40 LRAA q0.2 matching", q("lraa","sensitive","matching"), 33508)
-check_text("L40 LRAA q0.2 non-matching", q("lraa","sensitive","nonmatching"), 579)
+check_text("L39 LRAA q0.01 matching", q("lraa","precise","matching"), 31672)
+check_text("L39 LRAA q0.01 non-matching", q("lraa","precise","nonmatching"), 189)
+check_text("L39 StringTie q0.01 matching", q("stringtie","precise","matching"), 33647)
+check_text("L39 StringTie q0.01 non-matching", q("stringtie","precise","nonmatching"), 698)
+check_text("L40 LRAA q0.2 matching", q("lraa","sensitive","matching"), 33443)
+check_text("L40 LRAA q0.2 non-matching", q("lraa","sensitive","nonmatching"), 560)
 check_text("L40 StringTie q0.2 matching", q("stringtie","sensitive","matching"), 36903)
-check_text("L40 StringTie q0.2 non-matching", q("stringtie","sensitive","nonmatching"), 2832)
-chk("L42 fold fewer non-matching, low end", min(fold), 3.4)
+check_text("L40 StringTie q0.2 non-matching", q("stringtie","sensitive","nonmatching"), 2879)
+chk("L42 fold fewer non-matching, low end", min(fold), 3.5)
 chk("L42 fold fewer non-matching, high end", max(fold), 3.6)
 chk("L42 loss of matching, low end (%)", 100 * min(loss), 2.5)
-chk("L42 loss of matching, high end (%)", 100 * max(loss), 3.2)
+chk("L42 loss of matching, high end (%)", 100 * max(loss), 3.4)
 ```
 
 ### Support of the ORFs that the q-value test removed {#removed-orf-support}
 
-The current text quotes `gm12878_rule_support.tsv` (E20/E22; development run `decoy_q0.05`, without
-long-ORF retention, against the development fixed short-ORF run `cliff_c200`). The release version,
+The text quotes the release version. An earlier draft quoted `gm12878_rule_support.tsv` (E20/E22;
+development run `decoy_q0.05`, without long-ORF retention, against the development fixed short-ORF
+run `cliff_c200`), shown below for comparison. The release version,
 `data/gm12878/final_v7/08_rule_support_v7.tsv` (`pipeline/derive/08_rule_support_v7.py`), compares
 the release runs with the earlier `final_abinitio` runs (fixed short-ORF test; their Ribo-seq and MS
 tables from E01/E02). An ORF is identified by transcript, strand and stop codon. "dropped" are
@@ -350,7 +351,7 @@ kable(sup_v7, caption = "Release (08_rule_support_v7.tsv)")
 s7 <- function(a, st, set, col) sup_v7[[col]][sup_v7$asm == a & sup_v7$setting == st & sup_v7$set == set]
 sd <- function(a, set, col) sup_dev[[col]][sup_dev$asm == a & sup_dev$label == "decoy_q0.05" & sup_dev$set == set]
 kable(sup_dev %>% filter(label %in% c("cliff_c200", "decoy_q0.05")),
-      caption = "Development (gm12878_rule_support.tsv), as quoted in the current text")
+      caption = "Development (gm12878_rule_support.tsv), as quoted in an earlier draft")
 ```
 
 Release default, ORFs removed vs all predictions (LRAA; StringTie; Trinity):
@@ -365,7 +366,8 @@ Release default, ORFs removed vs all predictions (LRAA; StringTie; Trinity):
   `r pct(s7("trinity","default","dropped","ms_rate"), 0)` against `r pct(s7("lraa","default","all","ms_rate"), 0)`,
   `r pct(s7("stringtie","default","all","ms_rate"), 0)`, `r pct(s7("trinity","default","all","ms_rate"), 0)`.
 
-The development values quoted now (40% and 35% vs 66% and 62%; MS 35% and 20% vs 65% and 70%) are
+The development values quoted in an earlier draft (40% and 35% vs 66% and 62%; MS 35% and 20% vs 65%
+and 70%) are
 `r pct(sd("lraa","dropped","ribo_rate"),0)` / `r pct(sd("stringtie","dropped","ribo_rate"),0)` vs
 `r pct(sd("lraa","all","ribo_rate"),0)` / `r pct(sd("stringtie","all","ribo_rate"),0)`, and
 `r pct(sd("lraa","dropped","ms_rate"),0)` / `r pct(sd("stringtie","dropped","ms_rate"),0)` vs
@@ -374,14 +376,14 @@ The development values quoted now (40% and 35% vs 66% and 62%; MS 35% and 20% vs
 `r evidence("E22")`, `r evidence("E20")`, `r evidence("E01")`, `r evidence("E02")`, `r evidence("E25")`
 
 ```{r chk_support, include = FALSE}
-chk("L44 LRAA removed ORFs, Ribo-seq frame test (%)", 100 * s7("lraa","default","dropped","ribo_rate"), 40, 0)
-chk("L44 StringTie removed ORFs, Ribo-seq frame test (%)", 100 * s7("stringtie","default","dropped","ribo_rate"), 35, 0)
+chk("L44 LRAA removed ORFs, Ribo-seq frame test (%)", 100 * s7("lraa","default","dropped","ribo_rate"), 39, 0)
+chk("L44 StringTie removed ORFs, Ribo-seq frame test (%)", 100 * s7("stringtie","default","dropped","ribo_rate"), 38, 0)
 chk("L45 LRAA all predictions, Ribo-seq frame test (%)", 100 * s7("lraa","default","all","ribo_rate"), 66, 0)
 chk("L45 StringTie all predictions, Ribo-seq frame test (%)", 100 * s7("stringtie","default","all","ribo_rate"), 62, 0)
 chk("L45 LRAA removed ORFs, MS peptide (%)", 100 * s7("lraa","default","dropped","ms_rate"), 35, 0)
 chk("L46 StringTie removed ORFs, MS peptide (%)", 100 * s7("stringtie","default","dropped","ms_rate"), 20, 0)
-chk("L46 LRAA all predictions, MS peptide (%)", 100 * s7("lraa","default","all","ms_rate"), 65, 0)
-chk("L46 StringTie all predictions, MS peptide (%)", 100 * s7("stringtie","default","all","ms_rate"), 70, 0)
+chk("L46 LRAA all predictions, MS peptide (%)", 100 * s7("lraa","default","all","ms_rate"), 64, 0)
+chk("L46 StringTie all predictions, MS peptide (%)", 100 * s7("stringtie","default","all","ms_rate"), 69, 0)
 ```
 
 ### Unannotated predictions by length {#unannotated-by-length}
@@ -408,8 +410,8 @@ shorter than 100 aa or of 100--149 aa have no GENCODE CDS overlap, against
 `r pct(min(long_dev$frac))`--`r pct(max(long_dev$frac))`).
 
 ```{r chk_bylen, include = FALSE}
-chk("L50 short predictions no-overlap, low end (%)", 100 * min(short_rel$frac), 18, 0)
-chk("L50 short predictions no-overlap, high end (%)", 100 * max(short_rel$frac), 41, 0)
+chk("L50 short predictions no-overlap, low end (%)", 100 * min(short_rel$frac), 5, 0)
+chk("L50 short predictions no-overlap, high end (%)", 100 * max(short_rel$frac), 19, 0)
 chk("L50 >=300 aa no-overlap, low end (%)", 100 * min(long_rel$frac), 0.4)
 chk("L50 >=300 aa no-overlap, high end (%)", 100 * max(long_rel$frac), 1.2)
 ```
@@ -450,12 +452,12 @@ points (LRAA, StringTie, Trinity).
 `r evidence("E04")`, `r evidence("E25")`
 
 ```{r chk_minaa, include = FALSE}
-chk("L53 LRAA no-overlap at 150 aa (%)", 100 * mv("lraa",150,"pred_all_no_GENCODE_CDS_overlap_frac"), 1.1)
-chk("L53 StringTie no-overlap at 150 aa (%)", 100 * mv("stringtie",150,"pred_all_no_GENCODE_CDS_overlap_frac"), 4.3)
-chk("L53 Trinity no-overlap at 150 aa (%)", 100 * mv("trinity",150,"pred_all_no_GENCODE_CDS_overlap_frac"), 3.3)
+chk("L53 LRAA no-overlap at 150 aa (%)", 100 * mv("lraa",150,"pred_all_no_GENCODE_CDS_overlap_frac"), 1.0)
+chk("L53 StringTie no-overlap at 150 aa (%)", 100 * mv("stringtie",150,"pred_all_no_GENCODE_CDS_overlap_frac"), 3.3)
+chk("L53 Trinity no-overlap at 150 aa (%)", 100 * mv("trinity",150,"pred_all_no_GENCODE_CDS_overlap_frac"), 2.2)
 chk("L54 LRAA MANE exact given assembled, unfiltered", full_mane[["lraa"]], 0.93, 2)
-chk("L54 StringTie MANE exact given assembled, unfiltered", full_mane[["stringtie"]], 0.93, 2)
-chk("L54 Trinity MANE exact given assembled, unfiltered", full_mane[["trinity"]], 0.91, 2)
+chk("L54 StringTie MANE exact given assembled, unfiltered", full_mane[["stringtie"]], 0.91, 2)
+chk("L54 Trinity MANE exact given assembled, unfiltered", full_mane[["trinity"]], 0.89, 2)
 chk("L54 LRAA MANE exact given assembled, >= 150 aa", mv("lraa",150,"MANE_sens_exact_given_assembled"), 0.85, 2)
 chk("L54 StringTie MANE exact given assembled, >= 150 aa", mv("stringtie",150,"MANE_sens_exact_given_assembled"), 0.86, 2)
 chk("L54 Trinity MANE exact given assembled, >= 150 aa", mv("trinity",150,"MANE_sens_exact_given_assembled"), 0.83, 2)
