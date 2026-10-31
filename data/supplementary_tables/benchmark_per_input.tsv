@@ -3,6 +3,7 @@ P. falciparum	complete	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	
 P. falciparum	complete	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5281	5255	0	5251	4954	4	0	30	0.9943	0.9992	0.9968	0.9381	0.9427	0.9404	275.9
 P. falciparum	complete	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	5281	5263	0	5260	4963	3	0	21	0.996	0.9994	0.9977	0.9398	0.943	0.9414	1221.5
 P. falciparum	complete	perl_td_v600	TransDecoder v6.0.0	yes	5281	5110	0	5110	4738	0	0	171	0.9676	1.0	0.9835	0.8972	0.9272	0.9119	216.0
+P. falciparum	complete	td2	TD2 1.1.0	yes	5281	5164	0	5163	4906	1	0	118	0.9777	0.9998	0.9886	0.929	0.95	0.9394	114.0
 P. falciparum	complete	prodigal	Prodigal 2.6.3	yes	5281	5487	0	5264	4762	223	0	17	0.9968	0.9594	0.9777	0.9017	0.8679	0.8845	19.3
 P. falciparum	complete	gmst	GeneMarkS-T 5.1	yes	5281	5115	0	5115	4807	0	0	166	0.9686	1.0	0.984	0.9102	0.9398	0.9248	10.7
 P. falciparum	complete	codan	CodAn 1.1	yes	5281	2934	0	2915	1553	19	0	2366	0.552	0.9935	0.7097	0.2941	0.5293	0.3781	1752.1
@@ -15,6 +16,7 @@ P. falciparum	complete.unstranded	pytd_v7	TransDecoder release (PyTransDecoder v
 P. falciparum	complete.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5281	5258	0	5244	4950	14	0	37	0.993	0.9973	0.9952	0.9373	0.9414	0.9394	340.3
 P. falciparum	complete.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	5281	5267	0	5256	4961	11	0	25	0.9953	0.9979	0.9966	0.9394	0.9419	0.9407	1478.1
 P. falciparum	complete.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	5281	5114	0	5111	4739	3	0	170	0.9678	0.9994	0.9834	0.8974	0.9267	0.9118	272.2
+P. falciparum	complete.unstranded	td2	TD2 1.1.0	yes	5281	5170	0	5161	4904	9	0	120	0.9773	0.9983	0.9877	0.9286	0.9485	0.9385	121.1
 P. falciparum	complete.unstranded	prodigal	Prodigal 2.6.3	yes	5281	5804	0	5264	4762	540	0	17	0.9968	0.907	0.9498	0.9017	0.8205	0.8592	25.4
 P. falciparum	complete.unstranded	gmst	GeneMarkS-T 5.1	yes	5281	5115	0	5115	4819	0	0	166	0.9686	1.0	0.984	0.9125	0.9421	0.9271	12.0
 P. falciparum	complete.unstranded	codan	CodAn 1.1	yes	5281	2940	0	2915	1553	25	0	2366	0.552	0.9915	0.7092	0.2941	0.5282	0.3778	3283.5
@@ -26,6 +28,7 @@ P. falciparum	complete.unstranded.wRand	pytd_v7	TransDecoder release (PyTransDec
 P. falciparum	complete.unstranded.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5281	5270	26	5230	4936	40	26	51	0.9903	0.9924	0.9914	0.9347	0.9366	0.9356	365.1
 P. falciparum	complete.unstranded.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	5281	5285	26	5249	4954	36	26	32	0.9939	0.9932	0.9936	0.9381	0.9374	0.9377	1526.5
 P. falciparum	complete.unstranded.wRand	perl_td_v600	TransDecoder v6.0.0	yes	5281	5115	1	5111	4739	4	1	170	0.9678	0.9992	0.9833	0.8974	0.9265	0.9117	296.5
+P. falciparum	complete.unstranded.wRand	td2	TD2 1.1.0	yes	5281	5246	76	5161	4904	85	76	120	0.9773	0.9838	0.9805	0.9286	0.9348	0.9317	138.6
 P. falciparum	complete.unstranded.wRand	prodigal	Prodigal 2.6.3	yes	5281	7540	1095	5271	4793	2269	1095	10	0.9981	0.6991	0.8222	0.9076	0.6357	0.7477	33.7
 P. falciparum	complete.unstranded.wRand	gmst	GeneMarkS-T 5.1	yes	5281	5113	0	5112	4760	1	0	169	0.968	0.9998	0.9836	0.9013	0.931	0.9159	26.6
 P. falciparum	complete.unstranded.wRand	codan	CodAn 1.1	yes	5281	2941	1	2915	1553	26	1	2366	0.552	0.9912	0.7091	0.2941	0.5281	0.3778	14456.1
@@ -37,6 +40,7 @@ P. falciparum	complete.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0
 P. falciparum	complete.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5281	5265	13	5248	4954	17	13	33	0.9938	0.9968	0.9953	0.9381	0.9409	0.9395	294.6
 P. falciparum	complete.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	5281	5275	13	5260	4965	15	13	21	0.996	0.9972	0.9966	0.9402	0.9412	0.9407	1268.9
 P. falciparum	complete.wRand	perl_td_v600	TransDecoder v6.0.0	yes	5281	5112	2	5110	4738	2	2	171	0.9676	0.9996	0.9834	0.8972	0.9268	0.9118	275.6
+P. falciparum	complete.wRand	td2	TD2 1.1.0	yes	5281	5194	30	5163	4906	31	30	118	0.9777	0.994	0.9858	0.929	0.9446	0.9367	119.9
 P. falciparum	complete.wRand	prodigal	Prodigal 2.6.3	yes	5281	6085	343	5267	4762	818	343	14	0.9973	0.8656	0.9268	0.9017	0.7826	0.8379	35.8
 P. falciparum	complete.wRand	gmst	GeneMarkS-T 5.1	yes	5281	5113	0	5113	4749	0	0	168	0.9682	1.0	0.9838	0.8993	0.9288	0.9138	25.0
 P. falciparum	complete.wRand	codan	CodAn 1.1	yes	5281	2935	1	2915	1553	20	1	2366	0.552	0.9932	0.7096	0.2941	0.5291	0.378	7618.6
@@ -49,6 +53,7 @@ P. falciparum	complete_fullutr	pytd_v7	TransDecoder release (PyTransDecoder v0.2
 P. falciparum	complete_fullutr	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5281	5239	0	5220	4929	19	0	61	0.9884	0.9964	0.9924	0.9333	0.9408	0.9371	309.5
 P. falciparum	complete_fullutr	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	5281	5255	0	5232	4942	23	0	49	0.9907	0.9956	0.9932	0.9358	0.9404	0.9381	1212.3
 P. falciparum	complete_fullutr	perl_td_v600	TransDecoder v6.0.0	yes	5281	5233	0	5111	4754	122	0	170	0.9678	0.9767	0.9722	0.9002	0.9085	0.9043	230.9
+P. falciparum	complete_fullutr	td2	TD2 1.1.0	yes	5281	5168	0	5153	4896	15	0	128	0.9758	0.9971	0.9863	0.9271	0.9474	0.9371	111.5
 P. falciparum	complete_fullutr	prodigal	Prodigal 2.6.3	yes	5281	5684	0	5266	4785	418	0	15	0.9972	0.9265	0.9605	0.9061	0.8418	0.8728	22.6
 P. falciparum	complete_fullutr	gmst	GeneMarkS-T 5.1	yes	5281	5119	0	5105	4790	14	0	176	0.9667	0.9973	0.9817	0.907	0.9357	0.9212	12.2
 P. falciparum	complete_fullutr	codan	CodAn 1.1	yes	5281	2939	0	2913	1552	26	0	2368	0.5516	0.9912	0.7088	0.2939	0.5281	0.3776	2022.9
@@ -61,6 +66,7 @@ P. falciparum	complete_fullutr.unstranded	pytd_v7	TransDecoder release (PyTransD
 P. falciparum	complete_fullutr.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5281	5250	0	5198	4908	52	0	83	0.9843	0.9901	0.9872	0.9294	0.9349	0.9321	386.2
 P. falciparum	complete_fullutr.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	5281	5262	0	5183	4895	79	0	98	0.9814	0.985	0.9832	0.9269	0.9303	0.9286	1523.0
 P. falciparum	complete_fullutr.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	5281	5368	0	5110	4753	258	0	171	0.9676	0.9519	0.9597	0.9	0.8854	0.8927	264.9
+P. falciparum	complete_fullutr.unstranded	td2	TD2 1.1.0	yes	5281	5182	0	5132	4875	50	0	149	0.9718	0.9904	0.981	0.9231	0.9408	0.9319	124.5
 P. falciparum	complete_fullutr.unstranded	prodigal	Prodigal 2.6.3	yes	5281	6327	0	5266	4785	1061	0	15	0.9972	0.8323	0.9073	0.9061	0.7563	0.8244	23.1
 P. falciparum	complete_fullutr.unstranded	gmst	GeneMarkS-T 5.1	yes	5281	5127	0	5093	4796	34	0	188	0.9644	0.9934	0.9787	0.9082	0.9354	0.9216	12.0
 P. falciparum	complete_fullutr.unstranded	codan	CodAn 1.1	yes	5281	2955	0	2911	1552	44	0	2370	0.5512	0.9851	0.7069	0.2939	0.5252	0.3769	3843.6
@@ -72,6 +78,7 @@ P. falciparum	fragments	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes
 P. falciparum	fragments	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5281	4958	0	4942	4445	16	0	339	0.9358	0.9968	0.9653	0.8417	0.8965	0.8682	160.5
 P. falciparum	fragments	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	5281	4978	0	4964	4460	14	0	317	0.94	0.9972	0.9677	0.8445	0.8959	0.8695	558.7
 P. falciparum	fragments	perl_td_v600	TransDecoder v6.0.0	yes	5281	4130	0	4130	3709	0	0	1151	0.782	1.0	0.8777	0.7023	0.8981	0.7882	160.8
+P. falciparum	fragments	td2	TD2 1.1.0	yes	5281	4333	0	4331	2484	2	0	950	0.8201	0.9995	0.901	0.4704	0.5733	0.5167	63.9
 P. falciparum	fragments	prodigal	Prodigal 2.6.3	yes	5281	5270	0	5157	4878	113	0	124	0.9765	0.9786	0.9775	0.9237	0.9256	0.9247	9.0
 P. falciparum	fragments	gmst	GeneMarkS-T 5.1	yes	5281	4152	0	4152	3915	0	0	1129	0.7862	1.0	0.8803	0.7413	0.9429	0.8301	10.5
 P. falciparum	fragments	codan	CodAn 1.1	yes	5281	2210	0	2203	1743	7	0	3078	0.4172	0.9968	0.5882	0.3301	0.7887	0.4654	1137.4
@@ -84,6 +91,7 @@ P. falciparum	fragments.unstranded	pytd_v7	TransDecoder release (PyTransDecoder 
 P. falciparum	fragments.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5281	4954	0	4903	4417	51	0	378	0.9284	0.9897	0.9581	0.8364	0.8916	0.8631	201.1
 P. falciparum	fragments.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	5281	4979	0	4939	4440	40	0	342	0.9352	0.992	0.9628	0.8407	0.8917	0.8655	698.6
 P. falciparum	fragments.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	5281	4124	0	4115	3683	9	0	1166	0.7792	0.9978	0.8751	0.6974	0.8931	0.7832	148.8
+P. falciparum	fragments.unstranded	td2	TD2 1.1.0	yes	5281	4354	0	4328	2481	26	0	953	0.8195	0.994	0.8984	0.4698	0.5698	0.515	69.3
 P. falciparum	fragments.unstranded	prodigal	Prodigal 2.6.3	yes	5281	5453	0	5157	4877	296	0	124	0.9765	0.9457	0.9609	0.9235	0.8944	0.9087	10.1
 P. falciparum	fragments.unstranded	gmst	GeneMarkS-T 5.1	yes	5281	4162	0	4152	3804	10	0	1129	0.7862	0.9976	0.8794	0.7203	0.914	0.8057	8.7
 P. falciparum	fragments.unstranded	codan	CodAn 1.1	yes	5281	2225	0	2201	1741	24	0	3080	0.4168	0.9892	0.5865	0.3297	0.7825	0.4639	2328.9
@@ -95,6 +103,7 @@ P. falciparum	fragments.unstranded.wRand	pytd_v7	TransDecoder release (PyTransDe
 P. falciparum	fragments.unstranded.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5281	4966	15	4900	4414	66	15	381	0.9279	0.9867	0.9564	0.8358	0.8888	0.8615	205.7
 P. falciparum	fragments.unstranded.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	5281	4992	15	4937	4438	55	15	344	0.9349	0.989	0.9612	0.8404	0.889	0.864	714.4
 P. falciparum	fragments.unstranded.wRand	perl_td_v600	TransDecoder v6.0.0	yes	5281	4125	1	4115	3683	10	1	1166	0.7792	0.9976	0.875	0.6974	0.8928	0.7831	149.0
+P. falciparum	fragments.unstranded.wRand	td2	TD2 1.1.0	yes	5281	4378	24	4328	2481	50	24	953	0.8195	0.9886	0.8962	0.4698	0.5667	0.5137	73.2
 P. falciparum	fragments.unstranded.wRand	prodigal	Prodigal 2.6.3	yes	5281	6536	713	5191	4924	1345	713	90	0.983	0.7942	0.8786	0.9324	0.7534	0.8334	13.1
 P. falciparum	fragments.unstranded.wRand	gmst	GeneMarkS-T 5.1	yes	5281	4125	0	4118	3633	7	0	1163	0.7798	0.9983	0.8756	0.6879	0.8807	0.7725	14.0
 P. falciparum	fragments.unstranded.wRand	codan	CodAn 1.1	yes	5281	2231	6	2201	1741	30	6	3080	0.4168	0.9866	0.586	0.3297	0.7804	0.4635	10598.2
@@ -106,6 +115,7 @@ P. falciparum	fragments.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2.
 P. falciparum	fragments.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5281	4950	10	4925	4439	25	10	356	0.9326	0.9949	0.9628	0.8406	0.8968	0.8678	168.4
 P. falciparum	fragments.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	5281	4976	10	4952	4456	24	10	329	0.9377	0.9952	0.9656	0.8438	0.8955	0.8689	568.3
 P. falciparum	fragments.wRand	perl_td_v600	TransDecoder v6.0.0	yes	5281	4121	0	4121	3703	0	0	1160	0.7803	1.0	0.8766	0.7012	0.8986	0.7877	137.1
+P. falciparum	fragments.wRand	td2	TD2 1.1.0	yes	5281	4355	22	4331	2484	24	22	950	0.8201	0.9945	0.8989	0.4704	0.5704	0.5156	67.1
 P. falciparum	fragments.wRand	prodigal	Prodigal 2.6.3	yes	5281	5845	368	5194	4927	651	368	87	0.9835	0.8886	0.9337	0.933	0.8429	0.8857	12.4
 P. falciparum	fragments.wRand	gmst	GeneMarkS-T 5.1	yes	5281	4122	0	4122	3827	0	0	1159	0.7805	1.0	0.8767	0.7247	0.9284	0.814	14.9
 P. falciparum	fragments.wRand	codan	CodAn 1.1	yes	5281	2218	8	2203	1743	15	8	3078	0.4172	0.9932	0.5875	0.3301	0.7858	0.4649	5605.7
@@ -117,6 +127,7 @@ P. falciparum	fragments.wRand	longest_orf	longest ORF baseline	yes	5281	4155	13	
 P. falciparum	fragments_mixed_t1	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	5275	5231	0	5223	4693	8	0	52	0.9901	0.9985	0.9943	0.8897	0.8972	0.8934	96.3
 P. falciparum	fragments_mixed_t1	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5275	5231	0	5223	4693	8	0	52	0.9901	0.9985	0.9943	0.8897	0.8972	0.8934	217.8
 P. falciparum	fragments_mixed_t1	perl_td_v600	TransDecoder v6.0.0	yes	5275	4645	0	4645	4166	0	0	630	0.8806	1.0	0.9365	0.7898	0.8969	0.8399	168.7
+P. falciparum	fragments_mixed_t1	td2	TD2 1.1.0	yes	5275	4751	0	4751	3613	0	0	524	0.9007	1.0	0.9477	0.6849	0.7605	0.7207	89.7
 P. falciparum	fragments_mixed_t1	prodigal	Prodigal 2.6.3	yes	5275	5327	0	5212	4943	115	0	63	0.9881	0.9784	0.9832	0.9371	0.9279	0.9325	12.5
 P. falciparum	fragments_mixed_t1	gmst	GeneMarkS-T 5.1	yes	5275	4650	0	4650	4418	0	0	625	0.8815	1.0	0.937	0.8375	0.9501	0.8903	9.3
 P. falciparum	fragments_mixed_t1	codan	CodAn 1.1	yes	5275	2695	0	2679	1938	16	0	2596	0.5079	0.9941	0.6723	0.3674	0.7191	0.4863	1305.4
@@ -128,6 +139,7 @@ P. falciparum	fragments_mixed_t1	longest_orf	longest ORF baseline	yes	5275	5275	
 P. falciparum	fragments_mixed_t2	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	5277	5226	0	5217	4685	9	0	60	0.9886	0.9983	0.9934	0.8878	0.8965	0.8921	98.3
 P. falciparum	fragments_mixed_t2	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5277	5226	0	5217	4685	9	0	60	0.9886	0.9983	0.9934	0.8878	0.8965	0.8921	224.2
 P. falciparum	fragments_mixed_t2	perl_td_v600	TransDecoder v6.0.0	yes	5277	4602	0	4602	4125	0	0	675	0.8721	1.0	0.9317	0.7817	0.8963	0.8351	180.6
+P. falciparum	fragments_mixed_t2	td2	TD2 1.1.0	yes	5277	4727	0	4722	3609	5	0	555	0.8948	0.9989	0.944	0.6839	0.7635	0.7215	85.5
 P. falciparum	fragments_mixed_t2	prodigal	Prodigal 2.6.3	yes	5277	5357	0	5228	4976	129	0	49	0.9907	0.9759	0.9833	0.943	0.9289	0.9359	12.5
 P. falciparum	fragments_mixed_t2	gmst	GeneMarkS-T 5.1	yes	5277	4613	0	4613	4394	0	0	664	0.8742	1.0	0.9329	0.8327	0.9525	0.8886	9.7
 P. falciparum	fragments_mixed_t2	codan	CodAn 1.1	yes	5277	2670	0	2656	1948	14	0	2621	0.5033	0.9948	0.6684	0.3691	0.7296	0.4902	1286.0
@@ -139,6 +151,7 @@ P. falciparum	fragments_mixed_t2	longest_orf	longest ORF baseline	yes	5277	5276	
 P. falciparum	fragments_mixed_t3	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	5278	5232	0	5228	4717	4	0	50	0.9905	0.9992	0.9949	0.8937	0.9016	0.8976	97.6
 P. falciparum	fragments_mixed_t3	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5278	5232	0	5228	4717	4	0	50	0.9905	0.9992	0.9949	0.8937	0.9016	0.8976	219.9
 P. falciparum	fragments_mixed_t3	perl_td_v600	TransDecoder v6.0.0	yes	5278	4626	0	4626	4085	0	0	652	0.8765	1.0	0.9342	0.774	0.8831	0.8249	168.6
+P. falciparum	fragments_mixed_t3	td2	TD2 1.1.0	yes	5278	4728	0	4728	3624	0	0	550	0.8958	1.0	0.945	0.6866	0.7665	0.7244	92.5
 P. falciparum	fragments_mixed_t3	prodigal	Prodigal 2.6.3	yes	5278	5351	0	5227	4954	124	0	51	0.9903	0.9768	0.9835	0.9386	0.9258	0.9322	12.2
 P. falciparum	fragments_mixed_t3	gmst	GeneMarkS-T 5.1	yes	5278	4632	0	4632	4410	0	0	646	0.8776	1.0	0.9348	0.8355	0.9521	0.89	9.4
 P. falciparum	fragments_mixed_t3	codan	CodAn 1.1	yes	5278	2691	0	2675	1941	16	0	2603	0.5068	0.9941	0.6714	0.3678	0.7213	0.4871	1326.1
@@ -151,6 +164,7 @@ T. thermophila	complete	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes
 T. thermophila	complete	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26456	23979	0	23541	21016	438	0	2915	0.8898	0.9817	0.9335	0.7944	0.8764	0.8334	1619.9
 T. thermophila	complete	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	26456	24134	0	23646	21116	488	0	2810	0.8938	0.9798	0.9348	0.7982	0.8749	0.8348	5399.7
 T. thermophila	complete	perl_td_v600	TransDecoder v6.0.0	yes	26456	25435	0	24591	14720	844	0	1865	0.9295	0.9668	0.9478	0.5564	0.5787	0.5673	725.9
+T. thermophila	complete	td2	TD2 1.1.0	yes	26456	26136	0	25270	24127	866	0	1186	0.9552	0.9669	0.961	0.912	0.9231	0.9175	796.3
 T. thermophila	complete	prodigal	Prodigal 2.6.3	yes	26456	30826	0	24501	11321	6325	0	1955	0.9261	0.7948	0.8555	0.4279	0.3673	0.3953	68.3
 T. thermophila	complete	gmst	GeneMarkS-T 5.1	no	26456	1958	0	112	20	1846	0	26344	0.0042	0.0572	0.0079	0.0008	0.0102	0.0014	44.9
 T. thermophila	complete	codan	CodAn 1.1	no	26456	3665	0	229	23	3436	0	26227	0.0087	0.0625	0.0152	0.0009	0.0063	0.0015	74839.7
@@ -163,6 +177,7 @@ T. thermophila	complete.unstranded	pytd_v7	TransDecoder release (PyTransDecoder 
 T. thermophila	complete.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26456	23893	0	23282	20788	611	0	3174	0.88	0.9744	0.9248	0.7858	0.87	0.8258	2899.7
 T. thermophila	complete.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	26456	24085	0	23443	20943	642	0	3013	0.8861	0.9733	0.9277	0.7916	0.8695	0.8288	9624.2
 T. thermophila	complete.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	26456	25719	0	24141	14747	1578	0	2315	0.9125	0.9386	0.9254	0.5574	0.5734	0.5653	1191.9
+T. thermophila	complete.unstranded	td2	TD2 1.1.0	yes	26456	26366	0	24459	23384	1907	0	1997	0.9245	0.9277	0.9261	0.8839	0.8869	0.8854	1281.6
 T. thermophila	complete.unstranded	prodigal	Prodigal 2.6.3	yes	26456	34495	0	24546	11362	9949	0	1910	0.9278	0.7116	0.8054	0.4295	0.3294	0.3728	69.3
 T. thermophila	complete.unstranded	gmst	GeneMarkS-T 5.1	no	26456	2233	0	113	20	2120	0	26343	0.0043	0.0506	0.0079	0.0008	0.009	0.0014	47.5
 T. thermophila	complete.unstranded	codan	CodAn 1.1	no	26456	3836	0	223	23	3613	0	26233	0.0084	0.0581	0.0147	0.0009	0.006	0.0015	176138.8
@@ -174,6 +189,7 @@ T. thermophila	complete.unstranded.wRand	pytd_v7	TransDecoder release (PyTransDe
 T. thermophila	complete.unstranded.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26456	23943	84	23265	20772	678	84	3191	0.8794	0.9717	0.9232	0.7852	0.8676	0.8243	5703.2
 T. thermophila	complete.unstranded.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	26456	24181	123	23428	20929	753	123	3028	0.8855	0.9689	0.9253	0.7911	0.8655	0.8266	16285.9
 T. thermophila	complete.unstranded.wRand	perl_td_v600	TransDecoder v6.0.0	yes	26456	61573	35854	24141	14747	37432	35854	2315	0.9125	0.3921	0.5485	0.5574	0.2395	0.335	1888.6
+T. thermophila	complete.unstranded.wRand	td2	TD2 1.1.0	yes	26456	52631	26265	24462	23386	28169	26265	1994	0.9246	0.4648	0.6186	0.884	0.4443	0.5914	2224.3
 T. thermophila	complete.unstranded.wRand	prodigal	Prodigal 2.6.3	yes	26456	114944	80449	24546	11362	90398	80449	1910	0.9278	0.2135	0.3472	0.4295	0.0988	0.1607	125.7
 T. thermophila	complete.unstranded.wRand	gmst	GeneMarkS-T 5.1	no	26456	2267	12	112	21	2155	12	26344	0.0042	0.0494	0.0078	0.0008	0.0093	0.0015	109.4
 T. thermophila	complete.unstranded.wRand	cpat	CPAT 3.0.5	yes	26456	24660	3375	20877	20086	3783	3375	5579	0.7891	0.8466	0.8168	0.7592	0.8145	0.7859	198.5
@@ -184,6 +200,7 @@ T. thermophila	complete.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2.
 T. thermophila	complete.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26456	23939	49	23464	20947	475	49	2992	0.8869	0.9802	0.9312	0.7918	0.875	0.8313	3483.8
 T. thermophila	complete.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	26456	24122	61	23583	21062	539	61	2873	0.8914	0.9777	0.9325	0.7961	0.8731	0.8329	10641.2
 T. thermophila	complete.wRand	perl_td_v600	TransDecoder v6.0.0	yes	26456	47163	21916	24458	14631	22705	21916	1998	0.9245	0.5186	0.6644	0.553	0.3102	0.3975	1166.0
+T. thermophila	complete.wRand	td2	TD2 1.1.0	yes	26456	51349	25213	25268	24125	26081	25213	1188	0.9551	0.4921	0.6495	0.9119	0.4698	0.6201	1279.1
 T. thermophila	complete.wRand	prodigal	Prodigal 2.6.3	yes	26456	71176	40350	24501	11321	46675	40350	1955	0.9261	0.3442	0.5019	0.4279	0.1591	0.2319	100.4
 T. thermophila	complete.wRand	gmst	GeneMarkS-T 5.1	no	26456	1968	4	113	21	1855	4	26343	0.0043	0.0574	0.008	0.0008	0.0107	0.0015	93.5
 T. thermophila	complete.wRand	codan	CodAn 1.1	no	26456	3672	7	229	23	3443	7	26227	0.0087	0.0624	0.0152	0.0009	0.0063	0.0015	368582.0
@@ -196,6 +213,7 @@ T. thermophila	complete_fullutr	pytd_v7	TransDecoder release (PyTransDecoder v0.
 T. thermophila	complete_fullutr	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26456	23853	0	23343	20908	510	0	3113	0.8823	0.9786	0.928	0.7903	0.8765	0.8312	1740.8
 T. thermophila	complete_fullutr	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	26456	24042	0	23455	21016	587	0	3001	0.8866	0.9756	0.9289	0.7944	0.8741	0.8323	5593.7
 T. thermophila	complete_fullutr	perl_td_v600	TransDecoder v6.0.0	yes	26456	27575	0	24558	15168	3017	0	1898	0.9283	0.8906	0.909	0.5733	0.5501	0.5615	735.8
+T. thermophila	complete_fullutr	td2	TD2 1.1.0	yes	26456	26206	0	24954	23728	1252	0	1502	0.9432	0.9522	0.9477	0.8969	0.9054	0.9011	815.9
 T. thermophila	complete_fullutr	prodigal	Prodigal 2.6.3	yes	26456	33068	0	24497	11719	8571	0	1959	0.926	0.7408	0.8231	0.443	0.3544	0.3938	68.8
 T. thermophila	complete_fullutr	gmst	GeneMarkS-T 5.1	no	26456	1967	0	112	20	1855	0	26344	0.0042	0.0569	0.0079	0.0008	0.0102	0.0014	50.0
 T. thermophila	complete_fullutr	codan	CodAn 1.1	no	26456	3698	0	229	23	3469	0	26227	0.0087	0.0619	0.0152	0.0009	0.0062	0.0015	84067.7
@@ -208,6 +226,7 @@ T. thermophila	complete_fullutr.unstranded	pytd_v7	TransDecoder release (PyTrans
 T. thermophila	complete_fullutr.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26456	23861	0	23120	20677	741	0	3336	0.8739	0.9689	0.919	0.7816	0.8666	0.8219	2966.5
 T. thermophila	complete_fullutr.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	26456	24081	0	23258	20812	823	0	3198	0.8791	0.9658	0.9204	0.7867	0.8642	0.8236	8293.9
 T. thermophila	complete_fullutr.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	26456	28373	0	24134	15359	4239	0	2322	0.9122	0.8506	0.8803	0.5805	0.5413	0.5603	1123.2
+T. thermophila	complete_fullutr.unstranded	td2	TD2 1.1.0	yes	26456	26394	0	24167	23000	2227	0	2289	0.9135	0.9156	0.9146	0.8694	0.8714	0.8704	1302.2
 T. thermophila	complete_fullutr.unstranded	prodigal	Prodigal 2.6.3	yes	26456	38855	0	24514	11752	14341	0	1942	0.9266	0.6309	0.7507	0.4442	0.3025	0.3599	69.5
 T. thermophila	complete_fullutr.unstranded	gmst	GeneMarkS-T 5.1	no	26456	2243	0	113	20	2130	0	26343	0.0043	0.0504	0.0079	0.0008	0.0089	0.0014	47.7
 T. thermophila	complete_fullutr.unstranded	codan	CodAn 1.1	no	26456	3880	0	224	23	3656	0	26232	0.0085	0.0577	0.0148	0.0009	0.0059	0.0015	175892.2
@@ -219,6 +238,7 @@ T. thermophila	fragments	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	ye
 T. thermophila	fragments	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26456	21512	0	21282	18213	230	0	5174	0.8044	0.9893	0.8873	0.6884	0.8466	0.7594	757.6
 T. thermophila	fragments	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	26456	21944	0	21695	18535	249	0	4761	0.82	0.9887	0.8965	0.7006	0.8447	0.7659	3090.2
 T. thermophila	fragments	perl_td_v600	TransDecoder v6.0.0	yes	26456	21401	0	20956	14871	445	0	5500	0.7921	0.9792	0.8758	0.5621	0.6949	0.6215	361.5
+T. thermophila	fragments	td2	TD2 1.1.0	yes	26456	23290	0	21939	7546	1351	0	4517	0.8293	0.942	0.882	0.2852	0.324	0.3034	343.1
 T. thermophila	fragments	prodigal	Prodigal 2.6.3	yes	26456	26844	0	23168	16317	3676	0	3288	0.8757	0.8631	0.8693	0.6168	0.6078	0.6123	51.1
 T. thermophila	fragments	gmst	GeneMarkS-T 5.1	no	26456	744	0	99	26	645	0	26357	0.0037	0.1331	0.0073	0.001	0.0349	0.0019	34.2
 T. thermophila	fragments	codan	CodAn 1.1	no	26456	2708	0	291	117	2417	0	26165	0.011	0.1075	0.02	0.0044	0.0432	0.008	56428.9
@@ -231,6 +251,7 @@ T. thermophila	fragments.unstranded	pytd_v7	TransDecoder release (PyTransDecoder
 T. thermophila	fragments.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26456	21337	0	20856	17916	481	0	5600	0.7883	0.9775	0.8728	0.6772	0.8397	0.7497	1251.7
 T. thermophila	fragments.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	26456	21814	0	21359	18313	455	0	5097	0.8073	0.9791	0.885	0.6922	0.8395	0.7588	3877.6
 T. thermophila	fragments.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	26456	22072	0	20789	14745	1283	0	5667	0.7858	0.9419	0.8568	0.5573	0.668	0.6077	493.7
+T. thermophila	fragments.unstranded	td2	TD2 1.1.0	yes	26456	24621	0	21276	7218	3345	0	5180	0.8042	0.8641	0.8331	0.2728	0.2932	0.2826	539.8
 T. thermophila	fragments.unstranded	prodigal	Prodigal 2.6.3	yes	26456	29734	0	23058	16244	6676	0	3398	0.8716	0.7755	0.8207	0.614	0.5463	0.5782	50.1
 T. thermophila	fragments.unstranded	gmst	GeneMarkS-T 5.1	no	26456	837	0	99	26	738	0	26357	0.0037	0.1183	0.0073	0.001	0.0311	0.0019	34.4
 T. thermophila	fragments.unstranded	codan	CodAn 1.1	no	26456	3034	0	274	113	2760	0	26182	0.0104	0.0903	0.0186	0.0043	0.0372	0.0077	138047.5
@@ -242,6 +263,7 @@ T. thermophila	fragments.unstranded.wRand	pytd_v7	TransDecoder release (PyTransD
 T. thermophila	fragments.unstranded.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26456	21160	124	20605	17704	555	124	5851	0.7788	0.9738	0.8655	0.6692	0.8367	0.7436	2440.3
 T. thermophila	fragments.unstranded.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	26456	21727	147	21169	18156	558	147	5287	0.8002	0.9743	0.8787	0.6863	0.8356	0.7536	6395.5
 T. thermophila	fragments.unstranded.wRand	perl_td_v600	TransDecoder v6.0.0	yes	26456	35423	13351	20789	14745	14634	13351	5667	0.7858	0.5869	0.6719	0.5573	0.4163	0.4766	766.0
+T. thermophila	fragments.unstranded.wRand	td2	TD2 1.1.0	yes	26456	48628	24007	21261	7216	27367	24007	5195	0.8036	0.4372	0.5663	0.2728	0.1484	0.1922	975.9
 T. thermophila	fragments.unstranded.wRand	prodigal	Prodigal 2.6.3	yes	26456	73087	43064	22959	16137	50128	43064	3497	0.8678	0.3141	0.4613	0.61	0.2208	0.3242	68.1
 T. thermophila	fragments.unstranded.wRand	gmst	GeneMarkS-T 5.1	no	26456	828	2	101	25	727	2	26355	0.0038	0.122	0.0074	0.0009	0.0302	0.0018	66.9
 T. thermophila	fragments.unstranded.wRand	codan	CodAn 1.1	no	26456	3148	114	274	113	2874	114	26182	0.0104	0.087	0.0185	0.0043	0.0359	0.0076	224902.0
@@ -253,6 +275,7 @@ T. thermophila	fragments.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2
 T. thermophila	fragments.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26456	21424	114	21099	18075	325	114	5357	0.7975	0.9848	0.8813	0.6832	0.8437	0.755	1426.5
 T. thermophila	fragments.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	26456	21903	126	21544	18424	359	126	4912	0.8143	0.9836	0.891	0.6964	0.8412	0.762	3584.3
 T. thermophila	fragments.wRand	perl_td_v600	TransDecoder v6.0.0	yes	26456	32084	10683	20958	14869	11126	10683	5498	0.7922	0.6532	0.716	0.562	0.4634	0.508	493.7
+T. thermophila	fragments.wRand	td2	TD2 1.1.0	yes	26456	44053	20763	21935	7544	22118	20763	4521	0.8291	0.4979	0.6222	0.2852	0.1712	0.214	560.5
 T. thermophila	fragments.wRand	prodigal	Prodigal 2.6.3	yes	26456	48248	21247	23104	16235	25144	21247	3352	0.8733	0.4789	0.6185	0.6137	0.3365	0.4346	64.2
 T. thermophila	fragments.wRand	gmst	GeneMarkS-T 5.1	no	26456	731	0	99	26	632	0	26357	0.0037	0.1354	0.0073	0.001	0.0356	0.0019	66.3
 T. thermophila	fragments.wRand	codan	CodAn 1.1	no	26456	2773	65	291	117	2482	65	26165	0.011	0.1049	0.0199	0.0044	0.0422	0.008	110273.4
@@ -264,18 +287,21 @@ T. thermophila	fragments.wRand	longest_orf	longest ORF baseline	yes	26456	41346	
 T. thermophila	fragments_mixed_t1	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	26377	22979	0	22739	19454	240	0	3638	0.8621	0.9896	0.9214	0.7375	0.8466	0.7883	387.8
 T. thermophila	fragments_mixed_t1	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26377	22979	0	22739	19454	240	0	3638	0.8621	0.9896	0.9214	0.7375	0.8466	0.7883	1093.3
 T. thermophila	fragments_mixed_t1	perl_td_v600	TransDecoder v6.0.0	yes	26377	23157	0	22694	15637	463	0	3683	0.8604	0.98	0.9163	0.5928	0.6753	0.6314	527.8
+T. thermophila	fragments_mixed_t1	td2	TD2 1.1.0	yes	26377	24413	0	23649	15552	764	0	2728	0.8966	0.9687	0.9312	0.5896	0.637	0.6124	518.9
 T. thermophila	fragments_mixed_t1	prodigal	Prodigal 2.6.3	yes	26377	27612	0	24281	17589	3331	0	2096	0.9205	0.8794	0.8995	0.6668	0.637	0.6516	61.7
 T. thermophila	fragments_mixed_t1	cpat	CPAT 3.0.5	yes	26377	15360	0	15202	8862	158	0	11175	0.5763	0.9897	0.7285	0.336	0.577	0.4247	47.0
 T. thermophila	fragments_mixed_t1	longest_orf	longest ORF baseline	yes	26377	26374	0	24995	18323	1379	0	1382	0.9476	0.9477	0.9477	0.6947	0.6947	0.6947	
 T. thermophila	fragments_mixed_t2	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	26362	23032	0	22775	19448	257	0	3587	0.8639	0.9888	0.9222	0.7377	0.8444	0.7875	388.9
 T. thermophila	fragments_mixed_t2	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26362	23032	0	22775	19448	257	0	3587	0.8639	0.9888	0.9222	0.7377	0.8444	0.7875	1068.6
 T. thermophila	fragments_mixed_t2	perl_td_v600	TransDecoder v6.0.0	yes	26362	23127	0	22647	16613	480	0	3715	0.8591	0.9792	0.9152	0.6302	0.7183	0.6714	578.3
+T. thermophila	fragments_mixed_t2	td2	TD2 1.1.0	yes	26362	24366	0	23573	15531	793	0	2789	0.8942	0.9675	0.9294	0.5891	0.6374	0.6123	516.4
 T. thermophila	fragments_mixed_t2	prodigal	Prodigal 2.6.3	yes	26362	27670	0	24278	17609	3392	0	2084	0.9209	0.8774	0.8987	0.668	0.6364	0.6518	61.6
 T. thermophila	fragments_mixed_t2	cpat	CPAT 3.0.5	yes	26362	15320	0	15145	8944	175	0	11217	0.5745	0.9886	0.7267	0.3393	0.5838	0.4292	47.2
 T. thermophila	fragments_mixed_t2	longest_orf	longest ORF baseline	yes	26362	26359	0	24968	18326	1391	0	1394	0.9471	0.9472	0.9472	0.6952	0.6952	0.6952	
 T. thermophila	fragments_mixed_t3	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	26372	22979	0	22735	19424	244	0	3637	0.8621	0.9894	0.9214	0.7365	0.8453	0.7872	390.2
 T. thermophila	fragments_mixed_t3	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26372	22979	0	22735	19424	244	0	3637	0.8621	0.9894	0.9214	0.7365	0.8453	0.7872	1142.4
 T. thermophila	fragments_mixed_t3	perl_td_v600	TransDecoder v6.0.0	yes	26372	23130	0	22671	16150	459	0	3701	0.8597	0.9802	0.916	0.6124	0.6982	0.6525	522.8
+T. thermophila	fragments_mixed_t3	td2	TD2 1.1.0	yes	26372	24382	0	23624	15509	758	0	2748	0.8958	0.9689	0.9309	0.5881	0.6361	0.6111	510.5
 T. thermophila	fragments_mixed_t3	prodigal	Prodigal 2.6.3	yes	26372	27727	0	24328	17570	3399	0	2044	0.9225	0.8774	0.8994	0.6662	0.6337	0.6495	61.3
 T. thermophila	fragments_mixed_t3	cpat	CPAT 3.0.5	yes	26372	15339	0	15139	8912	200	0	11233	0.5741	0.987	0.7259	0.3379	0.581	0.4273	46.7
 T. thermophila	fragments_mixed_t3	longest_orf	longest ORF baseline	yes	26372	26367	0	24992	18269	1375	0	1380	0.9477	0.9479	0.9478	0.6927	0.6929	0.6928	
@@ -283,6 +309,7 @@ S. pombe	complete	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	5100	
 S. pombe	complete	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5100	4969	0	4969	4613	0	0	131	0.9743	1.0	0.987	0.9045	0.9284	0.9163	215.4
 S. pombe	complete	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	5100	5002	0	5001	4645	1	0	99	0.9806	0.9998	0.9901	0.9108	0.9286	0.9196	563.3
 S. pombe	complete	perl_td_v600	TransDecoder v6.0.0	yes	5100	4841	0	4841	3880	0	0	259	0.9492	1.0	0.9739	0.7608	0.8015	0.7806	153.2
+S. pombe	complete	td2	TD2 1.1.0	yes	5100	4937	0	4936	4872	1	0	164	0.9678	0.9998	0.9836	0.9553	0.9868	0.9708	81.7
 S. pombe	complete	prodigal	Prodigal 2.6.3	yes	5100	5431	0	5019	3581	412	0	81	0.9841	0.9241	0.9532	0.7022	0.6594	0.6801	11.2
 S. pombe	complete	gmst	GeneMarkS-T 5.1	yes	5100	4846	0	4843	4078	3	0	257	0.9496	0.9994	0.9739	0.7996	0.8415	0.82	9.5
 S. pombe	complete	codan	CodAn 1.1	yes	5100	4824	0	4824	4395	0	0	276	0.9459	1.0	0.9722	0.8618	0.9111	0.8857	1409.2
@@ -295,6 +322,7 @@ S. pombe	complete.unstranded	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0
 S. pombe	complete.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5100	4937	0	4925	4582	12	0	175	0.9657	0.9976	0.9814	0.8984	0.9281	0.913	276.5
 S. pombe	complete.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	5100	4991	0	4981	4636	10	0	119	0.9767	0.998	0.9872	0.909	0.9289	0.9188	659.6
 S. pombe	complete.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	5100	4842	0	4836	3876	6	0	264	0.9482	0.9988	0.9728	0.76	0.8005	0.7797	161.6
+S. pombe	complete.unstranded	td2	TD2 1.1.0	yes	5100	4939	0	4916	4852	23	0	184	0.9639	0.9953	0.9794	0.9514	0.9824	0.9666	82.3
 S. pombe	complete.unstranded	prodigal	Prodigal 2.6.3	yes	5100	5908	0	5018	3579	890	0	82	0.9839	0.8494	0.9117	0.7018	0.6058	0.6503	11.4
 S. pombe	complete.unstranded	gmst	GeneMarkS-T 5.1	yes	5100	4846	0	4840	4328	6	0	260	0.949	0.9988	0.9733	0.8486	0.8931	0.8703	10.0
 S. pombe	complete.unstranded	codan	CodAn 1.1	yes	5100	4829	0	4822	4394	7	0	278	0.9455	0.9986	0.9713	0.8616	0.9099	0.8851	2592.9
@@ -306,6 +334,7 @@ S. pombe	complete.unstranded.wRand	pytd_v7	TransDecoder release (PyTransDecoder 
 S. pombe	complete.unstranded.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5100	4943	20	4911	4568	32	20	189	0.9629	0.9935	0.978	0.8957	0.9241	0.9097	359.0
 S. pombe	complete.unstranded.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	5100	5007	20	4977	4632	30	20	123	0.9759	0.994	0.9849	0.9082	0.9251	0.9166	776.6
 S. pombe	complete.unstranded.wRand	perl_td_v600	TransDecoder v6.0.0	yes	5100	4895	53	4836	3876	59	53	264	0.9482	0.9879	0.9677	0.76	0.7918	0.7756	174.9
+S. pombe	complete.unstranded.wRand	td2	TD2 1.1.0	yes	5100	5196	257	4916	4852	280	257	184	0.9639	0.9461	0.9549	0.9514	0.9338	0.9425	90.2
 S. pombe	complete.unstranded.wRand	prodigal	Prodigal 2.6.3	yes	5100	10464	3905	5058	3651	5406	3905	42	0.9918	0.4834	0.65	0.7159	0.3489	0.4692	19.5
 S. pombe	complete.unstranded.wRand	gmst	GeneMarkS-T 5.1	yes	5100	4886	42	4838	4341	48	42	262	0.9486	0.9902	0.969	0.8512	0.8885	0.8694	18.2
 S. pombe	complete.unstranded.wRand	codan	CodAn 1.1	yes	5100	4911	82	4822	4394	89	82	278	0.9455	0.9819	0.9633	0.8616	0.8947	0.8778	9529.3
@@ -317,6 +346,7 @@ S. pombe	complete.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes
 S. pombe	complete.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5100	4983	25	4958	4604	25	25	142	0.9722	0.995	0.9834	0.9027	0.9239	0.9132	278.7
 S. pombe	complete.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	5100	5026	26	4999	4645	27	26	101	0.9802	0.9946	0.9874	0.9108	0.9242	0.9174	661.5
 S. pombe	complete.wRand	perl_td_v600	TransDecoder v6.0.0	yes	5100	4864	23	4841	3880	23	23	259	0.9492	0.9953	0.9717	0.7608	0.7977	0.7788	167.1
+S. pombe	complete.wRand	td2	TD2 1.1.0	yes	5100	5064	127	4936	4872	128	127	164	0.9678	0.9747	0.9713	0.9553	0.9621	0.9587	85.0
 S. pombe	complete.wRand	prodigal	Prodigal 2.6.3	yes	5100	7716	1889	5058	3652	2658	1889	42	0.9918	0.6555	0.7893	0.7161	0.4733	0.5699	19.4
 S. pombe	complete.wRand	gmst	GeneMarkS-T 5.1	yes	5100	4866	24	4840	4082	26	24	260	0.949	0.9947	0.9713	0.8004	0.8389	0.8192	17.7
 S. pombe	complete.wRand	codan	CodAn 1.1	yes	5100	4863	39	4824	4395	39	39	276	0.9459	0.992	0.9684	0.8618	0.9038	0.8823	4995.0
@@ -329,6 +359,7 @@ S. pombe	complete_fullutr	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	y
 S. pombe	complete_fullutr	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5100	4943	0	4921	4574	22	0	179	0.9649	0.9955	0.98	0.8969	0.9253	0.9109	191.7
 S. pombe	complete_fullutr	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	5100	4996	0	4976	4627	20	0	124	0.9757	0.996	0.9857	0.9073	0.9261	0.9166	565.4
 S. pombe	complete_fullutr	perl_td_v600	TransDecoder v6.0.0	yes	5100	4925	0	4839	3806	86	0	261	0.9488	0.9825	0.9654	0.7463	0.7728	0.7593	164.6
+S. pombe	complete_fullutr	td2	TD2 1.1.0	yes	5100	4936	0	4915	4850	21	0	185	0.9637	0.9957	0.9795	0.951	0.9826	0.9665	80.4
 S. pombe	complete_fullutr	prodigal	Prodigal 2.6.3	yes	5100	5557	0	5020	3586	537	0	80	0.9843	0.9034	0.9421	0.7031	0.6453	0.673	12.7
 S. pombe	complete_fullutr	gmst	GeneMarkS-T 5.1	yes	5100	4849	0	4826	4088	23	0	274	0.9463	0.9953	0.9701	0.8016	0.8431	0.8218	10.2
 S. pombe	complete_fullutr	codan	CodAn 1.1	yes	5100	4839	0	4818	4396	21	0	282	0.9447	0.9957	0.9695	0.862	0.9085	0.8846	1458.2
@@ -341,6 +372,7 @@ S. pombe	complete_fullutr.unstranded	pytd_v7	TransDecoder release (PyTransDecode
 S. pombe	complete_fullutr.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5100	4945	0	4738	4406	207	0	362	0.929	0.9581	0.9434	0.8639	0.891	0.8773	253.8
 S. pombe	complete_fullutr.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	5100	4998	0	4793	4464	205	0	307	0.9398	0.959	0.9493	0.8753	0.8932	0.8841	654.5
 S. pombe	complete_fullutr.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	5100	5382	0	4833	3910	549	0	267	0.9476	0.898	0.9222	0.7667	0.7265	0.746	169.1
+S. pombe	complete_fullutr.unstranded	td2	TD2 1.1.0	yes	5100	4955	0	4743	4679	212	0	357	0.93	0.9572	0.9434	0.9175	0.9443	0.9307	92.5
 S. pombe	complete_fullutr.unstranded	prodigal	Prodigal 2.6.3	yes	5100	6615	0	5019	3585	1596	0	81	0.9841	0.7587	0.8569	0.7029	0.542	0.612	13.1
 S. pombe	complete_fullutr.unstranded	gmst	GeneMarkS-T 5.1	yes	5100	4876	0	4669	4193	207	0	431	0.9155	0.9575	0.936	0.8222	0.8599	0.8406	10.9
 S. pombe	complete_fullutr.unstranded	codan	CodAn 1.1	yes	5100	4860	0	4670	4266	190	0	430	0.9157	0.9609	0.9378	0.8365	0.8778	0.8566	2798.0
@@ -352,6 +384,7 @@ S. pombe	fragments	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	5100
 S. pombe	fragments	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5100	4544	0	4539	4000	5	0	561	0.89	0.9989	0.9413	0.7843	0.8803	0.8295	147.3
 S. pombe	fragments	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	5100	4621	0	4615	4059	6	0	485	0.9049	0.9987	0.9495	0.7959	0.8784	0.8351	316.8
 S. pombe	fragments	perl_td_v600	TransDecoder v6.0.0	yes	5100	3699	0	3697	3144	2	0	1403	0.7249	0.9995	0.8403	0.6165	0.85	0.7146	107.1
+S. pombe	fragments	td2	TD2 1.1.0	yes	5100	3936	0	3929	2002	7	0	1171	0.7704	0.9982	0.8696	0.3925	0.5086	0.4431	38.8
 S. pombe	fragments	prodigal	Prodigal 2.6.3	yes	5100	5133	0	4916	4225	217	0	184	0.9639	0.9577	0.9608	0.8284	0.8231	0.8258	4.7
 S. pombe	fragments	gmst	GeneMarkS-T 5.1	yes	5100	3703	0	3702	3243	1	0	1398	0.7259	0.9997	0.8411	0.6359	0.8758	0.7368	6.6
 S. pombe	fragments	codan	CodAn 1.1	yes	5100	4268	0	4265	3602	3	0	835	0.8363	0.9993	0.9105	0.7063	0.844	0.769	987.2
@@ -364,6 +397,7 @@ S. pombe	fragments.unstranded	pytd_v7	TransDecoder release (PyTransDecoder v0.2.
 S. pombe	fragments.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5100	4507	0	4478	3952	29	0	622	0.878	0.9936	0.9322	0.7749	0.8769	0.8227	192.3
 S. pombe	fragments.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	5100	4612	0	4581	4029	31	0	519	0.8982	0.9933	0.9434	0.79	0.8736	0.8297	413.6
 S. pombe	fragments.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	5100	3714	0	3698	3139	16	0	1402	0.7251	0.9957	0.8391	0.6155	0.8452	0.7123	112.4
+S. pombe	fragments.unstranded	td2	TD2 1.1.0	yes	5100	3957	0	3916	1991	41	0	1184	0.7678	0.9896	0.8647	0.3904	0.5032	0.4397	44.2
 S. pombe	fragments.unstranded	prodigal	Prodigal 2.6.3	yes	5100	5430	0	4918	4230	512	0	182	0.9643	0.9057	0.9341	0.8294	0.779	0.8034	5.0
 S. pombe	fragments.unstranded	gmst	GeneMarkS-T 5.1	yes	5100	3718	0	3700	3138	18	0	1400	0.7255	0.9952	0.8392	0.6153	0.844	0.7117	6.7
 S. pombe	fragments.unstranded	codan	CodAn 1.1	yes	5100	4299	0	4250	3589	49	0	850	0.8333	0.9886	0.9044	0.7037	0.8348	0.7637	1839.1
@@ -375,6 +409,7 @@ S. pombe	fragments.unstranded.wRand	pytd_v7	TransDecoder release (PyTransDecoder
 S. pombe	fragments.unstranded.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5100	4462	25	4405	3888	57	25	695	0.8637	0.9872	0.9214	0.7624	0.8714	0.8132	193.4
 S. pombe	fragments.unstranded.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	5100	4609	25	4555	4005	54	25	545	0.8931	0.9883	0.9383	0.7853	0.869	0.825	436.7
 S. pombe	fragments.unstranded.wRand	perl_td_v600	TransDecoder v6.0.0	yes	5100	3722	8	3698	3139	24	8	1402	0.7251	0.9936	0.8384	0.6155	0.8434	0.7116	115.0
+S. pombe	fragments.unstranded.wRand	td2	TD2 1.1.0	yes	5100	4086	129	3914	1991	172	129	1186	0.7675	0.9579	0.8522	0.3904	0.4873	0.4335	45.6
 S. pombe	fragments.unstranded.wRand	prodigal	Prodigal 2.6.3	yes	5100	8672	2873	4966	4278	3706	2873	134	0.9737	0.5726	0.7212	0.8388	0.4933	0.6213	8.1
 S. pombe	fragments.unstranded.wRand	gmst	GeneMarkS-T 5.1	yes	5100	3704	4	3685	3079	19	4	1415	0.7225	0.9949	0.8371	0.6037	0.8313	0.6995	12.8
 S. pombe	fragments.unstranded.wRand	codan	CodAn 1.1	yes	5100	4468	169	4250	3589	218	169	850	0.8333	0.9512	0.8884	0.7037	0.8033	0.7502	6750.9
@@ -386,6 +421,7 @@ S. pombe	fragments.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	ye
 S. pombe	fragments.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5100	4541	19	4518	3981	23	19	582	0.8859	0.9949	0.9372	0.7806	0.8767	0.8258	150.1
 S. pombe	fragments.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	5100	4630	19	4606	4049	24	19	494	0.9031	0.9948	0.9468	0.7939	0.8745	0.8323	362.7
 S. pombe	fragments.wRand	perl_td_v600	TransDecoder v6.0.0	yes	5100	3705	4	3699	3145	6	4	1401	0.7253	0.9984	0.8402	0.6167	0.8489	0.7144	111.8
+S. pombe	fragments.wRand	td2	TD2 1.1.0	yes	5100	3998	62	3929	2002	69	62	1171	0.7704	0.9827	0.8637	0.3925	0.5008	0.4401	42.0
 S. pombe	fragments.wRand	prodigal	Prodigal 2.6.3	yes	5100	6804	1441	4967	4278	1837	1441	133	0.9739	0.73	0.8345	0.8388	0.6287	0.7188	8.1
 S. pombe	fragments.wRand	gmst	GeneMarkS-T 5.1	yes	5100	3694	2	3691	3223	3	2	1409	0.7237	0.9992	0.8394	0.632	0.8725	0.733	12.9
 S. pombe	fragments.wRand	codan	CodAn 1.1	yes	5100	4355	87	4265	3602	90	87	835	0.8363	0.9793	0.9022	0.7063	0.8271	0.7619	3493.6
@@ -397,6 +433,7 @@ S. pombe	fragments.wRand	longest_orf	longest ORF baseline	yes	5100	3778	54	3707	
 S. pombe	fragments_mixed_t1	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	5086	4834	0	4833	4283	1	0	253	0.9503	0.9998	0.9744	0.8421	0.886	0.8635	77.0
 S. pombe	fragments_mixed_t1	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5086	4834	0	4833	4283	1	0	253	0.9503	0.9998	0.9744	0.8421	0.886	0.8635	171.5
 S. pombe	fragments_mixed_t1	perl_td_v600	TransDecoder v6.0.0	yes	5086	4214	0	4213	3537	1	0	873	0.8284	0.9998	0.906	0.6954	0.8393	0.7606	130.8
+S. pombe	fragments_mixed_t1	td2	TD2 1.1.0	yes	5086	4382	0	4378	3275	4	0	708	0.8608	0.9991	0.9248	0.6439	0.7474	0.6918	58.3
 S. pombe	fragments_mixed_t1	prodigal	Prodigal 2.6.3	yes	5086	5224	0	4985	4281	239	0	101	0.9801	0.9542	0.967	0.8417	0.8195	0.8305	7.3
 S. pombe	fragments_mixed_t1	gmst	GeneMarkS-T 5.1	yes	5086	4230	0	4228	3770	2	0	858	0.8313	0.9995	0.9077	0.7413	0.8913	0.8094	6.3
 S. pombe	fragments_mixed_t1	codan	CodAn 1.1	yes	5086	4636	0	4635	3882	1	0	451	0.9113	0.9998	0.9535	0.7633	0.8374	0.7986	972.6
@@ -408,6 +445,7 @@ S. pombe	fragments_mixed_t1	longest_orf	longest ORF baseline	yes	5086	5081	0	505
 S. pombe	fragments_mixed_t2	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	5084	4878	0	4877	4331	1	0	207	0.9593	0.9998	0.9791	0.8519	0.8879	0.8695	77.9
 S. pombe	fragments_mixed_t2	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5084	4878	0	4877	4331	1	0	207	0.9593	0.9998	0.9791	0.8519	0.8879	0.8695	179.2
 S. pombe	fragments_mixed_t2	perl_td_v600	TransDecoder v6.0.0	yes	5084	4239	0	4239	3486	0	0	845	0.8338	1.0	0.9094	0.6857	0.8224	0.7478	135.7
+S. pombe	fragments_mixed_t2	td2	TD2 1.1.0	yes	5084	4412	0	4404	3246	8	0	680	0.8662	0.9982	0.9275	0.6385	0.7357	0.6837	58.1
 S. pombe	fragments_mixed_t2	prodigal	Prodigal 2.6.3	yes	5084	5211	0	4998	4284	213	0	86	0.9831	0.9591	0.971	0.8426	0.8221	0.8322	7.4
 S. pombe	fragments_mixed_t2	gmst	GeneMarkS-T 5.1	yes	5084	4239	0	4238	3783	1	0	846	0.8336	0.9998	0.9091	0.7441	0.8924	0.8115	7.1
 S. pombe	fragments_mixed_t2	codan	CodAn 1.1	yes	5084	4679	0	4674	3905	5	0	410	0.9194	0.9989	0.9575	0.7681	0.8346	0.8	977.7
@@ -419,6 +457,7 @@ S. pombe	fragments_mixed_t2	longest_orf	longest ORF baseline	yes	5084	5080	0	504
 S. pombe	fragments_mixed_t3	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	5084	4878	0	4875	4341	3	0	209	0.9589	0.9994	0.9787	0.8539	0.8899	0.8715	77.0
 S. pombe	fragments_mixed_t3	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	5084	4878	0	4875	4341	3	0	209	0.9589	0.9994	0.9787	0.8539	0.8899	0.8715	173.2
 S. pombe	fragments_mixed_t3	perl_td_v600	TransDecoder v6.0.0	yes	5084	4244	0	4242	3601	2	0	842	0.8344	0.9995	0.9095	0.7083	0.8485	0.7721	132.9
+S. pombe	fragments_mixed_t3	td2	TD2 1.1.0	yes	5084	4414	0	4412	3243	2	0	672	0.8678	0.9995	0.929	0.6379	0.7347	0.6829	56.0
 S. pombe	fragments_mixed_t3	prodigal	Prodigal 2.6.3	yes	5084	5245	0	4992	4285	253	0	92	0.9819	0.9518	0.9666	0.8428	0.817	0.8297	7.2
 S. pombe	fragments_mixed_t3	gmst	GeneMarkS-T 5.1	yes	5084	4245	0	4242	3777	3	0	842	0.8344	0.9993	0.9094	0.7429	0.8898	0.8097	6.4
 S. pombe	fragments_mixed_t3	codan	CodAn 1.1	yes	5084	4681	0	4677	3908	4	0	407	0.9199	0.9991	0.9579	0.7687	0.8349	0.8004	971.0
@@ -431,6 +470,7 @@ A. thaliana	complete	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	26
 A. thaliana	complete	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26867	25745	0	25695	23655	50	0	1172	0.9564	0.9981	0.9768	0.8804	0.9188	0.8992	666.6
 A. thaliana	complete	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	26867	26258	0	26168	24103	90	0	699	0.974	0.9966	0.9851	0.8971	0.9179	0.9074	2677.8
 A. thaliana	complete	perl_td_v600	TransDecoder v6.0.0	yes	26867	25386	0	25347	20295	39	0	1520	0.9434	0.9985	0.9702	0.7554	0.7995	0.7768	383.5
+A. thaliana	complete	td2	TD2 1.1.0	yes	26867	25855	0	25820	25330	35	0	1047	0.961	0.9986	0.9795	0.9428	0.9797	0.9609	355.2
 A. thaliana	complete	prodigal	Prodigal 2.6.3	yes	26867	29247	0	26357	17784	2890	0	510	0.981	0.9012	0.9394	0.6619	0.6081	0.6339	45.0
 A. thaliana	complete	gmst	GeneMarkS-T 5.1	yes	26867	25512	0	25475	19658	37	0	1392	0.9482	0.9985	0.9727	0.7317	0.7705	0.7506	33.9
 A. thaliana	complete	codan	CodAn 1.1	yes	26867	25381	0	25351	21382	30	0	1516	0.9436	0.9988	0.9704	0.7958	0.8424	0.8185	35114.4
@@ -444,6 +484,7 @@ A. thaliana	complete.unstranded	pytd_v7	TransDecoder release (PyTransDecoder v0.
 A. thaliana	complete.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26867	25521	0	25371	23377	150	0	1496	0.9443	0.9941	0.9686	0.8701	0.916	0.8925	904.7
 A. thaliana	complete.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	26867	26191	0	26007	23976	184	0	860	0.968	0.993	0.9803	0.8924	0.9154	0.9038	3214.9
 A. thaliana	complete.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	26867	25418	0	25249	20046	169	0	1618	0.9398	0.9934	0.9658	0.7461	0.7887	0.7668	417.2
+A. thaliana	complete.unstranded	td2	TD2 1.1.0	yes	26867	25918	0	25744	25258	174	0	1123	0.9582	0.9933	0.9754	0.9401	0.9745	0.957	393.6
 A. thaliana	complete.unstranded	prodigal	Prodigal 2.6.3	yes	26867	31695	0	26355	17782	5340	0	512	0.9809	0.8315	0.9001	0.6619	0.561	0.6073	45.4
 A. thaliana	complete.unstranded	gmst	GeneMarkS-T 5.1	yes	26867	25560	0	25424	20963	136	0	1443	0.9463	0.9947	0.9699	0.7803	0.8201	0.7997	38.6
 A. thaliana	complete.unstranded	codan	CodAn 1.1	yes	26867	25447	0	25302	21344	145	0	1565	0.9418	0.9943	0.9673	0.7944	0.8388	0.816	75153.9
@@ -455,6 +496,7 @@ A. thaliana	complete.unstranded.wRand	pytd_v7	TransDecoder release (PyTransDecod
 A. thaliana	complete.unstranded.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26867	25443	46	25254	23268	189	46	1613	0.94	0.9926	0.9656	0.866	0.9145	0.8896	1369.1
 A. thaliana	complete.unstranded.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	26867	26193	47	25966	23937	227	47	901	0.9665	0.9913	0.9787	0.8909	0.9139	0.9023	4090.0
 A. thaliana	complete.unstranded.wRand	perl_td_v600	TransDecoder v6.0.0	yes	26867	25592	174	25249	20046	343	174	1618	0.9398	0.9866	0.9626	0.7461	0.7833	0.7643	470.4
+A. thaliana	complete.unstranded.wRand	td2	TD2 1.1.0	yes	26867	27864	1946	25745	25259	2119	1946	1122	0.9582	0.924	0.9408	0.9401	0.9065	0.923	434.2
 A. thaliana	complete.unstranded.wRand	prodigal	Prodigal 2.6.3	yes	26867	52480	20785	26355	17782	26125	20785	512	0.9809	0.5022	0.6643	0.6619	0.3388	0.4482	55.7
 A. thaliana	complete.unstranded.wRand	gmst	GeneMarkS-T 5.1	yes	26867	25692	148	25411	20437	281	148	1456	0.9458	0.9891	0.967	0.7607	0.7955	0.7777	71.2
 A. thaliana	complete.unstranded.wRand	codan	CodAn 1.1	yes	26867	26062	615	25302	21344	760	615	1565	0.9418	0.9708	0.9561	0.7944	0.819	0.8065	404678.8
@@ -466,6 +508,7 @@ A. thaliana	complete.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	
 A. thaliana	complete.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26867	25677	39	25590	23557	87	39	1277	0.9525	0.9966	0.974	0.8768	0.9174	0.8967	1056.2
 A. thaliana	complete.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	26867	26264	39	26133	24075	131	39	734	0.9727	0.995	0.9837	0.8961	0.9167	0.9063	3001.3
 A. thaliana	complete.wRand	perl_td_v600	TransDecoder v6.0.0	yes	26867	25437	81	25317	20279	120	81	1550	0.9423	0.9953	0.9681	0.7548	0.7972	0.7754	422.4
+A. thaliana	complete.wRand	td2	TD2 1.1.0	yes	26867	26849	994	25819	25329	1030	994	1048	0.961	0.9616	0.9613	0.9428	0.9434	0.9431	372.3
 A. thaliana	complete.wRand	prodigal	Prodigal 2.6.3	yes	26867	39698	10451	26357	17784	13341	10451	510	0.981	0.6639	0.7919	0.6619	0.448	0.5343	54.8
 A. thaliana	complete.wRand	gmst	GeneMarkS-T 5.1	yes	26867	25582	77	25467	18723	115	77	1400	0.9479	0.9955	0.9711	0.6969	0.7319	0.714	64.4
 A. thaliana	complete.wRand	codan	CodAn 1.1	yes	26867	25696	315	25351	21382	345	315	1516	0.9436	0.9866	0.9646	0.7958	0.8321	0.8136	155071.0
@@ -478,6 +521,7 @@ A. thaliana	complete_fullutr	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0
 A. thaliana	complete_fullutr	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26867	25565	0	25468	23487	97	0	1399	0.9479	0.9962	0.9715	0.8742	0.9187	0.8959	705.2
 A. thaliana	complete_fullutr	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	26867	26182	0	26003	23999	179	0	864	0.9678	0.9932	0.9803	0.8933	0.9166	0.9048	2678.1
 A. thaliana	complete_fullutr	perl_td_v600	TransDecoder v6.0.0	yes	26867	25898	0	25344	20290	554	0	1523	0.9433	0.9786	0.9606	0.7552	0.7835	0.7691	391.5
+A. thaliana	complete_fullutr	td2	TD2 1.1.0	yes	26867	25856	0	25768	25275	88	0	1099	0.9591	0.9966	0.9775	0.9407	0.9775	0.9588	350.7
 A. thaliana	complete_fullutr	prodigal	Prodigal 2.6.3	yes	26867	29769	0	26371	17935	3398	0	496	0.9815	0.8859	0.9312	0.6675	0.6025	0.6333	45.2
 A. thaliana	complete_fullutr	gmst	GeneMarkS-T 5.1	yes	26867	25512	0	25416	19663	96	0	1451	0.946	0.9962	0.9705	0.7319	0.7707	0.7508	34.8
 A. thaliana	complete_fullutr	codan	CodAn 1.1	yes	26867	25411	0	25316	21377	95	0	1551	0.9423	0.9963	0.9685	0.7957	0.8412	0.8178	36027.7
@@ -491,6 +535,7 @@ A. thaliana	complete_fullutr.unstranded	pytd_v7	TransDecoder release (PyTransDec
 A. thaliana	complete_fullutr.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26867	25440	0	25178	23229	262	0	1689	0.9371	0.9897	0.9627	0.8646	0.9131	0.8882	920.7
 A. thaliana	complete_fullutr.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	26867	26154	0	25804	23827	350	0	1063	0.9604	0.9866	0.9734	0.8869	0.911	0.8988	3482.9
 A. thaliana	complete_fullutr.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	26867	26213	0	25246	20173	967	0	1621	0.9397	0.9631	0.9512	0.7508	0.7696	0.7601	431.0
+A. thaliana	complete_fullutr.unstranded	td2	TD2 1.1.0	yes	26867	25924	0	25646	25158	278	0	1221	0.9546	0.9893	0.9716	0.9364	0.9705	0.9531	402.2
 A. thaliana	complete_fullutr.unstranded	prodigal	Prodigal 2.6.3	yes	26867	32925	0	26369	17936	6556	0	498	0.9815	0.8009	0.882	0.6676	0.5448	0.5999	45.7
 A. thaliana	complete_fullutr.unstranded	gmst	GeneMarkS-T 5.1	yes	26867	25567	0	25300	20935	267	0	1567	0.9417	0.9896	0.965	0.7792	0.8188	0.7985	39.9
 A. thaliana	complete_fullutr.unstranded	codan	CodAn 1.1	yes	26867	25488	0	25209	21292	279	0	1658	0.9383	0.9891	0.963	0.7925	0.8354	0.8134	77210.6
@@ -503,6 +548,7 @@ A. thaliana	fragments	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	2
 A. thaliana	fragments	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26867	21631	0	21524	18262	107	0	5343	0.8011	0.9951	0.8876	0.6797	0.8443	0.7531	390.0
 A. thaliana	fragments	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	26867	23052	0	22924	19382	128	0	3943	0.8532	0.9944	0.9184	0.7214	0.8408	0.7765	1166.1
 A. thaliana	fragments	perl_td_v600	TransDecoder v6.0.0	yes	26867	18832	0	18776	15829	56	0	8091	0.6988	0.997	0.8217	0.5892	0.8405	0.6928	196.3
+A. thaliana	fragments	td2	TD2 1.1.0	yes	26867	20115	0	20000	9595	115	0	6867	0.7444	0.9943	0.8514	0.3571	0.477	0.4085	171.0
 A. thaliana	fragments	prodigal	Prodigal 2.6.3	yes	26867	26934	0	25078	21025	1856	0	1789	0.9334	0.9311	0.9323	0.7826	0.7806	0.7816	23.8
 A. thaliana	fragments	gmst	GeneMarkS-T 5.1	yes	26867	19117	0	19043	16340	74	0	7824	0.7088	0.9961	0.8282	0.6082	0.8547	0.7107	21.6
 A. thaliana	fragments	codan	CodAn 1.1	yes	26867	22621	0	22287	18202	334	0	4580	0.8295	0.9852	0.9007	0.6775	0.8047	0.7356	25768.6
@@ -515,6 +561,7 @@ A. thaliana	fragments.unstranded	pytd_v7	TransDecoder release (PyTransDecoder v0
 A. thaliana	fragments.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26867	21040	0	20670	17555	370	0	6197	0.7693	0.9824	0.8629	0.6534	0.8344	0.7329	512.7
 A. thaliana	fragments.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	26867	22776	0	22473	19012	303	0	4394	0.8365	0.9867	0.9054	0.7076	0.8347	0.7659	1488.6
 A. thaliana	fragments.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	26867	18932	0	18630	15636	302	0	8237	0.6934	0.984	0.8136	0.582	0.8259	0.6828	213.6
+A. thaliana	fragments.unstranded	td2	TD2 1.1.0	yes	26867	20313	0	19911	9531	402	0	6956	0.7411	0.9802	0.844	0.3547	0.4692	0.404	187.3
 A. thaliana	fragments.unstranded	prodigal	Prodigal 2.6.3	yes	26867	28801	0	25076	21021	3725	0	1791	0.9333	0.8707	0.9009	0.7824	0.7299	0.7552	23.9
 A. thaliana	fragments.unstranded	gmst	GeneMarkS-T 5.1	yes	26867	19281	0	18981	15702	300	0	7886	0.7065	0.9844	0.8226	0.5844	0.8144	0.6805	23.2
 A. thaliana	fragments.unstranded	codan	CodAn 1.1	yes	26867	23282	0	21865	17941	1417	0	5002	0.8138	0.9391	0.872	0.6678	0.7706	0.7155	55931.0
@@ -526,6 +573,7 @@ A. thaliana	fragments.unstranded.wRand	pytd_v7	TransDecoder release (PyTransDeco
 A. thaliana	fragments.unstranded.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26867	20915	63	20501	17424	414	63	6366	0.7631	0.9802	0.8581	0.6485	0.8331	0.7293	574.1
 A. thaliana	fragments.unstranded.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	26867	22745	64	22391	18953	354	64	4476	0.8334	0.9844	0.9026	0.7054	0.8333	0.764	1805.4
 A. thaliana	fragments.unstranded.wRand	perl_td_v600	TransDecoder v6.0.0	yes	26867	18983	51	18630	15636	353	51	8237	0.6934	0.9814	0.8126	0.582	0.8237	0.6821	247.6
+A. thaliana	fragments.unstranded.wRand	td2	TD2 1.1.0	yes	26867	21255	942	19908	9530	1347	942	6959	0.741	0.9366	0.8274	0.3547	0.4484	0.3961	214.6
 A. thaliana	fragments.unstranded.wRand	prodigal	Prodigal 2.6.3	yes	26867	46300	15669	25304	21270	20996	15669	1563	0.9418	0.5465	0.6917	0.7917	0.4594	0.5814	37.4
 A. thaliana	fragments.unstranded.wRand	gmst	GeneMarkS-T 5.1	yes	26867	19156	32	18811	14933	345	32	8056	0.7002	0.982	0.8175	0.5558	0.7795	0.6489	46.2
 A. thaliana	fragments.unstranded.wRand	codan	CodAn 1.1	yes	26867	26103	2821	21865	17941	4238	2821	5002	0.8138	0.8376	0.8256	0.6678	0.6873	0.6774	271888.5
@@ -537,6 +585,7 @@ A. thaliana	fragments.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)
 A. thaliana	fragments.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26867	21569	58	21405	18169	164	58	5462	0.7967	0.9924	0.8838	0.6763	0.8424	0.7502	433.6
 A. thaliana	fragments.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	26867	23024	58	22836	19314	188	58	4031	0.85	0.9918	0.9154	0.7189	0.8389	0.7742	1371.3
 A. thaliana	fragments.wRand	perl_td_v600	TransDecoder v6.0.0	yes	26867	18860	27	18779	15837	81	27	8088	0.699	0.9957	0.8214	0.5895	0.8397	0.6927	218.8
+A. thaliana	fragments.wRand	td2	TD2 1.1.0	yes	26867	20567	452	20000	9595	567	452	6867	0.7444	0.9724	0.8433	0.3571	0.4665	0.4046	186.3
 A. thaliana	fragments.wRand	prodigal	Prodigal 2.6.3	yes	26867	36000	7873	25303	21266	10697	7873	1564	0.9418	0.7029	0.805	0.7915	0.5907	0.6765	36.5
 A. thaliana	fragments.wRand	gmst	GeneMarkS-T 5.1	yes	26867	18936	21	18836	15638	100	21	8031	0.7011	0.9947	0.8225	0.5821	0.8258	0.6828	43.7
 A. thaliana	fragments.wRand	codan	CodAn 1.1	yes	26867	24041	1420	22287	18202	1754	1420	4580	0.8295	0.927	0.8756	0.6775	0.7571	0.7151	120151.0
@@ -548,6 +597,7 @@ A. thaliana	fragments.wRand	longest_orf	longest ORF baseline	yes	26867	19758	535
 A. thaliana	fragments_mixed_t1	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	26787	24034	0	23965	20276	69	0	2822	0.8947	0.9971	0.9431	0.7569	0.8436	0.7979	180.2
 A. thaliana	fragments_mixed_t1	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26787	24034	0	23965	20276	69	0	2822	0.8947	0.9971	0.9431	0.7569	0.8436	0.7979	445.7
 A. thaliana	fragments_mixed_t1	perl_td_v600	TransDecoder v6.0.0	yes	26787	21997	0	21961	18053	36	0	4826	0.8198	0.9984	0.9003	0.6739	0.8207	0.7401	329.9
+A. thaliana	fragments_mixed_t1	td2	TD2 1.1.0	yes	26787	22934	0	22876	16668	58	0	3911	0.854	0.9975	0.9202	0.6222	0.7268	0.6705	246.6
 A. thaliana	fragments_mixed_t1	prodigal	Prodigal 2.6.3	yes	26787	27712	0	26001	21805	1711	0	786	0.9707	0.9383	0.9542	0.814	0.7868	0.8002	37.9
 A. thaliana	fragments_mixed_t1	gmst	GeneMarkS-T 5.1	yes	26787	22215	0	22171	19110	44	0	4616	0.8277	0.998	0.9049	0.7134	0.8602	0.78	30.2
 A. thaliana	fragments_mixed_t1	codan	CodAn 1.1	yes	26787	24825	0	24670	19994	155	0	2117	0.921	0.9938	0.956	0.7464	0.8054	0.7748	29837.7
@@ -559,6 +609,7 @@ A. thaliana	fragments_mixed_t1	longest_orf	longest ORF baseline	yes	26787	26758	
 A. thaliana	fragments_mixed_t2	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	26764	23973	0	23913	20343	60	0	2851	0.8935	0.9975	0.9426	0.7601	0.8486	0.8019	183.4
 A. thaliana	fragments_mixed_t2	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26764	23973	0	23913	20343	60	0	2851	0.8935	0.9975	0.9426	0.7601	0.8486	0.8019	444.5
 A. thaliana	fragments_mixed_t2	perl_td_v600	TransDecoder v6.0.0	yes	26764	21904	0	21857	18126	47	0	4907	0.8167	0.9979	0.8982	0.6773	0.8275	0.7449	314.8
+A. thaliana	fragments_mixed_t2	td2	TD2 1.1.0	yes	26764	22864	0	22822	16612	42	0	3942	0.8527	0.9982	0.9197	0.6207	0.7266	0.6695	251.2
 A. thaliana	fragments_mixed_t2	prodigal	Prodigal 2.6.3	yes	26764	27704	0	26013	21767	1691	0	751	0.9719	0.939	0.9552	0.8133	0.7857	0.7993	38.0
 A. thaliana	fragments_mixed_t2	gmst	GeneMarkS-T 5.1	yes	26764	22136	0	22087	18998	49	0	4677	0.8253	0.9978	0.9034	0.7098	0.8582	0.777	29.2
 A. thaliana	fragments_mixed_t2	codan	CodAn 1.1	yes	26764	24843	0	24671	19948	172	0	2093	0.9218	0.9931	0.9561	0.7453	0.803	0.7731	29820.5
@@ -570,6 +621,7 @@ A. thaliana	fragments_mixed_t2	longest_orf	longest ORF baseline	yes	26764	26747	
 A. thaliana	fragments_mixed_t3	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	26777	24176	0	24113	20445	63	0	2664	0.9005	0.9974	0.9465	0.7635	0.8457	0.8025	182.6
 A. thaliana	fragments_mixed_t3	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	26777	24176	0	24113	20445	63	0	2664	0.9005	0.9974	0.9465	0.7635	0.8457	0.8025	437.6
 A. thaliana	fragments_mixed_t3	perl_td_v600	TransDecoder v6.0.0	yes	26777	21933	0	21893	18107	40	0	4884	0.8176	0.9982	0.8989	0.6762	0.8256	0.7435	317.1
+A. thaliana	fragments_mixed_t3	td2	TD2 1.1.0	yes	26777	22855	0	22801	16629	54	0	3976	0.8515	0.9976	0.9188	0.621	0.7276	0.6701	246.6
 A. thaliana	fragments_mixed_t3	prodigal	Prodigal 2.6.3	yes	26777	27691	0	26000	21819	1691	0	777	0.971	0.9389	0.9547	0.8148	0.7879	0.8012	38.6
 A. thaliana	fragments_mixed_t3	gmst	GeneMarkS-T 5.1	yes	26777	22142	0	22091	19025	51	0	4686	0.825	0.9977	0.9032	0.7105	0.8592	0.7778	28.6
 A. thaliana	fragments_mixed_t3	codan	CodAn 1.1	yes	26777	24802	0	24620	19932	182	0	2157	0.9194	0.9927	0.9547	0.7444	0.8036	0.7729	25953.9
@@ -582,6 +634,7 @@ D. melanogaster	complete	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	ye
 D. melanogaster	complete	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	13884	13376	0	13331	12647	45	0	553	0.9602	0.9966	0.9781	0.9109	0.9455	0.9279	516.9
 D. melanogaster	complete	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	13884	13495	0	13450	12754	45	0	434	0.9687	0.9967	0.9825	0.9186	0.9451	0.9317	1753.5
 D. melanogaster	complete	perl_td_v600	TransDecoder v6.0.0	yes	13884	12996	0	12981	10898	15	0	903	0.935	0.9988	0.9658	0.7849	0.8386	0.8109	308.1
+D. melanogaster	complete	td2	TD2 1.1.0	yes	13884	13282	0	13254	12801	28	0	630	0.9546	0.9979	0.9758	0.922	0.9638	0.9424	244.7
 D. melanogaster	complete	prodigal	Prodigal 2.6.3	yes	13884	14850	0	13494	10258	1356	0	390	0.9719	0.9087	0.9392	0.7388	0.6908	0.714	41.5
 D. melanogaster	complete	gmst	GeneMarkS-T 5.1	yes	13884	12799	0	12773	10697	26	0	1111	0.92	0.998	0.9574	0.7705	0.8358	0.8018	23.9
 D. melanogaster	complete	codan	CodAn 1.1	yes	13884	13509	0	13466	12151	43	0	418	0.9699	0.9968	0.9832	0.8752	0.8995	0.8872	12563.5
@@ -594,6 +647,7 @@ D. melanogaster	complete.unstranded	pytd_v7	TransDecoder release (PyTransDecoder
 D. melanogaster	complete.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	13884	13388	0	13315	12625	73	0	569	0.959	0.9945	0.9765	0.9093	0.943	0.9259	794.3
 D. melanogaster	complete.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	13884	13506	0	13427	12727	79	0	457	0.9671	0.9942	0.9804	0.9167	0.9423	0.9293	2423.6
 D. melanogaster	complete.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	13884	13020	0	12967	10884	53	0	917	0.934	0.9959	0.9639	0.7839	0.8359	0.8091	369.7
+D. melanogaster	complete.unstranded	td2	TD2 1.1.0	yes	13884	13338	0	13193	12745	145	0	691	0.9502	0.9891	0.9693	0.918	0.9555	0.9364	310.4
 D. melanogaster	complete.unstranded	prodigal	Prodigal 2.6.3	yes	13884	15500	0	13494	10259	2006	0	390	0.9719	0.8706	0.9185	0.7389	0.6619	0.6983	42.5
 D. melanogaster	complete.unstranded	gmst	GeneMarkS-T 5.1	yes	13884	12846	0	12758	10959	88	0	1126	0.9189	0.9931	0.9546	0.7893	0.8531	0.82	26.7
 D. melanogaster	complete.unstranded	codan	CodAn 1.1	yes	13884	13524	0	13453	12138	71	0	431	0.969	0.9948	0.9817	0.8742	0.8975	0.8857	22920.1
@@ -605,6 +659,7 @@ D. melanogaster	complete.unstranded.wRand	pytd_v7	TransDecoder release (PyTransD
 D. melanogaster	complete.unstranded.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	13884	13436	54	13309	12619	127	54	575	0.9586	0.9905	0.9743	0.9089	0.9392	0.9238	1239.5
 D. melanogaster	complete.unstranded.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	13884	13556	55	13419	12719	137	55	465	0.9665	0.9899	0.9781	0.9161	0.9383	0.927	3139.7
 D. melanogaster	complete.unstranded.wRand	perl_td_v600	TransDecoder v6.0.0	yes	13884	13060	40	12967	10884	93	40	917	0.934	0.9929	0.9625	0.7839	0.8334	0.8079	414.3
+D. melanogaster	complete.unstranded.wRand	td2	TD2 1.1.0	yes	13884	15678	2340	13193	12745	2485	2340	691	0.9502	0.8415	0.8926	0.918	0.8129	0.8623	391.9
 D. melanogaster	complete.unstranded.wRand	prodigal	Prodigal 2.6.3	yes	13884	22708	6825	13533	10269	9175	6825	351	0.9747	0.596	0.7397	0.7396	0.4522	0.5613	53.6
 D. melanogaster	complete.unstranded.wRand	gmst	GeneMarkS-T 5.1	yes	13884	12923	36	12843	11088	80	36	1041	0.925	0.9938	0.9582	0.7986	0.858	0.8272	48.6
 D. melanogaster	complete.unstranded.wRand	codan	CodAn 1.1	yes	13884	17235	3711	13453	12138	3782	3711	431	0.969	0.7806	0.8646	0.8742	0.7043	0.7801	88746.0
@@ -616,6 +671,7 @@ D. melanogaster	complete.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2
 D. melanogaster	complete.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	13884	13384	44	13298	12614	86	44	586	0.9578	0.9936	0.9754	0.9085	0.9425	0.9252	838.9
 D. melanogaster	complete.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	13884	13511	44	13422	12726	89	44	462	0.9667	0.9934	0.9799	0.9166	0.9419	0.9291	2114.8
 D. melanogaster	complete.wRand	perl_td_v600	TransDecoder v6.0.0	yes	13884	13015	26	12973	10894	42	26	911	0.9344	0.9968	0.9646	0.7846	0.837	0.81	350.0
+D. melanogaster	complete.wRand	td2	TD2 1.1.0	yes	13884	14590	1308	13254	12801	1336	1308	630	0.9546	0.9084	0.931	0.922	0.8774	0.8991	275.5
 D. melanogaster	complete.wRand	prodigal	Prodigal 2.6.3	yes	13884	18546	3449	13533	10275	5013	3449	351	0.9747	0.7297	0.8346	0.7401	0.554	0.6337	52.8
 D. melanogaster	complete.wRand	gmst	GeneMarkS-T 5.1	yes	13884	12896	24	12854	10776	42	24	1030	0.9258	0.9967	0.96	0.7761	0.8356	0.8048	45.3
 D. melanogaster	complete.wRand	codan	CodAn 1.1	yes	13884	15866	2357	13466	12151	2400	2357	418	0.9699	0.8487	0.9053	0.8752	0.7659	0.8169	45687.9
@@ -628,6 +684,7 @@ D. melanogaster	complete_fullutr	pytd_v7	TransDecoder release (PyTransDecoder v0
 D. melanogaster	complete_fullutr	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	13884	13329	0	13092	12454	237	0	792	0.943	0.9822	0.9622	0.897	0.9344	0.9153	563.1
 D. melanogaster	complete_fullutr	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	13884	13483	0	13262	12607	221	0	622	0.9552	0.9836	0.9692	0.908	0.935	0.9213	1829.6
 D. melanogaster	complete_fullutr	perl_td_v600	TransDecoder v6.0.0	yes	13884	13481	0	12916	10892	565	0	968	0.9303	0.9581	0.944	0.7845	0.808	0.7961	317.9
+D. melanogaster	complete_fullutr	td2	TD2 1.1.0	yes	13884	13348	0	13114	12672	234	0	770	0.9445	0.9825	0.9631	0.9127	0.9494	0.9307	272.8
 D. melanogaster	complete_fullutr	prodigal	Prodigal 2.6.3	yes	13884	15526	0	13526	10286	2000	0	358	0.9742	0.8712	0.9198	0.7409	0.6625	0.6995	48.1
 D. melanogaster	complete_fullutr	gmst	GeneMarkS-T 5.1	yes	13884	13229	0	12979	11058	250	0	905	0.9348	0.9811	0.9574	0.7965	0.8359	0.8157	41.0
 D. melanogaster	complete_fullutr	codan	CodAn 1.1	yes	13884	13553	0	13301	12024	252	0	583	0.958	0.9814	0.9696	0.866	0.8872	0.8765	13890.3
@@ -640,6 +697,7 @@ D. melanogaster	complete_fullutr.unstranded	pytd_v7	TransDecoder release (PyTran
 D. melanogaster	complete_fullutr.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	13884	13352	0	13047	12403	305	0	837	0.9397	0.9772	0.9581	0.8933	0.9289	0.9108	829.8
 D. melanogaster	complete_fullutr.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	13884	13508	0	13210	12552	298	0	674	0.9515	0.9779	0.9645	0.9041	0.9292	0.9165	2549.0
 D. melanogaster	complete_fullutr.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	13884	13685	0	12915	10887	770	0	969	0.9302	0.9437	0.9369	0.7841	0.7955	0.7898	379.0
+D. melanogaster	complete_fullutr.unstranded	td2	TD2 1.1.0	yes	13884	13405	0	13036	12599	369	0	848	0.9389	0.9725	0.9554	0.9074	0.9399	0.9234	358.8
 D. melanogaster	complete_fullutr.unstranded	prodigal	Prodigal 2.6.3	yes	13884	16586	0	13525	10289	3061	0	359	0.9741	0.8154	0.8878	0.7411	0.6203	0.6754	47.6
 D. melanogaster	complete_fullutr.unstranded	gmst	GeneMarkS-T 5.1	yes	13884	13292	0	12948	11353	344	0	936	0.9326	0.9741	0.9529	0.8177	0.8541	0.8355	45.5
 D. melanogaster	complete_fullutr.unstranded	codan	CodAn 1.1	yes	13884	13573	0	13264	11991	309	0	620	0.9553	0.9772	0.9662	0.8637	0.8834	0.8734	25364.3
@@ -651,6 +709,7 @@ D. melanogaster	fragments	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	y
 D. melanogaster	fragments	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	13884	12198	0	12132	10969	66	0	1752	0.8738	0.9946	0.9303	0.79	0.8992	0.8411	333.4
 D. melanogaster	fragments	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	13884	12396	0	12326	11103	70	0	1558	0.8878	0.9944	0.9381	0.7997	0.8957	0.845	923.2
 D. melanogaster	fragments	perl_td_v600	TransDecoder v6.0.0	yes	13884	9850	0	9837	8660	13	0	4047	0.7085	0.9987	0.8289	0.6237	0.8792	0.7298	176.4
+D. melanogaster	fragments	td2	TD2 1.1.0	yes	13884	10421	0	10373	5271	48	0	3511	0.7471	0.9954	0.8536	0.3796	0.5058	0.4337	121.8
 D. melanogaster	fragments	prodigal	Prodigal 2.6.3	yes	13884	13766	0	13065	11379	701	0	819	0.941	0.9491	0.945	0.8196	0.8266	0.8231	18.1
 D. melanogaster	fragments	gmst	GeneMarkS-T 5.1	yes	13884	10045	0	9992	8885	53	0	3892	0.7197	0.9947	0.8351	0.6399	0.8845	0.7426	32.8
 D. melanogaster	fragments	codan	CodAn 1.1	yes	13884	12872	0	12719	11057	153	0	1165	0.9161	0.9881	0.9507	0.7964	0.859	0.8265	8343.1
@@ -663,6 +722,7 @@ D. melanogaster	fragments.unstranded	pytd_v7	TransDecoder release (PyTransDecode
 D. melanogaster	fragments.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	13884	12132	0	11979	10840	153	0	1905	0.8628	0.9874	0.9209	0.7808	0.8935	0.8333	478.1
 D. melanogaster	fragments.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	13884	12368	0	12228	11020	140	0	1656	0.8807	0.9887	0.9316	0.7937	0.891	0.8396	1140.6
 D. melanogaster	fragments.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	13884	9897	0	9810	8623	87	0	4074	0.7066	0.9912	0.825	0.6211	0.8713	0.7252	200.4
+D. melanogaster	fragments.unstranded	td2	TD2 1.1.0	yes	13884	10525	0	10331	5238	194	0	3553	0.7441	0.9816	0.8465	0.3773	0.4977	0.4292	160.8
 D. melanogaster	fragments.unstranded	prodigal	Prodigal 2.6.3	yes	13884	14219	0	13058	11373	1161	0	826	0.9405	0.9183	0.9293	0.8191	0.7998	0.8094	18.9
 D. melanogaster	fragments.unstranded	gmst	GeneMarkS-T 5.1	yes	13884	10090	0	9929	8372	161	0	3955	0.7151	0.984	0.8283	0.603	0.8297	0.6984	33.9
 D. melanogaster	fragments.unstranded	codan	CodAn 1.1	yes	13884	13079	0	12520	10917	559	0	1364	0.9018	0.9573	0.9287	0.7863	0.8347	0.8098	17340.3
@@ -674,6 +734,7 @@ D. melanogaster	fragments.unstranded.wRand	pytd_v7	TransDecoder release (PyTrans
 D. melanogaster	fragments.unstranded.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	13884	12079	56	11878	10752	201	56	2006	0.8555	0.9834	0.915	0.7744	0.8901	0.8283	535.3
 D. melanogaster	fragments.unstranded.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	13884	12344	56	12155	10957	189	56	1729	0.8755	0.9847	0.9269	0.7892	0.8876	0.8355	1398.5
 D. melanogaster	fragments.unstranded.wRand	perl_td_v600	TransDecoder v6.0.0	yes	13884	9916	19	9810	8623	106	19	4074	0.7066	0.9893	0.8244	0.6211	0.8696	0.7246	222.7
+D. melanogaster	fragments.unstranded.wRand	td2	TD2 1.1.0	yes	13884	11681	1156	10330	5238	1351	1156	3554	0.744	0.8843	0.8081	0.3773	0.4484	0.4098	186.6
 D. melanogaster	fragments.unstranded.wRand	prodigal	Prodigal 2.6.3	yes	13884	24540	9352	13237	11582	11303	9352	647	0.9534	0.5394	0.689	0.8342	0.472	0.6029	30.5
 D. melanogaster	fragments.unstranded.wRand	gmst	GeneMarkS-T 5.1	yes	13884	9968	13	9870	8216	98	13	4014	0.7109	0.9902	0.8276	0.5918	0.8242	0.6889	65.1
 D. melanogaster	fragments.unstranded.wRand	codan	CodAn 1.1	yes	13884	17938	4859	12520	10917	5418	4859	1364	0.9018	0.698	0.7869	0.7863	0.6086	0.6861	64276.3
@@ -685,6 +746,7 @@ D. melanogaster	fragments.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.
 D. melanogaster	fragments.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	13884	12202	52	12082	10930	120	52	1802	0.8702	0.9902	0.9263	0.7872	0.8958	0.838	348.5
 D. melanogaster	fragments.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	13884	12419	53	12295	11078	124	53	1589	0.8856	0.99	0.9349	0.7979	0.892	0.8423	1002.7
 D. melanogaster	fragments.wRand	perl_td_v600	TransDecoder v6.0.0	yes	13884	9838	8	9817	8646	21	8	4067	0.7071	0.9979	0.8277	0.6227	0.8788	0.7289	185.1
+D. melanogaster	fragments.wRand	td2	TD2 1.1.0	yes	13884	11024	603	10373	5271	651	603	3511	0.7471	0.9409	0.8329	0.3796	0.4781	0.4232	141.7
 D. melanogaster	fragments.wRand	prodigal	Prodigal 2.6.3	yes	13884	19127	4714	13232	11574	5895	4714	652	0.953	0.6918	0.8017	0.8336	0.6051	0.7012	30.4
 D. melanogaster	fragments.wRand	gmst	GeneMarkS-T 5.1	yes	13884	9960	11	9921	8796	39	11	3963	0.7146	0.9961	0.8322	0.6335	0.8831	0.7378	64.5
 D. melanogaster	fragments.wRand	codan	CodAn 1.1	yes	13884	15864	2992	12719	11057	3145	2992	1165	0.9161	0.8018	0.8551	0.7964	0.697	0.7434	31863.9
@@ -696,6 +758,7 @@ D. melanogaster	fragments.wRand	longest_orf	longest ORF baseline	yes	13884	11427
 D. melanogaster	fragments_mixed_t1	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	13789	13172	0	13141	11748	31	0	648	0.953	0.9976	0.9748	0.852	0.8919	0.8715	180.9
 D. melanogaster	fragments_mixed_t1	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	13789	13172	0	13141	11748	31	0	648	0.953	0.9976	0.9748	0.852	0.8919	0.8715	473.7
 D. melanogaster	fragments_mixed_t1	perl_td_v600	TransDecoder v6.0.0	yes	13789	11437	0	11429	10005	8	0	2360	0.8288	0.9993	0.9061	0.7256	0.8748	0.7932	242.6
+D. melanogaster	fragments_mixed_t1	td2	TD2 1.1.0	yes	13789	11860	0	11834	8773	26	0	1955	0.8582	0.9978	0.9228	0.6362	0.7397	0.6841	187.6
 D. melanogaster	fragments_mixed_t1	prodigal	Prodigal 2.6.3	yes	13789	14057	0	13348	11630	709	0	441	0.968	0.9496	0.9587	0.8434	0.8273	0.8353	27.8
 D. melanogaster	fragments_mixed_t1	gmst	GeneMarkS-T 5.1	yes	13789	11535	0	11496	10302	39	0	2293	0.8337	0.9966	0.9079	0.7471	0.8931	0.8136	29.8
 D. melanogaster	fragments_mixed_t1	codan	CodAn 1.1	yes	13789	13410	0	13339	11553	71	0	450	0.9674	0.9947	0.9808	0.8378	0.8615	0.8495	7849.2
@@ -707,6 +770,7 @@ D. melanogaster	fragments_mixed_t1	longest_orf	longest ORF baseline	yes	13789	13
 D. melanogaster	fragments_mixed_t2	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	13789	13168	0	13137	11786	31	0	652	0.9527	0.9976	0.9747	0.8547	0.895	0.8744	176.3
 D. melanogaster	fragments_mixed_t2	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	13789	13168	0	13137	11786	31	0	652	0.9527	0.9976	0.9747	0.8547	0.895	0.8744	481.9
 D. melanogaster	fragments_mixed_t2	perl_td_v600	TransDecoder v6.0.0	yes	13789	11392	0	11378	10013	14	0	2411	0.8252	0.9988	0.9037	0.7262	0.879	0.7953	246.7
+D. melanogaster	fragments_mixed_t2	td2	TD2 1.1.0	yes	13789	11822	0	11788	8799	34	0	2001	0.8549	0.9971	0.9205	0.6381	0.7443	0.6871	181.6
 D. melanogaster	fragments_mixed_t2	prodigal	Prodigal 2.6.3	yes	13789	14024	0	13333	11582	691	0	456	0.9669	0.9507	0.9588	0.8399	0.8259	0.8328	27.7
 D. melanogaster	fragments_mixed_t2	gmst	GeneMarkS-T 5.1	yes	13789	11505	0	11465	10293	40	0	2324	0.8315	0.9965	0.9065	0.7465	0.8947	0.8139	29.7
 D. melanogaster	fragments_mixed_t2	codan	CodAn 1.1	yes	13789	13405	0	13334	11542	71	0	455	0.967	0.9947	0.9807	0.837	0.861	0.8489	7562.5
@@ -718,6 +782,7 @@ D. melanogaster	fragments_mixed_t2	longest_orf	longest ORF baseline	yes	13789	13
 D. melanogaster	fragments_mixed_t3	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	13778	13166	0	13130	11732	36	0	648	0.953	0.9973	0.9746	0.8515	0.8911	0.8708	180.5
 D. melanogaster	fragments_mixed_t3	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	13778	13166	0	13130	11732	36	0	648	0.953	0.9973	0.9746	0.8515	0.8911	0.8708	456.0
 D. melanogaster	fragments_mixed_t3	perl_td_v600	TransDecoder v6.0.0	yes	13778	11372	0	11357	9873	15	0	2421	0.8243	0.9987	0.9031	0.7166	0.8682	0.7851	254.1
+D. melanogaster	fragments_mixed_t3	td2	TD2 1.1.0	yes	13778	11845	0	11812	8792	33	0	1966	0.8573	0.9972	0.922	0.6381	0.7423	0.6863	169.8
 D. melanogaster	fragments_mixed_t3	prodigal	Prodigal 2.6.3	yes	13778	14050	0	13322	11593	728	0	456	0.9669	0.9482	0.9575	0.8414	0.8251	0.8332	27.6
 D. melanogaster	fragments_mixed_t3	gmst	GeneMarkS-T 5.1	yes	13778	11497	0	11450	10302	47	0	2328	0.831	0.9959	0.906	0.7477	0.8961	0.8152	30.5
 D. melanogaster	fragments_mixed_t3	codan	CodAn 1.1	yes	13778	13413	0	13339	11545	74	0	439	0.9681	0.9945	0.9811	0.8379	0.8607	0.8492	7523.6
@@ -730,6 +795,7 @@ M. musculus	complete	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	21
 M. musculus	complete	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	21409	20846	0	20764	19163	82	0	645	0.9699	0.9961	0.9828	0.8951	0.9193	0.907	829.5
 M. musculus	complete	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	21409	21285	0	21234	19610	51	0	175	0.9918	0.9976	0.9947	0.916	0.9213	0.9186	2576.5
 M. musculus	complete	perl_td_v600	TransDecoder v6.0.0	yes	21409	20795	0	20683	16751	112	0	726	0.9661	0.9946	0.9801	0.7824	0.8055	0.7938	634.8
+M. musculus	complete	td2	TD2 1.1.0	yes	21409	20912	0	20875	19839	37	0	534	0.9751	0.9982	0.9865	0.9267	0.9487	0.9375	421.9
 M. musculus	complete	prodigal	Prodigal 2.6.3	yes	21409	24406	0	20882	14423	3524	0	527	0.9754	0.8556	0.9116	0.6737	0.591	0.6296	60.0
 M. musculus	complete	gmst	GeneMarkS-T 5.1	yes	21409	20958	0	20890	16587	68	0	519	0.9758	0.9968	0.9861	0.7748	0.7914	0.783	73.2
 M. musculus	complete	codan	CodAn 1.1	yes	21409	20471	0	20403	17388	68	0	1006	0.953	0.9967	0.9744	0.8122	0.8494	0.8304	27116.2
@@ -742,6 +808,7 @@ M. musculus	complete.unstranded	pytd_v7	TransDecoder release (PyTransDecoder v0.
 M. musculus	complete.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	21409	20812	0	20623	19031	189	0	786	0.9633	0.9909	0.9769	0.8889	0.9144	0.9015	1216.8
 M. musculus	complete.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	21409	21287	0	21205	19574	82	0	204	0.9905	0.9961	0.9933	0.9143	0.9195	0.9169	3525.1
 M. musculus	complete.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	21409	20911	0	20643	16722	268	0	766	0.9642	0.9872	0.9756	0.7811	0.7997	0.7903	799.4
+M. musculus	complete.unstranded	td2	TD2 1.1.0	yes	21409	20974	0	20777	19751	197	0	632	0.9705	0.9906	0.9804	0.9226	0.9417	0.932	556.9
 M. musculus	complete.unstranded	prodigal	Prodigal 2.6.3	yes	21409	27324	0	20883	14429	6441	0	526	0.9754	0.7643	0.857	0.674	0.5281	0.5922	82.0
 M. musculus	complete.unstranded	gmst	GeneMarkS-T 5.1	yes	21409	21022	0	20814	17015	208	0	595	0.9722	0.9901	0.9811	0.7948	0.8094	0.802	71.8
 M. musculus	complete.unstranded	codan	CodAn 1.1	yes	21409	20588	0	20373	17362	215	0	1036	0.9516	0.9896	0.9702	0.811	0.8433	0.8268	50443.8
@@ -753,6 +820,7 @@ M. musculus	complete.unstranded.wRand	pytd_v7	TransDecoder release (PyTransDecod
 M. musculus	complete.unstranded.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	21409	20862	54	20622	19030	240	54	787	0.9632	0.9885	0.9757	0.8889	0.9122	0.9004	2014.3
 M. musculus	complete.unstranded.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	21409	21342	55	21205	19574	137	55	204	0.9905	0.9936	0.992	0.9143	0.9172	0.9157	4764.3
 M. musculus	complete.unstranded.wRand	perl_td_v600	TransDecoder v6.0.0	yes	21409	20983	72	20643	16722	340	72	766	0.9642	0.9838	0.9739	0.7811	0.7969	0.7889	854.3
+M. musculus	complete.unstranded.wRand	td2	TD2 1.1.0	yes	21409	25139	4165	20777	19751	4362	4165	632	0.9705	0.8265	0.8927	0.9226	0.7857	0.8486	632.3
 M. musculus	complete.unstranded.wRand	prodigal	Prodigal 2.6.3	yes	21409	44537	17213	20883	14429	23654	17213	526	0.9754	0.4689	0.6333	0.674	0.324	0.4376	90.6
 M. musculus	complete.unstranded.wRand	gmst	GeneMarkS-T 5.1	yes	21409	21050	25	20808	17196	242	25	601	0.9719	0.9885	0.9801	0.8032	0.8169	0.81	140.5
 M. musculus	complete.unstranded.wRand	codan	CodAn 1.1	yes	21409	22599	2011	20373	17362	2226	2011	1036	0.9516	0.9015	0.9259	0.811	0.7683	0.789	357336.9
@@ -763,6 +831,7 @@ M. musculus	complete.unstranded.wRand	longest_orf	longest ORF baseline	yes	21409
 M. musculus	complete.wLnc	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	21409	22274	0	20565	18973	1709	0	844	0.9606	0.9233	0.9416	0.8862	0.8518	0.8687	473.7
 M. musculus	complete.wLnc	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	21409	22274	0	20565	18973	1709	0	844	0.9606	0.9233	0.9416	0.8862	0.8518	0.8687	1265.2
 M. musculus	complete.wLnc	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	21409	23711	0	21211	19576	2500	0	198	0.9908	0.8946	0.9402	0.9144	0.8256	0.8677	3302.1
+M. musculus	complete.wLnc	td2	TD2 1.1.0	yes	21409	25393	0	20875	19839	4518	0	534	0.9751	0.8221	0.8921	0.9267	0.7813	0.8478	472.1
 M. musculus	complete.wLnc	prodigal	Prodigal 2.6.3	yes	21409	37704	0	20882	14423	16822	0	527	0.9754	0.5538	0.7065	0.6737	0.3825	0.488	76.5
 M. musculus	complete.wLnc	gmst	GeneMarkS-T 5.1	yes	21409	27469	0	20898	16584	6571	0	511	0.9761	0.7608	0.8551	0.7746	0.6037	0.6786	147.5
 M. musculus	complete.wLnc	cpat	CPAT 3.0.5	yes	21409	22406	0	20582	19640	1824	0	827	0.9614	0.9186	0.9395	0.9174	0.8766	0.8965	77.6
@@ -773,6 +842,7 @@ M. musculus	complete.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	
 M. musculus	complete.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	21409	20883	42	20761	19160	122	42	648	0.9697	0.9942	0.9818	0.895	0.9175	0.9061	1356.7
 M. musculus	complete.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	21409	21326	42	21233	19609	93	42	176	0.9918	0.9956	0.9937	0.9159	0.9195	0.9177	3280.9
 M. musculus	complete.wRand	perl_td_v600	TransDecoder v6.0.0	yes	21409	20846	56	20682	16752	164	56	727	0.966	0.9921	0.9789	0.7825	0.8036	0.7929	510.1
+M. musculus	complete.wRand	td2	TD2 1.1.0	yes	21409	23202	2290	20875	19839	2327	2290	534	0.9751	0.8997	0.9359	0.9267	0.8551	0.8894	471.9
 M. musculus	complete.wRand	prodigal	Prodigal 2.6.3	yes	21409	33102	8696	20882	14423	12220	8696	527	0.9754	0.6308	0.7662	0.6737	0.4357	0.5292	64.1
 M. musculus	complete.wRand	gmst	GeneMarkS-T 5.1	yes	21409	20976	16	20892	16749	84	16	517	0.9759	0.996	0.9858	0.7823	0.7985	0.7903	114.0
 M. musculus	complete.wRand	codan	CodAn 1.1	yes	21409	21575	1104	20403	17388	1172	1104	1006	0.953	0.9457	0.9493	0.8122	0.8059	0.809	165426.5
@@ -785,6 +855,7 @@ M. musculus	complete_fullutr	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0
 M. musculus	complete_fullutr	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	21409	20574	0	20449	18839	125	0	960	0.9552	0.9939	0.9742	0.88	0.9157	0.8975	1175.7
 M. musculus	complete_fullutr	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	21409	21275	0	21187	19535	88	0	222	0.9896	0.9959	0.9927	0.9125	0.9182	0.9153	3013.0
 M. musculus	complete_fullutr	perl_td_v600	TransDecoder v6.0.0	yes	21409	24183	0	20680	17020	3503	0	729	0.9659	0.8551	0.9072	0.795	0.7038	0.7466	663.1
+M. musculus	complete_fullutr	td2	TD2 1.1.0	yes	21409	20945	0	20803	19713	142	0	606	0.9717	0.9932	0.9823	0.9208	0.9412	0.9309	424.9
 M. musculus	complete_fullutr	prodigal	Prodigal 2.6.3	yes	21409	31461	0	20972	14901	10489	0	437	0.9796	0.6666	0.7933	0.696	0.4736	0.5637	72.8
 M. musculus	complete_fullutr	gmst	GeneMarkS-T 5.1	yes	21409	21034	0	20864	15832	170	0	545	0.9745	0.9919	0.9832	0.7395	0.7527	0.746	88.5
 M. musculus	complete_fullutr	codan	CodAn 1.1	yes	21409	20591	0	20468	17675	123	0	941	0.956	0.994	0.9747	0.8256	0.8584	0.8417	35810.6
@@ -797,6 +868,7 @@ M. musculus	complete_fullutr.unstranded	pytd_v7	TransDecoder release (PyTransDec
 M. musculus	complete_fullutr.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	21409	20631	0	20356	18761	275	0	1053	0.9508	0.9867	0.9684	0.8763	0.9094	0.8925	1712.3
 M. musculus	complete_fullutr.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	21409	21286	0	21143	19498	143	0	266	0.9876	0.9933	0.9904	0.9107	0.916	0.9134	4288.5
 M. musculus	complete_fullutr.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	21409	27315	0	20623	16941	6692	0	786	0.9633	0.755	0.8465	0.7913	0.6202	0.6954	976.1
+M. musculus	complete_fullutr.unstranded	td2	TD2 1.1.0	yes	21409	21022	0	20657	19579	365	0	752	0.9649	0.9826	0.9737	0.9145	0.9314	0.9229	584.1
 M. musculus	complete_fullutr.unstranded	prodigal	Prodigal 2.6.3	yes	21409	40294	0	20972	14913	19322	0	437	0.9796	0.5205	0.6798	0.6966	0.3701	0.4834	63.2
 M. musculus	complete_fullutr.unstranded	gmst	GeneMarkS-T 5.1	yes	21409	21122	0	20734	16032	388	0	675	0.9685	0.9816	0.975	0.7488	0.759	0.7539	91.7
 M. musculus	complete_fullutr.unstranded	codan	CodAn 1.1	yes	21409	20710	0	20371	17595	339	0	1038	0.9515	0.9836	0.9673	0.8219	0.8496	0.8355	66563.4
@@ -808,6 +880,7 @@ M. musculus	fragments	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	2
 M. musculus	fragments	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	21409	18761	0	18646	16429	115	0	2763	0.8709	0.9939	0.9284	0.7674	0.8757	0.818	492.6
 M. musculus	fragments	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	21409	20134	0	20077	17631	57	0	1332	0.9378	0.9972	0.9666	0.8235	0.8757	0.8488	1330.3
 M. musculus	fragments	perl_td_v600	TransDecoder v6.0.0	yes	21409	16749	0	16620	14115	129	0	4789	0.7763	0.9923	0.8711	0.6593	0.8427	0.7398	240.5
+M. musculus	fragments	td2	TD2 1.1.0	yes	21409	17326	0	17232	8390	94	0	4177	0.8049	0.9946	0.8897	0.3919	0.4842	0.4332	196.7
 M. musculus	fragments	prodigal	Prodigal 2.6.3	yes	21409	22890	0	20368	17078	2522	0	1041	0.9514	0.8898	0.9196	0.7977	0.7461	0.771	28.7
 M. musculus	fragments	gmst	GeneMarkS-T 5.1	yes	21409	16722	0	16509	14273	213	0	4900	0.7711	0.9873	0.8659	0.6667	0.8535	0.7486	49.3
 M. musculus	fragments	codan	CodAn 1.1	yes	21409	18433	0	18168	15409	265	0	3241	0.8486	0.9856	0.912	0.7197	0.8359	0.7735	18001.0
@@ -820,6 +893,7 @@ M. musculus	fragments.unstranded	pytd_v7	TransDecoder release (PyTransDecoder v0
 M. musculus	fragments.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	21409	18453	0	18106	15978	347	0	3303	0.8457	0.9812	0.9084	0.7463	0.8659	0.8017	752.4
 M. musculus	fragments.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	21409	20140	0	20028	17602	112	0	1381	0.9355	0.9944	0.9641	0.8222	0.874	0.8473	1837.4
 M. musculus	fragments.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	21409	17068	0	16555	14064	513	0	4854	0.7733	0.9699	0.8605	0.6569	0.824	0.731	271.6
+M. musculus	fragments.unstranded	td2	TD2 1.1.0	yes	21409	17472	0	17152	8331	320	0	4257	0.8012	0.9817	0.8823	0.3891	0.4768	0.4285	263.7
 M. musculus	fragments.unstranded	prodigal	Prodigal 2.6.3	yes	21409	24961	0	20376	17083	4585	0	1033	0.9517	0.8163	0.8788	0.7979	0.6844	0.7368	30.8
 M. musculus	fragments.unstranded	gmst	GeneMarkS-T 5.1	yes	21409	17021	0	16437	13450	584	0	4972	0.7678	0.9657	0.8554	0.6282	0.7902	0.7	52.8
 M. musculus	fragments.unstranded	codan	CodAn 1.1	yes	21409	18697	0	18012	15292	685	0	3397	0.8413	0.9634	0.8982	0.7143	0.8179	0.7626	34874.7
@@ -831,6 +905,7 @@ M. musculus	fragments.unstranded.wRand	pytd_v7	TransDecoder release (PyTransDeco
 M. musculus	fragments.unstranded.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	21409	18447	52	18054	15936	393	52	3355	0.8433	0.9787	0.906	0.7444	0.8639	0.7997	883.0
 M. musculus	fragments.unstranded.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	21409	20188	52	20024	17600	164	52	1385	0.9353	0.9919	0.9628	0.8221	0.8718	0.8462	2351.9
 M. musculus	fragments.unstranded.wRand	perl_td_v600	TransDecoder v6.0.0	yes	21409	17098	30	16555	14064	543	30	4854	0.7733	0.9682	0.8598	0.6569	0.8226	0.7305	313.0
+M. musculus	fragments.unstranded.wRand	td2	TD2 1.1.0	yes	21409	19369	1897	17151	8330	2218	1897	4258	0.8011	0.8855	0.8412	0.3891	0.4301	0.4086	331.4
 M. musculus	fragments.unstranded.wRand	prodigal	Prodigal 2.6.3	yes	21409	43610	16126	20458	17265	23152	16126	951	0.9556	0.4691	0.6293	0.8064	0.3959	0.5311	45.5
 M. musculus	fragments.unstranded.wRand	gmst	GeneMarkS-T 5.1	yes	21409	17013	7	16401	13422	612	7	5008	0.7661	0.964	0.8537	0.6269	0.7889	0.6987	97.4
 M. musculus	fragments.unstranded.wRand	codan	CodAn 1.1	yes	21409	21649	2952	18012	15292	3637	2952	3397	0.8413	0.832	0.8366	0.7143	0.7064	0.7103	255795.0
@@ -841,6 +916,7 @@ M. musculus	fragments.unstranded.wRand	longest_orf	longest ORF baseline	yes	2140
 M. musculus	fragments.wLnc	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	21409	20239	0	18250	16094	1989	0	3159	0.8524	0.9017	0.8764	0.7517	0.7952	0.7729	294.3
 M. musculus	fragments.wLnc	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	21409	20239	0	18250	16094	1989	0	3159	0.8524	0.9017	0.8764	0.7517	0.7952	0.7729	788.1
 M. musculus	fragments.wLnc	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	21409	22770	0	20028	17581	2742	0	1381	0.9355	0.8796	0.9067	0.8212	0.7721	0.7959	1989.3
+M. musculus	fragments.wLnc	td2	TD2 1.1.0	yes	21409	21807	0	17231	8389	4576	0	4178	0.8048	0.7902	0.7974	0.3918	0.3847	0.3882	292.9
 M. musculus	fragments.wLnc	prodigal	Prodigal 2.6.3	yes	21409	46785	0	20445	17208	26340	0	964	0.955	0.437	0.5996	0.8038	0.3678	0.5047	56.2
 M. musculus	fragments.wLnc	gmst	GeneMarkS-T 5.1	yes	21409	23052	0	16388	13394	6664	0	5021	0.7655	0.7109	0.7372	0.6256	0.581	0.6025	137.4
 M. musculus	fragments.wLnc	cpat	CPAT 3.0.5	yes	21409	16558	0	14678	8342	1880	0	6731	0.6856	0.8865	0.7732	0.3896	0.5038	0.4394	49.8
@@ -851,6 +927,7 @@ M. musculus	fragments.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)
 M. musculus	fragments.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	21409	18687	32	18544	16349	143	32	2865	0.8662	0.9923	0.925	0.7637	0.8749	0.8155	578.3
 M. musculus	fragments.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	21409	20156	33	20072	17635	84	33	1337	0.9375	0.9958	0.9658	0.8237	0.8749	0.8486	1556.1
 M. musculus	fragments.wRand	perl_td_v600	TransDecoder v6.0.0	yes	21409	16791	16	16645	14127	146	16	4764	0.7775	0.9913	0.8715	0.6599	0.8413	0.7396	268.6
+M. musculus	fragments.wRand	td2	TD2 1.1.0	yes	21409	18392	1066	17230	8388	1162	1066	4179	0.8048	0.9368	0.8658	0.3918	0.4561	0.4215	235.9
 M. musculus	fragments.wRand	prodigal	Prodigal 2.6.3	yes	21409	32451	8095	20456	17260	11995	8095	953	0.9555	0.6304	0.7596	0.8062	0.5319	0.6409	43.6
 M. musculus	fragments.wRand	gmst	GeneMarkS-T 5.1	yes	21409	16730	3	16513	14346	217	3	4896	0.7713	0.987	0.8659	0.6701	0.8575	0.7523	97.3
 M. musculus	fragments.wRand	codan	CodAn 1.1	yes	21409	20010	1577	18168	15409	1842	1577	3241	0.8486	0.9079	0.8773	0.7197	0.7701	0.7441	119535.3
@@ -862,6 +939,7 @@ M. musculus	fragments.wRand	longest_orf	longest ORF baseline	yes	21409	20341	303
 M. musculus	fragments_mixed_t1	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	21367	20090	0	20006	17262	84	0	1361	0.9363	0.9958	0.9651	0.8079	0.8592	0.8328	207.7
 M. musculus	fragments_mixed_t1	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	21367	20090	0	20006	17262	84	0	1361	0.9363	0.9958	0.9651	0.8079	0.8592	0.8328	541.9
 M. musculus	fragments_mixed_t1	perl_td_v600	TransDecoder v6.0.0	yes	21367	18639	0	18538	15856	101	0	2829	0.8676	0.9946	0.9268	0.7421	0.8507	0.7927	342.3
+M. musculus	fragments_mixed_t1	td2	TD2 1.1.0	yes	21367	18996	0	18962	13622	34	0	2405	0.8874	0.9982	0.9396	0.6375	0.7171	0.675	295.4
 M. musculus	fragments_mixed_t1	prodigal	Prodigal 2.6.3	yes	21367	23096	0	20731	17444	2365	0	636	0.9702	0.8976	0.9325	0.8164	0.7553	0.7847	43.9
 M. musculus	fragments_mixed_t1	gmst	GeneMarkS-T 5.1	yes	21367	18806	0	18729	16282	77	0	2638	0.8765	0.9959	0.9324	0.762	0.8658	0.8106	47.7
 M. musculus	fragments_mixed_t1	codan	CodAn 1.1	yes	21367	19793	0	19641	16489	152	0	1726	0.9192	0.9923	0.9544	0.7717	0.8331	0.8012	17289.2
@@ -873,6 +951,7 @@ M. musculus	fragments_mixed_t1	longest_orf	longest ORF baseline	yes	21367	21362	
 M. musculus	fragments_mixed_t2	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	21357	19959	0	19899	17284	60	0	1458	0.9317	0.997	0.9633	0.8093	0.866	0.8367	212.8
 M. musculus	fragments_mixed_t2	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	21357	19959	0	19899	17284	60	0	1458	0.9317	0.997	0.9633	0.8093	0.866	0.8367	548.1
 M. musculus	fragments_mixed_t2	perl_td_v600	TransDecoder v6.0.0	yes	21357	18687	0	18607	15864	80	0	2750	0.8712	0.9957	0.9293	0.7428	0.8489	0.7923	354.9
+M. musculus	fragments_mixed_t2	td2	TD2 1.1.0	yes	21357	19040	0	18994	13606	46	0	2363	0.8894	0.9976	0.9404	0.6371	0.7146	0.6736	325.3
 M. musculus	fragments_mixed_t2	prodigal	Prodigal 2.6.3	yes	21357	23061	0	20770	17407	2291	0	587	0.9725	0.9007	0.9352	0.815	0.7548	0.7838	43.8
 M. musculus	fragments_mixed_t2	gmst	GeneMarkS-T 5.1	yes	21357	18831	0	18749	16263	82	0	2608	0.8779	0.9956	0.9331	0.7615	0.8636	0.8093	48.8
 M. musculus	fragments_mixed_t2	codan	CodAn 1.1	yes	21357	19780	0	19644	16419	136	0	1713	0.9198	0.9931	0.9551	0.7688	0.8301	0.7983	18780.9
@@ -884,6 +963,7 @@ M. musculus	fragments_mixed_t2	longest_orf	longest ORF baseline	yes	21357	21352	
 M. musculus	fragments_mixed_t3	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	21362	19955	0	19891	17241	64	0	1471	0.9311	0.9968	0.9628	0.8071	0.864	0.8346	213.3
 M. musculus	fragments_mixed_t3	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	21362	19955	0	19891	17241	64	0	1471	0.9311	0.9968	0.9628	0.8071	0.864	0.8346	529.4
 M. musculus	fragments_mixed_t3	perl_td_v600	TransDecoder v6.0.0	yes	21362	18673	0	18577	15800	96	0	2785	0.8696	0.9949	0.928	0.7396	0.8461	0.7893	333.9
+M. musculus	fragments_mixed_t3	td2	TD2 1.1.0	yes	21362	19039	0	18991	13685	48	0	2371	0.889	0.9975	0.9401	0.6406	0.7188	0.6775	287.4
 M. musculus	fragments_mixed_t3	prodigal	Prodigal 2.6.3	yes	21362	23137	0	20770	17438	2367	0	592	0.9723	0.8977	0.9335	0.8163	0.7537	0.7837	43.6
 M. musculus	fragments_mixed_t3	gmst	GeneMarkS-T 5.1	yes	21362	18849	0	18758	16312	91	0	2604	0.8781	0.9952	0.933	0.7636	0.8654	0.8113	48.0
 M. musculus	fragments_mixed_t3	codan	CodAn 1.1	yes	21362	19773	0	19626	16432	147	0	1736	0.9187	0.9926	0.9542	0.7692	0.831	0.7989	19810.4
@@ -896,6 +976,7 @@ H. sapiens	complete	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	191
 H. sapiens	complete	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	19167	18712	0	18672	17423	40	0	495	0.9742	0.9979	0.9859	0.909	0.9311	0.9199	767.4
 H. sapiens	complete	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	19167	19093	0	19066	17789	27	0	101	0.9947	0.9986	0.9967	0.9281	0.9317	0.9299	2442.9
 H. sapiens	complete	perl_td_v600	TransDecoder v6.0.0	yes	19167	18671	0	18630	14277	41	0	537	0.972	0.9978	0.9847	0.7449	0.7647	0.7546	433.0
+H. sapiens	complete	td2	TD2 1.1.0	yes	19167	18718	0	18682	18191	36	0	485	0.9747	0.9981	0.9862	0.9491	0.9718	0.9603	473.8
 H. sapiens	complete	prodigal	Prodigal 2.6.3	yes	19167	21480	0	18834	10755	2646	0	333	0.9826	0.8768	0.9267	0.5611	0.5007	0.5292	49.5
 H. sapiens	complete	gmst	GeneMarkS-T 5.1	yes	19167	18763	0	18712	14339	51	0	455	0.9763	0.9973	0.9867	0.7481	0.7642	0.7561	56.7
 H. sapiens	complete	codan	CodAn 1.1	yes	19167	18476	0	18444	16168	32	0	723	0.9623	0.9983	0.9799	0.8435	0.8751	0.859	23356.4
@@ -908,6 +989,7 @@ H. sapiens	complete.unstranded	pytd_v7	TransDecoder release (PyTransDecoder v0.2
 H. sapiens	complete.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	19167	18665	0	18574	17337	91	0	593	0.9691	0.9951	0.9819	0.9045	0.9289	0.9165	1148.6
 H. sapiens	complete.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	19167	19084	0	19051	17778	33	0	116	0.9939	0.9983	0.9961	0.9275	0.9316	0.9295	3557.6
 H. sapiens	complete.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	19167	18742	0	18603	14350	139	0	564	0.9706	0.9926	0.9815	0.7487	0.7657	0.7571	595.8
+H. sapiens	complete.unstranded	td2	TD2 1.1.0	yes	19167	18755	0	18653	18165	102	0	514	0.9732	0.9946	0.9838	0.9477	0.9685	0.958	573.3
 H. sapiens	complete.unstranded	prodigal	Prodigal 2.6.3	yes	19167	23699	0	18834	10809	4865	0	333	0.9826	0.7947	0.8787	0.5639	0.4561	0.5043	53.5
 H. sapiens	complete.unstranded	gmst	GeneMarkS-T 5.1	yes	19167	18804	0	18684	14994	120	0	483	0.9748	0.9936	0.9841	0.7823	0.7974	0.7898	63.9
 H. sapiens	complete.unstranded	codan	CodAn 1.1	yes	19167	18519	0	18431	16161	88	0	736	0.9616	0.9952	0.9781	0.8432	0.8727	0.8577	45537.6
@@ -919,6 +1001,7 @@ H. sapiens	complete.unstranded.wRand	pytd_v7	TransDecoder release (PyTransDecode
 H. sapiens	complete.unstranded.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	19167	18825	170	18566	17330	259	170	601	0.9686	0.9862	0.9774	0.9042	0.9206	0.9123	1963.6
 H. sapiens	complete.unstranded.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	19167	19255	172	19050	17777	205	172	117	0.9939	0.9894	0.9916	0.9275	0.9232	0.9254	4973.9
 H. sapiens	complete.unstranded.wRand	perl_td_v600	TransDecoder v6.0.0	yes	19167	18934	192	18603	14350	331	192	564	0.9706	0.9825	0.9765	0.7487	0.7579	0.7533	745.8
+H. sapiens	complete.unstranded.wRand	td2	TD2 1.1.0	yes	19167	22400	3645	18653	18165	3747	3645	514	0.9732	0.8327	0.8975	0.9477	0.8109	0.874	694.6
 H. sapiens	complete.unstranded.wRand	prodigal	Prodigal 2.6.3	yes	19167	38331	14632	18834	10809	19497	14632	333	0.9826	0.4914	0.6551	0.5639	0.282	0.376	71.3
 H. sapiens	complete.unstranded.wRand	gmst	GeneMarkS-T 5.1	yes	19167	18830	18	18676	15317	154	18	491	0.9744	0.9918	0.983	0.7991	0.8134	0.8062	122.1
 H. sapiens	complete.unstranded.wRand	codan	CodAn 1.1	yes	19167	20574	2055	18431	16161	2143	2055	736	0.9616	0.8958	0.9276	0.8432	0.7855	0.8133	246714.3
@@ -929,6 +1012,7 @@ H. sapiens	complete.unstranded.wRand	longest_orf	longest ORF baseline	yes	19167	
 H. sapiens	complete.wLnc	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	19167	20148	0	18486	17241	1662	0	681	0.9645	0.9175	0.9404	0.8995	0.8557	0.8771	457.1
 H. sapiens	complete.wLnc	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	19167	20148	0	18486	17241	1662	0	681	0.9645	0.9175	0.9404	0.8995	0.8557	0.8771	1382.7
 H. sapiens	complete.wLnc	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	19167	22350	0	19057	17769	3293	0	110	0.9943	0.8527	0.918	0.9271	0.795	0.856	3704.8
+H. sapiens	complete.wLnc	td2	TD2 1.1.0	yes	19167	23852	0	18682	18191	5170	0	485	0.9747	0.7832	0.8685	0.9491	0.7627	0.8457	521.6
 H. sapiens	complete.wLnc	prodigal	Prodigal 2.6.3	yes	19167	36219	0	18834	10755	17385	0	333	0.9826	0.52	0.6801	0.5611	0.2969	0.3884	76.6
 H. sapiens	complete.wLnc	gmst	GeneMarkS-T 5.1	yes	19167	27068	0	18724	13578	8344	0	443	0.9769	0.6917	0.8099	0.7084	0.5016	0.5873	147.9
 H. sapiens	complete.wLnc	cpat	CPAT 3.0.5	yes	19167	22316	0	18773	18393	3543	0	394	0.9794	0.8412	0.9051	0.9596	0.8242	0.8868	72.4
@@ -939,6 +1023,7 @@ H. sapiens	complete.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	y
 H. sapiens	complete.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	19167	18829	113	18678	17431	151	113	489	0.9745	0.992	0.9832	0.9094	0.9258	0.9175	1319.4
 H. sapiens	complete.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	19167	19205	113	19066	17792	139	113	101	0.9947	0.9928	0.9937	0.9283	0.9264	0.9273	3409.3
 H. sapiens	complete.wRand	perl_td_v600	TransDecoder v6.0.0	yes	19167	18787	113	18634	14280	153	113	533	0.9722	0.9919	0.9819	0.745	0.7601	0.7525	600.5
+H. sapiens	complete.wRand	td2	TD2 1.1.0	yes	19167	20760	2042	18682	18191	2078	2042	485	0.9747	0.8999	0.9358	0.9491	0.8763	0.9112	508.3
 H. sapiens	complete.wRand	prodigal	Prodigal 2.6.3	yes	19167	28903	7423	18834	10755	10069	7423	333	0.9826	0.6516	0.7836	0.5611	0.3721	0.4475	66.4
 H. sapiens	complete.wRand	gmst	GeneMarkS-T 5.1	yes	19167	18773	7	18714	14539	59	7	453	0.9764	0.9969	0.9865	0.7585	0.7745	0.7664	115.2
 H. sapiens	complete.wRand	codan	CodAn 1.1	yes	19167	19577	1101	18444	16168	1133	1101	723	0.9623	0.9421	0.9521	0.8435	0.8259	0.8346	86675.7
@@ -951,6 +1036,7 @@ H. sapiens	complete_fullutr	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)
 H. sapiens	complete_fullutr	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	19167	18544	0	18462	17227	82	0	705	0.9632	0.9956	0.9791	0.8988	0.929	0.9136	1107.5
 H. sapiens	complete_fullutr	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	19167	19095	0	19037	17770	58	0	130	0.9932	0.997	0.9951	0.9271	0.9306	0.9289	2992.2
 H. sapiens	complete_fullutr	perl_td_v600	TransDecoder v6.0.0	yes	19167	21940	0	18619	14553	3321	0	548	0.9714	0.8486	0.9059	0.7593	0.6633	0.7081	503.1
+H. sapiens	complete_fullutr	td2	TD2 1.1.0	yes	19167	18758	0	18660	18163	98	0	507	0.9735	0.9948	0.984	0.9476	0.9683	0.9578	462.1
 H. sapiens	complete_fullutr	prodigal	Prodigal 2.6.3	yes	19167	29374	0	18901	10750	10473	0	266	0.9861	0.6435	0.7788	0.5609	0.366	0.4429	55.4
 H. sapiens	complete_fullutr	gmst	GeneMarkS-T 5.1	yes	19167	18827	0	18677	12283	150	0	490	0.9744	0.992	0.9832	0.6408	0.6524	0.6466	71.4
 H. sapiens	complete_fullutr	codan	CodAn 1.1	yes	19167	18564	0	18509	16417	55	0	658	0.9657	0.997	0.9811	0.8565	0.8843	0.8702	31660.9
@@ -963,6 +1049,7 @@ H. sapiens	complete_fullutr.unstranded	pytd_v7	TransDecoder release (PyTransDeco
 H. sapiens	complete_fullutr.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	19167	18443	0	18308	17099	135	0	859	0.9552	0.9927	0.9736	0.8921	0.9271	0.9093	1574.9
 H. sapiens	complete_fullutr.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	19167	19089	0	19022	17764	67	0	145	0.9924	0.9965	0.9945	0.9268	0.9306	0.9287	4281.4
 H. sapiens	complete_fullutr.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	19167	24768	0	18584	14509	6184	0	583	0.9696	0.7503	0.846	0.757	0.5858	0.6605	670.5
+H. sapiens	complete_fullutr.unstranded	td2	TD2 1.1.0	yes	19167	18809	0	18614	18122	195	0	553	0.9711	0.9896	0.9803	0.9455	0.9635	0.9544	604.7
 H. sapiens	complete_fullutr.unstranded	prodigal	Prodigal 2.6.3	yes	19167	38021	0	18899	10785	19122	0	268	0.986	0.4971	0.6609	0.5627	0.2837	0.3772	56.3
 H. sapiens	complete_fullutr.unstranded	gmst	GeneMarkS-T 5.1	yes	19167	18883	0	18612	13046	271	0	555	0.971	0.9856	0.9783	0.6806	0.6909	0.6857	76.8
 H. sapiens	complete_fullutr.unstranded	codan	CodAn 1.1	yes	19167	18619	0	18482	16400	137	0	685	0.9643	0.9926	0.9782	0.8556	0.8808	0.868	61779.3
@@ -974,6 +1061,7 @@ H. sapiens	fragments	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	19
 H. sapiens	fragments	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	19167	17059	0	16998	14945	61	0	2169	0.8868	0.9964	0.9384	0.7797	0.8761	0.8251	487.2
 H. sapiens	fragments	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	19167	18201	0	18159	15899	42	0	1008	0.9474	0.9977	0.9719	0.8295	0.8735	0.8509	1294.2
 H. sapiens	fragments	perl_td_v600	TransDecoder v6.0.0	yes	19167	15394	0	15315	12370	79	0	3852	0.799	0.9949	0.8863	0.6454	0.8036	0.7158	294.3
+H. sapiens	fragments	td2	TD2 1.1.0	yes	19167	15638	0	15573	6462	65	0	3594	0.8125	0.9958	0.8949	0.3371	0.4132	0.3713	186.2
 H. sapiens	fragments	prodigal	Prodigal 2.6.3	yes	19167	20180	0	18357	14125	1823	0	810	0.9577	0.9097	0.9331	0.7369	0.7	0.718	29.3
 H. sapiens	fragments	gmst	GeneMarkS-T 5.1	yes	19167	15309	0	15163	12955	146	0	4004	0.7911	0.9905	0.8796	0.6759	0.8462	0.7515	48.8
 H. sapiens	fragments	codan	CodAn 1.1	yes	19167	16918	0	16770	13085	148	0	2397	0.8749	0.9913	0.9295	0.6827	0.7734	0.7252	18994.6
@@ -986,6 +1074,7 @@ H. sapiens	fragments.unstranded	pytd_v7	TransDecoder release (PyTransDecoder v0.
 H. sapiens	fragments.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	19167	16756	0	16552	14612	204	0	2615	0.8636	0.9878	0.9215	0.7624	0.872	0.8135	722.5
 H. sapiens	fragments.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	19167	18204	0	18127	15895	77	0	1040	0.9457	0.9958	0.9701	0.8293	0.8732	0.8507	1743.7
 H. sapiens	fragments.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	19167	15640	0	15252	12332	388	0	3915	0.7957	0.9752	0.8764	0.6434	0.7885	0.7086	321.0
+H. sapiens	fragments.unstranded	td2	TD2 1.1.0	yes	19167	15749	0	15520	6432	229	0	3647	0.8097	0.9855	0.889	0.3356	0.4084	0.3684	265.0
 H. sapiens	fragments.unstranded	prodigal	Prodigal 2.6.3	yes	19167	21760	0	18359	14131	3401	0	808	0.9578	0.8437	0.8972	0.7373	0.6494	0.6905	39.2
 H. sapiens	fragments.unstranded	gmst	GeneMarkS-T 5.1	yes	19167	15537	0	15140	12403	397	0	4027	0.7899	0.9744	0.8725	0.6471	0.7983	0.7148	54.6
 H. sapiens	fragments.unstranded	codan	CodAn 1.1	yes	19167	17043	0	16682	13031	361	0	2485	0.8704	0.9788	0.9214	0.6799	0.7646	0.7197	34030.0
@@ -997,6 +1086,7 @@ H. sapiens	fragments.unstranded.wRand	pytd_v7	TransDecoder release (PyTransDecod
 H. sapiens	fragments.unstranded.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	19167	16800	67	16534	14585	266	67	2633	0.8626	0.9842	0.9194	0.7609	0.8682	0.811	852.9
 H. sapiens	fragments.unstranded.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	19167	18262	68	18123	15891	139	68	1044	0.9455	0.9924	0.9684	0.8291	0.8702	0.8491	2363.6
 H. sapiens	fragments.unstranded.wRand	perl_td_v600	TransDecoder v6.0.0	yes	19167	15704	64	15252	12332	452	64	3915	0.7957	0.9712	0.8748	0.6434	0.7853	0.7073	401.4
+H. sapiens	fragments.unstranded.wRand	td2	TD2 1.1.0	yes	19167	17553	1804	15520	6433	2033	1804	3647	0.8097	0.8842	0.8453	0.3356	0.3665	0.3504	336.3
 H. sapiens	fragments.unstranded.wRand	prodigal	Prodigal 2.6.3	yes	19167	39994	15667	18411	14202	21583	15667	756	0.9606	0.4603	0.6224	0.741	0.3551	0.4801	57.1
 H. sapiens	fragments.unstranded.wRand	gmst	GeneMarkS-T 5.1	yes	19167	15476	4	15060	12348	416	4	4107	0.7857	0.9731	0.8694	0.6442	0.7979	0.7129	110.6
 H. sapiens	fragments.unstranded.wRand	codan	CodAn 1.1	yes	19167	19934	2891	16682	13031	3252	2891	2485	0.8704	0.8369	0.8533	0.6799	0.6537	0.6665	147452.1
@@ -1007,6 +1097,7 @@ H. sapiens	fragments.unstranded.wRand	longest_orf	longest ORF baseline	yes	19167
 H. sapiens	fragments.wLnc	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	19167	18529	0	16564	14577	1965	0	2603	0.8642	0.894	0.8788	0.7605	0.7867	0.7734	300.9
 H. sapiens	fragments.wLnc	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	19167	18529	0	16564	14577	1965	0	2603	0.8642	0.894	0.8788	0.7605	0.7867	0.7734	930.4
 H. sapiens	fragments.wLnc	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	19167	21688	0	18132	15841	3556	0	1035	0.946	0.836	0.8876	0.8265	0.7304	0.7755	2185.2
+H. sapiens	fragments.wLnc	td2	TD2 1.1.0	yes	19167	20772	0	15574	6463	5198	0	3593	0.8125	0.7498	0.7799	0.3372	0.3111	0.3236	291.3
 H. sapiens	fragments.wLnc	prodigal	Prodigal 2.6.3	yes	19167	48026	0	18400	14170	29626	0	767	0.96	0.3831	0.5477	0.7393	0.295	0.4218	56.0
 H. sapiens	fragments.wLnc	gmst	GeneMarkS-T 5.1	yes	19167	25130	0	15368	11869	9762	0	3799	0.8018	0.6115	0.6939	0.6192	0.4723	0.5359	130.2
 H. sapiens	fragments.wLnc	cpat	CPAT 3.0.5	yes	19167	18874	0	15190	8728	3684	0	3977	0.7925	0.8048	0.7986	0.4554	0.4624	0.4589	47.0
@@ -1017,6 +1108,7 @@ H. sapiens	fragments.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	
 H. sapiens	fragments.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	19167	17096	44	16988	14946	108	44	2179	0.8863	0.9937	0.9369	0.7798	0.8742	0.8243	556.7
 H. sapiens	fragments.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	19167	18248	44	18159	15907	89	44	1008	0.9474	0.9951	0.9707	0.8299	0.8717	0.8503	1612.3
 H. sapiens	fragments.wRand	perl_td_v600	TransDecoder v6.0.0	yes	19167	15418	23	15316	12372	102	23	3851	0.7991	0.9934	0.8857	0.6455	0.8024	0.7155	330.7
+H. sapiens	fragments.wRand	td2	TD2 1.1.0	yes	19167	16568	930	15573	6462	995	930	3594	0.8125	0.9399	0.8716	0.3371	0.39	0.3617	237.7
 H. sapiens	fragments.wRand	prodigal	Prodigal 2.6.3	yes	19167	29619	8054	18404	14198	11215	8054	763	0.9602	0.6214	0.7545	0.7408	0.4794	0.5821	48.1
 H. sapiens	fragments.wRand	gmst	GeneMarkS-T 5.1	yes	19167	15279	4	15136	12963	143	4	4031	0.7897	0.9906	0.8788	0.6763	0.8484	0.7527	117.1
 H. sapiens	fragments.wRand	codan	CodAn 1.1	yes	19167	18549	1631	16770	13085	1779	1631	2397	0.8749	0.9041	0.8893	0.6827	0.7054	0.6939	64633.4
@@ -1028,6 +1120,7 @@ H. sapiens	fragments.wRand	longest_orf	longest ORF baseline	yes	19167	19075	3277
 H. sapiens	fragments_mixed_t1	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	19127	18086	0	18062	15799	24	0	1065	0.9443	0.9987	0.9707	0.826	0.8735	0.8491	200.9
 H. sapiens	fragments_mixed_t1	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	19127	18086	0	18062	15799	24	0	1065	0.9443	0.9987	0.9707	0.826	0.8735	0.8491	514.5
 H. sapiens	fragments_mixed_t1	perl_td_v600	TransDecoder v6.0.0	yes	19127	16890	0	16850	13945	40	0	2277	0.881	0.9976	0.9357	0.7291	0.8256	0.7744	340.0
+H. sapiens	fragments_mixed_t1	td2	TD2 1.1.0	yes	19127	17042	0	17009	11762	33	0	2118	0.8893	0.9981	0.9405	0.6149	0.6902	0.6504	275.7
 H. sapiens	fragments_mixed_t1	prodigal	Prodigal 2.6.3	yes	19127	20277	0	18715	14402	1562	0	412	0.9785	0.923	0.9499	0.753	0.7103	0.731	39.3
 H. sapiens	fragments_mixed_t1	gmst	GeneMarkS-T 5.1	yes	19127	16997	0	16925	14419	72	0	2202	0.8849	0.9958	0.9371	0.7539	0.8483	0.7983	43.7
 H. sapiens	fragments_mixed_t1	codan	CodAn 1.1	yes	19127	17986	0	17893	13763	93	0	1234	0.9355	0.9948	0.9642	0.7196	0.7652	0.7417	14903.1
@@ -1039,6 +1132,7 @@ H. sapiens	fragments_mixed_t1	longest_orf	longest ORF baseline	yes	19127	19125	0
 H. sapiens	fragments_mixed_t2	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	19137	17988	0	17962	15789	26	0	1175	0.9386	0.9986	0.9676	0.8251	0.8778	0.8506	204.3
 H. sapiens	fragments_mixed_t2	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	19137	17988	0	17962	15789	26	0	1175	0.9386	0.9986	0.9676	0.8251	0.8778	0.8506	518.3
 H. sapiens	fragments_mixed_t2	perl_td_v600	TransDecoder v6.0.0	yes	19137	16936	0	16895	14047	41	0	2242	0.8828	0.9976	0.9367	0.734	0.8294	0.7788	335.3
+H. sapiens	fragments_mixed_t2	td2	TD2 1.1.0	yes	19137	17091	0	17067	11838	24	0	2070	0.8918	0.9986	0.9422	0.6186	0.6926	0.6535	291.8
 H. sapiens	fragments_mixed_t2	prodigal	Prodigal 2.6.3	yes	19137	20297	0	18699	14447	1598	0	438	0.9771	0.9213	0.9484	0.7549	0.7118	0.7327	39.4
 H. sapiens	fragments_mixed_t2	gmst	GeneMarkS-T 5.1	yes	19137	17018	0	16945	14500	73	0	2192	0.8855	0.9957	0.9374	0.7577	0.852	0.8021	43.0
 H. sapiens	fragments_mixed_t2	codan	CodAn 1.1	yes	19137	17997	0	17908	13864	89	0	1229	0.9358	0.9951	0.9645	0.7245	0.7704	0.7467	14820.4
@@ -1050,6 +1144,7 @@ H. sapiens	fragments_mixed_t2	longest_orf	longest ORF baseline	yes	19137	19132	0
 H. sapiens	fragments_mixed_t3	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	19131	18123	0	18084	15892	39	0	1047	0.9453	0.9978	0.9708	0.8307	0.8769	0.8532	205.9
 H. sapiens	fragments_mixed_t3	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	19131	18123	0	18084	15892	39	0	1047	0.9453	0.9978	0.9708	0.8307	0.8769	0.8532	497.6
 H. sapiens	fragments_mixed_t3	perl_td_v600	TransDecoder v6.0.0	yes	19131	16946	0	16895	13945	51	0	2236	0.8831	0.997	0.9366	0.7289	0.8229	0.7731	321.8
+H. sapiens	fragments_mixed_t3	td2	TD2 1.1.0	yes	19131	17082	0	17042	11779	40	0	2089	0.8908	0.9977	0.9412	0.6157	0.6896	0.6505	286.3
 H. sapiens	fragments_mixed_t3	prodigal	Prodigal 2.6.3	yes	19131	20333	0	18706	14489	1627	0	425	0.9778	0.92	0.948	0.7574	0.7126	0.7343	39.6
 H. sapiens	fragments_mixed_t3	gmst	GeneMarkS-T 5.1	yes	19131	17027	0	16950	14471	77	0	2181	0.886	0.9955	0.9376	0.7564	0.8499	0.8004	42.6
 H. sapiens	fragments_mixed_t3	codan	CodAn 1.1	yes	19131	18032	0	17937	13889	95	0	1194	0.9376	0.9947	0.9653	0.726	0.7702	0.7475	14317.4
@@ -1062,6 +1157,7 @@ C. reinhardtii	complete	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes
 C. reinhardtii	complete	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	17621	16896	0	16818	12891	78	0	803	0.9544	0.9954	0.9745	0.7316	0.763	0.7469	1058.7
 C. reinhardtii	complete	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	17621	16939	0	16849	12906	90	0	772	0.9562	0.9947	0.9751	0.7324	0.7619	0.7469	3769.9
 C. reinhardtii	complete	perl_td_v600	TransDecoder v6.0.0	yes	17621	16417	0	16379	11398	38	0	1242	0.9295	0.9977	0.9624	0.6468	0.6943	0.6697	487.8
+C. reinhardtii	complete	td2	TD2 1.1.0	yes	17621	16485	0	16406	13051	79	0	1215	0.931	0.9952	0.9621	0.7407	0.7917	0.7653	472.1
 C. reinhardtii	complete	prodigal	Prodigal 2.6.3	yes	17621	18519	0	16884	11798	1635	0	737	0.9582	0.9117	0.9344	0.6695	0.6371	0.6529	50.2
 C. reinhardtii	complete	gmst	GeneMarkS-T 5.1	yes	17621	16548	0	16473	12655	75	0	1148	0.9349	0.9955	0.9642	0.7182	0.7647	0.7407	32.8
 C. reinhardtii	complete	codan	CodAn 1.1	yes	17621	17155	0	17081	13555	74	0	540	0.9694	0.9957	0.9823	0.7693	0.7901	0.7796	18322.3
@@ -1074,6 +1170,7 @@ C. reinhardtii	complete.unstranded	pytd_v7	TransDecoder release (PyTransDecoder 
 C. reinhardtii	complete.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	17621	16907	0	16722	12815	185	0	899	0.949	0.9891	0.9686	0.7273	0.758	0.7423	1799.8
 C. reinhardtii	complete.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	17621	16963	0	16761	12835	202	0	860	0.9512	0.9881	0.9693	0.7284	0.7566	0.7423	5273.2
 C. reinhardtii	complete.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	17621	16506	0	16328	11358	178	0	1293	0.9266	0.9892	0.9569	0.6446	0.6881	0.6656	721.0
+C. reinhardtii	complete.unstranded	td2	TD2 1.1.0	yes	17621	16648	0	16349	13010	299	0	1272	0.9278	0.982	0.9542	0.7383	0.7815	0.7593	799.7
 C. reinhardtii	complete.unstranded	prodigal	Prodigal 2.6.3	yes	17621	19493	0	16880	11814	2613	0	741	0.9579	0.866	0.9096	0.6705	0.6061	0.6366	55.5
 C. reinhardtii	complete.unstranded	gmst	GeneMarkS-T 5.1	yes	17621	16670	0	16423	12690	247	0	1198	0.932	0.9852	0.9579	0.7202	0.7612	0.7401	45.7
 C. reinhardtii	complete.unstranded	codan	CodAn 1.1	yes	17621	17237	0	16945	13444	292	0	676	0.9616	0.9831	0.9722	0.763	0.78	0.7714	39405.2
@@ -1085,6 +1182,7 @@ C. reinhardtii	complete.unstranded.wRand	pytd_v7	TransDecoder release (PyTransDe
 C. reinhardtii	complete.unstranded.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	17621	17027	142	16700	12796	327	142	921	0.9477	0.9808	0.964	0.7262	0.7515	0.7386	3088.4
 C. reinhardtii	complete.unstranded.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	17621	17086	144	16740	12816	346	144	881	0.95	0.9797	0.9646	0.7273	0.7501	0.7385	7409.2
 C. reinhardtii	complete.unstranded.wRand	perl_td_v600	TransDecoder v6.0.0	yes	17621	16607	101	16328	11358	279	101	1293	0.9266	0.9832	0.9541	0.6446	0.6839	0.6637	991.4
+C. reinhardtii	complete.unstranded.wRand	td2	TD2 1.1.0	yes	17621	21515	4867	16348	13010	5167	4867	1273	0.9278	0.7598	0.8354	0.7383	0.6047	0.6649	1196.3
 C. reinhardtii	complete.unstranded.wRand	prodigal	Prodigal 2.6.3	yes	17621	24933	5440	16880	11814	8053	5440	741	0.9579	0.677	0.7933	0.6705	0.4738	0.5552	67.5
 C. reinhardtii	complete.unstranded.wRand	gmst	GeneMarkS-T 5.1	yes	17621	16631	6	16443	12914	188	6	1178	0.9331	0.9887	0.9601	0.7329	0.7765	0.7541	80.9
 C. reinhardtii	complete.unstranded.wRand	codan	CodAn 1.1	yes	17621	28411	11174	16945	13444	11466	11174	676	0.9616	0.5964	0.7362	0.763	0.4732	0.5841	169416.5
@@ -1096,6 +1194,7 @@ C. reinhardtii	complete.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2.
 C. reinhardtii	complete.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	17621	16943	65	16806	12883	137	65	815	0.9537	0.9919	0.9725	0.7311	0.7604	0.7455	1936.3
 C. reinhardtii	complete.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	17621	16989	66	16839	12899	150	66	782	0.9556	0.9912	0.9731	0.732	0.7593	0.7454	4441.8
 C. reinhardtii	complete.wRand	perl_td_v600	TransDecoder v6.0.0	yes	17621	16457	55	16364	11393	93	55	1257	0.9287	0.9943	0.9604	0.6466	0.6923	0.6686	647.5
+C. reinhardtii	complete.wRand	td2	TD2 1.1.0	yes	17621	19160	2675	16406	13051	2754	2675	1215	0.931	0.8563	0.8921	0.7407	0.6812	0.7097	670.1
 C. reinhardtii	complete.wRand	prodigal	Prodigal 2.6.3	yes	17621	21325	2806	16884	11798	4441	2806	737	0.9582	0.7917	0.867	0.6695	0.5532	0.6059	62.1
 C. reinhardtii	complete.wRand	gmst	GeneMarkS-T 5.1	yes	17621	16546	3	16487	12861	59	3	1134	0.9356	0.9964	0.9651	0.7299	0.7773	0.7528	60.0
 C. reinhardtii	complete.wRand	codan	CodAn 1.1	yes	17621	26183	9028	17081	13555	9102	9028	540	0.9694	0.6524	0.7799	0.7693	0.5177	0.6189	90417.1
@@ -1108,6 +1207,7 @@ C. reinhardtii	complete_fullutr	pytd_v7	TransDecoder release (PyTransDecoder v0.
 C. reinhardtii	complete_fullutr	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	17621	16774	0	16647	12597	127	0	974	0.9447	0.9924	0.968	0.7149	0.751	0.7325	1258.7
 C. reinhardtii	complete_fullutr	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	17621	16832	0	16678	12615	154	0	943	0.9465	0.9909	0.9682	0.7159	0.7495	0.7323	4217.7
 C. reinhardtii	complete_fullutr	perl_td_v600	TransDecoder v6.0.0	yes	17621	16753	0	16349	11450	404	0	1272	0.9278	0.9759	0.9512	0.6498	0.6835	0.6662	516.1
+C. reinhardtii	complete_fullutr	td2	TD2 1.1.0	yes	17621	16653	0	16349	12681	304	0	1272	0.9278	0.9817	0.954	0.7197	0.7615	0.74	513.1
 C. reinhardtii	complete_fullutr	prodigal	Prodigal 2.6.3	yes	17621	20088	0	16932	11637	3156	0	689	0.9609	0.8429	0.898	0.6604	0.5793	0.6172	55.3
 C. reinhardtii	complete_fullutr	gmst	GeneMarkS-T 5.1	yes	17621	16666	0	16506	12999	160	0	1115	0.9367	0.9904	0.9628	0.7377	0.78	0.7582	55.0
 C. reinhardtii	complete_fullutr	codan	CodAn 1.1	yes	17621	17253	0	16994	13170	259	0	627	0.9644	0.985	0.9746	0.7474	0.7633	0.7553	21049.6
@@ -1120,6 +1220,7 @@ C. reinhardtii	complete_fullutr.unstranded	pytd_v7	TransDecoder release (PyTrans
 C. reinhardtii	complete_fullutr.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	17621	16920	0	16607	12589	313	0	1014	0.9425	0.9815	0.9616	0.7144	0.744	0.7289	2165.5
 C. reinhardtii	complete_fullutr.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	17621	16995	0	16614	12589	381	0	1007	0.9429	0.9776	0.9599	0.7144	0.7407	0.7274	6465.9
 C. reinhardtii	complete_fullutr.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	17621	17084	0	16288	11471	796	0	1333	0.9244	0.9534	0.9387	0.651	0.6714	0.6611	764.2
+C. reinhardtii	complete_fullutr.unstranded	td2	TD2 1.1.0	yes	17621	16909	0	16236	12596	673	0	1385	0.9214	0.9602	0.9404	0.7148	0.7449	0.7296	841.9
 C. reinhardtii	complete_fullutr.unstranded	prodigal	Prodigal 2.6.3	yes	17621	22476	0	16932	11646	5544	0	689	0.9609	0.7533	0.8446	0.6609	0.5182	0.5809	54.4
 C. reinhardtii	complete_fullutr.unstranded	gmst	GeneMarkS-T 5.1	yes	17621	16850	0	16442	13010	408	0	1179	0.9331	0.9758	0.954	0.7383	0.7721	0.7548	68.9
 C. reinhardtii	complete_fullutr.unstranded	codan	CodAn 1.1	yes	17621	17327	0	16774	12989	553	0	847	0.9519	0.9681	0.9599	0.7371	0.7496	0.7433	45257.7
@@ -1131,6 +1232,7 @@ C. reinhardtii	fragments	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	ye
 C. reinhardtii	fragments	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	17621	15499	0	15387	12888	112	0	2234	0.8732	0.9928	0.9292	0.7314	0.8315	0.7783	737.2
 C. reinhardtii	fragments	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	17621	15624	0	15507	12974	117	0	2114	0.88	0.9925	0.9329	0.7363	0.8304	0.7805	1565.8
 C. reinhardtii	fragments	perl_td_v600	TransDecoder v6.0.0	yes	17621	13535	0	13497	10993	38	0	4124	0.766	0.9972	0.8664	0.6239	0.8122	0.7057	257.4
+C. reinhardtii	fragments	td2	TD2 1.1.0	yes	17621	13653	0	13589	5650	64	0	4032	0.7712	0.9953	0.869	0.3206	0.4138	0.3613	241.0
 C. reinhardtii	fragments	prodigal	Prodigal 2.6.3	yes	17621	17553	0	16497	13750	1056	0	1124	0.9362	0.9398	0.938	0.7803	0.7833	0.7818	28.1
 C. reinhardtii	fragments	gmst	GeneMarkS-T 5.1	yes	17621	13778	0	13640	11708	138	0	3981	0.7741	0.99	0.8688	0.6644	0.8498	0.7458	45.4
 C. reinhardtii	fragments	codan	CodAn 1.1	yes	17621	16651	0	16180	13033	471	0	1441	0.9182	0.9717	0.9442	0.7396	0.7827	0.7606	15320.7
@@ -1143,6 +1245,7 @@ C. reinhardtii	fragments.unstranded	pytd_v7	TransDecoder release (PyTransDecoder
 C. reinhardtii	fragments.unstranded	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	17621	15624	0	15253	12805	371	0	2368	0.8656	0.9763	0.9176	0.7267	0.8196	0.7703	1177.9
 C. reinhardtii	fragments.unstranded	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	17621	15756	0	15389	12900	367	0	2232	0.8733	0.9767	0.9221	0.7321	0.8187	0.773	2414.2
 C. reinhardtii	fragments.unstranded	perl_td_v600	TransDecoder v6.0.0	yes	17621	13658	0	13422	11029	236	0	4199	0.7617	0.9827	0.8582	0.6259	0.8075	0.7052	382.2
+C. reinhardtii	fragments.unstranded	td2	TD2 1.1.0	yes	17621	13844	0	13511	5603	333	0	4110	0.7668	0.9759	0.8588	0.318	0.4047	0.3561	392.6
 C. reinhardtii	fragments.unstranded	prodigal	Prodigal 2.6.3	yes	17621	18318	0	16497	13766	1821	0	1124	0.9362	0.9006	0.9181	0.7812	0.7515	0.7661	29.0
 C. reinhardtii	fragments.unstranded	gmst	GeneMarkS-T 5.1	yes	17621	14033	0	13579	11250	454	0	4042	0.7706	0.9676	0.858	0.6384	0.8017	0.7108	48.5
 C. reinhardtii	fragments.unstranded	codan	CodAn 1.1	yes	17621	17066	0	15489	12521	1577	0	2132	0.879	0.9076	0.8931	0.7106	0.7337	0.7219	31093.8
@@ -1154,6 +1257,7 @@ C. reinhardtii	fragments.unstranded.wRand	pytd_v7	TransDecoder release (PyTransD
 C. reinhardtii	fragments.unstranded.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	17621	15660	48	15242	12798	418	48	2379	0.865	0.9733	0.916	0.7263	0.8172	0.7691	1439.7
 C. reinhardtii	fragments.unstranded.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	17621	15794	48	15379	12894	415	48	2242	0.8728	0.9737	0.9205	0.7317	0.8164	0.7717	3554.9
 C. reinhardtii	fragments.unstranded.wRand	perl_td_v600	TransDecoder v6.0.0	yes	17621	13690	32	13422	11029	268	32	4199	0.7617	0.9804	0.8573	0.6259	0.8056	0.7045	506.4
+C. reinhardtii	fragments.unstranded.wRand	td2	TD2 1.1.0	yes	17621	16376	2532	13513	5603	2863	2532	4108	0.7669	0.8252	0.795	0.318	0.3421	0.3296	569.4
 C. reinhardtii	fragments.unstranded.wRand	prodigal	Prodigal 2.6.3	yes	17621	28612	9115	16662	13692	11950	9115	959	0.9456	0.5823	0.7208	0.777	0.4785	0.5923	45.7
 C. reinhardtii	fragments.unstranded.wRand	gmst	GeneMarkS-T 5.1	yes	17621	13821	3	13506	11017	315	3	4115	0.7665	0.9772	0.8591	0.6252	0.7971	0.7008	94.3
 C. reinhardtii	fragments.unstranded.wRand	codan	CodAn 1.1	yes	17621	31118	14052	15489	12521	15629	14052	2132	0.879	0.4978	0.6356	0.7106	0.4024	0.5138	126071.7
@@ -1165,6 +1269,7 @@ C. reinhardtii	fragments.wRand	pytd_v7	TransDecoder release (PyTransDecoder v0.2
 C. reinhardtii	fragments.wRand	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	17621	15523	29	15381	12886	142	29	2240	0.8729	0.9909	0.9281	0.7313	0.8301	0.7776	833.9
 C. reinhardtii	fragments.wRand	pytd_v7_homology	TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)	yes	17621	15656	29	15509	12976	147	29	2112	0.8801	0.9906	0.9321	0.7364	0.8288	0.7799	2084.1
 C. reinhardtii	fragments.wRand	perl_td_v600	TransDecoder v6.0.0	yes	17621	13542	16	13488	10991	54	16	4133	0.7655	0.996	0.8656	0.6237	0.8116	0.7054	345.0
+C. reinhardtii	fragments.wRand	td2	TD2 1.1.0	yes	17621	14956	1303	13589	5649	1367	1303	4032	0.7712	0.9086	0.8343	0.3206	0.3777	0.3468	348.3
 C. reinhardtii	fragments.wRand	prodigal	Prodigal 2.6.3	yes	17621	22879	4561	16661	13671	6218	4561	960	0.9455	0.7282	0.8228	0.7758	0.5975	0.6751	45.5
 C. reinhardtii	fragments.wRand	gmst	GeneMarkS-T 5.1	yes	17621	13593	3	13514	11539	79	3	4107	0.7669	0.9942	0.8659	0.6548	0.8489	0.7393	95.1
 C. reinhardtii	fragments.wRand	codan	CodAn 1.1	yes	17621	27903	11252	16180	13033	11723	11252	1441	0.9182	0.5799	0.7108	0.7396	0.4671	0.5726	64913.4
@@ -1176,6 +1281,7 @@ C. reinhardtii	fragments.wRand	longest_orf	longest ORF baseline	yes	17621	22904	
 C. reinhardtii	fragments_mixed_t1	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	17621	16702	0	16653	13760	49	0	968	0.9451	0.9971	0.9704	0.7809	0.8239	0.8018	269.6
 C. reinhardtii	fragments_mixed_t1	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	17621	16702	0	16653	13760	49	0	968	0.9451	0.9971	0.9704	0.7809	0.8239	0.8018	730.0
 C. reinhardtii	fragments_mixed_t1	perl_td_v600	TransDecoder v6.0.0	yes	17621	14981	0	14958	12348	23	0	2663	0.8489	0.9985	0.9176	0.7008	0.8242	0.7575	396.8
+C. reinhardtii	fragments_mixed_t1	td2	TD2 1.1.0	yes	17621	15038	0	14991	9761	47	0	2630	0.8507	0.9969	0.918	0.5539	0.6491	0.5978	351.6
 C. reinhardtii	fragments_mixed_t1	prodigal	Prodigal 2.6.3	yes	17621	17827	0	16817	14032	1010	0	804	0.9544	0.9433	0.9488	0.7963	0.7871	0.7917	44.3
 C. reinhardtii	fragments_mixed_t1	gmst	GeneMarkS-T 5.1	yes	17621	15147	0	15070	13026	77	0	2551	0.8552	0.9949	0.9198	0.7392	0.86	0.795	40.8
 C. reinhardtii	fragments_mixed_t1	codan	CodAn 1.1	yes	17621	17272	0	17054	13799	218	0	567	0.9678	0.9874	0.9775	0.7831	0.7989	0.7909	15868.9
@@ -1187,6 +1293,7 @@ C. reinhardtii	fragments_mixed_t1	longest_orf	longest ORF baseline	yes	17621	176
 C. reinhardtii	fragments_mixed_t2	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	17621	16723	0	16667	13855	56	0	954	0.9459	0.9967	0.9706	0.7863	0.8285	0.8068	265.6
 C. reinhardtii	fragments_mixed_t2	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	17621	16723	0	16667	13855	56	0	954	0.9459	0.9967	0.9706	0.7863	0.8285	0.8068	737.9
 C. reinhardtii	fragments_mixed_t2	perl_td_v600	TransDecoder v6.0.0	yes	17621	14897	0	14871	12187	26	0	2750	0.8439	0.9983	0.9146	0.6916	0.8181	0.7496	400.5
+C. reinhardtii	fragments_mixed_t2	td2	TD2 1.1.0	yes	17621	14962	0	14902	9675	60	0	2719	0.8457	0.996	0.9147	0.5491	0.6466	0.5939	337.3
 C. reinhardtii	fragments_mixed_t2	prodigal	Prodigal 2.6.3	yes	17621	17811	0	16845	14059	966	0	776	0.956	0.9458	0.9508	0.7979	0.7893	0.7936	44.6
 C. reinhardtii	fragments_mixed_t2	gmst	GeneMarkS-T 5.1	yes	17621	15073	0	14996	13006	77	0	2625	0.851	0.9949	0.9174	0.7381	0.8629	0.7956	39.9
 C. reinhardtii	fragments_mixed_t2	codan	CodAn 1.1	yes	17621	17272	0	17068	13746	204	0	553	0.9686	0.9882	0.9783	0.7801	0.7959	0.7879	17104.2
@@ -1198,6 +1305,7 @@ C. reinhardtii	fragments_mixed_t2	longest_orf	longest ORF baseline	yes	17621	176
 C. reinhardtii	fragments_mixed_t3	pytd_v7	TransDecoder release (PyTransDecoder v0.2.0)	yes	17621	16700	0	16648	13723	52	0	973	0.9448	0.9969	0.9701	0.7788	0.8217	0.7997	267.9
 C. reinhardtii	fragments_mixed_t3	perl_td_v7	TransDecoder release (Perl v7.0.0)	yes	17621	16700	0	16648	13723	52	0	973	0.9448	0.9969	0.9701	0.7788	0.8217	0.7997	700.2
 C. reinhardtii	fragments_mixed_t3	perl_td_v600	TransDecoder v6.0.0	yes	17621	14917	0	14883	12011	34	0	2738	0.8446	0.9977	0.9148	0.6816	0.8052	0.7383	383.5
+C. reinhardtii	fragments_mixed_t3	td2	TD2 1.1.0	yes	17621	14976	0	14927	9719	49	0	2694	0.8471	0.9967	0.9159	0.5516	0.649	0.5963	344.7
 C. reinhardtii	fragments_mixed_t3	prodigal	Prodigal 2.6.3	yes	17621	17837	0	16827	13982	1010	0	794	0.9549	0.9434	0.9491	0.7935	0.7839	0.7887	44.3
 C. reinhardtii	fragments_mixed_t3	gmst	GeneMarkS-T 5.1	yes	17621	15074	0	14976	12952	98	0	2645	0.8499	0.9935	0.9161	0.735	0.8592	0.7923	39.2
 C. reinhardtii	fragments_mixed_t3	codan	CodAn 1.1	yes	17621	17274	0	17048	13699	226	0	573	0.9675	0.9869	0.9771	0.7774	0.793	0.7852	16387.5

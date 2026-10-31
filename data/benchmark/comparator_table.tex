@@ -1,6 +1,6 @@
 \setlength{\LTcapwidth}{\textwidth}
 \begin{longtable}{@{}>{\raggedright}p{3.2cm}>{\raggedright\arraybackslash}p{12.3cm}@{}}
-\caption{\textbf{The compared methods in detail.} Features from the installed code and the methods' papers (evidence E27; ANGEL was not benchmarked). Benchmark values are medians over the organisms of complete stop / exact F1, fragment stop / exact F1, stop-level precision on complete transcripts with random sequence added, and exact sensitivity on 3$'$- and 5$'$-partial fragments (Table~1 and Supplementary Table~S8).}\label{tab:comparators_detail}\\
+\caption{\textbf{The compared methods in detail.} Features from the installed code and the methods' papers (evidence E27; ANGEL was not benchmarked). Benchmark values are medians over the organisms of complete stop / exact F1, fragment stop / exact F1, stop-level precision on complete transcripts with random sequence added, and exact sensitivity on 3$'$- and 5$'$-partial fragments (Table~1 and Supplementary Table~\ref{tab:partials}).}\label{tab:comparators_detail}\\
 \toprule
 Feature & Description \\
 \midrule
@@ -26,6 +26,22 @@ External evidence & optional BLASTP/DIAMOND and Pfam hits \\*
 Run here & Release defaults (Perl v7.0.0 and PyTD give identical predictions); ciliate code for \textit{T.~thermophila}. \\*
 Benchmark & complete 0.980 / 0.912; fragments 0.930 / 0.822; precision +random 0.994; exact 3$'$ / 5$'$ partial 0.816 / 0.735 \\*
 Compared & Most often first or in the top three of the method ranks; high precision with random sequence. \\
+\addlinespace[6pt]
+\multicolumn{2}{@{}l}{\textbf{TD2} \citep{Mao2025,Sommer2025} (1.1.0 (PSAURON 1.1.3))} \\*
+Designed for & eukaryotic transcript assemblies; derived from TransDecoder v5.7.1 \\*
+Coding model & PSAURON: pre-trained temporal convolutional network scoring the translated ORF (in-frame score) \\*
+Training & pre-trained (PSAURON: CDSs of 1,090 RefSeq plant and animal genomes); nothing trained on the input \\*
+CDS choice & candidates kept by PSAURON score $>$ 0.5, GC-dependent length or homology; rank by homology, PSAURON pass, length \\*
+Several CDSs per sequence & optional (-{}-all-good) \\*
+Start codon & first ATG after the previous in-frame stop; a chosen 5$'$-open ORF is replaced by the longest ATG-initiated ORF with the same stop that passes the same filters \\*
+Partial CDSs & 5$'$, 3$'$ and internal partial (complete ORF preferred at the same stop) \\*
+Genetic code & yes (-G, 26 NCBI tables); length rule and PSAURON translation assume standard stops \\*
+Strand & both or forward (-S) \\*
+Noncoding control & PSAURON cutoff + length from an extreme-value model of chance ORF length (FDR 0.10, GC-dependent) \\*
+External evidence & optional BLASTP, MMseqs2 and HMMER hits retain and rank ORFs (no start refinement) \\*
+Run here & Default settings without homology evidence (LongOrfs minimum 90 aa, PSAURON cutoff 0.5); the organism's translation table (-G 6 for \textit{T.~thermophila}). \\*
+Benchmark & complete 0.982 / 0.941; fragments 0.876 / 0.421; precision +random 0.904; exact 3$'$ / 5$'$ partial 0.544 / 0.194 \\*
+Compared & Stop F1 close to TransDecoder and exact F1 higher in 7 of 8 organisms on complete transcripts; prefers an ATG start, so few exact 5$'$ partials; a 90-codon minimum lowers fragment sensitivity; predicts in more random sequences and lncRNAs. Under the ciliate code its long-ORF rule still assumes three stop codons (random-sequence precision 0.492). \\
 \addlinespace[6pt]
 \multicolumn{2}{@{}l}{\textbf{Prodigal} \citep{Hyatt2010} (2.6.3)} \\*
 Designed for & prokaryotic genomes and metagenomes \\*

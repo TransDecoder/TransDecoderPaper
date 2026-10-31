@@ -3,7 +3,7 @@
 ## Claims supported (planned; not yet in the manuscript)
 - PyTD's coding-evidence threshold can be applied to ORFs of every length, not only to short ones. Doing this gives a precision/sensitivity trade-off curve, and one point on that curve is a candidate `--precise` mode. Brian asked for this on 2026-10-23: "a precision/recall plot for adding additional score thresholding on top of our current approach that will enable a --precise parameterization option".
 - With the contrast threshold applied to all ORFs (`sall_c200`), the share of lncRNAs that get a prediction drops from about 19% to 6%. This costs 2 points of stop sensitivity on complete transcripts and 6 points on fragments.
-- The TD2 preprint's lncRNA table measures false positives at three minimum ORF lengths; we reproduce that measurement. TD2 itself was run privately only (see `work/td2_private`), because it is not yet a paper comparator.
+- The TD2 preprint's lncRNA table measures false positives at three minimum ORF lengths; we reproduce that measurement. TD2 itself was run in private development runs only here (see `work/td2_private`). Status update 2026-10-31: TD2 is now a paper comparator, with fresh runs (E39).
 
 ## Code state
 All runs used the pytd_dev_v2 checkpoints at PyTD 48c870c. The final commits are PyTD 44e417a and Perl ab38ca6; they differ only in the Kozak weight (10 of 18,976 human starts change). Rerun before final numbers.

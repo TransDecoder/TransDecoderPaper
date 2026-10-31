@@ -2,7 +2,7 @@
 """Write the detailed supplementary table of the compared methods (LaTeX longtable).
 
 Features come from data/benchmark/comparator_features.tsv (evidence E27: installed code and papers);
-benchmark settings from methods_benchmark.tex; benchmark numbers from data/benchmark/final_v7/table1.tsv
+benchmark settings from methods_benchmark.tex (TD2: E39); benchmark numbers from data/benchmark/final_v7/table1.tsv
 and partial_types.tsv (medians over organisms; 7 for tools without the ciliate code).
 usage: 02_comparator_table.py > data/benchmark/comparator_table.tex   (run from the repo root)
 """
@@ -15,10 +15,11 @@ FEATURES = [("original_domain", "Designed for"), ("coding_model", "Coding model"
             ("start_selection", "Start codon"), ("partial_cds", "Partial CDSs"),
             ("genetic_code_option", "Genetic code"), ("strand", "Strand"),
             ("noncoding_control", "Noncoding control"), ("external_evidence", "External evidence")]
-KEY = {"TransDecoder": "pytd_v7", "Prodigal": "prodigal", "GeneMarkS-T": "gmst", "CodAn": "codan", "CPAT": "cpat",
+KEY = {"TransDecoder": "pytd_v7", "TD2": "td2", "Prodigal": "prodigal", "GeneMarkS-T": "gmst", "CodAn": "codan", "CPAT": "cpat",
        "CPC2": "cpc2", "RNAsamba": "rnasamba", "Borf": "borf"}
 SETTINGS = {
     "TransDecoder": "Release defaults (Perl v7.0.0 and PyTD give identical predictions); ciliate code for T. thermophila.",
+    "TD2": "Default settings without homology evidence (LongOrfs minimum 90 aa, PSAURON cutoff 0.5); the organism's translation table (-G 6 for T. thermophila).",
     "Prodigal": "Single mode, full motif scan (-n), the organism's translation table.",
     "GeneMarkS-T": "Self-trained on each input; not applicable to T. thermophila.",
     "CodAn": "Pre-trained model of the closest clade; full model for complete inputs, partial model for fragments; not applicable to T. thermophila.",
@@ -30,6 +31,7 @@ SETTINGS = {
 }
 NOTES = {
     "TransDecoder": "Most often first or in the top three of the method ranks; high precision with random sequence.",
+    "TD2": "Stop F1 close to TransDecoder and exact F1 higher in 7 of 8 organisms on complete transcripts; prefers an ATG start, so few exact 5' partials; a 90-codon minimum lowers fragment sensitivity; predicts in more random sequences and lncRNAs. Under the ciliate code its long-ORF rule still assumes three stop codons (random-sequence precision 0.492).",
     "Prodigal": "Highest stop-level sensitivity, but reports ORFs in many random sequences (score > 0 suffices). Runs partial genes to the sequence ends, so best exact sensitivity on 5' partials and poor start placement on complete transcripts.",
     "GeneMarkS-T": "Self-trained like TransDecoder; highest precision with random sequence, lower fragment sensitivity and exact F1.",
     "CodAn": "Strong on fragments with its partial model; clade model fits AT-rich P. falciparum poorly (complete stop F1 0.710); slowest method (median 5.8 h per input).",
@@ -40,7 +42,7 @@ NOTES = {
 }
 
 
-CITE = {"Prodigal": "Hyatt2010", "GeneMarkS-T": "Tang2015", "CodAn": "Nachtigall2021", "CPAT": "Wang2013",
+CITE = {"TD2": "Mao2025,Sommer2025", "Prodigal": "Hyatt2010", "GeneMarkS-T": "Tang2015", "CodAn": "Nachtigall2021", "CPAT": "Wang2013",
         "CPC2": "Kang2017", "RNAsamba": "Camargo2020", "Borf": "Signal2021", "ANGEL": "Shimizu2006"}
 
 
@@ -68,7 +70,7 @@ def main():
            "methods' papers (evidence E27; ANGEL was not benchmarked). Benchmark values are medians over the "
            "organisms of complete stop / exact F1, fragment stop / exact F1, stop-level precision on complete "
            "transcripts with random sequence added, and exact sensitivity on 3$'$- and 5$'$-partial fragments "
-           "(Table~1 and Supplementary Table~S8).}\\label{tab:comparators_detail}\\\\",
+           "(Table~1 and Supplementary Table~\\ref{tab:partials}).}\\label{tab:comparators_detail}\\\\",
            "\\toprule", "Feature & Description \\\\", "\\midrule", "\\endfirsthead",
            "\\toprule", "Feature & Description \\\\", "\\midrule", "\\endhead", "\\bottomrule", "\\endfoot"]
     for r in feats:

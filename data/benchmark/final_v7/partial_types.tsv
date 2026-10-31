@@ -19,6 +19,8 @@ athal	fragments	rnasamba	3prime_partial	13541	12092	12030	11895	0.8884	0.8784	0.
 athal	fragments	rnasamba	5prime_partial	13326	11025	9559	263	0.7173	0.0197	0.8670	0.0239
 athal	fragments	borf	3prime_partial	13541	9484	9455	9196	0.6982	0.6791	0.9969	0.9696
 athal	fragments	borf	5prime_partial	13326	8280	8179	2876	0.6138	0.2158	0.9878	0.3473
+athal	fragments	td2	3prime_partial	13541	10194	10163	7031	0.7505	0.5192	0.9970	0.6897
+athal	fragments	td2	5prime_partial	13326	9921	9837	2564	0.7382	0.1924	0.9915	0.2584
 athal	fragments	longest_orf	3prime_partial	13541	9831	9793	6767	0.7232	0.4997	0.9961	0.6883
 athal	fragments	longest_orf	5prime_partial	13326	9392	9289	9289	0.6971	0.6971	0.9890	0.9890
 athal	fragments.unstranded	pytd_v7	3prime_partial	13541	10611	10381	9607	0.7666	0.7095	0.9783	0.9054
@@ -39,6 +41,8 @@ athal	fragments.unstranded	cpc2	3prime_partial	13541	1908	1868	1853	0.1380	0.136
 athal	fragments.unstranded	cpc2	5prime_partial	13326	6886	6678	192	0.5011	0.0144	0.9698	0.0279
 athal	fragments.unstranded	borf	3prime_partial	13541	9576	9369	9110	0.6919	0.6728	0.9784	0.9513
 athal	fragments.unstranded	borf	5prime_partial	13326	8420	8108	2864	0.6084	0.2149	0.9629	0.3401
+athal	fragments.unstranded	td2	3prime_partial	13541	10291	10092	6977	0.7453	0.5152	0.9807	0.6780
+athal	fragments.unstranded	td2	5prime_partial	13326	10022	9819	2554	0.7368	0.1917	0.9797	0.2548
 athal	fragments.unstranded	longest_orf	3prime_partial	13541	9931	9671	6660	0.7142	0.4918	0.9738	0.6706
 athal	fragments.unstranded	longest_orf	5prime_partial	13326	9494	9230	9230	0.6926	0.6926	0.9722	0.9722
 athal	fragments.wRand	pytd_v7	3prime_partial	13541	10834	10792	9971	0.7970	0.7364	0.9961	0.9203
@@ -61,6 +65,8 @@ athal	fragments.wRand	rnasamba	3prime_partial	13541	12092	12030	11895	0.8884	0.8
 athal	fragments.wRand	rnasamba	5prime_partial	13326	11025	9559	263	0.7173	0.0197	0.8670	0.0239
 athal	fragments.wRand	borf	3prime_partial	13541	9484	9455	9196	0.6982	0.6791	0.9969	0.9696
 athal	fragments.wRand	borf	5prime_partial	13326	8280	8179	2876	0.6138	0.2158	0.9878	0.3473
+athal	fragments.wRand	td2	3prime_partial	13541	10194	10163	7031	0.7505	0.5192	0.9970	0.6897
+athal	fragments.wRand	td2	5prime_partial	13326	9921	9837	2564	0.7382	0.1924	0.9915	0.2584
 athal	fragments.wRand	longest_orf	3prime_partial	13541	9831	9793	6767	0.7232	0.4997	0.9961	0.6883
 athal	fragments.wRand	longest_orf	5prime_partial	13326	9392	9289	9289	0.6971	0.6971	0.9890	0.9890
 athal	fragments.unstranded.wRand	pytd_v7	3prime_partial	13541	10517	10299	9531	0.7606	0.7039	0.9793	0.9062
@@ -81,6 +87,8 @@ athal	fragments.unstranded.wRand	cpc2	3prime_partial	13541	1908	1868	1853	0.1380
 athal	fragments.unstranded.wRand	cpc2	5prime_partial	13326	6886	6678	192	0.5011	0.0144	0.9698	0.0279
 athal	fragments.unstranded.wRand	borf	3prime_partial	13541	9576	9369	9110	0.6919	0.6728	0.9784	0.9513
 athal	fragments.unstranded.wRand	borf	5prime_partial	13326	8420	8108	2864	0.6084	0.2149	0.9629	0.3401
+athal	fragments.unstranded.wRand	td2	3prime_partial	13541	10291	10090	6977	0.7451	0.5152	0.9805	0.6780
+athal	fragments.unstranded.wRand	td2	5prime_partial	13326	10022	9818	2553	0.7368	0.1916	0.9796	0.2547
 athal	fragments.unstranded.wRand	longest_orf	3prime_partial	13541	9931	9671	6660	0.7142	0.4918	0.9738	0.6706
 athal	fragments.unstranded.wRand	longest_orf	5prime_partial	13326	9494	9230	9230	0.6926	0.6926	0.9722	0.9722
 athal	fragments_mixed_t1	pytd_v7	3prime_partial	6685	6004	5984	5515	0.8951	0.8250	0.9967	0.9186
@@ -123,6 +131,10 @@ athal	fragments_mixed_t1	borf	3prime_partial	6685	5285	5276	5121	0.7892	0.7660	0
 athal	fragments_mixed_t1	borf	5prime_partial	6695	4841	4802	1911	0.7173	0.2854	0.9919	0.3948
 athal	fragments_mixed_t1	borf	complete	6717	6306	6302	6157	0.9382	0.9166	0.9994	0.9764
 athal	fragments_mixed_t1	borf	internal	6690	4801	4798	2113	0.7172	0.3158	0.9994	0.4401
+athal	fragments_mixed_t1	td2	3prime_partial	6685	5642	5628	3909	0.8419	0.5847	0.9975	0.6928
+athal	fragments_mixed_t1	td2	5prime_partial	6695	5557	5522	1163	0.8248	0.1737	0.9937	0.2093
+athal	fragments_mixed_t1	td2	complete	6717	6437	6429	6299	0.9571	0.9378	0.9988	0.9786
+athal	fragments_mixed_t1	td2	internal	6690	5298	5297	5297	0.7918	0.7918	0.9998	0.9998
 athal	fragments_mixed_t1	longest_orf	3prime_partial	6685	6685	6618	4637	0.9900	0.6936	0.9900	0.6936
 athal	fragments_mixed_t1	longest_orf	5prime_partial	6695	6695	6533	6533	0.9758	0.9758	0.9758	0.9758
 athal	fragments_mixed_t1	longest_orf	complete	6717	6688	6659	4695	0.9914	0.6990	0.9957	0.7020
@@ -167,6 +179,10 @@ athal	fragments_mixed_t2	borf	3prime_partial	6687	5220	5206	5060	0.7785	0.7567	0
 athal	fragments_mixed_t2	borf	5prime_partial	6677	4829	4800	1959	0.7189	0.2934	0.9940	0.4057
 athal	fragments_mixed_t2	borf	complete	6717	6334	6327	6168	0.9419	0.9183	0.9989	0.9738
 athal	fragments_mixed_t2	borf	internal	6683	4754	4749	2099	0.7106	0.3141	0.9989	0.4415
+athal	fragments_mixed_t2	td2	3prime_partial	6687	5584	5573	3827	0.8334	0.5723	0.9980	0.6854
+athal	fragments_mixed_t2	td2	5prime_partial	6677	5525	5505	1168	0.8245	0.1749	0.9964	0.2114
+athal	fragments_mixed_t2	td2	complete	6717	6465	6455	6328	0.9610	0.9421	0.9985	0.9788
+athal	fragments_mixed_t2	td2	internal	6683	5290	5289	5289	0.7914	0.7914	0.9998	0.9998
 athal	fragments_mixed_t2	longest_orf	3prime_partial	6687	6687	6606	4589	0.9879	0.6863	0.9879	0.6863
 athal	fragments_mixed_t2	longest_orf	5prime_partial	6677	6677	6546	6546	0.9804	0.9804	0.9804	0.9804
 athal	fragments_mixed_t2	longest_orf	complete	6717	6700	6674	4671	0.9936	0.6954	0.9961	0.6972
@@ -211,6 +227,10 @@ athal	fragments_mixed_t3	borf	3prime_partial	6703	5352	5339	5170	0.7965	0.7713	0
 athal	fragments_mixed_t3	borf	5prime_partial	6685	4835	4791	1937	0.7167	0.2898	0.9909	0.4006
 athal	fragments_mixed_t3	borf	complete	6717	6311	6306	6156	0.9388	0.9165	0.9992	0.9754
 athal	fragments_mixed_t3	borf	internal	6672	4740	4732	2035	0.7092	0.3050	0.9983	0.4293
+athal	fragments_mixed_t3	td2	3prime_partial	6703	5676	5658	3934	0.8441	0.5869	0.9968	0.6931
+athal	fragments_mixed_t3	td2	5prime_partial	6685	5531	5504	1178	0.8233	0.1762	0.9951	0.2130
+athal	fragments_mixed_t3	td2	complete	6717	6439	6431	6309	0.9574	0.9393	0.9988	0.9798
+athal	fragments_mixed_t3	td2	internal	6672	5209	5208	5208	0.7806	0.7806	0.9998	0.9998
 athal	fragments_mixed_t3	longest_orf	3prime_partial	6703	6703	6612	4647	0.9864	0.6933	0.9864	0.6933
 athal	fragments_mixed_t3	longest_orf	5prime_partial	6685	6685	6527	6527	0.9764	0.9764	0.9764	0.9764
 athal	fragments_mixed_t3	longest_orf	complete	6717	6689	6661	4686	0.9917	0.6976	0.9958	0.7006
@@ -235,6 +255,8 @@ creinhardtii	fragments	rnasamba	3prime_partial	8892	8314	8189	6481	0.9209	0.7289
 creinhardtii	fragments	rnasamba	5prime_partial	8729	8085	6412	149	0.7346	0.0171	0.7931	0.0184
 creinhardtii	fragments	borf	3prime_partial	8892	7091	6998	5022	0.7870	0.5648	0.9869	0.7082
 creinhardtii	fragments	borf	5prime_partial	8729	6643	5789	2611	0.6632	0.2991	0.8714	0.3930
+creinhardtii	fragments	td2	3prime_partial	8892	6904	6887	4291	0.7745	0.4826	0.9975	0.6215
+creinhardtii	fragments	td2	5prime_partial	8729	6749	6702	1359	0.7678	0.1557	0.9930	0.2014
 creinhardtii	fragments	longest_orf	3prime_partial	8892	7236	7151	4293	0.8042	0.4828	0.9883	0.5933
 creinhardtii	fragments	longest_orf	5prime_partial	8729	7178	6080	6080	0.6965	0.6965	0.8470	0.8470
 creinhardtii	fragments.unstranded	pytd_v7	3prime_partial	8892	7685	7494	5750	0.8428	0.6466	0.9751	0.7482
@@ -255,6 +277,8 @@ creinhardtii	fragments.unstranded	cpc2	3prime_partial	8892	2964	2822	2277	0.3174
 creinhardtii	fragments.unstranded	cpc2	5prime_partial	8729	5131	4311	109	0.4939	0.0125	0.8402	0.0212
 creinhardtii	fragments.unstranded	borf	3prime_partial	8892	7359	6278	4411	0.7060	0.4961	0.8531	0.5994
 creinhardtii	fragments.unstranded	borf	5prime_partial	8729	7477	4724	2218	0.5412	0.2541	0.6318	0.2966
+creinhardtii	fragments.unstranded	td2	3prime_partial	8892	6988	6856	4272	0.7710	0.4804	0.9811	0.6113
+creinhardtii	fragments.unstranded	td2	5prime_partial	8729	6856	6655	1331	0.7624	0.1525	0.9707	0.1941
 creinhardtii	fragments.unstranded	longest_orf	3prime_partial	8892	7488	6317	3650	0.7104	0.4105	0.8436	0.4874
 creinhardtii	fragments.unstranded	longest_orf	5prime_partial	8729	7739	4981	4981	0.5706	0.5706	0.6436	0.6436
 creinhardtii	fragments.wRand	pytd_v7	3prime_partial	8892	7615	7585	5807	0.8530	0.6531	0.9961	0.7626
@@ -277,6 +301,8 @@ creinhardtii	fragments.wRand	rnasamba	3prime_partial	8892	8314	8189	6481	0.9209	
 creinhardtii	fragments.wRand	rnasamba	5prime_partial	8729	8085	6412	149	0.7346	0.0171	0.7931	0.0184
 creinhardtii	fragments.wRand	borf	3prime_partial	8892	7091	6998	5022	0.7870	0.5648	0.9869	0.7082
 creinhardtii	fragments.wRand	borf	5prime_partial	8729	6643	5789	2611	0.6632	0.2991	0.8714	0.3930
+creinhardtii	fragments.wRand	td2	3prime_partial	8892	6904	6887	4291	0.7745	0.4826	0.9975	0.6215
+creinhardtii	fragments.wRand	td2	5prime_partial	8729	6749	6702	1358	0.7678	0.1556	0.9930	0.2012
 creinhardtii	fragments.wRand	longest_orf	3prime_partial	8892	7236	7151	4293	0.8042	0.4828	0.9883	0.5933
 creinhardtii	fragments.wRand	longest_orf	5prime_partial	8729	7178	6080	6080	0.6965	0.6965	0.8470	0.8470
 creinhardtii	fragments.unstranded.wRand	pytd_v7	3prime_partial	8892	7674	7485	5744	0.8418	0.6460	0.9754	0.7485
@@ -297,6 +323,8 @@ creinhardtii	fragments.unstranded.wRand	cpc2	3prime_partial	8892	2964	2822	2277	
 creinhardtii	fragments.unstranded.wRand	cpc2	5prime_partial	8729	5131	4311	109	0.4939	0.0125	0.8402	0.0212
 creinhardtii	fragments.unstranded.wRand	borf	3prime_partial	8892	7359	6278	4411	0.7060	0.4961	0.8531	0.5994
 creinhardtii	fragments.unstranded.wRand	borf	5prime_partial	8729	7477	4724	2218	0.5412	0.2541	0.6318	0.2966
+creinhardtii	fragments.unstranded.wRand	td2	3prime_partial	8892	6988	6857	4272	0.7711	0.4804	0.9813	0.6113
+creinhardtii	fragments.unstranded.wRand	td2	5prime_partial	8729	6856	6656	1331	0.7625	0.1525	0.9708	0.1941
 creinhardtii	fragments.unstranded.wRand	longest_orf	3prime_partial	8892	7488	6317	3650	0.7104	0.4105	0.8436	0.4874
 creinhardtii	fragments.unstranded.wRand	longest_orf	5prime_partial	8729	7739	4981	4981	0.5706	0.5706	0.6436	0.6436
 creinhardtii	fragments_mixed_t1	pytd_v7	3prime_partial	4405	4123	4113	3173	0.9337	0.7203	0.9976	0.7696
@@ -339,6 +367,10 @@ creinhardtii	fragments_mixed_t1	borf	3prime_partial	4405	3856	3814	2809	0.8658	0
 creinhardtii	fragments_mixed_t1	borf	5prime_partial	4405	3552	3181	1549	0.7221	0.3516	0.8956	0.4361
 creinhardtii	fragments_mixed_t1	borf	complete	4406	4211	4114	3078	0.9337	0.6986	0.9770	0.7309
 creinhardtii	fragments_mixed_t1	borf	internal	4405	3512	3437	1847	0.7802	0.4193	0.9786	0.5259
+creinhardtii	fragments_mixed_t1	td2	3prime_partial	4405	3770	3765	2366	0.8547	0.5371	0.9987	0.6276
+creinhardtii	fragments_mixed_t1	td2	5prime_partial	4405	3612	3593	631	0.8157	0.1432	0.9947	0.1747
+creinhardtii	fragments_mixed_t1	td2	complete	4406	4131	4112	3243	0.9333	0.7360	0.9954	0.7850
+creinhardtii	fragments_mixed_t1	td2	internal	4405	3525	3521	3521	0.7993	0.7993	0.9989	0.9989
 creinhardtii	fragments_mixed_t1	longest_orf	3prime_partial	4405	4405	4299	2649	0.9759	0.6014	0.9759	0.6014
 creinhardtii	fragments_mixed_t1	longest_orf	5prime_partial	4405	4405	3729	3729	0.8465	0.8465	0.8465	0.8465
 creinhardtii	fragments_mixed_t1	longest_orf	complete	4406	4406	4235	2688	0.9612	0.6101	0.9612	0.6101
@@ -383,6 +415,10 @@ creinhardtii	fragments_mixed_t2	borf	3prime_partial	4405	3801	3765	2743	0.8547	0
 creinhardtii	fragments_mixed_t2	borf	5prime_partial	4405	3601	3239	1506	0.7353	0.3419	0.8995	0.4182
 creinhardtii	fragments_mixed_t2	borf	complete	4406	4207	4108	3076	0.9324	0.6981	0.9765	0.7312
 creinhardtii	fragments_mixed_t2	borf	internal	4405	3457	3384	1854	0.7682	0.4209	0.9789	0.5363
+creinhardtii	fragments_mixed_t2	td2	3prime_partial	4405	3729	3723	2341	0.8452	0.5314	0.9984	0.6278
+creinhardtii	fragments_mixed_t2	td2	5prime_partial	4405	3645	3614	626	0.8204	0.1421	0.9915	0.1717
+creinhardtii	fragments_mixed_t2	td2	complete	4406	4125	4103	3246	0.9312	0.7367	0.9947	0.7869
+creinhardtii	fragments_mixed_t2	td2	internal	4405	3463	3462	3462	0.7859	0.7859	0.9997	0.9997
 creinhardtii	fragments_mixed_t2	longest_orf	3prime_partial	4405	4405	4305	2660	0.9773	0.6039	0.9773	0.6039
 creinhardtii	fragments_mixed_t2	longest_orf	5prime_partial	4405	4405	3731	3731	0.8470	0.8470	0.8470	0.8470
 creinhardtii	fragments_mixed_t2	longest_orf	complete	4406	4406	4243	2624	0.9630	0.5956	0.9630	0.5956
@@ -427,6 +463,10 @@ creinhardtii	fragments_mixed_t3	borf	3prime_partial	4405	3794	3753	2678	0.8520	0
 creinhardtii	fragments_mixed_t3	borf	5prime_partial	4405	3544	3176	1535	0.7210	0.3485	0.8962	0.4331
 creinhardtii	fragments_mixed_t3	borf	complete	4406	4221	4126	3085	0.9365	0.7002	0.9775	0.7309
 creinhardtii	fragments_mixed_t3	borf	internal	4405	3480	3414	1816	0.7750	0.4123	0.9810	0.5218
+creinhardtii	fragments_mixed_t3	td2	3prime_partial	4405	3721	3713	2291	0.8429	0.5201	0.9979	0.6157
+creinhardtii	fragments_mixed_t3	td2	5prime_partial	4405	3602	3575	624	0.8116	0.1417	0.9925	0.1732
+creinhardtii	fragments_mixed_t3	td2	complete	4406	4141	4128	3293	0.9369	0.7474	0.9969	0.7952
+creinhardtii	fragments_mixed_t3	td2	internal	4405	3512	3511	3511	0.7970	0.7970	0.9997	0.9997
 creinhardtii	fragments_mixed_t3	longest_orf	3prime_partial	4405	4405	4298	2585	0.9757	0.5868	0.9757	0.5868
 creinhardtii	fragments_mixed_t3	longest_orf	5prime_partial	4405	4405	3712	3712	0.8427	0.8427	0.8427	0.8427
 creinhardtii	fragments_mixed_t3	longest_orf	complete	4406	4406	4257	2646	0.9662	0.6005	0.9662	0.6005
@@ -451,6 +491,8 @@ dmel	fragments	rnasamba	3prime_partial	7006	6621	6591	6371	0.9408	0.9094	0.9955	
 dmel	fragments	rnasamba	5prime_partial	6878	6053	5001	139	0.7271	0.0202	0.8262	0.0230
 dmel	fragments	borf	3prime_partial	7006	5029	4996	4717	0.7131	0.6733	0.9934	0.9380
 dmel	fragments	borf	5prime_partial	6878	4537	4373	1589	0.6358	0.2310	0.9639	0.3502
+dmel	fragments	td2	3prime_partial	7006	5283	5280	4107	0.7536	0.5862	0.9994	0.7774
+dmel	fragments	td2	5prime_partial	6878	5138	5093	1164	0.7405	0.1692	0.9912	0.2265
 dmel	fragments	longest_orf	3prime_partial	7006	5158	5126	3967	0.7317	0.5662	0.9938	0.7691
 dmel	fragments	longest_orf	5prime_partial	6878	4987	4797	4797	0.6974	0.6974	0.9619	0.9619
 dmel	fragments.unstranded	pytd_v7	3prime_partial	7006	6141	6058	5738	0.8647	0.8190	0.9865	0.9344
@@ -471,6 +513,8 @@ dmel	fragments.unstranded	cpc2	3prime_partial	7006	1699	1610	1566	0.2298	0.2235	
 dmel	fragments.unstranded	cpc2	5prime_partial	6878	3911	3665	112	0.5329	0.0163	0.9371	0.0286
 dmel	fragments.unstranded	borf	3prime_partial	7006	5150	4723	4453	0.6741	0.6356	0.9171	0.8647
 dmel	fragments.unstranded	borf	5prime_partial	6878	4674	4229	1546	0.6149	0.2248	0.9048	0.3308
+dmel	fragments.unstranded	td2	3prime_partial	7006	5341	5258	4088	0.7505	0.5835	0.9845	0.7654
+dmel	fragments.unstranded	td2	5prime_partial	6878	5184	5073	1150	0.7376	0.1672	0.9786	0.2218
 dmel	fragments.unstranded	longest_orf	3prime_partial	7006	5289	4771	3643	0.6810	0.5200	0.9021	0.6888
 dmel	fragments.unstranded	longest_orf	5prime_partial	6878	5063	4643	4643	0.6751	0.6751	0.9170	0.9170
 dmel	fragments.wRand	pytd_v7	3prime_partial	7006	6138	6115	5792	0.8728	0.8267	0.9963	0.9436
@@ -493,6 +537,8 @@ dmel	fragments.wRand	rnasamba	3prime_partial	7006	6621	6591	6371	0.9408	0.9094	0
 dmel	fragments.wRand	rnasamba	5prime_partial	6878	6053	5001	139	0.7271	0.0202	0.8262	0.0230
 dmel	fragments.wRand	borf	3prime_partial	7006	5029	4996	4717	0.7131	0.6733	0.9934	0.9380
 dmel	fragments.wRand	borf	5prime_partial	6878	4537	4373	1589	0.6358	0.2310	0.9639	0.3502
+dmel	fragments.wRand	td2	3prime_partial	7006	5283	5280	4107	0.7536	0.5862	0.9994	0.7774
+dmel	fragments.wRand	td2	5prime_partial	6878	5138	5093	1164	0.7405	0.1692	0.9912	0.2265
 dmel	fragments.wRand	longest_orf	3prime_partial	7006	5158	5126	3967	0.7317	0.5662	0.9938	0.7691
 dmel	fragments.wRand	longest_orf	5prime_partial	6878	4987	4797	4797	0.6974	0.6974	0.9619	0.9619
 dmel	fragments.unstranded.wRand	pytd_v7	3prime_partial	7006	6087	6011	5692	0.8580	0.8124	0.9875	0.9351
@@ -513,6 +559,8 @@ dmel	fragments.unstranded.wRand	cpc2	3prime_partial	7006	1699	1610	1566	0.2298	0
 dmel	fragments.unstranded.wRand	cpc2	5prime_partial	6878	3911	3665	112	0.5329	0.0163	0.9371	0.0286
 dmel	fragments.unstranded.wRand	borf	3prime_partial	7006	5150	4723	4453	0.6741	0.6356	0.9171	0.8647
 dmel	fragments.unstranded.wRand	borf	5prime_partial	6878	4674	4229	1546	0.6149	0.2248	0.9048	0.3308
+dmel	fragments.unstranded.wRand	td2	3prime_partial	7006	5341	5258	4088	0.7505	0.5835	0.9845	0.7654
+dmel	fragments.unstranded.wRand	td2	5prime_partial	6878	5184	5072	1150	0.7374	0.1672	0.9784	0.2218
 dmel	fragments.unstranded.wRand	longest_orf	3prime_partial	7006	5289	4771	3643	0.6810	0.5200	0.9021	0.6888
 dmel	fragments.unstranded.wRand	longest_orf	5prime_partial	6878	5063	4643	4643	0.6751	0.6751	0.9170	0.9170
 dmel	fragments_mixed_t1	pytd_v7	3prime_partial	3445	3269	3264	3092	0.9475	0.8975	0.9985	0.9459
@@ -555,6 +603,10 @@ dmel	fragments_mixed_t1	borf	3prime_partial	3445	2793	2787	2633	0.8090	0.7643	0.
 dmel	fragments_mixed_t1	borf	5prime_partial	3433	2592	2512	1007	0.7317	0.2933	0.9691	0.3885
 dmel	fragments_mixed_t1	borf	complete	3471	3250	3232	3083	0.9311	0.8882	0.9945	0.9486
 dmel	fragments_mixed_t1	borf	internal	3440	2583	2564	1081	0.7453	0.3142	0.9926	0.4185
+dmel	fragments_mixed_t1	td2	3prime_partial	3445	2926	2922	2280	0.8482	0.6618	0.9986	0.7792
+dmel	fragments_mixed_t1	td2	5prime_partial	3433	2857	2841	544	0.8276	0.1585	0.9944	0.1904
+dmel	fragments_mixed_t1	td2	complete	3471	3300	3294	3172	0.9490	0.9139	0.9982	0.9612
+dmel	fragments_mixed_t1	td2	internal	3440	2777	2777	2777	0.8073	0.8073	1.0000	1.0000
 dmel	fragments_mixed_t1	longest_orf	3prime_partial	3445	3445	3408	2612	0.9893	0.7582	0.9893	0.7582
 dmel	fragments_mixed_t1	longest_orf	5prime_partial	3433	3433	3207	3207	0.9342	0.9342	0.9342	0.9342
 dmel	fragments_mixed_t1	longest_orf	complete	3471	3452	3404	2616	0.9807	0.7537	0.9861	0.7578
@@ -599,6 +651,10 @@ dmel	fragments_mixed_t2	borf	3prime_partial	3439	2771	2755	2625	0.8011	0.7633	0.
 dmel	fragments_mixed_t2	borf	5prime_partial	3443	2515	2432	961	0.7064	0.2791	0.9670	0.3821
 dmel	fragments_mixed_t2	borf	complete	3471	3288	3268	3115	0.9415	0.8974	0.9939	0.9474
 dmel	fragments_mixed_t2	borf	internal	3436	2559	2545	1059	0.7407	0.3082	0.9945	0.4138
+dmel	fragments_mixed_t2	td2	3prime_partial	3439	2902	2898	2248	0.8427	0.6537	0.9986	0.7746
+dmel	fragments_mixed_t2	td2	5prime_partial	3443	2831	2811	590	0.8164	0.1714	0.9929	0.2084
+dmel	fragments_mixed_t2	td2	complete	3471	3328	3318	3200	0.9559	0.9219	0.9970	0.9615
+dmel	fragments_mixed_t2	td2	internal	3436	2761	2761	2761	0.8036	0.8036	1.0000	1.0000
 dmel	fragments_mixed_t2	longest_orf	3prime_partial	3439	3439	3406	2605	0.9904	0.7575	0.9904	0.7575
 dmel	fragments_mixed_t2	longest_orf	5prime_partial	3443	3443	3206	3206	0.9312	0.9312	0.9312	0.9312
 dmel	fragments_mixed_t2	longest_orf	complete	3471	3452	3410	2625	0.9824	0.7563	0.9878	0.7604
@@ -643,6 +699,10 @@ dmel	fragments_mixed_t3	borf	3prime_partial	3440	2808	2796	2646	0.8128	0.7692	0.
 dmel	fragments_mixed_t3	borf	5prime_partial	3426	2549	2466	929	0.7198	0.2712	0.9674	0.3645
 dmel	fragments_mixed_t3	borf	complete	3471	3273	3258	3110	0.9386	0.8960	0.9954	0.9502
 dmel	fragments_mixed_t3	borf	internal	3441	2524	2508	1053	0.7289	0.3060	0.9937	0.4172
+dmel	fragments_mixed_t3	td2	3prime_partial	3440	2937	2935	2266	0.8532	0.6587	0.9993	0.7715
+dmel	fragments_mixed_t3	td2	5prime_partial	3426	2850	2829	593	0.8257	0.1731	0.9926	0.2081
+dmel	fragments_mixed_t3	td2	complete	3471	3324	3315	3200	0.9551	0.9219	0.9973	0.9627
+dmel	fragments_mixed_t3	td2	internal	3441	2734	2733	2733	0.7942	0.7942	0.9996	0.9996
 dmel	fragments_mixed_t3	longest_orf	3prime_partial	3440	3440	3399	2585	0.9881	0.7515	0.9881	0.7515
 dmel	fragments_mixed_t3	longest_orf	5prime_partial	3426	3426	3195	3195	0.9326	0.9326	0.9326	0.9326
 dmel	fragments_mixed_t3	longest_orf	complete	3471	3458	3418	2608	0.9847	0.7514	0.9884	0.7542
@@ -667,6 +727,8 @@ human	fragments	rnasamba	3prime_partial	9684	8944	8930	8754	0.9221	0.9040	0.9984
 human	fragments	rnasamba	5prime_partial	9483	7468	6551	172	0.6908	0.0181	0.8772	0.0230
 human	fragments	borf	3prime_partial	9684	7891	7729	6596	0.7981	0.6811	0.9795	0.8359
 human	fragments	borf	5prime_partial	9483	6980	6525	2555	0.6881	0.2694	0.9348	0.3660
+human	fragments	td2	3prime_partial	9684	7968	7952	4609	0.8211	0.4759	0.9980	0.5784
+human	fragments	td2	5prime_partial	9483	7670	7621	1853	0.8036	0.1954	0.9936	0.2416
 human	fragments	longest_orf	3prime_partial	9684	8107	7957	4449	0.8217	0.4594	0.9815	0.5488
 human	fragments	longest_orf	5prime_partial	9483	7691	7256	7256	0.7652	0.7652	0.9434	0.9434
 human	fragments.unstranded	pytd_v7	3prime_partial	9684	8572	8472	7882	0.8748	0.8139	0.9883	0.9195
@@ -687,6 +749,8 @@ human	fragments.unstranded	cpc2	3prime_partial	9684	2431	2347	2313	0.2424	0.2388
 human	fragments.unstranded	cpc2	5prime_partial	9483	5743	5256	135	0.5543	0.0142	0.9152	0.0235
 human	fragments.unstranded	borf	3prime_partial	9684	8197	7224	6123	0.7460	0.6323	0.8813	0.7470
 human	fragments.unstranded	borf	5prime_partial	9483	7295	6231	2439	0.6571	0.2572	0.8541	0.3343
+human	fragments.unstranded	td2	3prime_partial	9684	8011	7922	4593	0.8181	0.4743	0.9889	0.5733
+human	fragments.unstranded	td2	5prime_partial	9483	7738	7598	1839	0.8012	0.1939	0.9819	0.2377
 human	fragments.unstranded	longest_orf	3prime_partial	9684	8267	7425	4123	0.7667	0.4258	0.8981	0.4987
 human	fragments.unstranded	longest_orf	5prime_partial	9483	7870	6916	6916	0.7293	0.7293	0.8788	0.8788
 human	fragments.wRand	pytd_v7	3prime_partial	9684	8726	8709	8096	0.8993	0.8360	0.9981	0.9278
@@ -709,6 +773,8 @@ human	fragments.wRand	rnasamba	3prime_partial	9684	8944	8930	8754	0.9221	0.9040	
 human	fragments.wRand	rnasamba	5prime_partial	9483	7468	6551	172	0.6908	0.0181	0.8772	0.0230
 human	fragments.wRand	borf	3prime_partial	9684	7891	7729	6596	0.7981	0.6811	0.9795	0.8359
 human	fragments.wRand	borf	5prime_partial	9483	6980	6525	2555	0.6881	0.2694	0.9348	0.3660
+human	fragments.wRand	td2	3prime_partial	9684	7968	7952	4609	0.8211	0.4759	0.9980	0.5784
+human	fragments.wRand	td2	5prime_partial	9483	7670	7621	1853	0.8036	0.1954	0.9936	0.2416
 human	fragments.wRand	longest_orf	3prime_partial	9684	8107	7957	4449	0.8217	0.4594	0.9815	0.5488
 human	fragments.wRand	longest_orf	5prime_partial	9483	7691	7256	7256	0.7652	0.7652	0.9434	0.9434
 human	fragments.unstranded.wRand	pytd_v7	3prime_partial	9684	8544	8447	7855	0.8723	0.8111	0.9886	0.9194
@@ -729,6 +795,8 @@ human	fragments.unstranded.wRand	cpc2	3prime_partial	9684	2431	2347	2313	0.2424	
 human	fragments.unstranded.wRand	cpc2	5prime_partial	9483	5743	5256	135	0.5543	0.0142	0.9152	0.0235
 human	fragments.unstranded.wRand	borf	3prime_partial	9684	8197	7224	6123	0.7460	0.6323	0.8813	0.7470
 human	fragments.unstranded.wRand	borf	5prime_partial	9483	7295	6231	2439	0.6571	0.2572	0.8541	0.3343
+human	fragments.unstranded.wRand	td2	3prime_partial	9684	8011	7922	4594	0.8181	0.4744	0.9889	0.5735
+human	fragments.unstranded.wRand	td2	5prime_partial	9483	7738	7598	1839	0.8012	0.1939	0.9819	0.2377
 human	fragments.unstranded.wRand	longest_orf	3prime_partial	9684	8267	7425	4123	0.7667	0.4258	0.8981	0.4987
 human	fragments.unstranded.wRand	longest_orf	5prime_partial	9483	7870	6916	6916	0.7293	0.7293	0.8788	0.8788
 human	fragments_mixed_t1	pytd_v7	3prime_partial	4784	4526	4522	4216	0.9452	0.8813	0.9991	0.9315
@@ -771,6 +839,10 @@ human	fragments_mixed_t1	borf	3prime_partial	4784	4190	4139	3564	0.8652	0.7450	0
 human	fragments_mixed_t1	borf	5prime_partial	4778	3851	3677	1516	0.7696	0.3173	0.9548	0.3937
 human	fragments_mixed_t1	borf	complete	4792	4657	4616	4124	0.9633	0.8606	0.9912	0.8855
 human	fragments_mixed_t1	borf	internal	4773	3840	3801	1725	0.7964	0.3614	0.9898	0.4492
+human	fragments_mixed_t1	td2	3prime_partial	4784	4200	4192	2388	0.8763	0.4992	0.9981	0.5686
+human	fragments_mixed_t1	td2	5prime_partial	4778	4132	4118	794	0.8619	0.1662	0.9966	0.1922
+human	fragments_mixed_t1	td2	complete	4792	4682	4672	4554	0.9750	0.9503	0.9979	0.9727
+human	fragments_mixed_t1	td2	internal	4773	4028	4027	4026	0.8437	0.8435	0.9998	0.9995
 human	fragments_mixed_t1	longest_orf	3prime_partial	4784	4784	4693	2613	0.9810	0.5462	0.9810	0.5462
 human	fragments_mixed_t1	longest_orf	5prime_partial	4778	4778	4527	4527	0.9475	0.9475	0.9475	0.9475
 human	fragments_mixed_t1	longest_orf	complete	4792	4790	4733	2665	0.9877	0.5561	0.9881	0.5564
@@ -815,6 +887,10 @@ human	fragments_mixed_t2	borf	3prime_partial	4784	4157	4092	3522	0.8554	0.7362	0
 human	fragments_mixed_t2	borf	5prime_partial	4781	3865	3692	1552	0.7722	0.3246	0.9552	0.4016
 human	fragments_mixed_t2	borf	complete	4792	4663	4626	4131	0.9654	0.8621	0.9921	0.8859
 human	fragments_mixed_t2	borf	internal	4780	3907	3872	1808	0.8100	0.3782	0.9910	0.4628
+human	fragments_mixed_t2	td2	3prime_partial	4784	4190	4185	2365	0.8748	0.4944	0.9988	0.5644
+human	fragments_mixed_t2	td2	5prime_partial	4781	4133	4121	827	0.8620	0.1730	0.9971	0.2001
+human	fragments_mixed_t2	td2	complete	4792	4684	4678	4564	0.9762	0.9524	0.9987	0.9744
+human	fragments_mixed_t2	td2	internal	4780	4084	4083	4082	0.8542	0.8540	0.9998	0.9995
 human	fragments_mixed_t2	longest_orf	3prime_partial	4784	4784	4673	2571	0.9768	0.5374	0.9768	0.5374
 human	fragments_mixed_t2	longest_orf	5prime_partial	4781	4781	4516	4516	0.9446	0.9446	0.9446	0.9446
 human	fragments_mixed_t2	longest_orf	complete	4792	4787	4734	2709	0.9879	0.5653	0.9889	0.5659
@@ -859,6 +935,10 @@ human	fragments_mixed_t3	borf	3prime_partial	4785	4185	4122	3557	0.8614	0.7434	0
 human	fragments_mixed_t3	borf	5prime_partial	4779	3855	3686	1539	0.7713	0.3220	0.9562	0.3992
 human	fragments_mixed_t3	borf	complete	4792	4662	4623	4143	0.9647	0.8646	0.9916	0.8887
 human	fragments_mixed_t3	borf	internal	4775	3882	3844	1725	0.8050	0.3613	0.9902	0.4444
+human	fragments_mixed_t3	td2	3prime_partial	4785	4216	4206	2403	0.8790	0.5022	0.9976	0.5700
+human	fragments_mixed_t3	td2	5prime_partial	4779	4144	4126	785	0.8634	0.1643	0.9957	0.1894
+human	fragments_mixed_t3	td2	complete	4792	4678	4667	4548	0.9739	0.9491	0.9976	0.9722
+human	fragments_mixed_t3	td2	internal	4775	4044	4043	4043	0.8467	0.8467	0.9998	0.9998
 human	fragments_mixed_t3	longest_orf	3prime_partial	4785	4785	4691	2635	0.9804	0.5507	0.9804	0.5507
 human	fragments_mixed_t3	longest_orf	5prime_partial	4779	4779	4520	4520	0.9458	0.9458	0.9458	0.9458
 human	fragments_mixed_t3	longest_orf	complete	4792	4789	4730	2725	0.9871	0.5687	0.9877	0.5690
@@ -883,6 +963,8 @@ mouse	fragments	rnasamba	3prime_partial	10837	9692	9645	9204	0.8900	0.8493	0.995
 mouse	fragments	rnasamba	5prime_partial	10572	7948	7104	166	0.6720	0.0157	0.8938	0.0209
 mouse	fragments	borf	3prime_partial	10837	8724	8553	7137	0.7892	0.6586	0.9804	0.8181
 mouse	fragments	borf	5prime_partial	10572	7503	7221	2718	0.6830	0.2571	0.9624	0.3623
+mouse	fragments	td2	3prime_partial	10837	8780	8754	6228	0.8078	0.5747	0.9970	0.7093
+mouse	fragments	td2	5prime_partial	10572	8546	8478	2162	0.8019	0.2045	0.9920	0.2530
 mouse	fragments	longest_orf	3prime_partial	10837	8945	8754	6038	0.8078	0.5572	0.9786	0.6750
 mouse	fragments	longest_orf	5prime_partial	10572	8365	8110	8110	0.7671	0.7671	0.9695	0.9695
 mouse	fragments.unstranded	pytd_v7	3prime_partial	10837	9369	9190	8500	0.8480	0.7843	0.9809	0.9072
@@ -903,6 +985,8 @@ mouse	fragments.unstranded	cpc2	3prime_partial	10837	2636	2475	2362	0.2284	0.218
 mouse	fragments.unstranded	cpc2	5prime_partial	10572	6199	5779	141	0.5466	0.0133	0.9322	0.0227
 mouse	fragments.unstranded	borf	3prime_partial	10837	9034	8167	6772	0.7536	0.6249	0.9040	0.7496
 mouse	fragments.unstranded	borf	5prime_partial	10572	7807	7024	2657	0.6644	0.2513	0.8997	0.3403
+mouse	fragments.unstranded	td2	3prime_partial	10837	8855	8708	6193	0.8035	0.5715	0.9834	0.6994
+mouse	fragments.unstranded	td2	5prime_partial	10572	8617	8444	2138	0.7987	0.2022	0.9799	0.2481
 mouse	fragments.unstranded	longest_orf	3prime_partial	10837	9213	8284	5663	0.7644	0.5226	0.8992	0.6147
 mouse	fragments.unstranded	longest_orf	5prime_partial	10572	8557	7874	7874	0.7448	0.7448	0.9202	0.9202
 mouse	fragments.wRand	pytd_v7	3prime_partial	10837	9456	9430	8710	0.8702	0.8037	0.9973	0.9211
@@ -925,6 +1009,8 @@ mouse	fragments.wRand	rnasamba	3prime_partial	10837	9692	9645	9204	0.8900	0.8493
 mouse	fragments.wRand	rnasamba	5prime_partial	10572	7948	7104	166	0.6720	0.0157	0.8938	0.0209
 mouse	fragments.wRand	borf	3prime_partial	10837	8724	8553	7137	0.7892	0.6586	0.9804	0.8181
 mouse	fragments.wRand	borf	5prime_partial	10572	7503	7221	2718	0.6830	0.2571	0.9624	0.3623
+mouse	fragments.wRand	td2	3prime_partial	10837	8780	8753	6227	0.8077	0.5746	0.9969	0.7092
+mouse	fragments.wRand	td2	5prime_partial	10572	8546	8477	2161	0.8018	0.2044	0.9919	0.2529
 mouse	fragments.wRand	longest_orf	3prime_partial	10837	8945	8754	6038	0.8078	0.5572	0.9786	0.6750
 mouse	fragments.wRand	longest_orf	5prime_partial	10572	8365	8110	8110	0.7671	0.7671	0.9695	0.9695
 mouse	fragments.unstranded.wRand	pytd_v7	3prime_partial	10837	9333	9162	8477	0.8454	0.7822	0.9817	0.9083
@@ -945,6 +1031,8 @@ mouse	fragments.unstranded.wRand	cpc2	3prime_partial	10837	2636	2475	2362	0.2284
 mouse	fragments.unstranded.wRand	cpc2	5prime_partial	10572	6199	5779	141	0.5466	0.0133	0.9322	0.0227
 mouse	fragments.unstranded.wRand	borf	3prime_partial	10837	9034	8167	6772	0.7536	0.6249	0.9040	0.7496
 mouse	fragments.unstranded.wRand	borf	5prime_partial	10572	7807	7024	2657	0.6644	0.2513	0.8997	0.3403
+mouse	fragments.unstranded.wRand	td2	3prime_partial	10837	8855	8707	6192	0.8035	0.5714	0.9833	0.6993
+mouse	fragments.unstranded.wRand	td2	5prime_partial	10572	8617	8444	2138	0.7987	0.2022	0.9799	0.2481
 mouse	fragments.unstranded.wRand	longest_orf	3prime_partial	10837	9213	8284	5663	0.7644	0.5226	0.8992	0.6147
 mouse	fragments.unstranded.wRand	longest_orf	5prime_partial	10572	8557	7874	7874	0.7448	0.7448	0.9202	0.9202
 mouse	fragments_mixed_t1	pytd_v7	3prime_partial	5341	5003	4990	4623	0.9343	0.8656	0.9974	0.9240
@@ -987,6 +1075,10 @@ mouse	fragments_mixed_t1	borf	3prime_partial	5341	4599	4544	3892	0.8508	0.7287	0
 mouse	fragments_mixed_t1	borf	5prime_partial	5337	4246	4131	1664	0.7740	0.3118	0.9729	0.3919
 mouse	fragments_mixed_t1	borf	complete	5353	5213	5189	4478	0.9694	0.8365	0.9954	0.8590
 mouse	fragments_mixed_t1	borf	internal	5336	4227	4202	1830	0.7875	0.3430	0.9941	0.4329
+mouse	fragments_mixed_t1	td2	3prime_partial	5341	4647	4638	3281	0.8684	0.6143	0.9981	0.7060
+mouse	fragments_mixed_t1	td2	5prime_partial	5337	4620	4600	890	0.8619	0.1668	0.9957	0.1926
+mouse	fragments_mixed_t1	td2	complete	5353	5211	5207	4934	0.9727	0.9217	0.9992	0.9468
+mouse	fragments_mixed_t1	td2	internal	5336	4518	4517	4517	0.8465	0.8465	0.9998	0.9998
 mouse	fragments_mixed_t1	longest_orf	3prime_partial	5341	5341	5191	3654	0.9719	0.6841	0.9719	0.6841
 mouse	fragments_mixed_t1	longest_orf	5prime_partial	5337	5337	5128	5128	0.9608	0.9608	0.9608	0.9608
 mouse	fragments_mixed_t1	longest_orf	complete	5353	5348	5291	3769	0.9884	0.7041	0.9893	0.7047
@@ -1031,6 +1123,10 @@ mouse	fragments_mixed_t2	borf	3prime_partial	5330	4628	4561	3862	0.8557	0.7246	0
 mouse	fragments_mixed_t2	borf	5prime_partial	5339	4276	4149	1696	0.7771	0.3177	0.9703	0.3966
 mouse	fragments_mixed_t2	borf	complete	5353	5208	5177	4515	0.9671	0.8435	0.9940	0.8669
 mouse	fragments_mixed_t2	borf	internal	5335	4213	4196	1751	0.7865	0.3282	0.9960	0.4156
+mouse	fragments_mixed_t2	td2	3prime_partial	5330	4673	4663	3275	0.8749	0.6144	0.9979	0.7008
+mouse	fragments_mixed_t2	td2	5prime_partial	5339	4609	4589	828	0.8595	0.1551	0.9957	0.1796
+mouse	fragments_mixed_t2	td2	complete	5353	5220	5205	4966	0.9724	0.9277	0.9971	0.9513
+mouse	fragments_mixed_t2	td2	internal	5335	4538	4537	4537	0.8504	0.8504	0.9998	0.9998
 mouse	fragments_mixed_t2	longest_orf	3prime_partial	5330	5330	5186	3609	0.9730	0.6771	0.9730	0.6771
 mouse	fragments_mixed_t2	longest_orf	5prime_partial	5339	5339	5110	5110	0.9571	0.9571	0.9571	0.9571
 mouse	fragments_mixed_t2	longest_orf	complete	5353	5348	5291	3729	0.9884	0.6966	0.9893	0.6973
@@ -1075,6 +1171,10 @@ mouse	fragments_mixed_t3	borf	3prime_partial	5339	4636	4566	3874	0.8552	0.7256	0
 mouse	fragments_mixed_t3	borf	5prime_partial	5334	4219	4096	1700	0.7679	0.3187	0.9708	0.4029
 mouse	fragments_mixed_t3	borf	complete	5353	5219	5196	4520	0.9707	0.8444	0.9956	0.8661
 mouse	fragments_mixed_t3	borf	internal	5336	4268	4245	1867	0.7955	0.3499	0.9946	0.4374
+mouse	fragments_mixed_t3	td2	3prime_partial	5339	4679	4664	3294	0.8736	0.6170	0.9968	0.7040
+mouse	fragments_mixed_t3	td2	5prime_partial	5334	4617	4592	927	0.8609	0.1738	0.9946	0.2008
+mouse	fragments_mixed_t3	td2	complete	5353	5218	5211	4942	0.9735	0.9232	0.9987	0.9471
+mouse	fragments_mixed_t3	td2	internal	5336	4525	4524	4522	0.8478	0.8475	0.9998	0.9993
 mouse	fragments_mixed_t3	longest_orf	3prime_partial	5339	5339	5204	3635	0.9747	0.6808	0.9747	0.6808
 mouse	fragments_mixed_t3	longest_orf	5prime_partial	5334	5334	5127	5127	0.9612	0.9612	0.9612	0.9612
 mouse	fragments_mixed_t3	longest_orf	complete	5353	5346	5299	3808	0.9899	0.7114	0.9912	0.7123
@@ -1099,6 +1199,8 @@ pfalciparum	fragments	rnasamba	3prime_partial	2672	1767	1767	1669	0.6613	0.6246	
 pfalciparum	fragments	rnasamba	5prime_partial	2609	1340	1331	40	0.5102	0.0153	0.9933	0.0299
 pfalciparum	fragments	borf	3prime_partial	2672	2106	2106	1969	0.7882	0.7369	1.0000	0.9349
 pfalciparum	fragments	borf	5prime_partial	2609	1868	1864	796	0.7144	0.3051	0.9979	0.4261
+pfalciparum	fragments	td2	3prime_partial	2672	2200	2199	1972	0.8230	0.7380	0.9995	0.8964
+pfalciparum	fragments	td2	5prime_partial	2609	2133	2132	512	0.8172	0.1962	0.9995	0.2400
 pfalciparum	fragments	longest_orf	3prime_partial	2672	2119	2119	1899	0.7930	0.7107	1.0000	0.8962
 pfalciparum	fragments	longest_orf	5prime_partial	2609	2023	2020	2020	0.7742	0.7742	0.9985	0.9985
 pfalciparum	fragments.unstranded	pytd_v7	3prime_partial	2672	2525	2498	2331	0.9349	0.8724	0.9893	0.9232
@@ -1119,6 +1221,8 @@ pfalciparum	fragments.unstranded	cpc2	3prime_partial	2672	732	732	695	0.2740	0.2
 pfalciparum	fragments.unstranded	cpc2	5prime_partial	2609	1457	1451	39	0.5562	0.0149	0.9959	0.0268
 pfalciparum	fragments.unstranded	borf	3prime_partial	2672	2110	2101	1964	0.7863	0.7350	0.9957	0.9308
 pfalciparum	fragments.unstranded	borf	5prime_partial	2609	1877	1863	796	0.7141	0.3051	0.9925	0.4241
+pfalciparum	fragments.unstranded	td2	3prime_partial	2672	2213	2197	1970	0.8222	0.7373	0.9928	0.8902
+pfalciparum	fragments.unstranded	td2	5prime_partial	2609	2141	2131	511	0.8168	0.1959	0.9953	0.2387
 pfalciparum	fragments.unstranded	longest_orf	3prime_partial	2672	2127	2111	1891	0.7900	0.7077	0.9925	0.8890
 pfalciparum	fragments.unstranded	longest_orf	5prime_partial	2609	2031	2019	2019	0.7739	0.7739	0.9941	0.9941
 pfalciparum	fragments.wRand	pytd_v7	3prime_partial	2672	2517	2506	2341	0.9379	0.8761	0.9956	0.9301
@@ -1141,6 +1245,8 @@ pfalciparum	fragments.wRand	rnasamba	3prime_partial	2672	1767	1767	1669	0.6613	0
 pfalciparum	fragments.wRand	rnasamba	5prime_partial	2609	1340	1331	40	0.5102	0.0153	0.9933	0.0299
 pfalciparum	fragments.wRand	borf	3prime_partial	2672	2106	2106	1969	0.7882	0.7369	1.0000	0.9349
 pfalciparum	fragments.wRand	borf	5prime_partial	2609	1868	1864	796	0.7144	0.3051	0.9979	0.4261
+pfalciparum	fragments.wRand	td2	3prime_partial	2672	2200	2199	1972	0.8230	0.7380	0.9995	0.8964
+pfalciparum	fragments.wRand	td2	5prime_partial	2609	2133	2132	512	0.8172	0.1962	0.9995	0.2400
 pfalciparum	fragments.wRand	longest_orf	3prime_partial	2672	2119	2119	1899	0.7930	0.7107	1.0000	0.8962
 pfalciparum	fragments.wRand	longest_orf	5prime_partial	2609	2023	2020	2020	0.7742	0.7742	0.9985	0.9985
 pfalciparum	fragments.unstranded.wRand	pytd_v7	3prime_partial	2672	2522	2494	2327	0.9334	0.8709	0.9889	0.9227
@@ -1161,6 +1267,8 @@ pfalciparum	fragments.unstranded.wRand	cpc2	3prime_partial	2672	732	732	695	0.27
 pfalciparum	fragments.unstranded.wRand	cpc2	5prime_partial	2609	1457	1451	39	0.5562	0.0149	0.9959	0.0268
 pfalciparum	fragments.unstranded.wRand	borf	3prime_partial	2672	2110	2101	1964	0.7863	0.7350	0.9957	0.9308
 pfalciparum	fragments.unstranded.wRand	borf	5prime_partial	2609	1877	1863	796	0.7141	0.3051	0.9925	0.4241
+pfalciparum	fragments.unstranded.wRand	td2	3prime_partial	2672	2213	2197	1970	0.8222	0.7373	0.9928	0.8902
+pfalciparum	fragments.unstranded.wRand	td2	5prime_partial	2609	2141	2131	511	0.8168	0.1959	0.9953	0.2387
 pfalciparum	fragments.unstranded.wRand	longest_orf	3prime_partial	2672	2127	2111	1891	0.7900	0.7077	0.9925	0.8890
 pfalciparum	fragments.unstranded.wRand	longest_orf	5prime_partial	2609	2031	2019	2019	0.7739	0.7739	0.9941	0.9941
 pfalciparum	fragments_mixed_t1	pytd_v7	3prime_partial	1319	1307	1304	1232	0.9886	0.9340	0.9977	0.9426
@@ -1203,6 +1311,10 @@ pfalciparum	fragments_mixed_t1	borf	3prime_partial	1319	1124	1124	1060	0.8522	0.
 pfalciparum	fragments_mixed_t1	borf	5prime_partial	1319	1053	1051	445	0.7968	0.3374	0.9981	0.4226
 pfalciparum	fragments_mixed_t1	borf	complete	1321	1287	1287	1200	0.9743	0.9084	1.0000	0.9324
 pfalciparum	fragments_mixed_t1	borf	internal	1316	1072	1072	503	0.8146	0.3822	1.0000	0.4692
+pfalciparum	fragments_mixed_t1	td2	3prime_partial	1319	1163	1163	1064	0.8817	0.8067	1.0000	0.9149
+pfalciparum	fragments_mixed_t1	td2	5prime_partial	1319	1158	1158	200	0.8779	0.1516	1.0000	0.1727
+pfalciparum	fragments_mixed_t1	td2	complete	1321	1295	1295	1214	0.9803	0.9190	1.0000	0.9375
+pfalciparum	fragments_mixed_t1	td2	internal	1316	1135	1135	1135	0.8625	0.8625	1.0000	1.0000
 pfalciparum	fragments_mixed_t1	longest_orf	3prime_partial	1319	1319	1317	1204	0.9985	0.9128	0.9985	0.9128
 pfalciparum	fragments_mixed_t1	longest_orf	5prime_partial	1319	1319	1314	1314	0.9962	0.9962	0.9962	0.9962
 pfalciparum	fragments_mixed_t1	longest_orf	complete	1321	1321	1320	1183	0.9992	0.8955	0.9992	0.8955
@@ -1247,6 +1359,10 @@ pfalciparum	fragments_mixed_t2	borf	3prime_partial	1319	1123	1123	1052	0.8514	0.
 pfalciparum	fragments_mixed_t2	borf	5prime_partial	1320	1023	1022	422	0.7742	0.3197	0.9990	0.4125
 pfalciparum	fragments_mixed_t2	borf	complete	1321	1280	1280	1213	0.9690	0.9182	1.0000	0.9477
 pfalciparum	fragments_mixed_t2	borf	internal	1317	1060	1059	508	0.8041	0.3857	0.9991	0.4792
+pfalciparum	fragments_mixed_t2	td2	3prime_partial	1319	1161	1160	1042	0.8795	0.7900	0.9991	0.8975
+pfalciparum	fragments_mixed_t2	td2	5prime_partial	1320	1130	1126	191	0.8530	0.1447	0.9965	0.1690
+pfalciparum	fragments_mixed_t2	td2	complete	1321	1290	1290	1230	0.9765	0.9311	1.0000	0.9535
+pfalciparum	fragments_mixed_t2	td2	internal	1317	1146	1146	1146	0.8702	0.8702	1.0000	1.0000
 pfalciparum	fragments_mixed_t2	longest_orf	3prime_partial	1319	1319	1315	1187	0.9970	0.8999	0.9970	0.8999
 pfalciparum	fragments_mixed_t2	longest_orf	5prime_partial	1320	1320	1310	1310	0.9924	0.9924	0.9924	0.9924
 pfalciparum	fragments_mixed_t2	longest_orf	complete	1321	1320	1319	1207	0.9985	0.9137	0.9992	0.9144
@@ -1291,6 +1407,10 @@ pfalciparum	fragments_mixed_t3	borf	3prime_partial	1319	1124	1124	1056	0.8522	0.
 pfalciparum	fragments_mixed_t3	borf	5prime_partial	1320	1031	1031	415	0.7811	0.3144	1.0000	0.4025
 pfalciparum	fragments_mixed_t3	borf	complete	1321	1276	1276	1209	0.9659	0.9152	1.0000	0.9475
 pfalciparum	fragments_mixed_t3	borf	internal	1318	1064	1064	496	0.8073	0.3763	1.0000	0.4662
+pfalciparum	fragments_mixed_t3	td2	3prime_partial	1319	1156	1156	1045	0.8764	0.7923	1.0000	0.9040
+pfalciparum	fragments_mixed_t3	td2	5prime_partial	1320	1139	1139	208	0.8629	0.1576	1.0000	0.1826
+pfalciparum	fragments_mixed_t3	td2	complete	1321	1291	1291	1229	0.9773	0.9304	1.0000	0.9520
+pfalciparum	fragments_mixed_t3	td2	internal	1318	1142	1142	1142	0.8665	0.8665	1.0000	1.0000
 pfalciparum	fragments_mixed_t3	longest_orf	3prime_partial	1319	1319	1316	1197	0.9977	0.9075	0.9977	0.9075
 pfalciparum	fragments_mixed_t3	longest_orf	5prime_partial	1320	1320	1319	1319	0.9992	0.9992	0.9992	0.9992
 pfalciparum	fragments_mixed_t3	longest_orf	complete	1321	1320	1318	1197	0.9977	0.9061	0.9985	0.9068
@@ -1315,6 +1435,8 @@ spombe	fragments	rnasamba	3prime_partial	2572	2336	2333	2311	0.9071	0.8985	0.998
 spombe	fragments	rnasamba	5prime_partial	2528	2013	1779	46	0.7037	0.0182	0.8838	0.0229
 spombe	fragments	borf	3prime_partial	2572	1828	1827	1797	0.7103	0.6987	0.9995	0.9830
 spombe	fragments	borf	5prime_partial	2528	1649	1632	662	0.6456	0.2619	0.9897	0.4015
+spombe	fragments	td2	3prime_partial	2572	1967	1966	1461	0.7644	0.5680	0.9995	0.7428
+spombe	fragments	td2	5prime_partial	2528	1969	1963	541	0.7765	0.2140	0.9970	0.2748
 spombe	fragments	longest_orf	3prime_partial	2572	1872	1870	1385	0.7271	0.5385	0.9989	0.7399
 spombe	fragments	longest_orf	5prime_partial	2528	1852	1837	1837	0.7267	0.7267	0.9919	0.9919
 spombe	fragments.unstranded	pytd_v7	3prime_partial	2572	2269	2258	2096	0.8779	0.8149	0.9952	0.9238
@@ -1335,6 +1457,8 @@ spombe	fragments.unstranded	cpc2	3prime_partial	2572	466	464	461	0.1804	0.1792	0
 spombe	fragments.unstranded	cpc2	5prime_partial	2528	1349	1315	39	0.5202	0.0154	0.9748	0.0289
 spombe	fragments.unstranded	borf	3prime_partial	2572	1840	1818	1788	0.7068	0.6952	0.9880	0.9717
 spombe	fragments.unstranded	borf	5prime_partial	2528	1663	1627	660	0.6436	0.2611	0.9784	0.3969
+spombe	fragments.unstranded	td2	3prime_partial	2572	1974	1958	1454	0.7613	0.5653	0.9919	0.7366
+spombe	fragments.unstranded	td2	5prime_partial	2528	1983	1958	537	0.7745	0.2124	0.9874	0.2708
 spombe	fragments.unstranded	longest_orf	3prime_partial	2572	1882	1852	1370	0.7201	0.5327	0.9841	0.7279
 spombe	fragments.unstranded	longest_orf	5prime_partial	2528	1860	1829	1829	0.7235	0.7235	0.9833	0.9833
 spombe	fragments.wRand	pytd_v7	3prime_partial	2572	2274	2273	2111	0.8837	0.8208	0.9996	0.9283
@@ -1357,6 +1481,8 @@ spombe	fragments.wRand	rnasamba	3prime_partial	2572	2336	2333	2311	0.9071	0.8985
 spombe	fragments.wRand	rnasamba	5prime_partial	2528	2013	1779	46	0.7037	0.0182	0.8838	0.0229
 spombe	fragments.wRand	borf	3prime_partial	2572	1828	1827	1797	0.7103	0.6987	0.9995	0.9830
 spombe	fragments.wRand	borf	5prime_partial	2528	1649	1632	662	0.6456	0.2619	0.9897	0.4015
+spombe	fragments.wRand	td2	3prime_partial	2572	1967	1966	1461	0.7644	0.5680	0.9995	0.7428
+spombe	fragments.wRand	td2	5prime_partial	2528	1969	1963	541	0.7765	0.2140	0.9970	0.2748
 spombe	fragments.wRand	longest_orf	3prime_partial	2572	1872	1870	1385	0.7271	0.5385	0.9989	0.7399
 spombe	fragments.wRand	longest_orf	5prime_partial	2528	1852	1837	1837	0.7267	0.7267	0.9919	0.9919
 spombe	fragments.unstranded.wRand	pytd_v7	3prime_partial	2572	2226	2215	2055	0.8612	0.7990	0.9951	0.9232
@@ -1377,6 +1503,8 @@ spombe	fragments.unstranded.wRand	cpc2	3prime_partial	2572	466	464	461	0.1804	0.
 spombe	fragments.unstranded.wRand	cpc2	5prime_partial	2528	1349	1315	39	0.5202	0.0154	0.9748	0.0289
 spombe	fragments.unstranded.wRand	borf	3prime_partial	2572	1840	1818	1788	0.7068	0.6952	0.9880	0.9717
 spombe	fragments.unstranded.wRand	borf	5prime_partial	2528	1663	1627	660	0.6436	0.2611	0.9784	0.3969
+spombe	fragments.unstranded.wRand	td2	3prime_partial	2572	1974	1956	1454	0.7605	0.5653	0.9909	0.7366
+spombe	fragments.unstranded.wRand	td2	5prime_partial	2528	1983	1958	537	0.7745	0.2124	0.9874	0.2708
 spombe	fragments.unstranded.wRand	longest_orf	3prime_partial	2572	1882	1852	1370	0.7201	0.5327	0.9841	0.7279
 spombe	fragments.unstranded.wRand	longest_orf	5prime_partial	2528	1860	1829	1829	0.7235	0.7235	0.9833	0.9833
 spombe	fragments_mixed_t1	pytd_v7	3prime_partial	1271	1212	1212	1133	0.9536	0.8914	1.0000	0.9348
@@ -1419,6 +1547,10 @@ spombe	fragments_mixed_t1	borf	3prime_partial	1271	1000	999	986	0.7860	0.7758	0.
 spombe	fragments_mixed_t1	borf	5prime_partial	1270	938	933	413	0.7346	0.3252	0.9947	0.4403
 spombe	fragments_mixed_t1	borf	complete	1275	1231	1231	1213	0.9655	0.9514	1.0000	0.9854
 spombe	fragments_mixed_t1	borf	internal	1270	922	921	434	0.7252	0.3417	0.9989	0.4707
+spombe	fragments_mixed_t1	td2	3prime_partial	1271	1059	1057	804	0.8316	0.6326	0.9981	0.7592
+spombe	fragments_mixed_t1	td2	5prime_partial	1270	1066	1064	230	0.8378	0.1811	0.9981	0.2158
+spombe	fragments_mixed_t1	td2	complete	1275	1245	1245	1229	0.9765	0.9639	1.0000	0.9871
+spombe	fragments_mixed_t1	td2	internal	1270	1012	1012	1012	0.7969	0.7969	1.0000	1.0000
 spombe	fragments_mixed_t1	longest_orf	3prime_partial	1271	1271	1266	953	0.9961	0.7498	0.9961	0.7498
 spombe	fragments_mixed_t1	longest_orf	5prime_partial	1270	1270	1249	1249	0.9835	0.9835	0.9835	0.9835
 spombe	fragments_mixed_t1	longest_orf	complete	1275	1270	1265	906	0.9922	0.7106	0.9961	0.7134
@@ -1463,6 +1595,10 @@ spombe	fragments_mixed_t2	borf	3prime_partial	1270	1019	1019	996	0.8024	0.7843	1
 spombe	fragments_mixed_t2	borf	5prime_partial	1270	942	935	405	0.7362	0.3189	0.9926	0.4299
 spombe	fragments_mixed_t2	borf	complete	1275	1221	1220	1207	0.9569	0.9467	0.9992	0.9885
 spombe	fragments_mixed_t2	borf	internal	1269	915	914	444	0.7203	0.3499	0.9989	0.4852
+spombe	fragments_mixed_t2	td2	3prime_partial	1270	1085	1084	771	0.8535	0.6071	0.9991	0.7106
+spombe	fragments_mixed_t2	td2	5prime_partial	1270	1072	1066	231	0.8394	0.1819	0.9944	0.2155
+spombe	fragments_mixed_t2	td2	complete	1275	1237	1236	1226	0.9694	0.9616	0.9992	0.9911
+spombe	fragments_mixed_t2	td2	internal	1269	1018	1018	1018	0.8022	0.8022	1.0000	1.0000
 spombe	fragments_mixed_t2	longest_orf	3prime_partial	1270	1270	1266	902	0.9969	0.7102	0.9969	0.7102
 spombe	fragments_mixed_t2	longest_orf	5prime_partial	1270	1270	1244	1244	0.9795	0.9795	0.9795	0.9795
 spombe	fragments_mixed_t2	longest_orf	complete	1275	1271	1267	948	0.9937	0.7435	0.9969	0.7459
@@ -1507,6 +1643,10 @@ spombe	fragments_mixed_t3	borf	3prime_partial	1269	1036	1035	1020	0.8156	0.8038	
 spombe	fragments_mixed_t3	borf	5prime_partial	1270	929	923	406	0.7268	0.3197	0.9935	0.4370
 spombe	fragments_mixed_t3	borf	complete	1275	1214	1214	1200	0.9522	0.9412	1.0000	0.9885
 spombe	fragments_mixed_t3	borf	internal	1270	914	913	451	0.7189	0.3551	0.9989	0.4934
+spombe	fragments_mixed_t3	td2	3prime_partial	1269	1094	1093	791	0.8613	0.6233	0.9991	0.7230
+spombe	fragments_mixed_t3	td2	5prime_partial	1270	1073	1072	222	0.8441	0.1748	0.9991	0.2069
+spombe	fragments_mixed_t3	td2	complete	1275	1240	1240	1223	0.9725	0.9592	1.0000	0.9863
+spombe	fragments_mixed_t3	td2	internal	1270	1007	1007	1007	0.7929	0.7929	1.0000	1.0000
 spombe	fragments_mixed_t3	longest_orf	3prime_partial	1269	1269	1263	915	0.9953	0.7210	0.9953	0.7210
 spombe	fragments_mixed_t3	longest_orf	5prime_partial	1270	1270	1248	1248	0.9827	0.9827	0.9827	0.9827
 spombe	fragments_mixed_t3	longest_orf	complete	1275	1271	1268	946	0.9945	0.7420	0.9976	0.7443
@@ -1531,6 +1671,8 @@ tthermophila	fragments	rnasamba	3prime_partial	13331	1048	181	35	0.0136	0.0026	0
 tthermophila	fragments	rnasamba	5prime_partial	13125	911	104	1	0.0079	0.0001	0.1142	0.0011
 tthermophila	fragments	borf	3prime_partial	13331	373	64	12	0.0048	0.0009	0.1716	0.0322
 tthermophila	fragments	borf	5prime_partial	13125	432	37	7	0.0028	0.0005	0.0856	0.0162
+tthermophila	fragments	td2	3prime_partial	13331	11850	11518	5083	0.8640	0.3813	0.9720	0.4289
+tthermophila	fragments	td2	5prime_partial	13125	11440	10421	2463	0.7940	0.1877	0.9109	0.2153
 tthermophila	fragments	longest_orf	3prime_partial	13331	11467	11133	4791	0.8351	0.3594	0.9709	0.4178
 tthermophila	fragments	longest_orf	5prime_partial	13125	11005	9363	9363	0.7134	0.7134	0.8508	0.8508
 tthermophila	fragments.unstranded	pytd_v7	3prime_partial	13331	10793	10560	9319	0.7921	0.6990	0.9784	0.8634
@@ -1551,6 +1693,8 @@ tthermophila	fragments.unstranded	cpc2	3prime_partial	13331	210	2	0	0.0002	0.000
 tthermophila	fragments.unstranded	cpc2	5prime_partial	13125	268	24	1	0.0018	0.0001	0.0896	0.0037
 tthermophila	fragments.unstranded	borf	3prime_partial	13331	491	61	11	0.0046	0.0008	0.1242	0.0224
 tthermophila	fragments.unstranded	borf	5prime_partial	13125	549	36	7	0.0027	0.0005	0.0656	0.0128
+tthermophila	fragments.unstranded	td2	3prime_partial	13331	12389	11138	4908	0.8355	0.3682	0.8990	0.3962
+tthermophila	fragments.unstranded	td2	5prime_partial	13125	12232	10138	2310	0.7724	0.1760	0.8288	0.1888
 tthermophila	fragments.unstranded	longest_orf	3prime_partial	13331	12028	9947	4042	0.7462	0.3032	0.8270	0.3360
 tthermophila	fragments.unstranded	longest_orf	5prime_partial	13125	11849	8059	8059	0.6140	0.6140	0.6801	0.6801
 tthermophila	fragments.wRand	pytd_v7	3prime_partial	13331	10802	10743	9457	0.8059	0.7094	0.9945	0.8755
@@ -1573,6 +1717,8 @@ tthermophila	fragments.wRand	rnasamba	3prime_partial	13331	1048	181	35	0.0136	0.
 tthermophila	fragments.wRand	rnasamba	5prime_partial	13125	911	104	1	0.0079	0.0001	0.1142	0.0011
 tthermophila	fragments.wRand	borf	3prime_partial	13331	373	64	12	0.0048	0.0009	0.1716	0.0322
 tthermophila	fragments.wRand	borf	5prime_partial	13125	432	37	7	0.0028	0.0005	0.0856	0.0162
+tthermophila	fragments.wRand	td2	3prime_partial	13331	11850	11516	5081	0.8639	0.3811	0.9718	0.4288
+tthermophila	fragments.wRand	td2	5prime_partial	13125	11440	10419	2463	0.7938	0.1877	0.9108	0.2153
 tthermophila	fragments.wRand	longest_orf	3prime_partial	13331	11467	11133	4791	0.8351	0.3594	0.9709	0.4178
 tthermophila	fragments.wRand	longest_orf	5prime_partial	13125	11005	9363	9363	0.7134	0.7134	0.8508	0.8508
 tthermophila	fragments.unstranded.wRand	pytd_v7	3prime_partial	13331	10654	10449	9222	0.7838	0.6918	0.9808	0.8656
@@ -1593,6 +1739,8 @@ tthermophila	fragments.unstranded.wRand	cpc2	3prime_partial	13331	210	2	0	0.0002
 tthermophila	fragments.unstranded.wRand	cpc2	5prime_partial	13125	268	24	1	0.0018	0.0001	0.0896	0.0037
 tthermophila	fragments.unstranded.wRand	borf	3prime_partial	13331	491	61	11	0.0046	0.0008	0.1242	0.0224
 tthermophila	fragments.unstranded.wRand	borf	5prime_partial	13125	549	36	7	0.0027	0.0005	0.0656	0.0128
+tthermophila	fragments.unstranded.wRand	td2	3prime_partial	13331	12389	11121	4907	0.8342	0.3681	0.8977	0.3961
+tthermophila	fragments.unstranded.wRand	td2	5prime_partial	13125	12232	10140	2309	0.7726	0.1759	0.8290	0.1888
 tthermophila	fragments.unstranded.wRand	longest_orf	3prime_partial	13331	12028	9947	4042	0.7462	0.3032	0.8270	0.3360
 tthermophila	fragments.unstranded.wRand	longest_orf	5prime_partial	13125	11849	8059	8059	0.6140	0.6140	0.6801	0.6801
 tthermophila	fragments_mixed_t1	pytd_v7	3prime_partial	6592	5765	5725	4989	0.8685	0.7568	0.9931	0.8654
@@ -1615,6 +1763,10 @@ tthermophila	fragments_mixed_t1	cpat	3prime_partial	6592	3909	3900	3737	0.5916	0
 tthermophila	fragments_mixed_t1	cpat	5prime_partial	6588	3258	3172	67	0.4815	0.0102	0.9736	0.0206
 tthermophila	fragments_mixed_t1	cpat	complete	6614	5238	5210	5014	0.7877	0.7581	0.9947	0.9572
 tthermophila	fragments_mixed_t1	cpat	internal	6583	2955	2920	44	0.4436	0.0067	0.9882	0.0149
+tthermophila	fragments_mixed_t1	td2	3prime_partial	6592	6192	6052	2745	0.9181	0.4164	0.9774	0.4433
+tthermophila	fragments_mixed_t1	td2	5prime_partial	6588	6080	5673	1178	0.8611	0.1788	0.9331	0.1938
+tthermophila	fragments_mixed_t1	td2	complete	6614	6525	6318	6025	0.9552	0.9109	0.9683	0.9234
+tthermophila	fragments_mixed_t1	td2	internal	6583	5616	5606	5604	0.8516	0.8513	0.9982	0.9979
 tthermophila	fragments_mixed_t1	longest_orf	3prime_partial	6592	6592	6345	2918	0.9625	0.4427	0.9625	0.4427
 tthermophila	fragments_mixed_t1	longest_orf	5prime_partial	6588	6588	5678	5678	0.8619	0.8619	0.8619	0.8619
 tthermophila	fragments_mixed_t1	longest_orf	complete	6614	6611	6389	3144	0.9660	0.4754	0.9664	0.4756
@@ -1639,6 +1791,10 @@ tthermophila	fragments_mixed_t2	cpat	3prime_partial	6581	3875	3868	3707	0.5878	0
 tthermophila	fragments_mixed_t2	cpat	5prime_partial	6588	3219	3132	64	0.4754	0.0097	0.9730	0.0199
 tthermophila	fragments_mixed_t2	cpat	complete	6614	5354	5322	5117	0.8047	0.7737	0.9940	0.9557
 tthermophila	fragments_mixed_t2	cpat	internal	6579	2872	2823	56	0.4291	0.0085	0.9829	0.0195
+tthermophila	fragments_mixed_t2	td2	3prime_partial	6581	6166	6022	2735	0.9151	0.4156	0.9766	0.4436
+tthermophila	fragments_mixed_t2	td2	5prime_partial	6588	6080	5655	1173	0.8584	0.1781	0.9301	0.1929
+tthermophila	fragments_mixed_t2	td2	complete	6614	6535	6318	6047	0.9552	0.9143	0.9668	0.9253
+tthermophila	fragments_mixed_t2	td2	internal	6579	5585	5578	5576	0.8478	0.8475	0.9987	0.9984
 tthermophila	fragments_mixed_t2	longest_orf	3prime_partial	6581	6581	6306	2889	0.9582	0.4390	0.9582	0.4390
 tthermophila	fragments_mixed_t2	longest_orf	5prime_partial	6588	6588	5680	5680	0.8622	0.8622	0.8622	0.8622
 tthermophila	fragments_mixed_t2	longest_orf	complete	6614	6611	6403	3178	0.9681	0.4805	0.9685	0.4807
@@ -1663,6 +1819,10 @@ tthermophila	fragments_mixed_t3	cpat	3prime_partial	6584	3869	3866	3703	0.5872	0
 tthermophila	fragments_mixed_t3	cpat	5prime_partial	6581	3259	3140	72	0.4771	0.0109	0.9635	0.0221
 tthermophila	fragments_mixed_t3	cpat	complete	6614	5295	5253	5073	0.7942	0.7670	0.9921	0.9581
 tthermophila	fragments_mixed_t3	cpat	internal	6593	2916	2880	64	0.4368	0.0097	0.9877	0.0219
+tthermophila	fragments_mixed_t3	td2	3prime_partial	6584	6174	6020	2699	0.9143	0.4099	0.9751	0.4372
+tthermophila	fragments_mixed_t3	td2	5prime_partial	6581	6060	5652	1121	0.8588	0.1703	0.9327	0.1850
+tthermophila	fragments_mixed_t3	td2	complete	6614	6530	6342	6081	0.9589	0.9194	0.9712	0.9312
+tthermophila	fragments_mixed_t3	td2	internal	6593	5618	5610	5608	0.8509	0.8506	0.9986	0.9982
 tthermophila	fragments_mixed_t3	longest_orf	3prime_partial	6584	6584	6317	2853	0.9594	0.4333	0.9594	0.4333
 tthermophila	fragments_mixed_t3	longest_orf	5prime_partial	6581	6581	5694	5694	0.8652	0.8652	0.8652	0.8652
 tthermophila	fragments_mixed_t3	longest_orf	complete	6614	6609	6388	3129	0.9658	0.4731	0.9666	0.4734

@@ -6,7 +6,7 @@
 #                               (all *.wRand / *.wLnc inputs): sensitivity by true protein length and
 #                               calls by predicted length (as data/benchmark/by_length.tsv, E04)
 #   lnc_by_era.human.v7.tsv     lnc_calls_by_era.py (analyses/lnc_holdout) on human complete.wLnc and
-#                               fragments.wLnc: release runs and the comparators of E04/E07, tidy format
+#                               fragments.wLnc: release runs and the comparators of E04/E07 (+ TD2, E39), tidy format
 #                               (variant column added)
 #   lnc_call_lengths.human.tsv  human lncRNA calls by predicted ORF length ((end-start+1)/3 codons,
 #                               stop included), for the release runs and the development q sweep of
@@ -37,7 +37,7 @@ $PY $S/score_by_length.py $INPUTS $RUNS $REL > $OUT/by_length.v7.tsv
   for v in complete.wLnc fragments.wLnc; do
     $PY $T/analyses/lnc_holdout/lnc_calls_by_era.py $P/work/lnc/human_lnc.pick.gtf \
       $P/data/gencode_v28/v28_gene_ids.txt $RUNS/human $v \
-      $REL pytd_dev_v2 cpat cpc2 rnasamba borf gmst prodigal | awk -v v=$v 'NR>1{print v"\t"$0}'
+      $REL pytd_dev_v2 cpat cpc2 rnasamba borf gmst prodigal td2 | awk -v v=$v 'NR>1{print v"\t"$0}'
   done
 } > $OUT/lnc_by_era.human.v7.tsv
 

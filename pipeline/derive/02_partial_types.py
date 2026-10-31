@@ -28,7 +28,7 @@ from score_predictions import TOL, ends, read_preds, read_truth  # noqa: E402
 VARIANTS = ["fragments", "fragments.unstranded", "fragments.wRand", "fragments.unstranded.wRand",
             "fragments_mixed_t1", "fragments_mixed_t2", "fragments_mixed_t3"]
 TOOLS = ["pytd_v7", "perl_td_v7", "perl_td_v600", "prodigal", "gmst", "codan", "cpat", "cpc2", "rnasamba", "borf",
-         "longest_orf"]
+         "td2", "longest_orf"]
 
 
 def score(truth, preds):

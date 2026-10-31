@@ -28,7 +28,7 @@ NO_CILIATE_CODE = {"gmst", "codan", "cpc2", "rnasamba", "borf"}
 METHOD = {"pytd_v7": "TransDecoder release (PyTransDecoder v0.2.0)",
           "perl_td_v7": "TransDecoder release (Perl v7.0.0)",
           "pytd_v7_homology": "TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)",
-          "perl_td_v600": "TransDecoder v6.0.0", "prodigal": "Prodigal 2.6.3",
+          "perl_td_v600": "TransDecoder v6.0.0", "td2": "TD2 1.1.0", "prodigal": "Prodigal 2.6.3",
           "gmst": "GeneMarkS-T 5.1", "codan": "CodAn 1.1", "cpat": "CPAT 3.0.5", "cpc2": "CPC2 1.0.1",
           "rnasamba": "RNAsamba 0.2.5", "borf": "Borf 1.2", "longest_orf": "longest ORF baseline",
           "angel": "ANGEL 3.0 (not benchmarked further)"}
@@ -75,7 +75,7 @@ def per_input():
     summ = tsv("data/benchmark/summary.interim_20261025.tsv")
     rel = tsv("data/benchmark/final_v7/all_scores.tsv")
     mixed = tsv("data/benchmark/final_v7/mixed_scores.tsv")
-    td = ["pytd_v7", "perl_td_v7", "pytd_v7_homology"]
+    td = ["pytd_v7", "perl_td_v7", "pytd_v7_homology", "td2"]   # rows from all_scores.tsv
     comp = [t for t in METHOD if t not in td]
     d = pd.concat([rel[rel.tool.isin(td)], summ[summ.tool.isin(comp)], mixed], ignore_index=True)
     d = d.drop_duplicates(["org", "variant", "tool"], keep="first")

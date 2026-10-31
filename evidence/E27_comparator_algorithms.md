@@ -44,6 +44,18 @@ README only; **[run]** observed in our benchmark outputs; **[?]** uncertain/not 
 8. Noncoding control: target-decoy q-value per stratum (ORF length x transcript length x complete/partial) (MA:115-150).
 9. External evidence: optional DIAMOND/BLASTP and Pfam/HMMER hits retain and rank ORFs (MA:169-176).
 
+### TD2 1.1.0 (Mao et al. 2025 preprint; PSAURON 1.1.3, Sommer et al. 2025) (added 2026-10-31, E39)
+Code: `$P/env/td2/lib/python3.11/site-packages/{TD2/{LongOrfs,Predict,translator}.py,psauron/{psauron,TCN_model}.py}`.
+1. Purpose: coding regions in transcript assemblies. Extends TransDecoder (two steps, output format; v5.7.1 was current at the preprint), replacing the self-trained coding model.
+2. Model: PSAURON, a pre-trained temporal convolutional network over amino acids; TD2 runs it with `-s` (in-frame score only; all-frame with `--psauron-all-frame`) [code Predict.py; PSAURON paper L23].
+3. Training: nothing on the input. PSAURON trained on 1,000,000 CDSs sampled from 1,090 RefSeq plant and animal genomes [paper L26, L62].
+4. Selection: ORF kept if PSAURON in-frame score > 0.5 (`-P`), or length >= `length_at_fdr` (Gumbel model of longest stopless run, GC and transcript length, FDR 0.10), or any homology hit. Best per transcript: homology, then PSAURON pass, then length (Predict.py). `--all-good` keeps all.
+5. Start: per frame, first ATG after the previous stop (translator.py `find_orfs`); `--alt-start` adds table alternatives. A chosen 5'-partial ORF is replaced by the longest non-partial ORF with the same stop that passes the same filters (Predict.py "special case"). Frames with no stop give an `internal` ORF, which has no such competitor.
+6. Partial: 5', 3', internal unless `--complete-orfs-only`. Minimum 90 aa (`-m`). Codes: `-G`, 26 NCBI tables; [code] `length_at_fdr` assumes TAA/TAG/TGA ("TODO alternate translation tables") and PSAURON translates with a standard table.
+7. Strand: both, or forward with `-S`.
+8. Noncoding control: PSAURON cutoff and length FDR. `--precise`: `-m 98`, `-P 0.9`, FDR 0.005.
+9. External evidence: optional blastp, MMseqs2 and HMMER hits retain ORFs and rank first; inherited in concept from TransDecoder. **No homology use in start choice** [code: hits only enter the filter and the `homology` rank]. Not run here.
+
 ### Prodigal 2.6.3 (Hyatt et al. 2010)
 1. Purpose: protein-coding genes in prokaryotic genomes and metagenomes [paper L18].
 2. Model: in-frame hexamer log-ratio table C(w) = log(G(w)/B(w)) (gene training set vs whole-sequence background), "corresponds to a 5th-order Markov model" [paper L237-260]; start score S = 4.25(R + T + 0.4U) + C combining RBS motif (R), start codon type (T), upstream composition (U) and coding (C) [paper L641-650]; genes < 250 bp penalised [paper ~L672-685].
@@ -136,6 +148,7 @@ README only; **[run]** observed in our benchmark outputs; **[?]** uncertain/not 
 | Method | Code/stop option | Evidence |
 |---|---|---|
 | TransDecoder | yes, `-G` (24 codes) | MA:19-21 |
+| TD2 | yes, `-G` (26 NCBI tables); length rule and PSAURON translation assume standard stops | translator.py `legal_tables`; Predict.py `length_at_fdr` |
 | Prodigal | yes, `-g` NCBI table | usage text |
 | CPAT | yes, `--start`/`--stop` lists | cpmodule/__init__.py:79-94 |
 | GeneMarkS-T | codes 1, 4, 11 only | gmst.pl:111, 185, 283 |

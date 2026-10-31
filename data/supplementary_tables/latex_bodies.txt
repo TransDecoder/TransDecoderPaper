@@ -11,8 +11,8 @@ PASA & 792 & 792 & 725 & 67 & 0 & 0 & 81 & 28 \\
 StringTie & 3{,}037 & 3{,}045 & 2{,}944 & 71 & 22 & 30 & 134 & 48 \\
 SuperTranscripts & 117 & 117 & 117 & 0 & 0 & 0 & 72 & 25 \\
 Cufflinks & 80 & 80 & 76 & 4 & 0 & 0 & 45 & 15 \\
-% benchmark_per_input.tsv: 1207 rows, 15 input types, 8 organisms, 13 runs
-% rows per run: angel 3, borf 105, codan 100, cpat 108, cpc2 105, gmst 105, longest_orf 104, perl_td_v600 104, perl_td_v7 108, prodigal 108, pytd_v7 108, pytd_v7_homology 84, rnasamba 65
+% benchmark_per_input.tsv: 1315 rows, 15 input types, 8 organisms, 14 runs
+% rows per run: angel 3, borf 105, codan 100, cpat 108, cpc2 105, gmst 105, longest_orf 104, perl_td_v600 104, perl_td_v7 108, prodigal 108, pytd_v7 108, pytd_v7_homology 84, rnasamba 65, td2 108
 % start_choice_legacy.tsv (exact matches; first ATG, PWM later ATG, v6.0.0, PWM scale corrected, release)
 \textit{P. falciparum} & 5{,}281 & 4{,}823 & 4{,}824 & 4{,}738 & 4{,}708 & 4{,}954 \\
 \textit{T. thermophila} & 26{,}456 & 21{,}439 & 21{,}250 & 14{,}720 & 12{,}502 & 21{,}016 \\

@@ -32,7 +32,7 @@ sys.path.insert(0, os.path.join(T, "benchmark_v2", "scripts"))
 from score_predictions import TOL, ends, read_preds  # noqa: E402
 
 TOOLS = ["pytd_v7", "perl_td_v7", "perl_td_v600", "prodigal", "gmst", "cpat", "cpc2", "rnasamba", "borf",
-         "longest_orf"]
+         "td2", "longest_orf"]
 TYPES = ["complete", "5prime_partial", "3prime_partial", "internal"]
 EXPR = [(0, 1, "<1"), (1, 5, "1-5"), (5, 20, "5-20"), (20, 100, "20-100"), (100, float("inf"), ">100")]
 STOPS = {"TAA", "TAG", "TGA"}

@@ -30,7 +30,7 @@ from score_predictions import TOL, ends, read_preds  # noqa: E402
 
 VARIANTS = ["fragments_mixed_t1", "fragments_mixed_t2", "fragments_mixed_t3"]
 TOOLS = ["pytd_v7", "perl_td_v7", "perl_td_v600", "prodigal", "gmst", "codan", "cpat", "cpc2", "rnasamba",
-         "borf", "longest_orf"]
+         "borf", "td2", "longest_orf"]
 ORGS = ["human", "mouse", "dmel", "athal", "spombe", "tthermophila", "pfalciparum", "creinhardtii"]
 DIST_BINS = [(0, 29, "0-29"), (30, 59, "30-59"), (60, 119, "60-119"), (120, 299, "120-299"), (300, 10**9, "300+")]
 FRAC_BINS = [f"{i / 10:.1f}-{(i + 1) / 10:.1f}" for i in range(8)]

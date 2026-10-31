@@ -70,6 +70,7 @@ disagrees with its E-record, the E-record wins; fix the log.
 | B8 | Non-standard genetic code handling | ADOPTED | Five comparators cannot use the ciliate code: mark n/a, not "lost" |
 | B9 | Old-vs-new critique tests; bootstrap CIs | OPEN | CIs are narrow (+-0.002-0.006); with 8 organisms use sign counts |
 | B10 | Release-history benchmark | ADOPTED (supplement) | r2012 coordinates need clipping before scoring |
+| B11 | TD2 as a comparator (E39) | ADOPTED | fresh ab initio runs; author is a TD2 co-author |
 | T1 | Simulated GM12878 Trinity assembly | ADOPTED | Real-assembly truth is mostly unresolvable (91%); simulate instead |
 | T2 | Labeller end tolerance (10 nt) | ADOPTED | Decided after a strict pass; report both passes |
 | T3 | Read-depth ablation | ADOPTED | Depth controls fragmentation; d4-d8 match the real Trinity assembly |
@@ -826,6 +827,11 @@ Outcome counts: see the end of this file.
   a per-organism sign count is the more honest summary.
 - **Pointers:** E17; `benchmark_v2/scripts/critiques_old_vs_new.py`, `bootstrap_ci.py`; E16 (literature).
 
+### B11. TD2 as a comparator (2026-10-31; E39)
+- **Outcome: ADOPTED.** Include TD2 1.1.0 (private until now) as a comparator, cited, with a disclosure (BH 2026-10-31).
+- **Result:** 120/120 fresh ab initio runs. Median complete 0.982 / 0.941, fragments 0.876 / 0.421, mixed 0.929 / 0.673, +random precision 0.904. Highest exact F1 on *A. thaliana* simulated assemblies at d1 and d2; TransDecoder still first on human at every depth and in the ranks.
+- **Lesson:** fragment stop losses are almost all from the 90-codon minimum (0.958-1.000 on longer CDSs); fragment exact losses come from preferring ATG-initiated ORFs. TD2's *T. thermophila* random calls are mostly on length, a rule that assumes three stop codons. Homology options not run (BH).
+
 ### B10. Release-history benchmark (2026-10-24)
 - **Outcome: ADOPTED** (Supplementary Note 1).
 - **Numbers:** exact start (complete + random) 0.666 (r2012) -> 0.758 (v5.7.1) -> 0.897 (v7 start rule);
@@ -1131,11 +1137,11 @@ or note describes the incident; details are unknown.
     against the quoted 62/68%; definition not documented, already noted in the notebook).
 
 ## Outcome counts
-Entries: 58 (A1-A13, S1-S14, O1-O4, H1-H5, B1-B10, T1-T6, G1-G6).
+Entries: 59 (A1-A13, S1-S14, O1-O4, H1-H5, B1-B11, T1-T6, G1-G6).
 
 | Outcome | Count | Entries |
 |---|---|---|
-| ADOPTED | 33 | A1-A4, A9-A12, S4, S6-S9, S11, O1, H1, H2, B1-B4, B8, B10, T1-T4, G1-G6 |
+| ADOPTED | 34 | A1-A4, A9-A12, S4, S6-S9, S11, O1, H1, H2, B1-B4, B8, B10, B11, T1-T4, G1-G6 |
 | NOT ADOPTED | 14 | A5, A7, A8, A13, S2, S3, S5, S10, S13, O3, O4, H3, H4, H5 |
 | PARTIAL | 4 | S1, O2, B5, B7 |
 | OPEN | 4 | A6, S12, B9, T6 |

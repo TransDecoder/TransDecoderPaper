@@ -1,0 +1,9 @@
+org	n_random	n_called	frac_called	called_above_psauron_cutoff	called_length_only
+pfalciparum	5281	30	0.0057	4	26
+tthermophila	26456	25213	0.953	8454	16759
+spombe	5100	127	0.0249	95	32
+athal	26867	994	0.037	784	210
+dmel	13884	1308	0.0942	1216	92
+mouse	21409	2290	0.107	2099	191
+human	19167	2042	0.1065	1887	155
+creinhardtii	17621	2675	0.1518	2529	146

@@ -7,6 +7,7 @@ d1	cpat	84	75	0	9	0
 d1	cpc2	35	35	0	0	0
 d1	rnasamba	736	626	0	110	0
 d1	borf	88	66	16	4	2
+d1	td2	88	52	29	4	3
 d1	longest_orf	806	383	336	40	47
 d2	pytd_v7	60	17	26	6	11
 d2	perl_td_v600	49	17	24	2	6
@@ -16,6 +17,7 @@ d2	cpat	46	36	0	10	0
 d2	cpc2	16	16	0	0	0
 d2	rnasamba	517	433	0	84	0
 d2	borf	49	30	13	2	4
+d2	td2	50	24	18	3	5
 d2	longest_orf	560	235	262	25	38
 d4	pytd_v7	29	16	7	4	2
 d4	perl_td_v600	19	8	9	0	2
@@ -25,6 +27,7 @@ d4	cpat	17	14	0	3	0
 d4	cpc2	10	10	0	0	0
 d4	rnasamba	317	257	0	60	0
 d4	borf	23	12	10	0	1
+d4	td2	28	13	13	0	2
 d4	longest_orf	348	132	178	21	17
 d8	pytd_v7	15	4	4	4	3
 d8	perl_td_v600	9	2	5	0	2
@@ -34,6 +37,7 @@ d8	cpat	1	1	0	0	0
 d8	cpc2	3	3	0	0	0
 d8	rnasamba	151	127	0	24	0
 d8	borf	10	7	1	0	2
+d8	td2	11	4	5	0	2
 d8	longest_orf	169	63	82	10	14
 d16	pytd_v7	4	1	2	0	1
 d16	perl_td_v600	2	1	1	0	0
@@ -43,6 +47,7 @@ d16	cpat	0	0	0	0	0
 d16	cpc2	1	1	0	0	0
 d16	rnasamba	62	47	0	15	0
 d16	borf	1	1	0	0	0
+d16	td2	2	2	0	0	0
 d16	longest_orf	67	23	39	1	4
 d32	pytd_v7	3	2	1	0	0
 d32	perl_td_v600	1	1	0	0	0
@@ -52,4 +57,5 @@ d32	cpat	0	0	0	0	0
 d32	cpc2	1	1	0	0	0
 d32	rnasamba	29	24	0	5	0
 d32	borf	1	1	0	0	0
+d32	td2	1	1	0	0	0
 d32	longest_orf	30	9	19	2	0

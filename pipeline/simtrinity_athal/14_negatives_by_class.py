@@ -14,7 +14,7 @@ import os
 import sys
 
 P = "/broad/hptmp/bhaas/TRANSDECODER_PAPER"
-TOOLS = ["pytd_v7", "perl_td_v600", "prodigal", "gmst", "cpat", "cpc2", "rnasamba", "borf", "longest_orf"]
+TOOLS = ["pytd_v7", "perl_td_v600", "prodigal", "gmst", "cpat", "cpc2", "rnasamba", "borf", "td2", "longest_orf"]
 
 
 def main():

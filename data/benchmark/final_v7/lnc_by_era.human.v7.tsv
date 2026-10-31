@@ -19,6 +19,8 @@ complete.wLnc	gmst	pre_v28	12987	3449	0.2656
 complete.wLnc	gmst	post_v28	20681	4826	0.2334
 complete.wLnc	prodigal	pre_v28	12987	4429	0.3410
 complete.wLnc	prodigal	post_v28	20681	7459	0.3607
+complete.wLnc	td2	pre_v28	12987	2015	0.1552
+complete.wLnc	td2	post_v28	20681	3119	0.1508
 fragments.wLnc	pytd_v7	pre_v28	12987	580	0.0447
 fragments.wLnc	pytd_v7	post_v28	20681	1348	0.0652
 fragments.wLnc	pytd_v7_precise	pre_v28	12987	452	0.0348
@@ -39,3 +41,5 @@ fragments.wLnc	gmst	pre_v28	12987	3928	0.3025
 fragments.wLnc	gmst	post_v28	20681	5470	0.2645
 fragments.wLnc	prodigal	pre_v28	12987	7086	0.5456
 fragments.wLnc	prodigal	post_v28	20681	11439	0.5531
+fragments.wLnc	td2	pre_v28	12987	2015	0.1552
+fragments.wLnc	td2	post_v28	20681	3119	0.1508

@@ -23,7 +23,7 @@
 - Settings: cliff_c200 (= release defaults at the final commit), taper_c150/200/250, fixed_c150/200, inverse_c200/250. Inputs: 8 organisms × complete/fragments wRand, human and mouse × complete/fragments wLnc, and GM12878 LRAA/StringTie (6 settings).
 
 ## Scoring (results in `data/benchmark/rules/`)
-- `score_negatives.py` → `rules_scores.tsv`; `plot_rules.py` → `rules.{pdf,png,medians.tsv}`. Comparator points (v5.7.1, CPAT, RNAsamba, GMST) come from `work/bench_v3/runs`. TD2 points are in a private copy only (`work/td2_private/rules/`).
+- `score_negatives.py` → `rules_scores.tsv`; `plot_rules.py` → `rules.{pdf,png,medians.tsv}`. Comparator points (v5.7.1, CPAT, RNAsamba, GMST) come from `work/bench_v3/runs`. TD2 points are in a private copy only (`work/td2_private/rules/`; TD2 is a paper comparator since 2026-10-31, E39).
 - `sens_by_length.py` → `sens_by_length.tsv`: stop sensitivity by true CDS length, and negatives with a prediction by predicted ORF length.
 - `score_protein_matches.py` → `gm12878_protein_matches.tsv`: TD2-preprint-style complete / 30-mer match / nonmatching against GENCODE v50 proteins.
 - `gm_rule_support.py` → `gm12878_rule_support.tsv`:

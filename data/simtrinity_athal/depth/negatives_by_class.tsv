@@ -23,6 +23,9 @@ d1	lncRNA	349	rnasamba	180	0.5158
 d1	antisense_RNA	1014	borf	69	0.0680
 d1	both	9	borf	0	0.0000
 d1	lncRNA	349	borf	18	0.0516
+d1	antisense_RNA	1014	td2	67	0.0661
+d1	both	9	td2	1	0.1111
+d1	lncRNA	349	td2	20	0.0573
 d1	antisense_RNA	1014	longest_orf	590	0.5819
 d1	both	9	longest_orf	3	0.3333
 d1	lncRNA	349	longest_orf	213	0.6103
@@ -50,6 +53,9 @@ d2	lncRNA	271	rnasamba	130	0.4797
 d2	antisense_RNA	711	borf	37	0.0520
 d2	both	8	borf	0	0.0000
 d2	lncRNA	271	borf	11	0.0406
+d2	antisense_RNA	711	td2	38	0.0534
+d2	both	8	td2	0	0.0000
+d2	lncRNA	271	td2	12	0.0443
 d2	antisense_RNA	711	longest_orf	406	0.5710
 d2	both	8	longest_orf	4	0.5000
 d2	lncRNA	271	longest_orf	150	0.5535
@@ -77,6 +83,9 @@ d4	lncRNA	190	rnasamba	84	0.4421
 d4	antisense_RNA	447	borf	17	0.0380
 d4	both	1	borf	0	0.0000
 d4	lncRNA	190	borf	6	0.0316
+d4	antisense_RNA	447	td2	20	0.0447
+d4	both	1	td2	0	0.0000
+d4	lncRNA	190	td2	8	0.0421
 d4	antisense_RNA	447	longest_orf	242	0.5414
 d4	both	1	longest_orf	1	1.0000
 d4	lncRNA	190	longest_orf	105	0.5526
@@ -96,6 +105,8 @@ d8	antisense_RNA	212	rnasamba	103	0.4858
 d8	lncRNA	109	rnasamba	48	0.4404
 d8	antisense_RNA	212	borf	8	0.0377
 d8	lncRNA	109	borf	2	0.0183
+d8	antisense_RNA	212	td2	6	0.0283
+d8	lncRNA	109	td2	5	0.0459
 d8	antisense_RNA	212	longest_orf	114	0.5377
 d8	lncRNA	109	longest_orf	55	0.5046
 d16	antisense_RNA	94	pytd_v7	4	0.0426
@@ -114,6 +125,8 @@ d16	antisense_RNA	94	rnasamba	43	0.4574
 d16	lncRNA	60	rnasamba	19	0.3167
 d16	antisense_RNA	94	borf	0	0.0000
 d16	lncRNA	60	borf	1	0.0167
+d16	antisense_RNA	94	td2	0	0.0000
+d16	lncRNA	60	td2	2	0.0333
 d16	antisense_RNA	94	longest_orf	43	0.4574
 d16	lncRNA	60	longest_orf	24	0.4000
 d32	antisense_RNA	40	pytd_v7	1	0.0250
@@ -132,5 +145,7 @@ d32	antisense_RNA	40	rnasamba	18	0.4500
 d32	lncRNA	34	rnasamba	11	0.3235
 d32	antisense_RNA	40	borf	0	0.0000
 d32	lncRNA	34	borf	1	0.0294
+d32	antisense_RNA	40	td2	0	0.0000
+d32	lncRNA	34	td2	1	0.0294
 d32	antisense_RNA	40	longest_orf	15	0.3750
 d32	lncRNA	34	longest_orf	15	0.4412

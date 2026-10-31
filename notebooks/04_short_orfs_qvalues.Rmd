@@ -400,6 +400,8 @@ check_text("RNAsamba lncRNA calls, added later (%)", round(100 * e("rnasamba", "
 check_text("RNAsamba lncRNA calls, ratio", round(e("rnasamba", "ratio_post_pre"), 2), 1.74)
 check_text("CPAT lncRNA calls, ratio", round(e("cpat", "ratio_post_pre"), 2), 0.94)
 check_text("CPC2 lncRNA calls, ratio", round(e("cpc2", "ratio_post_pre"), 2), 1.00)
+check_text("TD2 lncRNA calls, ratio", round(e("td2", "ratio_post_pre"), 2), 0.97)
+check_text("TD2 lncRNA call rate (%)", round(100 * e("td2", "all"), 1), 15.2)
 check_text("TransDecoder lncRNA call rate (%)", round(100 * e("pytd_v7", "all"), 1), 4.9)
 check_text("CPAT lncRNA call rate (%)", round(100 * e("cpat", "all"), 1), 10.5)
 check_text("CPC2 lncRNA call rate (%)", round(100 * e("cpc2", "all"), 1), 7.9)
@@ -455,8 +457,8 @@ per_neg <- bind_rows(sos %>% filter(cfg %in% c("m100", "m50", "m50+g200")),
          cfg = factor(cfg, c("m100", "m50", "m50+g200", "q0.05"),
                       c("100 codons", "50 codons", "fixed test", "release q 0.05")),
          org_lab = factor(ORG_LABEL[org], ORG_LABEL[ORGS]))
-era_plot <- era7 %>% filter(variant == "complete.wLnc", tool %in% c("pytd_v7", "cpat", "cpc2", "rnasamba", "borf", "gmst", "prodigal"))
-TOOL_LABEL <- c(pytd_v7 = "TransDecoder", prodigal = "Prodigal", gmst = "GeneMarkS-T", borf = "Borf",
+era_plot <- era7 %>% filter(variant == "complete.wLnc", tool %in% c("pytd_v7", "td2", "cpat", "cpc2", "rnasamba", "borf", "gmst", "prodigal"))
+TOOL_LABEL <- c(pytd_v7 = "TransDecoder", td2 = "TD2", prodigal = "Prodigal", gmst = "GeneMarkS-T", borf = "Borf",
                 cpat = "CPAT", rnasamba = "RNAsamba", cpc2 = "CPC2")
 ord <- era_plot %>% group_by(tool) %>% summarise(all = sum(n_called) / sum(n_lnc)) %>% arrange(-all)
 era_plot <- era_plot %>% mutate(tool = factor(TOOL_LABEL[tool], TOOL_LABEL[ord$tool]),
