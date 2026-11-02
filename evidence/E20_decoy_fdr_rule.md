@@ -80,3 +80,6 @@ ORFs dropped relative to cliff_c200 have a Ribo-seq frame-support rate of 0.32â€
 Adopted. The decoy-FDR rule (q <= 0.05 with the GC-table long-ORF accept, `decoy_q0.05_longgc` here) is
 the release ORF acceptance rule in Perl 41fc5ee and PyTD 3a793ff (E24). Release reruns reproduce the
 development medians (E25). The Perl port mentioned in Caveats is done (E24).
+
+## Status update (2026-11-02)
+The manuscript no longer quotes the development runs of this record where the released code can express them: they were rerun at the pinned release commit (PyTD d3892b5) in E40, which lists old and new values. This record is kept as history.

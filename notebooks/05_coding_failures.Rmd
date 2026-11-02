@@ -24,7 +24,7 @@ benchmark) and `r evidence("E25")` (final release runs).
 **Release rule.** The analysis of E12 used the development rule: $S_1>0$, frame contrast
 $C=S_1-\max(S_2,S_3)>0$ and, below 300 nt, a fixed short-ORF test ($C \ge 200\mu$). The text now
 quotes the release analysis. Here the analysis is rerun on the release predictions
-(`pytd_v7`: PyTD 3a793ff, release defaults; Perl gives identical predictions, E25), with the
+(`pytd_v7`: release defaults, output byte-identical at the pinned PyTD d3892b5, E40; Perl gives identical predictions, E25), with the
 release coding test: $S_1>0$, $C>0$ and target-decoy q-value $\le 0.05$. The q-value of each
 candidate is read from the run's `decoy_qvalues.tsv`.
 
@@ -43,13 +43,11 @@ release rule):
   PyTD generates them; with the run's own model this reproduces every q-value in `decoy_qvalues.tsv`
   (checked below);
 - the homology comparison (Fig. 5d,e) uses `data/benchmark/homology_v7h_vs_abinitio.tsv`: the
-  released homology mode (PyTD a5b24c3, homology-assisted start refinement; runs `pytd_v7h_homology`)
+  released homology mode (run at a5b24c3, same code tree as the pinned d3892b5, homology-assisted start refinement; runs `pytd_v7h_homology`)
   minus the ab initio release runs (`pytd_v7`), from `benchmark_v2/scripts/compare_homology.py` on
   `data/benchmark/final_v7/v7h_homology_scores.tsv` (`pipeline/derive/05_homology_v7h_table.sh`; E25
-  addendum of 2026-10-28, E33). Selection and stops equal the earlier 3a793ff homology runs
-  (`pytd_v7_homology`, `homology_vs_abinitio.tsv`, kept and compared below); only start codons differ.
-  The development comparison (`pytd_dev_v2_homology` minus `pytd_dev_v2`) is kept as
-  `homology_vs_abinitio.dev_v2.tsv`.
+  addendum of 2026-10-28, E33). Retention alone is `homology_vs_abinitio.tsv` (`pytd_v7_homology`, made at 3a793ff): fresh
+  runs at the pinned commit with `--no-homology-start-assist` are byte-identical to these on all 84 inputs (E40).
 
 ```{r data}
 V7 <- function(f) read_tab("long_orf_failures", "v7", f)
@@ -72,7 +70,7 @@ dmel_c <- V7("dmel_gc3_rescue.tsv")
 long_fail <- V7("failing_ge1kb.tsv")
 reasons <- V7("reasons_by_length.tsv")
 hom <- read_tab("benchmark", "homology_v7h_vs_abinitio.tsv")
-hom_3a7 <- read_tab("benchmark", "homology_vs_abinitio.tsv")  # 3a793ff homology runs (no start assist)
+hom_ret <- read_tab("benchmark", "homology_vs_abinitio.tsv")  # 3a793ff homology runs (no start assist)
 # development-rule tables of E12, for comparison
 dev_by_org <- read_tab("long_orf_failures", "summary_by_org.tsv")
 dev_by_len <- read_tab("long_orf_failures", "summary_by_length.tsv")
@@ -333,20 +331,20 @@ rand_tt <- rand %>% filter(org == "tthermophila")
 lnc <- hom %>% filter(kind == "lnc")
 lncv <- function(o, v, col) lnc %>% filter(org == o, variant == v) %>% pull({{ col }})
 kable(hom %>% count(kind), caption = "Inputs per kind.")
-# the start assist changes start codons only: stop-level columns must equal the 3a793ff homology table
+# the start assist changes start codons only: stop-level columns must equal the retention-only table
 STOP_COLS <- c("n_pred_abinitio", "n_pred_homology", "d_sensitivity_stop", "d_precision_stop", "d_f1_stop",
                "f1_exact_abinitio", "neg_pred_abinitio", "neg_pred_homology")
 same_stop <- hom %>% select(org, variant, all_of(STOP_COLS)) %>%
-  inner_join(hom_3a7 %>% select(org, variant, all_of(STOP_COLS)), by = c("org", "variant"), suffix = c("", ".old"))
+  inner_join(hom_ret %>% select(org, variant, all_of(STOP_COLS)), by = c("org", "variant"), suffix = c("", ".old"))
 stopifnot(nrow(same_stop) == 84,
           all(sapply(STOP_COLS, function(c) identical(as.character(same_stop[[c]]), as.character(same_stop[[paste0(c, ".old")]])))))
 cmp_3a7 <- hom %>% select(org, variant, d_f1_exact) %>%
-  inner_join(hom_3a7 %>% select(org, variant, d_f1_exact_3a793ff = d_f1_exact), by = c("org", "variant")) %>%
+  inner_join(hom_ret %>% select(org, variant, d_f1_exact_retonly = d_f1_exact), by = c("org", "variant")) %>%
   mutate(kind = case_when(grepl("wLnc", variant) ~ "lnc", startsWith(variant, "complete") ~ "complete", TRUE ~ "fragments"))
 kable(cmp_3a7 %>% group_by(kind) %>%
-        summarise(n = n(), median_d_f1_exact_a5b24c3 = 100 * median(d_f1_exact),
-                  median_d_f1_exact_3a793ff = 100 * median(d_f1_exact_3a793ff)), digits = 2,
-      caption = "Exact F1 change (points), homology minus ab initio: released homology mode (a5b24c3) vs 3a793ff homology runs. Stop-level columns are identical (checked).")
+        summarise(n = n(), median_d_f1_exact_with_start_assist = 100 * median(d_f1_exact),
+                  median_d_f1_exact_retention_only = 100 * median(d_f1_exact_retonly)), digits = 2,
+      caption = "Exact F1 change (points), homology minus ab initio: released homology mode vs retention only. Stop-level columns are identical (checked).")
 ```
 
 - Complete transcripts (`r nrow(hc)` inputs): stop-level sensitivity

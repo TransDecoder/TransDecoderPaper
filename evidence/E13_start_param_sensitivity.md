@@ -102,3 +102,6 @@ cell a0.4_w25.
   0.0003 of the old default on every input.
 - Perl/Python regression on the 5 sample sets: identical predictions; vs the previous code, 4 of 4,277
   ORFs change (two duplicated PASA assembly pairs on the decision boundary).
+
+## Status update (2026-11-02)
+The manuscript no longer quotes the development runs of this record where the released code can express them: they were rerun at the pinned release commit (PyTD d3892b5) in E40, which lists old and new values. This record is kept as history.

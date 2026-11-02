@@ -26,388 +26,224 @@ This notebook supports the Results section "Parameter choices on real assemblies
 `sec:parameters`) and Fig. 7 (`fig:parameters`, caption in
 [`figures_main.tex`](../manuscript/sections/figures_main.tex)). It draws Fig. 7
 (`figures/fig7_parameters.{pdf,png}`) and computes the numbers the section quotes.
-Provenance: `r evidence("E13")` (start-parameter grid), `r evidence("E04")` (minimum length),
-`r evidence("E20")` and `r evidence("E22")` (q-value test, development runs), `r evidence("E06")`
-(homology series; release rerun with PyTD a5b24c3) and `r evidence("E25")` (release runs).
+Provenance: `r evidence("E40")` (release reruns of the start grid, the minimum-length and q-value comparisons, with Trinity added),
+`r evidence("E06")` (homology series), `r evidence("E25")` (release runs), `r evidence("E13")` and `r evidence("E04")`
+(the earlier development versions of these analyses).
 
-**Which runs.** The release runs (E25: PyTD 3a793ff; q-value test at q 0.05, 50-codon minimum,
-start refinement alpha 0.4, Kozak 17 per bit) are used where an equivalent exists or could be
-derived:
-
-- Fig. 7b (post-hoc minimum length) and the minimum-length paragraph: release ab initio predictions,
-  re-evaluated with `--min-aa` (`pipeline/derive/08_minaa_sweep_final_v7.sh`).
-- Fig. 7b markers: the three q settings of the release (`--precise`, default, `--sensitive`). These
-  replace the earlier markers (pre-defined LongOrfs minimum runs from development code), as the
-  caption's `\todo` asks.
-- The q-value paragraph: release protein matches and a release version of the dropped-ORF support
-  table (`pipeline/derive/08_rule_support_v7.py`).
-- The homology series (Fig. 7c, d) and the transposable-element paragraph: release rerun with PyTD
-  a5b24c3 (homology-assisted start refinement on; `pipeline/derive/08_homology_series_v7h.sh`, E06
-  "Release rerun"). The development series (48c870c) is tabulated for comparison.
-
-No release equivalent exists for:
-
-- the start-parameter grid (Fig. 7a; development code 48c870c, E13). Fig. 7a adds the release
-  default as one extra point per assembly;
-- the comparison of pre-defined LongOrfs minima (`-m 100`, `-m 50` without a test; E04).
-
-These use the data of the earlier figure.
+**Which runs.** Everything here is PyTD d3892b5 (E40) at the release defaults, or an option of that code. The homology
+series was run at a5b24c3, whose code tree is identical to d3892b5 (only documentation differs). No development
+run is used in this notebook.
 
 ```{r data}
 ASM <- c("lraa", "stringtie", "trinity")
 SHORT <- c(lraa = "LRAA", stringtie = "StringTie", trinity = "Trinity")
 asm_factor <- function(x) factor(x, levels = ASM, labels = ASM_LABEL[ASM])
 
-# key/value eval summaries (eval_genome_cds.py)
-kv <- function(...) {
-  x <- readr::read_tsv(data_path(...), col_names = c("key", "value"), show_col_types = FALSE,
-                       col_types = "cc")
-  v <- suppressWarnings(as.numeric(x$value)); names(v) <- x$key; v
-}
-rel_eval <- function(asm, setting = "default") {
-  suf <- if (setting == "default") "" else paste0("_", setting)
-  kv("benchmark", "final_v7", sprintf("eval.%s_final_v7_abinitio%s.summary.tsv", asm, suf))
-}
-
-grid <- read_tab("start_param_sensitivity", "gm12878.tsv")
-start_share <- read_tab("gm12878", "final_v7", "08_start_share.tsv") %>%
-  mutate(share = complete_gencode_exact / complete_gencode_compatible)
+gmr <- read_tab("gm12878", "release_pin", "gm_runs.tsv")
+gm_v <- function(a, cfg, col) gmr[[col]][gmr$assembly == a & gmr$config == cfg]
+grid <- gmr %>% filter(config == "norefine" | grepl("^a[0-9.]+_w", config)) %>%
+  mutate(alpha = suppressWarnings(as.numeric(alpha)), weight = suppressWarnings(as.numeric(weight)))
 sweep_v7 <- read_tab("gm12878", "final_v7", "08_minaa_sweep_v7.tsv")
-sweep_dev <- readr::read_tsv(data_path("gm12878", "gm12878_minaa_sweep.tsv"), show_col_types = FALSE,
-  col_names = c("assembly", "min_aa", "distinct_predicted_cds", "MANE_sens_exact",
-                "MANE_sens_exact_given_assembled", "GENCODE_complete_sens_compatible",
-                "pred_all_GENCODE_exact_frac", "pred_all_GENCODE_compatible_frac",
-                "pred_all_no_GENCODE_CDS_overlap_frac", "pred_complete_GENCODE_exact_frac"))
-by_len <- read_tab("gm12878", "final_v7", "08_no_overlap_by_length.tsv") %>%
-  mutate(frac = no_gencode_cds_overlap / n)
-pm_v7 <- read_tab("benchmark", "final_v7", "gm12878_v7_protein_matches.tsv") %>%
-  separate(label, c("assembly", "setting"), sep = "\\.v7_")
-pm_dev <- read_tab("benchmark", "qmodes", "gm12878_qmodes_protein_matches.tsv") %>%
-  separate(label, c("assembly", "setting"), sep = "\\.", extra = "merge")
-cat_v7 <- read_tab("benchmark", "final_v7", "gm12878_v7_riboseq_orf_catalog_matches.tsv")
-sup_v7 <- read_tab("gm12878", "final_v7", "08_rule_support_v7.tsv")
-sup_dev <- read_tab("benchmark", "rules", "gm12878_rule_support.tsv")
+by_len <- read_tab("gm12878", "release_pin", "no_overlap_by_length.tsv") %>% mutate(frac = no_gencode_cds_overlap / n)
+pm <- read_tab("gm12878", "release_pin", "protein_matches.tsv") %>% separate(label, c("assembly", "setting"), sep = "[.]")
+sup_v7 <- read_tab("gm12878", "release_pin", "rule_support.tsv")
 hom <- read_tab("gm12878", "gm12878_homology_series_v7h.tsv")
-hom_dev <- read_tab("gm12878", "gm12878_homology_series.tsv")
 ret_txt <- readLines(data_path("gm12878", "gm12878_homology_primate_retention_v7h.txt"))
-ret_txt_dev <- readLines(data_path("gm12878", "gm12878_homology_primate_retention.txt"))
 te_screen <- read_tab("gm12878", "gm12878_te_screen_v7h.tsv")
 ```
 
 ## Start refinement {#start-refinement}
 
-Source: `data/start_param_sensitivity/gm12878.tsv` (E13; development code 48c870c, identical to the
-earlier `final_abinitio` runs at alpha 0.4, w 25 per nat). The grid weight is per nat; 25 per nat
-is 17.3 per bit, and the shipped 17 per bit differs by rounding only (E13 addendum). The grid was run
-on LRAA and StringTie only. Rows: no refinement (`norefine`), the default (`a0.4_w25`), the default
-without the Kozak term (`a0.4_w0`) and alpha 1.0 (`a1.0_w25`).
+Source: `data/gm12878/release_pin/gm_runs.tsv` (E40; PyTD d3892b5 on all three assemblies, fresh runs). The
+grid is alpha {0.2, 0.4, 0.6, 1} x w {0, 17, 35} bases per bit, plus `--no-refine-starts`. The default cell
+`a0.4_w17` is byte-identical to the release default run `rel`. It replaces the development grid of E13
+(48c870c, LRAA and StringTie, w in nats), which also had the fixed short-ORF test.
 
 ```{r start}
 g <- function(a, cfg, col) grid[[col]][grid$assembly == a & grid$config == cfg]
-start_tab <- grid %>% filter(config %in% c("norefine", "a0.4_w0", "a0.4_w25", "a1.0_w25")) %>%
+stopifnot(all(sapply(ASM, function(a) g(a, "a0.4_w17", "MANE_exact") == gm_v(a, "rel", "MANE_exact"))))
+start_tab <- grid %>% filter(config %in% c("norefine", "a0.4_w0", "a0.4_w17", "a1_w17")) %>%
   transmute(assembly, config, `MANE exact given assembled` = MANE_sens_exact_given_assembled,
             `complete, GENCODE exact` = pred_complete_gencode_exact,
             `complete, compatible not exact` = pred_complete_compatible_not_exact,
             `5'-partial` = distinct_predicted_5prime_partial,
             `exact-start share` = pred_complete_start_precision)
 kable(start_tab)
+M <- "MANE_sens_exact_given_assembled"; X <- "pred_complete_gencode_exact"; PP <- "distinct_predicted_5prime_partial"
+SH <- "pred_complete_start_precision"; WS <- "pred_complete_compatible_not_exact"
+dpt <- function(a, c1, c2, col) 100 * (g(a, c1, col) - g(a, c2, col))
+pv3 <- function(cfg, col) paste(sapply(ASM, function(a) pct(g(a, cfg, col))), collapse = ", ")
+nv3 <- function(cfg, col) paste(sapply(ASM, function(a) num(g(a, cfg, col))), collapse = ", ")
 ```
 
-- Exact recovery of fully assembled MANE CDSs, no refinement to default: StringTie
-  `r pct(g("stringtie","norefine","MANE_sens_exact_given_assembled"))` to
-  `r pct(g("stringtie","a0.4_w25","MANE_sens_exact_given_assembled"))`, LRAA
-  `r pct(g("lraa","norefine","MANE_sens_exact_given_assembled"))` to
-  `r pct(g("lraa","a0.4_w25","MANE_sens_exact_given_assembled"))`.
-- Exact complete calls: `r num(g("stringtie","norefine","pred_complete_gencode_exact"))` to
-  `r num(g("stringtie","a0.4_w25","pred_complete_gencode_exact"))` and
-  `r num(g("lraa","norefine","pred_complete_gencode_exact"))` to
-  `r num(g("lraa","a0.4_w25","pred_complete_gencode_exact"))`. 5'-partial calls:
-  `r num(g("stringtie","norefine","distinct_predicted_5prime_partial"))` to
-  `r num(g("stringtie","a0.4_w25","distinct_predicted_5prime_partial"))` and
-  `r num(g("lraa","norefine","distinct_predicted_5prime_partial"))` to
-  `r num(g("lraa","a0.4_w25","distinct_predicted_5prime_partial"))`.
-- Exact-start share of GENCODE-compatible complete calls:
-  `r pct(g("stringtie","norefine","pred_complete_start_precision"))` to
-  `r pct(g("stringtie","a0.4_w25","pred_complete_start_precision"))` and
-  `r pct(g("lraa","norefine","pred_complete_start_precision"))` to
-  `r pct(g("lraa","a0.4_w25","pred_complete_start_precision"))`.
-- Wrong-start complete calls (compatible, not exact):
-  `r num(g("stringtie","norefine","pred_complete_compatible_not_exact"))` to
-  `r num(g("stringtie","a0.4_w25","pred_complete_compatible_not_exact"))` and
-  `r num(g("lraa","norefine","pred_complete_compatible_not_exact"))` to
-  `r num(g("lraa","a0.4_w25","pred_complete_compatible_not_exact"))`.
-- Kozak term (w 25 vs 0 at alpha 0.4): `r f1(100 * (g("stringtie","a0.4_w25","MANE_sens_exact_given_assembled") - g("stringtie","a0.4_w0","MANE_sens_exact_given_assembled")))`
-  and `r f1(100 * (g("lraa","a0.4_w25","MANE_sens_exact_given_assembled") - g("lraa","a0.4_w0","MANE_sens_exact_given_assembled")))`
-  points of MANE exact recovery; `r f1(100 * (g("stringtie","a0.4_w25","pred_complete_start_precision") - g("stringtie","a0.4_w0","pred_complete_start_precision")))`
-  and `r f1(100 * (g("lraa","a0.4_w25","pred_complete_start_precision") - g("lraa","a0.4_w0","pred_complete_start_precision")))`
+Values below are LRAA, StringTie, Trinity.
+
+- Exact recovery of fully assembled MANE CDSs: no refinement `r pv3("norefine", M)`; default `r pv3("a0.4_w17", M)`.
+- Exact complete calls: `r nv3("norefine", X)` to `r nv3("a0.4_w17", X)`. 5'-partial calls:
+  `r nv3("norefine", PP)` to `r nv3("a0.4_w17", PP)`.
+- Exact-start share of GENCODE-compatible complete calls: `r pv3("norefine", SH)` to `r pv3("a0.4_w17", SH)`.
+- Wrong-start complete calls: `r nv3("norefine", WS)` to `r nv3("a0.4_w17", WS)`.
+- Kozak term (w 17 vs 0 at alpha 0.4): `r paste(sapply(ASM, function(a) f1(dpt(a, "a0.4_w17", "a0.4_w0", M))), collapse = ", ")`
+  points of MANE exact recovery; `r paste(sapply(ASM, function(a) f1(dpt(a, "a0.4_w17", "a0.4_w0", SH))), collapse = ", ")`
   points of exact-start share.
-- alpha 0.4 to 1.0: MANE exact given assembled StringTie
-  `r pct(g("stringtie","a0.4_w25","MANE_sens_exact_given_assembled"))` to
-  `r pct(g("stringtie","a1.0_w25","MANE_sens_exact_given_assembled"))`, LRAA
-  `r pct(g("lraa","a0.4_w25","MANE_sens_exact_given_assembled"))` to
-  `r pct(g("lraa","a1.0_w25","MANE_sens_exact_given_assembled"))`; wrong-start complete calls
-  `r num(g("stringtie","a1.0_w25","pred_complete_compatible_not_exact"))` and
-  `r num(g("lraa","a1.0_w25","pred_complete_compatible_not_exact"))`; exact-start share
-  `r pct(g("stringtie","a1.0_w25","pred_complete_start_precision"))` and
-  `r pct(g("lraa","a1.0_w25","pred_complete_start_precision"))`.
+- alpha 0.4 to 1: MANE exact given assembled `r pv3("a1_w17", M)`; wrong-start complete calls `r nv3("a1_w17", WS)`;
+  exact-start share `r pv3("a1_w17", SH)`.
 
-**Release runs** (E25; q-value test, w 17 per bit). The exact-start share is computed in the same
-way from the release `pred_status` tables (`08_start_share.tsv`; the earlier `final_abinitio` rows
-reproduce the grid's default cell exactly):
-
-```{r start_release}
-rel_start <- start_share %>% filter(run == "final_v7_abinitio") %>%
-  mutate(mane = sapply(assembly, function(a) rel_eval(a)[["MANE_sens_exact_given_assembled"]]))
-stopifnot(with(start_share %>% filter(run == "final_abinitio", assembly != "trinity"),
-               all(abs(share - c(g("lraa", "a0.4_w25", "pred_complete_start_precision"),
-                                 g("stringtie", "a0.4_w25", "pred_complete_start_precision"))) < 1e-4)))
-kable(start_share %>% mutate(share = round(share, 4)))
-```
-
-Release default: MANE exact given assembled LRAA `r pct(rel_start$mane[1])`, StringTie
-`r pct(rel_start$mane[2])`, Trinity `r pct(rel_start$mane[3])`; exact-start share
-`r pct(rel_start$share[1])`, `r pct(rel_start$share[2])`, `r pct(rel_start$share[3])`.
-The q-value test removes some complete calls, which raises the share slightly and lowers MANE exact
-recovery (E25). The text's start-refinement numbers are from the grid and stay valid as a
-description of the refinement step; the default point in Fig. 7a differs from the release by the
-ORF acceptance rule.
-
-`r evidence("E13")`, `r evidence("E09")`, `r evidence("E25")`
+`r evidence("E40")`
 
 ```{r chk_start, include = FALSE}
-chk("L13 StringTie MANE exact given assembled, no refinement (%)", 100 * g("stringtie","norefine","MANE_sens_exact_given_assembled"), 61.0)
-chk("L13 StringTie MANE exact given assembled, default (%)", 100 * g("stringtie","a0.4_w25","MANE_sens_exact_given_assembled"), 92.7)
-chk("L13 LRAA MANE exact given assembled, no refinement (%)", 100 * g("lraa","norefine","MANE_sens_exact_given_assembled"), 59.1)
-chk("L13 LRAA MANE exact given assembled, default (%)", 100 * g("lraa","a0.4_w25","MANE_sens_exact_given_assembled"), 93.5)
-check_text("L14 StringTie exact complete calls, no refinement", g("stringtie","norefine","pred_complete_gencode_exact"), 9309)
-check_text("L14 StringTie exact complete calls, default", g("stringtie","a0.4_w25","pred_complete_gencode_exact"), 13805)
-check_text("L14 LRAA exact complete calls, no refinement", g("lraa","norefine","pred_complete_gencode_exact"), 7562)
-check_text("L14 LRAA exact complete calls, default", g("lraa","a0.4_w25","pred_complete_gencode_exact"), 12018)
-check_text("L15 StringTie 5'-partial, no refinement", g("stringtie","norefine","distinct_predicted_5prime_partial"), 10544)
-check_text("L15 StringTie 5'-partial, default", g("stringtie","a0.4_w25","distinct_predicted_5prime_partial"), 3030)
-check_text("L15 LRAA 5'-partial, no refinement", g("lraa","norefine","distinct_predicted_5prime_partial"), 10693)
-check_text("L15 LRAA 5'-partial, default", g("lraa","a0.4_w25","distinct_predicted_5prime_partial"), 2631)
-chk("L16 StringTie exact-start share, no refinement (%)", 100 * g("stringtie","norefine","pred_complete_start_precision"), 73.3)
-chk("L16 StringTie exact-start share, default (%)", 100 * g("stringtie","a0.4_w25","pred_complete_start_precision"), 78.4)
-chk("L17 LRAA exact-start share, no refinement (%)", 100 * g("lraa","norefine","pred_complete_start_precision"), 81.7)
-chk("L17 LRAA exact-start share, default (%)", 100 * g("lraa","a0.4_w25","pred_complete_start_precision"), 84.3)
-check_text("L17 StringTie wrong-start complete, no refinement", g("stringtie","norefine","pred_complete_compatible_not_exact"), 3396)
-check_text("L17 StringTie wrong-start complete, default", g("stringtie","a0.4_w25","pred_complete_compatible_not_exact"), 3796)
-check_text("L17 LRAA wrong-start complete, no refinement", g("lraa","norefine","pred_complete_compatible_not_exact"), 1697)
-check_text("L18 LRAA wrong-start complete, default", g("lraa","a0.4_w25","pred_complete_compatible_not_exact"), 2231)
-chk("L18 Kozak term, StringTie MANE exact (points)", 100 * (g("stringtie","a0.4_w25","MANE_sens_exact_given_assembled") - g("stringtie","a0.4_w0","MANE_sens_exact_given_assembled")), 3.1)
-chk("L18 Kozak term, LRAA MANE exact (points)", 100 * (g("lraa","a0.4_w25","MANE_sens_exact_given_assembled") - g("lraa","a0.4_w0","MANE_sens_exact_given_assembled")), 2.8)
-chk("L18 Kozak term, StringTie exact-start share (points)", 100 * (g("stringtie","a0.4_w25","pred_complete_start_precision") - g("stringtie","a0.4_w0","pred_complete_start_precision")), 0.8)
-chk("L19 Kozak term, LRAA exact-start share (points)", 100 * (g("lraa","a0.4_w25","pred_complete_start_precision") - g("lraa","a0.4_w0","pred_complete_start_precision")), 1.1)
-chk("L20 StringTie MANE exact given assembled, alpha 1.0 (%)", 100 * g("stringtie","a1.0_w25","MANE_sens_exact_given_assembled"), 94.9)
-chk("L20 LRAA MANE exact given assembled, alpha 1.0 (%)", 100 * g("lraa","a1.0_w25","MANE_sens_exact_given_assembled"), 95.5)
-chk("L21 StringTie exact-start share, alpha 1.0 (%)", 100 * g("stringtie","a1.0_w25","pred_complete_start_precision"), 77.0)
-chk("L21 LRAA exact-start share, alpha 1.0 (%)", 100 * g("lraa","a1.0_w25","pred_complete_start_precision"), 81.5)
-# caption (figures_main.tex): no-refinement values 0.59 / 0.82 (LRAA), 0.61 / 0.73 (StringTie)
-chk("caption 7a LRAA no refinement MANE", g("lraa","norefine","MANE_sens_exact_given_assembled"), 0.59, 2)
-chk("caption 7a LRAA no refinement exact-start share", g("lraa","norefine","pred_complete_start_precision"), 0.82, 2)
-chk("caption 7a StringTie no refinement MANE", g("stringtie","norefine","MANE_sens_exact_given_assembled"), 0.61, 2)
-chk("caption 7a StringTie no refinement exact-start share", g("stringtie","norefine","pred_complete_start_precision"), 0.73, 2)
+chk_set <- function(lab, cfg, col, q, scale = 100, digits = 1) for (a in ASM)
+  chk(paste(lab, ASM_LABEL[[a]]), scale * g(a, cfg, col), q[[a]], digits)
+cnt_set <- function(lab, cfg, col, q) for (a in ASM) check_text(paste(lab, ASM_LABEL[[a]]), g(a, cfg, col), q[[a]])
+chk_set("MANE exact given assembled, no refinement (%)", "norefine", M, c(lraa=58.6, stringtie=60.3, trinity=63.3))
+chk_set("MANE exact given assembled, default (%)", "a0.4_w17", M, c(lraa=92.9, stringtie=91.5, trinity=89.3))
+cnt_set("exact complete calls, no refinement", "norefine", X, c(lraa=7420, stringtie=9044, trinity=9622))
+cnt_set("exact complete calls, default", "a0.4_w17", X, c(lraa=11828, stringtie=13395, trinity=13380))
+cnt_set("5'-partial, no refinement", "norefine", PP, c(lraa=10348, stringtie=9483, trinity=16006))
+cnt_set("5'-partial, default", "a0.4_w17", PP, c(lraa=2502, stringtie=2646, trinity=5931))
+chk_set("exact-start share, no refinement (%)", "norefine", SH, c(lraa=82.2, stringtie=73.9, trinity=53.1))
+chk_set("exact-start share, default (%)", "a0.4_w17", SH, c(lraa=84.8, stringtie=79.0, trinity=58.7))
+cnt_set("wrong-start complete, no refinement", "norefine", WS, c(lraa=1609, stringtie=3190, trinity=8510))
+cnt_set("wrong-start complete, default", "a0.4_w17", WS, c(lraa=2113, stringtie=3556, trinity=9413))
+for (x in list(c("lraa", 2.9), c("stringtie", 3.0), c("trinity", 2.1))) chk(paste("Kozak term, MANE exact (points)", x[1]), dpt(x[1], "a0.4_w17", "a0.4_w0", M), as.numeric(x[2]))
+for (x in list(c("lraa", 1.1), c("stringtie", 0.7), c("trinity", 0.8))) chk(paste("Kozak term, exact-start share (points)", x[1]), dpt(x[1], "a0.4_w17", "a0.4_w0", SH), as.numeric(x[2]))
+chk_set("MANE exact given assembled, alpha 1 (%)", "a1_w17", M, c(lraa=94.9, stringtie=93.7, trinity=91.1))
+chk_set("exact-start share, alpha 1 (%)", "a1_w17", SH, c(lraa=81.9, stringtie=77.5, trinity=56.6))
+# caption of Fig. 7a: no-refinement values
+chk_set("caption 7a no refinement MANE", "norefine", M, c(lraa=0.59, stringtie=0.60, trinity=0.63), 1, 2)
+chk_set("caption 7a no refinement exact-start share", "norefine", SH, c(lraa=0.82, stringtie=0.74, trinity=0.53), 1, 2)
 ```
 
 ## Minimum length and the q-value cutoff {#minimum-length-and-the-q-value-cutoff}
 
-### A 50-codon minimum without a test (development runs) {#minimum-without-test}
+### A 50-codon minimum without a test {#minimum-without-test}
 
-Runs with a pre-defined LongOrfs minimum and no short-ORF test exist only from development code
-(E04: `m50`, and `kozak_add` = `-m 100`; `data/gm12878/eval_summaries/`). There is no release
-equivalent.
+Release code with the q-value test switched off (`--max-qvalue 1000000`, because estimated FDRs can exceed 1):
+`m100_noq` (LongOrfs `-m 100`) and `m50_noq` (`-m 50`). The frame test ($S_1>0$, $C>0$) and the long-ORF rule stay on.
 
 ```{r m50}
-dev_sum <- function(a, cfg) kv("gm12878", "eval_summaries", sprintf("%s_%s.summary.tsv", a, cfg))
-m50_tab <- expand_grid(assembly = c("lraa", "stringtie"),
-                       config = c("kozak_add", "m50", "m50_sc200")) %>%
-  rowwise() %>%
-  mutate(run = c(kozak_add = "-m 100", m50 = "-m 50, no test",
-                 m50_sc200 = "-m 50 + fixed short-ORF test")[config],
-         distinct_cds = dev_sum(assembly, config)[["distinct_predicted_cds"]],
-         MANE_exact_given_assembled = dev_sum(assembly, config)[["MANE_sens_exact_given_assembled"]],
-         no_GENCODE_overlap = dev_sum(assembly, config)[["pred_all_no_GENCODE_CDS_overlap_frac"]]) %>%
-  ungroup()
+m50_tab <- gmr %>% filter(config %in% c("m100_noq", "m50_noq", "rel")) %>%
+  transmute(assembly, config, distinct_cds = distinct_predicted_cds, MANE_exact_given_assembled = MANE_sens_exact_given_assembled,
+            no_GENCODE_overlap = pred_all_no_GENCODE_CDS_overlap_frac)
 kable(m50_tab)
 nov <- function(a, cfg) m50_tab$no_GENCODE_overlap[m50_tab$assembly == a & m50_tab$config == cfg]
 ```
 
-No GENCODE CDS overlap, `-m 100` to `-m 50` without a test: LRAA `r pct(nov("lraa","kozak_add"))`
-to `r pct(nov("lraa","m50"))`, StringTie `r pct(nov("stringtie","kozak_add"))` to
-`r pct(nov("stringtie","m50"))`. For comparison, the release default gives
-`r pct(rel_eval("lraa")[["pred_all_no_GENCODE_CDS_overlap_frac"]])` (LRAA),
-`r pct(rel_eval("stringtie")[["pred_all_no_GENCODE_CDS_overlap_frac"]])` (StringTie) and
-`r pct(rel_eval("trinity")[["pred_all_no_GENCODE_CDS_overlap_frac"]])` (Trinity) (E25).
+No GENCODE CDS overlap, `-m 100` to `-m 50` without a test: `r paste(sapply(ASM, function(a) paste(pct(nov(a,"m100_noq")), "to", pct(nov(a,"m50_noq")))), collapse = "; ")`
+(LRAA; StringTie; Trinity). The release default gives `r paste(sapply(ASM, function(a) pct(nov(a,"rel"))), collapse = ", ")`.
 
-`r evidence("E04")`, `r evidence("E25")`
+`r evidence("E40")`
 
 ```{r chk_m50, include = FALSE}
-chk("L31 LRAA no-overlap, -m 100 (%)", 100 * nov("lraa", "kozak_add"), 3.6)
-chk("L31 LRAA no-overlap, -m 50 no test (%)", 100 * nov("lraa", "m50"), 10.7)
-chk("L32 StringTie no-overlap, -m 100 (%)", 100 * nov("stringtie", "kozak_add"), 11.8)
-chk("L32 StringTie no-overlap, -m 50 no test (%)", 100 * nov("stringtie", "m50"), 34.7)
+chk("LRAA no-overlap, -m 100 (%)", 100 * nov("lraa", "m100_noq"), 3.6)
+chk("LRAA no-overlap, -m 50 no test (%)", 100 * nov("lraa", "m50_noq"), 10.7)
+chk("StringTie no-overlap, -m 100 (%)", 100 * nov("stringtie", "m100_noq"), 11.8)
+chk("StringTie no-overlap, -m 50 no test (%)", 100 * nov("stringtie", "m50_noq"), 34.7)
+chk("Trinity no-overlap, -m 100 (%)", 100 * nov("trinity", "m100_noq"), 15.4)
+chk("Trinity no-overlap, -m 50 no test (%)", 100 * nov("trinity", "m50_noq"), 53.8)
 ```
 
 ### Matching and non-matching proteins by q setting {#q-settings}
 
 Predicted proteins identical to, or sharing an exact 30-residue window with, a GENCODE v50 protein
-are "matching"; the rest are "non-matching" (`score_protein_matches.py`). Release runs:
-`data/benchmark/final_v7/gm12878_v7_protein_matches.tsv` (E25). The development runs quoted in the
-current text (E22) and the fixed short-ORF test (`cliff_c200`) are in
-`data/benchmark/qmodes/gm12878_qmodes_protein_matches.tsv`.
+are "matching"; the rest are "non-matching" (`score_protein_matches.py`; `data/gm12878/release_pin/protein_matches.tsv`, E40).
 
 ```{r qset}
-SETTING <- c(precise = "q 0.01 (--precise)", default = "q 0.05 (default)",
-             sensitive = "q 0.2 (--sensitive)")
-dev_map <- c(precise = "decoy_q0.01_longgc", default = "decoy_q0.05_longgc",
-             sensitive = "decoy_q0.2_longgc")
-q_tab <- pm_v7 %>% select(assembly, setting, matching = true_positives, nonmatching) %>%
-  left_join(pm_dev %>% filter(setting %in% dev_map) %>%
-              mutate(setting = names(dev_map)[match(setting, dev_map)]) %>%
-              select(assembly, setting, dev_matching = true_positives, dev_nonmatching = nonmatching),
-            by = c("assembly", "setting")) %>%
-  mutate(no_GENCODE_overlap = mapply(function(a, s) rel_eval(a, s)[["pred_all_no_GENCODE_CDS_overlap_frac"]],
-                                     assembly, setting),
-         MANE_exact_given_assembled = mapply(function(a, s) rel_eval(a, s)[["MANE_sens_exact_given_assembled"]],
-                                             assembly, setting),
-         catalog_riboseq_orfs = cat_v7$stop_match[match(
-           paste0(assembly, "_final_v7_abinitio", ifelse(setting == "default", "", paste0("_", setting))),
-           cat_v7$run)])
-cliff <- pm_dev %>% filter(setting == "cliff_c200") %>% select(assembly, matching = true_positives, nonmatching)
-kable(q_tab %>% mutate(setting = SETTING[setting]))
-kable(cliff, caption = "Fixed short-ORF test (development run cliff_c200)")
+SETTING <- c(precise = "q 0.01 (--precise)", default = "q 0.05 (default)", sensitive = "q 0.2 (--sensitive)")
+q_tab <- pm %>% filter(setting %in% c("rel", "precise", "sensitive")) %>%
+  mutate(setting = recode(setting, rel = "default")) %>%
+  select(assembly, setting, matching = true_positives, nonmatching) %>%
+  mutate(cfg = recode(setting, default = "rel"),
+         no_GENCODE_overlap = mapply(gm_v, assembly, cfg, "pred_all_no_GENCODE_CDS_overlap_frac"),
+         MANE_exact_given_assembled = mapply(gm_v, assembly, cfg, "MANE_sens_exact_given_assembled"),
+         catalog_riboseq_orfs = mapply(gm_v, assembly, cfg, "ribo_catalog_stop_match"))
+noq <- pm %>% filter(setting == "m50_noq") %>% select(assembly, matching = true_positives, nonmatching)
+kable(q_tab %>% mutate(setting = SETTING[setting]) %>% select(-cfg))
+kable(noq, caption = "No q-value test, 50-codon minimum")
 q <- function(a, s, col) q_tab[[col]][q_tab$assembly == a & q_tab$setting == s]
-cl <- function(a, col) cliff[[col]][cliff$assembly == a]
-fold <- sapply(c("lraa", "stringtie"), function(a) cl(a, "nonmatching") / q(a, "default", "nonmatching"))
-loss <- sapply(c("lraa", "stringtie"), function(a) 1 - q(a, "default", "matching") / cl(a, "matching"))
-fold_dev <- sapply(c("lraa", "stringtie"), function(a) cl(a, "nonmatching") / q(a, "default", "dev_nonmatching"))
-loss_dev <- sapply(c("lraa", "stringtie"), function(a) 1 - q(a, "default", "dev_matching") / cl(a, "matching"))
+nq <- function(a, col) noq[[col]][noq$assembly == a]
+fold <- sapply(ASM, function(a) nq(a, "nonmatching") / q(a, "default", "nonmatching"))
+loss <- sapply(ASM, function(a) 1 - q(a, "default", "matching") / nq(a, "matching"))
+kable(tibble(assembly = ASM, fold_fewer_nonmatching = fold, loss_of_matching = loss), digits = 3)
 ```
 
-Release runs, matching / non-matching (LRAA; StringTie):
+At the default, against no q-value test, non-matching proteins fell `r paste(sprintf("%.1f", fold), collapse = ", ")`-fold for a loss of
+`r paste(pct(loss), collapse = ", ")` of matching ones (LRAA, StringTie, Trinity).
+Catalogued Ribo-seq ORFs matched by stop codon: `r paste(sapply(ASM, gm_v, "m50_noq", "ribo_catalog_stop_match"), collapse = ", ")` without the test,
+`r paste(sapply(ASM, gm_v, "rel", "ribo_catalog_stop_match"), collapse = ", ")` at the default,
+`r paste(sapply(ASM, gm_v, "m100_noq", "ribo_catalog_stop_match"), collapse = ", ")` at a plain 100-codon minimum and
+`r paste(sapply(ASM, gm_v, "sensitive", "ribo_catalog_stop_match"), collapse = ", ")` with `--sensitive`.
 
-- default q 0.05: `r num(q("lraa","default","matching"))` / `r num(q("lraa","default","nonmatching"))`;
-  `r num(q("stringtie","default","matching"))` / `r num(q("stringtie","default","nonmatching"))`.
-  Trinity: `r num(q("trinity","default","matching"))` / `r num(q("trinity","default","nonmatching"))`.
-- fixed short-ORF test (development): `r num(cl("lraa","matching"))` / `r num(cl("lraa","nonmatching"))`;
-  `r num(cl("stringtie","matching"))` / `r num(cl("stringtie","nonmatching"))`.
-- q 0.01: `r num(q("lraa","precise","matching"))` / `r num(q("lraa","precise","nonmatching"))`;
-  `r num(q("stringtie","precise","matching"))` / `r num(q("stringtie","precise","nonmatching"))`.
-- q 0.2: `r num(q("lraa","sensitive","matching"))` / `r num(q("lraa","sensitive","nonmatching"))`;
-  `r num(q("stringtie","sensitive","matching"))` / `r num(q("stringtie","sensitive","nonmatching"))`.
-
-At the default, non-matching proteins fell `r sprintf("%.1f", fold[1])`-fold (LRAA) and
-`r sprintf("%.1f", fold[2])`-fold (StringTie), for a loss of `r pct(loss[1])` and `r pct(loss[2])` of
-matching ones (development runs: `r sprintf("%.1f", fold_dev[1])` and `r sprintf("%.1f", fold_dev[2])`-fold,
-`r pct(loss_dev[1])` and `r pct(loss_dev[2])`). The no-GENCODE-overlap share of release predictions is
-`r pct(q("lraa","precise","no_GENCODE_overlap"))` / `r pct(q("lraa","default","no_GENCODE_overlap"))` /
-`r pct(q("lraa","sensitive","no_GENCODE_overlap"))` (LRAA; q 0.01 / 0.05 / 0.2) and
-`r pct(q("stringtie","precise","no_GENCODE_overlap"))` / `r pct(q("stringtie","default","no_GENCODE_overlap"))` /
-`r pct(q("stringtie","sensitive","no_GENCODE_overlap"))` (StringTie). Catalogued Ribo-seq ORFs matched
-by stop codon fall from 178 / 217 / 455 with the fixed short-ORF test (E04, E25) to
-`r q("lraa","default","catalog_riboseq_orfs")` / `r q("stringtie","default","catalog_riboseq_orfs")` /
-`r q("trinity","default","catalog_riboseq_orfs")` at the default.
-
-`r evidence("E22")`, `r evidence("E20")`, `r evidence("E25")`
+`r evidence("E40")`
 
 ```{r chk_q, include = FALSE}
-check_text("L36 LRAA q0.05 matching", q("lraa","default","matching"), 32751)
-check_text("L36 LRAA q0.05 non-matching", q("lraa","default","nonmatching"), 277)
-check_text("L36 StringTie q0.05 matching", q("stringtie","default","matching"), 35294)
-check_text("L37 StringTie q0.05 non-matching", q("stringtie","default","nonmatching"), 1185)
-check_text("L37 LRAA fixed test matching", cl("lraa","matching"), 33587)
-check_text("L37 LRAA fixed test non-matching", cl("lraa","nonmatching"), 1005)
-check_text("L37 StringTie fixed test matching", cl("stringtie","matching"), 36547)
-check_text("L37 StringTie fixed test non-matching", cl("stringtie","nonmatching"), 4119)
-check_text("L39 LRAA q0.01 matching", q("lraa","precise","matching"), 31672)
-check_text("L39 LRAA q0.01 non-matching", q("lraa","precise","nonmatching"), 189)
-check_text("L39 StringTie q0.01 matching", q("stringtie","precise","matching"), 33647)
-check_text("L39 StringTie q0.01 non-matching", q("stringtie","precise","nonmatching"), 698)
-check_text("L40 LRAA q0.2 matching", q("lraa","sensitive","matching"), 33443)
-check_text("L40 LRAA q0.2 non-matching", q("lraa","sensitive","nonmatching"), 560)
-check_text("L40 StringTie q0.2 matching", q("stringtie","sensitive","matching"), 36903)
-check_text("L40 StringTie q0.2 non-matching", q("stringtie","sensitive","nonmatching"), 2879)
-chk("L42 fold fewer non-matching, low end", min(fold), 3.5)
-chk("L42 fold fewer non-matching, high end", max(fold), 3.6)
-chk("L42 loss of matching, low end (%)", 100 * min(loss), 2.5)
-chk("L42 loss of matching, high end (%)", 100 * max(loss), 3.4)
+Q <- function(a, s, m, n) { check_text(paste(a, s, "matching"), q(a, s, "matching"), m); check_text(paste(a, s, "non-matching"), q(a, s, "nonmatching"), n) }
+Q("lraa", "default", 32751, 277); Q("stringtie", "default", 35294, 1185); Q("trinity", "default", 78181, 2616)
+Q("lraa", "precise", 31672, 189); Q("stringtie", "precise", 33647, 698); Q("trinity", "precise", 74117, 1301)
+Q("lraa", "sensitive", 33443, 560); Q("stringtie", "sensitive", 36903, 2879); Q("trinity", "sensitive", 82130, 7482)
+for (x in list(c("lraa", 34382, 3690), c("stringtie", 38575, 18278), c("trinity", 88821, 97397))) {
+  check_text(paste(x[1], "no q test, matching"), nq(x[1], "matching"), as.numeric(x[2]))
+  check_text(paste(x[1], "no q test, non-matching"), nq(x[1], "nonmatching"), as.numeric(x[3])) }
+chk("fold fewer non-matching, low end", min(fold), 13.3)
+chk("fold fewer non-matching, high end", max(fold), 37.2)
+chk("loss of matching, low end (%)", 100 * min(loss), 4.7)
+chk("loss of matching, high end (%)", 100 * max(loss), 12.0)
+for (x in list(c("lraa", 458, 101, 184, 144), c("stringtie", 578, 95, 221, 165), c("trinity", 1195, 186, 451, 295))) {
+  a <- x[1]; v <- as.numeric(x[2:5])
+  check_text(paste(a, "catalogue matches no test"), gm_v(a, "m50_noq", "ribo_catalog_stop_match"), v[1])
+  check_text(paste(a, "catalogue matches default"), gm_v(a, "rel", "ribo_catalog_stop_match"), v[2])
+  check_text(paste(a, "catalogue matches 100 codons"), gm_v(a, "m100_noq", "ribo_catalog_stop_match"), v[3])
+  check_text(paste(a, "catalogue matches --sensitive"), gm_v(a, "sensitive", "ribo_catalog_stop_match"), v[4]) }
 ```
 
 ### Support of the ORFs that the q-value test removed {#removed-orf-support}
 
-The text quotes the release version. An earlier draft quoted `gm12878_rule_support.tsv` (E20/E22;
-development run `decoy_q0.05`, without long-ORF retention, against the development fixed short-ORF
-run `cliff_c200`), shown below for comparison. The release version,
-`data/gm12878/final_v7/08_rule_support_v7.tsv` (`pipeline/derive/08_rule_support_v7.py`), compares
-the release runs with the earlier `final_abinitio` runs (fixed short-ORF test; their Ribo-seq and MS
-tables from E01/E02). An ORF is identified by transcript, strand and stop codon. "dropped" are
-`final_abinitio` ORFs with no release prediction with that stop; "all" are the release predictions,
-scored with the release Ribo-seq and MS tables (E25). Ribo-seq rates are over ORFs with at least ten
-P-sites; MS rates are over all ORFs (gene models).
+`data/gm12878/release_pin/rule_support.tsv` (`pipeline/release_pin/14_rule_support_v1.py`, E40). Removed ORFs:
+predictions of the release code with the q-value test off (`m50_noq`) whose stop codon is not predicted at
+the release default; ORFs are identified by transcript, strand and stop. Ribo-seq rates are over ORFs
+with at least ten P-sites; MS rates are over all ORFs (gene models).
 
 ```{r support}
-kable(sup_v7, caption = "Release (08_rule_support_v7.tsv)")
-s7 <- function(a, st, set, col) sup_v7[[col]][sup_v7$asm == a & sup_v7$setting == st & sup_v7$set == set]
-sd <- function(a, set, col) sup_dev[[col]][sup_dev$asm == a & sup_dev$label == "decoy_q0.05" & sup_dev$set == set]
-kable(sup_dev %>% filter(label %in% c("cliff_c200", "decoy_q0.05")),
-      caption = "Development (gm12878_rule_support.tsv), as quoted in an earlier draft")
+kable(sup_v7, caption = "Release code, q-value test off against the default")
+s7 <- function(a, set, col) sup_v7[[col]][sup_v7$asm == a & sup_v7$set == set]
 ```
 
-Release default, ORFs removed vs all predictions (LRAA; StringTie; Trinity):
+ORFs removed vs all default predictions (LRAA; StringTie; Trinity):
 
-- Ribo-seq frame test passed: `r pct(s7("lraa","default","dropped","ribo_rate"), 0)`,
-  `r pct(s7("stringtie","default","dropped","ribo_rate"), 0)`, `r pct(s7("trinity","default","dropped","ribo_rate"), 0)`
-  of removed ORFs with enough footprints (n = `r s7("lraa","default","dropped","ribo_n")`,
-  `r s7("stringtie","default","dropped","ribo_n")`, `r num(s7("trinity","default","dropped","ribo_n"))`), against
-  `r pct(s7("lraa","default","all","ribo_rate"), 0)`, `r pct(s7("stringtie","default","all","ribo_rate"), 0)`,
-  `r pct(s7("trinity","default","all","ribo_rate"), 0)` of all predictions.
-- MS peptide: `r pct(s7("lraa","default","dropped","ms_rate"), 0)`, `r pct(s7("stringtie","default","dropped","ms_rate"), 0)`,
-  `r pct(s7("trinity","default","dropped","ms_rate"), 0)` against `r pct(s7("lraa","default","all","ms_rate"), 0)`,
-  `r pct(s7("stringtie","default","all","ms_rate"), 0)`, `r pct(s7("trinity","default","all","ms_rate"), 0)`.
+- Ribo-seq frame test passed: `r paste(sapply(ASM, function(a) pct(s7(a,"removed","ribo_rate"), 0)), collapse = ", ")`
+  of removed ORFs with enough footprints (n = `r paste(sapply(ASM, function(a) num(s7(a,"removed","ribo_n"))), collapse = ", ")`), against
+  `r paste(sapply(ASM, function(a) pct(s7(a,"all","ribo_rate"), 0)), collapse = ", ")` of all predictions.
+- MS peptide: `r paste(sapply(ASM, function(a) pct(s7(a,"removed","ms_rate"), 0)), collapse = ", ")` against
+  `r paste(sapply(ASM, function(a) pct(s7(a,"all","ms_rate"), 0)), collapse = ", ")`.
 
-The development values quoted in an earlier draft (40% and 35% vs 66% and 62%; MS 35% and 20% vs 65%
-and 70%) are
-`r pct(sd("lraa","dropped","ribo_rate"),0)` / `r pct(sd("stringtie","dropped","ribo_rate"),0)` vs
-`r pct(sd("lraa","all","ribo_rate"),0)` / `r pct(sd("stringtie","all","ribo_rate"),0)`, and
-`r pct(sd("lraa","dropped","ms_rate"),0)` / `r pct(sd("stringtie","dropped","ms_rate"),0)` vs
-`r pct(sd("lraa","all","ms_rate"),0)` / `r pct(sd("stringtie","all","ms_rate"),0)`.
-
-`r evidence("E22")`, `r evidence("E20")`, `r evidence("E01")`, `r evidence("E02")`, `r evidence("E25")`
+`r evidence("E40")`, `r evidence("E01")`, `r evidence("E02")`
 
 ```{r chk_support, include = FALSE}
-chk("L44 LRAA removed ORFs, Ribo-seq frame test (%)", 100 * s7("lraa","default","dropped","ribo_rate"), 39, 0)
-chk("L44 StringTie removed ORFs, Ribo-seq frame test (%)", 100 * s7("stringtie","default","dropped","ribo_rate"), 38, 0)
-chk("L45 LRAA all predictions, Ribo-seq frame test (%)", 100 * s7("lraa","default","all","ribo_rate"), 66, 0)
-chk("L45 StringTie all predictions, Ribo-seq frame test (%)", 100 * s7("stringtie","default","all","ribo_rate"), 62, 0)
-chk("L45 LRAA removed ORFs, MS peptide (%)", 100 * s7("lraa","default","dropped","ms_rate"), 35, 0)
-chk("L46 StringTie removed ORFs, MS peptide (%)", 100 * s7("stringtie","default","dropped","ms_rate"), 20, 0)
-chk("L46 LRAA all predictions, MS peptide (%)", 100 * s7("lraa","default","all","ms_rate"), 64, 0)
-chk("L46 StringTie all predictions, MS peptide (%)", 100 * s7("stringtie","default","all","ms_rate"), 69, 0)
+for (x in list(c("lraa", 40, 66, 21, 64), c("stringtie", 37, 62, 9, 69), c("trinity", 40, 61, 6, 65))) {
+  a <- x[1]; v <- as.numeric(x[2:5])
+  chk(paste(a, "removed ORFs, Ribo-seq frame test (%)"), 100 * s7(a, "removed", "ribo_rate"), v[1], 0)
+  chk(paste(a, "all predictions, Ribo-seq frame test (%)"), 100 * s7(a, "all", "ribo_rate"), v[2], 0)
+  chk(paste(a, "removed ORFs, MS peptide (%)"), 100 * s7(a, "removed", "ms_rate"), v[3], 0)
+  chk(paste(a, "all predictions, MS peptide (%)"), 100 * s7(a, "all", "ms_rate"), v[4], 0) }
 ```
 
 ### Unannotated predictions by length {#unannotated-by-length}
 
-From the release `pred_status` tables (`08_no_overlap_by_length.tsv`, `pipeline/derive/08_no_overlap_by_length_v7.sh`;
-predicted protein length, the first bin includes the few predictions under 50 aa). The earlier
-`final_abinitio` rows reproduce the E04 table.
+From the pinned-commit `pred_status` tables (`data/gm12878/release_pin/no_overlap_by_length.tsv`;
+predicted protein length, the first bin includes the few predictions under 50 aa).
 
 ```{r bylen}
 bl <- by_len %>% mutate(pct = round(100 * frac, 1)) %>%
-  select(assembly, run, length_bin, n, pct) %>%
+  select(assembly, config, length_bin, n, pct) %>%
   pivot_wider(names_from = length_bin, values_from = c(n, pct))
 kable(bl)
-short_rel <- by_len %>% filter(run == "final_v7_abinitio", length_bin %in% c("<100", "100-149"))
-long_rel <- by_len %>% filter(run == "final_v7_abinitio", length_bin == ">=300")
-short_dev <- by_len %>% filter(run == "final_abinitio", length_bin %in% c("<100", "100-149"))
-long_dev <- by_len %>% filter(run == "final_abinitio", length_bin == ">=300")
+short_rel <- by_len %>% filter(config == "rel", length_bin %in% c("<100", "100-149"))
+long_rel <- by_len %>% filter(config == "rel", length_bin == ">=300")
 ```
 
 Release defaults: `r pct(min(short_rel$frac), 0)`--`r pct(max(short_rel$frac), 0)` of predictions
 shorter than 100 aa or of 100--149 aa have no GENCODE CDS overlap, against
-`r pct(min(long_rel$frac))`--`r pct(max(long_rel$frac))` of those of at least 300 aa (earlier runs:
-`r pct(min(short_dev$frac), 0)`--`r pct(max(short_dev$frac), 0)` and
-`r pct(min(long_dev$frac))`--`r pct(max(long_dev$frac))`).
+`r pct(min(long_rel$frac))`--`r pct(max(long_rel$frac))` of those of at least 300 aa.
 
 ```{r chk_bylen, include = FALSE}
 chk("L50 short predictions no-overlap, low end (%)", 100 * min(short_rel$frac), 5, 0)
@@ -419,20 +255,17 @@ chk("L50 >=300 aa no-overlap, high end (%)", 100 * max(long_rel$frac), 1.2)
 ### Post-hoc minimum length {#post-hoc-minimum-length}
 
 `eval_genome_cds.py --min-aa L` on the release default predictions
-(`data/gm12878/final_v7/08_minaa_sweep_v7.tsv`; same procedure as E04, which used the earlier
-`final_abinitio` predictions, `data/gm12878/gm12878_minaa_sweep.tsv`). The filter keeps predictions
+(`data/gm12878/final_v7/08_minaa_sweep_v7.tsv`, `pipeline/derive/08_minaa_sweep_final_v7.sh`; those predictions are
+byte-identical at the pinned commit, E40). The filter keeps predictions
 encoding at least L aa (stop excluded); it is applied after prediction, so training and
 per-transcript selection still see all candidates.
 
 ```{r minaa}
 mt <- sweep_v7 %>% select(assembly, min_aa, distinct_predicted_cds, MANE_sens_exact_given_assembled,
-                          pred_all_no_GENCODE_CDS_overlap_frac) %>%
-  left_join(sweep_dev %>% select(assembly, min_aa, dev_MANE = MANE_sens_exact_given_assembled,
-                                 dev_no_overlap = pred_all_no_GENCODE_CDS_overlap_frac),
-            by = c("assembly", "min_aa"))
+                          pred_all_no_GENCODE_CDS_overlap_frac)
 kable(mt, digits = 4)
 mv <- function(a, L, col) sweep_v7[[col]][sweep_v7$assembly == a & sweep_v7$min_aa == L]
-full_mane <- sapply(ASM, function(a) rel_eval(a)[["MANE_sens_exact_given_assembled"]])
+full_mane <- sapply(ASM, gm_v, "rel", "MANE_sens_exact_given_assembled")
 ```
 
 Removing release predictions below 150 aa cuts the no-overlap share to
@@ -449,7 +282,7 @@ and the no-overlap share by
 `r paste(sprintf("%.1f", 100 * sapply(ASM, function(a) mv(a,100,"pred_all_no_GENCODE_CDS_overlap_frac") - mv(a,50,"pred_all_no_GENCODE_CDS_overlap_frac"))), collapse = ", ")`
 points (LRAA, StringTie, Trinity).
 
-`r evidence("E04")`, `r evidence("E25")`
+`r evidence("E40")`
 
 ```{r chk_minaa, include = FALSE}
 chk("L53 LRAA no-overlap at 150 aa (%)", 100 * mv("lraa",150,"pred_all_no_GENCODE_CDS_overlap_frac"), 1.0)
@@ -465,11 +298,9 @@ chk("L54 Trinity MANE exact given assembled, >= 150 aa", mv("trinity",150,"MANE_
 
 ## Homology evidence and evolutionary distance {#homology-evidence-and-evolutionary-distance}
 
-Source: `data/gm12878/gm12878_homology_series_v7h.tsv` (E06 release rerun; PyTD a5b24c3 with the
-homology-assisted start refinement, release defaults; one fresh LongOrfs per assembly, identical to
-the release ab initio run's; ab initio row = a fresh a5b24c3 run, byte-identical to the E25 release
-run). Change = configuration minus ab initio. The development series (`gm12878_homology_series.tsv`,
-48c870c, fixed short-ORF test) is compared below.
+Source: `data/gm12878/gm12878_homology_series_v7h.tsv` (E06 release rerun; run at a5b24c3, same code tree as the
+pinned d3892b5, with the homology-assisted start refinement, release defaults; one fresh LongOrfs per assembly;
+the ab initio row is byte-identical to the pinned-commit default run). Change = configuration minus ab initio.
 
 ```{r homology}
 CLADES <- c("9606" = "human", "9443" = "primates", "40674" = "mammals", "7742" = "vertebrates",
@@ -497,25 +328,9 @@ dh <- function(a, cfg, col) hom_d[[col]][hom_d$assembly == a & hom_d$config == c
   `r pct(h("lraa","blast_9606_nopfam","MANE_sens_exact_given_assembled"))`, `r pct(h("stringtie","blast_9606_nopfam","MANE_sens_exact_given_assembled"))`,
   `r pct(h("trinity","blast_9606_nopfam","MANE_sens_exact_given_assembled"))`.
 
-Development series (48c870c, fixed short-ORF test) against the release rerun (a5b24c3): MANE exact
-given assembled and its change over each series' own ab initio run, and distinct predicted CDSs.
-
-```{r homology_dev_vs_release}
-hom_cmp <- hom_dev %>% group_by(assembly) %>%
-  mutate(d_dev = 100 * (MANE_sens_exact_given_assembled - MANE_sens_exact_given_assembled[config == "abinitio"])) %>%
-  ungroup() %>%
-  select(assembly, config, exact_dev = MANE_sens_exact_given_assembled, d_dev, cds_dev = distinct_predicted_cds) %>%
-  inner_join(hom_d %>% select(assembly, config, exact_rel = MANE_sens_exact_given_assembled,
-                              d_rel = d_mane_exact_pts, cds_rel = distinct_predicted_cds),
-             by = c("assembly", "config"))
-kable(hom_cmp, digits = c(0, 0, 4, 2, 0, 4, 2, 0))
-```
-
 `r evidence("E06")`
 
 ```{r chk_hom, include = FALSE}
-# release rerun (a5b24c3); development values (48c870c) were 1.8/1.1/1.4, 0.9/2.3/2.1, 0.4/0.3/0.4,
-# Pfam 95.3/93.9/92.0 and minus human 95.3/93.8/92.0
 chk("Homology LRAA -human gain, MANE exact given assembled (points)", dh("lraa","blast_9606_nopfam","d_mane_exact_pts"), 4.4)
 chk("Homology StringTie -human gain (points)", dh("stringtie","blast_9606_nopfam","d_mane_exact_pts"), 4.5)
 chk("Homology Trinity -human gain (points)", dh("trinity","blast_9606_nopfam","d_mane_exact_pts"), 4.3)
@@ -523,12 +338,8 @@ chk("Homology LRAA -human gain, MANE compatible (points)", dh("lraa","blast_9606
 chk("Homology StringTie -human gain, MANE compatible (points)", dh("stringtie","blast_9606_nopfam","d_mane_compat_pts"), 3.5)
 chk("Homology Trinity -human gain, MANE compatible (points)", dh("trinity","blast_9606_nopfam","d_mane_compat_pts"), 3.3)
 chk("Homology Trinity -human + Pfam gain (points)", dh("trinity","blast_9606_pfam","d_mane_exact_pts"), 4.3)
-sel_only <- readr::read_tsv(data_path("start_classifier", "adoption", "gm12878_trinity_summary.tsv"),
-                            show_col_types = FALSE) %>% filter(label == "MANE_sens_exact_given_assembled")
-chk("Homology Trinity -human + Pfam, selection only (E33, 3a793ff) gain (points)",
-    100 * (as.numeric(sel_only$trinity_final_v7_homology) - as.numeric(sel_only$trinity_final_v7_abinitio)), 2.7)
-check_text("Homology Trinity -human + Pfam equals E33 v7h run", h("trinity","blast_9606_pfam","MANE_sens_exact_given_assembled"),
-           as.numeric(sel_only$trinity_final_v7h_homology))
+chk("Homology Trinity -human + Pfam, retention only (--no-homology-start-assist) gain (points)",
+    100 * (gm_v("trinity", "retonly", "MANE_sens_exact_given_assembled") - gm_v("trinity", "rel", "MANE_sens_exact_given_assembled")), 2.7)
 chk("Homology LRAA -animals gain (points)", dh("lraa","blast_33208_nopfam","d_mane_exact_pts"), 0.7)
 chk("Homology StringTie -animals gain (points)", dh("stringtie","blast_33208_nopfam","d_mane_exact_pts"), 0.7)
 chk("Homology Trinity -animals gain (points)", dh("trinity","blast_33208_nopfam","d_mane_exact_pts"), 0.7)
@@ -546,8 +357,7 @@ chk("Homology Trinity ab initio (%)", 100 * h("trinity","abinitio","MANE_sens_ex
 ## Homology to transposable elements retains short unannotated ORFs {#homology-to-transposable-elements}
 
 Source: `data/gm12878/gm12878_homology_primate_retention_v7h.txt` (E06 release rerun;
-`homology_series_retention.py`, Swiss-Prot minus human vs minus primates, BLAST only). Parsed below;
-the development values (`gm12878_homology_primate_retention.txt`) follow.
+`homology_series_retention.py`, Swiss-Prot minus human vs minus primates, BLAST only). Parsed below.
 
 ```{r retention}
 prot_n <- function(line, prot) {
@@ -565,9 +375,7 @@ parse_ret <- function(asm, txt = ret_txt) {
          best_hit_LORF2_MOUSE = prot_n(blk[3], "LORF2_MOUSE"))
 }
 ret <- bind_rows(parse_ret("trinity"), parse_ret("stringtie"), parse_ret("lraa"))
-ret_dev <- bind_rows(parse_ret("trinity", ret_txt_dev), parse_ret("stringtie", ret_txt_dev))
 kable(ret, caption = "Release (a5b24c3)")
-kable(ret_dev, caption = "Development (48c870c)")
 r <- function(a, col) ret[[col]][ret$assembly == a]
 ```
 
@@ -593,7 +401,6 @@ kable(te_screen)
 ```
 
 ```{r chk_ret, include = FALSE}
-# release rerun (a5b24c3); development values were 4,981 / 4,692 / 95% / 0.3671 / 0.3671 / 4,465 / 185 / 1,232 of 1,305
 check_text("TE Trinity CDSs only with -human", r("trinity","only_minus_human"), 5127)
 check_text("TE Trinity unannotated of these", r("trinity","unannotated"), 4791)
 chk("TE Trinity share < 100 aa (%)", 100 * r("trinity","short_lt100") / r("trinity","only_minus_human"), 88, 0)
@@ -611,32 +418,25 @@ chk("TE screen Trinity UTY flagged share (%)", 100 * ts("trinity","UTY_PANTR_fla
 
 ## Figure 7 {#figure-7}
 
-Port of `figures/fig7_parameters/make_fig7.py`, with two changes, both to use the release runs:
+Port of `figures/fig7_parameters/make_fig7.py`. All panels are from the pinned release code (E40):
 
-- (a) The release default (q-value test, w 17 per bit) is added as a cross per assembly; the grid is unchanged.
-- (b) Lines are the post-hoc filter on the release predictions. Markers are the release q settings
-  at the 50-codon minimum: q 0.01, q 0.05 (default) and q 0.2 (drawn at 45, 50 and 55 aa so they do
-  not overlap). They replace the earlier
-  pre-defined-minimum runs from development code. Trinity was run at the default only.
-
-Panels c and d use the release homology series (PyTD a5b24c3; E06 release rerun); they replace the
-development series (48c870c).
+- (a) the alpha x w grid on all three assemblies; the default cell is the release default.
+- (b) lines are the post-hoc filter on the release predictions; markers are the q settings at the
+  50-codon minimum: q 0.01, q 0.05 (default) and q 0.2 (drawn at 45, 50 and 55 aa so they do not overlap).
+- (c, d) the homology series (E06).
 
 ```{r fig7_panels}
 # (a) start refinement
-pa_dat <- grid %>% filter(assembly %in% c("lraa", "stringtie"), config != "norefine", weight %in% c(0, 25)) %>%
-  mutate(w = ifelse(weight == 25, "w = 17/bit", "w = 0"))
-pa_lab <- pa_dat %>% filter(weight == 25, alpha %in% c(0.2, 1.0)) %>%
+pa_dat <- grid %>% filter(config != "norefine", weight %in% c(0, 17)) %>%
+  mutate(w = ifelse(weight == 17, "w = 17/bit", "w = 0"), assembly = factor(assembly, levels = ASM))
+pa_lab <- pa_dat %>% filter(weight == 17, alpha %in% c(0.2, 1.0)) %>%
   mutate(label = paste0("α = ", alpha))
-pa_def <- pa_dat %>% filter(weight == 25, alpha == 0.4)
-pa_rel <- rel_start %>% filter(assembly != "trinity")
+pa_def <- pa_dat %>% filter(weight == 17, alpha == 0.4)
 pa <- ggplot(pa_dat, aes(MANE_sens_exact_given_assembled, pred_complete_start_precision,
                          colour = assembly, group = interaction(assembly, w))) +
   geom_path(aes(linetype = w), linewidth = 0.4) +
   geom_point(aes(shape = w), size = 1.1, fill = "white", stroke = 0.5) +
   geom_point(data = pa_def, aes(group = NULL), shape = 21, size = 3, colour = "black", stroke = 0.35) +
-  geom_point(data = pa_rel, aes(mane, share, group = NULL), shape = 4, size = 1.8, stroke = 0.6,
-             show.legend = FALSE) +
   geom_text(data = pa_lab, aes(label = label, group = NULL, hjust = ifelse(alpha < 0.5, 1.15, -0.1),
                                vjust = ifelse(alpha < 0.5, 0.5, 1.3)),
             size = 1.95, show.legend = FALSE) +
@@ -644,8 +444,9 @@ pa <- ggplot(pa_dat, aes(MANE_sens_exact_given_assembled, pred_complete_start_pr
   scale_linetype_manual(values = c("w = 17/bit" = "solid", "w = 0" = "22"), name = NULL) +
   scale_shape_manual(values = c("w = 17/bit" = 16, "w = 0" = 21), name = NULL) +
   coord_cartesian(xlim = c(0.83, 0.975)) +
+  scale_y_continuous(breaks = seq(0.5, 0.9, 0.1)) +
   labs(x = "MANE exact given assembled", y = "exact-start share of\ncompatible complete calls",
-       title = "Start refinement (α)", caption = "large circle: default (grid);  ×: release, q 0.05") +
+       title = "Start refinement (α)", caption = "large circle: release default") +
   theme(plot.caption = element_text(size = 5.5, hjust = 0)) +
   theme(legend.position = "inside", legend.position.inside = c(0.02, 0.5), legend.justification = c(0, 0.5),
         legend.key.width = unit(5, "mm"))
@@ -747,10 +548,7 @@ Plotted values (each panel):
 
 ```{r fig7_tables}
 kable(pa_dat %>% select(assembly, config, alpha, w, MANE_sens_exact_given_assembled,
-                        pred_complete_start_precision) %>%
-        bind_rows(pa_rel %>% transmute(assembly, config = "release default (cross)",
-                                       MANE_sens_exact_given_assembled = mane,
-                                       pred_complete_start_precision = share)),
+                        pred_complete_start_precision),
       digits = 4, caption = "Panel a")
 ```
 
@@ -773,15 +571,10 @@ kable(hom_pl %>% select(assembly, config, db, x, d_mane_exact_pts, d_distinct_cd
 
 </details>
 
-Caption notes for the text: the caption's panel b markers and the `\todo` in it should be replaced
-by the q settings (q 0.01, 0.05, 0.2; release runs); the lines are now the release predictions.
-Panel a now has the release default as a cross.
-
 ## Checks against the manuscript {#checks-against-the-manuscript}
 
 Values computed here against the values in `r TEX` (line numbers in the labels) and the Fig. 7
-caption. Where the text quotes development runs and the release value differs, the row shows
-`ok = FALSE`; these are the numbers the text should update (see the `\todo` at line 29).
+caption.
 
 ```{r checks}
 check_report()

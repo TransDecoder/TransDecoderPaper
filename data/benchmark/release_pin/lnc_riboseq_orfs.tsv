@@ -1,0 +1,15 @@
+org	variant	label	n_lnc	lnc_pred	lnc_pred_cat	cat_orfs	cat_found
+human	complete.wLnc	rel	33668	1639	14	698	13
+human	complete.wLnc	precise	33668	1378	13	698	12
+human	complete.wLnc	sensitive	33668	2685	25	698	21
+human	complete.wLnc	q0.02	33668	1452	13	698	12
+human	complete.wLnc	q0.1	33668	2006	21	698	18
+human	complete.wLnc	q0.3	33668	3479	31	698	25
+human	complete.wLnc	q0.5	33668	5657	61	698	46
+human	fragments.wLnc	rel	33668	1928	18	698	14
+human	fragments.wLnc	precise	33668	1507	14	698	11
+human	fragments.wLnc	sensitive	33668	3621	43	698	33
+human	fragments.wLnc	q0.02	33668	1608	14	698	11
+human	fragments.wLnc	q0.1	33668	2489	25	698	19
+human	fragments.wLnc	q0.3	33668	4661	51	698	37
+human	fragments.wLnc	q0.5	33668	7029	83	698	56

@@ -24,20 +24,17 @@ Supplementary Fig. S2 (`figS2_start_grid`). Provenance: `r evidence("E13")` (par
 models, later ATGs), `r evidence("E07")` (benchmark summary: v6.0.0 and development runs) and
 `r evidence("E25")` (final release runs) and `r evidence("E29")` (5′-open starts and the UTR-length prior).
 
-**Which runs.** The comparisons of refinement settings (no refinement, $w=0$, the $\alpha \times w$
-grid) exist only for the development code of the parameter grid (PyTD 48c870c; E13). Its default cell
-(`a0.4_w25`) gives predictions identical to `pytd_dev_v2`. There is no release run without refinement
-or without the Kozak term, so these comparisons stay on the grid. They are controlled: within an input,
-all grid cells have the same predicted stops (E13 checks). Where a final-release equivalent exists, it is
-used: the comparison with v6.0.0 and the exact F1 of *C. reinhardtii* use the release run `pytd_v7`
-(`data/benchmark/final_v7/all_scores.tsv`), the per-transcriptome coding scale $\mu$ and the self-trained
-Kozak models come from the `pytd_v7` runs. The grid used the Kozak weight in nats (25 per nat = 17.3
-per bit); the release uses 17 per bit (E13 addendum: exact F1 within 0.0003 on every input).
+**Which runs.** All refinement comparisons (no refinement, =0$, the $\alpha \times w$ grid) are fresh runs of the
+pinned release code, PyTD d3892b5 (`r evidence("E40")`), with $ in bases per bit on the released scale (grid 0, 3.5, 7,
+17, 35, 69). The default cell `a0.4_w17` is byte-identical to the release run on all 16 inputs, and every cell of an
+input has the same predicted stops (checks below). v6.0.0 is an earlier release. The fixed PWM (PyTD 27bfb5e) and the
+PWM choice among later ATGs (`pytd_dev_pwm`) are unreleased development versions that the released code cannot run;
+they are labelled where used.
 
 Data:
 
-- `data/start_param_sensitivity/`: `open_end_mix.tsv`, `grid_scores.tsv`, `optima.tsv`,
-  `plateau.tsv`, `loo.tsv`, `kozak_score_distribution.tsv`, `gm12878.tsv`, `checks.tsv` (E13).
+- `data/start_param_sensitivity/release/` (`summarise_v2.py`, `open_end_mix_v2.py`, `kozak_score_distribution_v2.py`; E40): `open_end_mix.tsv`, `grid_scores.tsv`, `optima.tsv`,
+  `plateau.tsv`, `loo.tsv`, `kozak_score_distribution.tsv`, `gm12878.tsv`, `checks.tsv`.
 - `data/benchmark/summary.tsv`: `perl_td_v600` (v6.0.0), `pytd` (fixed PWM), `pytd_dev`,
   `pytd_dev_pwm` (E07, E09).
 - `data/benchmark/final_v7/all_scores.tsv`: `pytd_v7` (release; E25).
@@ -55,7 +52,7 @@ Data:
   for comparison.
 
 ```{r data}
-SP <- function(f) read_tab("start_param_sensitivity", f)
+SP <- function(f) read_tab("start_param_sensitivity", "release", f)
 open_mix <- SP("open_end_mix.tsv")
 grid <- SP("grid_scores.tsv")
 optima <- SP("optima.tsv")
@@ -74,8 +71,8 @@ seeds <- read_tab("start_refinement", "seed_start_changes.tsv")
 kstats_old <- readr::read_tsv(file.path(REPO, "figures", "kozak", "kozak_stats.tsv"), show_col_types = FALSE)
 
 ALPHAS <- c(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.8, 1, 1.25, 1.5, 2, 3)
-W_NATS <- c(0, 5, 10, 25, 50, 100)
-w_bits <- function(w) ifelse(w * log(2) >= 10 | w == 0, sprintf("%.0f", w * log(2)), sprintf("%.1f", w * log(2)))
+W_BITS <- c(0, 3.5, 7, 17, 35, 69)
+w_bits <- function(w) format(w, drop0trailing = TRUE, trim = TRUE)
 INPUTS <- c("complete", "fragments")
 pts <- function(x) 100 * x                       # F1 difference in percentage points
 f1p <- function(x) formatC(x, format = "f", digits = 1)
@@ -84,7 +81,7 @@ f1p <- function(x) formatC(x, format = "f", digits = 1)
 f1 <- expand_grid(org = ORGS, input = INPUTS) %>%
   left_join(optima %>% select(org, input, norefine = norefine_f1), by = c("org", "input")) %>%
   left_join(grid %>% filter(config == "a0.4_w0") %>% select(org, input, w0 = f1_exact), by = c("org", "input")) %>%
-  left_join(grid %>% filter(config == "a0.4_w25") %>% select(org, input, final = f1_exact,
+  left_join(grid %>% filter(config == "a0.4_w17") %>% select(org, input, final = f1_exact,
                                                               final_tp = tp_exact, final_stop = f1_stop),
             by = c("org", "input")) %>%
   left_join(summ %>% filter(tool == "perl_td_v600") %>%
@@ -96,12 +93,12 @@ f1 <- expand_grid(org = ORGS, input = INPUTS) %>%
 stopifnot(!anyNA(f1))
 ```
 
-The grid's default cell is the development default (`pytd_dev_v2`) on all 16 inputs, and predicted
+The grid's default cell is the release run on all 16 inputs, and predicted
 stops do not change with the refinement settings:
 
 ```{r grid-checks}
 kable(gchecks)
-stopifnot(all(gchecks$default_preds_identical_to_pytd_dev_v2), all(gchecks$stop_invariant_incl_norefine))
+stopifnot(all(gchecks$default_preds_identical_to_rel), all(gchecks$default_preds_identical_to_pytd_v7), all(gchecks$stop_invariant_incl_norefine))
 ```
 
 ## Open 5′ ends are common, and their cause depends on the input
@@ -135,15 +132,15 @@ had an open 5′ end, and `r pct(frag_trunc, 1)` of those matching a reference s
 (`r pct(tth, 1)` in *T. thermophila* to `r pct(pfa, 1)` in *P. falciparum*).
 
 ```{r open-ends-checks}
-check_text("results L11: open 5' ends, complete", oe_c$open_5prime, 41670)
-check_text("results L11: predictions, complete", oe_c$n_pred, 130066)
+check_text("results L11: open 5' ends, complete", oe_c$open_5prime, 41318)
+check_text("results L11: predictions, complete", oe_c$n_pred, 129778)
 check_text("results L11: open share complete (%)", round(100 * oe_c$open_5prime / oe_c$n_pred), 32)
-check_text("results L12: UTR-extended, complete", oe_c$utr_extended, 41127)
-check_text("results L13: open 5' ends, fragments", oe_f$open_5prime, 72056)
-check_text("results L13: predictions, fragments", oe_f$n_pred, 111104)
+check_text("results L12: UTR-extended, complete", oe_c$utr_extended, 40914)
+check_text("results L13: open 5' ends, fragments", oe_f$open_5prime, 75125)
+check_text("results L13: predictions, fragments", oe_f$n_pred, 116162)
 check_text("results L13: open share fragments (%)", round(100 * oe_f$open_5prime / oe_f$n_pred), 65)
 check_text("results L14: truncated share fragments (%)", round(100 * frag_trunc), 75)
-check_text("results L14: truncated share T. thermophila (%)", round(100 * tth), 64)
+check_text("results L14: truncated share T. thermophila (%)", round(100 * tth), 65)
 check_text("results L15: truncated share P. falciparum (%)", round(100 * pfa), 96)
 check_text("methods L287: 'about three quarters' truncated (%)", round(100 * frag_trunc), 75, tol = 5)
 ```
@@ -188,7 +185,7 @@ kable(a_dat %>% select(org, input, class, frac) %>% mutate(frac = round(frac, 3)
 
 ## Effect of refinement at the final code
 
-Exact-CDS F1 of the grid's default cell (α 0.4, w 25 per nat) against the run without refinement
+Exact-CDS F1 of the grid's default cell (α 0.4, w 17 per bit) against the run without refinement
 (`optima.tsv`, `norefine_f1`). Both come from the same code and have identical predicted stops.
 
 ```{r refine-effect}
@@ -220,20 +217,20 @@ kable(f1 %>% select(org, input, grid_default = final, release, release_exact_sen
 ```
 
 ```{r refine-effect-checks}
-check_text("results L21: complete gain min (pts)", round(min(ec$gain), 1), 3.1)
+check_text("results L21: complete gain min (pts)", round(min(ec$gain), 1), 3.0)
 check_text("results L21: complete gain max (pts)", round(max(ec$gain), 1), 38.7)
 check_text("results L21: complete gain median (pts)", round(median(ec$gain), 1), 20.1)
 check_text("results L21: complete gain positive in all 8", sum(ec$gain > 0), 8)
-check_text("results L22: T. thermophila no refinement", round(g(ec, "tthermophila", "norefine"), 3), 0.452)
-check_text("results L22: T. thermophila default", round(g(ec, "tthermophila", "final"), 3), 0.840)
+check_text("results L22: T. thermophila no refinement", round(g(ec, "tthermophila", "norefine"), 3), 0.446)
+check_text("results L22: T. thermophila default", round(g(ec, "tthermophila", "final"), 3), 0.833)
 check_text("results L22: human no refinement", round(g(ec, "human", "norefine"), 3), 0.563)
-check_text("results L22: human default", round(g(ec, "human", "final"), 3), 0.922)
-check_text("results L23: fragments effect min (pts)", round(min(ef$gain), 1), -4.3)
-check_text("results L23: fragments effect max (pts)", round(max(ef$gain), 1), 11.4)
-check_text("results L23: fragments effect positive (n orgs)", frag_pos, 6)
-check_text("results L24: A. thaliana fragments effect (pts)", round(g(ef, "athal", "gain"), 1), -0.1)
-check_text("results L24: P. falciparum fragments no refinement", round(g(ef, "pfalciparum", "norefine"), 3), 0.848)
-check_text("results L24: P. falciparum fragments default", round(g(ef, "pfalciparum", "final"), 3), 0.806)
+check_text("results L22: human default", round(g(ec, "human", "final"), 3), 0.920)
+check_text("results L23: fragments effect min (pts)", round(min(ef$gain), 1), -4.9)
+check_text("results L23: fragments effect max (pts)", round(max(ef$gain), 1), 11.3)
+check_text("results L23: fragments effect positive (n orgs)", frag_pos, 7)
+check_text("results L24: A. thaliana fragments effect, positive (pts)", round(g(ef, "athal", "gain"), 1), 0.1)
+check_text("results L24: P. falciparum fragments no refinement", round(g(ef, "pfalciparum", "norefine"), 3), 0.917)
+check_text("results L24: P. falciparum fragments default", round(g(ef, "pfalciparum", "final"), 3), 0.868)
 check_text("results L25: P. falciparum has highest truncated share", as.numeric(oe_frag$org[which.max(oe_frag$trunc_frac)] == "pfalciparum"), 1)
 ```
 
@@ -241,7 +238,7 @@ check_text("results L25: P. falciparum has highest truncated share", as.numeric(
 
 ## The Kozak term protects truncated ORFs
 
-Exact F1 at α 0.4 with $w=0$ and with the default weight (grid cells `a0.4_w0`, `a0.4_w25`).
+Exact F1 at α 0.4 with $w=0$ and with the default weight (grid cells `a0.4_w0`, `a0.4_w17`).
 
 ```{r kozak-term}
 kz <- f1 %>% mutate(kozak_gain = pts(final - w0), w0_below_norefine = w0 < norefine)
@@ -264,7 +261,7 @@ two F1 values rounded to 4 decimals; the text rounds it to 2.9.
 The self-trained models are those of the release runs (`pytd_v7`, stranded `complete` input,
 `start_refinement.kozak.counts.tsv`); the annotation-trained models use annotated starts of
 transcripts with an annotated 5′ UTR against the in-frame ATGs inside those CDSs. Both are log2-odds
-with +1 pseudocounts (`kozak.py` of PyTD 3a793ff). The −3 A/G value is the log2-odds at −3 averaged
+with +1 pseudocounts (`kozak.py` of PyTD d3892b5). The −3 A/G value is the log2-odds at −3 averaged
 over the A and G start sites (weighted by their counts), as in `make_kozak_figure.py`.
 
 ```{r kozak-models}
@@ -300,11 +297,11 @@ organisms (`r sprintf("%.2f", min(kstat$minus3_AG_self))` to `r sprintf("%.2f", 
 
 ```{r kozak-checks}
 check_text("results L29: w=0 below no refinement on fragments (n orgs)", sum(kzf$w0_below_norefine), 6)
-check_text("results L29: Kozak term fragments min (pts)", round(min(kzf$kozak_gain), 1), 1.3)
+check_text("results L29: Kozak term fragments min (pts)", round(min(kzf$kozak_gain), 1), 1.2)
 check_text("results L29: Kozak term fragments max (pts)", round(max(kzf$kozak_gain), 1), 4.3)
 check_text("results L30: Kozak term fragments positive (n orgs)", sum(kzf$kozak_gain > 0), 8)
 check_text("results L31: Kozak term complete min (pts)", round(min(kzc$kozak_gain), 1), -0.5)
-check_text("results L31: Kozak term complete max (pts; 2.85 from 4-decimal F1s)", max(kzc$kozak_gain), 2.9, tol = 0.051)
+check_text("results L31: Kozak term complete max (pts; 2.85 from 4-decimal F1s)", max(kzc$kozak_gain), 2.8, tol = 0.051)
 check_text("results L31: Kozak term complete mean (pts)", round(mean(kzc$kozak_gain), 1), 0.6)
 check_text("results L32: Pearson r min (T. thermophila 0.8446)", round(min(kstat$pearson_self_truth), 2), 0.84)
 check_text("results L32: Pearson r max", round(max(kstat$pearson_self_truth), 2), 0.98)
@@ -340,26 +337,26 @@ kable(loo_both %>% select(held_out, chosen, heldout_f1_chosen, heldout_f1_defaul
 `r sprintf("%.4f", both$mean_f1[1])`). Per organism, the best cell on complete inputs was at α
 `r paste(unique(comp_opt_alpha$alpha), collapse = ", ")` in every organism, and on fragments at α
 `r min(frag_opt_alpha$alpha)`--`r max(frag_opt_alpha$alpha)`. Leave-one-organism-out selection chose
-`a0.4_w25` in `r sum(loo_both$chosen == "a0.4_w25")` of 8 folds (the *T. thermophila* fold chose
+`a0.4_w17` in `r sum(loo_both$chosen == "a0.4_w17")` of 8 folds (the *T. thermophila* fold chose
 `r loo_both$chosen[loo_both$held_out == "tthermophila"]`).
 
 ```{r alpha-checks}
-check_text("results L39: fragments best alpha max", max(frag_opt_alpha$alpha), 0.2)
+check_text("results L39: fragments best alpha max", max(frag_opt_alpha$alpha), 0.3)
 check_text("results L39: fragments best alpha min", min(frag_opt_alpha$alpha), 0)
-check_text("results L40: default best of grid (1 = yes)", as.numeric(best_cell == "a0.4_w25"), 1)
+check_text("results L40: default best of grid (1 = yes)", as.numeric(best_cell == "a0.4_w17"), 1)
 check_text("results L40: number of parameter values", nrow(both), 78)
-check_text("results L41: LOO folds choosing default", sum(loo_both$chosen == "a0.4_w25"), 7)
+check_text("results L41: LOO folds choosing default", sum(loo_both$chosen == "a0.4_w17"), 7)
 ```
 
 ```{r fig3c, fig.width = 2.8, fig.height = 2.6}
-c_dat <- pl %>% filter(weight %in% c(0, 25)) %>%
+c_dat <- pl %>% filter(weight %in% c(0, 17)) %>%
   mutate(input = factor(input, levels = c("complete", "fragments", "both")),
-         wlab = ifelse(weight == 25, "w = 17 per bit", "w = 0"))
+         wlab = ifelse(weight == 17, "w = 17 per bit", "w = 0"))
 IN_COL <- c(complete = COMPLETE_C, fragments = FRAG_C, both = "#222222")
 p3c <- ggplot(c_dat, aes(alpha, mean_f1, colour = input, group = interaction(input, wlab))) +
   geom_vline(xintercept = 0.4, colour = "#888888", linewidth = 0.3, linetype = "dotted") +
   geom_line(aes(linetype = wlab, linewidth = wlab)) +
-  geom_point(data = c_dat %>% filter(weight == 25), size = 0.7) +
+  geom_point(data = c_dat %>% filter(weight == 17), size = 0.7) +
   annotate("text", x = 0.43, y = 0.945, label = "default", size = 2.1, colour = "#666666", hjust = 0, vjust = 1) +
   scale_x_sqrt(breaks = c(0, 0.1, 0.4, 1, 2, 3), labels = c("0", "0.1", "0.4", "1", "2", "3"),
                limits = c(0, 3.05), expand = c(0, 0)) +
@@ -378,7 +375,7 @@ p3c
 
 <details><summary>Fig. 3c values</summary>
 ```{r fig3c-values}
-kable(c_dat %>% select(input, weight_per_nat = weight, alpha, mean_f1) %>% arrange(input, weight_per_nat, alpha),
+kable(c_dat %>% select(input, weight_per_bit = weight, alpha, mean_f1) %>% arrange(input, weight_per_bit, alpha),
       digits = 4)
 ```
 </details>
@@ -387,42 +384,28 @@ kable(c_dat %>% select(input, weight_per_nat = weight, alpha, mean_f1) %>% arran
 
 ## Comparison with earlier releases
 
-v6.0.0 (`perl_td_v600`, `summary.tsv`) against the release (`pytd_v7`, `all_scores.tsv`), the values
-the manuscript quotes. The development default (`pytd_dev_v2`, equal to the grid's default cell), from
-which an earlier draft was written, is shown alongside. The fixed PWM is `pytd` in `summary.tsv` (PyTD 27bfb5e).
+v6.0.0 (`perl_td_v600`, `summary.tsv`) against the release (`pytd_v7`, `all_scores.tsv`; equal to the grid's default
+cell). The fixed PWM is `pytd` in `summary.tsv` (PyTD 27bfb5e, an unreleased development version).
 
 ```{r releases}
-rel <- f1 %>% mutate(gain_release = pts(release - v600), gain_dev = pts(final - v600),
-                     stop_release = pts(release_stop - v600_stop), stop_dev = pts(final_stop - v600_stop))
+rel <- f1 %>% mutate(gain_release = pts(release - v600), stop_release = pts(release_stop - v600_stop))
+stopifnot(all(abs(f1$release - f1$final) < 1e-9))
 rc <- rel %>% filter(input == "complete")
 rf <- rel %>% filter(input == "fragments")
 fixed_pwm <- summ %>% filter(tool == "pytd", variant == "complete")
-kable(rel %>% select(org, input, v600, dev_default = final, release, gain_dev, gain_release,
-                     stop_dev, stop_release) %>%
+kable(rel %>% select(org, input, v600, release, gain_release, stop_release) %>%
         mutate(across(starts_with(c("gain", "stop")), ~ round(.x, 2))), digits = 4,
       caption = "Exact F1 and gains (points) over v6.0.0; stop_* are stop-level F1 changes")
-tp_tab <- tibble(run = c("v6.0.0", "development default", "release (pytd_v7)"),
-                 median_exact_f1_complete = c(median(rc$v600), median(rc$final), median(rc$release)),
-                 summed_exact_complete = c(sum(rc$v600_tp), sum(rc$final_tp), sum(rc$release_tp)))
-kable(tp_tab, digits = 3, format.args = list(big.mark = ","))
 ```
 
 On complete inputs, median exact F1 was `r f3(median(rc$v600))` with v6.0.0 and
-`r f3(median(rc$release))` with the release (`r f3(median(rc$final))` with the development default).
-Summed exact matches were `r num(sum(rc$v600_tp))` with v6.0.0 and `r num(sum(rc$release_tp))` with the
-release (`r num(sum(rc$final_tp))`, development). The release gained `r f1p(min(rc$gain_release))` to
+`r f3(median(rc$release))` with the release. Summed exact matches were `r num(sum(rc$v600_tp))` with v6.0.0 and
+`r num(sum(rc$release_tp))` with the release. The release gained `r f1p(min(rc$gain_release))` to
 `r f1p(max(rc$gain_release))` points of exact F1 per organism, while stop-level F1 changed by
 `r f1p(min(rc$stop_release))` to `r f1p(max(rc$stop_release))` points. On fragments the release gained
 `r f1p(min(rf$gain_release))` to `r f1p(max(rf$gain_release))` points of exact F1 and
-`r f1p(min(rf$stop_release))` to `r f1p(max(rf$stop_release))` points of stop-level F1 (development
-default: `r f1p(min(rf$gain_dev))` to `r f1p(max(rf$gain_dev))` and `r f1p(min(rf$stop_dev))` to
-`r f1p(max(rf$stop_dev))`). The fixed PWM had a median exact F1 of `r f3(median(fixed_pwm$f1_exact))` on
-complete inputs.
-
-The development values agree with the earlier draft: complete gain `r sprintf("%.2f", min(rc$gain_dev))` to
-`r sprintf("%.2f", max(rc$gain_dev))` (text 1.7 to 27.3; half-values rounded up), stop-level
-`r f1p(min(rc$stop_dev))` to `r f1p(max(rc$stop_dev))`, fragments `r sprintf("%.2f", min(rf$gain_dev))` to
-`r sprintf("%.2f", max(rf$gain_dev))`.
+`r f1p(min(rf$stop_release))` to `r f1p(max(rf$stop_release))` points of stop-level F1. The fixed PWM had a median
+exact F1 of `r f3(median(fixed_pwm$f1_exact))` on complete inputs.
 
 ### PWM seeds (v6.0.0-style refinement)
 
@@ -469,7 +452,7 @@ is + strand transcripts with an annotated 5′ UTR, an ATG start and a full 31-n
 definition of `pwm_audit/audit_signal.py` Q4).
 
 ```{r remaining}
-rem <- rel %>% filter(input == "complete") %>% select(org, dev_default = final, release) %>%
+rem <- rel %>% filter(input == "complete") %>% select(org, release) %>%
   left_join(later %>% mutate(later_frac = (closed_later + open_later) / n), by = "org")
 kable(rem, digits = 4)
 cre <- rem %>% filter(org == "creinhardtii")
@@ -477,8 +460,7 @@ oth <- rem %>% filter(org != "creinhardtii")
 ```
 
 *C. reinhardtii* had the lowest exact F1 on complete inputs in the release
-(`r f3(cre$release)`; development default `r f3(cre$dev_default)`;
-lowest: `r rem$org[which.min(rem$release)]`). Its annotated start was a later in-frame ATG in
+(`r f3(cre$release)`; lowest: `r rem$org[which.min(rem$release)]`). Its annotated start was a later in-frame ATG in
 `r pct(cre$later_frac)` of transcripts, against `r pct(min(oth$later_frac))`--`r pct(max(oth$later_frac))`
 in the other seven.
 
@@ -785,44 +767,49 @@ kable(d_dat %>% select(org, set, p10, p25, p50, p75, p90))
 
 ### Later ATGs chosen by start context
 
-`pytd_dev_pwm` (ATG chosen by the PWM) against `pytd_dev` (first in-frame ATG), complete inputs
-(`summary.tsv`).
+`pytd_dev_pwm` (ATG chosen among later in-frame ATGs by the PWM; unreleased development version, which the release
+code cannot run) against the release code's first-ATG rule without the Kozak term (grid cell `a0.4_w0`), and, as the
+controlled comparison within that development version, against its own first-ATG choice (`pytd_dev`), complete inputs.
 
 ```{r pwm-choice}
+w0c <- grid %>% filter(config == "a0.4_w0", input == "complete") %>% select(org, tp_exact_rel_w0 = tp_exact, f1_exact_rel_w0 = f1_exact)
 pwm <- summ %>% filter(variant == "complete", tool %in% c("pytd_dev", "pytd_dev_pwm")) %>%
   select(org, tool, tp_exact, f1_exact) %>%
   pivot_wider(names_from = tool, values_from = c(tp_exact, f1_exact)) %>%
+  left_join(w0c, by = "org") %>%
   mutate(diff_points = pts(f1_exact_pytd_dev_pwm - f1_exact_pytd_dev),
-         diff_tp = tp_exact_pytd_dev_pwm - tp_exact_pytd_dev)
+         diff_tp = tp_exact_pytd_dev_pwm - tp_exact_pytd_dev,
+         diff_tp_vs_release_w0 = tp_exact_pytd_dev_pwm - tp_exact_rel_w0)
 kable(pwm, digits = 4)
 n_not_improved <- sum(pwm$diff_points <= 0.05)
+n_below_rel <- sum(pwm$diff_tp_vs_release_w0 < 0)
 ```
 
-The PWM choice was lower in `r sum(pwm$diff_tp < 0)` organisms, higher by `r pwm$diff_tp[pwm$org == "pfalciparum"]`
-exact match in *P. falciparum* (`r sprintf("%+.2f", pwm$diff_points[pwm$org == "pfalciparum"])` points) and
-higher in *C. reinhardtii* (`r sprintf("%+.2f", pwm$diff_points[pwm$org == "creinhardtii"])` points). Counting
-changes of at most 0.05 points as no improvement, it did not improve accuracy in `r n_not_improved` of 8.
+Against the release first-ATG rule (w 0), the PWM choice had fewer exact matches in `r n_below_rel` of 8 organisms
+(`r paste(ORG_LABEL[pwm$org[pwm$diff_tp_vs_release_w0 > 0]], collapse = ", ")` higher). Within the development version,
+it was higher by `r pwm$diff_tp[pwm$org == "pfalciparum"]` exact match in *P. falciparum* and by
+`r pwm$diff_tp[pwm$org == "creinhardtii"]` in *C. reinhardtii*, and did not improve accuracy in `r n_not_improved` of 8.
 
 ### Parameter grid
 
 ```{r grid-methods}
-plat_cells <- both %>% filter(mean_f1 >= both$mean_f1[both$config == "a0.4_w25"] - 0.005)
+plat_cells <- both %>% filter(mean_f1 >= both$mean_f1[both$config == "a0.4_w17"] - 0.005)
 plat_alpha <- range(plat_cells$alpha); plat_w <- range(plat_cells$weight)
-w_range_bits <- range(W_NATS) * log(2)
-kz_every <- pl %>% filter(weight %in% c(0, 25)) %>%
+w_range_bits <- range(W_BITS)
+kz_every <- pl %>% filter(weight %in% c(0, 17)) %>%
   select(input, alpha, weight, mean_f1) %>%
   pivot_wider(names_from = weight, values_from = mean_f1, names_prefix = "w") %>%
-  mutate(kozak_gain = pts(w25 - w0))
+  mutate(kozak_gain = pts(w17 - w0))
 kz_at04 <- kz_every %>% filter(alpha == 0.4)
-flat <- both %>% filter(alpha == 0.4, weight %in% c(10, 25, 50))
+flat <- both %>% filter(alpha == 0.4, weight %in% c(7, 17, 35))
 kable(plat_cells %>% select(config, alpha, weight, mean_f1), digits = 4,
       caption = "Cells within 0.5 points of the default (mean of both)")
 kable(kz_every %>% pivot_wider(id_cols = alpha, names_from = input, values_from = kozak_gain), digits = 2,
-      caption = "Kozak term (w 25 per nat minus w 0), mean exact F1 points, by alpha")
+      caption = "Kozak term (w 17 per bit minus w 0), mean exact F1 points, by alpha")
 ```
 
-The grid had `r length(ALPHAS)` values of α (`r min(ALPHAS)` to `r max(ALPHAS)`) and `r length(W_NATS)` of $w$
-(`r min(W_NATS)` to `r max(W_NATS)` per nat, `r f1p(w_range_bits[1])` to `r f1p(w_range_bits[2])` per bit),
+The grid had `r length(ALPHAS)` values of α (`r min(ALPHAS)` to `r max(ALPHAS)`) and `r length(W_BITS)` of $w$
+(`r min(W_BITS)` to `r max(W_BITS)` per bit),
 `r nrow(both)` cells. `r nrow(plat_cells)` cells, including the default, were within 0.5 points of it
 (α `r plat_alpha[1]`--`r plat_alpha[2]`, $w$ `r w_bits(plat_w[1])`--`r w_bits(plat_w[2])` per bit). The Kozak term
 raised mean exact F1 at every α for `r paste(names(which(tapply(kz_every$kozak_gain > 0, kz_every$input, all))), collapse = ", ")`
@@ -846,16 +833,16 @@ check_text("methods L278: internal ATG median, lowest (bits)", round(min(ia$p50)
 check_text("methods L280: later ATG by context, no improvement (n orgs)", n_not_improved, 7)
 check_text("methods L284: grid values", nrow(both), 78)
 check_text("methods L284: alpha max", max(ALPHAS), 3)
-check_text("methods L284: w max per bit", round(max(W_NATS) * log(2)), 69)
+check_text("methods L284: w max per bit", max(W_BITS), 69)
 check_text("methods L290: cells within 0.5 pt", nrow(plat_cells), 8)
 check_text("methods L290: plateau alpha min", plat_alpha[1], 0.2)
 check_text("methods L290: plateau alpha max", plat_alpha[2], 0.5)
-check_text("methods L290: plateau w min per bit", round(plat_w[1] * log(2)), 7)
-check_text("methods L290: plateau w max per bit", round(plat_w[2] * log(2)), 35)
-check_text("methods L291: LOO folds choosing default", sum(loo_both$chosen == "a0.4_w25"), 7)
+check_text("methods L290: plateau w min per bit", plat_w[1], 7)
+check_text("methods L290: plateau w max per bit", plat_w[2], 35)
+check_text("methods L291: LOO folds choosing default", sum(loo_both$chosen == "a0.4_w17"), 7)
 check_text("methods L291: Kozak improved at every alpha (both)", as.numeric(all(kz_every$kozak_gain[kz_every$input == "both"] > 0)), 1)
 check_text("methods L292: Kozak term at 0.4, complete (pts)", round(kz_at04$kozak_gain[kz_at04$input == "complete"], 1), 0.6)
-check_text("methods L293: Kozak term at 0.4, fragments (pts)", round(kz_at04$kozak_gain[kz_at04$input == "fragments"], 1), 2.7)
+check_text("methods L293: Kozak term at 0.4, fragments (pts)", round(kz_at04$kozak_gain[kz_at04$input == "fragments"], 1), 2.8)
 ```
 
 `r evidence("E13")`, `r evidence("E09")`, `r evidence("E25")`
@@ -864,16 +851,16 @@ check_text("methods L293: Kozak term at 0.4, fragments (pts)", round(kz_at04$koz
 
 Panel b plots exact F1 per organism without refinement, with v6.0.0, at α 0.4 with $w=0$ and at the
 grid default (all from the controlled comparison, with v6.0.0 from `summary.tsv`). The release run
-(`pytd_v7`) is added as a fifth marker (diamond), as described in the caption (`figures_main.tex`).
+(`pytd_v7`) is the grid's default cell, so it is not drawn separately.
 
 ```{r fig3b}
 MARK_LAB <- c(norefine = "no refinement", v600 = "v6.0.0", w0 = "α 0.4, w 0 (no Kozak term)",
-              final = "α 0.4, w 17 per bit (grid)", release = "release (v7)")
-MARK_SHAPE <- c(norefine = 21, v600 = 22, w0 = 24, final = 21, release = 23)
-MARK_FILL <- c(norefine = "white", v600 = "#bbbbbb", w0 = "white", final = TD_C, release = "#fdae61")
-MARK_COL <- c(norefine = "#444444", v600 = "#777777", w0 = TD_C, final = TD_C, release = "#7f3b08")
-b_dat <- f1 %>% select(org, input, norefine, v600, w0, final, release) %>%
-  pivot_longer(c(norefine, v600, w0, final, release), names_to = "marker", values_to = "f1") %>%
+              final = "α 0.4, w 17 per bit (release default)")
+MARK_SHAPE <- c(norefine = 21, v600 = 22, w0 = 24, final = 21)
+MARK_FILL <- c(norefine = "white", v600 = "#bbbbbb", w0 = "white", final = TD_C)
+MARK_COL <- c(norefine = "#444444", v600 = "#777777", w0 = TD_C, final = TD_C)
+b_dat <- f1 %>% select(org, input, norefine, v600, w0, final) %>%
+  pivot_longer(c(norefine, v600, w0, final), names_to = "marker", values_to = "f1") %>%
   mutate(y = match(org, org_rev) - 1, marker = factor(marker, levels = names(MARK_LAB)))
 panel_b <- function(inp, show_y, xlim) {
   d <- b_dat %>% filter(input == inp)
@@ -1012,7 +999,7 @@ kable(kmod %>% select(org, model, position, base, start_count, internal_count, l
 (a) Mean exact F1 (×100) over the eight benchmark organisms. (b) GM12878 assemblies (×100) (`gm12878.tsv`, E13): exact
 recovery of fully assembled MANE CDSs and the exact-start share of GENCODE-compatible complete calls
 (×100). Colour spans the best value to 5 points below it; bold, best value; red box, default.
-There is no release-code equivalent of this grid; it is the development grid (E13).
+Release code (E40); all three assemblies.
 
 ```{r heat-fn}
 heat <- function(d, title) {
@@ -1031,42 +1018,42 @@ heat <- function(d, title) {
 }
 ```
 
-```{r figS2, fig.width = 170 / 25.4, fig.height = 215 / 25.4}
+```{r figS2, fig.width = 170 / 25.4, fig.height = 230 / 25.4}
 TITLES <- c(complete = "Benchmark, complete", fragments = "Benchmark, fragments", both = "Benchmark, mean of both")
 s2a_dat <- plateau %>%
-  mutate(v = 100 * mean_f1, x = factor(w_bits(weight), levels = w_bits(W_NATS)),
+  mutate(v = 100 * mean_f1, x = factor(w_bits(weight), levels = w_bits(W_BITS)),
          y = factor(format(alpha, drop0trailing = TRUE, trim = TRUE), levels = format(ALPHAS, drop0trailing = TRUE, trim = TRUE)),
-         default = config == "a0.4_w25")
+         default = config == "a0.4_w17")
 s2a <- lapply(names(TITLES), function(i)
   heat(s2a_dat %>% filter(input == i), paste0(TITLES[[i]], "\nmean exact-CDS F1 (×100)")))
-GA <- c("0.2", "0.4", "0.6", "1.0"); GW <- c(0, 25, 50)
+GA <- c("0.2", "0.4", "0.6", "1.0"); GW <- c(0, 17, 35)
 METRICS <- c(MANE_sens_exact_given_assembled = "MANE exact | assembled",
              pred_complete_start_precision = "exact-start share")
 s2b_dat <- gm %>% filter(config != "norefine") %>%
   pivot_longer(names(METRICS), names_to = "metric", values_to = "val") %>%
   mutate(v = 100 * val, x = factor(w_bits(weight), levels = w_bits(GW)),
          y = factor(formatC(alpha, format = "f", digits = 1), levels = GA),
-         default = config == "a0.4_w25")
+         default = config == "a0.4_w17")
 nr <- gm %>% filter(config == "norefine")
 s2b <- list()
-for (mt in names(METRICS)) for (asm in c("lraa", "stringtie")) {
+for (mt in names(METRICS)) for (asm in c("lraa", "stringtie", "trinity")) {
   nrv <- 100 * nr[[mt]][nr$assembly == asm]
   s2b[[paste(mt, asm)]] <- heat(s2b_dat %>% filter(metric == mt, assembly == asm) %>%
                                   mutate(y = factor(sub("\\.0$", "", as.character(y)), levels = c("0.2", "0.4", "0.6", "1"))),
-                                paste0(ifelse(asm == "lraa", "LRAA", "StringTie"), ": ", METRICS[[mt]],
+                                paste0(c(lraa = "LRAA", stringtie = "StringTie", trinity = "Trinity")[[asm]], ": ", METRICS[[mt]],
                                        "\nno refinement ", sprintf("%.1f", nrv))) +
     theme(plot.title = element_text(size = 6))
 }
-figS2 <- (wrap_plots(s2a, ncol = 3) / wrap_plots(s2b, ncol = 4)) + plot_layout(heights = c(1.35, 1)) +
-  plot_annotation(tag_levels = list(c("a", "", "", "b", "", "", "")))
-save_fig(figS2, "figS2_start_grid", width = FULL_W, height = 215 / 25.4)
+figS2 <- (wrap_plots(s2a, ncol = 3) / wrap_plots(s2b, ncol = 3)) + plot_layout(heights = c(1.1, 1.6)) +
+  plot_annotation(tag_levels = list(c("a", "", "", "b", "", "", "", "", "")))
+save_fig(figS2, "figS2_start_grid", width = FULL_W, height = 230 / 25.4)
 figS2
 ```
 
 <details><summary>Fig. S2 values</summary>
 ```{r figS2-values}
-kable(s2a_dat %>% select(input, alpha, weight_per_nat = weight, w_per_bit = x, value = v), digits = 2)
-kable(s2b_dat %>% select(assembly, metric, alpha, weight_per_nat = weight, value = v) %>%
+kable(s2a_dat %>% select(input, alpha, weight_per_bit = weight, w_per_bit = x, value = v), digits = 2)
+kable(s2b_dat %>% select(assembly, metric, alpha, weight_per_bit = weight, value = v) %>%
         bind_rows(nr %>% pivot_longer(names(METRICS), names_to = "metric", values_to = "val") %>%
                     transmute(assembly, metric, alpha = NA, weight_per_nat = NA, value = 100 * val)), digits = 2)
 ```
@@ -1078,7 +1065,7 @@ kable(s2b_dat %>% select(assembly, metric, alpha, weight_per_nat = weight, value
 
 `results L..` refers to `results_start_refinement.tex`, `methods L..` to `methods_algorithm.tex`.
 Values from the release (`pytd_v7`) are compared with the current text, which quotes the release
-where a release run exists; grid comparisons stay on the development grid (E13).
+where a release run exists; the grid is the release-code grid (E40).
 
 ```{r checks}
 check_report()

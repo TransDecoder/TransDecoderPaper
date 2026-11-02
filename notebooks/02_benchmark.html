@@ -1808,34 +1808,25 @@ border-radius: 0px;
 of TransDecoder and PyTD), <a href="../evidence/E16_comparator_benchmarks.md">E16</a> (how the
 comparator papers benchmarked; background only, no numbers are taken
 from it here).</p>
-<p><strong>Which runs.</strong> TransDecoder appears in the benchmark
-under two sets of labels:</p>
-<ul>
-<li><em>earlier final defaults</em>: <code>pytd_dev_v2</code> /
-<code>perl_td_dev_v2</code> (PyTD 48c870c, Perl de3f57e; fixed short-ORF
-test; E07). Earlier drafts of the manuscript quoted these runs; the
-text, Table 1 and Fig. 2 now use the release runs.</li>
-<li><em>release</em>: <code>pytd_v7</code> / <code>perl_td_v7</code>
-(PyTD main 3a793ff, Perl devel 41fc5ee; decoy q-value test at q 0.05;
-E25), with the presets <code>pytd_v7_precise</code>,
-<code>pytd_v7_sensitive</code> and the homology runs
-<code>pytd_v7_homology</code>.</li>
-</ul>
-<p>Figures, Table 1 and the numbers written here use the
-<strong>release</strong> runs (<code>pytd_v7</code>). The checks at the
-end compare them with the text as it stands, so a mismatch for a
-TransDecoder number shows a value the text must update. The section
-“Release versus earlier final defaults” lists the earlier values next to
-the release values. TransDecoder v6.0.0 is an older release that the
-text compares explicitly, so it is kept.</p>
+<p><strong>Which runs.</strong> The TransDecoder rows are the release
+runs: <code>pytd_v7</code> / <code>perl_td_v7</code> (Perl 41fc5ee;
+decoy q-value test at q 0.05), the settings
+<code>pytd_v7_precise</code>, <code>pytd_v7_sensitive</code>, and the
+homology runs <code>pytd_v7h_homology</code> (E25). The
+<code>pytd_v7</code> run labels are historical: these runs were made at
+PyTD 3a793ff and their output files are byte-identical to fresh runs at
+the pinned commit d3892b5 on all 108 inputs (E40). Figures, Table 1 and
+the numbers written here use these runs. TransDecoder v6.0.0 is an older
+release that the text compares explicitly.</p>
 <pre class="r"><code>S &lt;- read_tab(&quot;benchmark&quot;, SUMMARY_FILE)
 A7 &lt;- read_tab(&quot;benchmark&quot;, &quot;final_v7&quot;, &quot;all_scores.tsv&quot;)
+A7H &lt;- read_tab(&quot;benchmark&quot;, &quot;final_v7&quot;, &quot;v7h_homology_scores.tsv&quot;) %&gt;% filter(tool == &quot;pytd_v7h_homology&quot;)
 IDENT &lt;- read_tab(&quot;benchmark&quot;, &quot;final_v7&quot;, &quot;perl_pytd_identity.tsv&quot;)
 NEG &lt;- read_tab(&quot;benchmark&quot;, &quot;final_v7&quot;, &quot;negatives_scores.tsv&quot;)
 # TD2 (E39) was scored after the 2026-10-25 summary, with the same scorer, into final_v7/all_scores.tsv
 S &lt;- bind_rows(S, A7 %&gt;% filter(tool == &quot;td2&quot;))
 
-TD &lt;- &quot;pytd_v7&quot;; TD_PERL &lt;- &quot;perl_td_v7&quot;; TD_OLD &lt;- &quot;pytd_dev_v2&quot;
+TD &lt;- &quot;pytd_v7&quot;; TD_PERL &lt;- &quot;perl_td_v7&quot;
 INPUTS &lt;- S %&gt;% filter(tool == TD) %&gt;% distinct(org, variant)
 N_INPUTS &lt;- nrow(INPUTS)
 
@@ -1850,20 +1841,17 @@ rng &lt;- function(x) paste0(f3(min(x, na.rm = TRUE)), &quot;-&quot;, f3(max(x, 
 <div id="data-and-missing-rows" class="section level2">
 <h2>Data and missing rows</h2>
 <p>The notebook reads one scored summary,
-<code>data/benchmark/summary.interim_20261025.tsv</code>
-(<code>score_all.py</code> with the fixed scorer, copied from
-<code>$P/work/bench_v3/scores/</code>; E07, E25). It has 2,386 rows
-(tool × input) over 84 inputs.</p>
-<pre class="r"><code>release_and_comparators &lt;- c(TD, TD_PERL, &quot;pytd_v7_precise&quot;, &quot;pytd_v7_sensitive&quot;, &quot;pytd_v7_homology&quot;,
+<code>data/benchmark/summary.release.tsv</code>
+(<code>score_all.py</code> with the fixed scorer; E07, E25, E40). It has
+1,082 rows (tool × input) over 84 inputs.</p>
+<pre class="r"><code>release_and_comparators &lt;- c(TD, TD_PERL, &quot;pytd_v7_precise&quot;, &quot;pytd_v7_sensitive&quot;,
                              &quot;perl_td_v600&quot;, &quot;perl_td_v571&quot;, &quot;td2&quot;, &quot;prodigal&quot;, &quot;gmst&quot;, &quot;codan&quot;, &quot;cpat&quot;, &quot;cpc2&quot;,
                              &quot;rnasamba&quot;, &quot;borf&quot;, &quot;longest_orf&quot;, &quot;angel&quot;)
 cov &lt;- S %&gt;% filter(tool %in% release_and_comparators) %&gt;% count(tool, name = &quot;rows&quot;) %&gt;%
   mutate(tool = factor(tool, levels = release_and_comparators)) %&gt;% arrange(tool)
 miss &lt;- function(tool) INPUTS %&gt;% anti_join(S %&gt;% filter(tool == !!tool), by = c(&quot;org&quot;, &quot;variant&quot;))
 codan_miss &lt;- miss(&quot;codan&quot;)
-hom_miss &lt;- miss(&quot;pytd_v7_homology&quot;)
-hom_have &lt;- S %&gt;% filter(tool == &quot;pytd_v7_homology&quot;) %&gt;% distinct(org, variant)
-hom_a7 &lt;- A7 %&gt;% filter(tool == &quot;pytd_v7_homology&quot;) %&gt;% distinct(org, variant)
+hom_a7 &lt;- A7H %&gt;% distinct(org, variant)
 kable(cov, caption = &quot;Rows per tool (84 inputs in total)&quot;)</code></pre>
 <table>
 <caption>Rows per tool (84 inputs in total)</caption>
@@ -1891,54 +1879,50 @@ kable(cov, caption = &quot;Rows per tool (84 inputs in total)&quot;)</code></pre
 <td align="right">20</td>
 </tr>
 <tr class="odd">
-<td align="left">pytd_v7_homology</td>
-<td align="right">32</td>
-</tr>
-<tr class="even">
 <td align="left">perl_td_v600</td>
 <td align="right">80</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">perl_td_v571</td>
 <td align="right">84</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">td2</td>
 <td align="right">84</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">prodigal</td>
 <td align="right">84</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">gmst</td>
 <td align="right">84</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">codan</td>
 <td align="right">79</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">cpat</td>
 <td align="right">84</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">cpc2</td>
 <td align="right">84</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">rnasamba</td>
 <td align="right">44</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">borf</td>
 <td align="right">84</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">longest_orf</td>
 <td align="right">80</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">angel</td>
 <td align="right">3</td>
 </tr>
@@ -1949,7 +1933,7 @@ kable(cov, caption = &quot;Rows per tool (84 inputs in total)&quot;)</code></pre
 check_text(&quot;CodAn missing row outside wLnc is only T. thermophila complete.unstranded.wRand (1 = yes)&quot;,
            as.numeric(identical(paste(codan_miss$org, codan_miss$variant)[!grepl(&quot;wLnc&quot;, codan_miss$variant)],
                                 &quot;tthermophila complete.unstranded.wRand&quot;)), 1)
-check_text(&quot;pytd_v7_homology rows in all_scores.tsv (all 84 finished)&quot;, nrow(hom_a7), 84)
+check_text(&quot;pytd_v7h_homology rows (all 84 finished)&quot;, nrow(hom_a7), 84)
 check_text(&quot;TD2 rows (all 84 inputs; E39)&quot;, nrow(S %&gt;% filter(tool == &quot;td2&quot;)), 84)</code></pre>
 <p>Rows missing for the tools used here (all runs have ended; state
 checked 2026-10-30):</p>
@@ -1965,15 +1949,10 @@ code and its <em>T. thermophila</em> runs are not results (E27). CodAn
 has no lncRNA (<code>wLnc</code>) runs. None of these inputs is used in
 Fig. 2 or Table 1, which use the stranded complete, complete + random
 and fragments inputs; CodAn has all 8 organisms there.</li>
-<li><strong>PyTD with homology</strong> (<code>pytd_v7_homology</code>):
-32 of 84 rows (athal 10, creinhardtii 10, dmel 10, human 2) in this
-summary, which was taken while the runs were in progress. All 84
-finished on 2026-10-26 and are scored in
-<code>final_v7/all_scores.tsv</code> (84 rows; E25); the section on
-homology below uses those. These runs are not in Fig. 2 or Table 1. The
-manuscript’s homology results use the released homology mode
-(<code>pytd_v7h_homology</code>, PyTD a5b24c3, with homology-assisted
-start refinement; notebook 05, Fig. 5d,e; E25 addendum 2026-10-28).</li>
+<li><strong>PyTD with homology</strong>
+(<code>pytd_v7h_homology</code>): all 84 of 84, scored in
+<code>final_v7/v7h_homology_scores.tsv</code> (E25 addendum 2026-10-28;
+notebook 05, Fig. 5d,e). These runs are not in Fig. 2 or Table 1.</li>
 <li><code>--precise</code> and <code>--sensitive</code> were run on the
 negative-containing inputs only (20 each; E25).</li>
 <li>TD2 (E39): all 84 inputs, scored into
@@ -2005,15 +1984,7 @@ kable(cons)</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">perl_td_dev_v2</td>
-<td align="right">84</td>
-</tr>
-<tr class="even">
 <td align="left">perl_td_v7</td>
-<td align="right">84</td>
-</tr>
-<tr class="odd">
-<td align="left">pytd_dev_v2</td>
 <td align="right">84</td>
 </tr>
 <tr class="even">
@@ -2021,10 +1992,6 @@ kable(cons)</code></pre>
 <td align="right">84</td>
 </tr>
 <tr class="odd">
-<td align="left">pytd_v7_homology</td>
-<td align="right">32</td>
-</tr>
-<tr class="even">
 <td align="left">td2</td>
 <td align="right">84</td>
 </tr>
@@ -2055,7 +2022,7 @@ rows_differing
 n_truth
 </td>
 <td style="text-align:right;">
-452
+252
 </td>
 <td style="text-align:right;">
 0
@@ -2066,7 +2033,7 @@ n_truth
 n_pred
 </td>
 <td style="text-align:right;">
-452
+252
 </td>
 <td style="text-align:right;">
 0
@@ -2077,7 +2044,7 @@ n_pred
 n_pred_real
 </td>
 <td style="text-align:right;">
-452
+252
 </td>
 <td style="text-align:right;">
 0
@@ -2088,7 +2055,7 @@ n_pred_real
 n_pred_random
 </td>
 <td style="text-align:right;">
-452
+252
 </td>
 <td style="text-align:right;">
 0
@@ -2099,7 +2066,7 @@ n_pred_random
 tp_stop
 </td>
 <td style="text-align:right;">
-452
+252
 </td>
 <td style="text-align:right;">
 0
@@ -2110,7 +2077,7 @@ tp_stop
 tp_exact
 </td>
 <td style="text-align:right;">
-452
+252
 </td>
 <td style="text-align:right;">
 0
@@ -2121,7 +2088,7 @@ tp_exact
 fp
 </td>
 <td style="text-align:right;">
-452
+252
 </td>
 <td style="text-align:right;">
 0
@@ -2132,7 +2099,7 @@ fp
 fp_random
 </td>
 <td style="text-align:right;">
-452
+252
 </td>
 <td style="text-align:right;">
 0
@@ -2143,7 +2110,7 @@ fp_random
 fp_wrong_strand
 </td>
 <td style="text-align:right;">
-452
+252
 </td>
 <td style="text-align:right;">
 0
@@ -2154,7 +2121,7 @@ fp_wrong_strand
 fp_dup
 </td>
 <td style="text-align:right;">
-452
+252
 </td>
 <td style="text-align:right;">
 0
@@ -2165,7 +2132,7 @@ fp_dup
 fn
 </td>
 <td style="text-align:right;">
-452
+252
 </td>
 <td style="text-align:right;">
 0
@@ -2176,7 +2143,7 @@ fn
 sensitivity_stop
 </td>
 <td style="text-align:right;">
-452
+252
 </td>
 <td style="text-align:right;">
 0
@@ -2187,7 +2154,7 @@ sensitivity_stop
 precision_stop
 </td>
 <td style="text-align:right;">
-452
+252
 </td>
 <td style="text-align:right;">
 0
@@ -2198,7 +2165,7 @@ precision_stop
 f1_stop
 </td>
 <td style="text-align:right;">
-452
+252
 </td>
 <td style="text-align:right;">
 0
@@ -2209,7 +2176,7 @@ f1_stop
 sensitivity_exact
 </td>
 <td style="text-align:right;">
-452
+252
 </td>
 <td style="text-align:right;">
 0
@@ -2220,7 +2187,7 @@ sensitivity_exact
 precision_exact
 </td>
 <td style="text-align:right;">
-452
+252
 </td>
 <td style="text-align:right;">
 0
@@ -2231,7 +2198,7 @@ precision_exact
 f1_exact
 </td>
 <td style="text-align:right;">
-452
+252
 </td>
 <td style="text-align:right;">
 0
@@ -2242,7 +2209,7 @@ f1_exact
 runtime_sec
 </td>
 <td style="text-align:right;">
-452
+252
 </td>
 <td style="text-align:right;">
 0
@@ -2251,9 +2218,8 @@ runtime_sec
 </tbody>
 </table>
 </details>
-<p>All 452 rows of <code>all_scores.tsv</code> (<code>pytd_v7</code>,
-<code>perl_td_v7</code>, <code>pytd_dev_v2</code>,
-<code>perl_td_dev_v2</code>; 84 each; and <code>td2</code>, added to the
+<p>All 252 rows of <code>all_scores.tsv</code> (<code>pytd_v7</code>,
+<code>perl_td_v7</code>; 84 each; and <code>td2</code>, added to the
 summary from this table) are in the summary, and 0 cells differ,
 including run times. The two tables agree for <code>pytd_v7</code>.</p>
 </div>
@@ -2772,7 +2738,7 @@ table1 &lt;- tab1_long %&gt;% select(tool, col, median) %&gt;% pivot_wider(names
   mutate(label = TOOLS[tool], tool = factor(tool, levels = names(TOOLS))) %&gt;% arrange(tool) %&gt;%
   mutate(tool = as.character(tool),
          note = case_when(tool %in% INCOMPATIBLE ~ &quot;7 organisms (ciliate code not supported)&quot;,
-                          min_orgs &lt; 8 ~ sprintf(&quot;interim: %d of 8 organisms in some column&quot;, min_orgs),
+                          min_orgs &lt; 8 ~ sprintf(&quot;%d of 8 organisms in some column&quot;, min_orgs),
                           TRUE ~ &quot;&quot;)) %&gt;%
   select(tool, label, all_of(COLS$col), min_orgs, note)
 write_tsv(table1 %&gt;% mutate(across(all_of(COLS$col), ~ round(.x, 4))),
@@ -2785,7 +2751,7 @@ kableExtra::kable_styling(kable(table1 %&gt;% select(-tool, -min_orgs) %&gt;% mu
   full_width = FALSE)</code></pre>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-Table 1 (from summary.interim_20261025.tsv; written to
+Table 1 (from summary.release.tsv; written to
 data/benchmark/final_v7/table1.tsv)
 </caption>
 <thead>
@@ -5206,10 +5172,7 @@ differing cells). One set of numbers describes both
 implementations.</li>
 <li>Run time, Perl / Python: median ratio 2.71 (2.07-3.28) over the 84
 inputs; on complete inputs 2.57. Median run time on complete inputs:
-Python 281 s, Perl 717 s (earlier final defaults: 185 s and 422 s).
-Shared host, indicative only. The 2.3-fold figure in the abstract and in
-Results, algorithm, is for the earlier runs and is checked in
-<code>01_algorithm.Rmd</code>.</li>
+Python 281 s, Perl 717 s. Shared host, indicative only.</li>
 </ul>
 </div>
 <div id="accuracy-across-eight-eukaryotes" class="section level2">
@@ -5458,27 +5421,25 @@ reinhardtii</em> (v6.0.0, Prodigal, GeneMarkS-T, CPAT): exact F1
 </div>
 <div id="homology-evidence" class="section level2">
 <h2>Homology evidence</h2>
-<p>The Methods list PyTD with DIAMOND/Pfam evidence. Release homology
-runs (<code>pytd_v7_homology</code>, PyTD 3a793ff, before the
-homology-assisted start refinement): all 84 of 84, from
-<code>final_v7/all_scores.tsv</code> (E25). The manuscript’s homology
-numbers on the benchmark inputs come from the released homology mode
-(<code>pytd_v7h_homology</code>, which also uses homology in start
-refinement) and are reproduced in notebook 05.</p>
-<pre class="r"><code>hom &lt;- A7 %&gt;% filter(tool %in% c(TD, &quot;pytd_v7_homology&quot;)) %&gt;%
+<p>The Methods list PyTD with DIAMOND/Pfam evidence:
+<code>pytd_v7h_homology</code>, all 84 of 84 inputs (E25 addendum; run
+at a5b24c3, same code tree as the pinned d3892b5), with homology used
+for retention and for start refinement. The manuscript’s numbers are in
+notebook 05.</p>
+<pre class="r"><code>hom &lt;- bind_rows(A7 %&gt;% filter(tool == TD), A7H) %&gt;%
   select(org, variant, tool, sensitivity_stop, precision_stop, f1_exact) %&gt;%
   pivot_wider(names_from = tool, values_from = c(sensitivity_stop, precision_stop, f1_exact)) %&gt;%
-  filter(!is.na(sensitivity_stop_pytd_v7_homology)) %&gt;%
-  transmute(org, variant, d_sens_stop = sensitivity_stop_pytd_v7_homology - sensitivity_stop_pytd_v7,
-            d_prec_stop = precision_stop_pytd_v7_homology - precision_stop_pytd_v7,
-            d_f1_exact = f1_exact_pytd_v7_homology - f1_exact_pytd_v7,
+  filter(!is.na(sensitivity_stop_pytd_v7h_homology)) %&gt;%
+  transmute(org, variant, d_sens_stop = sensitivity_stop_pytd_v7h_homology - sensitivity_stop_pytd_v7,
+            d_prec_stop = precision_stop_pytd_v7h_homology - precision_stop_pytd_v7,
+            d_f1_exact = f1_exact_pytd_v7h_homology - f1_exact_pytd_v7,
             type = ifelse(grepl(&quot;^fragments&quot;, variant), &quot;fragments&quot;, &quot;complete-type&quot;))
 hom_sum &lt;- hom %&gt;% group_by(type) %&gt;% summarise(inputs = n(), across(starts_with(&quot;d_&quot;), list(min = min, max = max)))
 kable(hom_sum %&gt;% mutate(across(starts_with(&quot;d_&quot;), ~ round(.x, 4))),
-      caption = &quot;Homology (pytd_v7_homology, 3a793ff) minus ab initio (release), 84 inputs&quot;)</code></pre>
+      caption = &quot;Homology (pytd_v7h_homology) minus ab initio (release), 84 inputs&quot;)</code></pre>
 <table>
-<caption>Homology (pytd_v7_homology, 3a793ff) minus ab initio (release),
-84 inputs</caption>
+<caption>Homology (pytd_v7h_homology) minus ab initio (release), 84
+inputs</caption>
 <colgroup>
 <col width="12%" />
 <col width="6%" />
@@ -5509,8 +5470,8 @@ kable(hom_sum %&gt;% mutate(across(starts_with(&quot;d_&quot;), ~ round(.x, 4)))
 <td align="right">0.0372</td>
 <td align="right">-0.0648</td>
 <td align="right">0.0066</td>
-<td align="right">-0.0211</td>
-<td align="right">0.0209</td>
+<td align="right">-0.0044</td>
+<td align="right">0.0478</td>
 </tr>
 <tr class="even">
 <td align="left">fragments</td>
@@ -5519,8 +5480,8 @@ kable(hom_sum %&gt;% mutate(across(starts_with(&quot;d_&quot;), ~ round(.x, 4)))
 <td align="right">0.0920</td>
 <td align="right">-0.0580</td>
 <td align="right">0.0132</td>
-<td align="right">0.0011</td>
-<td align="right">0.0465</td>
+<td align="right">0.0052</td>
+<td align="right">0.1290</td>
 </tr>
 </tbody>
 </table>
@@ -5567,7 +5528,7 @@ complete_fullutr.unstranded
 -0.0031
 </td>
 <td style="text-align:right;">
-0.0106
+0.0102
 </td>
 <td style="text-align:left;">
 complete-type
@@ -5587,7 +5548,7 @@ complete_fullutr
 -0.0030
 </td>
 <td style="text-align:right;">
-0.0089
+0.0085
 </td>
 <td style="text-align:left;">
 complete-type
@@ -5607,7 +5568,7 @@ complete
 -0.0015
 </td>
 <td style="text-align:right;">
-0.0082
+0.0074
 </td>
 <td style="text-align:left;">
 complete-type
@@ -5627,7 +5588,7 @@ complete.unstranded
 -0.0011
 </td>
 <td style="text-align:right;">
-0.0113
+0.0104
 </td>
 <td style="text-align:left;">
 complete-type
@@ -5647,7 +5608,7 @@ complete.wRand
 -0.0016
 </td>
 <td style="text-align:right;">
-0.0096
+0.0086
 </td>
 <td style="text-align:left;">
 complete-type
@@ -5667,7 +5628,7 @@ complete.unstranded.wRand
 -0.0013
 </td>
 <td style="text-align:right;">
-0.0127
+0.0118
 </td>
 <td style="text-align:left;">
 complete-type
@@ -5687,7 +5648,7 @@ fragments
 -0.0007
 </td>
 <td style="text-align:right;">
-0.0234
+0.0944
 </td>
 <td style="text-align:left;">
 fragments
@@ -5707,7 +5668,7 @@ fragments.unstranded
 0.0043
 </td>
 <td style="text-align:right;">
-0.0330
+0.1049
 </td>
 <td style="text-align:left;">
 fragments
@@ -5727,7 +5688,7 @@ fragments.unstranded.wRand
 0.0042
 </td>
 <td style="text-align:right;">
-0.0347
+0.1066
 </td>
 <td style="text-align:left;">
 fragments
@@ -5747,7 +5708,7 @@ complete_fullutr
 -0.0015
 </td>
 <td style="text-align:right;">
--0.0002
+-0.0028
 </td>
 <td style="text-align:left;">
 complete-type
@@ -5767,7 +5728,7 @@ fragments.wRand
 -0.0006
 </td>
 <td style="text-align:right;">
-0.0240
+0.0948
 </td>
 <td style="text-align:left;">
 fragments
@@ -5787,7 +5748,7 @@ complete_fullutr.unstranded
 -0.0039
 </td>
 <td style="text-align:right;">
--0.0015
+-0.0040
 </td>
 <td style="text-align:left;">
 complete-type
@@ -5807,7 +5768,7 @@ complete
 -0.0007
 </td>
 <td style="text-align:right;">
-0.0000
+-0.0036
 </td>
 <td style="text-align:left;">
 complete-type
@@ -5827,7 +5788,7 @@ complete.unstranded
 -0.0010
 </td>
 <td style="text-align:right;">
-0.0000
+-0.0035
 </td>
 <td style="text-align:left;">
 complete-type
@@ -5847,7 +5808,7 @@ complete.unstranded.wRand
 -0.0011
 </td>
 <td style="text-align:right;">
--0.0001
+-0.0035
 </td>
 <td style="text-align:left;">
 complete-type
@@ -5867,7 +5828,7 @@ complete.wRand
 -0.0007
 </td>
 <td style="text-align:right;">
--0.0001
+-0.0036
 </td>
 <td style="text-align:left;">
 complete-type
@@ -5887,7 +5848,7 @@ fragments
 -0.0003
 </td>
 <td style="text-align:right;">
-0.0022
+0.0052
 </td>
 <td style="text-align:left;">
 fragments
@@ -5907,7 +5868,7 @@ fragments.unstranded
 0.0004
 </td>
 <td style="text-align:right;">
-0.0027
+0.0056
 </td>
 <td style="text-align:left;">
 fragments
@@ -5927,7 +5888,7 @@ fragments.unstranded.wRand
 0.0004
 </td>
 <td style="text-align:right;">
-0.0026
+0.0055
 </td>
 <td style="text-align:left;">
 fragments
@@ -5947,7 +5908,7 @@ fragments.wRand
 -0.0003
 </td>
 <td style="text-align:right;">
-0.0023
+0.0053
 </td>
 <td style="text-align:left;">
 fragments
@@ -5967,7 +5928,7 @@ complete_fullutr
 0.0014
 </td>
 <td style="text-align:right;">
-0.0060
+0.0052
 </td>
 <td style="text-align:left;">
 complete-type
@@ -5987,7 +5948,7 @@ complete_fullutr.unstranded
 0.0007
 </td>
 <td style="text-align:right;">
-0.0057
+0.0049
 </td>
 <td style="text-align:left;">
 complete-type
@@ -6007,7 +5968,7 @@ complete
 0.0001
 </td>
 <td style="text-align:right;">
-0.0038
+0.0031
 </td>
 <td style="text-align:left;">
 complete-type
@@ -6027,7 +5988,7 @@ complete.unstranded
 -0.0003
 </td>
 <td style="text-align:right;">
-0.0034
+0.0028
 </td>
 <td style="text-align:left;">
 complete-type
@@ -6047,7 +6008,7 @@ complete.unstranded.wRand
 -0.0006
 </td>
 <td style="text-align:right;">
-0.0032
+0.0026
 </td>
 <td style="text-align:left;">
 complete-type
@@ -6067,7 +6028,7 @@ complete.wRand
 -0.0002
 </td>
 <td style="text-align:right;">
-0.0039
+0.0032
 </td>
 <td style="text-align:left;">
 complete-type
@@ -6087,7 +6048,7 @@ fragments
 -0.0002
 </td>
 <td style="text-align:right;">
-0.0039
+0.0384
 </td>
 <td style="text-align:left;">
 fragments
@@ -6107,7 +6068,7 @@ fragments.unstranded
 0.0013
 </td>
 <td style="text-align:right;">
-0.0063
+0.0406
 </td>
 <td style="text-align:left;">
 fragments
@@ -6127,7 +6088,7 @@ fragments.unstranded.wRand
 0.0013
 </td>
 <td style="text-align:right;">
-0.0072
+0.0416
 </td>
 <td style="text-align:left;">
 fragments
@@ -6147,7 +6108,7 @@ fragments.wRand
 -0.0002
 </td>
 <td style="text-align:right;">
-0.0043
+0.0388
 </td>
 <td style="text-align:left;">
 fragments
@@ -6167,7 +6128,7 @@ complete_fullutr
 0.0014
 </td>
 <td style="text-align:right;">
-0.0153
+0.0438
 </td>
 <td style="text-align:left;">
 complete-type
@@ -6187,7 +6148,7 @@ complete_fullutr.unstranded
 0.0038
 </td>
 <td style="text-align:right;">
-0.0194
+0.0478
 </td>
 <td style="text-align:left;">
 complete-type
@@ -6207,7 +6168,7 @@ complete
 0.0007
 </td>
 <td style="text-align:right;">
-0.0100
+0.0392
 </td>
 <td style="text-align:left;">
 complete-type
@@ -6227,7 +6188,7 @@ complete.unstranded
 0.0032
 </td>
 <td style="text-align:right;">
-0.0130
+0.0421
 </td>
 <td style="text-align:left;">
 complete-type
@@ -6247,7 +6208,7 @@ complete.unstranded.wRand
 0.0032
 </td>
 <td style="text-align:right;">
-0.0131
+0.0420
 </td>
 <td style="text-align:left;">
 complete-type
@@ -6267,7 +6228,7 @@ complete.wLnc
 -0.0648
 </td>
 <td style="text-align:right;">
--0.0211
+0.0061
 </td>
 <td style="text-align:left;">
 complete-type
@@ -6287,7 +6248,7 @@ fragments
 0.0013
 </td>
 <td style="text-align:right;">
-0.0258
+0.1177
 </td>
 <td style="text-align:left;">
 fragments
@@ -6307,7 +6268,7 @@ complete.wRand
 0.0008
 </td>
 <td style="text-align:right;">
-0.0098
+0.0388
 </td>
 <td style="text-align:left;">
 complete-type
@@ -6327,7 +6288,7 @@ fragments.unstranded
 0.0080
 </td>
 <td style="text-align:right;">
-0.0372
+0.1282
 </td>
 <td style="text-align:left;">
 fragments
@@ -6347,7 +6308,7 @@ fragments.unstranded.wRand
 0.0082
 </td>
 <td style="text-align:right;">
-0.0381
+0.1290
 </td>
 <td style="text-align:left;">
 fragments
@@ -6367,7 +6328,7 @@ fragments.wLnc
 -0.0580
 </td>
 <td style="text-align:right;">
-0.0021
+0.0878
 </td>
 <td style="text-align:left;">
 fragments
@@ -6387,7 +6348,7 @@ fragments.wRand
 0.0014
 </td>
 <td style="text-align:right;">
-0.0260
+0.1172
 </td>
 <td style="text-align:left;">
 fragments
@@ -6407,7 +6368,7 @@ complete_fullutr
 0.0020
 </td>
 <td style="text-align:right;">
-0.0178
+0.0324
 </td>
 <td style="text-align:left;">
 complete-type
@@ -6427,7 +6388,7 @@ complete_fullutr.unstranded
 0.0066
 </td>
 <td style="text-align:right;">
-0.0209
+0.0354
 </td>
 <td style="text-align:left;">
 complete-type
@@ -6447,7 +6408,7 @@ complete
 0.0015
 </td>
 <td style="text-align:right;">
-0.0116
+0.0266
 </td>
 <td style="text-align:left;">
 complete-type
@@ -6467,7 +6428,7 @@ complete.unstranded
 0.0052
 </td>
 <td style="text-align:right;">
-0.0154
+0.0308
 </td>
 <td style="text-align:left;">
 complete-type
@@ -6487,7 +6448,7 @@ complete.unstranded.wRand
 0.0051
 </td>
 <td style="text-align:right;">
-0.0153
+0.0307
 </td>
 <td style="text-align:left;">
 complete-type
@@ -6507,7 +6468,7 @@ complete.wLnc
 -0.0287
 </td>
 <td style="text-align:right;">
--0.0010
+0.0137
 </td>
 <td style="text-align:left;">
 complete-type
@@ -6527,7 +6488,7 @@ complete.wRand
 0.0014
 </td>
 <td style="text-align:right;">
-0.0116
+0.0267
 </td>
 <td style="text-align:left;">
 complete-type
@@ -6547,7 +6508,7 @@ fragments
 0.0033
 </td>
 <td style="text-align:right;">
-0.0308
+0.1087
 </td>
 <td style="text-align:left;">
 fragments
@@ -6567,7 +6528,7 @@ fragments.unstranded
 0.0132
 </td>
 <td style="text-align:right;">
-0.0456
+0.1232
 </td>
 <td style="text-align:left;">
 fragments
@@ -6587,7 +6548,7 @@ fragments.unstranded.wRand
 0.0132
 </td>
 <td style="text-align:right;">
-0.0465
+0.1241
 </td>
 <td style="text-align:left;">
 fragments
@@ -6607,7 +6568,7 @@ fragments.wLnc
 -0.0221
 </td>
 <td style="text-align:right;">
-0.0230
+0.0964
 </td>
 <td style="text-align:left;">
 fragments
@@ -6627,7 +6588,7 @@ fragments.wRand
 0.0035
 </td>
 <td style="text-align:right;">
-0.0331
+0.1106
 </td>
 <td style="text-align:left;">
 fragments
@@ -6647,7 +6608,7 @@ complete_fullutr
 -0.0008
 </td>
 <td style="text-align:right;">
-0.0010
+0.0012
 </td>
 <td style="text-align:left;">
 complete-type
@@ -6667,7 +6628,7 @@ complete_fullutr.unstranded
 -0.0051
 </td>
 <td style="text-align:right;">
--0.0035
+-0.0033
 </td>
 <td style="text-align:left;">
 complete-type
@@ -6687,7 +6648,7 @@ complete
 0.0002
 </td>
 <td style="text-align:right;">
-0.0010
+0.0012
 </td>
 <td style="text-align:left;">
 complete-type
@@ -6707,7 +6668,7 @@ complete.unstranded
 0.0006
 </td>
 <td style="text-align:right;">
-0.0013
+0.0014
 </td>
 <td style="text-align:left;">
 complete-type
@@ -6727,7 +6688,7 @@ complete.unstranded.wRand
 0.0008
 </td>
 <td style="text-align:right;">
-0.0021
+0.0023
 </td>
 <td style="text-align:left;">
 complete-type
@@ -6747,7 +6708,7 @@ complete.wRand
 0.0004
 </td>
 <td style="text-align:right;">
-0.0012
+0.0014
 </td>
 <td style="text-align:left;">
 complete-type
@@ -6767,7 +6728,7 @@ fragments
 0.0004
 </td>
 <td style="text-align:right;">
-0.0013
+0.0255
 </td>
 <td style="text-align:left;">
 fragments
@@ -6787,7 +6748,7 @@ fragments.unstranded
 0.0023
 </td>
 <td style="text-align:right;">
-0.0024
+0.0264
 </td>
 <td style="text-align:left;">
 fragments
@@ -6807,7 +6768,7 @@ fragments.unstranded.wRand
 0.0023
 </td>
 <td style="text-align:right;">
-0.0025
+0.0265
 </td>
 <td style="text-align:left;">
 fragments
@@ -6827,7 +6788,7 @@ fragments.wRand
 0.0003
 </td>
 <td style="text-align:right;">
-0.0011
+0.0249
 </td>
 <td style="text-align:left;">
 fragments
@@ -6847,7 +6808,7 @@ complete_fullutr
 0.0005
 </td>
 <td style="text-align:right;">
-0.0057
+0.0128
 </td>
 <td style="text-align:left;">
 complete-type
@@ -6867,7 +6828,7 @@ complete_fullutr.unstranded
 0.0009
 </td>
 <td style="text-align:right;">
-0.0068
+0.0136
 </td>
 <td style="text-align:left;">
 complete-type
@@ -6887,7 +6848,7 @@ complete
 -0.0002
 </td>
 <td style="text-align:right;">
-0.0033
+0.0104
 </td>
 <td style="text-align:left;">
 complete-type
@@ -6907,7 +6868,7 @@ complete.unstranded
 0.0004
 </td>
 <td style="text-align:right;">
-0.0058
+0.0128
 </td>
 <td style="text-align:left;">
 complete-type
@@ -6927,7 +6888,7 @@ complete.unstranded.wRand
 0.0005
 </td>
 <td style="text-align:right;">
-0.0069
+0.0138
 </td>
 <td style="text-align:left;">
 complete-type
@@ -6947,7 +6908,7 @@ fragments
 -0.0002
 </td>
 <td style="text-align:right;">
-0.0056
+0.0649
 </td>
 <td style="text-align:left;">
 fragments
@@ -6967,7 +6928,7 @@ complete.wRand
 -0.0004
 </td>
 <td style="text-align:right;">
-0.0042
+0.0114
 </td>
 <td style="text-align:left;">
 complete-type
@@ -6987,7 +6948,7 @@ fragments.unstranded
 -0.0003
 </td>
 <td style="text-align:right;">
-0.0070
+0.0665
 </td>
 <td style="text-align:left;">
 fragments
@@ -7007,7 +6968,7 @@ fragments.unstranded.wRand
 0.0011
 </td>
 <td style="text-align:right;">
-0.0118
+0.0713
 </td>
 <td style="text-align:left;">
 fragments
@@ -7027,7 +6988,7 @@ fragments.wRand
 -0.0001
 </td>
 <td style="text-align:right;">
-0.0065
+0.0657
 </td>
 <td style="text-align:left;">
 fragments
@@ -7047,7 +7008,7 @@ complete_fullutr
 -0.0030
 </td>
 <td style="text-align:right;">
-0.0011
+-0.0042
 </td>
 <td style="text-align:left;">
 complete-type
@@ -7067,7 +7028,7 @@ complete_fullutr.unstranded
 -0.0031
 </td>
 <td style="text-align:right;">
-0.0017
+-0.0036
 </td>
 <td style="text-align:left;">
 complete-type
@@ -7087,7 +7048,7 @@ complete
 -0.0019
 </td>
 <td style="text-align:right;">
-0.0014
+-0.0044
 </td>
 <td style="text-align:left;">
 complete-type
@@ -7107,7 +7068,7 @@ complete.unstranded
 -0.0011
 </td>
 <td style="text-align:right;">
-0.0030
+-0.0029
 </td>
 <td style="text-align:left;">
 complete-type
@@ -7127,7 +7088,7 @@ complete.unstranded.wRand
 -0.0028
 </td>
 <td style="text-align:right;">
-0.0023
+-0.0035
 </td>
 <td style="text-align:left;">
 complete-type
@@ -7147,7 +7108,7 @@ complete.wRand
 -0.0025
 </td>
 <td style="text-align:right;">
-0.0016
+-0.0042
 </td>
 <td style="text-align:left;">
 complete-type
@@ -7167,7 +7128,7 @@ fragments
 -0.0006
 </td>
 <td style="text-align:right;">
-0.0065
+0.0191
 </td>
 <td style="text-align:left;">
 fragments
@@ -7187,7 +7148,7 @@ fragments.unstranded
 0.0016
 </td>
 <td style="text-align:right;">
-0.0091
+0.0215
 </td>
 <td style="text-align:left;">
 fragments
@@ -7207,7 +7168,7 @@ fragments.unstranded.wRand
 0.0005
 </td>
 <td style="text-align:right;">
-0.0100
+0.0224
 </td>
 <td style="text-align:left;">
 fragments
@@ -7227,7 +7188,7 @@ fragments.wRand
 -0.0012
 </td>
 <td style="text-align:right;">
-0.0070
+0.0195
 </td>
 <td style="text-align:left;">
 fragments
@@ -252366,167 +252327,6 @@ PT2 &lt;- function(ty, m) PTV(&quot;td2&quot;, ty, m)
 TT_RL &lt;- TD2R %&gt;% filter(org == &quot;tthermophila&quot;)
 RS2 &lt;- rs_all %&gt;% filter(tool == &quot;td2&quot;)</code></pre>
 </div>
-<div id="release-versus-earlier-final-defaults" class="section level2">
-<h2>Release versus earlier final defaults</h2>
-<p>The TransDecoder numbers the text quotes, computed from the earlier
-final defaults (<code>pytd_dev_v2</code>, the runs the text and the
-current figure used) and from the release (<code>pytd_v7</code>).</p>
-<pre class="r"><code>both &lt;- function(f) c(earlier = f(TD_OLD), release = f(TD))
-rv &lt;- bind_rows(
-  tibble(quantity = &quot;complete stop F1 median&quot;, !!!both(function(t) MED(t, &quot;complete&quot;, &quot;f1_stop&quot;))),
-  tibble(quantity = &quot;complete stop F1 min&quot;, !!!both(function(t) min(V(t, &quot;complete&quot;, &quot;f1_stop&quot;)))),
-  tibble(quantity = &quot;complete stop F1 max&quot;, !!!both(function(t) max(V(t, &quot;complete&quot;, &quot;f1_stop&quot;)))),
-  tibble(quantity = &quot;complete exact F1 median&quot;, !!!both(function(t) MED(t, &quot;complete&quot;, &quot;f1_exact&quot;))),
-  tibble(quantity = &quot;complete exact F1 min&quot;, !!!both(function(t) min(V(t, &quot;complete&quot;, &quot;f1_exact&quot;)))),
-  tibble(quantity = &quot;complete exact F1 max&quot;, !!!both(function(t) max(V(t, &quot;complete&quot;, &quot;f1_exact&quot;)))),
-  tibble(quantity = &quot;fragments stop F1 median&quot;, !!!both(function(t) MED(t, &quot;fragments&quot;, &quot;f1_stop&quot;))),
-  tibble(quantity = &quot;fragments exact F1 median&quot;, !!!both(function(t) MED(t, &quot;fragments&quot;, &quot;f1_exact&quot;))),
-  tibble(quantity = &quot;complete+rand precision median&quot;, !!!both(function(t) MED(t, &quot;complete.wRand&quot;, &quot;precision_stop&quot;))),
-  tibble(quantity = &quot;complete+rand precision min&quot;, !!!both(function(t) min(V(t, &quot;complete.wRand&quot;, &quot;precision_stop&quot;)))),
-  tibble(quantity = &quot;complete+rand stop F1 median&quot;, !!!both(function(t) MED(t, &quot;complete.wRand&quot;, &quot;f1_stop&quot;))),
-  tibble(quantity = &quot;T. the. complete stop F1&quot;, !!!both(function(t) TT(t, &quot;complete&quot;, &quot;f1_stop&quot;))),
-  tibble(quantity = &quot;T. the. complete exact F1&quot;, !!!both(function(t) TT(t, &quot;complete&quot;, &quot;f1_exact&quot;))),
-  tibble(quantity = &quot;T. the. fragments stop F1&quot;, !!!both(function(t) TT(t, &quot;fragments&quot;, &quot;f1_stop&quot;))),
-  tibble(quantity = &quot;T. the. complete+rand precision&quot;, !!!both(function(t) TT(t, &quot;complete.wRand&quot;, &quot;precision_stop&quot;))),
-  tibble(quantity = &quot;P. fal. complete stop F1&quot;, !!!both(function(t) V(t, &quot;complete&quot;, &quot;f1_stop&quot;)[[&quot;pfalciparum&quot;]])),
-  tibble(quantity = &quot;P. fal. complete exact F1&quot;, !!!both(function(t) V(t, &quot;complete&quot;, &quot;f1_exact&quot;)[[&quot;pfalciparum&quot;]])),
-  tibble(quantity = &quot;C. rei. complete stop F1&quot;, !!!both(function(t) V(t, &quot;complete&quot;, &quot;f1_stop&quot;)[[&quot;creinhardtii&quot;]])),
-  tibble(quantity = &quot;C. rei. complete exact F1&quot;, !!!both(function(t) V(t, &quot;complete&quot;, &quot;f1_exact&quot;)[[&quot;creinhardtii&quot;]])),
-  tibble(quantity = &quot;max |TD - v6.0.0|, complete stop F1&quot;,
-         !!!both(function(t) max(abs(V(t, &quot;complete&quot;, &quot;f1_stop&quot;) - v6_cs)))),
-  tibble(quantity = &quot;organisms where Prodigal &gt; TD, fragments stop F1&quot;,
-         !!!both(function(t) sum(pr_fs &gt; V(t, &quot;fragments&quot;, &quot;f1_stop&quot;)))),
-  tibble(quantity = &quot;organisms where TD &gt; Prodigal, fragments exact F1&quot;,
-         !!!both(function(t) sum(V(t, &quot;fragments&quot;, &quot;f1_exact&quot;) &gt; pr_fe))))
-kable(rv %&gt;% mutate(across(c(earlier, release), ~ round(.x, 3))))</code></pre>
-<table>
-<thead>
-<tr class="header">
-<th align="left">quantity</th>
-<th align="right">earlier</th>
-<th align="right">release</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">complete stop F1 median</td>
-<td align="right">0.978</td>
-<td align="right">0.980</td>
-</tr>
-<tr class="even">
-<td align="left">complete stop F1 min</td>
-<td align="right">0.940</td>
-<td align="right">0.933</td>
-</tr>
-<tr class="odd">
-<td align="left">complete stop F1 max</td>
-<td align="right">0.988</td>
-<td align="right">0.997</td>
-</tr>
-<tr class="even">
-<td align="left">complete exact F1 median</td>
-<td align="right">0.910</td>
-<td align="right">0.912</td>
-</tr>
-<tr class="odd">
-<td align="left">complete exact F1 min</td>
-<td align="right">0.742</td>
-<td align="right">0.747</td>
-</tr>
-<tr class="even">
-<td align="left">complete exact F1 max</td>
-<td align="right">0.928</td>
-<td align="right">0.940</td>
-</tr>
-<tr class="odd">
-<td align="left">fragments stop F1 median</td>
-<td align="right">0.895</td>
-<td align="right">0.930</td>
-</tr>
-<tr class="even">
-<td align="left">fragments exact F1 median</td>
-<td align="right">0.789</td>
-<td align="right">0.822</td>
-</tr>
-<tr class="odd">
-<td align="left">complete+rand precision median</td>
-<td align="right">0.993</td>
-<td align="right">0.994</td>
-</tr>
-<tr class="even">
-<td align="left">complete+rand precision min</td>
-<td align="right">0.954</td>
-<td align="right">0.980</td>
-</tr>
-<tr class="odd">
-<td align="left">complete+rand stop F1 median</td>
-<td align="right">0.975</td>
-<td align="right">0.979</td>
-</tr>
-<tr class="even">
-<td align="left">T. the. complete stop F1</td>
-<td align="right">0.940</td>
-<td align="right">0.933</td>
-</tr>
-<tr class="odd">
-<td align="left">T. the. complete exact F1</td>
-<td align="right">0.840</td>
-<td align="right">0.833</td>
-</tr>
-<tr class="even">
-<td align="left">T. the. fragments stop F1</td>
-<td align="right">0.896</td>
-<td align="right">0.887</td>
-</tr>
-<tr class="odd">
-<td align="left">T. the. complete+rand precision</td>
-<td align="right">0.954</td>
-<td align="right">0.980</td>
-</tr>
-<tr class="even">
-<td align="left">P. fal. complete stop F1</td>
-<td align="right">0.985</td>
-<td align="right">0.997</td>
-</tr>
-<tr class="odd">
-<td align="left">P. fal. complete exact F1</td>
-<td align="right">0.928</td>
-<td align="right">0.940</td>
-</tr>
-<tr class="even">
-<td align="left">C. rei. complete stop F1</td>
-<td align="right">0.968</td>
-<td align="right">0.975</td>
-</tr>
-<tr class="odd">
-<td align="left">C. rei. complete exact F1</td>
-<td align="right">0.742</td>
-<td align="right">0.747</td>
-</tr>
-<tr class="even">
-<td align="left">max |TD - v6.0.0|, complete stop F1</td>
-<td align="right">0.008</td>
-<td align="right">0.014</td>
-</tr>
-<tr class="odd">
-<td align="left">organisms where Prodigal &gt; TD, fragments stop
-F1</td>
-<td align="right">7.000</td>
-<td align="right">5.000</td>
-</tr>
-<tr class="even">
-<td align="left">organisms where TD &gt; Prodigal, fragments exact
-F1</td>
-<td align="right">3.000</td>
-<td align="right">5.000</td>
-</tr>
-</tbody>
-</table>
-<pre class="r"><code>old_better_exact &lt;- names(which(V(TD_OLD, &quot;fragments&quot;, &quot;f1_exact&quot;) &gt; pr_fe))</code></pre>
-<p>Earlier runs, fragments exact F1 higher than Prodigal in: T.
-thermophila, M. musculus, H. sapiens; release: T. thermophila, S. pombe,
-D. melanogaster, M. musculus, H. sapiens.</p>
-</div>
 <div id="simulated-gm12878-trinity-assembly" class="section level2">
 <h2>Simulated GM12878 Trinity assembly</h2>
 <p>A benchmark on assembled transcripts whose true coding regions are
@@ -275218,15 +275018,16 @@ full depth, falling with depth). This simulation is therefore mainly a
 test of frame and end placement on assembled coding transcripts, not of
 rejecting noncoding sequence; the noncoding test is the human simulation
 (E30/E31) and the lncRNA inputs of the main benchmark (E04).</p>
-<p><strong>Homology mode.</strong> TransDecoder (PyTD a5b24c3, <a href="../evidence/E33_start_decision_classifier.md">E33</a>) on each
-depth level of both simulations in three conditions on the same
-LongOrfs: A ab initio; B homology mode (DIAMOND
-<code>-k 1 -e 1e-5</code> against Swiss-Prot without the organism’s own
-entries, <code>sprot_minus_9606</code> / <code>sprot_minus_3702</code>,
-and <code>hmmsearch --cut_ga</code> against Pfam-A, on all LongOrfs
-peptides) with the homology start assist (the default when hits are
-supplied); C the same hits with <code>--no-homology-start-assist</code>.
-Condition A equals the release TransDecoder rows above. Scripts
+<p><strong>Homology mode.</strong> TransDecoder (<a href="../evidence/E33_start_decision_classifier.md">E33</a>; run at
+a5b24c3, same code tree as the pinned d3892b5) on each depth level of
+both simulations in three conditions on the same LongOrfs: A ab initio;
+B homology mode (DIAMOND <code>-k 1 -e 1e-5</code> against Swiss-Prot
+without the organism’s own entries, <code>sprot_minus_9606</code> /
+<code>sprot_minus_3702</code>, and <code>hmmsearch --cut_ga</code>
+against Pfam-A, on all LongOrfs peptides) with the homology start assist
+(the default when hits are supplied); C the same hits with
+<code>--no-homology-start-assist</code>. Condition A equals the release
+TransDecoder rows above. Scripts
 <code>pipeline/start_classifier/17_*</code>-<code>22_*</code>; tables
 <code>data/start_classifier/adoption/{human,athal}_depth_scores.tsv</code>.</p>
 <pre class="r"><code>HOM_COND &lt;- c(TD_A_abinitio = &quot;A ab initio&quot;, TD_B_homology_assist = &quot;B homology + start assist&quot;,
@@ -275946,8 +275747,7 @@ complete.unstranded.wRand (1 = yes)</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left">pytd_v7_homology rows in all_scores.tsv (all 84
-finished)</td>
+<td align="left">pytd_v7h_homology rows (all 84 finished)</td>
 <td align="left">84</td>
 <td align="left">84</td>
 <td align="left">TRUE</td>

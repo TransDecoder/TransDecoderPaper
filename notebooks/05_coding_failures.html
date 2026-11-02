@@ -1585,12 +1585,11 @@ development rule: <span class="math inline">\(S_1&gt;0\)</span>, frame
 contrast <span class="math inline">\(C=S_1-\max(S_2,S_3)&gt;0\)</span>
 and, below 300 nt, a fixed short-ORF test (<span class="math inline">\(C
 \ge 200\mu\)</span>). The text now quotes the release analysis. Here the
-analysis is rerun on the release predictions (<code>pytd_v7</code>: PyTD
-3a793ff, release defaults; Perl gives identical predictions, E25), with
-the release coding test: <span class="math inline">\(S_1&gt;0\)</span>,
-<span class="math inline">\(C&gt;0\)</span> and target-decoy q-value
-<span class="math inline">\(\le 0.05\)</span>. The q-value of each
-candidate is read from the run’s <code>decoy_qvalues.tsv</code>.</p>
+analysis is rerun on the release predictions (<code>pytd_v7</code>:
+release defaults, output byte-identical at the pinned PyTD d3892b5, E40;
+Perl gives identical predictions, E25), with the release coding test:
+<span class="math inline">\(S_1&gt;0\)</span>, <span class="math inline">\(C&gt;0\)</span> and target-decoy q-value <span class="math inline">\(\le 0.05\)</span>. The q-value of each candidate
+is read from the run’s <code>decoy_qvalues.tsv</code>.</p>
 <p>Data (<code>data/long_orf_failures/v7/</code>, written by
 <code>pipeline/derive/05_long_orf_failures_v7.sh</code>, which runs
 <code>05_long_orf_failures_v7.py</code>,
@@ -1615,18 +1614,17 @@ this reproduces every q-value in <code>decoy_qvalues.tsv</code> (checked
 below);</li>
 <li>the homology comparison (Fig. 5d,e) uses
 <code>data/benchmark/homology_v7h_vs_abinitio.tsv</code>: the released
-homology mode (PyTD a5b24c3, homology-assisted start refinement; runs
-<code>pytd_v7h_homology</code>) minus the ab initio release runs
-(<code>pytd_v7</code>), from
+homology mode (run at a5b24c3, same code tree as the pinned d3892b5,
+homology-assisted start refinement; runs <code>pytd_v7h_homology</code>)
+minus the ab initio release runs (<code>pytd_v7</code>), from
 <code>benchmark_v2/scripts/compare_homology.py</code> on
 <code>data/benchmark/final_v7/v7h_homology_scores.tsv</code>
 (<code>pipeline/derive/05_homology_v7h_table.sh</code>; E25 addendum of
-2026-10-28, E33). Selection and stops equal the earlier 3a793ff homology
-runs (<code>pytd_v7_homology</code>,
-<code>homology_vs_abinitio.tsv</code>, kept and compared below); only
-start codons differ. The development comparison
-(<code>pytd_dev_v2_homology</code> minus <code>pytd_dev_v2</code>) is
-kept as <code>homology_vs_abinitio.dev_v2.tsv</code>.</li>
+2026-10-28, E33). Retention alone is
+<code>homology_vs_abinitio.tsv</code> (<code>pytd_v7_homology</code>,
+made at 3a793ff): fresh runs at the pinned commit with
+<code>--no-homology-start-assist</code> are byte-identical to these on
+all 84 inputs (E40).</li>
 </ul>
 <pre class="r"><code>V7 &lt;- function(f) read_tab(&quot;long_orf_failures&quot;, &quot;v7&quot;, f)
 by_org &lt;- V7(&quot;summary_by_org.tsv&quot;)
@@ -1648,7 +1646,7 @@ dmel_c &lt;- V7(&quot;dmel_gc3_rescue.tsv&quot;)
 long_fail &lt;- V7(&quot;failing_ge1kb.tsv&quot;)
 reasons &lt;- V7(&quot;reasons_by_length.tsv&quot;)
 hom &lt;- read_tab(&quot;benchmark&quot;, &quot;homology_v7h_vs_abinitio.tsv&quot;)
-hom_3a7 &lt;- read_tab(&quot;benchmark&quot;, &quot;homology_vs_abinitio.tsv&quot;)  # 3a793ff homology runs (no start assist)
+hom_ret &lt;- read_tab(&quot;benchmark&quot;, &quot;homology_vs_abinitio.tsv&quot;)  # 3a793ff homology runs (no start assist)
 # development-rule tables of E12, for comparison
 dev_by_org &lt;- read_tab(&quot;long_orf_failures&quot;, &quot;summary_by_org.tsv&quot;)
 dev_by_len &lt;- read_tab(&quot;long_orf_failures&quot;, &quot;summary_by_length.tsv&quot;)
@@ -3633,30 +3631,36 @@ kable(hom %&gt;% count(kind), caption = &quot;Inputs per kind.&quot;)</code></pr
 </tr>
 </tbody>
 </table>
-<pre class="r"><code># the start assist changes start codons only: stop-level columns must equal the 3a793ff homology table
+<pre class="r"><code># the start assist changes start codons only: stop-level columns must equal the retention-only table
 STOP_COLS &lt;- c(&quot;n_pred_abinitio&quot;, &quot;n_pred_homology&quot;, &quot;d_sensitivity_stop&quot;, &quot;d_precision_stop&quot;, &quot;d_f1_stop&quot;,
                &quot;f1_exact_abinitio&quot;, &quot;neg_pred_abinitio&quot;, &quot;neg_pred_homology&quot;)
 same_stop &lt;- hom %&gt;% select(org, variant, all_of(STOP_COLS)) %&gt;%
-  inner_join(hom_3a7 %&gt;% select(org, variant, all_of(STOP_COLS)), by = c(&quot;org&quot;, &quot;variant&quot;), suffix = c(&quot;&quot;, &quot;.old&quot;))
+  inner_join(hom_ret %&gt;% select(org, variant, all_of(STOP_COLS)), by = c(&quot;org&quot;, &quot;variant&quot;), suffix = c(&quot;&quot;, &quot;.old&quot;))
 stopifnot(nrow(same_stop) == 84,
           all(sapply(STOP_COLS, function(c) identical(as.character(same_stop[[c]]), as.character(same_stop[[paste0(c, &quot;.old&quot;)]])))))
 cmp_3a7 &lt;- hom %&gt;% select(org, variant, d_f1_exact) %&gt;%
-  inner_join(hom_3a7 %&gt;% select(org, variant, d_f1_exact_3a793ff = d_f1_exact), by = c(&quot;org&quot;, &quot;variant&quot;)) %&gt;%
+  inner_join(hom_ret %&gt;% select(org, variant, d_f1_exact_retonly = d_f1_exact), by = c(&quot;org&quot;, &quot;variant&quot;)) %&gt;%
   mutate(kind = case_when(grepl(&quot;wLnc&quot;, variant) ~ &quot;lnc&quot;, startsWith(variant, &quot;complete&quot;) ~ &quot;complete&quot;, TRUE ~ &quot;fragments&quot;))
 kable(cmp_3a7 %&gt;% group_by(kind) %&gt;%
-        summarise(n = n(), median_d_f1_exact_a5b24c3 = 100 * median(d_f1_exact),
-                  median_d_f1_exact_3a793ff = 100 * median(d_f1_exact_3a793ff)), digits = 2,
-      caption = &quot;Exact F1 change (points), homology minus ab initio: released homology mode (a5b24c3) vs 3a793ff homology runs. Stop-level columns are identical (checked).&quot;)</code></pre>
+        summarise(n = n(), median_d_f1_exact_with_start_assist = 100 * median(d_f1_exact),
+                  median_d_f1_exact_retention_only = 100 * median(d_f1_exact_retonly)), digits = 2,
+      caption = &quot;Exact F1 change (points), homology minus ab initio: released homology mode vs retention only. Stop-level columns are identical (checked).&quot;)</code></pre>
 <table>
 <caption>Exact F1 change (points), homology minus ab initio: released
-homology mode (a5b24c3) vs 3a793ff homology runs. Stop-level columns are
-identical (checked).</caption>
+homology mode vs retention only. Stop-level columns are identical
+(checked).</caption>
+<colgroup>
+<col width="12%" />
+<col width="3%" />
+<col width="43%" />
+<col width="40%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th align="left">kind</th>
 <th align="right">n</th>
-<th align="right">median_d_f1_exact_a5b24c3</th>
-<th align="right">median_d_f1_exact_3a793ff</th>
+<th align="right">median_d_f1_exact_with_start_assist</th>
+<th align="right">median_d_f1_exact_retention_only</th>
 </tr>
 </thead>
 <tbody>

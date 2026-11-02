@@ -73,3 +73,6 @@ Cross-clade transfer (fragments + random, 5,000 sequences, human preset): *A. th
 sensitivity is 1,087/2,500 = 0.4348 (`data/benchmark/presets/preset_scores.tsv`, `preset_other`),
 i.e. 0.43; the Results text said 0.44 and now says 0.43 (*D. melanogaster* 0.66 unchanged). Checked in
 notebook 04 (*Small inputs and presets*).
+
+## Status update (2026-11-02)
+The manuscript no longer quotes the development runs of this record where the released code can express them: they were rerun at the pinned release commit (PyTD d3892b5) in E40, which lists old and new values. This record is kept as history.

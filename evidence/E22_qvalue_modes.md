@@ -61,3 +61,6 @@
 ## Caveats
 - The q levels were chosen on this benchmark. They are rounded values, not fitted optima.
 - With `--preset`, a q between stored levels uses the largest stored level ≤ q (E21). 0.01, 0.05 and 0.2 are all stored.
+
+## Status update (2026-11-02)
+The manuscript no longer quotes the development runs of this record where the released code can express them: they were rerun at the pinned release commit (PyTD d3892b5) in E40, which lists old and new values. This record is kept as history.

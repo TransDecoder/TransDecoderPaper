@@ -24,7 +24,7 @@ It draws Fig. 1 (`figures/fig1_algorithm.{pdf,png}`), and computes the bundled-p
 (Table `tab:presets`), the G+C long-ORF length table (Supplementary Table S8), the Perl/Python
 concordance and run-time numbers, and the frame-contrast retest in Methods.
 
-Data are the final release runs (Perl 41fc5ee, PyTransDecoder 3a793ff; `r evidence("E25")`) wherever a
+Data are the final release runs (Perl 41fc5ee, PyTransDecoder d3892b5; `r evidence("E25")`, `r evidence("E40")`) wherever a
 final table exists. Exceptions are stated in each section. The checks at the end compare the
 computed values with what the manuscript says now; mismatches show where the text must change.
 
@@ -38,10 +38,10 @@ frames <- read_tab("benchmark", "frames", "all_scores.tsv")
 frames_curve <- read_tab("benchmark", "frames", "negatives_curve.tsv")
 frames_gm <- read_tab("benchmark", "frames", "gm12878_frames_protein_matches.tsv")
 v7_gm <- read_tab("benchmark", "final_v7", "gm12878_v7_protein_matches.tsv")
-sens_len <- read_tab("benchmark", "rules", "sens_by_length.decoy.tsv")
+sens_len <- read_tab("benchmark", "release_pin", "sens_by_length.tsv")
 parity <- read_tab("benchmark", "release", "parity_perl_pytd.tsv")
 reg_v6 <- read_tab("regression", "baseline_v6.0.0.summary.tsv")
-reg_final <- read_tab("regression", "release_3a793ff_41fc5ee.summary.tsv")
+reg_final <- read_tab("regression", "release_d3892b5_41fc5ee.summary.tsv")
 
 # L*(GC) as the code looks it up: G+C rounded up to the next 5% step, the 25% value below 25%,
 # no length rule above 80% (methods_algorithm.tex, GC-calibrated long-ORF rule).
@@ -313,18 +313,17 @@ lt %>% transmute(`G+C (%)` = gc, `random ORFs` = num(n_orfs), `q0.95` = `q0.95`,
 ### Effect of the rule on long true CDSs
 
 Methods says that without this rule, stop-level sensitivity for true CDSs of at least 400 codons on
-complete transcripts falls from 0.998 to 0.995 with the q-value test alone. This uses the
-development runs of `r evidence("E20")` (`data/benchmark/rules/sens_by_length.decoy.tsv`, complete
-transcripts with random negatives, pooled over the eight organisms); no equivalent table exists for
-the final runs. "0.998" is the earlier release rule (`cliff_c200`, which has the long-ORF rule) and
-"0.995" the decoy rule without it (`decoy_q0.05`).
+complete transcripts falls from 0.998 to 0.995. Both are release code (`r evidence("E40")`,
+`data/benchmark/release_pin/sens_by_length.tsv`, complete transcripts with random negatives, pooled over
+the eight organisms): `rel` is the release default and `nolong_q0.05` the same with
+`--retain-long-orfs-mode strict --retain-long-orfs-length 1000000`.
 
 ```{r long-orf-effect}
 long <- sens_len %>% filter(variant == "complete.wRand", set == "coding", length_bin == ">=400") %>%
   group_by(label) %>% summarise(n = sum(n), hits = sum(hits), .groups = "drop") %>%
   mutate(sensitivity = hits / n)
-sens_with <- long$sensitivity[long$label == "cliff_c200"]
-sens_without <- long$sensitivity[long$label == "decoy_q0.05"]
+sens_with <- long$sensitivity[long$label == "rel"]
+sens_without <- long$sensitivity[long$label == "nolong_q0.05"]
 kable(long, digits = 4) %>% kable_styling(full_width = FALSE, font_size = 12)
 ```
 
@@ -483,14 +482,6 @@ sc_same <- scores_v7 %>% filter(tool %in% c("perl_td_v7", "pytd_v7")) %>%
   pivot_wider(names_from = tool, values_from = c(n_pred, tp_stop, tp_exact, fp)) %>%
   summarise(all_same = all(n_pred_perl_td_v7 == n_pred_pytd_v7 & tp_stop_perl_td_v7 == tp_stop_pytd_v7 &
                            tp_exact_perl_td_v7 == tp_exact_pytd_v7 & fp_perl_td_v7 == fp_pytd_v7))
-# development versions quoted in the current text (E07/E08: pytd_dev_v2 vs perl_td_dev_v2)
-dev_rt <- scores_v7 %>% filter(tool %in% c("perl_td_dev_v2", "pytd_dev_v2")) %>%
-  select(org, variant, tool, runtime_sec) %>% pivot_wider(names_from = tool, values_from = runtime_sec) %>%
-  mutate(ratio = perl_td_dev_v2 / pytd_dev_v2)
-dev_med <- median(dev_rt$ratio); dev_rng <- range(dev_rt$ratio)
-v7_vs_dev <- scores_v7 %>% filter(tool %in% c("pytd_v7", "pytd_dev_v2")) %>%
-  select(org, variant, tool, runtime_sec) %>% pivot_wider(names_from = tool, values_from = runtime_sec) %>%
-  summarise(median_ratio = median(pytd_v7 / pytd_dev_v2))
 ```
 
 Predictions are identical on `r n_ident` of `r n_inputs` inputs, with
@@ -499,17 +490,12 @@ scores in `all_scores.tsv` agree on every input (`r sc_same$all_same`).
 
 Run time (wall clock on a shared host, single thread): PyTransDecoder was a median
 `r sprintf("%.2f", rt_med)` times faster than Perl (range `r sprintf("%.2f", rt_rng[1])`–`r sprintf("%.2f", rt_rng[2])`).
-The current text quotes the development versions (`pytd_dev_v2` vs `perl_td_dev_v2`): median
-`r sprintf("%.2f", dev_med)` (range `r sprintf("%.2f", dev_rng[1])`–`r sprintf("%.2f", dev_rng[2])`).
-The release PyTD took a median `r sprintf("%.2f", v7_vs_dev$median_ratio)` times as long as the development
-version, mostly for the decoy step.
 
 ```{r identity-plot, fig.width = HALF_W * 1.4, fig.height = 2.2}
-rt_long <- bind_rows(ident %>% transmute(org, ratio, version = "release (41fc5ee / 3a793ff)"),
-                     dev_rt %>% transmute(org, ratio, version = "development (de3f57e / 48c870c)"))
+rt_long <- ident %>% transmute(org, ratio)
 ggplot(rt_long, aes(ratio, org_factor(org), colour = org)) +
   geom_jitter(height = 0.15, width = 0, size = 0.8) +
-  facet_wrap(~version) + scale_colour_manual(values = ORG_COLOR, guide = "none") +
+  scale_colour_manual(values = ORG_COLOR, guide = "none") +
   labs(x = "Perl / Python run time", y = NULL) +
   theme(axis.text.y = element_text(face = "italic"))
 ```
@@ -524,7 +510,7 @@ ident %>% kable(digits = 2) %>% kable_styling(full_width = FALSE, font_size = 11
 
 ### Sample data sets
 
-The five sample data sets were rerun at the release commits, PyTD 3a793ff / Perl 41fc5ee
+The five sample data sets were rerun at the pinned release commits, PyTD d3892b5 / Perl 41fc5ee
 (2026-10-28; `r evidence("E08")`), shown here with the v6.0.0 baseline that the text calls
 "earlier versions".
 
@@ -532,7 +518,7 @@ The five sample data sets were rerun at the release commits, PyTD 3a793ff / Perl
 regw <- function(d) d %>% pivot_wider(names_from = metric, values_from = value)
 rf <- regw(reg_final); r6 <- regw(reg_v6)
 kable(rf %>% select(dataset, perl_orfs, py_orfs, exact_match, same_stop_diff_start, perl_only, py_only),
-      caption = "Perl vs Python, release 3a793ff / 41fc5ee") %>% kable_styling(full_width = FALSE, font_size = 12)
+      caption = "Perl vs Python, release d3892b5 / 41fc5ee") %>% kable_styling(full_width = FALSE, font_size = 12)
 kable(r6 %>% select(dataset, perl_orfs, py_orfs, exact_match, same_stop_diff_start, perl_only, py_only),
       caption = "Perl v6.0.0 vs first PyTD port (43f4293)") %>% kable_styling(full_width = FALSE, font_size = 12)
 n_sets_diff_v6 <- sum(r6$perl_only + r6$py_only > 0)
@@ -631,9 +617,6 @@ check_text(paste0("v6.0.0: max start differences per set (", R, ":50)"), max_sta
 check_text(paste0("Perl/Python run time, median, release (", R, ":50)"), round(rt_med, 1), 2.7)
 check_text(paste0("Perl/Python run time, min, release (", R, ":51)"), round(rt_rng[1], 1), 2.1)
 check_text(paste0("Perl/Python run time, max, release (", R, ":51)"), round(rt_rng[2], 1), 3.3)
-check_text(paste0("Perl/Python run time, median, development runs (", R, ":50)"), round(dev_med, 1), 2.3)
-check_text(paste0("Perl/Python run time, min, development runs (", R, ":51)"), round(dev_rng[1], 1), 2.0)
-check_text(paste0("Perl/Python run time, max, development runs (", R, ":51)"), round(dev_rng[2], 1), 2.5)
 check_report()
 ```
 

@@ -222,3 +222,6 @@ The 60–90 and 300 aa rows are in the table. No-GENCODE-overlap fraction by pre
   - Even `--min-aa 50` removes 78 LRAA distinct CDSs from the final defaults (23,922 → 23,844; 77 of them complete). These encode < 50 aa, presumably after start refinement moved the start downstream.
 - **The GM12878 m100 baseline (`kozak_add`) was run without a saved script.** Its LRAA directory has no LongOrfs log, so it presumably reused the earlier ab initio LongOrfs output.
 - **The benchmark and GM12878 sweeps used uncommitted or intermediate PyTD code** (Software table). Only the final defaults (E03) and the `--min-aa` sweep are at 48c870c.
+
+## Status update (2026-11-02)
+The manuscript no longer quotes the development runs of this record where the released code can express them: they were rerun at the pinned release commit (PyTD d3892b5) in E40, which lists old and new values. This record is kept as history.

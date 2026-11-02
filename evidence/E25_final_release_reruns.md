@@ -147,3 +147,9 @@ initio output is byte-identical to 3a793ff, so `pytd_v7` is unchanged. The 84 fr
 - Fig. 5d,e and the notebook 05 checks now use `homology_v7h_vs_abinitio.tsv` (the panel y-limit
   extends to the data maximum, 12 points); the notebook also tabulates the 3a793ff comparison. The
   manuscript text (results_coding_failures.tex) still quotes the 3a793ff values and must be updated.
+
+## Status update (2026-11-02)
+The manuscript no longer quotes the development runs of this record where the released code can express them: they were rerun at the pinned release commit (PyTD d3892b5) in E40, which lists old and new values. This record is kept as history.
+
+## Status update (2026-11-02)
+All runs here are byte-identical to fresh runs at the pinned commit PyTD d3892b5 (E40); the manuscript now names d3892b5.

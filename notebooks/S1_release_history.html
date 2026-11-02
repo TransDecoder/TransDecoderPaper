@@ -1584,10 +1584,10 @@ runs).</p>
 scores of r2012-08-07, v2.0, v4.1.0, v5.0.0 and v5.7.1 on the 20
 stranded benchmark inputs with negatives (E23).</li>
 <li><code>data/benchmark/final_v7/negatives_scores.tsv</code>: the same
-inputs scored for the v7 release (<code>pytd_v7</code>: PyTD main
-3a793ff, release defaults, q 0.05; Perl devel 41fc5ee gives identical
-predictions) and for the development run with the fixed short-ORF test
-(<code>cliff_c200</code>) (E25).</li>
+inputs scored for the v7 release (<code>pytd_v7</code>: release
+defaults, q 0.05; output byte-identical at PyTD d3892b5, E40; Perl devel
+41fc5ee gives identical predictions) and for the development run with
+the fixed short-ORF test (<code>cliff_c200</code>) (E25).</li>
 </ul>
 <p>Earlier versions of the table and figure used two development runs
 for v7 (<code>pytd_release</code>, the fixed short-ORF test, and
@@ -1654,13 +1654,13 @@ values. The release dates in the table:</p>
   &quot;v4.1.0&quot;, &quot;2017-08 (tag 2017-08-17)&quot;, &quot;git tag&quot;,
   &quot;v5.0.0&quot;, &quot;2017-08 (tag 2017-08-26)&quot;, &quot;git tag&quot;,
   &quot;v5.4-v6.0.0&quot;, &quot;2018-2026 (v5.4.0 2018-10-17; v6.0.0 2026-03-20)&quot;, &quot;git tags&quot;,
-  &quot;v7 (this study)&quot;, &quot;2026&quot;, &quot;PyTD main 3a793ff, Perl devel 41fc5ee (E25)&quot;
+  &quot;v7 (this study)&quot;, &quot;2026&quot;, &quot;PyTD main d3892b5, Perl devel 41fc5ee (E25, E40)&quot;
 ) %&gt;% kable()</code></pre>
 <table>
 <colgroup>
 <col width="14%" />
-<col width="44%" />
-<col width="40%" />
+<col width="42%" />
+<col width="42%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -1703,7 +1703,7 @@ values. The release dates in the table:</p>
 <tr class="odd">
 <td align="left">v7 (this study)</td>
 <td align="left">2026</td>
-<td align="left">PyTD main 3a793ff, Perl devel 41fc5ee (E25)</td>
+<td align="left">PyTD main d3892b5, Perl devel 41fc5ee (E25, E40)</td>
 </tr>
 </tbody>
 </table>

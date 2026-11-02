@@ -31,7 +31,7 @@ evaluation metrics), `r evidence("E05")` (expressed-gene sensitivity), `r eviden
 
 - *earlier*: PyTD 48c870c, fixed short-ORF test (records E03, E05). The manuscript text and table
   currently quote these runs.
-- *release*: PyTD main 3a793ff, release defaults (decoy q-value test at q 0.05; record E25).
+- *release*: release defaults (decoy q-value test at q 0.05; record E25), output byte-identical at the pinned PyTD d3892b5 (E40).
 
 Figures and the numbers written in this notebook use the **release** runs. The earlier values are
 shown next to them, and the checks at the end compare the release values with the text, so a mismatch
@@ -123,8 +123,7 @@ Inputs (`06_gm12878_inputs.tsv`, from the STAR, minimap2 and read-count logs; `r
 The assembled-transcript counts used by the evaluation equal these counts:
 `r paste(num(R("assembled_transcripts")), collapse = " / ")` (LRAA / StringTie / Trinity).
 
-The Methods text names PyTD commit 48c870c. That is the commit of the earlier runs; the release runs
-used PyTD main 3a793ff (E25).
+The Methods name the pinned commits (E40).
 
 ```{r methods-checks}
 stopifnot(R("assembled_transcripts")[["lraa"]] == I("lraa_transcripts"),

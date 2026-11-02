@@ -25,7 +25,7 @@ Data:
 - `data/benchmark/history/history_scores.tsv`: per-organism scores of r2012-08-07, v2.0, v4.1.0,
   v5.0.0 and v5.7.1 on the 20 stranded benchmark inputs with negatives (E23).
 - `data/benchmark/final_v7/negatives_scores.tsv`: the same inputs scored for the v7 release
-  (`pytd_v7`: PyTD main 3a793ff, release defaults, q 0.05; Perl devel 41fc5ee gives identical
+  (`pytd_v7`: release defaults, q 0.05; output byte-identical at PyTD d3892b5, E40; Perl devel 41fc5ee gives identical
   predictions) and for the development run with the fixed short-ORF test (`cliff_c200`) (E25).
 
 Earlier versions of the table and figure used two development runs for v7 (`pytd_release`, the
@@ -95,7 +95,7 @@ tribble(
   "v4.1.0", "2017-08 (tag 2017-08-17)", "git tag",
   "v5.0.0", "2017-08 (tag 2017-08-26)", "git tag",
   "v5.4-v6.0.0", "2018-2026 (v5.4.0 2018-10-17; v6.0.0 2026-03-20)", "git tags",
-  "v7 (this study)", "2026", "PyTD main 3a793ff, Perl devel 41fc5ee (E25)"
+  "v7 (this study)", "2026", "PyTD main d3892b5, Perl devel 41fc5ee (E25, E40)"
 ) %>% kable()
 ```
 

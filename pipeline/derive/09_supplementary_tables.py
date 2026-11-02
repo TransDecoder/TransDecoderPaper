@@ -27,7 +27,7 @@ ORG_LABEL = {"pfalciparum": "P. falciparum", "tthermophila": "T. thermophila", "
 NO_CILIATE_CODE = {"gmst", "codan", "cpc2", "rnasamba", "borf"}
 METHOD = {"pytd_v7": "TransDecoder release (PyTransDecoder v0.2.0)",
           "perl_td_v7": "TransDecoder release (Perl v7.0.0)",
-          "pytd_v7_homology": "TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)",
+          "pytd_v7h_homology": "TransDecoder release + homology (PyTransDecoder, DIAMOND/Swiss-Prot and Pfam)",
           "perl_td_v600": "TransDecoder v6.0.0", "td2": "TD2 1.1.0", "prodigal": "Prodigal 2.6.3",
           "gmst": "GeneMarkS-T 5.1", "codan": "CodAn 1.1", "cpat": "CPAT 3.0.5", "cpc2": "CPC2 1.0.1",
           "rnasamba": "RNAsamba 0.2.5", "borf": "Borf 1.2", "longest_orf": "longest ORF baseline",
@@ -47,7 +47,7 @@ def fmt_int(x):
 
 def perl_python():
     rows = []
-    for run, f in [("release (Perl 41fc5ee, PyTD 3a793ff)", "release_3a793ff_41fc5ee"),
+    for run, f in [("release (Perl 41fc5ee, PyTD d3892b5)", "release_d3892b5_41fc5ee"),
                    ("v6.0.0 (Perl 66d4712) vs first PyTD port (43f4293)", "baseline_v6.0.0")]:
         d = tsv(f"data/regression/{f}.summary.tsv").pivot(index="dataset", columns="metric", values="value")
         for ds in ["trinity", "pasa", "stringtie", "supertx", "cufflinks"]:
@@ -72,10 +72,12 @@ def perl_python():
 
 
 def per_input():
-    summ = tsv("data/benchmark/summary.interim_20261025.tsv")
-    rel = tsv("data/benchmark/final_v7/all_scores.tsv")
+    summ = tsv("data/benchmark/summary.release.tsv")
+    rel = pd.concat([tsv("data/benchmark/final_v7/all_scores.tsv"),
+                     tsv("data/benchmark/final_v7/v7h_homology_scores.tsv").query("tool == 'pytd_v7h_homology'")],
+                    ignore_index=True)
     mixed = tsv("data/benchmark/final_v7/mixed_scores.tsv")
-    td = ["pytd_v7", "perl_td_v7", "pytd_v7_homology", "td2"]   # rows from all_scores.tsv
+    td = ["pytd_v7", "perl_td_v7", "pytd_v7h_homology", "td2"]   # rows from all_scores.tsv, v7h_homology_scores.tsv
     comp = [t for t in METHOD if t not in td]
     d = pd.concat([rel[rel.tool.isin(td)], summ[summ.tool.isin(comp)], mixed], ignore_index=True)
     d = d.drop_duplicates(["org", "variant", "tool"], keep="first")
@@ -102,10 +104,17 @@ def start_choice():
     rel = tsv("data/benchmark/final_v7/all_scores.tsv")
     s = summ[summ.variant == "complete"]
     r = rel[(rel.variant == "complete") & (rel.tool == "pytd_v7")]
-    tools = ["pytd_dev", "pytd_dev_pwm", "perl_td_v600", "pytd"]
+    # first ATG: release code, alpha 0.4, no Kozak term (grid cell a0.4_w0, E40); the other columns are v6.0.0
+    # and two unreleased development versions (PWM choice pytd_dev_pwm; scale-corrected PWM pytd 27bfb5e)
+    g = tsv("data/start_param_sensitivity/release/grid_scores.tsv")
+    g = g[(g.config == "a0.4_w0") & (g.input == "complete")]
+    tools = ["pytd_dev_pwm", "perl_td_v600", "pytd"]
     rows = []
     for o in ORGS:
         row = {"org": o, "n_truth": int(s[s.org == o].n_truth.iloc[0])}
+        x = g[g.org == o].iloc[0]
+        row["release_w0_tp_exact"] = int(x.tp_exact)
+        row["release_w0_f1_exact"] = x.f1_exact
         for t in tools:
             x = s[(s.org == o) & (s.tool == t)].iloc[0]
             row[f"{t}_tp_exact"] = int(x.tp_exact)
@@ -116,11 +125,11 @@ def start_choice():
         rows.append(row)
     t = pd.DataFrame(rows)
     t.to_csv(f"{OUT}/start_choice_legacy.tsv", sep="\t", index=False)
-    print("% start_choice_legacy.tsv (exact matches; first ATG, PWM later ATG, v6.0.0, PWM scale corrected, release)")
+    print("% start_choice_legacy.tsv (exact matches; first ATG (release code, w 0), PWM later ATG, v6.0.0, PWM scale corrected, release)")
     for _, x in t.iterrows():
-        cells = [fmt_int(x[f"{k}_tp_exact"]) for k in ["pytd_dev", "pytd_dev_pwm", "perl_td_v600", "pytd", "pytd_v7"]]
+        cells = [fmt_int(x[f"{k}_tp_exact"]) for k in ["release_w0", "pytd_dev_pwm", "perl_td_v600", "pytd", "pytd_v7"]]
         print(f"\\textit{{{ORG_LABEL[x.org]}}} & {fmt_int(x.n_truth)} & " + " & ".join(cells) + " \\\\")
-    med = {k: t[f"{k}_f1_exact"].median() for k in ["pytd_dev", "pytd_dev_pwm", "perl_td_v600", "pytd", "pytd_v7"]}
+    med = {k: t[f"{k}_f1_exact"].median() for k in ["release_w0", "pytd_dev_pwm", "perl_td_v600", "pytd", "pytd_v7"]}
     print("median exact F1 & & " + " & ".join(f"{v:.3f}" for v in med.values()) + " \\\\")
     seeds = tsv("data/start_refinement/seed_start_changes.tsv")
     print("% seed_start_changes.tsv")

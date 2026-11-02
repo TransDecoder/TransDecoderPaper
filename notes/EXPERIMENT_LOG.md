@@ -1151,3 +1151,18 @@ Entries: 59 (A1-A13, S1-S14, O1-O4, H1-H5, B1-B11, T1-T6, G1-G6).
 Rejected variants inside ADOPTED entries: the decoy-derived long-ORF length (A10), the multiplicative
 Kozak form (S6), the self-trained keep/trim classifiers (S11, steps 1-2), and top-n / looser-e-value / UniRef50 evidence for the start assist (S11 steps 4-5; also H4, H5). Open sub-questions inside other entries: which lncRNA ORFs gain homology hits (H1);
 stating the catalogued Ribo-seq cost in the manuscript (G6).
+
+## 2026-11-02: one code version throughout (E40)
+- **What:** reran on the pinned release code (PyTD d3892b5 = a5b24c3 code tree; Perl 41fc5ee) everything the paper
+  had from development code: the alpha x w grid (benchmark, 1,264 runs; GM12878 on all three assemblies, now with Trinity),
+  the minimum-length sweep (q-value test off), the q sweep, long-ORF-rule-off runs, the held-out preset test, and
+  retention-only homology (`--no-homology-start-assist`).
+- **Outcome:** no default changes. (0.4, 17/bit) is still the best of 78 cells; LOO 7/8 (Tth -> 0.3). Release outputs
+  of 3a793ff are byte-identical at d3892b5 (108 + 20 + 20 + 84 benchmark runs, all GM12878 runs).
+- **Lessons:** (1) the GM12878 start paragraph had mixed a development grid (fixed short-ORF test) with release values;
+  quoting the grid's default cell, which is now the release run, removes the mismatch. (2) Against the release code with
+  the q-value test off, the test removes 13-37x more non-matching proteins than it did against the old fixed test (3.5x).
+  The baseline matters for such fold claims. (3) A manuscript figure copy (Fig. 5) had silently gone stale; check
+  `cmp figures/X.pdf manuscript/figures/X.pdf` after every knit.
+- **Remaining exceptions:** the fixed short-ORF test, the length-only-strata prototype and the PWM procedures have no
+  release option; they stay as labelled historical comparators.

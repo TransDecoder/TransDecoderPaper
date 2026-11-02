@@ -1591,8 +1591,9 @@ assemblies exist:</p>
 <ul>
 <li><em>earlier</em>: PyTD 48c870c, fixed short-ORF test (records E03,
 E05). The manuscript text and table currently quote these runs.</li>
-<li><em>release</em>: PyTD main 3a793ff, release defaults (decoy q-value
-test at q 0.05; record E25).</li>
+<li><em>release</em>: release defaults (decoy q-value test at q 0.05;
+record E25), output byte-identical at the pinned PyTD d3892b5
+(E40).</li>
 </ul>
 <p>Figures and the numbers written in this notebook use the
 <strong>release</strong> runs. The earlier values are shown next to
@@ -1696,8 +1697,7 @@ CDSs.</li>
 </ul>
 <p>The assembled-transcript counts used by the evaluation equal these
 counts: 39,530 / 83,342 / 428,223 (LRAA / StringTie / Trinity).</p>
-<p>The Methods text names PyTD commit 48c870c. That is the commit of the
-earlier runs; the release runs used PyTD main 3a793ff (E25).</p>
+<p>The Methods name the pinned commits (E40).</p>
 <pre class="r"><code>stopifnot(R(&quot;assembled_transcripts&quot;)[[&quot;lraa&quot;]] == I(&quot;lraa_transcripts&quot;),
           R(&quot;assembled_transcripts&quot;)[[&quot;stringtie&quot;]] == I(&quot;stringtie_transcripts&quot;),
           R(&quot;assembled_transcripts&quot;)[[&quot;trinity&quot;]] == I(&quot;trinity_primary_mapped&quot;))

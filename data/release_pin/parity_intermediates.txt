@@ -1,0 +1,5 @@
+trinity ORFs perl/py 2444/2444 ids+order same pep seqs same cds same(case-insens) cds case same hexamer keys 15445/15445 shared 15445 max|d| 5.10702591327572e-15 preRefine DIFF 1458
+pasa ORFs perl/py 3214/3214 ids+order same pep seqs same cds same(case-insens) cds case same hexamer keys 15438/15438 shared 15438 max|d| 4.884981308350689e-15 preRefine DIFF 1528
+stringtie ORFs perl/py 13666/13666 ids+order same pep seqs same cds same(case-insens) cds case differs hexamer keys 15449/15449 shared 15449 max|d| 4.884981308350689e-15 preRefine DIFF 5126
+supertx ORFs perl/py 857/857 ids+order same pep seqs same cds same(case-insens) cds case same hexamer keys 15445/15445 shared 15445 max|d| 4.884981308350689e-15 preRefine DIFF 138
+cufflinks ORFs perl/py 277/277 ids+order same pep seqs same cds same(case-insens) cds case same hexamer keys 15107/15107 shared 15107 max|d| 4.884981308350689e-15 preRefine DIFF 120

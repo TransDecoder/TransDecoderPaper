@@ -13,9 +13,9 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, fig.align =
 source(file.path("R", "common.R"))
 library(knitr)
 
-# The scored summary of all benchmark runs (rescoring of 2026-10-25; every run that finished is in it
-# except the release homology runs, see "Data and missing rows"). The file must be in data/benchmark/.
-SUMMARY_FILE <- "summary.interim_20261025.tsv"
+# The scored summary of the release and comparator runs (data/benchmark/summary.release.tsv; E40). It is the
+# rows of those tools in the 2026-10-25 rescoring (summary.interim_20261025.tsv, kept), unchanged.
+SUMMARY_FILE <- "summary.release.tsv"
 
 details <- function(df, summary = "table") {
   knitr::asis_output(paste0("<details><summary>", summary, "</summary>\n\n",
@@ -36,30 +36,23 @@ Provenance: `r evidence("E07")` (benchmark design, inputs, comparator versions a
 `r evidence("E25")` (release reruns of TransDecoder and PyTD), `r evidence("E16")` (how the comparator
 papers benchmarked; background only, no numbers are taken from it here).
 
-**Which runs.** TransDecoder appears in the benchmark under two sets of labels:
-
-- *earlier final defaults*: `pytd_dev_v2` / `perl_td_dev_v2` (PyTD 48c870c, Perl de3f57e; fixed
-  short-ORF test; E07). Earlier drafts of the manuscript quoted these runs; the text, Table 1 and
-  Fig. 2 now use the release runs.
-- *release*: `pytd_v7` / `perl_td_v7` (PyTD main 3a793ff, Perl devel 41fc5ee; decoy q-value test at
-  q 0.05; E25), with the presets `pytd_v7_precise`, `pytd_v7_sensitive` and the homology runs
-  `pytd_v7_homology`.
-
-Figures, Table 1 and the numbers written here use the **release** runs (`pytd_v7`). The checks at the
-end compare them with the text as it stands, so a mismatch for a TransDecoder number shows a value the
-text must update. The section "Release versus earlier final defaults" lists the earlier values next to
-the release values. TransDecoder v6.0.0 is an older release that the text compares explicitly, so it is
-kept.
+**Which runs.** The TransDecoder rows are the release runs: `pytd_v7` / `perl_td_v7` (Perl 41fc5ee; decoy
+q-value test at q 0.05), the settings `pytd_v7_precise`, `pytd_v7_sensitive`, and the homology runs
+`pytd_v7h_homology` (E25). The `pytd_v7` run labels are historical: these runs were made at PyTD 3a793ff and
+their output files are byte-identical to fresh runs at the pinned commit d3892b5 on all 108 inputs (E40). Figures,
+Table 1 and the numbers written here use these runs. TransDecoder v6.0.0 is an older release that the text
+compares explicitly.
 
 ```{r data}
 S <- read_tab("benchmark", SUMMARY_FILE)
 A7 <- read_tab("benchmark", "final_v7", "all_scores.tsv")
+A7H <- read_tab("benchmark", "final_v7", "v7h_homology_scores.tsv") %>% filter(tool == "pytd_v7h_homology")
 IDENT <- read_tab("benchmark", "final_v7", "perl_pytd_identity.tsv")
 NEG <- read_tab("benchmark", "final_v7", "negatives_scores.tsv")
 # TD2 (E39) was scored after the 2026-10-25 summary, with the same scorer, into final_v7/all_scores.tsv
 S <- bind_rows(S, A7 %>% filter(tool == "td2"))
 
-TD <- "pytd_v7"; TD_PERL <- "perl_td_v7"; TD_OLD <- "pytd_dev_v2"
+TD <- "pytd_v7"; TD_PERL <- "perl_td_v7"
 INPUTS <- S %>% filter(tool == TD) %>% distinct(org, variant)
 N_INPUTS <- nrow(INPUTS)
 
@@ -76,27 +69,25 @@ rng <- function(x) paste0(f3(min(x, na.rm = TRUE)), "-", f3(max(x, na.rm = TRUE)
 ## Data and missing rows
 
 The notebook reads one scored summary, `data/benchmark/`r SUMMARY_FILE``
-(`score_all.py` with the fixed scorer, copied from `$P/work/bench_v3/scores/`; E07, E25). It has
+(`score_all.py` with the fixed scorer; E07, E25, E40). It has
 `r num(nrow(S))` rows (tool × input) over `r N_INPUTS` inputs.
 
 ```{r missing}
-release_and_comparators <- c(TD, TD_PERL, "pytd_v7_precise", "pytd_v7_sensitive", "pytd_v7_homology",
+release_and_comparators <- c(TD, TD_PERL, "pytd_v7_precise", "pytd_v7_sensitive",
                              "perl_td_v600", "perl_td_v571", "td2", "prodigal", "gmst", "codan", "cpat", "cpc2",
                              "rnasamba", "borf", "longest_orf", "angel")
 cov <- S %>% filter(tool %in% release_and_comparators) %>% count(tool, name = "rows") %>%
   mutate(tool = factor(tool, levels = release_and_comparators)) %>% arrange(tool)
 miss <- function(tool) INPUTS %>% anti_join(S %>% filter(tool == !!tool), by = c("org", "variant"))
 codan_miss <- miss("codan")
-hom_miss <- miss("pytd_v7_homology")
-hom_have <- S %>% filter(tool == "pytd_v7_homology") %>% distinct(org, variant)
-hom_a7 <- A7 %>% filter(tool == "pytd_v7_homology") %>% distinct(org, variant)
+hom_a7 <- A7H %>% distinct(org, variant)
 kable(cov, caption = "Rows per tool (84 inputs in total)")
 check_text("CodAn inputs without a row (4 lncRNA + T. thermophila complete.unstranded.wRand)",
            nrow(codan_miss), 5)
 check_text("CodAn missing row outside wLnc is only T. thermophila complete.unstranded.wRand (1 = yes)",
            as.numeric(identical(paste(codan_miss$org, codan_miss$variant)[!grepl("wLnc", codan_miss$variant)],
                                 "tthermophila complete.unstranded.wRand")), 1)
-check_text("pytd_v7_homology rows in all_scores.tsv (all 84 finished)", nrow(hom_a7), 84)
+check_text("pytd_v7h_homology rows (all 84 finished)", nrow(hom_a7), 84)
 check_text("TD2 rows (all 84 inputs; E39)", nrow(S %>% filter(tool == "td2")), 84)
 ```
 
@@ -109,13 +100,9 @@ Rows missing for the tools used here (all runs have ended; state checked 2026-10
   not rerun, because CodAn has no ciliate genetic code and its *T. thermophila* runs are not results
   (E27). CodAn has no lncRNA (`wLnc`) runs. None of these inputs is used in Fig. 2 or Table 1, which use the stranded complete,
   complete + random and fragments inputs; CodAn has all 8 organisms there.
-- **PyTD with homology** (`pytd_v7_homology`): `r nrow(hom_have)` of 84 rows
-  (`r paste(names(table(hom_have$org)), table(hom_have$org), sep = " ", collapse = ", ")`) in this
-  summary, which was taken while the runs were in progress. All 84 finished on 2026-10-26 and are scored
-  in `final_v7/all_scores.tsv` (`r nrow(hom_a7)` rows; E25); the section on homology below uses those.
-  These runs are not in Fig. 2 or Table 1. The manuscript's homology results use the released homology
-  mode (`pytd_v7h_homology`, PyTD a5b24c3, with homology-assisted start refinement; notebook 05,
-  Fig. 5d,e; E25 addendum 2026-10-28).
+- **PyTD with homology** (`pytd_v7h_homology`): all `r nrow(hom_a7)` of 84, scored in
+  `final_v7/v7h_homology_scores.tsv` (E25 addendum 2026-10-28; notebook 05, Fig. 5d,e). These runs are not in Fig. 2
+  or Table 1.
 - `--precise` and `--sensitive` were run on the negative-containing inputs only (20 each; E25).
 - TD2 (E39): all 84 inputs, scored into `final_v7/all_scores.tsv` and added to the summary here.
 - RNAsamba was run on stranded inputs only (44); v6.0.0, v5.7.1 and the longest-ORF baseline have no
@@ -139,7 +126,7 @@ kable(cons)
 details(diffs, "differences per column")
 ```
 
-All `r nrow(J)` rows of `all_scores.tsv` (`pytd_v7`, `perl_td_v7`, `pytd_dev_v2`, `perl_td_dev_v2`;
+All `r nrow(J)` rows of `all_scores.tsv` (`pytd_v7`, `perl_td_v7`;
 84 each; and `td2`, added to the summary from this table) are in the summary, and `r n_diff_cells` cells differ, including run times. The two tables
 agree for `pytd_v7`.
 
@@ -241,7 +228,7 @@ table1 <- tab1_long %>% select(tool, col, median) %>% pivot_wider(names_from = c
   mutate(label = TOOLS[tool], tool = factor(tool, levels = names(TOOLS))) %>% arrange(tool) %>%
   mutate(tool = as.character(tool),
          note = case_when(tool %in% INCOMPATIBLE ~ "7 organisms (ciliate code not supported)",
-                          min_orgs < 8 ~ sprintf("interim: %d of 8 organisms in some column", min_orgs),
+                          min_orgs < 8 ~ sprintf("%d of 8 organisms in some column", min_orgs),
                           TRUE ~ "")) %>%
   select(tool, label, all_of(COLS$col), min_orgs, note)
 write_tsv(table1 %>% mutate(across(all_of(COLS$col), ~ round(.x, 4))),
@@ -254,7 +241,7 @@ kableExtra::kable_styling(kable(table1 %>% select(-tool, -min_orgs) %>% mutate(a
   full_width = FALSE)
 ```
 
-`r if (all(table1$min_orgs[!table1$tool %in% INCOMPATIBLE] == 8)) "All other cells are medians over all 8 organisms." else "Rows marked interim are medians over the available organisms."`
+`r if (all(table1$min_orgs[!table1$tool %in% INCOMPATIBLE] == 8)) "All other cells are medians over all 8 organisms." else "Rows so marked are medians over the available organisms."`
 The manuscript row for CodAn is still a placeholder; the computed CodAn row is
 `r paste(f3(unlist(table1[table1$tool == "codan", COLS$col])), collapse = " / ")`.
 
@@ -385,10 +372,8 @@ stopifnot(all(abs(ident_rt$perl_runtime_sec - ident_rt[[TD_PERL]]) < 1e-6),
 - Run time, Perl / Python: median ratio `r sprintf("%.2f", median(ratio$ratio))`
   (`r sprintf("%.2f", min(ratio$ratio))`-`r sprintf("%.2f", max(ratio$ratio))`) over the 84 inputs;
   on complete inputs `r sprintf("%.2f", median(ratio_c$ratio))`. Median run time on complete inputs:
-  Python `r num(round(rt_med(TD)))` s, Perl `r num(round(rt_med(TD_PERL)))` s (earlier final defaults:
-  `r num(round(rt_med(TD_OLD)))` s and `r num(round(rt_med("perl_td_dev_v2")))` s). Shared host,
-  indicative only. The 2.3-fold figure in the abstract and in Results, algorithm, is for the earlier
-  runs and is checked in `01_algorithm.Rmd`.
+  Python `r num(round(rt_med(TD)))` s, Perl `r num(round(rt_med(TD_PERL)))` s. Shared host,
+  indicative only.
 
 ## Accuracy across eight eukaryotes
 
@@ -499,23 +484,22 @@ GeneMarkS-T, CPAT): exact F1 `r rng(cre_others)`.
 
 ## Homology evidence
 
-The Methods list PyTD with DIAMOND/Pfam evidence. Release homology runs (`pytd_v7_homology`, PyTD
-3a793ff, before the homology-assisted start refinement): all `r nrow(hom_a7)` of 84, from `final_v7/all_scores.tsv` (E25). The
-manuscript's homology numbers on the benchmark inputs come from the released homology mode
-(`pytd_v7h_homology`, which also uses homology in start refinement) and are reproduced in notebook 05.
+The Methods list PyTD with DIAMOND/Pfam evidence: `pytd_v7h_homology`, all `r nrow(hom_a7)` of 84 inputs (E25
+addendum; run at a5b24c3, same code tree as the pinned d3892b5), with homology used for retention and for start
+refinement. The manuscript's numbers are in notebook 05.
 
 ```{r homology}
-hom <- A7 %>% filter(tool %in% c(TD, "pytd_v7_homology")) %>%
+hom <- bind_rows(A7 %>% filter(tool == TD), A7H) %>%
   select(org, variant, tool, sensitivity_stop, precision_stop, f1_exact) %>%
   pivot_wider(names_from = tool, values_from = c(sensitivity_stop, precision_stop, f1_exact)) %>%
-  filter(!is.na(sensitivity_stop_pytd_v7_homology)) %>%
-  transmute(org, variant, d_sens_stop = sensitivity_stop_pytd_v7_homology - sensitivity_stop_pytd_v7,
-            d_prec_stop = precision_stop_pytd_v7_homology - precision_stop_pytd_v7,
-            d_f1_exact = f1_exact_pytd_v7_homology - f1_exact_pytd_v7,
+  filter(!is.na(sensitivity_stop_pytd_v7h_homology)) %>%
+  transmute(org, variant, d_sens_stop = sensitivity_stop_pytd_v7h_homology - sensitivity_stop_pytd_v7,
+            d_prec_stop = precision_stop_pytd_v7h_homology - precision_stop_pytd_v7,
+            d_f1_exact = f1_exact_pytd_v7h_homology - f1_exact_pytd_v7,
             type = ifelse(grepl("^fragments", variant), "fragments", "complete-type"))
 hom_sum <- hom %>% group_by(type) %>% summarise(inputs = n(), across(starts_with("d_"), list(min = min, max = max)))
 kable(hom_sum %>% mutate(across(starts_with("d_"), ~ round(.x, 4))),
-      caption = "Homology (pytd_v7_homology, 3a793ff) minus ab initio (release), 84 inputs")
+      caption = "Homology (pytd_v7h_homology) minus ab initio (release), 84 inputs")
 details(hom %>% mutate(across(starts_with("d_"), ~ round(.x, 4))), "per input")
 ```
 
@@ -812,46 +796,6 @@ PT2 <- function(ty, m) PTV("td2", ty, m)
 TT_RL <- TD2R %>% filter(org == "tthermophila")
 RS2 <- rs_all %>% filter(tool == "td2")
 ```
-
-## Release versus earlier final defaults
-
-The TransDecoder numbers the text quotes, computed from the earlier final defaults (`pytd_dev_v2`,
-the runs the text and the current figure used) and from the release (`pytd_v7`).
-
-```{r rel-vs-old}
-both <- function(f) c(earlier = f(TD_OLD), release = f(TD))
-rv <- bind_rows(
-  tibble(quantity = "complete stop F1 median", !!!both(function(t) MED(t, "complete", "f1_stop"))),
-  tibble(quantity = "complete stop F1 min", !!!both(function(t) min(V(t, "complete", "f1_stop")))),
-  tibble(quantity = "complete stop F1 max", !!!both(function(t) max(V(t, "complete", "f1_stop")))),
-  tibble(quantity = "complete exact F1 median", !!!both(function(t) MED(t, "complete", "f1_exact"))),
-  tibble(quantity = "complete exact F1 min", !!!both(function(t) min(V(t, "complete", "f1_exact")))),
-  tibble(quantity = "complete exact F1 max", !!!both(function(t) max(V(t, "complete", "f1_exact")))),
-  tibble(quantity = "fragments stop F1 median", !!!both(function(t) MED(t, "fragments", "f1_stop"))),
-  tibble(quantity = "fragments exact F1 median", !!!both(function(t) MED(t, "fragments", "f1_exact"))),
-  tibble(quantity = "complete+rand precision median", !!!both(function(t) MED(t, "complete.wRand", "precision_stop"))),
-  tibble(quantity = "complete+rand precision min", !!!both(function(t) min(V(t, "complete.wRand", "precision_stop")))),
-  tibble(quantity = "complete+rand stop F1 median", !!!both(function(t) MED(t, "complete.wRand", "f1_stop"))),
-  tibble(quantity = "T. the. complete stop F1", !!!both(function(t) TT(t, "complete", "f1_stop"))),
-  tibble(quantity = "T. the. complete exact F1", !!!both(function(t) TT(t, "complete", "f1_exact"))),
-  tibble(quantity = "T. the. fragments stop F1", !!!both(function(t) TT(t, "fragments", "f1_stop"))),
-  tibble(quantity = "T. the. complete+rand precision", !!!both(function(t) TT(t, "complete.wRand", "precision_stop"))),
-  tibble(quantity = "P. fal. complete stop F1", !!!both(function(t) V(t, "complete", "f1_stop")[["pfalciparum"]])),
-  tibble(quantity = "P. fal. complete exact F1", !!!both(function(t) V(t, "complete", "f1_exact")[["pfalciparum"]])),
-  tibble(quantity = "C. rei. complete stop F1", !!!both(function(t) V(t, "complete", "f1_stop")[["creinhardtii"]])),
-  tibble(quantity = "C. rei. complete exact F1", !!!both(function(t) V(t, "complete", "f1_exact")[["creinhardtii"]])),
-  tibble(quantity = "max |TD - v6.0.0|, complete stop F1",
-         !!!both(function(t) max(abs(V(t, "complete", "f1_stop") - v6_cs)))),
-  tibble(quantity = "organisms where Prodigal > TD, fragments stop F1",
-         !!!both(function(t) sum(pr_fs > V(t, "fragments", "f1_stop")))),
-  tibble(quantity = "organisms where TD > Prodigal, fragments exact F1",
-         !!!both(function(t) sum(V(t, "fragments", "f1_exact") > pr_fe))))
-kable(rv %>% mutate(across(c(earlier, release), ~ round(.x, 3))))
-old_better_exact <- names(which(V(TD_OLD, "fragments", "f1_exact") > pr_fe))
-```
-
-Earlier runs, fragments exact F1 higher than Prodigal in: `r paste(ORG_LABEL[old_better_exact], collapse = ", ")`;
-release: `r paste(ORG_LABEL[td_better_exact], collapse = ", ")`.
 
 ## Simulated GM12878 Trinity assembly
 
@@ -1227,7 +1171,7 @@ mainly a test of frame and end placement on assembled coding transcripts, not of
 noncoding test is the human simulation (E30/E31) and the lncRNA inputs of the main benchmark (E04).
 
 
-**Homology mode.** TransDecoder (PyTD a5b24c3, `r evidence("E33")`) on each depth level of both simulations
+**Homology mode.** TransDecoder (`r evidence("E33")`; run at a5b24c3, same code tree as the pinned d3892b5) on each depth level of both simulations
 in three conditions on the same LongOrfs: A ab initio; B homology mode (DIAMOND `-k 1 -e 1e-5` against Swiss-Prot
 without the organism's own entries, `sprot_minus_9606` / `sprot_minus_3702`, and `hmmsearch --cut_ga` against Pfam-A,
 on all LongOrfs peptides) with the homology start assist (the default when hits are supplied); C the same hits with
@@ -1298,8 +1242,7 @@ figS_athal
 
 Each row compares a value computed here with the value in the text now. Labels give the tex file and
 line (`mb` = `methods_benchmark.tex`, `rb` = `results_benchmark.tex`, `fm` = `figures_main.tex`).
-TransDecoder values are from the release runs, so TransDecoder mismatches are expected until the text
-is updated (see the previous section for the earlier values).
+TransDecoder values are from the release runs.
 
 ```{r checks}
 # Methods

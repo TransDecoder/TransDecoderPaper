@@ -1,0 +1,15 @@
+variant	label	n_lnc_calls	ge100	ge200	ge300
+complete.wLnc	rel	1639	1354	656	236
+complete.wLnc	precise	1378	1133	623	236
+complete.wLnc	sensitive	2685	2075	688	235
+complete.wLnc	q0.02	1452	1198	633	236
+complete.wLnc	q0.1	2006	1643	667	236
+complete.wLnc	q0.3	3479	2510	701	234
+complete.wLnc	q0.5	5657	3161	725	234
+fragments.wLnc	rel	1928	1542	670	235
+fragments.wLnc	precise	1507	1244	646	235
+fragments.wLnc	sensitive	3621	2394	734	234
+fragments.wLnc	q0.02	1608	1321	653	235
+fragments.wLnc	q0.1	2489	1849	694	235
+fragments.wLnc	q0.3	4661	2761	741	233
+fragments.wLnc	q0.5	7029	3799	752	232
