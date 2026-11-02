@@ -27,16 +27,16 @@ models, later ATGs), `r evidence("E07")` (benchmark summary: v6.0.0 and developm
 **Which runs.** All refinement comparisons (no refinement, =0$, the $\alpha \times w$ grid) are fresh runs of the
 pinned release code, PyTD d3892b5 (`r evidence("E40")`), with $ in bases per bit on the released scale (grid 0, 3.5, 7,
 17, 35, 69). The default cell `a0.4_w17` is byte-identical to the release run on all 16 inputs, and every cell of an
-input has the same predicted stops (checks below). v6.0.0 is an earlier release. The fixed PWM (PyTD 27bfb5e) and the
-PWM choice among later ATGs (`pytd_dev_pwm`) are unreleased development versions that the released code cannot run;
-they are labelled where used.
+input has the same predicted stops (checks below). v6.0.0 is an earlier release; the later-ATG analysis scores the release runs' own Kozak models
+(`r evidence("E41")`).
 
 Data:
 
 - `data/start_param_sensitivity/release/` (`summarise_v2.py`, `open_end_mix_v2.py`, `kozak_score_distribution_v2.py`; E40): `open_end_mix.tsv`, `grid_scores.tsv`, `optima.tsv`,
   `plateau.tsv`, `loo.tsv`, `kozak_score_distribution.tsv`, `gm12878.tsv`, `checks.tsv`.
-- `data/benchmark/summary.tsv`: `perl_td_v600` (v6.0.0), `pytd` (fixed PWM), `pytd_dev`,
-  `pytd_dev_pwm` (E07, E09).
+- `data/benchmark/summary.tsv`: `perl_td_v600` (v6.0.0; E07, E09).
+- `data/start_refinement/later_atg_kozak.tsv` (`analyses/start_param_sensitivity/later_atg_kozak_v1.py`; E41): later
+  in-frame ATGs scored with the release Kozak models.
 - `data/benchmark/final_v7/all_scores.tsv`: `pytd_v7` (release; E25).
 - `data/start_refinement/` (written by
   [`../pipeline/derive/03_start_refinement.py`](../pipeline/derive/03_start_refinement.py)):
@@ -385,14 +385,13 @@ kable(c_dat %>% select(input, weight_per_bit = weight, alpha, mean_f1) %>% arran
 ## Comparison with earlier releases
 
 v6.0.0 (`perl_td_v600`, `summary.tsv`) against the release (`pytd_v7`, `all_scores.tsv`; equal to the grid's default
-cell). The fixed PWM is `pytd` in `summary.tsv` (PyTD 27bfb5e, an unreleased development version).
+cell).
 
 ```{r releases}
 rel <- f1 %>% mutate(gain_release = pts(release - v600), stop_release = pts(release_stop - v600_stop))
 stopifnot(all(abs(f1$release - f1$final) < 1e-9))
 rc <- rel %>% filter(input == "complete")
 rf <- rel %>% filter(input == "fragments")
-fixed_pwm <- summ %>% filter(tool == "pytd", variant == "complete")
 kable(rel %>% select(org, input, v600, release, gain_release, stop_release) %>%
         mutate(across(starts_with(c("gain", "stop")), ~ round(.x, 2))), digits = 4,
       caption = "Exact F1 and gains (points) over v6.0.0; stop_* are stop-level F1 changes")
@@ -404,8 +403,7 @@ On complete inputs, median exact F1 was `r f3(median(rc$v600))` with v6.0.0 and
 `r f1p(max(rc$gain_release))` points of exact F1 per organism, while stop-level F1 changed by
 `r f1p(min(rc$stop_release))` to `r f1p(max(rc$stop_release))` points. On fragments the release gained
 `r f1p(min(rf$gain_release))` to `r f1p(max(rf$gain_release))` points of exact F1 and
-`r f1p(min(rf$stop_release))` to `r f1p(max(rf$stop_release))` points of stop-level F1. The fixed PWM had a median
-exact F1 of `r f3(median(fixed_pwm$f1_exact))` on complete inputs.
+`r f1p(min(rf$stop_release))` to `r f1p(max(rf$stop_release))` points of stop-level F1.
 
 ### PWM seeds (v6.0.0-style refinement)
 
@@ -433,7 +431,6 @@ check_text("results L46: fragments exact gain min (release, pts)", round(min(rf$
 check_text("results L46: fragments exact gain max (release, pts)", round(max(rf$gain_release), 1), 13.8)
 check_text("results L48: fragments stop F1 gain min (release, pts)", round(min(rf$stop_release), 1), 1.1)
 check_text("results L48: fragments stop F1 gain max (release, pts)", round(max(rf$stop_release), 1), 10.1)
-check_text("results L49: fixed PWM median exact F1 complete", round(median(fixed_pwm$f1_exact), 3), 0.728)
 check_text("results L51: PASA ORFs", sp$n_orfs[1], 792)
 check_text("results L51: StringTie ORFs", ss$n_orfs[1], 3037)
 check_text("results L51: PASA seeds min changed", min(sp$same_stop_diff_start), 29)
@@ -765,30 +762,46 @@ kable(d_dat %>% select(org, set, p10, p25, p50, p75, p90))
 ```
 </details>
 
-### Later ATGs chosen by start context
+### Later ATGs scored by start context
 
-`pytd_dev_pwm` (ATG chosen among later in-frame ATGs by the PWM; unreleased development version, which the release
-code cannot run) against the release code's first-ATG rule without the Kozak term (grid cell `a0.4_w0`), and, as the
-controlled comparison within that development version, against its own first-ATG choice (`pytd_dev`), complete inputs.
+`r evidence("E41")`. For each complete-type truth CDS of the stranded complete input, the in-frame ATGs from the first
+one after the upstream in-frame stop (or the transcript start) to the annotated stop were scored with the release
+run's Kozak model (`start_refinement.kozak.tsv`, bits; `analyses/start_param_sensitivity/later_atg_kozak_v1.py`).
+The rule tested moves from the first ATG to the best-scoring later ATG within a window (10, 50 codons or all) when it
+scores at least a margin (0--4 bits) above the first ATG. Release code only.
 
-```{r pwm-choice}
-w0c <- grid %>% filter(config == "a0.4_w0", input == "complete") %>% select(org, tp_exact_rel_w0 = tp_exact, f1_exact_rel_w0 = f1_exact)
-pwm <- summ %>% filter(variant == "complete", tool %in% c("pytd_dev", "pytd_dev_pwm")) %>%
-  select(org, tool, tp_exact, f1_exact) %>%
-  pivot_wider(names_from = tool, values_from = c(tp_exact, f1_exact)) %>%
-  left_join(w0c, by = "org") %>%
-  mutate(diff_points = pts(f1_exact_pytd_dev_pwm - f1_exact_pytd_dev),
-         diff_tp = tp_exact_pytd_dev_pwm - tp_exact_pytd_dev,
-         diff_tp_vs_release_w0 = tp_exact_pytd_dev_pwm - tp_exact_rel_w0)
-kable(pwm, digits = 4)
-n_not_improved <- sum(pwm$diff_points <= 0.05)
-n_below_rel <- sum(pwm$diff_tp_vs_release_w0 < 0)
+```{r later-atg}
+la <- readr::read_tsv(file.path(REPO, "data", "start_refinement", "later_atg_kozak.tsv"),
+               col_types = cols(window_codons = col_character())) %>%
+  mutate(later_pct = 100 * annot_later / n_cds, outscored_pct = 100 * first_outscored / (n_cds - annot_later))
+kable(la %>% filter(margin_bits %in% c(0, 2, 4)), digits = 1)
+la50 <- la %>% filter(window_codons == "50", margin_bits == 0)
+oth <- la50 %>% filter(org != "creinhardtii")
+la_set <- la %>% filter(window_codons %in% c("10", "50"), margin_bits %in% c(2, 4))
+cre_best <- la_set %>% filter(org == "creinhardtii") %>% slice_max(net, n = 1)
+n_all_neg <- la_set %>% filter(org != "creinhardtii") %>% group_by(org) %>% summarise(neg = all(net < 0)) %>%
+  pull(neg) %>% sum()
 ```
 
-Against the release first-ATG rule (w 0), the PWM choice had fewer exact matches in `r n_below_rel` of 8 organisms
-(`r paste(ORG_LABEL[pwm$org[pwm$diff_tp_vs_release_w0 > 0]], collapse = ", ")` higher). Within the development version,
-it was higher by `r pwm$diff_tp[pwm$org == "pfalciparum"]` exact match in *P. falciparum* and by
-`r pwm$diff_tp[pwm$org == "creinhardtii"]` in *C. reinhardtii*, and did not improve accuracy in `r n_not_improved` of 8.
+Among CDSs starting at the first ATG, a later ATG within 50 codons scored higher in
+`r f1p(min(la50$outscored_pct))`--`r f1p(max(la50$outscored_pct))`% (organisms). Annotated starts at a later ATG:
+`r f1p(min(oth$later_pct))`--`r f1p(max(oth$later_pct))`% in seven organisms and
+`r f1p(la50$later_pct[la50$org == "creinhardtii"])`% in *C. reinhardtii*. With windows of 10 or 50 codons and margins of
+2 or 4 bits, the rule lost exact matches at every setting in `r n_all_neg` of the 7 other organisms; in
+*C. reinhardtii* the best setting (`r cre_best$window_codons` codons, `r cre_best$margin_bits` bits) gained
+`r cre_best$net` (`r cre_best$gain` gained, `r cre_best$loss` lost).
+
+```{r later-atg-checks}
+check_text("methods: later ATG outscores first, min (%)", round(min(la50$outscored_pct), 1), 10.5)
+check_text("methods: later ATG outscores first, max (%)", round(max(la50$outscored_pct), 1), 20.9)
+check_text("methods: annotated later ATG min, other 7 (%)", round(min(oth$later_pct), 1), 1.0)
+check_text("methods: annotated later ATG max, other 7 (%)", round(max(oth$later_pct), 1), 4.9)
+check_text("methods: C. reinhardtii annotated later ATG (%)", round(la50$later_pct[la50$org == "creinhardtii"], 1), 19.5)
+check_text("methods: organisms losing at every setting", n_all_neg, 7)
+check_text("methods: C. reinhardtii best net", cre_best$net, 83)
+check_text("methods: C. reinhardtii best gained", cre_best$gain, 247)
+check_text("methods: C. reinhardtii best lost", cre_best$loss, 164)
+```
 
 ### Parameter grid
 
@@ -830,7 +843,6 @@ check_text("methods L278: true start median min (bits)", round(min(ts$p50), 1), 
 check_text("methods L278: true start median max (bits)", round(max(ts$p50), 1), 1.3)
 check_text("methods L278: internal ATG median, highest (bits; -0.45 rounds either way)", max(ia$p50), -0.5, tol = 0.051)
 check_text("methods L278: internal ATG median, lowest (bits)", round(min(ia$p50), 1), -1.6)
-check_text("methods L280: later ATG by context, no improvement (n orgs)", n_not_improved, 7)
 check_text("methods L284: grid values", nrow(both), 78)
 check_text("methods L284: alpha max", max(ALPHAS), 3)
 check_text("methods L284: w max per bit", max(W_BITS), 69)

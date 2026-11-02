@@ -1166,3 +1166,9 @@ stating the catalogued Ribo-seq cost in the manuscript (G6).
   `cmp figures/X.pdf manuscript/figures/X.pdf` after every knit.
 - **Remaining exceptions:** the fixed short-ORF test, the length-only-strata prototype and the PWM procedures have no
   release option; they stay as labelled historical comparators.
+
+## 2026-11-02: later in-frame ATGs scored by start context (E41)
+- **Idea (BH):** instead of the development-code PWM-choice run, score every in-frame ATG with the release's own Kozak model and count how often a later ATG outscores a true first-ATG start, and what a "move to a better-context later ATG" rule gains or loses.
+- **Result: NOT ADOPTED as a rule (confirms first-ATG design).** Later ATG within 50 codons outscores a true first-ATG start in 10.5-20.9% of CDSs; only 1.0-4.9% of starts are later ATGs (C. reinhardtii 19.5%). Net loss at every window/margin in seven organisms; C. reinhardtii at most +83 of 17,621 (50 codons, 4 bits).
+- Dropped from the paper with it: the PWM-choice column and the "PWM, scale corrected" column of Table S6 and the 0.728 Results sentence (BH).
+- **Pointers:** `analyses/start_param_sensitivity/later_atg_kozak_v1.py`, `data/start_refinement/later_atg_kozak.tsv`, E41.

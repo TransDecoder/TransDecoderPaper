@@ -1588,10 +1588,8 @@ w\)</span> grid) are fresh runs of the pinned release code, PyTD d3892b5
 bases per bit on the released scale (grid 0, 3.5, 7, 17, 35, 69). The
 default cell <code>a0.4_w17</code> is byte-identical to the release run
 on all 16 inputs, and every cell of an input has the same predicted
-stops (checks below). v6.0.0 is an earlier release. The fixed PWM (PyTD
-27bfb5e) and the PWM choice among later ATGs (<code>pytd_dev_pwm</code>)
-are unreleased development versions that the released code cannot run;
-they are labelled where used.</p>
+stops (checks below). v6.0.0 is an earlier release; the later-ATG
+analysis scores the release runs’ own Kozak models (<a href="../evidence/E41_later_atg_kozak.md">E41</a>).</p>
 <p>Data:</p>
 <ul>
 <li><code>data/start_param_sensitivity/release/</code>
@@ -1602,8 +1600,10 @@ they are labelled where used.</p>
 <code>kozak_score_distribution.tsv</code>, <code>gm12878.tsv</code>,
 <code>checks.tsv</code>.</li>
 <li><code>data/benchmark/summary.tsv</code>: <code>perl_td_v600</code>
-(v6.0.0), <code>pytd</code> (fixed PWM), <code>pytd_dev</code>,
-<code>pytd_dev_pwm</code> (E07, E09).</li>
+(v6.0.0; E07, E09).</li>
+<li><code>data/start_refinement/later_atg_kozak.tsv</code>
+(<code>analyses/start_param_sensitivity/later_atg_kozak_v1.py</code>;
+E41): later in-frame ATGs scored with the release Kozak models.</li>
 <li><code>data/benchmark/final_v7/all_scores.tsv</code>:
 <code>pytd_v7</code> (release; E25).</li>
 <li><code>data/start_refinement/</code> (written by <a href="../pipeline/derive/03_start_refinement.py"><code>../pipeline/derive/03_start_refinement.py</code></a>):
@@ -3972,14 +3972,11 @@ Fig. 3c values
 <h2>Comparison with earlier releases</h2>
 <p>v6.0.0 (<code>perl_td_v600</code>, <code>summary.tsv</code>) against
 the release (<code>pytd_v7</code>, <code>all_scores.tsv</code>; equal to
-the grid’s default cell). The fixed PWM is <code>pytd</code> in
-<code>summary.tsv</code> (PyTD 27bfb5e, an unreleased development
-version).</p>
+the grid’s default cell).</p>
 <pre class="r"><code>rel &lt;- f1 %&gt;% mutate(gain_release = pts(release - v600), stop_release = pts(release_stop - v600_stop))
 stopifnot(all(abs(f1$release - f1$final) &lt; 1e-9))
 rc &lt;- rel %&gt;% filter(input == &quot;complete&quot;)
 rf &lt;- rel %&gt;% filter(input == &quot;fragments&quot;)
-fixed_pwm &lt;- summ %&gt;% filter(tool == &quot;pytd&quot;, variant == &quot;complete&quot;)
 kable(rel %&gt;% select(org, input, v600, release, gain_release, stop_release) %&gt;%
         mutate(across(starts_with(c(&quot;gain&quot;, &quot;stop&quot;)), ~ round(.x, 2))), digits = 4,
       caption = &quot;Exact F1 and gains (points) over v6.0.0; stop_* are stop-level F1 changes&quot;)</code></pre>
@@ -4132,8 +4129,7 @@ with the release. Summed exact matches were 96,957 with v6.0.0 and
 116,362 with the release. The release gained 2.8 to 26.6 points of exact
 F1 per organism, while stop-level F1 changed by -1.4 to 1.3 points. On
 fragments the release gained 6.0 to 13.8 points of exact F1 and 1.1 to
-10.1 points of stop-level F1. The fixed PWM had a median exact F1 of
-0.728 on complete inputs.</p>
+10.1 points of stop-level F1.</p>
 <div id="pwm-seeds-v6.0.0-style-refinement" class="section level3">
 <h3>PWM seeds (v6.0.0-style refinement)</h3>
 <pre class="r"><code>kable(seeds)</code></pre>
@@ -4241,7 +4237,6 @@ check_text(&quot;results L46: fragments exact gain min (release, pts)&quot;, rou
 check_text(&quot;results L46: fragments exact gain max (release, pts)&quot;, round(max(rf$gain_release), 1), 13.8)
 check_text(&quot;results L48: fragments stop F1 gain min (release, pts)&quot;, round(min(rf$stop_release), 1), 1.1)
 check_text(&quot;results L48: fragments stop F1 gain max (release, pts)&quot;, round(max(rf$stop_release), 1), 10.1)
-check_text(&quot;results L49: fixed PWM median exact F1 complete&quot;, round(median(fixed_pwm$f1_exact), 3), 0.728)
 check_text(&quot;results L51: PASA ORFs&quot;, sp$n_orfs[1], 792)
 check_text(&quot;results L51: StringTie ORFs&quot;, ss$n_orfs[1], 3037)
 check_text(&quot;results L51: PASA seeds min changed&quot;, min(sp$same_stop_diff_start), 29)
@@ -6566,156 +6561,1085 @@ Fig. 3d values
 </table>
 </details>
 </div>
-<div id="later-atgs-chosen-by-start-context" class="section level3">
-<h3>Later ATGs chosen by start context</h3>
-<p><code>pytd_dev_pwm</code> (ATG chosen among later in-frame ATGs by
-the PWM; unreleased development version, which the release code cannot
-run) against the release code’s first-ATG rule without the Kozak term
-(grid cell <code>a0.4_w0</code>), and, as the controlled comparison
-within that development version, against its own first-ATG choice
-(<code>pytd_dev</code>), complete inputs.</p>
-<pre class="r"><code>w0c &lt;- grid %&gt;% filter(config == &quot;a0.4_w0&quot;, input == &quot;complete&quot;) %&gt;% select(org, tp_exact_rel_w0 = tp_exact, f1_exact_rel_w0 = f1_exact)
-pwm &lt;- summ %&gt;% filter(variant == &quot;complete&quot;, tool %in% c(&quot;pytd_dev&quot;, &quot;pytd_dev_pwm&quot;)) %&gt;%
-  select(org, tool, tp_exact, f1_exact) %&gt;%
-  pivot_wider(names_from = tool, values_from = c(tp_exact, f1_exact)) %&gt;%
-  left_join(w0c, by = &quot;org&quot;) %&gt;%
-  mutate(diff_points = pts(f1_exact_pytd_dev_pwm - f1_exact_pytd_dev),
-         diff_tp = tp_exact_pytd_dev_pwm - tp_exact_pytd_dev,
-         diff_tp_vs_release_w0 = tp_exact_pytd_dev_pwm - tp_exact_rel_w0)
-kable(pwm, digits = 4)</code></pre>
-<table>
+<div id="later-atgs-scored-by-start-context" class="section level3">
+<h3>Later ATGs scored by start context</h3>
+<p><a href="../evidence/E41_later_atg_kozak.md">E41</a>. For each
+complete-type truth CDS of the stranded complete input, the in-frame
+ATGs from the first one after the upstream in-frame stop (or the
+transcript start) to the annotated stop were scored with the release
+run’s Kozak model (<code>start_refinement.kozak.tsv</code>, bits;
+<code>analyses/start_param_sensitivity/later_atg_kozak_v1.py</code>).
+The rule tested moves from the first ATG to the best-scoring later ATG
+within a window (10, 50 codons or all) when it scores at least a margin
+(0–4 bits) above the first ATG. Release code only.</p>
+<pre class="r"><code>la &lt;- readr::read_tsv(file.path(REPO, &quot;data&quot;, &quot;start_refinement&quot;, &quot;later_atg_kozak.tsv&quot;),
+               col_types = cols(window_codons = col_character())) %&gt;%
+  mutate(later_pct = 100 * annot_later / n_cds, outscored_pct = 100 * first_outscored / (n_cds - annot_later))
+kable(la %&gt;% filter(margin_bits %in% c(0, 2, 4)), digits = 1)</code></pre>
+<table style="width:99%;">
 <colgroup>
-<col width="7%" />
 <col width="10%" />
-<col width="13%" />
-<col width="10%" />
-<col width="13%" />
+<col width="11%" />
 <col width="9%" />
-<col width="9%" />
-<col width="7%" />
 <col width="4%" />
-<col width="13%" />
+<col width="9%" />
+<col width="12%" />
+<col width="3%" />
+<col width="4%" />
+<col width="9%" />
+<col width="5%" />
+<col width="7%" />
+<col width="11%" />
 </colgroup>
 <thead>
 <tr class="header">
 <th align="left">org</th>
-<th align="right">tp_exact_pytd_dev</th>
-<th align="right">tp_exact_pytd_dev_pwm</th>
-<th align="right">f1_exact_pytd_dev</th>
-<th align="right">f1_exact_pytd_dev_pwm</th>
-<th align="right">tp_exact_rel_w0</th>
-<th align="right">f1_exact_rel_w0</th>
-<th align="right">diff_points</th>
-<th align="right">diff_tp</th>
-<th align="right">diff_tp_vs_release_w0</th>
+<th align="left">window_codons</th>
+<th align="right">margin_bits</th>
+<th align="right">n_cds</th>
+<th align="right">annot_later</th>
+<th align="right">first_outscored</th>
+<th align="right">gain</th>
+<th align="right">loss</th>
+<th align="right">later_wrong</th>
+<th align="right">net</th>
+<th align="right">later_pct</th>
+<th align="right">outscored_pct</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">athal</td>
-<td align="right">23092</td>
-<td align="right">22855</td>
-<td align="right">0.8841</td>
-<td align="right">0.8750</td>
-<td align="right">23408</td>
-<td align="right">0.8898</td>
-<td align="right">-0.91</td>
-<td align="right">-237</td>
-<td align="right">-553</td>
+<td align="left">10</td>
+<td align="right">0</td>
+<td align="right">26867</td>
+<td align="right">309</td>
+<td align="right">2048</td>
+<td align="right">75</td>
+<td align="right">2048</td>
+<td align="right">26</td>
+<td align="right">-1973</td>
+<td align="right">1.2</td>
+<td align="right">7.7</td>
+</tr>
+<tr class="even">
+<td align="left">athal</td>
+<td align="left">10</td>
+<td align="right">2</td>
+<td align="right">26867</td>
+<td align="right">309</td>
+<td align="right">2048</td>
+<td align="right">32</td>
+<td align="right">647</td>
+<td align="right">10</td>
+<td align="right">-615</td>
+<td align="right">1.2</td>
+<td align="right">7.7</td>
+</tr>
+<tr class="odd">
+<td align="left">athal</td>
+<td align="left">10</td>
+<td align="right">4</td>
+<td align="right">26867</td>
+<td align="right">309</td>
+<td align="right">2048</td>
+<td align="right">6</td>
+<td align="right">87</td>
+<td align="right">1</td>
+<td align="right">-81</td>
+<td align="right">1.2</td>
+<td align="right">7.7</td>
+</tr>
+<tr class="even">
+<td align="left">athal</td>
+<td align="left">50</td>
+<td align="right">0</td>
+<td align="right">26867</td>
+<td align="right">309</td>
+<td align="right">5554</td>
+<td align="right">132</td>
+<td align="right">5554</td>
+<td align="right">60</td>
+<td align="right">-5422</td>
+<td align="right">1.2</td>
+<td align="right">20.9</td>
+</tr>
+<tr class="odd">
+<td align="left">athal</td>
+<td align="left">50</td>
+<td align="right">2</td>
+<td align="right">26867</td>
+<td align="right">309</td>
+<td align="right">5554</td>
+<td align="right">64</td>
+<td align="right">1774</td>
+<td align="right">28</td>
+<td align="right">-1710</td>
+<td align="right">1.2</td>
+<td align="right">20.9</td>
+</tr>
+<tr class="even">
+<td align="left">athal</td>
+<td align="left">50</td>
+<td align="right">4</td>
+<td align="right">26867</td>
+<td align="right">309</td>
+<td align="right">5554</td>
+<td align="right">17</td>
+<td align="right">283</td>
+<td align="right">4</td>
+<td align="right">-266</td>
+<td align="right">1.2</td>
+<td align="right">20.9</td>
+</tr>
+<tr class="odd">
+<td align="left">athal</td>
+<td align="left">all</td>
+<td align="right">0</td>
+<td align="right">26867</td>
+<td align="right">309</td>
+<td align="right">15909</td>
+<td align="right">84</td>
+<td align="right">15909</td>
+<td align="right">166</td>
+<td align="right">-15825</td>
+<td align="right">1.2</td>
+<td align="right">59.9</td>
+</tr>
+<tr class="even">
+<td align="left">athal</td>
+<td align="left">all</td>
+<td align="right">2</td>
+<td align="right">26867</td>
+<td align="right">309</td>
+<td align="right">15909</td>
+<td align="right">46</td>
+<td align="right">6074</td>
+<td align="right">91</td>
+<td align="right">-6028</td>
+<td align="right">1.2</td>
+<td align="right">59.9</td>
+</tr>
+<tr class="odd">
+<td align="left">athal</td>
+<td align="left">all</td>
+<td align="right">4</td>
+<td align="right">26867</td>
+<td align="right">309</td>
+<td align="right">15909</td>
+<td align="right">11</td>
+<td align="right">1030</td>
+<td align="right">22</td>
+<td align="right">-1019</td>
+<td align="right">1.2</td>
+<td align="right">59.9</td>
 </tr>
 <tr class="even">
 <td align="left">creinhardtii</td>
-<td align="right">12592</td>
-<td align="right">12661</td>
-<td align="right">0.7400</td>
-<td align="right">0.7441</td>
-<td align="right">12983</td>
-<td align="right">0.7523</td>
-<td align="right">0.41</td>
-<td align="right">69</td>
-<td align="right">-322</td>
+<td align="left">10</td>
+<td align="right">0</td>
+<td align="right">17621</td>
+<td align="right">3438</td>
+<td align="right">374</td>
+<td align="right">345</td>
+<td align="right">374</td>
+<td align="right">138</td>
+<td align="right">-29</td>
+<td align="right">19.5</td>
+<td align="right">2.6</td>
+</tr>
+<tr class="odd">
+<td align="left">creinhardtii</td>
+<td align="left">10</td>
+<td align="right">2</td>
+<td align="right">17621</td>
+<td align="right">3438</td>
+<td align="right">374</td>
+<td align="right">182</td>
+<td align="right">124</td>
+<td align="right">55</td>
+<td align="right">58</td>
+<td align="right">19.5</td>
+<td align="right">2.6</td>
+</tr>
+<tr class="even">
+<td align="left">creinhardtii</td>
+<td align="left">10</td>
+<td align="right">4</td>
+<td align="right">17621</td>
+<td align="right">3438</td>
+<td align="right">374</td>
+<td align="right">72</td>
+<td align="right">25</td>
+<td align="right">15</td>
+<td align="right">47</td>
+<td align="right">19.5</td>
+<td align="right">2.6</td>
+</tr>
+<tr class="odd">
+<td align="left">creinhardtii</td>
+<td align="left">50</td>
+<td align="right">0</td>
+<td align="right">17621</td>
+<td align="right">3438</td>
+<td align="right">1492</td>
+<td align="right">1028</td>
+<td align="right">1492</td>
+<td align="right">355</td>
+<td align="right">-464</td>
+<td align="right">19.5</td>
+<td align="right">10.5</td>
+</tr>
+<tr class="even">
+<td align="left">creinhardtii</td>
+<td align="left">50</td>
+<td align="right">2</td>
+<td align="right">17621</td>
+<td align="right">3438</td>
+<td align="right">1492</td>
+<td align="right">562</td>
+<td align="right">542</td>
+<td align="right">183</td>
+<td align="right">20</td>
+<td align="right">19.5</td>
+<td align="right">10.5</td>
+</tr>
+<tr class="odd">
+<td align="left">creinhardtii</td>
+<td align="left">50</td>
+<td align="right">4</td>
+<td align="right">17621</td>
+<td align="right">3438</td>
+<td align="right">1492</td>
+<td align="right">247</td>
+<td align="right">164</td>
+<td align="right">70</td>
+<td align="right">83</td>
+<td align="right">19.5</td>
+<td align="right">10.5</td>
+</tr>
+<tr class="even">
+<td align="left">creinhardtii</td>
+<td align="left">all</td>
+<td align="right">0</td>
+<td align="right">17621</td>
+<td align="right">3438</td>
+<td align="right">6659</td>
+<td align="right">832</td>
+<td align="right">6659</td>
+<td align="right">1394</td>
+<td align="right">-5827</td>
+<td align="right">19.5</td>
+<td align="right">47.0</td>
+</tr>
+<tr class="odd">
+<td align="left">creinhardtii</td>
+<td align="left">all</td>
+<td align="right">2</td>
+<td align="right">17621</td>
+<td align="right">3438</td>
+<td align="right">6659</td>
+<td align="right">522</td>
+<td align="right">3483</td>
+<td align="right">858</td>
+<td align="right">-2961</td>
+<td align="right">19.5</td>
+<td align="right">47.0</td>
+</tr>
+<tr class="even">
+<td align="left">creinhardtii</td>
+<td align="left">all</td>
+<td align="right">4</td>
+<td align="right">17621</td>
+<td align="right">3438</td>
+<td align="right">6659</td>
+<td align="right">267</td>
+<td align="right">1313</td>
+<td align="right">381</td>
+<td align="right">-1046</td>
+<td align="right">19.5</td>
+<td align="right">47.0</td>
 </tr>
 <tr class="odd">
 <td align="left">dmel</td>
-<td align="right">12197</td>
-<td align="right">12147</td>
-<td align="right">0.9075</td>
-<td align="right">0.9038</td>
-<td align="right">12529</td>
-<td align="right">0.9192</td>
-<td align="right">-0.37</td>
-<td align="right">-50</td>
-<td align="right">-382</td>
+<td align="left">10</td>
+<td align="right">0</td>
+<td align="right">13884</td>
+<td align="right">404</td>
+<td align="right">662</td>
+<td align="right">84</td>
+<td align="right">662</td>
+<td align="right">25</td>
+<td align="right">-578</td>
+<td align="right">2.9</td>
+<td align="right">4.9</td>
+</tr>
+<tr class="even">
+<td align="left">dmel</td>
+<td align="left">10</td>
+<td align="right">2</td>
+<td align="right">13884</td>
+<td align="right">404</td>
+<td align="right">662</td>
+<td align="right">40</td>
+<td align="right">252</td>
+<td align="right">14</td>
+<td align="right">-212</td>
+<td align="right">2.9</td>
+<td align="right">4.9</td>
+</tr>
+<tr class="odd">
+<td align="left">dmel</td>
+<td align="left">10</td>
+<td align="right">4</td>
+<td align="right">13884</td>
+<td align="right">404</td>
+<td align="right">662</td>
+<td align="right">14</td>
+<td align="right">65</td>
+<td align="right">5</td>
+<td align="right">-51</td>
+<td align="right">2.9</td>
+<td align="right">4.9</td>
+</tr>
+<tr class="even">
+<td align="left">dmel</td>
+<td align="left">50</td>
+<td align="right">0</td>
+<td align="right">13884</td>
+<td align="right">404</td>
+<td align="right">2022</td>
+<td align="right">210</td>
+<td align="right">2022</td>
+<td align="right">55</td>
+<td align="right">-1812</td>
+<td align="right">2.9</td>
+<td align="right">15.0</td>
+</tr>
+<tr class="odd">
+<td align="left">dmel</td>
+<td align="left">50</td>
+<td align="right">2</td>
+<td align="right">13884</td>
+<td align="right">404</td>
+<td align="right">2022</td>
+<td align="right">118</td>
+<td align="right">684</td>
+<td align="right">31</td>
+<td align="right">-566</td>
+<td align="right">2.9</td>
+<td align="right">15.0</td>
+</tr>
+<tr class="even">
+<td align="left">dmel</td>
+<td align="left">50</td>
+<td align="right">4</td>
+<td align="right">13884</td>
+<td align="right">404</td>
+<td align="right">2022</td>
+<td align="right">45</td>
+<td align="right">164</td>
+<td align="right">13</td>
+<td align="right">-119</td>
+<td align="right">2.9</td>
+<td align="right">15.0</td>
+</tr>
+<tr class="odd">
+<td align="left">dmel</td>
+<td align="left">all</td>
+<td align="right">0</td>
+<td align="right">13884</td>
+<td align="right">404</td>
+<td align="right">7198</td>
+<td align="right">114</td>
+<td align="right">7198</td>
+<td align="right">228</td>
+<td align="right">-7084</td>
+<td align="right">2.9</td>
+<td align="right">53.4</td>
+</tr>
+<tr class="even">
+<td align="left">dmel</td>
+<td align="left">all</td>
+<td align="right">2</td>
+<td align="right">13884</td>
+<td align="right">404</td>
+<td align="right">7198</td>
+<td align="right">78</td>
+<td align="right">2683</td>
+<td align="right">146</td>
+<td align="right">-2605</td>
+<td align="right">2.9</td>
+<td align="right">53.4</td>
+</tr>
+<tr class="odd">
+<td align="left">dmel</td>
+<td align="left">all</td>
+<td align="right">4</td>
+<td align="right">13884</td>
+<td align="right">404</td>
+<td align="right">7198</td>
+<td align="right">34</td>
+<td align="right">540</td>
+<td align="right">58</td>
+<td align="right">-506</td>
+<td align="right">2.9</td>
+<td align="right">53.4</td>
 </tr>
 <tr class="even">
 <td align="left">human</td>
-<td align="right">16841</td>
-<td align="right">16636</td>
-<td align="right">0.8902</td>
-<td align="right">0.8793</td>
-<td align="right">16889</td>
-<td align="right">0.8917</td>
-<td align="right">-1.09</td>
+<td align="left">10</td>
+<td align="right">0</td>
+<td align="right">19167</td>
+<td align="right">392</td>
+<td align="right">1088</td>
+<td align="right">93</td>
+<td align="right">1088</td>
+<td align="right">16</td>
+<td align="right">-995</td>
+<td align="right">2.0</td>
+<td align="right">5.8</td>
+</tr>
+<tr class="odd">
+<td align="left">human</td>
+<td align="left">10</td>
+<td align="right">2</td>
+<td align="right">19167</td>
+<td align="right">392</td>
+<td align="right">1088</td>
+<td align="right">58</td>
+<td align="right">402</td>
+<td align="right">8</td>
+<td align="right">-344</td>
+<td align="right">2.0</td>
+<td align="right">5.8</td>
+</tr>
+<tr class="even">
+<td align="left">human</td>
+<td align="left">10</td>
+<td align="right">4</td>
+<td align="right">19167</td>
+<td align="right">392</td>
+<td align="right">1088</td>
+<td align="right">16</td>
+<td align="right">78</td>
+<td align="right">3</td>
+<td align="right">-62</td>
+<td align="right">2.0</td>
+<td align="right">5.8</td>
+</tr>
+<tr class="odd">
+<td align="left">human</td>
+<td align="left">50</td>
+<td align="right">0</td>
+<td align="right">19167</td>
+<td align="right">392</td>
+<td align="right">3230</td>
+<td align="right">240</td>
+<td align="right">3230</td>
+<td align="right">51</td>
+<td align="right">-2990</td>
+<td align="right">2.0</td>
+<td align="right">17.2</td>
+</tr>
+<tr class="even">
+<td align="left">human</td>
+<td align="left">50</td>
+<td align="right">2</td>
+<td align="right">19167</td>
+<td align="right">392</td>
+<td align="right">3230</td>
+<td align="right">153</td>
+<td align="right">1104</td>
+<td align="right">31</td>
+<td align="right">-951</td>
+<td align="right">2.0</td>
+<td align="right">17.2</td>
+</tr>
+<tr class="odd">
+<td align="left">human</td>
+<td align="left">50</td>
+<td align="right">4</td>
+<td align="right">19167</td>
+<td align="right">392</td>
+<td align="right">3230</td>
+<td align="right">45</td>
+<td align="right">250</td>
+<td align="right">13</td>
 <td align="right">-205</td>
-<td align="right">-253</td>
+<td align="right">2.0</td>
+<td align="right">17.2</td>
+</tr>
+<tr class="even">
+<td align="left">human</td>
+<td align="left">all</td>
+<td align="right">0</td>
+<td align="right">19167</td>
+<td align="right">392</td>
+<td align="right">10934</td>
+<td align="right">134</td>
+<td align="right">10934</td>
+<td align="right">229</td>
+<td align="right">-10800</td>
+<td align="right">2.0</td>
+<td align="right">58.2</td>
+</tr>
+<tr class="odd">
+<td align="left">human</td>
+<td align="left">all</td>
+<td align="right">2</td>
+<td align="right">19167</td>
+<td align="right">392</td>
+<td align="right">10934</td>
+<td align="right">99</td>
+<td align="right">4015</td>
+<td align="right">160</td>
+<td align="right">-3916</td>
+<td align="right">2.0</td>
+<td align="right">58.2</td>
+</tr>
+<tr class="even">
+<td align="left">human</td>
+<td align="left">all</td>
+<td align="right">4</td>
+<td align="right">19167</td>
+<td align="right">392</td>
+<td align="right">10934</td>
+<td align="right">37</td>
+<td align="right">835</td>
+<td align="right">77</td>
+<td align="right">-798</td>
+<td align="right">2.0</td>
+<td align="right">58.2</td>
 </tr>
 <tr class="odd">
 <td align="left">mouse</td>
-<td align="right">18920</td>
-<td align="right">18886</td>
-<td align="right">0.8967</td>
-<td align="right">0.8950</td>
-<td align="right">18996</td>
-<td align="right">0.8991</td>
-<td align="right">-0.17</td>
-<td align="right">-34</td>
+<td align="left">10</td>
+<td align="right">0</td>
+<td align="right">21409</td>
+<td align="right">967</td>
+<td align="right">1303</td>
+<td align="right">189</td>
+<td align="right">1303</td>
+<td align="right">56</td>
+<td align="right">-1114</td>
+<td align="right">4.5</td>
+<td align="right">6.4</td>
+</tr>
+<tr class="even">
+<td align="left">mouse</td>
+<td align="left">10</td>
+<td align="right">2</td>
+<td align="right">21409</td>
+<td align="right">967</td>
+<td align="right">1303</td>
+<td align="right">114</td>
+<td align="right">514</td>
+<td align="right">33</td>
+<td align="right">-400</td>
+<td align="right">4.5</td>
+<td align="right">6.4</td>
+</tr>
+<tr class="odd">
+<td align="left">mouse</td>
+<td align="left">10</td>
+<td align="right">4</td>
+<td align="right">21409</td>
+<td align="right">967</td>
+<td align="right">1303</td>
+<td align="right">29</td>
+<td align="right">139</td>
+<td align="right">3</td>
 <td align="right">-110</td>
+<td align="right">4.5</td>
+<td align="right">6.4</td>
+</tr>
+<tr class="even">
+<td align="left">mouse</td>
+<td align="left">50</td>
+<td align="right">0</td>
+<td align="right">21409</td>
+<td align="right">967</td>
+<td align="right">3694</td>
+<td align="right">519</td>
+<td align="right">3694</td>
+<td align="right">139</td>
+<td align="right">-3175</td>
+<td align="right">4.5</td>
+<td align="right">18.1</td>
+</tr>
+<tr class="odd">
+<td align="left">mouse</td>
+<td align="left">50</td>
+<td align="right">2</td>
+<td align="right">21409</td>
+<td align="right">967</td>
+<td align="right">3694</td>
+<td align="right">306</td>
+<td align="right">1249</td>
+<td align="right">76</td>
+<td align="right">-943</td>
+<td align="right">4.5</td>
+<td align="right">18.1</td>
+</tr>
+<tr class="even">
+<td align="left">mouse</td>
+<td align="left">50</td>
+<td align="right">4</td>
+<td align="right">21409</td>
+<td align="right">967</td>
+<td align="right">3694</td>
+<td align="right">84</td>
+<td align="right">282</td>
+<td align="right">21</td>
+<td align="right">-198</td>
+<td align="right">4.5</td>
+<td align="right">18.1</td>
+</tr>
+<tr class="odd">
+<td align="left">mouse</td>
+<td align="left">all</td>
+<td align="right">0</td>
+<td align="right">21409</td>
+<td align="right">967</td>
+<td align="right">12248</td>
+<td align="right">281</td>
+<td align="right">12248</td>
+<td align="right">610</td>
+<td align="right">-11967</td>
+<td align="right">4.5</td>
+<td align="right">59.9</td>
+</tr>
+<tr class="even">
+<td align="left">mouse</td>
+<td align="left">all</td>
+<td align="right">2</td>
+<td align="right">21409</td>
+<td align="right">967</td>
+<td align="right">12248</td>
+<td align="right">190</td>
+<td align="right">4213</td>
+<td align="right">422</td>
+<td align="right">-4023</td>
+<td align="right">4.5</td>
+<td align="right">59.9</td>
+</tr>
+<tr class="odd">
+<td align="left">mouse</td>
+<td align="left">all</td>
+<td align="right">4</td>
+<td align="right">21409</td>
+<td align="right">967</td>
+<td align="right">12248</td>
+<td align="right">63</td>
+<td align="right">816</td>
+<td align="right">167</td>
+<td align="right">-753</td>
+<td align="right">4.5</td>
+<td align="right">59.9</td>
 </tr>
 <tr class="even">
 <td align="left">pfalciparum</td>
-<td align="right">4823</td>
-<td align="right">4824</td>
-<td align="right">0.9283</td>
-<td align="right">0.9285</td>
-<td align="right">4960</td>
-<td align="right">0.9415</td>
-<td align="right">0.02</td>
+<td align="left">10</td>
+<td align="right">0</td>
+<td align="right">5281</td>
+<td align="right">259</td>
+<td align="right">188</td>
+<td align="right">93</td>
+<td align="right">188</td>
+<td align="right">9</td>
+<td align="right">-95</td>
+<td align="right">4.9</td>
+<td align="right">3.7</td>
+</tr>
+<tr class="odd">
+<td align="left">pfalciparum</td>
+<td align="left">10</td>
+<td align="right">2</td>
+<td align="right">5281</td>
+<td align="right">259</td>
+<td align="right">188</td>
+<td align="right">45</td>
+<td align="right">68</td>
 <td align="right">1</td>
-<td align="right">-136</td>
+<td align="right">-23</td>
+<td align="right">4.9</td>
+<td align="right">3.7</td>
+</tr>
+<tr class="even">
+<td align="left">pfalciparum</td>
+<td align="left">10</td>
+<td align="right">4</td>
+<td align="right">5281</td>
+<td align="right">259</td>
+<td align="right">188</td>
+<td align="right">4</td>
+<td align="right">10</td>
+<td align="right">0</td>
+<td align="right">-6</td>
+<td align="right">4.9</td>
+<td align="right">3.7</td>
+</tr>
+<tr class="odd">
+<td align="left">pfalciparum</td>
+<td align="left">50</td>
+<td align="right">0</td>
+<td align="right">5281</td>
+<td align="right">259</td>
+<td align="right">563</td>
+<td align="right">154</td>
+<td align="right">563</td>
+<td align="right">29</td>
+<td align="right">-409</td>
+<td align="right">4.9</td>
+<td align="right">11.2</td>
+</tr>
+<tr class="even">
+<td align="left">pfalciparum</td>
+<td align="left">50</td>
+<td align="right">2</td>
+<td align="right">5281</td>
+<td align="right">259</td>
+<td align="right">563</td>
+<td align="right">90</td>
+<td align="right">164</td>
+<td align="right">15</td>
+<td align="right">-74</td>
+<td align="right">4.9</td>
+<td align="right">11.2</td>
+</tr>
+<tr class="odd">
+<td align="left">pfalciparum</td>
+<td align="left">50</td>
+<td align="right">4</td>
+<td align="right">5281</td>
+<td align="right">259</td>
+<td align="right">563</td>
+<td align="right">13</td>
+<td align="right">20</td>
+<td align="right">2</td>
+<td align="right">-7</td>
+<td align="right">4.9</td>
+<td align="right">11.2</td>
+</tr>
+<tr class="even">
+<td align="left">pfalciparum</td>
+<td align="left">all</td>
+<td align="right">0</td>
+<td align="right">5281</td>
+<td align="right">259</td>
+<td align="right">2933</td>
+<td align="right">78</td>
+<td align="right">2933</td>
+<td align="right">155</td>
+<td align="right">-2855</td>
+<td align="right">4.9</td>
+<td align="right">58.4</td>
+</tr>
+<tr class="odd">
+<td align="left">pfalciparum</td>
+<td align="left">all</td>
+<td align="right">2</td>
+<td align="right">5281</td>
+<td align="right">259</td>
+<td align="right">2933</td>
+<td align="right">57</td>
+<td align="right">954</td>
+<td align="right">103</td>
+<td align="right">-897</td>
+<td align="right">4.9</td>
+<td align="right">58.4</td>
+</tr>
+<tr class="even">
+<td align="left">pfalciparum</td>
+<td align="left">all</td>
+<td align="right">4</td>
+<td align="right">5281</td>
+<td align="right">259</td>
+<td align="right">2933</td>
+<td align="right">11</td>
+<td align="right">137</td>
+<td align="right">27</td>
+<td align="right">-126</td>
+<td align="right">4.9</td>
+<td align="right">58.4</td>
 </tr>
 <tr class="odd">
 <td align="left">spombe</td>
-<td align="right">4496</td>
-<td align="right">4483</td>
-<td align="right">0.9045</td>
-<td align="right">0.9019</td>
-<td align="right">4613</td>
-<td align="right">0.9163</td>
-<td align="right">-0.26</td>
-<td align="right">-13</td>
+<td align="left">10</td>
+<td align="right">0</td>
+<td align="right">5100</td>
+<td align="right">52</td>
+<td align="right">146</td>
+<td align="right">16</td>
+<td align="right">146</td>
+<td align="right">0</td>
 <td align="right">-130</td>
+<td align="right">1.0</td>
+<td align="right">2.9</td>
+</tr>
+<tr class="even">
+<td align="left">spombe</td>
+<td align="left">10</td>
+<td align="right">2</td>
+<td align="right">5100</td>
+<td align="right">52</td>
+<td align="right">146</td>
+<td align="right">6</td>
+<td align="right">40</td>
+<td align="right">0</td>
+<td align="right">-34</td>
+<td align="right">1.0</td>
+<td align="right">2.9</td>
+</tr>
+<tr class="odd">
+<td align="left">spombe</td>
+<td align="left">10</td>
+<td align="right">4</td>
+<td align="right">5100</td>
+<td align="right">52</td>
+<td align="right">146</td>
+<td align="right">1</td>
+<td align="right">5</td>
+<td align="right">0</td>
+<td align="right">-4</td>
+<td align="right">1.0</td>
+<td align="right">2.9</td>
+</tr>
+<tr class="even">
+<td align="left">spombe</td>
+<td align="left">50</td>
+<td align="right">0</td>
+<td align="right">5100</td>
+<td align="right">52</td>
+<td align="right">626</td>
+<td align="right">27</td>
+<td align="right">626</td>
+<td align="right">5</td>
+<td align="right">-599</td>
+<td align="right">1.0</td>
+<td align="right">12.4</td>
+</tr>
+<tr class="odd">
+<td align="left">spombe</td>
+<td align="left">50</td>
+<td align="right">2</td>
+<td align="right">5100</td>
+<td align="right">52</td>
+<td align="right">626</td>
+<td align="right">12</td>
+<td align="right">134</td>
+<td align="right">3</td>
+<td align="right">-122</td>
+<td align="right">1.0</td>
+<td align="right">12.4</td>
+</tr>
+<tr class="even">
+<td align="left">spombe</td>
+<td align="left">50</td>
+<td align="right">4</td>
+<td align="right">5100</td>
+<td align="right">52</td>
+<td align="right">626</td>
+<td align="right">1</td>
+<td align="right">12</td>
+<td align="right">2</td>
+<td align="right">-11</td>
+<td align="right">1.0</td>
+<td align="right">12.4</td>
+</tr>
+<tr class="odd">
+<td align="left">spombe</td>
+<td align="left">all</td>
+<td align="right">0</td>
+<td align="right">5100</td>
+<td align="right">52</td>
+<td align="right">2859</td>
+<td align="right">16</td>
+<td align="right">2859</td>
+<td align="right">27</td>
+<td align="right">-2843</td>
+<td align="right">1.0</td>
+<td align="right">56.6</td>
+</tr>
+<tr class="even">
+<td align="left">spombe</td>
+<td align="left">all</td>
+<td align="right">2</td>
+<td align="right">5100</td>
+<td align="right">52</td>
+<td align="right">2859</td>
+<td align="right">7</td>
+<td align="right">888</td>
+<td align="right">16</td>
+<td align="right">-881</td>
+<td align="right">1.0</td>
+<td align="right">56.6</td>
+</tr>
+<tr class="odd">
+<td align="left">spombe</td>
+<td align="left">all</td>
+<td align="right">4</td>
+<td align="right">5100</td>
+<td align="right">52</td>
+<td align="right">2859</td>
+<td align="right">1</td>
+<td align="right">120</td>
+<td align="right">8</td>
+<td align="right">-119</td>
+<td align="right">1.0</td>
+<td align="right">56.6</td>
 </tr>
 <tr class="even">
 <td align="left">tthermophila</td>
-<td align="right">21439</td>
-<td align="right">21250</td>
-<td align="right">0.8369</td>
-<td align="right">0.8295</td>
-<td align="right">20954</td>
-<td align="right">0.8309</td>
-<td align="right">-0.74</td>
-<td align="right">-189</td>
-<td align="right">296</td>
+<td align="left">10</td>
+<td align="right">0</td>
+<td align="right">26456</td>
+<td align="right">946</td>
+<td align="right">927</td>
+<td align="right">11</td>
+<td align="right">927</td>
+<td align="right">56</td>
+<td align="right">-916</td>
+<td align="right">3.6</td>
+<td align="right">3.6</td>
+</tr>
+<tr class="odd">
+<td align="left">tthermophila</td>
+<td align="left">10</td>
+<td align="right">2</td>
+<td align="right">26456</td>
+<td align="right">946</td>
+<td align="right">927</td>
+<td align="right">1</td>
+<td align="right">139</td>
+<td align="right">9</td>
+<td align="right">-138</td>
+<td align="right">3.6</td>
+<td align="right">3.6</td>
+</tr>
+<tr class="even">
+<td align="left">tthermophila</td>
+<td align="left">10</td>
+<td align="right">4</td>
+<td align="right">26456</td>
+<td align="right">946</td>
+<td align="right">927</td>
+<td align="right">0</td>
+<td align="right">8</td>
+<td align="right">2</td>
+<td align="right">-8</td>
+<td align="right">3.6</td>
+<td align="right">3.6</td>
+</tr>
+<tr class="odd">
+<td align="left">tthermophila</td>
+<td align="left">50</td>
+<td align="right">0</td>
+<td align="right">26456</td>
+<td align="right">946</td>
+<td align="right">4728</td>
+<td align="right">315</td>
+<td align="right">4728</td>
+<td align="right">103</td>
+<td align="right">-4413</td>
+<td align="right">3.6</td>
+<td align="right">18.5</td>
+</tr>
+<tr class="even">
+<td align="left">tthermophila</td>
+<td align="left">50</td>
+<td align="right">2</td>
+<td align="right">26456</td>
+<td align="right">946</td>
+<td align="right">4728</td>
+<td align="right">90</td>
+<td align="right">875</td>
+<td align="right">17</td>
+<td align="right">-785</td>
+<td align="right">3.6</td>
+<td align="right">18.5</td>
+</tr>
+<tr class="odd">
+<td align="left">tthermophila</td>
+<td align="left">50</td>
+<td align="right">4</td>
+<td align="right">26456</td>
+<td align="right">946</td>
+<td align="right">4728</td>
+<td align="right">8</td>
+<td align="right">42</td>
+<td align="right">3</td>
+<td align="right">-34</td>
+<td align="right">3.6</td>
+<td align="right">18.5</td>
+</tr>
+<tr class="even">
+<td align="left">tthermophila</td>
+<td align="left">all</td>
+<td align="right">0</td>
+<td align="right">26456</td>
+<td align="right">946</td>
+<td align="right">16547</td>
+<td align="right">273</td>
+<td align="right">16547</td>
+<td align="right">530</td>
+<td align="right">-16274</td>
+<td align="right">3.6</td>
+<td align="right">64.9</td>
+</tr>
+<tr class="odd">
+<td align="left">tthermophila</td>
+<td align="left">all</td>
+<td align="right">2</td>
+<td align="right">26456</td>
+<td align="right">946</td>
+<td align="right">16547</td>
+<td align="right">105</td>
+<td align="right">4546</td>
+<td align="right">188</td>
+<td align="right">-4441</td>
+<td align="right">3.6</td>
+<td align="right">64.9</td>
+</tr>
+<tr class="even">
+<td align="left">tthermophila</td>
+<td align="left">all</td>
+<td align="right">4</td>
+<td align="right">26456</td>
+<td align="right">946</td>
+<td align="right">16547</td>
+<td align="right">13</td>
+<td align="right">322</td>
+<td align="right">18</td>
+<td align="right">-309</td>
+<td align="right">3.6</td>
+<td align="right">64.9</td>
 </tr>
 </tbody>
 </table>
-<pre class="r"><code>n_not_improved &lt;- sum(pwm$diff_points &lt;= 0.05)
-n_below_rel &lt;- sum(pwm$diff_tp_vs_release_w0 &lt; 0)</code></pre>
-<p>Against the release first-ATG rule (w 0), the PWM choice had fewer
-exact matches in 7 of 8 organisms (T. thermophila higher). Within the
-development version, it was higher by 1 exact match in <em>P.
-falciparum</em> and by 69 in <em>C. reinhardtii</em>, and did not
-improve accuracy in 7 of 8.</p>
+<pre class="r"><code>la50 &lt;- la %&gt;% filter(window_codons == &quot;50&quot;, margin_bits == 0)
+oth &lt;- la50 %&gt;% filter(org != &quot;creinhardtii&quot;)
+la_set &lt;- la %&gt;% filter(window_codons %in% c(&quot;10&quot;, &quot;50&quot;), margin_bits %in% c(2, 4))
+cre_best &lt;- la_set %&gt;% filter(org == &quot;creinhardtii&quot;) %&gt;% slice_max(net, n = 1)
+n_all_neg &lt;- la_set %&gt;% filter(org != &quot;creinhardtii&quot;) %&gt;% group_by(org) %&gt;% summarise(neg = all(net &lt; 0)) %&gt;%
+  pull(neg) %&gt;% sum()</code></pre>
+<p>Among CDSs starting at the first ATG, a later ATG within 50 codons
+scored higher in 10.5–20.9% (organisms). Annotated starts at a later
+ATG: 1.0–4.9% in seven organisms and 19.5% in <em>C. reinhardtii</em>.
+With windows of 10 or 50 codons and margins of 2 or 4 bits, the rule
+lost exact matches at every setting in 7 of the 7 other organisms; in
+<em>C. reinhardtii</em> the best setting (50 codons, 4 bits) gained 83
+(247 gained, 164 lost).</p>
+<pre class="r"><code>check_text(&quot;methods: later ATG outscores first, min (%)&quot;, round(min(la50$outscored_pct), 1), 10.5)
+check_text(&quot;methods: later ATG outscores first, max (%)&quot;, round(max(la50$outscored_pct), 1), 20.9)
+check_text(&quot;methods: annotated later ATG min, other 7 (%)&quot;, round(min(oth$later_pct), 1), 1.0)
+check_text(&quot;methods: annotated later ATG max, other 7 (%)&quot;, round(max(oth$later_pct), 1), 4.9)
+check_text(&quot;methods: C. reinhardtii annotated later ATG (%)&quot;, round(la50$later_pct[la50$org == &quot;creinhardtii&quot;], 1), 19.5)
+check_text(&quot;methods: organisms losing at every setting&quot;, n_all_neg, 7)
+check_text(&quot;methods: C. reinhardtii best net&quot;, cre_best$net, 83)
+check_text(&quot;methods: C. reinhardtii best gained&quot;, cre_best$gain, 247)
+check_text(&quot;methods: C. reinhardtii best lost&quot;, cre_best$loss, 164)</code></pre>
 </div>
 <div id="parameter-grid" class="section level3">
 <h3>Parameter grid</h3>
@@ -6900,7 +7824,6 @@ check_text(&quot;methods L278: true start median min (bits)&quot;, round(min(ts$
 check_text(&quot;methods L278: true start median max (bits)&quot;, round(max(ts$p50), 1), 1.3)
 check_text(&quot;methods L278: internal ATG median, highest (bits; -0.45 rounds either way)&quot;, max(ia$p50), -0.5, tol = 0.051)
 check_text(&quot;methods L278: internal ATG median, lowest (bits)&quot;, round(min(ia$p50), 1), -1.6)
-check_text(&quot;methods L280: later ATG by context, no improvement (n orgs)&quot;, n_not_improved, 7)
 check_text(&quot;methods L284: grid values&quot;, nrow(both), 78)
 check_text(&quot;methods L284: alpha max&quot;, max(ALPHAS), 3)
 check_text(&quot;methods L284: w max per bit&quot;, max(W_BITS), 69)
@@ -11098,275 +12021,323 @@ pts)</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">results L49: fixed PWM median exact F1 complete</td>
-<td align="left">0.728</td>
-<td align="left">0.728</td>
-<td align="left">TRUE</td>
-</tr>
-<tr class="odd">
 <td align="left">results L51: PASA ORFs</td>
 <td align="left">792</td>
 <td align="left">792</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results L51: StringTie ORFs</td>
 <td align="left">3037</td>
 <td align="left">3037</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results L51: PASA seeds min changed</td>
 <td align="left">29</td>
 <td align="left">29</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results L51: PASA seeds max changed</td>
 <td align="left">61</td>
 <td align="left">61</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results L52: StringTie seeds min changed</td>
 <td align="left">47</td>
 <td align="left">47</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results L52: StringTie seeds max changed</td>
 <td align="left">144</td>
 <td align="left">144</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results L56: C. reinhardtii lowest exact F1 complete (1
 = yes)</td>
 <td align="left">1</td>
 <td align="left">1</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results L56: C. reinhardtii exact F1 complete
 (release)</td>
 <td align="left">0.747</td>
 <td align="left">0.747</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results L57: C. reinhardtii later ATG (%)</td>
 <td align="left">19.6</td>
 <td align="left">19.6</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results L58: other organisms later ATG min (%)</td>
 <td align="left">0.7</td>
 <td align="left">0.7</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results L58: other organisms later ATG max (%)</td>
 <td align="left">5</td>
 <td align="left">5</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results L73: 5’ partials, correct stop but wrong start
 (n)</td>
 <td align="left">9397</td>
 <td align="left">9397</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results L74: all of them trimmed to an internal ATG (1
 = yes)</td>
 <td align="left">1</td>
 <td align="left">1</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results L75: start-present left open, median over
 organisms (about 5%)</td>
 <td align="left">5</td>
 <td align="left">5</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results L75: start-present left open, min (%)</td>
 <td align="left">0.7</td>
 <td align="left">0.7</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results L75: start-present left open, max (%)</td>
 <td align="left">8.5</td>
 <td align="left">8.5</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results L78: truncated trimmed, d &lt; 20 (%)</td>
 <td align="left">30</td>
 <td align="left">30</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results L79: truncated trimmed, d &gt;= 500 (%)</td>
 <td align="left">7</td>
 <td align="left">7</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results L79: UTR extensions left open, d &lt; 10
 (%)</td>
 <td align="left">36</td>
 <td align="left">36</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results L80: UTR extensions left open, d 100-199
 (%)</td>
 <td align="left">12</td>
 <td align="left">12</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results L85: GM12878 truncated trimmed more at d &lt;
 20 than at d &gt;= 20 in all three (1 = yes)</td>
 <td align="left">1</td>
 <td align="left">1</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results L84: cut model, d fractions &lt; 20 nt within
 0.01 (1 = yes)</td>
 <td align="left">1</td>
 <td align="left">1</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results L87: open 5’ UTR median length, min (nt)</td>
 <td align="left">27</td>
 <td align="left">27</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results L87: open 5’ UTR median length, max (nt)</td>
 <td align="left">118</td>
 <td align="left">118</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">E29: stop F1 unchanged by the prior (max |change|,
 points)</td>
 <td align="left">0</td>
 <td align="left">0</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results L90: complete exact F1 gain min (pts)</td>
 <td align="left">0.02</td>
 <td align="left">0.02</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results L90: complete exact F1 gain max (pts)</td>
 <td align="left">2.6</td>
 <td align="left">2.6</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results L90: fragments exact F1 loss min (pts)</td>
 <td align="left">0.6</td>
 <td align="left">0.6</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results L90: fragments exact F1 loss max (pts)</td>
 <td align="left">1.3</td>
 <td align="left">1.3</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results L91: mixed inputs lowered (n of 24)</td>
 <td align="left">24</td>
 <td align="left">24</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results L95: benchmark fragments truly truncated
 (%)</td>
 <td align="left">76</td>
 <td align="left">76</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results L95: benchmark mixed inputs truly truncated
 (%)</td>
 <td align="left">76</td>
 <td align="left">76</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results L96: GM12878 began inside the CDS, min (%)</td>
 <td align="left">7.5</td>
 <td align="left">7.5</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results L96: GM12878 began inside the CDS, max (%)</td>
 <td align="left">13.6</td>
 <td align="left">13.6</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results L97: GM12878 truncated share, LRAA (%)</td>
 <td align="left">21</td>
 <td align="left">21</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results L97: GM12878 truncated share, StringTie
 (%)</td>
 <td align="left">20</td>
 <td align="left">20</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results L97: GM12878 truncated share, Trinity (%)</td>
 <td align="left">37</td>
 <td align="left">37</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">results L98: benchmark weight, low (two times)</td>
 <td align="left">2</td>
 <td align="left">2</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">results L98: benchmark weight, high (four times)</td>
 <td align="left">4</td>
 <td align="left">4</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">discussion L109: fragment and mixed inputs truly
 truncated (%)</td>
 <td align="left">76</td>
 <td align="left">76</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">discussion L110: GM12878 range low (%)</td>
 <td align="left">20</td>
 <td align="left">20</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">discussion L110: GM12878 range high (%)</td>
 <td align="left">37</td>
 <td align="left">37</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">methods: later ATG outscores first, min (%)</td>
+<td align="left">10.5</td>
+<td align="left">10.5</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">methods: later ATG outscores first, max (%)</td>
+<td align="left">20.9</td>
+<td align="left">20.9</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">methods: annotated later ATG min, other 7 (%)</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">methods: annotated later ATG max, other 7 (%)</td>
+<td align="left">4.9</td>
+<td align="left">4.9</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">methods: C. reinhardtii annotated later ATG (%)</td>
+<td align="left">19.5</td>
+<td align="left">19.5</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">methods: organisms losing at every setting</td>
+<td align="left">7</td>
+<td align="left">7</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">methods: C. reinhardtii best net</td>
+<td align="left">83</td>
+<td align="left">83</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">methods: C. reinhardtii best gained</td>
+<td align="left">247</td>
+<td align="left">247</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">methods: C. reinhardtii best lost</td>
+<td align="left">164</td>
+<td align="left">164</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="odd">
@@ -11425,79 +12396,72 @@ rounds either way)</td>
 <td align="left">TRUE</td>
 </tr>
 <tr class="even">
-<td align="left">methods L280: later ATG by context, no improvement (n
-orgs)</td>
-<td align="left">7</td>
-<td align="left">7</td>
-<td align="left">TRUE</td>
-</tr>
-<tr class="odd">
 <td align="left">methods L284: grid values</td>
 <td align="left">78</td>
 <td align="left">78</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">methods L284: alpha max</td>
 <td align="left">3</td>
 <td align="left">3</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">methods L284: w max per bit</td>
 <td align="left">69</td>
 <td align="left">69</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">methods L290: cells within 0.5 pt</td>
 <td align="left">8</td>
 <td align="left">8</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">methods L290: plateau alpha min</td>
 <td align="left">0.2</td>
 <td align="left">0.2</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">methods L290: plateau alpha max</td>
 <td align="left">0.5</td>
 <td align="left">0.5</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">methods L290: plateau w min per bit</td>
 <td align="left">7</td>
 <td align="left">7</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">methods L290: plateau w max per bit</td>
 <td align="left">35</td>
 <td align="left">35</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">methods L291: LOO folds choosing default</td>
 <td align="left">7</td>
 <td align="left">7</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">methods L291: Kozak improved at every alpha (both)</td>
 <td align="left">1</td>
 <td align="left">1</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">methods L292: Kozak term at 0.4, complete (pts)</td>
 <td align="left">0.6</td>
 <td align="left">0.6</td>
 <td align="left">TRUE</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">methods L293: Kozak term at 0.4, fragments (pts)</td>
 <td align="left">2.8</td>
 <td align="left">2.8</td>

@@ -6,8 +6,10 @@ Builds, from tables already in this repository (no new runs):
                                 release commits and at v6.0.0 / first PyTD port (E08)
   benchmark_per_input.tsv       every benchmark input x method that the manuscript reports
                                 (E07, E25, E28); supplied as an additional data file
-  start_choice_legacy.tsv       exact matches on complete inputs: first in-frame ATG vs a later ATG
-                                chosen by the PWM, v6.0.0 vs the scale-corrected PWM, release (E09)
+  start_choice_legacy.tsv       exact matches on complete inputs: v6.0.0, the release first-ATG rule
+                                without the Kozak term, release (E09, E40)
+  later_atg_kozak.tsv           (read, not written) later in-frame ATGs scored with the released Kozak
+                                model, from analyses/start_param_sensitivity/later_atg_kozak_v1.py (E41)
   long_orf_length_by_gc.tsv     L* by G+C, with the 2017 table it replaces (E10)
   benchmark_truth_sets.tsv      annotation file, transcripts filtered and UTRs added per organism (E07)
 and prints the LaTeX table bodies used in manuscript/supplement.tex.
@@ -104,11 +106,10 @@ def start_choice():
     rel = tsv("data/benchmark/final_v7/all_scores.tsv")
     s = summ[summ.variant == "complete"]
     r = rel[(rel.variant == "complete") & (rel.tool == "pytd_v7")]
-    # first ATG: release code, alpha 0.4, no Kozak term (grid cell a0.4_w0, E40); the other columns are v6.0.0
-    # and two unreleased development versions (PWM choice pytd_dev_pwm; scale-corrected PWM pytd 27bfb5e)
+    # first ATG: release code, alpha 0.4, no Kozak term (grid cell a0.4_w0, E40); v6.0.0 is the earlier release
     g = tsv("data/start_param_sensitivity/release/grid_scores.tsv")
     g = g[(g.config == "a0.4_w0") & (g.input == "complete")]
-    tools = ["pytd_dev_pwm", "perl_td_v600", "pytd"]
+    tools = ["perl_td_v600"]
     rows = []
     for o in ORGS:
         row = {"org": o, "n_truth": int(s[s.org == o].n_truth.iloc[0])}
@@ -125,12 +126,23 @@ def start_choice():
         rows.append(row)
     t = pd.DataFrame(rows)
     t.to_csv(f"{OUT}/start_choice_legacy.tsv", sep="\t", index=False)
-    print("% start_choice_legacy.tsv (exact matches; first ATG (release code, w 0), PWM later ATG, v6.0.0, PWM scale corrected, release)")
+    print("% start_choice_legacy.tsv (exact matches; v6.0.0, first ATG (release code, w 0), release)")
     for _, x in t.iterrows():
-        cells = [fmt_int(x[f"{k}_tp_exact"]) for k in ["release_w0", "pytd_dev_pwm", "perl_td_v600", "pytd", "pytd_v7"]]
+        cells = [fmt_int(x[f"{k}_tp_exact"]) for k in ["perl_td_v600", "release_w0", "pytd_v7"]]
         print(f"\\textit{{{ORG_LABEL[x.org]}}} & {fmt_int(x.n_truth)} & " + " & ".join(cells) + " \\\\")
-    med = {k: t[f"{k}_f1_exact"].median() for k in ["release_w0", "pytd_dev_pwm", "perl_td_v600", "pytd", "pytd_v7"]}
+    med = {k: t[f"{k}_f1_exact"].median() for k in ["perl_td_v600", "release_w0", "pytd_v7"]}
     print("median exact F1 & & " + " & ".join(f"{v:.3f}" for v in med.values()) + " \\\\")
+    la = tsv("data/start_refinement/later_atg_kozak.tsv")
+    print("% later_atg_kozak.tsv (annotated start at a later ATG, %; first-ATG CDSs outscored by a later ATG within"
+          " 50 codons, %; net exact matches of the rule at window/margin 10/2, 50/2, 50/4)")
+    for o in ORGS:
+        x = la[la.org == o].set_index(["window_codons", "margin_bits"])
+        a = x.loc[("50", 0)]
+        later = 100 * a.annot_later / a.n_cds
+        outs = 100 * a.first_outscored / (a.n_cds - a.annot_later)
+        nets = [int(x.loc[k].net) for k in [("10", 2), ("50", 2), ("50", 4)]]
+        cells = [f"{later:.1f}", f"{outs:.1f}"] + [f"{v:+,}".replace(",", "{,}").replace("-", "$-$") for v in nets]
+        print(f"\\textit{{{ORG_LABEL[o]}}} & {fmt_int(a.n_cds)} & " + " & ".join(cells) + " \\\\")
     seeds = tsv("data/start_refinement/seed_start_changes.tsv")
     print("% seed_start_changes.tsv")
     for ds, g in seeds.groupby("dataset", sort=False):
