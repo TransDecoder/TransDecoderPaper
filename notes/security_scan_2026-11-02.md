@@ -31,6 +31,6 @@ Not done:
 
 Recommended ongoing:
 - **GitHub:** enable secret scanning with push protection, Dependabot alerts and CodeQL on both code repos.
-- **PyPI:** 2FA on the account; a project-scoped token or trusted publishing from GitHub Actions; delete
-  `gs://mdl-bhaas-tmp/.pypirc`.
+- **PyPI:** 2FA on the account; a project-scoped token or trusted publishing from GitHub Actions. (The copy
+  `gs://mdl-bhaas-tmp/.pypirc` was deleted by Brian on 2026-11-02.)
 - **Before each release:** rerun this checklist.
