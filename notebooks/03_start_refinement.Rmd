@@ -1041,12 +1041,18 @@ s2a <- lapply(names(TITLES), function(i)
 GA <- c("0.2", "0.4", "0.6", "1.0"); GW <- c(0, 17, 35)
 METRICS <- c(MANE_sens_exact_given_assembled = "MANE exact | assembled",
              pred_complete_start_precision = "exact-start share")
-s2b_dat <- gm %>% filter(config != "norefine") %>%
+# fractions from the counts (the table stores them rounded to 4 digits, which can flip the last printed digit)
+gm_exact <- gm %>% mutate(
+  MANE_sens_exact_given_assembled = MANE_exact / MANE_assembled,
+  pred_complete_start_precision = pred_complete_gencode_exact / (pred_complete_gencode_exact + pred_complete_compatible_not_exact))
+stopifnot(max(abs(gm_exact$MANE_sens_exact_given_assembled - gm$MANE_sens_exact_given_assembled)) < 1e-4,
+          max(abs(gm_exact$pred_complete_start_precision - gm$pred_complete_start_precision)) < 1e-4)
+s2b_dat <- gm_exact %>% filter(config != "norefine") %>%
   pivot_longer(names(METRICS), names_to = "metric", values_to = "val") %>%
   mutate(v = 100 * val, x = factor(w_bits(weight), levels = w_bits(GW)),
          y = factor(formatC(alpha, format = "f", digits = 1), levels = GA),
          default = config == "a0.4_w17")
-nr <- gm %>% filter(config == "norefine")
+nr <- gm_exact %>% filter(config == "norefine")
 s2b <- list()
 for (mt in names(METRICS)) for (asm in c("lraa", "stringtie", "trinity")) {
   nrv <- 100 * nr[[mt]][nr$assembly == asm]

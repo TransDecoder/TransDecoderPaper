@@ -42,7 +42,11 @@ asm_factor <- function(x) factor(x, levels = ASM, labels = ASM_LABEL[ASM])
 gmr <- read_tab("gm12878", "release_pin", "gm_runs.tsv")
 gm_v <- function(a, cfg, col) gmr[[col]][gmr$assembly == a & gmr$config == cfg]
 grid <- gmr %>% filter(config == "norefine" | grepl("^a[0-9.]+_w", config)) %>%
-  mutate(alpha = suppressWarnings(as.numeric(alpha)), weight = suppressWarnings(as.numeric(weight)))
+  mutate(alpha = suppressWarnings(as.numeric(alpha)), weight = suppressWarnings(as.numeric(weight)),
+         # fractions from the counts; the stored 4-digit values can flip the last quoted digit (e.g. 0.7755)
+         MANE_sens_exact_given_assembled = MANE_exact / MANE_assembled,
+         pred_complete_start_precision = pred_complete_gencode_exact /
+           (pred_complete_gencode_exact + pred_complete_compatible_not_exact))
 sweep_v7 <- read_tab("gm12878", "final_v7", "08_minaa_sweep_v7.tsv")
 by_len <- read_tab("gm12878", "release_pin", "no_overlap_by_length.tsv") %>% mutate(frac = no_gencode_cds_overlap / n)
 pm <- read_tab("gm12878", "release_pin", "protein_matches.tsv") %>% separate(label, c("assembly", "setting"), sep = "[.]")
@@ -108,7 +112,7 @@ cnt_set("wrong-start complete, default", "a0.4_w17", WS, c(lraa=2113, stringtie=
 for (x in list(c("lraa", 2.9), c("stringtie", 3.0), c("trinity", 2.1))) chk(paste("Kozak term, MANE exact (points)", x[1]), dpt(x[1], "a0.4_w17", "a0.4_w0", M), as.numeric(x[2]))
 for (x in list(c("lraa", 1.1), c("stringtie", 0.7), c("trinity", 0.8))) chk(paste("Kozak term, exact-start share (points)", x[1]), dpt(x[1], "a0.4_w17", "a0.4_w0", SH), as.numeric(x[2]))
 chk_set("MANE exact given assembled, alpha 1 (%)", "a1_w17", M, c(lraa=94.9, stringtie=93.7, trinity=91.1))
-chk_set("exact-start share, alpha 1 (%)", "a1_w17", SH, c(lraa=81.9, stringtie=77.5, trinity=56.6))
+chk_set("exact-start share, alpha 1 (%)", "a1_w17", SH, c(lraa=81.9, stringtie=77.6, trinity=56.6))
 # caption of Fig. 7a: no-refinement values
 chk_set("caption 7a no refinement MANE", "norefine", M, c(lraa=0.59, stringtie=0.60, trinity=0.63), 1, 2)
 chk_set("caption 7a no refinement exact-start share", "norefine", SH, c(lraa=0.82, stringtie=0.74, trinity=0.53), 1, 2)
