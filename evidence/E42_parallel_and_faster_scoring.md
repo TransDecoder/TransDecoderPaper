@@ -3,7 +3,20 @@
 Engineering record, not a paper claim yet. Asked by Brian Haas (2026-11-02): parallelise candidate scoring and
 the decoy step, then find other speedups, keeping outputs identical and deterministic.
 
-## Code (PyTD, local branches, not pushed or merged; BH to decide)
+## Release
+PyTD **v0.3.0** (2026-11-02, BH approved): `devel` branch created from dev/faster-serial plus a release commit
+(version 0.3.0, NumPy declared as a dependency, README `--cpu`, changelog). `main` fast-forwarded d64906d -> b3c5f15,
+tag v0.3.0, GitHub release (Latest), PyPI `pytransdecoder` 0.3.0. Pre-release checks:
+- wheel/sdist built from a clean `git archive` of devel; `twine check` passed;
+- 84 of 84 tests pass from the installed wheel in fresh venvs on Python 3.9 (NumPy 2.0.2, Biopython 1.85),
+  3.11 (2.4.6, 1.88) and 3.12 (2.5.4, 1.88);
+- end to end, PyPI v0.2.1 (`--cpu 1`) vs the v0.3.0 wheel (`--cpu 1` and `--cpu 4`) on Python 3.9 and 3.12:
+  human fragments.wRand, P. falciparum fragments, T. thermophila fragments (ciliate code), human fragments with
+  homology start assist; 16 of 16 comparisons identical (17-18 files each);
+- `spawn` start method forced, `--cpu 3`: identical to `--cpu 1` (S. pombe fragments);
+- after upload, `pip install pytransdecoder==0.3.0` in a clean venv, `pyTransdecoder --cpu 4`: identical.
+
+## Code (PyTD branches, merged into devel/main for v0.3.0)
 - `dev/parallel-scoring` 98d77fb: `--cpu N` (predict and full pipeline). New `core/parallel.py`; six-frame
   candidate scoring and decoy shuffling/scoring run in N fork worker processes. Work is chunked in input order
   and reassembled in that order. Each decoy shuffle is seeded per transcript (`seed:tid:k`), so results do not

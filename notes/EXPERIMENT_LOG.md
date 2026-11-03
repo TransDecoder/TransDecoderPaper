@@ -1190,6 +1190,7 @@ stating the catalogued Ribo-seq cost in the manuscript (G6).
   - Biopython translates and complements per character or codon, so memo and lookup tables built from Biopython are
     exact.
   - Within a frame, every real stop is congruent to the start mod 3, so a bisect finds the first stop.
-- **Open:** LongOrfs `--cpu` (62 s of the 222 s on Trinity). Merging and releasing the branches is BH's decision;
-  no Perl port is needed because outputs are unchanged.
+- **Released:** PyTD v0.3.0 (BH, 2026-11-02): main b3c5f15, tag, GitHub release, PyPI; release checks in E42.
+  No Perl port is needed because outputs are unchanged.
+- **Open:** LongOrfs `--cpu` (62 s of the 222 s on Trinity).
 - **Pointers:** `pipeline/parallel_scoring/`, `data/parallel_scoring/v{1,2}.*.tsv`, E42.
