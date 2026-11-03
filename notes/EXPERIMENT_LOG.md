@@ -1192,7 +1192,7 @@ stating the catalogued Ribo-seq cost in the manuscript (G6).
   - Within a frame, every real stop is congruent to the start mod 3, so a bisect finds the first stop.
 - **Released:** PyTD v0.3.0 (BH, 2026-11-02): main b3c5f15, tag, GitHub release, PyPI; release checks in E42.
   No Perl port is needed because outputs are unchanged.
-- **LongOrfs `--cpu` (2026-11-03, devel 725244f, unreleased):** 226 of 226 byte-identical; LongOrfs median 3.4x
+- **LongOrfs `--cpu` (2026-11-03, released as v0.4.0):** 226 of 226 byte-identical; LongOrfs median 3.4x
   faster at `--cpu 8` (Trinity 62 -> 14.5 s). Lesson: per-chunk model-ID numbering is exact only because IDs of
   distinct accessions cannot collide; repeated accessions need the global set (my first version reset it per
   serial batch, and a small-batch test caught it).

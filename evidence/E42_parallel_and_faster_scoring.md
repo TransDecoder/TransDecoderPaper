@@ -68,7 +68,7 @@ tag v0.3.0, GitHub release (Latest), PyPI `pytransdecoder` 0.3.0. Pre-release ch
 - Not changed in behaviour: Biopython's partial-codon warning is no longer logged by the memoised path. Logs
   only, no output change.
 
-## LongOrfs --cpu (2026-11-03; PyTD devel 725244f, not yet released)
+## LongOrfs --cpu (2026-11-03; released as PyTD v0.4.0)
 Asked by BH ("look into adding --cpu to LongOrfs"). In v0.3.0 at `--cpu 8`, LongOrfs was the largest remaining
 single-process step (62 s of 222 s on GM12878 Trinity).
 - Change:
@@ -97,3 +97,14 @@ single-process step (62 s of 222 s on GM12878 Trinity).
 - End to end, `pyTransdecoder --cpu 8`:
   - human complete 34 s (v0.3.0 40 s);
   - T. thermophila complete.unstranded 78 s (v0.3.0 95 s).
+
+### Release v0.4.0 (2026-11-03, BH: "ship this as 0.4.0")
+- main fast-forwarded b3c5f15 -> a285464 (= devel); tag v0.4.0; GitHub release (Latest); PyPI `pytransdecoder` 0.4.0.
+- Checks:
+  - wheel/sdist built from `git archive`; `twine check` passed;
+  - 91 of 91 tests pass from the installed wheel on Python 3.9, 3.11 and 3.12;
+  - end to end, `pyTransdecoder` v0.3.0 against the 0.4.0 wheel at `--cpu 4`: 18 of 18 files identical on human
+    fragments.wRand and on T. thermophila complete.unstranded;
+  - after upload, `pip install pytransdecoder==0.4.0` in a clean venv: output identical to v0.3.0.
+- Python 3.12 shows a "multi-threaded ... fork()" DeprecationWarning, but only inside the pytest runner (also in
+  v0.3.0). There are no warnings in CLI runs.
