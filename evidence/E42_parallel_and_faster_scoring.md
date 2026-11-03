@@ -67,3 +67,33 @@ tag v0.3.0, GitHub release (Latest), PyPI `pytransdecoder` 0.3.0. Pre-release ch
   - Decoy PRNG draws are sequential within a shuffle but split across workers.
 - Not changed in behaviour: Biopython's partial-codon warning is no longer logged by the memoised path. Logs
   only, no output change.
+
+## LongOrfs --cpu (2026-11-03; PyTD devel 725244f, not yet released)
+Asked by BH ("look into adding --cpu to LongOrfs"). In v0.3.0 at `--cpu 8`, LongOrfs was the largest remaining
+single-process step (62 s of 222 s on GM12878 Trinity).
+- Change:
+  - transcripts are split into consecutive chunks; workers extract ORFs and format the GFF3/CDS/PEP text, and the
+    chunks are written in input order;
+  - the input is read once (it was read three times) and base counts are summed per chunk (integers, so exact);
+  - model IDs `<acc>.pN` of different accessions never coincide, because the last `.p` of an ID starts its numeric
+    suffix, so chunks number them independently. Inputs with repeated accessions fall back to one process;
+  - `--cpu 1` streams in batches with one model-ID set per run;
+  - `pyTransdecoder --cpu` also applies to LongOrfs. With N > 1 the transcripts are held in memory (Trinity: 570 MB
+    peak against 72 MB).
+- Tests: 91 pass, 7 new:
+  - 1 worker against 2, 3 and 8; both strand settings; universal and ciliate codes;
+  - accessions shaped like model IDs; repeated accessions, also across small serial batches; gene-trans map;
+    complete-only.
+  - The repeated-accession output is identical to released v0.3.0.
+- Series: `pipeline/parallel_scoring/{run_lo_v3.sh,launch_lo_v3.sh,summarise_lo_v3.py}` ->
+  `data/parallel_scoring/lo_v3.{parity,timing}.tsv`. 226 of 226 comparisons byte-identical with the release runs:
+  - LongOrfs at `--cpu 1` and `--cpu 8` on all 108 benchmark inputs and GM12878 LRAA/StringTie/Trinity
+    (5 files each);
+  - `pyTransdecoder --cpu 8` on four inputs (15 LongOrfs + Predict files each).
+- Timing, LongOrfs at `--cpu 8` against v0.3.0 (single process), methods01, load about 21-25:
+  - median 3.4x faster (range 0.9-5.4x);
+  - Trinity 62 -> 14.5 s; T. thermophila unstranded wRand 46 -> 12 s;
+  - the 0.9x case is a 2.3 s input, where starting the pool costs as much as it saves.
+- End to end, `pyTransdecoder --cpu 8`:
+  - human complete 34 s (v0.3.0 40 s);
+  - T. thermophila complete.unstranded 78 s (v0.3.0 95 s).
