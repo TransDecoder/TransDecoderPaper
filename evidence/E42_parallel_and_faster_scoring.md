@@ -108,3 +108,15 @@ single-process step (62 s of 222 s on GM12878 Trinity).
   - after upload, `pip install pytransdecoder==0.4.0` in a clean venv: output identical to v0.3.0.
 - Python 3.12 shows a "multi-threaded ... fork()" DeprecationWarning, but only inside the pytest runner (also in
   v0.3.0). There are no warnings in CLI runs.
+
+### Disk cleanup (2026-11-03, BH approved)
+- The output files of the verification runs in `work/{parallel_scoring,fast_scoring,longorfs_cpu}` were deleted.
+  Kept: runtime_sec.txt, step_sec.tsv, pytd_version.txt, logs and DONE. The parity and timing results are the
+  committed `data/parallel_scoring/*.tsv`. The summarise_* scripts can no longer recompute parity without
+  rerunning.
+- Also deleted:
+  - the Perl `*.transdecoder_dir/decoys/` subdirectories (123: perl_td_v7 benchmark runs and release_pin
+    regression). No script reads them; Perl regenerates them deterministically;
+  - the contents of `$P/_trash`;
+  - this session's scratchpad;
+  - worktrees PY_par, PY_fast and PY_lo, and their merged branches.
