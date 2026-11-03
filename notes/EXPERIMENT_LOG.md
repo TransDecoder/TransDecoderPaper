@@ -1172,3 +1172,24 @@ stating the catalogued Ribo-seq cost in the manuscript (G6).
 - **Result: NOT ADOPTED as a rule (confirms first-ATG design).** Later ATG within 50 codons outscores a true first-ATG start in 10.5-20.9% of CDSs; only 1.0-4.9% of starts are later ATGs (C. reinhardtii 19.5%). Net loss at every window/margin in seven organisms; C. reinhardtii at most +83 of 17,621 (50 codons, 4 bits).
 - Dropped from the paper with it: the PWM-choice column and the "PWM, scale corrected" column of Table S6 and the 0.728 Results sentence (BH).
 - **Pointers:** `analyses/start_param_sensitivity/later_atg_kozak_v1.py`, `data/start_refinement/later_atg_kozak.tsv`, E41.
+
+## 2026-11-02: parallel and faster PyTD scoring, outputs unchanged (E42)
+- **Idea (BH):** parallelise candidate scoring and the decoy step (the decoy step had become a time sink, E24/E25),
+  then other speedups, with identical and deterministic outputs.
+- **What:**
+  - `--cpu N`: worker processes, not threads, because of the GIL. Chunks are taken in input order and decoy
+    shuffles are seeded per transcript (branch dev/parallel-scoring).
+  - Exact serial rewrites (branch dev/faster-serial): a NumPy Markov scorer that adds in the same order, memoised
+    per-codon translation, a regex+bisect ORF finder, Counter tallies, and loading transcripts once.
+- **Outcome:** 206 of 206 comparisons byte-identical, covering all 108 benchmark inputs, homology retention-only and
+  start assist, GM12878, the preset build and preset runs, and cpu1 against cpu8. Total time 1.75-3.45x faster at
+  `--cpu 1` and 5.3-10.5x faster at `--cpu 8` than release (GM12878 Trinity 1806 -> 222 s).
+- **Lessons:**
+  - Python 3.12's `sum()` uses compensated summation, so it would not be bit-identical; use
+    `np.add.accumulate` from 0.0.
+  - Biopython translates and complements per character or codon, so memo and lookup tables built from Biopython are
+    exact.
+  - Within a frame, every real stop is congruent to the start mod 3, so a bisect finds the first stop.
+- **Open:** LongOrfs `--cpu` (62 s of the 222 s on Trinity). Merging and releasing the branches is BH's decision;
+  no Perl port is needed because outputs are unchanged.
+- **Pointers:** `pipeline/parallel_scoring/`, `data/parallel_scoring/v{1,2}.*.tsv`, E42.
