@@ -36,9 +36,15 @@ Every script hardcodes `P=`. To run elsewhere, change that line.
   latter (`pytd_v7h_homology`, E33/E40). Add `--no-homology-start-assist` to reproduce the retention-only rows
   (`retonly`).
 - Development and not-adopted experiments need the commit they were run with. The index (section 6) says which.
-  All of those commits are in the bundles of section 2. All are also on GitHub except the branches
-  `exp/contrast-frames` (83a4806, E26), `exp/utr-prior` (c9d7875, E29) and `exp/short-orf-taper` (8dbe79b, E19;
-  its commits are on `main`).
+  All of those commits are on GitHub except two single-commit experiments. They were deliberately not pushed, to
+  keep the PyTransDecoder repo free of unadopted options (BH 2026-11-04). They are committed here as patches, each
+  checked to recreate its commit exactly on 3a793ff (on GitHub):
+  - E26 `exp/contrast-frames` 83a4806: `data/benchmark/frames/pytd_contrast_frames.patch`;
+  - E29 `exp/utr-prior` c9d7875: `data/start_refinement/utr_prior/pytd_utr_prior.patch`.
+
+  To recreate one: `git -C $P/trees/PyTransDecoder worktree add --detach $P/trees/PY_utr 3a793ff && git -C $P/trees/PY_utr am $T/data/start_refinement/utr_prior/pytd_utr_prior.patch`.
+  The branches are also in the bundles of section 2. `exp/short-orf-taper` (8dbe79b, E19) has no unique commits:
+  its commits are all on `main`.
 
 ## 2. What exists and where (after `$P/work` was deleted)
 
@@ -181,10 +187,10 @@ run times). "commit X" = needs that historical code. "lit." = literature only.
 | E23 | Version history | supplement (S3, S10, S11) | historical tags (in bundles) + kept SourceForge archives | B |
 | E24 | Release decoy rule + presets, Perl = PyTD | yes (Methods) | 0.4.0 + Perl 41fc5ee | C |
 | E25 | Final release reruns | yes | 0.4.0 | C |
-| E26 | Frame contrast | yes (Methods) | commit 83a4806 (`exp/contrast-frames`, bundle; patch in `data/benchmark/frames/`) | C |
+| E26 | Frame contrast | yes (Methods) | commit 83a4806 = 3a793ff + `data/benchmark/frames/pytd_contrast_frames.patch` | C |
 | E27 | How comparators work | yes (Background, S1) | lit. | B |
 | E28 | Mixed partial inputs | yes (Table 1, S3, S4) | 0.4.0 + comparators | B |
-| E29 | 5'-open starts; UTR prior | anatomy yes; prior not adopted | 0.4.0 (offline: 0.2.1); prior = commit c9d7875 (`exp/utr-prior`, bundle) | D |
+| E29 | 5'-open starts; UTR prior | anatomy yes; prior not adopted | 0.4.0 (offline: 0.2.1); prior = commit c9d7875 = 3a793ff + `data/start_refinement/utr_prior/pytd_utr_prior.patch` | D |
 | E30 | Simulated GM12878 Trinity benchmark | yes | 0.4.0 + comparators | A |
 | E31 | Read-depth ablation | supplement (S5, S6) | 0.4.0 + comparators | A |
 | E32 | Simulated Arabidopsis assembly + depth | supplement (S7) | 0.4.0 + comparators | A |

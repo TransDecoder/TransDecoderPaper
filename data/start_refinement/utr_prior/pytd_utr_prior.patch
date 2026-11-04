@@ -1,0 +1,138 @@
+From c9d78751308a04df860cb994d9558ade022ab8ca Mon Sep 17 00:00:00 2001
+From: Brian Haas <brianjohnhaas@gmail.com>
+Date: Sun, 25 Oct 2026 12:05:37 -0400
+Subject: [PATCH] EXPERIMENTAL: optional UTR-length prior in start refinement
+ (--start-utr-prior-weight, default off)
+
+Adds lambda * kozak_weight * log2 P(d|UTR)/P(d|truncated) to the UTR score, d = 5' UTR implied by
+trimming to the first in-frame ATG; fixed table from annotation (TransDecoderPaper E29).
+
+Co-Authored-By: Claude Opus 5.5 (1M context) <noreply@anthropic.com>
+---
+ pytransdecoder/cli.py     | 11 +++++++++++
+ pytransdecoder/predict.py | 38 ++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 49 insertions(+)
+
+diff --git a/pytransdecoder/cli.py b/pytransdecoder/cli.py
+index 8315fce..9643b55 100644
+--- a/pytransdecoder/cli.py
++++ b/pytransdecoder/cli.py
+@@ -224,6 +224,13 @@ Example:
+              "Kozak score (log2-odds vs internal ATGs); 0 ignores start context "
+              f"(default: {DEFAULT_START_KOZAK_WEIGHT:g})"
+     )
++    parser.add_argument(
++        '--start-utr-prior-weight', '--start_utr_prior_weight', type=float, default=0.0,
++        dest='start_utr_prior_weight',
++        help="EXPERIMENTAL start refinement: weight of a fixed UTR-length prior, log2 P(d|UTR) / "
++             "P(d|truncated) for the 5' UTR d implied by trimming, in Kozak-weighted bits; 0 = off "
++             "(default: 0)"
++    )
+     _add_selection_args(parser)
+     parser.add_argument(
+         '-G', '--genetic-code',
+@@ -314,6 +321,7 @@ def predict_cmd(args):
+             genetic_code=args.genetic_code,
+             start_contrast_alpha=args.start_contrast_alpha,
+             start_kozak_weight=args.start_kozak_weight,
++            start_utr_prior_weight=args.start_utr_prior_weight,
+             decoy_q=_qvalue_cutoff(args),
+             decoy_shuffles=args.decoy_shuffles,
+             decoy_seed=args.decoy_seed,
+@@ -398,6 +406,8 @@ def create_pipeline_parser():
+     parser.add_argument('--start-kozak-weight', type=float, default=DEFAULT_START_KOZAK_WEIGHT,
+                         dest='start_kozak_weight',
+                         help="Start refinement bases per bit of Kozak score (default: %(default)s)")
++    parser.add_argument('--start-utr-prior-weight', type=float, default=0.0, dest='start_utr_prior_weight',
++                        help="EXPERIMENTAL: weight of the UTR-length prior in start refinement (default: 0 = off)")
+     _add_selection_args(parser)
+     parser.add_argument('-v', '--verbose', action='store_true',
+                         help='Verbose output')
+@@ -586,6 +596,7 @@ def pipeline_cmd(args):
+             genetic_code=args.genetic_code,
+             start_contrast_alpha=args.start_contrast_alpha,
+             start_kozak_weight=args.start_kozak_weight,
++            start_utr_prior_weight=args.start_utr_prior_weight,
+             decoy_q=_qvalue_cutoff(args),
+             decoy_shuffles=args.decoy_shuffles,
+             decoy_seed=args.decoy_seed,
+diff --git a/pytransdecoder/predict.py b/pytransdecoder/predict.py
+index 2f80594..dde2968 100644
+--- a/pytransdecoder/predict.py
++++ b/pytransdecoder/predict.py
+@@ -35,6 +35,35 @@ logger = logging.getLogger(__name__)
+ DEFAULT_START_CONTRAST_ALPHA = 0.4
+ DEFAULT_START_KOZAK_WEIGHT = 17.0
+ 
++# EXPERIMENTAL (branch exp/utr-prior; TransDecoderPaper evidence E29): optional UTR-length prior.
++# d = the 5' UTR implied by trimming an open ORF to its first in-frame ATG. UTR_PRIOR_LOG2LR gives
++# log2 P(d | UTR) / P(d | truncated CDS) at bin midpoints (nt), from the reference annotations of the
++# eight benchmark organisms, pooled with equal weight: P(d | UTR) = lengths of annotated 5' UTRs with
++# no in-frame stop whose start is the first in-frame ATG; P(d | truncated) = distance from a uniformly
++# placed cut inside an annotated CDS to the first in-frame ATG. Linear in log d between midpoints,
++# constant beyond. With start_utr_prior_weight = lambda, the UTR score gains
++# lambda * kozak_weight * log2LR(d) (bits weighted like Kozak bits). Default 0 = off.
++UTR_PRIOR_LOG2LR = (
++    (5.5, -0.674), (14.1, 1.018), (24.5, 1.119), (38.7, 0.823), (61.2, 0.675), (86.6, 0.303),
++    (122.5, -0.037), (173.2, -0.930), (244.9, -1.544), (387.3, -2.929), (707.1, -4.271),
++    (1732.1, -6.0),
++)
++DEFAULT_START_UTR_PRIOR_WEIGHT = 0.0
++
++
++def utr_prior_log2lr(d: int) -> float:
++    """log2 P(d|UTR)/P(d|truncated) for implied UTR length d (nt), interpolated in log d."""
++    import math
++    x = math.log(max(d, 1))
++    pts = UTR_PRIOR_LOG2LR
++    if x <= math.log(pts[0][0]):
++        return pts[0][1]
++    for (m0, v0), (m1, v1) in zip(pts, pts[1:]):
++        l0, l1 = math.log(m0), math.log(m1)
++        if x <= l1:
++            return v0 + (v1 - v0) * (x - l0) / (l1 - l0)
++    return pts[-1][1]
++
+ # ORF acceptance without homology support: an ORF with in-frame score > 0 and frame contrast (in-frame
+ # score minus the better shifted frame) > 0 is kept when its target-decoy q-value is <= the cutoff.
+ # Decoy ORFs come from dinucleotide-shuffled copies of the input transcripts, found with the LongOrfs
+@@ -82,6 +111,7 @@ class TransDecoderPredict:
+         genetic_code: str = "Standard",
+         start_contrast_alpha: float = DEFAULT_START_CONTRAST_ALPHA,
+         start_kozak_weight: float = DEFAULT_START_KOZAK_WEIGHT,
++        start_utr_prior_weight: float = DEFAULT_START_UTR_PRIOR_WEIGHT,
+         decoy_q: float = DEFAULT_DECOY_Q,
+         decoy_shuffles: int = 0,
+         decoy_seed: int = DEFAULT_DECOY_SEED,
+@@ -125,6 +155,7 @@ class TransDecoderPredict:
+         self.genetic_code = genetic_code
+         self.start_contrast_alpha = start_contrast_alpha
+         self.start_kozak_weight = start_kozak_weight
++        self.start_utr_prior_weight = start_utr_prior_weight
+         self.decoy_q = decoy_q
+         self.decoy_shuffles = decoy_shuffles
+         self.decoy_seed = decoy_seed
+@@ -1124,6 +1155,9 @@ class TransDecoderPredict:
+         logger.info("Training ORFs: median frame contrast %.4f per base; open 5' ends trimmed to the "
+                     "first ATG when %.2f x segment length + %g x Kozak bits exceeds the segment's "
+                     "coding score", coding_contrast, self.start_contrast_alpha, self.start_kozak_weight)
++        if self.start_utr_prior_weight:
++            logger.info("EXPERIMENTAL UTR-length prior: UTR score + %g x %g x log2 P(d|UTR)/P(d|truncated)",
++                        self.start_utr_prior_weight, self.start_kozak_weight)
+ 
+         transcripts = self._load_transcripts()
+         if self.preset:
+@@ -1264,6 +1298,10 @@ class TransDecoderPredict:
+                 coding_score = self._frame_contrast(orf[:atg], scores) / coding_contrast
+                 kozak_score = self._kozak_score(kozak, oriented, orf_start + atg) if kozak else 0.0
+                 utr_score = self.start_contrast_alpha * atg + self.start_kozak_weight * kozak_score
++                if self.start_utr_prior_weight:
++                    # implied 5' UTR = bases before the ATG in the (oriented) transcript
++                    utr_score += (self.start_utr_prior_weight * self.start_kozak_weight
++                                  * utr_prior_log2lr(orf_start + atg))
+                 if coding_score >= utr_score:
+                     dst.write(line)  # upstream segment looks coding: 5' partial
+                     continue
+-- 
+2.52.0
+

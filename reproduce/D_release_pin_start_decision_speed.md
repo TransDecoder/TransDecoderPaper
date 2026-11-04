@@ -152,8 +152,8 @@ a5b24c3/d3892b5 apart from the version string), or `git checkout v0.2.0`. They w
     replaced by `work/release_pin/{bench/<org>/<v>/rel, gm/<asm>/rel}`;
   - `data/annot/<org>/` (`benchmark_v2/truth_sources.tsv`), MANE v1.5 GTF, GM12878 assemblies/structures.
 - **Software:** PyTD 3a793ff (`work/trees/PY_v7`) for `03_utr_features.py`, imported via PYTHONPATH. Use v0.2.1.
-  The prior runs use branch `exp/utr-prior` **c9d7875**, worktree `work/trees/PY_utr`. **Local only: it exists only in
-  `$P/repos/PyTransDecoder` and is not on GitHub.**
+  The prior runs use branch `exp/utr-prior` **c9d7875**. It is not on GitHub; recreate it with `git am
+  data/start_refinement/utr_prior/pytd_utr_prior.patch` on 3a793ff (see REPRODUCE.md section 1).
 - **Steps (`pipeline/derive/`):**
   - `03_utr_features.py <run> <gcode> <out> [truth]` (`PYTHONPATH=<tree>`);
   - `03_utr_anatomy.py` -> `release.anatomy/decision_by_d` and `release_gm12878.*`;
@@ -308,10 +308,9 @@ Sizes are `du -sh` on 2026-11-03. "Regen" = the cost to recreate with 0.4.0 if d
 
 # PART 3. Gaps
 
-1. **`exp/utr-prior` c9d7875 (E29 prior) is local only**, in `$P/repos/PyTransDecoder`. The other unmerged
-   experimental branches there, `exp/contrast-frames` (E26) and `exp/short-orf-taper`, are local too. `$P/repos` is not
-   on the "kept" list (`data`, `env`). Push these branches to GitHub (or `git bundle` them into `$P/data`) before any cleanup
-   of `$P/repos`. Deleting `$P/work/trees/*` alone is safe.
+1. **Resolved 2026-11-04.** `exp/utr-prior` c9d7875 (E29) and `exp/contrast-frames` 83a4806 (E26) are not pushed to
+   PyTransDecoder, by BH's choice. They are committed here as patches on 3a793ff (see REPRODUCE.md section 1) and are
+   in `$P/data/code_bundles/`. `exp/short-orf-taper` has no unique commits.
 2. **`sprot_minus_<taxid>.dmnd` builder not saved** (E07 gap). The reconstruction in E40 above is verified only by counts
    (E33 step 5). The `.dmnd` files are kept in `$P/data/homology`, so this matters only for a from-scratch rebuild.
 3. **Homology hit tables live only in `$P/work`.** Without them the paper's retention-only and `pytd_v7h_homology`

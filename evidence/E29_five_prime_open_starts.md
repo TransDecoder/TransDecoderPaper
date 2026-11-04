@@ -37,8 +37,8 @@ help on the benchmark and on GM12878?
   transcript's 5' end is classed complete (contains the start; UTR length, open or not) or
   5' partial (begins inside the CDS; fraction of CDS missing). Also writes a transcript-level truth
   table, used for the GM12878 anatomy and offline simulation.
-- Prototype (PyTD branch `exp/utr-prior`, worktree `$P/work/trees/PY_utr`, commit c9d7875, local
-  only, not merged/pushed): `--start-utr-prior-weight lambda` (default 0 = off) adds
+- Prototype (PyTD branch `exp/utr-prior`, commit c9d7875, not merged or pushed; the code is committed here as
+  `data/start_refinement/utr_prior/pytd_utr_prior.patch`, which applies to 3a793ff): `--start-utr-prior-weight lambda` (default 0 = off) adds
   lambda * w * log2[P(d|UTR)/P(d|truncated)] to the UTR score (w = 17, i.e. the prior's bits weigh
   like Kozak bits). The table is fixed and organism-independent, from the annotations only
   (`utr_prior_lr.tsv`: P(d|UTR) = open 5' UTRs whose start is the first in-frame ATG; P(d|trunc) =
