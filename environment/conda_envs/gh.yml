@@ -1,0 +1,7 @@
+name: '(see filename)'
+channels:
+  - conda-forge
+dependencies:
+  - gh=2.102.0=hfc2019e_0
+
+prefix: "/broad/hptmp/bhaas/TRANSDECODER_PAPER/env/gh"
