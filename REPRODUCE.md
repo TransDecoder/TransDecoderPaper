@@ -100,8 +100,9 @@ micromamba create -p $P/env/td -f $T/environment/conda_envs/td.yml     # likewis
   that tree. Scripts that *read* kept inputs from `$P/work` (homology hits, preset held-out sets, `cliff_c200`
   predictions, lncRNA picks, simulated-assembly labels) must be pointed at `$P/data/work_keep/...`. Or restore those
   files first: `rsync -a $P/data/work_keep/ $P/work/`. That restores them to the paths the scripts expect.
-  Committed manifests and symlinks under `data/{missed_cds,alpha_by_length}/gm12878_inputs` point into `$P/work`, and
-  resolve again once the E40/E33 runs are redone.
+  The input symlinks `$P/data/{missed_cds,alpha_by_length}/gm12878_inputs/*` now point to the kept GM12878 Trinity
+  runs `$P/data/work_keep/gm12878_td/trinity/{final_v7_abinitio,final_v7h_homology}`. These were repointed on
+  2026-11-03.
 - Run everything locally at normal priority (no UGER, no `nice`). A few E33–E36 scripts call `nice`; drop it.
 
 ## 4. Order of a full rebuild
@@ -122,7 +123,7 @@ micromamba create -p $P/env/td -f $T/environment/conda_envs/td.yml     # likewis
 
 ## 5. What was kept from `work/` (`$P/data/work_keep/`)
 
-Copied on 2026-11-03 by `pipeline/maintenance/keep_from_work_v1.sh` (28,477 files, 5.7 GB; log: `$P/data/work_keep.copy.log`). Copies only, original
+Copied on 2026-11-03 by `pipeline/maintenance/keep_from_work_v1.sh` (28,477 files, 5.7 GB; log: `$P/data/work_keep.copy.log`), plus the two GM12878 Trinity runs `gm12878_td/trinity/{final_v7_abinitio,final_v7h_homology}` (0.7 GB) that the E34/E36 inputs link to; 6.5 GB in total. Copies only, original
 relative paths.
 
 | Kept | Why |
