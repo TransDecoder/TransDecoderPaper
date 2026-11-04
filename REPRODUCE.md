@@ -1,7 +1,7 @@
 # Reproducing the TransDecoder paper from scratch
 
 This guide explains how to regenerate every analysis in the paper, using the latest PyTransDecoder release
-(**0.4.0**, PyPI `pytransdecoder==0.4.0`, tag `v0.4.0` = a285464) and the Perl TransDecoder release pin
+(**0.4.0**, PyPI `pytransdecoder==0.4.0`, tag `v0.4.0` = a285464; v0.4.1 = 9586ea4 gives identical predictions and only adds a start-up check for external programs, E42) and the Perl TransDecoder release pin
 (**41fc5ee** on `devel`; tag `TransDecoder-v7.0.0` differs only in version strings).
 
 This page gives the setup, the order of runs, and an index of all 42 experiments. The step-by-step commands are in

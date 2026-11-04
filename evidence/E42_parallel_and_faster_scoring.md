@@ -120,3 +120,27 @@ single-process step (62 s of 222 s on GM12878 Trinity).
   - the contents of `$P/_trash`;
   - this session's scratchpad;
   - worktrees PY_par, PY_fast and PY_lo, and their merged branches.
+
+## v0.4.1 release (2026-11-04)
+- **Change** (PyTD 2b4ed13; release commit 9586ea4 on `main` and `devel`, tag v0.4.1): `pyTransdecoder` and
+  `genome-map` now check, before any work starts, that the external programs the chosen options run are on
+  `PATH`:
+  - `diamond`, or `makeblastdb`/`blastp`;
+  - `hmmsearch`, plus `hmmpress` if the database is not yet pressed;
+  - `gffread`;
+  - `samtools` for BAM structures.
+
+  If one is missing, the run stops with one message naming it and its bioconda package. Before this, the run
+  failed with a FileNotFoundError traceback after LongOrfs had finished. `pytransdecoder longorfs` and
+  `predict` run no external programs.
+- **Checks:**
+  - 101 tests pass, 10 of them new;
+  - end to end with DIAMOND 2.2.8 and HMMER 3.4 (*S. pombe* complete input, 20,000 Swiss-Prot sequences,
+    400 Pfam HMMs): every output file is identical to v0.4.0, apart from hmmsearch's own header lines (run
+    directory, date);
+  - the wheel and sdist pass `twine check`;
+  - a clean venv with the wheel gives the missing-program message and a normal run;
+  - after the upload, `pip install pytransdecoder==0.4.1` from PyPI reports 0.4.1.
+- **Published:** GitHub release https://github.com/TransDecoder/PyTransDecoder/releases/tag/v0.4.1 and PyPI
+  https://pypi.org/project/pytransdecoder/0.4.1/. Predictions are unchanged, so everything in REPRODUCE.md
+  that says 0.4.0 holds for 0.4.1.
